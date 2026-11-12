@@ -1,0 +1,23 @@
+flowchart TD
+  A[Start] --> B{Input method}
+  B --> C[Fill guided form]
+  B --> D[Import JSON]
+  B --> E[Load public sample]
+  D --> F[Parse and validate container]
+  F -->|Error| G[Show parse or size error]
+  G --> D
+  F --> H[Review fields and defaults]
+  C --> H
+  E --> H
+  H --> I[Run recommendation]
+  I --> J{Result status}
+  J -->|invalid_input| K[Show field errors]
+  K --> H
+  J -->|infeasible| L[Show conflicting constraints]
+  J -->|ok or ok_with_warnings| M[Show stack and reasoning]
+  L --> N[Edit inputs]
+  M --> N
+  N --> O[Mark previous result stale]
+  O --> H
+  L --> P[Export result JSON]
+  M --> P

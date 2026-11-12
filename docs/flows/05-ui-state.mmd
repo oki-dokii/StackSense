@@ -1,0 +1,18 @@
+stateDiagram-v2
+  [*] --> Empty
+  Empty --> Editing: Enter or import
+  Editing --> Invalid: Validation errors
+  Invalid --> Editing: Correct fields
+  Editing --> Running: Submit
+  Invalid --> Running: Submit corrected values
+  Running --> Success: ok
+  Running --> Warned: ok_with_warnings
+  Running --> Infeasible: infeasible
+  Running --> Invalid: invalid_input
+  Running --> Failed: Transport or internal error
+  Failed --> Running: Retry
+  Success --> Stale: Edit inputs
+  Warned --> Stale: Edit inputs
+  Infeasible --> Stale: Edit inputs
+  Stale --> Running: Rerun
+  Stale --> Empty: Confirm reset

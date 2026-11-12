@@ -1,0 +1,19 @@
+sequenceDiagram
+  actor User
+  participant UI as Web UI
+  participant API as Local API
+  participant Engine as Shared Engine
+  participant Catalog as Versioned Catalog
+  User->>UI: Enter or import scenario
+  UI->>UI: Show fields, defaults, errors
+  User->>UI: Recommend
+  UI->>API: POST /api/recommend
+  API->>Engine: recommend(raw, context)
+  Engine->>Catalog: Read immutable facts/rules
+  Catalog-->>Engine: Data and versions
+  Engine->>Engine: Validate, filter, score, plan, explain
+  Engine-->>API: Canonical result
+  API-->>UI: Result JSON
+  UI-->>User: Status, choices, risks, assumptions
+  User->>UI: Export
+  UI-->>User: Exact result download

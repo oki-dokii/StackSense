@@ -1,0 +1,400 @@
+{
+  "type": "object",
+  "properties": {
+    "scenario_id": {
+      "type": "string"
+    },
+    "engine_version": {
+      "type": "string"
+    },
+    "catalog_version": {
+      "type": "string"
+    },
+    "rules_version": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "ok_with_warnings",
+        "infeasible",
+        "invalid_input"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "architecture_style": {
+      "type": "string",
+      "enum": [
+        "static",
+        "monolith",
+        "modular_monolith",
+        "serverless",
+        "service_oriented",
+        "microservices",
+        "hybrid",
+        "other"
+      ]
+    },
+    "stack": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/stack"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "estimated_monthly_cost_usd": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max": {
+          "type": "number",
+          "minimum": 0
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "min",
+        "max",
+        "assumptions"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/warning"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation_errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": true,
+        "required": [
+          "field",
+          "message"
+        ]
+      }
+    }
+  },
+  "additionalProperties": true,
+  "required": [
+    "status",
+    "summary",
+    "architecture_style",
+    "stack",
+    "estimated_monthly_cost_usd",
+    "warnings",
+    "assumptions",
+    "validation_errors"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:stacksense:recommendation:0.1",
+  "title": "StackSense recommendation result \u2014 project profile",
+  "description": "Requires nonempty alternatives, drivers and tradeoffs for all components; stricter than the minimum output table. Semantic rules (min<=max, critical warning, driver paths) are also required.",
+  "definitions": {
+    "component": {
+      "type": "object",
+      "properties": {
+        "choice": {
+          "type": "string",
+          "minLength": 1
+        },
+        "justification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "driven_by": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "choice": {
+                "type": "string",
+                "minLength": 1
+              },
+              "why_not": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": true,
+            "required": [
+              "choice",
+              "why_not"
+            ]
+          },
+          "minItems": 1
+        },
+        "tradeoffs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "choice",
+        "justification",
+        "driven_by",
+        "alternatives",
+        "tradeoffs"
+      ]
+    },
+    "stack": {
+      "type": "object",
+      "properties": {
+        "frontend": {
+          "$ref": "#/definitions/component"
+        },
+        "backend": {
+          "$ref": "#/definitions/component"
+        },
+        "database": {
+          "$ref": "#/definitions/component"
+        },
+        "hosting": {
+          "$ref": "#/definitions/component"
+        },
+        "supporting": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/component"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "layer": {
+                    "type": "string",
+                    "enum": [
+                      "cache",
+                      "queue",
+                      "search",
+                      "auth",
+                      "storage",
+                      "cdn",
+                      "realtime",
+                      "payments",
+                      "ml",
+                      "ci_cd",
+                      "observability",
+                      "other"
+                    ]
+                  }
+                },
+                "additionalProperties": true,
+                "required": [
+                  "layer"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "frontend",
+        "backend",
+        "database",
+        "hosting"
+      ]
+    },
+    "warning": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warning",
+            "critical"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "code",
+        "severity",
+        "message",
+        "fields"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "invalid_input"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stack": {
+            "type": "null"
+          },
+          "validation_errors": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "infeasible"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stack": {
+            "type": "null"
+          },
+          "validation_errors": {
+            "maxItems": 0
+          },
+          "warnings": {
+            "contains": {
+              "type": "object",
+              "properties": {
+                "severity": {
+                  "const": "critical"
+                }
+              },
+              "required": [
+                "severity"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "ok",
+              "ok_with_warnings"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stack": {
+            "$ref": "#/definitions/stack"
+          },
+          "validation_errors": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ok_with_warnings"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "warnings": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ok"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "warnings": {
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/warning"
+                },
+                {
+                  "properties": {
+                    "severity": {
+                      "const": "info"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

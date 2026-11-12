@@ -1,0 +1,40 @@
+# Documentation index
+
+Status: implementation baseline proposal, 13 November 2026, IST. No application behavior is claimed as implemented.
+
+## Product and requirements
+
+- [Challenge brief and ambiguities](CHALLENGE_BRIEF.md)
+- [PRD: product requirements](PRD.md)
+- [SRS: verifiable software requirements](SRS.md)
+- [Field-level input design](INPUT_DESIGN.md)
+- [Requirements traceability](TRACEABILITY.md)
+
+## Design and implementation
+
+- [TRD: technical requirements and architecture](TRD.md)
+- [UI/UX specification](UI_UX.md)
+- [Workflows and state behavior](WORKFLOWS.md)
+- [Flow diagrams](flows/README.md)
+- [Decision engine specification](DECISION_ENGINE.md)
+- [Initial rule tables](DECISION_TABLES.md)
+- [Knowledge base and research](KNOWLEDGE_BASE.md)
+- [Cost model](COST_MODEL.md)
+- [API and CLI contracts](API_CLI.md)
+- [Schema contracts](../schemas/README.md)
+- [Decision log and ADRs](DECISIONS.md)
+
+## Delivery and evidence
+
+- [Test plan](TEST_PLAN.md)
+- [Starter verification record](VERIFICATION.md)
+- [Security and privacy](SECURITY_PRIVACY.md)
+- [Implementation roadmap](ROADMAP.md)
+- [Risks and open questions](RISKS.md)
+- [Submission checklist](SUBMISSION.md)
+- [Report outline](REPORT_TEMPLATE.md)
+- [References and evidence register](REFERENCES.md)
+- [AI assistance declaration](AI_ASSISTANCE.md)
+- [Contribution and change discipline](../CONTRIBUTING.md)
+
+Normative order: organiser brief first; then SRS/schema contracts; then technical specifications; then UI presentation. ADRs explain intentional choices. If documents disagree, record and resolve the discrepancy rather than silently changing the contract. In schemas, organiser-required behavior is distinguished from additional project conventions in descriptions and this documentation.

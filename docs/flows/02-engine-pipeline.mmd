@@ -1,0 +1,17 @@
+flowchart TD
+  A[Raw scenario] --> B[Schema validation]
+  B -->|Invalid| C[invalid_input and null stack]
+  B -->|Valid| D[Defaults with provenance]
+  D --> E[Derive features and conflicts]
+  E --> F[Filter deployment variants]
+  F --> G[Score candidates]
+  G --> H[Search compatible full plans]
+  H --> I{Search outcome}
+  I -->|No feasible plan proven| J[infeasible and critical warnings]
+  I -->|Search limit or internal failure| K[Internal error, not infeasible]
+  I -->|Plan found| L[Attach services and estimate costs]
+  L --> M[Recheck constraints and budget]
+  M --> N[Select with stable tie-breaks]
+  N --> O[Generate explanation from evidence]
+  O --> P[Validate output and invariants]
+  P --> Q[ok or ok_with_warnings]

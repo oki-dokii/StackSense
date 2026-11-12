@@ -1,0 +1,11 @@
+flowchart TD
+  A[Array input file] --> B[Parse and check limits]
+  B -->|Container invalid| C[Report root error]
+  B -->|Valid| D[For each item in input order]
+  D --> E[Run shared engine]
+  E --> F[Validate result contract]
+  F --> G[Choose safe unique filename]
+  G --> H[Atomic write or explicit overwrite error]
+  H --> I{More items}
+  I -->|Yes| D
+  I -->|No| J[Summary and deterministic exit code]

@@ -1,0 +1,388 @@
+{
+  "type": "object",
+  "properties": {
+    "scenario_id": {
+      "type": "string"
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "content_site",
+            "web_app",
+            "saas_b2b",
+            "ecommerce",
+            "marketplace",
+            "social",
+            "realtime_collab",
+            "fintech",
+            "healthtech",
+            "data_analytics",
+            "iot",
+            "ai_ml_product",
+            "internal_tool",
+            "gaming",
+            "api_platform",
+            "other"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "platforms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "web",
+              "android",
+              "ios",
+              "desktop",
+              "api_only"
+            ]
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "type",
+        "platforms"
+      ]
+    },
+    "scale": {
+      "type": "object",
+      "properties": {
+        "users_at_launch": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "users_12_months": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "peak_concurrent_users": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "traffic_pattern": {
+          "type": "string",
+          "enum": [
+            "steady",
+            "spiky",
+            "seasonal"
+          ],
+          "default": "steady"
+        },
+        "workload": {
+          "type": "string",
+          "enum": [
+            "read_heavy",
+            "balanced",
+            "write_heavy"
+          ],
+          "default": "balanced"
+        },
+        "data_volume_gb_12_months": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "users_at_launch",
+        "users_12_months"
+      ]
+    },
+    "team": {
+      "type": "object",
+      "properties": {
+        "size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "experience": {
+          "type": "string",
+          "enum": [
+            "beginner",
+            "intermediate",
+            "senior",
+            "mixed"
+          ]
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_+#. -]*$"
+          }
+        },
+        "has_devops": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "size",
+        "experience",
+        "languages"
+      ]
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "monthly_infra_usd": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "monthly_infra_usd"
+      ]
+    },
+    "timeline": {
+      "type": "object",
+      "properties": {
+        "mvp_weeks": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "mvp_weeks"
+      ]
+    },
+    "infrastructure": {
+      "type": "object",
+      "properties": {
+        "cloud_preference": {
+          "type": "string",
+          "enum": [
+            "any",
+            "aws",
+            "gcp",
+            "azure",
+            "none"
+          ],
+          "default": "any"
+        },
+        "deployment_model": {
+          "type": "string",
+          "enum": [
+            "managed_cloud",
+            "self_hosted_cloud_vm",
+            "on_premise",
+            "air_gapped"
+          ],
+          "default": "managed_cloud"
+        },
+        "data_residency": {
+          "type": "string",
+          "enum": [
+            "none",
+            "india",
+            "eu",
+            "us",
+            "other"
+          ],
+          "default": "none"
+        },
+        "existing_systems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      },
+      "additionalProperties": true
+    },
+    "requirements": {
+      "type": "object",
+      "properties": {
+        "realtime": {
+          "type": "boolean",
+          "default": false
+        },
+        "offline_support": {
+          "type": "boolean",
+          "default": false
+        },
+        "full_text_search": {
+          "type": "boolean",
+          "default": false
+        },
+        "file_media_storage": {
+          "type": "boolean",
+          "default": false
+        },
+        "payments": {
+          "type": "boolean",
+          "default": false
+        },
+        "multi_tenant": {
+          "type": "boolean",
+          "default": false
+        },
+        "seo_critical": {
+          "type": "boolean",
+          "default": false
+        },
+        "auth": {
+          "type": "string",
+          "enum": [
+            "none",
+            "email_password",
+            "social",
+            "phone_otp",
+            "enterprise_sso"
+          ],
+          "default": "none"
+        },
+        "ml_features": {
+          "type": "string",
+          "enum": [
+            "none",
+            "inference_api",
+            "llm_rag",
+            "training"
+          ],
+          "default": "none"
+        },
+        "availability": {
+          "type": "string",
+          "enum": [
+            "99",
+            "99.9",
+            "99.95",
+            "99.99"
+          ],
+          "default": "99.9"
+        },
+        "p95_latency_ms": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "compliance": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "gdpr",
+          "dpdp",
+          "hipaa",
+          "pci_dss",
+          "rbi_localisation",
+          "soc2",
+          "iso27001"
+        ]
+      },
+      "default": []
+    },
+    "priorities": {
+      "type": "object",
+      "properties": {
+        "cost": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "default": 3
+        },
+        "time_to_market": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "default": 3
+        },
+        "scalability": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "default": 3
+        },
+        "performance": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "default": 3
+        },
+        "maintainability": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "default": 3
+        },
+        "security": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "default": 3
+        }
+      },
+      "additionalProperties": true
+    },
+    "extensions": {
+      "type": "object",
+      "properties": {
+        "expected_requests_per_second": {
+          "type": "number",
+          "minimum": 0
+        },
+        "primary_user_region": {
+          "type": "string"
+        },
+        "retention_months": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "monthly_egress_gb": {
+          "type": "number",
+          "minimum": 0
+        },
+        "monthly_otp_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "vendor_lock_in_tolerance": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true,
+  "required": [
+    "project",
+    "scale",
+    "team",
+    "budget",
+    "timeline"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:stacksense:scenario:0.1",
+  "title": "StackSense standard scenario with optional project extensions",
+  "description": "Exact standard fields; additional properties preserved and warned by application. Defaults are annotations and must be applied with provenance by normalization, not silently by validator."
+}
