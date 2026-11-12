@@ -25,3 +25,7 @@ python scripts/check_docs.py --schemas
 ```
 
 Validation performed with Python 3 and jsonschema 4.26.0 in a temporary dependency directory; dependencies are not included in the repository. No positive test output is an official stack answer. See TEST_PLAN.md for implementation acceptance work still required.
+
+## Research-plan update — 13 November 2026
+
+The expanded checker passes with 11 JSON files, including the 30-record research metadata register. Source IDs are unique, required metadata is present, and root plan citations match registered IDs/URLs. Internal links and earlier schema/fixture checks still pass. Review depth and access limits are recorded in the annotated research review. No research experiment, hosted prototype, engine output or performance benchmark was reproduced by this update.

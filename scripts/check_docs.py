@@ -32,7 +32,7 @@ def main():
             if not (path.parent / target).resolve().exists():
                 problems.append(f'{path.relative_to(ROOT)}: missing link {target}')
     docs = {}
-    for path in [*ROOT.glob('schemas/*.json'), *ROOT.glob('fixtures/**/*.json')]:
+    for path in [*ROOT.glob('schemas/*.json'), *ROOT.glob('fixtures/**/*.json'), *ROOT.glob('docs/research/*.json')]:
         try:
             docs[path] = json.loads(path.read_text(encoding='utf-8'), parse_constant=lambda x: (_ for _ in ()).throw(ValueError(x)))
         except (ValueError, OSError) as exc:
@@ -51,6 +51,23 @@ def main():
     for path in ROOT.glob('docs/flows/*.mmd'):
         if not path.read_text().startswith(('flowchart ', 'sequenceDiagram', 'stateDiagram-v2')):
             problems.append(f'Unrecognized Mermaid source: {path.name}')
+    research_path = ROOT / 'docs/research/sources.json'
+    if research_path in docs:
+        records = docs[research_path]
+        ids = [item.get('id') for item in records]
+        if len(ids) != len(set(ids)):
+            problems.append('Research source IDs must be unique')
+        by_id = {item.get('id'): item for item in records}
+        for item in records:
+            for field in ['id', 'kind', 'authors', 'title', 'url', 'checked_on', 'review_depth']:
+                if not item.get(field):problems.append(f"Research source {item.get('id')}: missing {field}")
+            if not item.get('url', '').startswith('https://'):
+                problems.append(f"Research source {item.get('id')}: expected HTTPS source URL")
+        plan = ROOT / 'plan.md'
+        if plan.exists():
+            for ident, url in re.findall(r'\[([RP]\d{2})\]\((https://[^)]+)\)', plan.read_text()):
+                if ident not in by_id or by_id[ident]['url'] != url:
+                    problems.append(f'Plan source {ident}: citation differs from source register')
     if args.schemas:
         try:
             from jsonschema import Draft7Validator
@@ -103,6 +120,8 @@ def main():
         for problem in problems:print('ERROR:',problem,file=sys.stderr)
         return 1
     print(f'PASS: Markdown links/fences, {len(docs)} JSON files, six public splits, provenance, flow sources' + (', input/output schema and positive/negative contract checks' if args.schemas else ''))
+    if research_path in docs:
+        print(f'PASS: {len(docs[research_path])} research metadata records, unique IDs and plan citation mapping')
     return 0
 
 if __name__ == '__main__':

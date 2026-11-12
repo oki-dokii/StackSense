@@ -15,7 +15,11 @@ Source PDF is not republished in this starter. Its requirements are summarized; 
 
 These references support tool choice, not claims about the suitability or cost of any recommended production stack. Exact implementation versions are not pinned yet.
 
-## Research register to complete
+## Research completed for the implementation plan
+
+The [annotated research review](RESEARCH_REVIEW.md) and [30-entry source register](research/sources.json) record paper/method references and official documentation checked on 13 November 2026, with review depth and limitations. They support the design in [plan.md](../plan.md); they do not replace entry-level technology, region, pricing and control verification.
+
+## Catalog evidence register still to complete
 
 Use one record per factual source:
 

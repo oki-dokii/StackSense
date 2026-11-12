@@ -37,7 +37,7 @@ Extra optional inputs live under `extensions`: expected requests/second, primary
 ## Status semantics and invariants
 
 - `invalid_input`: parsing/structural/value error; `stack = null`; at least one field error; no selection performed. Root parse errors use field `$`.
-- `infeasible`: valid input, no acceptable plan under the required constraints; critical warning with affected fields; `stack = null` in this profile.
+- `infeasible`: valid input, no supported plan in the fixed reviewed catalog under the required constraints; explain whether constraints conflict or catalog/evidence coverage is insufficient, without claiming real-world impossibility; critical warning with affected fields; `stack = null` in this profile.
 - `ok_with_warnings`: usable stack plus at least one warning; any reduced scope names every relaxed requirement in assumptions. Never silently relax residency/compliance/deployment/cloud constraints.
 - `ok`: usable stack; no material warning/critical item. Informational notices may exist.
 - `validation_errors = []` for valid scenarios. Core component alternatives are nonempty even when choice is `None`.

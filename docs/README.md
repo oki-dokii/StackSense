@@ -2,6 +2,12 @@
 
 Status: implementation baseline proposal, 13 November 2026, IST. No application behavior is claimed as implemented.
 
+## Research and execution
+
+- [Research-backed implementation plan](../plan.md)
+- [Annotated literature and solution review](RESEARCH_REVIEW.md)
+- [Machine-readable source register](research/sources.json)
+
 ## Product and requirements
 
 - [Challenge brief and ambiguities](CHALLENGE_BRIEF.md)

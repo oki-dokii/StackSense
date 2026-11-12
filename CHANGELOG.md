@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0 — 2026-11-13
+
+- Added a research-backed root plan.md with architecture, algorithm, evaluation and implementation gates.
+- Added annotated papers/solution review and a 30-source primary evidence register.
+- Refined complete-plan scoring, evidence uncertainty, catalog-relative infeasibility and conflict explanation semantics.
+- Linked the research plan through README, roadmap and decision documents.
+
 ## 0.1.0 — 2026-11-13
 
 - Initial planning baseline: PRD, TRD, SRS, UI/UX, workflows and diagrams.

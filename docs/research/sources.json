@@ -1,0 +1,302 @@
+[
+  {
+    "id": "R01",
+    "kind": "paper_review",
+    "year": 2024,
+    "authors": "Mathias Uta et al.",
+    "title": "Knowledge-based recommender systems: overview and research directions",
+    "url": "https://www.frontiersin.org/journals/big-data/articles/10.3389/fdata.2024.1304439/full",
+    "checked_on": "2026-11-13",
+    "review_depth": "Full-text relevant sections reviewed"
+  },
+  {
+    "id": "R02",
+    "kind": "paper",
+    "year": 2018,
+    "authors": "Siamak Farshidi, Slinger Jansen, Rolf de Jong, Sjaak Brinkkemper",
+    "title": "A decision support system for software technology selection",
+    "url": "https://slingerjansen.nl/wp-content/uploads/2018/05/a-decision-support-system-for-software-technology-selection.pdf",
+    "checked_on": "2026-11-13",
+    "review_depth": "Author-hosted full-text model/inference sections reviewed"
+  },
+  {
+    "id": "R03",
+    "kind": "paper",
+    "year": 2020,
+    "authors": "Siamak Farshidi, Slinger Jansen",
+    "title": "A Decision Support System for Pattern-Driven Software Architecture",
+    "url": "https://link.springer.com/chapter/10.1007/978-3-030-59155-7_6",
+    "checked_on": "2026-11-13",
+    "review_depth": "Publisher abstract and metadata reviewed"
+  },
+  {
+    "id": "R04",
+    "kind": "paper_preprint",
+    "year": 2012,
+    "authors": "Miranda Zhang, Rajiv Ranjan, Surya Nepal, Michael Menzel, Armin Haller",
+    "title": "A Declarative Recommender System for Cloud Infrastructure Services Selection",
+    "url": "https://arxiv.org/abs/1210.2047",
+    "checked_on": "2026-11-13",
+    "review_depth": "Full-text domain/configuration model sections reviewed"
+  },
+  {
+    "id": "R05",
+    "kind": "technical_report_preprint",
+    "year": 2012,
+    "authors": "Michael Menzel, Rajiv Ranjan",
+    "title": "CloudGenius: Automated Decision Support for Migrating Multi-Component Enterprise Applications to Clouds",
+    "url": "https://arxiv.org/abs/1112.3880",
+    "checked_on": "2026-11-13",
+    "review_depth": "Full-text formal model and compatibility sections reviewed"
+  },
+  {
+    "id": "R06",
+    "kind": "paper",
+    "year": 2004,
+    "authors": "Ulrich Junker",
+    "title": "QUICKXPLAIN: Preferred Explanations and Relaxations for Over-Constrained Problems",
+    "url": "https://aaai.org/Papers/AAAI/2004/AAAI04-027.pdf",
+    "checked_on": "2026-11-13",
+    "review_depth": "Publisher abstract/index reviewed; proof context cross-checked with R07"
+  },
+  {
+    "id": "R07",
+    "kind": "paper_preprint",
+    "year": 2022,
+    "authors": "Patrick Rodler",
+    "title": "A formal proof and simple explanation of the QuickXplain algorithm",
+    "url": "https://arxiv.org/html/2001.01835v3",
+    "checked_on": "2026-11-13",
+    "review_depth": "Full-text monotone predicate/background assumptions reviewed"
+  },
+  {
+    "id": "R08",
+    "kind": "paper",
+    "year": 2021,
+    "authors": "Juri Di Rocco, Davide Di Ruscio, Claudio Di Sipio, Phuong T. Nguyen, Riccardo Rubei",
+    "title": "Development of recommendation systems for software engineering: the CROSSMINER experience",
+    "url": "https://link.springer.com/article/10.1007/s10664-021-09963-7",
+    "checked_on": "2026-11-13",
+    "review_depth": "Full-text requirements/development/evaluation sections reviewed"
+  },
+  {
+    "id": "R09",
+    "kind": "paper_review",
+    "year": 2020,
+    "authors": "Yongfeng Zhang, Xu Chen",
+    "title": "Explainable Recommendation: A Survey and New Perspectives",
+    "url": "https://arxiv.org/abs/1804.11192",
+    "checked_on": "2026-11-13",
+    "review_depth": "Abstract and publication metadata reviewed"
+  },
+  {
+    "id": "R10",
+    "kind": "paper_review",
+    "year": 2016,
+    "authors": "Sergio Segura, Gordon Fraser, Ana B. Sánchez, Antonio Ruiz-Cortés",
+    "title": "A Survey on Metamorphic Testing",
+    "url": "https://eprints.whiterose.ac.uk/id/eprint/110335/1/segura16-tse.pdf",
+    "checked_on": "2026-11-13",
+    "review_depth": "Accepted-version abstract and testing-method discussion reviewed"
+  },
+  {
+    "id": "R11",
+    "kind": "paper",
+    "year": 2019,
+    "authors": "Martin Kleppmann, Adam Wiggins, Peter van Hardenberg, Mark McGranaghan",
+    "title": "Local-first software: you own your data, in spite of the cloud",
+    "url": "https://www.repository.cam.ac.uk/items/525725e6-1a1d-46ce-a5a3-d0d9b1beeee1/full",
+    "checked_on": "2026-11-13",
+    "review_depth": "University repository abstract and metadata reviewed"
+  },
+  {
+    "id": "R12",
+    "kind": "paper_preprint",
+    "year": 2025,
+    "authors": "Siamak Farshidi et al.",
+    "title": "Empirical Evaluation of AI-Assisted Software Package Selection: A Knowledge Graph Approach",
+    "url": "https://arxiv.org/html/2508.05693v1",
+    "checked_on": "2026-11-13",
+    "review_depth": "Full-text PySelect architecture/data pipelines and threats reviewed"
+  },
+  {
+    "id": "R13",
+    "kind": "method_report",
+    "year": 2000,
+    "authors": "Rick Kazman, Mark H. Klein, Paul C. Clements",
+    "title": "ATAM: Method for Architecture Evaluation",
+    "url": "https://www.sei.cmu.edu/library/atam-method-for-architecture-evaluation/",
+    "checked_on": "2026-11-13",
+    "review_depth": "Official report overview reviewed"
+  },
+  {
+    "id": "R14",
+    "kind": "method_reference",
+    "year": 2018,
+    "authors": "Carnegie Mellon Software Engineering Institute",
+    "title": "Cost Benefit Analysis Method (CBAM)",
+    "url": "https://www.sei.cmu.edu/library/cost-benefit-analysis-method-cbam/",
+    "checked_on": "2026-11-13",
+    "review_depth": "Official method overview reviewed"
+  },
+  {
+    "id": "R15",
+    "kind": "paper",
+    "year": 2016,
+    "authors": "Nitin Upadhyay",
+    "title": "SDMF: Systematic Decision-making Framework for Evaluation of Software Architecture",
+    "url": "https://www.sciencedirect.com/science/article/pii/S1877050916313448",
+    "checked_on": "2026-11-13",
+    "review_depth": "Publisher abstract indexed; direct full-text access blocked"
+  },
+  {
+    "id": "P01",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Android Developers",
+    "title": "Build an offline-first app",
+    "url": "https://developer.android.com/topic/architecture/data-layer/offline-first",
+    "checked_on": "2026-11-13",
+    "review_depth": "Data source/read/write/sync guidance reviewed"
+  },
+  {
+    "id": "P02",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Yjs maintainers",
+    "title": "Yjs introduction",
+    "url": "https://docs.yjs.dev/",
+    "checked_on": "2026-11-13",
+    "review_depth": "Shared data type/network-provider guidance reviewed"
+  },
+  {
+    "id": "P03",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "PostgreSQL Global Development Group",
+    "title": "Row Security Policies",
+    "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+    "checked_on": "2026-11-13",
+    "review_depth": "Policy semantics and bypass caveats reviewed"
+  },
+  {
+    "id": "P04",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "PostgreSQL Global Development Group",
+    "title": "Full Text Search",
+    "url": "https://www.postgresql.org/docs/current/textsearch.html",
+    "checked_on": "2026-11-13",
+    "review_depth": "Official capability/index reviewed"
+  },
+  {
+    "id": "P05",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "PostgreSQL Global Development Group",
+    "title": "Transactions",
+    "url": "https://www.postgresql.org/docs/current/tutorial-transactions.html",
+    "checked_on": "2026-11-13",
+    "review_depth": "Transaction semantics reviewed"
+  },
+  {
+    "id": "P06",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Microsoft Azure Architecture Center",
+    "title": "Choose an Azure compute service",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree",
+    "checked_on": "2026-11-13",
+    "review_depth": "Decision-tree scope reviewed"
+  },
+  {
+    "id": "P07",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Microsoft Azure Architecture Center",
+    "title": "Microservices architecture style",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices",
+    "checked_on": "2026-11-13",
+    "review_depth": "Challenges section reviewed"
+  },
+  {
+    "id": "P08",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Amazon Web Services",
+    "title": "AWS Well-Architected Framework",
+    "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+    "checked_on": "2026-11-13",
+    "review_depth": "Framework overview reviewed"
+  },
+  {
+    "id": "P09",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Amazon Web Services",
+    "title": "AWS Services by Region",
+    "url": "https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/",
+    "checked_on": "2026-11-13",
+    "review_depth": "Official regional-service reference located/reviewed"
+  },
+  {
+    "id": "P10",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Amazon Web Services",
+    "title": "Shared Responsibility Model",
+    "url": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+    "checked_on": "2026-11-13",
+    "review_depth": "Responsibility model reviewed"
+  },
+  {
+    "id": "P11",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Google OR-Tools",
+    "title": "CP-SAT Solver",
+    "url": "https://developers.google.com/optimization/cp/cp_solver",
+    "checked_on": "2026-11-13",
+    "review_depth": "Integer modeling and statuses reviewed"
+  },
+  {
+    "id": "P12",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Microsoft Z3",
+    "title": "Z3 parameters and unsat-core setting",
+    "url": "https://microsoft.github.io/z3guide/programming/Parameters/",
+    "checked_on": "2026-11-13",
+    "review_depth": "Unsat-core option/support caveat reviewed"
+  },
+  {
+    "id": "P13",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Astro maintainers",
+    "title": "Why Astro?",
+    "url": "https://docs.astro.build/en/concepts/why-astro/",
+    "checked_on": "2026-11-13",
+    "review_depth": "Content-oriented framework rationale reviewed"
+  },
+  {
+    "id": "P14",
+    "kind": "official_documentation",
+    "year": null,
+    "authors": "Microsoft identity platform",
+    "title": "OpenID Connect on the Microsoft identity platform",
+    "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc",
+    "checked_on": "2026-11-13",
+    "review_depth": "OIDC/SSO protocol reference reviewed"
+  },
+  {
+    "id": "P15",
+    "kind": "official_practitioner_reference",
+    "year": null,
+    "authors": "Thoughtworks",
+    "title": "Technology Radar",
+    "url": "https://www.thoughtworks.com/radar",
+    "checked_on": "2026-11-13",
+    "review_depth": "Official radar scope reviewed"
+  }
+]

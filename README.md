@@ -6,7 +6,7 @@ A local, deterministic technology stack recommendation engine for the Synergy â€
 
 ## Start here
 
-1. Read [challenge interpretation](docs/CHALLENGE_BRIEF.md) and the [PRD](docs/PRD.md).
+1. Start with the research-backed [implementation plan](plan.md), then read [challenge interpretation](docs/CHALLENGE_BRIEF.md) and the [PRD](docs/PRD.md).
 2. Implement against the [SRS](docs/SRS.md), [TRD](docs/TRD.md), and [JSON contracts](schemas/README.md).
 3. Follow [UI/UX](docs/UI_UX.md), [workflows](docs/WORKFLOWS.md), and [flow diagrams](docs/flows/README.md).
 4. Build the knowledge base using [research guidance](docs/KNOWLEDGE_BASE.md), then apply [decision logic](docs/DECISION_ENGINE.md) and [cost estimation](docs/COST_MODEL.md).

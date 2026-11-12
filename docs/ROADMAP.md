@@ -2,6 +2,8 @@
 
 Baseline date: 13 November 2026 IST. Deadline: 15 November 2026, 23:59 IST. This is a proposed execution order, not completed work. One owner implements and reviews decisions; no team work is assumed.
 
+Detailed research-backed implementation sequence and gates: [plan.md](../plan.md). The phase outline below remains a high-level schedule.
+
 ## Phase 0 — contracts and design
 
 Present in this documentation starter: PRD/SRS/TRD, schemas, public fixtures, UI/flows, decision specification, test/evidence/submission plans. Owner review remains necessary, particularly research assumptions and rule design.

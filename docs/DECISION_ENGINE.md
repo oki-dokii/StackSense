@@ -18,14 +18,16 @@ Examples: static-content suitability, interactive-client need, transactional con
 
 Evaluate technology plus deployment variant, not product name alone. Exclude retired entries, unsupported platforms/features, prohibited SaaS dependencies, disallowed providers/regions, and unsupported compliance control configurations. Unknown critical eligibility evidence cannot count as satisfied. Return rejection evidence for explanations. A cloud preference applies to hosting and region-bound managed services; third-party payments/auth need explicit compatibility reasoning.
 
-Compliance labels require supported controls and documented responsibilities. A vendor certification is evidence for a subset of controls, not proof the application is compliant. Missing decisive evidence is surfaced and can prevent recommending that deployment.
+Compliance labels require supported controls and documented responsibilities. A vendor certification is evidence for a subset of controls, not proof the application is compliant. Missing decisive evidence is surfaced and can prevent recommending that deployment. Facts distinguish verified, assumed and unknown evidence; unknown does not pass a hard predicate. If no reviewed plan remains, explain catalog-relative infeasibility or evidence gaps, not real-world impossibility.
 
 ### 4. Score remaining candidates
+
+Research refinement: [plan.md](../plan.md) defines final ranking on complete plans. Candidate scores are only a deterministic search-order heuristic; do not reward extra services by summing independent component scores.
 
 Proposed integer feature scale per criterion: 0 incompatible/very poor, 1 poor, 2 limited, 3 adequate, 4 good, 5 strong. Values must come from rules grounded in catalog data, not arbitrary brand preference.
 
 ```text
-weighted_score(candidate) = Σ priority[k] × fit(candidate, k)
+weighted_score(plan) = Σ priority[k] × fit(plan, scenario, k)
 k ∈ {cost, time_to_market, scalability, performance, maintainability, security}
 ```
 
@@ -37,7 +39,7 @@ Use deterministic bounded backtracking over compatible candidates. Order by scor
 
 Catalog sets should remain small enough to enumerate with pruning. A search bound is a safeguard, not evidence of infeasibility: if exhausted before proof, surface internal planning failure and its limit, not `infeasible`. Record catalog sizes and explored plan counts in debug evidence.
 
-Plan rank: mandatory-capability coverage first; among complete hard-compatible plans, weighted score plus documented compatibility/operational adjustments; then lower estimated max cost; then lexicographic tuple of component/deployment IDs. Avoid random selection, unstable object iteration, or runtime provider calls.
+Plan rank: require complete mandatory-capability coverage and hard compatibility; then higher complete-plan weighted score; then lower estimated max cost; then fewer independently operated components; then lexicographic tuple of component/deployment IDs. Define all six plan-level rubrics and avoid current-candidate-set min/max normalization. Avoid random selection, unstable object iteration, or runtime provider calls.
 
 ### 6. Costs and conflicts
 
@@ -62,3 +64,7 @@ Guarantee identical canonical result for identical input (including the same def
 - Tighten budget: surface trade-offs; never relocate prohibited data to get a cheaper price.
 
 Exact thresholds and fit tables remain research/implementation tasks. Do not present these proposed weights as empirically validated.
+
+## Conflict explanation refinement
+
+Start with rejection traces; optional deterministic deletion shrinking may identify an inclusion-minimal conflict only with a complete, monotone feasibility predicate and fixed, consistent catalog background. Inclusion-minimal does not mean smallest cardinality. Search cutoffs and missing catalog coverage are not proof that the real-world requirements contradict. QuickXplain is a later optimization, not an MVP prerequisite. See [research plan](../plan.md) and [research ADR](adr/005-research-backed-planning.md).
