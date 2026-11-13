@@ -1,6 +1,6 @@
 # StackSense — research-backed implementation plan
 
-Version 0.2 · 13 November 2026 IST · Status: proposed implementation plan, not implemented product behavior.
+Version 0.2 · 13 November 2026 IST · Phase 1 contracts/CLI implemented; later phases remain proposed. See [actual progress](docs/PHASES.md) and [Phase 1 evidence](docs/PHASE_1.md).
 
 Build one local, deterministic, evidence-backed architecture recommendation engine. It must select a compatible frontend/backend/database/hosting combination, add necessary supporting services, explain its decisions, estimate costs, and honestly report invalid or unsupported scenarios. The six public projects are evaluation inputs, not six applications to build.
 
@@ -338,7 +338,7 @@ The windows are demanding and not guaranteed. Stop expanding catalog breadth/opt
 
 ## 13. Repository alignment and release evidence
 
-This research pass updates planning only. Proposed application modules, benchmarks, catalog selection, P1–P6 answers and report screenshots remain unimplemented/unmeasured.
+Implementation update: Phase 1 contracts, normalization and validation CLI are implemented/tested. Engine selection, benchmarks, catalog decisions, P1–P6 recommendation answers and report screenshots remain unimplemented/unmeasured. The research proposals below do not themselves establish product correctness.
 
 Align the existing engine specification with plan-level scoring, inclusion-minimal-vs-smallest conflict language, tri-state evidence, and catalog-relative infeasibility. Keep API/output schema unchanged unless an implementation need is justified by an ADR. Additive trace/source fields may carry evidence without breaking the organiser's result structure.
 

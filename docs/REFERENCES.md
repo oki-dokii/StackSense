@@ -40,3 +40,7 @@ Required research areas: product maintenance/EOL, platform/runtime support, regi
 ## Attribution policy
 
 Cite every third-party library, dataset, API, asset, template and borrowed snippet in final report/README as applicable. Record licenses; do not add a repository license without owner choice. Do not claim completed catalog research based only on this starter's candidate backlog.
+
+## Phase 1 implementation tools
+
+Pinned versions are recorded in package-lock.json and README: TypeScript, Ajv, json-schema-to-typescript, tsx, Vitest and @types/node. Official API references checked during implementation: [Ajv options](https://ajv.js.org/options.html), [Vitest guide](https://vitest.dev/guide/). The runtime uses Node built-in filesystem/path/crypto/JSON facilities. No external dataset beyond supplied fixtures, and no runtime external API, is used in Phase 1.

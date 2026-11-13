@@ -1,5 +1,13 @@
 # Changelog
 
+## Phase 1 implementation — 2026-11-13
+
+- Added npm workspaces, pinned dependencies/lockfile and schema-generated TypeScript contracts.
+- Implemented strict validation, explicit defaults/provenance, deterministic normalization and bounded safe JSON processing.
+- Added single/batch validation CLI with safe report filenames, atomic publication and input/overwrite protection.
+- Passed 45 contract/process tests and build; validated all six fixtures with the compiled CLI.
+- Added five-phase tracker and verified Phase 1 setup/evidence. Recommendation selection remains Phase 2.
+
 ## 0.2.0 — 2026-11-13
 
 - Added a research-backed root plan.md with architecture, algorithm, evaluation and implementation gates.

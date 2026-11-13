@@ -1,92 +1,103 @@
 # StackSense
 
-A local, deterministic technology stack recommendation engine for the Synergy ’26 StackSense challenge.
+A local, deterministic technology stack recommendation engine for the Synergy ’26 challenge, being implemented in [five phases](docs/PHASES.md).
 
-**Repository status: planning and contracts only. The application is not implemented yet.** This starter defines what to build, how to build it, and how to verify it. Planned commands and interfaces below are specifications, not working application features.
+**Current implementation: Phase 1 — contracts, validation, normalization, and CLI.** You can validate single scenarios or batches, inspect field errors and recorded defaults, and export deterministic validation reports. Stack selection, cost estimates, API, and UI are scheduled for later phases; `valid` means structurally valid input, not a feasible architecture.
 
-## Start here
+## Run Phase 1
 
-1. Start with the research-backed [implementation plan](plan.md), then read [challenge interpretation](docs/CHALLENGE_BRIEF.md) and the [PRD](docs/PRD.md).
-2. Implement against the [SRS](docs/SRS.md), [TRD](docs/TRD.md), and [JSON contracts](schemas/README.md).
-3. Follow [UI/UX](docs/UI_UX.md), [workflows](docs/WORKFLOWS.md), and [flow diagrams](docs/flows/README.md).
-4. Build the knowledge base using [research guidance](docs/KNOWLEDGE_BASE.md), then apply [decision logic](docs/DECISION_ENGINE.md) and [cost estimation](docs/COST_MODEL.md).
-5. Execute the [test plan](docs/TEST_PLAN.md), [implementation roadmap](docs/ROADMAP.md), and [submission checklist](docs/SUBMISSION.md).
-
-Full navigation: [documentation index](docs/README.md).
-
-## Proposed application architecture
-
-```mermaid
-flowchart LR
-  UI[React web interface] --> API[Local Fastify API]
-  API --> Engine[Pure TypeScript engine]
-  CLI[CLI] --> Engine
-  Engine --> Contracts[JSON Schema validation]
-  Engine --> KB[Versioned technology catalog]
-  Engine --> Output[Recommendation JSON and decision trace]
-```
-
-The engine selects technologies using researched rules, constraints, and scoring. No LLM selects components. MVP has no runtime LLM integration, application database, login, or paid key requirement. Technologies used to build StackSense are separate from technologies it can recommend.
-
-## Proposed implementation layout
-
-```text
-apps/web/                 React + Vite interface
-apps/api/                 Fastify local adapter
-apps/cli/                 File/batch adapter
-packages/engine/           Deterministic selection and explanations
-packages/catalog/          Technology, compatibility, pricing, source data
-packages/contracts/        Types generated from root schemas
-schemas/                   Authoritative JSON Schema contracts (available now)
-fixtures/public/           Original public scenarios and individual copies
-outputs/                   Actual generated outputs after implementation
-scripts/                   Documentation/contract checks
-```
-
-## What can run now
-
-Python 3 is sufficient for the dependency-free documentation check:
-
-```sh
-python3 scripts/check_docs.py
-```
-
-For deeper contract validation, in a temporary virtual environment:
-
-```sh
-python3 -m venv .venv
-# macOS/Linux: source .venv/bin/activate
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install 'jsonschema>=4,<5'
-python scripts/check_docs.py --schemas
-```
-
-Do not confuse this checker with a recommendation engine.
-
-## Application setup contract (to implement)
-
-Target Node.js 24 LTS and npm workspaces; verify compatibility and pin exact dependency versions and the lockfile when scaffolding. Planned judge commands:
+Prerequisites: **Node.js 22.17.0 or newer within Node 22, or Node 24 LTS**, and npm. Tested here with Node 22.17.1, npm 10.9.2, macOS arm64. Windows/Linux commands use standard Node/npm APIs but have not yet been exercised on those OSes. `.nvmrc` records the tested runtime; exact dependencies are pinned in `package-lock.json`.
 
 ```sh
 npm ci
 npm run build
-npm start
-npm run recommend -- --input fixtures/public/P1.json --output outputs/P1_output.json
-npm run recommend:batch -- --input fixtures/public/scenarios.json --output-dir outputs
-npm test
+npm run validate -- --input fixtures/public/P1.json --pretty
+npm run validate:batch -- --input fixtures/public/scenarios.json --output-dir validation-reports --pretty
 ```
 
-These npm commands do not exist yet. Replace this section with verified commands, tested prerequisites, exact versions, OS notes, screenshots, and measured setup time before submission. Default API/UI origin: `http://127.0.0.1:3000`; development UI: port 5173 with an API proxy. Final start command should serve the built UI and API from one origin.
+Export a single report, or explicitly replace an existing report:
 
-## Challenge deliverables
+```sh
+npm run validate -- --input fixtures/minimal.json --output validation-reports/minimal.json --pretty
+npm run validate -- --input fixtures/minimal.json --output validation-reports/minimal.json --force
+```
 
-- Complete locally runnable source with README and `.env.example` if applicable.
-- Six genuine engine outputs, `P1_output.json` through `P6_output.json`.
-- PDF report with actual screenshots, references, and AI assistance declaration.
-- Google Drive submission folder under 1 GB, shared as link-viewable; submit its link on Unstop.
+When piping stdout into another program, suppress npm's own command banner:
 
-Deadline in the supplied brief: **15 November 2026, 23:59 IST**. Do not modify the submitted folder after that time.
+```sh
+npm run --silent validate -- --input fixtures/minimal.json
+```
 
-## Provenance and credits
+After building, `node /absolute/path/to/StackSense/dist/apps/cli/src/main.js --input /absolute/path/to/scenario.json` also works from another directory. Keep the complete repository, including `schemas/`, alongside `dist/`.
 
-Requirements are derived from the user-supplied `StackSense_Problem_Statement.pdf`, document version 1.0, 19 pages. Public fixtures are copied from the supplied `stacksense_public_scenarios.json`. No official expected answers were supplied. See [references](docs/REFERENCES.md), [AI assistance](docs/AI_ASSISTANCE.md), and [decisions](docs/DECISIONS.md). The repository owner must review and own design choices before implementation.
+## Validation report
+
+```text
+schema_version       Validation-report format version
+status               valid | invalid_input
+normalized_input     Input with recorded defaults, or null when invalid
+assumptions[]        Every applied default and normalization interpretation
+warnings[]           Preserved unknown fields and unapplied extensions
+validation_errors[]  All discoverable field-level problems
+```
+
+These reports are separate from the challenge's recommendation output schema and use `_validation.json` filenames. They must not be submitted as `P1_output.json`–`P6_output.json`.
+
+CLI exit codes: **0** valid, **2** invalid input, **1** usage/filesystem/internal error. Use `--help` for options. Input limit: 2 MiB; batch: 1–100 scenarios; nesting: 32 levels. Batch processes invalid items independently, sanitizes filenames, and writes `validation_manifest.json`. It refuses existing files unless `--force` is supplied, and refuses to overwrite the input through direct or symlink-alias paths. Writes are atomic per file, not a transaction across the whole batch. Malformed containers produce one root error on stdout.
+
+No API keys, environment variables, LLM features, or runtime network services are needed. `--no-llm` is accepted as a no-op. Dependencies need network access during the initial install.
+
+## Development and checks
+
+```sh
+npm run generate:types   # regenerate TS types after editing schemas
+npm run check           # generated type freshness, type checking, tests
+npm run build
+npm run dev:validate -- --input fixtures/minimal.json --pretty
+python3 scripts/check_docs.py
+```
+
+Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current implementation verification: [Phase 1](docs/PHASE_1.md).
+
+| Technology | Pinned version | Role |
+|---|---|---|
+| TypeScript | 5.9.3 | Shared contract/CLI code |
+| Ajv | 8.20.0 | Standard JSON Schema validation without coercion |
+| json-schema-to-typescript | 15.0.4 | Generate types from authoritative schemas |
+| tsx | 4.23.15 | Source-mode development CLI |
+| Vitest | 5.1.0 | Contract and real CLI subprocess tests |
+| @types/node | 22.20.5 | Node runtime types |
+
+## Current architecture and layout
+
+```mermaid
+flowchart LR
+  Input[Scenario JSON] --> CLI[File / batch CLI]
+  CLI --> Parse[Bounded parsing]
+  Parse --> Contracts[Ajv and authoritative schemas]
+  Contracts --> Normalize[Defaults and provenance]
+  Normalize --> Report[Canonical validation report]
+```
+
+```text
+apps/cli/src/              Bounded file IO, safe output, CLI adapter
+packages/contracts/src/    Generated types, validation, normalization, canonical JSON
+schemas/                   Authoritative organiser input/output contracts
+fixtures/public/           Supplied array and six individual scenarios
+tests/                     Contract and actual CLI process checks
+scripts/                   Type generation and documentation checks
+docs/                      Product, design, research and implementation evidence
+dist/                      Generated build; ignored by Git
+```
+
+Upcoming engine/API/UI boundaries: [TRD](docs/TRD.md). Selection will use researched rules, hard constraints, compatible-plan search and explainable ranking. No LLM will choose the stack.
+
+## Planning and research
+
+Start with [plan.md](plan.md), the [phase tracker](docs/PHASES.md), and [documentation index](docs/README.md). Product/design contracts: [PRD](docs/PRD.md), [SRS](docs/SRS.md), [UI/UX](docs/UI_UX.md), [workflows](docs/WORKFLOWS.md). Research: [annotated review](docs/RESEARCH_REVIEW.md), [sources](docs/research/sources.json), [decisions](docs/DECISIONS.md).
+
+## Submission and credits
+
+Final delivery still requires a completed engine, six genuine recommendation outputs, real screenshots, and the PDF report. See [submission checklist](docs/SUBMISSION.md). Deadline in the supplied brief: **15 November 2026, 23:59 IST**; do not modify the submitted Drive folder afterward.
+
+Requirements come from user-supplied `StackSense_Problem_Statement.pdf` v1.0; public fixtures from `stacksense_public_scenarios.json`. No official expected stacks were provided. All installed third-party tools are listed above and locked in `package-lock.json`; source links/research and AI assistance are recorded in [references](docs/REFERENCES.md) and [AI assistance](docs/AI_ASSISTANCE.md). Participant review/ownership remains required by the challenge.

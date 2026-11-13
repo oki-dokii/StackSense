@@ -1,0 +1,36 @@
+{
+  "name": "stacksense",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic, evidence-backed technology stack recommendation engine",
+  "engines": {
+    "node": "^22.17.0 || ^24.0.0"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "generate:types": "node scripts/generate-types.mjs",
+    "check:types": "node scripts/generate-types.mjs --check",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run check:types && tsc",
+    "validate": "node dist/apps/cli/src/main.js",
+    "dev:validate": "tsx apps/cli/src/main.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run check:types && npm run typecheck && npm test",
+    "validate:batch": "node dist/apps/cli/src/main.js --batch"
+  },
+  "dependencies": {
+    "ajv": "8.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "json-schema-to-typescript": "15.0.4",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  }
+}
