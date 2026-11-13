@@ -1,0 +1,1352 @@
+{
+  "version": "0.2.0",
+  "reviewed_on": "2026-11-13",
+  "sources": [
+    {
+      "id": "html",
+      "title": "HTML content",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content",
+      "checked_on": "2026-11-13",
+      "scope": "Static HTML content delivery"
+    },
+    {
+      "id": "astro",
+      "title": "Astro deployment",
+      "url": "https://docs.astro.build/en/guides/deploy/",
+      "checked_on": "2026-11-13",
+      "scope": "Static build/deployment"
+    },
+    {
+      "id": "next",
+      "title": "Next.js self-hosting",
+      "url": "https://nextjs.org/docs/app/guides/self-hosting",
+      "checked_on": "2026-11-13",
+      "scope": "Node-hosted server rendering; not a hosting quota guarantee"
+    },
+    {
+      "id": "react",
+      "title": "React from scratch",
+      "url": "https://react.dev/learn/build-a-react-app-from-scratch",
+      "checked_on": "2026-11-13",
+      "scope": "Client web apps; SSR requires additional framework work"
+    },
+    {
+      "id": "vue",
+      "title": "Vue introduction",
+      "url": "https://vuejs.org/guide/introduction.html",
+      "checked_on": "2026-11-13",
+      "scope": "Web UI framework"
+    },
+    {
+      "id": "svelte",
+      "title": "SvelteKit Node adapter",
+      "url": "https://svelte.dev/docs/kit/adapter-node",
+      "checked_on": "2026-11-13",
+      "scope": "Node server deployment"
+    },
+    {
+      "id": "angular",
+      "title": "Angular deployment",
+      "url": "https://angular.dev/tools/cli/deployment",
+      "checked_on": "2026-11-13",
+      "scope": "Web asset deployment"
+    },
+    {
+      "id": "rn",
+      "title": "React Native introduction",
+      "url": "https://reactnative.dev/docs/getting-started",
+      "checked_on": "2026-11-13",
+      "scope": "JavaScript mobile application UI; runtime integration required"
+    },
+    {
+      "id": "flutter",
+      "title": "Flutter supported platforms",
+      "url": "https://docs.flutter.dev/reference/supported-platforms",
+      "checked_on": "2026-11-13",
+      "scope": "Web/mobile/desktop deployment targets"
+    },
+    {
+      "id": "flutter-seo",
+      "title": "Flutter web FAQ",
+      "url": "https://docs.flutter.dev/platform-integration/web/faq",
+      "checked_on": "2026-11-13",
+      "scope": "App-centric web; SEO caveats"
+    },
+    {
+      "id": "compose",
+      "title": "Jetpack Compose",
+      "url": "https://developer.android.com/compose",
+      "checked_on": "2026-11-13",
+      "scope": "Kotlin Android native UI"
+    },
+    {
+      "id": "fastify",
+      "title": "Fastify database guide",
+      "url": "https://fastify.dev/docs/latest/Guides/Database/",
+      "checked_on": "2026-11-13",
+      "scope": "Node backend and documented database plugins"
+    },
+    {
+      "id": "django",
+      "title": "Django databases",
+      "url": "https://docs.djangoproject.com/en/stable/ref/databases/",
+      "checked_on": "2026-11-13",
+      "scope": "Supported relational databases"
+    },
+    {
+      "id": "fastapi",
+      "title": "FastAPI SQL databases",
+      "url": "https://fastapi.tiangolo.com/tutorial/sql-databases/",
+      "checked_on": "2026-11-13",
+      "scope": "Python SQL integration with drivers/SQLAlchemy"
+    },
+    {
+      "id": "spring",
+      "title": "Spring Boot SQL",
+      "url": "https://docs.spring.io/spring-boot/reference/data/sql.html",
+      "checked_on": "2026-11-13",
+      "scope": "Java/Kotlin JDBC SQL integration; matching driver required"
+    },
+    {
+      "id": "aspnet",
+      "title": "EF Core providers",
+      "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+      "checked_on": "2026-11-13",
+      "scope": "Database-specific providers, with independent compatibility/version requirements"
+    },
+    {
+      "id": "go",
+      "title": "Go SQL drivers",
+      "url": "https://go.dev/wiki/SQLDrivers",
+      "checked_on": "2026-11-13",
+      "scope": "Go SQL driver options, not performance claims"
+    },
+    {
+      "id": "laravel",
+      "title": "Laravel database",
+      "url": "https://laravel.com/docs/database",
+      "checked_on": "2026-11-13",
+      "scope": "PHP framework database support"
+    },
+    {
+      "id": "pg",
+      "title": "PostgreSQL introduction",
+      "url": "https://www.postgresql.org/docs/current/intro-whatis.html",
+      "checked_on": "2026-11-13",
+      "scope": "Relational engine, transactional integrity"
+    },
+    {
+      "id": "mysql",
+      "title": "MySQL overview",
+      "url": "https://dev.mysql.com/doc/refman/8.4/en/what-is-mysql.html",
+      "checked_on": "2026-11-13",
+      "scope": "Relational client/server engine"
+    },
+    {
+      "id": "maria",
+      "title": "MariaDB deployment",
+      "url": "https://mariadb.com/docs/server/server-management/install-and-upgrade-mariadb",
+      "checked_on": "2026-11-13",
+      "scope": "Self-hosted server installation"
+    },
+    {
+      "id": "sqlite",
+      "title": "SQLite appropriate uses",
+      "url": "https://www.sqlite.org/whentouse.html",
+      "checked_on": "2026-11-13",
+      "scope": "Embedded database, concurrency and deployment trade-offs"
+    },
+    {
+      "id": "sqlserver",
+      "title": "SQL Server Linux",
+      "url": "https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-overview",
+      "checked_on": "2026-11-13",
+      "scope": "Server installation on Linux/VM/container; release compatibility still required"
+    },
+    {
+      "id": "mongo",
+      "title": "MongoDB Community installation",
+      "url": "https://www.mongodb.com/docs/manual/administration/install-community/",
+      "checked_on": "2026-11-13",
+      "scope": "Self-hostable document database"
+    },
+    {
+      "id": "pages",
+      "title": "Cloudflare Pages",
+      "url": "https://developers.cloudflare.com/pages/",
+      "checked_on": "2026-11-13",
+      "scope": "Static web asset hosting; no country-residency assurance"
+    },
+    {
+      "id": "ecs",
+      "title": "Amazon ECS",
+      "url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html",
+      "checked_on": "2026-11-13",
+      "scope": "Managed container compute; exact regions not verified in this catalog"
+    },
+    {
+      "id": "appservice",
+      "title": "Azure App Service",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview",
+      "checked_on": "2026-11-13",
+      "scope": "Managed web/runtime and container hosting; exact regions not verified here"
+    },
+    {
+      "id": "run",
+      "title": "Cloud Run overview",
+      "url": "https://cloud.google.com/run/docs/overview/what-is-cloud-run",
+      "checked_on": "2026-11-13",
+      "scope": "Managed HTTP container services, not durable database disks"
+    },
+    {
+      "id": "run-regions",
+      "title": "Cloud Run locations",
+      "url": "https://cloud.google.com/run/docs/locations",
+      "checked_on": "2026-11-13",
+      "scope": "Primary compute service locations: Mumbai, Belgium, Iowa; not complete application data flows"
+    },
+    {
+      "id": "run-ws",
+      "title": "Cloud Run WebSockets",
+      "url": "https://cloud.google.com/run/docs/triggering/websockets",
+      "checked_on": "2026-11-13",
+      "scope": "Connection request timeouts and reconnection requirements"
+    },
+    {
+      "id": "cloudsql-pg",
+      "title": "Cloud SQL PostgreSQL locations",
+      "url": "https://cloud.google.com/sql/docs/postgres/locations",
+      "checked_on": "2026-11-13",
+      "scope": "Primary PostgreSQL instance locations: Mumbai, Belgium, Iowa; backup locations need separate review"
+    },
+    {
+      "id": "cloudsql-my",
+      "title": "Cloud SQL MySQL overview",
+      "url": "https://cloud.google.com/sql/docs/mysql/introduction",
+      "checked_on": "2026-11-13",
+      "scope": "Managed MySQL product; exact regions not verified here"
+    },
+    {
+      "id": "rds-pg",
+      "title": "RDS PostgreSQL",
+      "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html",
+      "checked_on": "2026-11-13",
+      "scope": "Managed PostgreSQL product; exact region not verified here"
+    },
+    {
+      "id": "rds-maria",
+      "title": "RDS MariaDB",
+      "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html",
+      "checked_on": "2026-11-13",
+      "scope": "Managed MariaDB product"
+    },
+    {
+      "id": "rds-sql",
+      "title": "RDS SQL Server",
+      "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html",
+      "checked_on": "2026-11-13",
+      "scope": "Managed SQL Server product; licensing/region need separate verification"
+    },
+    {
+      "id": "azure-pg",
+      "title": "Azure PostgreSQL",
+      "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/overview",
+      "checked_on": "2026-11-13",
+      "scope": "Managed PostgreSQL product; exact region not verified here"
+    },
+    {
+      "id": "azure-sql",
+      "title": "Azure SQL Managed Instance",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview",
+      "checked_on": "2026-11-13",
+      "scope": "Managed SQL Server compatibility; not proof a legacy migration is transparent"
+    },
+    {
+      "id": "ec2",
+      "title": "Amazon EC2",
+      "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
+      "checked_on": "2026-11-13",
+      "scope": "Self-operated VM compute; exact country location not verified here"
+    },
+    {
+      "id": "nginx",
+      "title": "NGINX static serving",
+      "url": "https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/",
+      "checked_on": "2026-11-13",
+      "scope": "Local/static web serving on provisioned VM; server location must be supplied/reviewed"
+    },
+    {
+      "id": "astro-markdown",
+      "title": "Astro Markdown",
+      "url": "https://docs.astro.build/en/guides/markdown-content/",
+      "checked_on": "2026-11-13",
+      "scope": "Built-in Markdown content authoring; no performance or price claim"
+    }
+  ],
+  "entries": [
+    {
+      "id": "frontend-none",
+      "name": "None",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "html"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [],
+      "complexity": 1,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "api_only"
+      ],
+      "rendering": "none",
+      "runtime": "none"
+    },
+    {
+      "id": "html",
+      "name": "HTML / CSS",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "html"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "html",
+        "css"
+      ],
+      "complexity": 1,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "web"
+      ],
+      "rendering": "static",
+      "runtime": "none"
+    },
+    {
+      "id": "astro",
+      "name": "Astro",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "astro",
+        "astro-markdown"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "javascript",
+        "typescript",
+        "html",
+        "css"
+      ],
+      "complexity": 2,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "web"
+      ],
+      "rendering": "static",
+      "runtime": "none"
+    },
+    {
+      "id": "next",
+      "name": "Next.js",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "next"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "complexity": 3,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "web"
+      ],
+      "rendering": "ssr",
+      "runtime": "node"
+    },
+    {
+      "id": "react",
+      "name": "React / Vite",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "react"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "complexity": 2,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "web"
+      ],
+      "rendering": "spa",
+      "runtime": "none"
+    },
+    {
+      "id": "vue",
+      "name": "Vue",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "vue"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "complexity": 2,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "web"
+      ],
+      "rendering": "spa",
+      "runtime": "none"
+    },
+    {
+      "id": "sveltekit",
+      "name": "SvelteKit",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "svelte"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "complexity": 3,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "web"
+      ],
+      "rendering": "ssr",
+      "runtime": "node"
+    },
+    {
+      "id": "angular",
+      "name": "Angular",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "angular"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "typescript"
+      ],
+      "complexity": 3,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "web"
+      ],
+      "rendering": "spa",
+      "runtime": "none"
+    },
+    {
+      "id": "react-native",
+      "name": "React Native",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "rn"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "complexity": 3,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "android",
+        "ios"
+      ],
+      "rendering": "native",
+      "runtime": "none"
+    },
+    {
+      "id": "next-native",
+      "name": "Next.js + React Native",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "next",
+        "rn"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "complexity": 4,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "web",
+        "android",
+        "ios"
+      ],
+      "rendering": "ssr",
+      "runtime": "node"
+    },
+    {
+      "id": "flutter",
+      "name": "Flutter",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "flutter",
+        "flutter-seo"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "dart"
+      ],
+      "complexity": 3,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "web",
+        "android",
+        "ios",
+        "desktop"
+      ],
+      "rendering": "native",
+      "runtime": "none"
+    },
+    {
+      "id": "compose",
+      "name": "Jetpack Compose",
+      "layer": "frontend",
+      "status": "active",
+      "source_ids": [
+        "compose"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "kotlin"
+      ],
+      "complexity": 3,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Covers the declared client targets and rendering mode."
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ],
+      "platforms": [
+        "android"
+      ],
+      "rendering": "native",
+      "runtime": "none"
+    },
+    {
+      "id": "backend-none",
+      "name": "None",
+      "layer": "backend",
+      "status": "active",
+      "source_ids": [
+        "html"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [],
+      "complexity": 1,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "No dynamic server when the workload does not need one."
+      ],
+      "tradeoffs": [
+        "Cannot implement dynamic accounts, writes or APIs."
+      ],
+      "runtime": "none",
+      "databases": [
+        "database-none"
+      ]
+    },
+    {
+      "id": "fastify",
+      "name": "Fastify",
+      "layer": "backend",
+      "status": "active",
+      "source_ids": [
+        "fastify"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "complexity": 2,
+      "operations": 1,
+      "cost_class": 2,
+      "strengths": [
+        "HTTP application backend with documented database integration paths."
+      ],
+      "tradeoffs": [
+        "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
+      ],
+      "runtime": "node",
+      "databases": [
+        "database-none",
+        "pg",
+        "mysql",
+        "mongo"
+      ]
+    },
+    {
+      "id": "django",
+      "name": "Django",
+      "layer": "backend",
+      "status": "active",
+      "source_ids": [
+        "django"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "python"
+      ],
+      "complexity": 3,
+      "operations": 1,
+      "cost_class": 2,
+      "strengths": [
+        "HTTP application backend with documented database integration paths."
+      ],
+      "tradeoffs": [
+        "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
+      ],
+      "runtime": "python",
+      "databases": [
+        "database-none",
+        "pg",
+        "mysql",
+        "maria",
+        "sqlite"
+      ]
+    },
+    {
+      "id": "fastapi",
+      "name": "FastAPI",
+      "layer": "backend",
+      "status": "active",
+      "source_ids": [
+        "fastapi"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "python"
+      ],
+      "complexity": 2,
+      "operations": 1,
+      "cost_class": 2,
+      "strengths": [
+        "HTTP application backend with documented database integration paths."
+      ],
+      "tradeoffs": [
+        "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
+      ],
+      "runtime": "python",
+      "databases": [
+        "database-none",
+        "pg",
+        "mysql",
+        "sqlite"
+      ]
+    },
+    {
+      "id": "spring",
+      "name": "Spring Boot",
+      "layer": "backend",
+      "status": "active",
+      "source_ids": [
+        "spring"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "complexity": 4,
+      "operations": 1,
+      "cost_class": 2,
+      "strengths": [
+        "HTTP application backend with documented database integration paths."
+      ],
+      "tradeoffs": [
+        "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
+      ],
+      "runtime": "jvm",
+      "databases": [
+        "database-none",
+        "pg",
+        "mysql",
+        "maria",
+        "sqlserver"
+      ]
+    },
+    {
+      "id": "aspnet",
+      "name": "ASP.NET Core",
+      "layer": "backend",
+      "status": "active",
+      "source_ids": [
+        "aspnet"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "csharp"
+      ],
+      "complexity": 3,
+      "operations": 1,
+      "cost_class": 2,
+      "strengths": [
+        "HTTP application backend with documented database integration paths."
+      ],
+      "tradeoffs": [
+        "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
+      ],
+      "runtime": "dotnet",
+      "databases": [
+        "database-none",
+        "pg",
+        "mysql",
+        "sqlite",
+        "sqlserver"
+      ]
+    },
+    {
+      "id": "go-http",
+      "name": "Go net/http",
+      "layer": "backend",
+      "status": "active",
+      "source_ids": [
+        "go"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "go"
+      ],
+      "complexity": 3,
+      "operations": 1,
+      "cost_class": 2,
+      "strengths": [
+        "HTTP application backend with documented database integration paths."
+      ],
+      "tradeoffs": [
+        "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
+      ],
+      "runtime": "go",
+      "databases": [
+        "database-none",
+        "pg",
+        "mysql",
+        "sqlite",
+        "sqlserver"
+      ]
+    },
+    {
+      "id": "laravel",
+      "name": "Laravel",
+      "layer": "backend",
+      "status": "active",
+      "source_ids": [
+        "laravel"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "php"
+      ],
+      "complexity": 3,
+      "operations": 1,
+      "cost_class": 2,
+      "strengths": [
+        "HTTP application backend with documented database integration paths."
+      ],
+      "tradeoffs": [
+        "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
+      ],
+      "runtime": "php",
+      "databases": [
+        "database-none",
+        "pg",
+        "mysql",
+        "maria",
+        "sqlite",
+        "sqlserver"
+      ]
+    },
+    {
+      "id": "database-none",
+      "name": "None",
+      "layer": "database",
+      "status": "active",
+      "source_ids": [
+        "html"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [],
+      "complexity": 1,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "No runtime data store for immutable content."
+      ],
+      "tradeoffs": [
+        "Does not persist dynamic user data."
+      ],
+      "model": "none",
+      "self_hosted": true
+    },
+    {
+      "id": "pg",
+      "name": "PostgreSQL",
+      "layer": "database",
+      "status": "active",
+      "source_ids": [
+        "pg"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "sql"
+      ],
+      "complexity": 3,
+      "operations": 2,
+      "cost_class": 2,
+      "strengths": [
+        "Documented database engine and self-hosted deployment option."
+      ],
+      "tradeoffs": [
+        "Data model, backup policy, licensing and release/driver compatibility need explicit review."
+      ],
+      "model": "relational",
+      "self_hosted": true
+    },
+    {
+      "id": "mysql",
+      "name": "MySQL",
+      "layer": "database",
+      "status": "active",
+      "source_ids": [
+        "mysql"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "sql"
+      ],
+      "complexity": 3,
+      "operations": 2,
+      "cost_class": 2,
+      "strengths": [
+        "Documented database engine and self-hosted deployment option."
+      ],
+      "tradeoffs": [
+        "Data model, backup policy, licensing and release/driver compatibility need explicit review."
+      ],
+      "model": "relational",
+      "self_hosted": true
+    },
+    {
+      "id": "maria",
+      "name": "MariaDB",
+      "layer": "database",
+      "status": "active",
+      "source_ids": [
+        "maria"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "sql"
+      ],
+      "complexity": 3,
+      "operations": 2,
+      "cost_class": 2,
+      "strengths": [
+        "Documented database engine and self-hosted deployment option."
+      ],
+      "tradeoffs": [
+        "Data model, backup policy, licensing and release/driver compatibility need explicit review."
+      ],
+      "model": "relational",
+      "self_hosted": true
+    },
+    {
+      "id": "sqlite",
+      "name": "SQLite",
+      "layer": "database",
+      "status": "active",
+      "source_ids": [
+        "sqlite"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "sql"
+      ],
+      "complexity": 1,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Documented database engine and self-hosted deployment option."
+      ],
+      "tradeoffs": [
+        "Data model, backup policy, licensing and release/driver compatibility need explicit review.",
+        "Requires a persistent local volume and careful writer concurrency design."
+      ],
+      "model": "embedded",
+      "self_hosted": true
+    },
+    {
+      "id": "sqlserver",
+      "name": "SQL Server",
+      "layer": "database",
+      "status": "active",
+      "source_ids": [
+        "sqlserver"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [
+        "sql"
+      ],
+      "complexity": 3,
+      "operations": 2,
+      "cost_class": 4,
+      "strengths": [
+        "Documented database engine and self-hosted deployment option."
+      ],
+      "tradeoffs": [
+        "Data model, backup policy, licensing and release/driver compatibility need explicit review."
+      ],
+      "model": "relational",
+      "self_hosted": true
+    },
+    {
+      "id": "mongo",
+      "name": "MongoDB Community",
+      "layer": "database",
+      "status": "active",
+      "source_ids": [
+        "mongo"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [],
+      "complexity": 3,
+      "operations": 2,
+      "cost_class": 2,
+      "strengths": [
+        "Documented database engine and self-hosted deployment option."
+      ],
+      "tradeoffs": [
+        "Data model, backup policy, licensing and release/driver compatibility need explicit review."
+      ],
+      "model": "document",
+      "self_hosted": true
+    },
+    {
+      "id": "pages",
+      "name": "Cloudflare Pages",
+      "layer": "hosting",
+      "status": "active",
+      "source_ids": [
+        "pages"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [],
+      "complexity": 1,
+      "operations": 0,
+      "cost_class": 0,
+      "strengths": [
+        "Static asset deployment without an application server."
+      ],
+      "tradeoffs": [
+        "Country-scoped delivery/residency is not established; dynamic servers/databases are excluded from this variant."
+      ],
+      "provider": "cloudflare",
+      "deployments": [
+        "managed_cloud"
+      ],
+      "runtimes": [
+        "none"
+      ],
+      "static_assets": true,
+      "persistent_volume": false,
+      "regions": [],
+      "managed_databases": []
+    },
+    {
+      "id": "ecs",
+      "name": "Amazon ECS / Fargate",
+      "layer": "hosting",
+      "status": "active",
+      "source_ids": [
+        "ecs"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [],
+      "complexity": 4,
+      "operations": 2,
+      "cost_class": 3,
+      "strengths": [
+        "Managed application/container runtime; database is a separately provisioned managed service."
+      ],
+      "tradeoffs": [
+        "No workload pricing/SLA is inferred; region, storage, backups, identity and networking require deployment review."
+      ],
+      "provider": "aws",
+      "deployments": [
+        "managed_cloud"
+      ],
+      "runtimes": [
+        "none",
+        "node",
+        "python",
+        "jvm",
+        "dotnet",
+        "go",
+        "php"
+      ],
+      "static_assets": true,
+      "persistent_volume": false,
+      "regions": [],
+      "managed_databases": [
+        {
+          "database_id": "pg",
+          "choice": "Amazon RDS for PostgreSQL",
+          "source_ids": [
+            "rds-pg"
+          ],
+          "regions": []
+        },
+        {
+          "database_id": "maria",
+          "choice": "Amazon RDS for MariaDB",
+          "source_ids": [
+            "rds-maria"
+          ],
+          "regions": []
+        },
+        {
+          "database_id": "sqlserver",
+          "choice": "Amazon RDS for SQL Server",
+          "source_ids": [
+            "rds-sql"
+          ],
+          "regions": []
+        }
+      ]
+    },
+    {
+      "id": "appservice",
+      "name": "Azure App Service",
+      "layer": "hosting",
+      "status": "active",
+      "source_ids": [
+        "appservice"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [],
+      "complexity": 2,
+      "operations": 1,
+      "cost_class": 3,
+      "strengths": [
+        "Managed application/container runtime; database is a separately provisioned managed service."
+      ],
+      "tradeoffs": [
+        "No workload pricing/SLA is inferred; region, storage, backups, identity and networking require deployment review."
+      ],
+      "provider": "azure",
+      "deployments": [
+        "managed_cloud"
+      ],
+      "runtimes": [
+        "none",
+        "node",
+        "python",
+        "jvm",
+        "dotnet",
+        "go",
+        "php"
+      ],
+      "static_assets": true,
+      "persistent_volume": false,
+      "regions": [],
+      "managed_databases": [
+        {
+          "database_id": "pg",
+          "choice": "Azure Database for PostgreSQL",
+          "source_ids": [
+            "azure-pg"
+          ],
+          "regions": []
+        },
+        {
+          "database_id": "sqlserver",
+          "choice": "Azure SQL Managed Instance",
+          "source_ids": [
+            "azure-sql"
+          ],
+          "regions": []
+        }
+      ]
+    },
+    {
+      "id": "cloudrun",
+      "name": "Google Cloud Run",
+      "layer": "hosting",
+      "status": "active",
+      "source_ids": [
+        "run",
+        "run-regions",
+        "run-ws"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [],
+      "complexity": 2,
+      "operations": 1,
+      "cost_class": 3,
+      "strengths": [
+        "Managed application/container runtime; database is a separately provisioned managed service."
+      ],
+      "tradeoffs": [
+        "No workload pricing/SLA is inferred; region, storage, backups, identity and networking require deployment review.",
+        "WebSocket clients must handle request timeouts/reconnection and cross-instance state."
+      ],
+      "provider": "gcp",
+      "deployments": [
+        "managed_cloud"
+      ],
+      "runtimes": [
+        "none",
+        "node",
+        "python",
+        "jvm",
+        "dotnet",
+        "go",
+        "php"
+      ],
+      "static_assets": true,
+      "persistent_volume": false,
+      "regions": [
+        {
+          "residency": "india",
+          "region": "asia-south1",
+          "source_ids": [
+            "run-regions"
+          ]
+        },
+        {
+          "residency": "eu",
+          "region": "europe-west1",
+          "source_ids": [
+            "run-regions"
+          ]
+        },
+        {
+          "residency": "us",
+          "region": "us-central1",
+          "source_ids": [
+            "run-regions"
+          ]
+        }
+      ],
+      "managed_databases": [
+        {
+          "database_id": "pg",
+          "choice": "Cloud SQL for PostgreSQL",
+          "source_ids": [
+            "cloudsql-pg"
+          ],
+          "regions": [
+            {
+              "residency": "india",
+              "region": "asia-south1",
+              "source_ids": [
+                "cloudsql-pg"
+              ]
+            },
+            {
+              "residency": "eu",
+              "region": "europe-west1",
+              "source_ids": [
+                "cloudsql-pg"
+              ]
+            },
+            {
+              "residency": "us",
+              "region": "us-central1",
+              "source_ids": [
+                "cloudsql-pg"
+              ]
+            }
+          ]
+        },
+        {
+          "database_id": "mysql",
+          "choice": "Cloud SQL for MySQL",
+          "source_ids": [
+            "cloudsql-my"
+          ],
+          "regions": []
+        }
+      ]
+    },
+    {
+      "id": "ec2",
+      "name": "Amazon EC2 VM",
+      "layer": "hosting",
+      "status": "active",
+      "source_ids": [
+        "ec2"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [],
+      "complexity": 4,
+      "operations": 4,
+      "cost_class": 2,
+      "strengths": [
+        "Self-operated runtimes and persistent database volumes on provisioned infrastructure."
+      ],
+      "tradeoffs": [
+        "Owner operates patching, TLS, backups and capacity; physical location/country is not established by the software."
+      ],
+      "provider": "aws",
+      "deployments": [
+        "self_hosted_cloud_vm"
+      ],
+      "runtimes": [
+        "none",
+        "node",
+        "python",
+        "jvm",
+        "dotnet",
+        "go",
+        "php"
+      ],
+      "static_assets": true,
+      "persistent_volume": true,
+      "regions": [],
+      "managed_databases": []
+    },
+    {
+      "id": "local",
+      "name": "Self-hosted VM + NGINX",
+      "layer": "hosting",
+      "status": "active",
+      "source_ids": [
+        "nginx"
+      ],
+      "review_scope": "Current supported product family; implementation must pin compatible releases and drivers. Catalog review is not a performance, pricing or compliance certification.",
+      "languages": [],
+      "complexity": 4,
+      "operations": 4,
+      "cost_class": 2,
+      "strengths": [
+        "Self-operated runtimes and persistent database volumes on provisioned infrastructure."
+      ],
+      "tradeoffs": [
+        "Owner operates patching, TLS, backups and capacity; physical location/country is not established by the software."
+      ],
+      "provider": "none",
+      "deployments": [
+        "on_premise",
+        "air_gapped"
+      ],
+      "runtimes": [
+        "none",
+        "node",
+        "python",
+        "jvm",
+        "dotnet",
+        "go",
+        "php"
+      ],
+      "static_assets": true,
+      "persistent_volume": true,
+      "regions": [],
+      "managed_databases": []
+    }
+  ]
+}

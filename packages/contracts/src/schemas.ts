@@ -13,5 +13,8 @@ function schemaDirectory(): string {
   throw new Error('StackSense schemas are missing. Run from a complete repository checkout.');
 }
 const directory = schemaDirectory();
-export const scenarioSchema = JSON.parse(readFileSync(join(directory, 'scenario.schema.json'), 'utf8')) as Record<string, unknown>;
-export const recommendationSchema = JSON.parse(readFileSync(join(directory, 'recommendation.schema.json'), 'utf8')) as Record<string, unknown>;
+export function readSchema(name: string): Record<string, unknown> {
+  return JSON.parse(readFileSync(join(directory, name), 'utf8')) as Record<string, unknown>;
+}
+export const scenarioSchema = readSchema('scenario.schema.json');
+export const recommendationSchema = readSchema('recommendation.schema.json');

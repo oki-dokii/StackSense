@@ -44,3 +44,7 @@ Cite every third-party library, dataset, API, asset, template and borrowed snipp
 ## Phase 1 implementation tools
 
 Pinned versions are recorded in package-lock.json and README: TypeScript, Ajv, json-schema-to-typescript, tsx, Vitest and @types/node. Official API references checked during implementation: [Ajv options](https://ajv.js.org/options.html), [Vitest guide](https://vitest.dev/guide/). The runtime uses Node built-in filesystem/path/crypto/JSON facilities. No external dataset beyond supplied fixtures, and no runtime external API, is used in Phase 1.
+
+## Phase 2 executable catalog sources
+
+The 40 dated official-source records in [catalog.json](../packages/catalog/data/catalog.json) are the factual evidence register for the 33 core entries and driver/managed-database/primary-region mappings. Scope and ordinal heuristic distinctions are documented in [CATALOG.md](CATALOG.md). These records do not establish complete regulatory compliance, prices or workload performance.

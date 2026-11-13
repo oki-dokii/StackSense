@@ -1,5 +1,7 @@
 # Knowledge base and research specification
 
+Implemented core subset: [catalog and evidence scope](CATALOG.md). Control/pricing/lifecycle detail below remains the target model for later phases; do not infer all attributes are already implemented.
+
 ## Data model
 
 Store products separately from deployment variants. One framework may run on multiple hosts; one managed provider may have different regional features and prices. Required entry attributes:

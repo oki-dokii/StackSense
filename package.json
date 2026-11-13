@@ -1,6 +1,6 @@
 {
   "name": "stacksense",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "Deterministic, evidence-backed technology stack recommendation engine",
@@ -21,7 +21,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "check": "npm run check:types && npm run typecheck && npm test",
-    "validate:batch": "node dist/apps/cli/src/main.js --batch"
+    "validate:batch": "node dist/apps/cli/src/main.js --batch",
+    "plan:core": "node dist/apps/cli/src/main.js --core-plan",
+    "plan:core:batch": "node dist/apps/cli/src/main.js --core-plan --batch",
+    "dev:plan:core": "tsx apps/cli/src/main.ts --core-plan"
   },
   "dependencies": {
     "ajv": "8.20.0"

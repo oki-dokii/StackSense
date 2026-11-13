@@ -1,0 +1,415 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:stacksense:catalog:0.2",
+  "title": "StackSense core technology catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "reviewed_on",
+    "sources",
+    "entries"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewed_on": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "url",
+          "checked_on",
+          "scope"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1
+          },
+          "checked_on": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "layer",
+          "status",
+          "source_ids",
+          "review_scope",
+          "languages",
+          "complexity",
+          "operations",
+          "cost_class",
+          "strengths",
+          "tradeoffs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "layer": {
+            "enum": [
+              "frontend",
+              "backend",
+              "database",
+              "hosting"
+            ]
+          },
+          "status": {
+            "enum": [
+              "active",
+              "retired",
+              "unknown"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "review_scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "complexity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "operations": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "cost_class": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "strengths": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "tradeoffs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "platforms": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "enum": [
+                "web",
+                "android",
+                "ios",
+                "desktop",
+                "api_only"
+              ]
+            }
+          },
+          "rendering": {
+            "enum": [
+              "none",
+              "static",
+              "ssr",
+              "spa",
+              "native"
+            ]
+          },
+          "runtime": {
+            "enum": [
+              "none",
+              "node",
+              "python",
+              "jvm",
+              "dotnet",
+              "go",
+              "php"
+            ]
+          },
+          "databases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "model": {
+            "enum": [
+              "none",
+              "relational",
+              "document",
+              "embedded"
+            ]
+          },
+          "self_hosted": {
+            "type": "boolean"
+          },
+          "provider": {
+            "enum": [
+              "none",
+              "aws",
+              "gcp",
+              "azure",
+              "cloudflare"
+            ]
+          },
+          "deployments": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "enum": [
+                "managed_cloud",
+                "self_hosted_cloud_vm",
+                "on_premise",
+                "air_gapped"
+              ]
+            }
+          },
+          "runtimes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "enum": [
+                "none",
+                "node",
+                "python",
+                "jvm",
+                "dotnet",
+                "go",
+                "php"
+              ]
+            }
+          },
+          "static_assets": {
+            "type": "boolean"
+          },
+          "persistent_volume": {
+            "type": "boolean"
+          },
+          "regions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "residency",
+                "region",
+                "source_ids"
+              ],
+              "properties": {
+                "residency": {
+                  "enum": [
+                    "india",
+                    "eu",
+                    "us"
+                  ]
+                },
+                "region": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1
+                }
+              }
+            }
+          },
+          "managed_databases": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "database_id",
+                "choice",
+                "source_ids",
+                "regions"
+              ],
+              "properties": {
+                "database_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "choice": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1
+                },
+                "regions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "residency",
+                      "region",
+                      "source_ids"
+                    ],
+                    "properties": {
+                      "residency": {
+                        "enum": [
+                          "india",
+                          "eu",
+                          "us"
+                        ]
+                      },
+                      "region": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "source_ids": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "minItems": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "layer": {
+                  "const": "frontend"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "platforms",
+                "rendering",
+                "runtime"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "layer": {
+                  "const": "backend"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "runtime",
+                "databases"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "layer": {
+                  "const": "database"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "model",
+                "self_hosted"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "layer": {
+                  "const": "hosting"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "provider",
+                "deployments",
+                "runtimes",
+                "static_assets",
+                "persistent_volume",
+                "regions",
+                "managed_databases"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

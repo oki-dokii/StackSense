@@ -29,3 +29,7 @@ Validation performed with Python 3 and jsonschema 4.26.0 in a temporary dependen
 ## Research-plan update — 13 November 2026
 
 The expanded checker passes with 11 JSON files, including the 30-record research metadata register. Source IDs are unique, required metadata is present, and root plan citations match registered IDs/URLs. Internal links and earlier schema/fixture checks still pass. Review depth and access limits are recorded in the annotated research review. No research experiment, hosted prototype, engine output or performance benchmark was reproduced by this update.
+
+## Phase 2 implementation update — 13 November 2026
+
+The executable core planner now passes 97 contract/catalog/search/process tests and build checks. The documentation checker parses 14 JSON files, validates all schema definitions plus the core catalog in schema mode, and preserves public-source provenance. Current execution and coverage limits are in PHASE_2.md. Historical starter notes above describe the state before executable code was added.

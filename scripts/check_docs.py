@@ -32,7 +32,7 @@ def main():
             if not (path.parent / target).resolve().exists():
                 problems.append(f'{path.relative_to(ROOT)}: missing link {target}')
     docs = {}
-    for path in [*ROOT.glob('schemas/*.json'), *ROOT.glob('fixtures/**/*.json'), *ROOT.glob('docs/research/*.json')]:
+    for path in [*ROOT.glob('schemas/*.json'), *ROOT.glob('fixtures/**/*.json'), *ROOT.glob('docs/research/*.json'), *ROOT.glob('packages/catalog/data/*.json')]:
         try:
             docs[path] = json.loads(path.read_text(encoding='utf-8'), parse_constant=lambda x: (_ for _ in ()).throw(ValueError(x)))
         except (ValueError, OSError) as exc:
@@ -77,8 +77,14 @@ def main():
             inp = docs[ROOT / 'schemas/scenario.schema.json']
             out = docs[ROOT / 'schemas/recommendation.schema.json']
             try:
-                Draft7Validator.check_schema(inp)
-                Draft7Validator.check_schema(out)
+                for path, value in docs.items():
+                    if path.parent == ROOT / 'schemas':
+                        Draft7Validator.check_schema(value)
+                catalog_path = ROOT / 'packages/catalog/data/catalog.json'
+                if catalog_path in docs:
+                    catalog_validator = Draft7Validator(docs[ROOT / 'schemas/catalog.schema.json'])
+                    for error in catalog_validator.iter_errors(docs[catalog_path]):
+                        problems.append(f'Catalog schema: {list(error.path)}: {error.message}')
                 vin, vout = Draft7Validator(inp), Draft7Validator(out)
                 for path, value in docs.items():
                     if 'fixtures' not in path.parts:

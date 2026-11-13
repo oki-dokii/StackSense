@@ -55,7 +55,7 @@ export function normalizeScenario(raw: unknown): ValidationReport {
       if (!Object.hasOwn(schema.properties ?? {}, key)) {
         warnings.push({ code: 'UNKNOWN_INPUT', severity: 'warning', message: `${path} is not a recognized field. Preserved without interpreting it.`, fields: [path] });
       } else if (prefix === 'extensions' && notYetUsed.has(key)) {
-        warnings.push({ code: 'EXTENSION_NOT_APPLIED', severity: 'info', message: `${path} is structurally supported; architectural interpretation is not implemented in Phase 1.`, fields: [path] });
+        warnings.push({ code: 'EXTENSION_NOT_APPLIED', severity: 'info', message: `${path} is structurally supported; its effect on architecture selection is not implemented yet.`, fields: [path] });
       }
     }
   }

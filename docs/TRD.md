@@ -1,5 +1,7 @@
 # Technical requirements document
 
+Current implementation: [Phases 1–2](PHASES.md) contracts/CLI/catalog/core planning on Node 22.17.1. The React/Vite/Fastify application interfaces below remain planned; exact delivered coverage is in [Phase 2](PHASE_2.md).
+
 ## Implementation decision
 
 Proposed baseline: TypeScript across engine and adapters; React + Vite web UI; Fastify local HTTP API; npm workspaces; JSON Schema draft-07 contracts validated with Ajv; Vitest for meaningful engine/integration checks; Playwright for essential UI journeys. No runtime database. Catalog/rules/pricing are versioned local JSON. Exact dependency versions and lockfile are implementation tasks; these are not installed dependencies yet.

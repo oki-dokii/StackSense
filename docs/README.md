@@ -1,11 +1,13 @@
 # Documentation index
 
-Updated 13 November 2026 IST. [Phase 1](PHASE_1.md) is implemented; later-phase architecture and UI remain proposals.
+Updated 13 November 2026 IST. [Phases 1–2](PHASES.md) are implemented; complete recommendations and UI remain later-phase work.
 
 ## Implementation status
 
 - [Five-phase implementation tracker](PHASES.md)
 - [Phase 1 evidence and limitations](PHASE_1.md)
+- [Phase 2 evidence and limitations](PHASE_2.md)
+- [Executable catalog and source scope](CATALOG.md)
 
 ## Research and execution
 

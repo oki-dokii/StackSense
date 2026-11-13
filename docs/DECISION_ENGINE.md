@@ -1,5 +1,7 @@
 # Decision engine specification
 
+Current scope: core-only planning is implemented and verified in [Phase 2](PHASE_2.md), using a separate development report contract. Supporting services, monetary costs, configured controls and final recommendation semantics below remain Phase 3 targets.
+
 ## Principle
 
 Selection must be deterministic, input-sensitive, explainable, and compatible across the whole plan. An independent score per layer is insufficient if the selected components cannot be deployed together.

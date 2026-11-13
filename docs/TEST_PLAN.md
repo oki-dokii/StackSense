@@ -1,6 +1,6 @@
 # Test and validation plan
 
-Status: planned acceptance suite. No engine tests or measured product results exist yet. The documentation checker is implemented separately.
+Status: final-product acceptance plan. Core engine/contract/CLI tests are implemented (97 passing, see [Phase 2](PHASE_2.md)); complete recommendations, API/UI and final performance/evidence checks remain pending. The documentation checker runs separately.
 
 ## Verification layers
 

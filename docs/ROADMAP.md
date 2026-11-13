@@ -1,6 +1,6 @@
 # Implementation roadmap
 
-Baseline date: 13 November 2026 IST. Deadline: 15 November 2026, 23:59 IST. This is the original high-level execution order. See the [phase tracker](PHASES.md) for actual status: Phase 1 contract/CLI work is complete; stack selection remains next. One owner implements and reviews decisions; no team work is assumed.
+Baseline date: 13 November 2026 IST. Deadline: 15 November 2026, 23:59 IST. This is the original high-level execution order. See the [phase tracker](PHASES.md) for actual status: Phases 1–2 contract/CLI and provisional core selection are complete; supporting services/costs/controls are next. One owner implements and reviews decisions; no team work is assumed.
 
 Detailed research-backed implementation sequence and gates: [plan.md](../plan.md). The phase outline below remains a high-level schedule.
 

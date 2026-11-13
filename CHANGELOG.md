@@ -1,5 +1,12 @@
 # Changelog
 
+## Phase 2 implementation — 2026-11-13
+
+- Added a validated 33-entry core catalog with 40 scoped official-source records.
+- Implemented feature derivation, hard core filters, compatible search, transparent plan ranking and provisional reports.
+- Added safe single/batch core-planning CLI; compliance and unsupported primary-region evidence remain explicit blockers.
+- Passed 97 tests including Phase 1 regressions and exhaustive-search comparison. Final services/costs/controls remain Phase 3.
+
 ## Phase 1 implementation — 2026-11-13
 
 - Added npm workspaces, pinned dependencies/lockfile and schema-generated TypeScript contracts.

@@ -1,6 +1,6 @@
 # API and CLI contracts
 
-Recommendation/API interfaces below remain planned. The implemented Phase 1 validation CLI is documented in [README](../README.md) and [Phase 1](PHASE_1.md); its reports are separate from recommendation outputs. Structural contracts live in [schemas](../schemas/README.md).
+Final recommendation/API interfaces below remain planned; the implemented provisional core CLI is documented in [Phase 2](PHASE_2.md). The implemented Phase 1 validation CLI is documented in [README](../README.md) and [Phase 1](PHASE_1.md); its reports are separate from recommendation outputs. Structural contracts live in [schemas](../schemas/README.md).
 
 ## Local API
 
