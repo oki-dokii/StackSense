@@ -280,10 +280,13 @@ describe('required services and data boundaries', () => {
       true,
     );
   });
-  it('does not silently invent an AWS India mapping', () => {
+  it('uses the newly reviewed AWS Mumbai primary mapping', () => {
     const raw = minimal();
     raw.infrastructure = { cloud_preference: 'aws', data_residency: 'india' };
-    expect(recommend(raw).status).toBe('infeasible');
+    const r = recommend(raw);
+    expect(r.stack).not.toBeNull();
+    expect(r.primary_region).toBe('ap-south-1');
+    expect(r.database_region).toBe('ap-south-1');
   });
 });
 

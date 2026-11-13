@@ -42,7 +42,7 @@ describe('source-backed catalog integrity', () => {
   it('validates the shipped catalog with unique sources and supported layers', () => {
     expect(() => assertCatalog(defaultCatalog)).not.toThrow();
     expect(defaultCatalog.entries.length).toBe(33);
-    expect(defaultCatalog.sources.length).toBe(40);
+    expect(defaultCatalog.sources.length).toBe(43);
     expect(Object.isFrozen(defaultCatalog.entries[0])).toBe(true);
   });
   it.each(['missing-source', 'duplicate-id', 'bad-edge', 'missing-field'])(
@@ -186,7 +186,7 @@ describe('hard deployment and compatibility constraints', () => {
       ),
     ).toBe(true);
   });
-  it.each(['aws', 'azure'])(
+  it.each(['azure'])(
     'blocks unsupported %s country claims rather than inventing regional evidence',
     (provider) => {
       const value = minimal();

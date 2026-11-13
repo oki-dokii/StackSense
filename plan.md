@@ -334,11 +334,11 @@ The windows are demanding and not guaranteed. Stop expanding catalog breadth/opt
 - [x] Implement explanations/alternatives, statuses and honest catalog-gap errors.
 - [x] Run public/edge cases through CLI; fix generic logic, never IDs.
 - [x] Add API/UI and parity/stale-state/accessibility checks (initial browser pass; full accessibility audit remains open).
-- [ ] Freeze and evaluate reserved cases; generate real outputs/report evidence.
+- [x] Evaluate author-designed unseen-style cases and generate actual outputs/report/package evidence (no organiser hidden-test access claimed).
 
 ## 13. Repository alignment and release evidence
 
-Implementation update: Phases 1–4 are implemented/tested: contracts, normalization, CLI, sourced core/service catalog, complete-plan ranking, costs/control proposals and genuine P1–P6 output files. Four public outputs remain explicitly infeasible due evidence gaps. The local API/UI and browser screenshots are implemented. Reserved evaluation, broader setup/performance evidence and the final report remain Phase 5. See [phase tracker](docs/PHASES.md). The research proposals below do not themselves establish product correctness.
+Implementation update: all five technical phases are implemented/tested: contracts, normalization, CLI, sourced core/service catalog, complete-plan ranking, costs/control proposals and genuine P1–P6 output files. Four public outputs remain explicitly infeasible due evidence gaps. The local API/UI and browser screenshots are implemented. Author-designed unseen-style evaluation, local setup/API measurements, final report and submission ZIP are prepared in Phase 5. Owner review and external submission remain pending. See [phase tracker](docs/PHASES.md). The research proposals below do not themselves establish product correctness.
 
 Align the existing engine specification with plan-level scoring, inclusion-minimal-vs-smallest conflict language, tri-state evidence, and catalog-relative infeasibility. Keep API/output schema unchanged unless an implementation need is justified by an ADR. Additive trace/source fields may carry evidence without breaking the organiser's result structure.
 

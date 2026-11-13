@@ -1,6 +1,6 @@
 # Documentation index
 
-Updated 13 November 2026 IST. [Phases 1–4](PHASES.md) are implemented, including recommendation CLI, local API and responsive workspace. Final release evaluation/report work remains Phase 5. See [Phase 4](PHASE_4.md).
+Updated 13 November 2026 IST. [All five technical phases](PHASES.md) are implemented, including release evaluation, report and packaging. Owner review and online submission remain pending. See [Phase 5](PHASE_5.md).
 
 ## Implementation status
 

@@ -52,6 +52,13 @@ export interface Policies {
   services: ServiceProfile[];
   frameworks: Framework[];
   pricing: Record<string, Rate>;
+  lifecycle: {
+    id: string;
+    product: string;
+    pattern: string;
+    ended: string;
+    source_ids: string[];
+  }[];
 }
 const validator = new Ajv({ allErrors: true, strict: false }).compile(
   readSchema('services.schema.json'),
@@ -77,6 +84,14 @@ export function assertPolicies(value: unknown): asserts value is Policies {
     if (ids.has(service.id)) throw new Error(`Duplicate service ${service.id}`);
     ids.add(service.id);
     refs(service.source_ids);
+  }
+  const lifecycleIds = new Set<string>();
+  for (const item of p.lifecycle) {
+    if (lifecycleIds.has(item.id))
+      throw new Error(`Duplicate lifecycle ${item.id}`);
+    lifecycleIds.add(item.id);
+    refs(item.source_ids);
+    new RegExp(item.pattern, 'i');
   }
   const frameworks = new Set<string>();
   for (const framework of p.frameworks) {

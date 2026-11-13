@@ -58,3 +58,8 @@ The 40 dated official-source records in [catalog.json](../packages/catalog/data/
 ## Phase 4 implementation references
 
 [Fastify server reference](https://fastify.dev/docs/latest/Reference/Server/), [Vite getting started](https://vite.dev/guide/) and [React useState](https://react.dev/reference/react/useState) were checked for the local HTTP/build/state implementation. Exact registry versions are locked in package-lock.json; framework docs do not establish performance or accessibility compliance.
+
+
+## Phase 5 additions
+
+Core sources now include official Fargate supported Regions, AWS region-country mapping and RDS endpoints, combined with the existing RDS PostgreSQL product record for Mumbai primary scope. Service policies add Python 2 sunset and AngularJS upstream support status. The report includes the complete 135-record primary/research/tool ledger with scope limits. [Phase 5](PHASE_5.md) distinguishes source-backed coverage from unresolved external data flows.

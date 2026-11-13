@@ -22,7 +22,7 @@ import type { RankedPlan } from './types.js';
 import { deriveFeatures } from './features.js';
 import { searchCorePlans } from './planner.js';
 import { selectSupporting } from './supporting.js';
-import { controlPlan } from './controls.js';
+import { controlPlan, existingLifecycleWarnings } from './controls.js';
 import { estimateCost, budgetWarnings, CostModelLimitError } from './costs.js';
 import { describeCoreSelection } from './explanations.js';
 import type {
@@ -40,9 +40,9 @@ export function invalidRecommendation(
   catalogVersion = defaultCatalog.version,
 ): FinalRecommendation {
   return {
-    engine_version: '0.3.0',
+    engine_version: '0.5.0',
     catalog_version: catalogVersion,
-    rules_version: '0.3.0',
+    rules_version: '0.5.0',
     services_version: defaultPolicies.version,
     status: 'invalid_input',
     summary:
@@ -155,6 +155,7 @@ export function recommend(
       'RBI localisation explicitly requested: effective payment-data residency is India; no country requirement was inferred from project text.',
     );
   }
+  const lifecycleNotices = existingLifecycleWarnings(s, policies);
   const f = deriveFeatures(s);
   const search = searchCorePlans(catalog, s, f, context.maxAssignments);
   const candidates: CompleteCandidate[] = [];
@@ -269,9 +270,12 @@ export function recommend(
     base.summary =
       'No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.';
     const useful = warnings(blockers);
-    const byCode = new Map(useful.map((item) => [item.code, item]));
+    const byCode = new Map(
+      useful.map((item) => [`${item.code}|${item.fields.join('|')}`, item]),
+    );
     base.warnings = warnings([
       ...validation.warnings,
+      ...lifecycleNotices,
       ...f.warnings,
       ...byCode.values(),
       {
@@ -311,6 +315,7 @@ export function recommend(
       ' Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.';
     component.alternatives.forEach((alternative) => {
       alternative.why_not = alternative.why_not
+        .replace('complete core plan', 'complete plan')
         .replace('core plan', 'complete plan')
         .replace(
           'operated-component/identifier',
@@ -389,6 +394,7 @@ export function recommend(
   ];
   base.warnings = warnings([
     ...notices,
+    ...lifecycleNotices,
     ...f.warnings,
     ...support.warnings,
     ...control.warnings,

@@ -4,7 +4,7 @@
     "Interpreted project.description phrase \"double-entry ledger\" as ledger; this bounded hint does not infer legal or regional requirements.",
     "Persistent application data is inferred from project.type=fintech; domain data modeling remains required."
   ],
-  "catalog_version": "0.2.0",
+  "catalog_version": "0.3.0",
   "control_plan": null,
   "core_rejections": [
     {
@@ -84,13 +84,144 @@
       "message": "Hosting variant does not match the requested deployment model."
     },
     {
-      "candidate_id": "ecs",
-      "code": "REGION_EVIDENCE_GAP",
+      "candidate_id": "flutter|aspnet|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
+        "infrastructure.deployment_model",
         "infrastructure.data_residency"
       ],
-      "layer": "hosting",
-      "message": "No reviewed primary-compute region mapping satisfies the requested residency; no country location is inferred."
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "flutter|aspnet|sqlserver|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
+    },
+    {
+      "candidate_id": "flutter|django|maria|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
+    },
+    {
+      "candidate_id": "flutter|django|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "flutter|fastapi|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "flutter|fastify|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "flutter|go-http|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "flutter|go-http|sqlserver|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
+    },
+    {
+      "candidate_id": "flutter|laravel|maria|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
+    },
+    {
+      "candidate_id": "flutter|laravel|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "flutter|laravel|sqlserver|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
+    },
+    {
+      "candidate_id": "flutter|spring|maria|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
+    },
+    {
+      "candidate_id": "flutter|spring|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "flutter|spring|sqlserver|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
     },
     {
       "candidate_id": "frontend-none",
@@ -138,70 +269,131 @@
       "message": "This reviewed frontend variant does not cover every client target."
     },
     {
-      "candidate_id": "pages",
-      "code": "PROVIDER_MISMATCH",
+      "candidate_id": "next-native|aspnet|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
-        "infrastructure.cloud_preference"
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
       ],
-      "layer": "hosting",
-      "message": "Explicit cloud preference does not match this provider."
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
     },
     {
-      "candidate_id": "react",
-      "code": "PLATFORM_MISMATCH",
+      "candidate_id": "next-native|aspnet|sqlserver|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
-        "project.platforms"
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
       ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
     },
     {
-      "candidate_id": "react-native",
-      "code": "PLATFORM_MISMATCH",
+      "candidate_id": "next-native|django|maria|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
-        "project.platforms"
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
       ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
-    },
-    {
-      "candidate_id": "sqlite",
-      "code": "LEDGER_MODEL_NOT_REVIEWED",
-      "fields": [
-        "project.description"
-      ],
-      "layer": "database",
-      "message": "This catalog has no reviewed ledger design for this database variant; this is a coverage limit, not a claim of technical impossibility."
-    },
-    {
-      "candidate_id": "sveltekit",
-      "code": "PLATFORM_MISMATCH",
-      "fields": [
-        "project.platforms"
-      ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
-    },
-    {
-      "candidate_id": "vue",
-      "code": "PLATFORM_MISMATCH",
-      "fields": [
-        "project.platforms"
-      ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
     }
   ],
   "cost_breakdown": [],
   "data_flows": [],
   "decision_trace": {
     "complete_candidates": 0,
-    "core_candidates": 0,
-    "rejected": [],
+    "core_candidates": 14,
+    "rejected": [
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|fastify|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|spring|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|flutter|fastify|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|flutter|spring|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|aspnet|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|django|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|fastapi|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|go-http|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|laravel|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|flutter|aspnet|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|flutter|django|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|flutter|fastapi|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|flutter|go-http|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|flutter|laravel|pg|ecs|ap-south-1"
+      }
+    ],
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.3.0",
+  "engine_version": "0.5.0",
   "estimate_status": "not_estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -210,22 +402,40 @@
     "max": 0,
     "min": 0
   },
-  "rules_version": "0.3.0",
+  "rules_version": "0.5.0",
   "scenario_id": "P4",
-  "services_version": "0.3.0",
+  "services_version": "0.5.0",
   "stack": null,
   "status": "infeasible",
   "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",
   "validation_errors": [],
   "warnings": [
     {
-      "code": "CORE_CATALOG_COVERAGE_GAP",
+      "code": "COMPLETE_PLAN_COVERAGE_GAP",
       "fields": [
         "infrastructure",
         "requirements",
         "compliance"
       ],
-      "message": "No reviewed core combination matches platform, deployment, database and region constraints. Add source-backed regional/provider profiles before recommending a deployment.",
+      "message": "Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed.",
+      "severity": "critical"
+    },
+    {
+      "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+      "fields": [
+        "infrastructure.data_residency",
+        "requirements.auth"
+      ],
+      "message": "MSG91 OTP does not have reviewed end-to-end india data-flow evidence; provider location/API endpoint is not sufficient.",
+      "severity": "critical"
+    },
+    {
+      "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+      "fields": [
+        "infrastructure.data_residency",
+        "requirements.payments"
+      ],
+      "message": "Stripe Checkout does not have reviewed end-to-end india data-flow evidence; provider location/API endpoint is not sufficient.",
       "severity": "critical"
     }
   ]

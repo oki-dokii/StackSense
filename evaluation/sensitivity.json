@@ -1,0 +1,104 @@
+[
+  {
+    "field": "expected_requests_per_second",
+    "high_cost": {
+      "max": 2486.11,
+      "min": 340.04
+    },
+    "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "low_cost": {
+      "max": 510.69,
+      "min": 134.27
+    },
+    "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "values": [
+      1,
+      1000
+    ]
+  },
+  {
+    "field": "monthly_egress_gb",
+    "high_cost": {
+      "max": 4510.29,
+      "min": 934.19
+    },
+    "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "low_cost": {
+      "max": 510.69,
+      "min": 134.27
+    },
+    "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "values": [
+      1,
+      10000
+    ]
+  },
+  {
+    "field": "retention_months",
+    "high_cost": {
+      "max": 579.69,
+      "min": 141.17
+    },
+    "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "low_cost": {
+      "max": 510.69,
+      "min": 134.27
+    },
+    "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "values": [
+      1,
+      24
+    ]
+  },
+  {
+    "field": "monthly_otp_count",
+    "high_cost": {
+      "max": 920.44,
+      "min": 165.7
+    },
+    "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "low_cost": {
+      "max": 623.44,
+      "min": 145.9
+    },
+    "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "values": [
+      100,
+      10000
+    ]
+  },
+  {
+    "field": "monthly_payment_transactions",
+    "high_cost": {
+      "max": 25538.13,
+      "min": 10137.12
+    },
+    "high_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
+    "low_cost": {
+      "max": 788.13,
+      "min": 237.12
+    },
+    "low_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
+    "values": [
+      100,
+      10000
+    ]
+  },
+  {
+    "field": "average_payment_value_usd",
+    "high_cost": {
+      "max": 988.13,
+      "min": 337.12
+    },
+    "high_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
+    "low_cost": {
+      "max": 628.13,
+      "min": 157.12
+    },
+    "low_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
+    "values": [
+      10,
+      100
+    ]
+  }
+]

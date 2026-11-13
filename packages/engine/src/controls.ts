@@ -1,4 +1,4 @@
-import type { NormalizedScenario } from '../../contracts/src/index.js';
+import type { NormalizedScenario, Warning } from '../../contracts/src/index.js';
 import type { Policies } from '../../catalog/src/services.js';
 import type { CorePlan } from './types.js';
 import type { ControlPlan, SupportResult } from './complete-types.js';
@@ -138,5 +138,25 @@ export function controlPlan(
         'Legacy reuse requires version/EOL, license, network, schema and identity integration checks; no migration or connectivity is assumed verified.',
       fields: ['infrastructure.existing_systems'],
     });
+  return result;
+}
+
+export function existingLifecycleWarnings(
+  s: NormalizedScenario,
+  p: Policies,
+): Warning[] {
+  const result: Warning[] = [];
+  for (const item of p.lifecycle) {
+    const found = s.infrastructure.existing_systems.filter((system) =>
+      new RegExp(item.pattern, 'i').test(system),
+    );
+    if (found.length)
+      result.push({
+        code: 'EXISTING_TECH_EOL',
+        severity: 'warning',
+        message: `${item.product} upstream support ended ${item.ended}; found in ${found.join('; ')}. Do not retain it as the recommended production runtime. Plan migration/isolation and review compatibility. Evidence: ${item.source_ids.map((id) => p.sources.find((source) => source.id === id)!.url).join(', ')}`,
+        fields: ['infrastructure.existing_systems'],
+      });
+  }
   return result;
 }

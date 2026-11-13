@@ -1,0 +1,652 @@
+[
+  {
+    "budget": {
+      "monthly_infra_usd": 0
+    },
+    "compliance": [],
+    "infrastructure": {
+      "cloud_preference": "any",
+      "data_residency": "none",
+      "deployment_model": "managed_cloud",
+      "existing_systems": []
+    },
+    "priorities": {
+      "cost": 5,
+      "maintainability": 3,
+      "performance": 3,
+      "scalability": 1,
+      "security": 2,
+      "time_to_market": 4
+    },
+    "project": {
+      "description": "Personal portfolio with project pages and a weekly blog. Content written in Markdown by the owner.",
+      "name": "DevFolio",
+      "platforms": [
+        "web"
+      ],
+      "type": "content_site"
+    },
+    "requirements": {
+      "auth": "none",
+      "availability": "99",
+      "file_media_storage": false,
+      "full_text_search": false,
+      "ml_features": "none",
+      "multi_tenant": false,
+      "offline_support": false,
+      "p95_latency_ms": null,
+      "payments": false,
+      "realtime": false,
+      "seo_critical": true
+    },
+    "scale": {
+      "data_volume_gb_12_months": 1,
+      "peak_concurrent_users": 50,
+      "traffic_pattern": "steady",
+      "users_12_months": 3000,
+      "users_at_launch": 200,
+      "workload": "read_heavy"
+    },
+    "scenario_id": "P1",
+    "team": {
+      "experience": "beginner",
+      "has_devops": false,
+      "languages": [
+        "javascript",
+        "html",
+        "css"
+      ],
+      "size": 1
+    },
+    "timeline": {
+      "mvp_weeks": 2
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 150
+    },
+    "compliance": [
+      "dpdp"
+    ],
+    "infrastructure": {
+      "cloud_preference": "any",
+      "data_residency": "india",
+      "deployment_model": "managed_cloud",
+      "existing_systems": []
+    },
+    "priorities": {
+      "cost": 4,
+      "maintainability": 3,
+      "performance": 3,
+      "scalability": 3,
+      "security": 3,
+      "time_to_market": 5
+    },
+    "project": {
+      "description": "Customers book electricians and plumbers in two cities. Providers accept jobs, chat with customers and get paid. Android app for providers, web + Android for customers.",
+      "name": "FixIt Now",
+      "platforms": [
+        "web",
+        "android"
+      ],
+      "type": "marketplace"
+    },
+    "requirements": {
+      "auth": "phone_otp",
+      "availability": "99.9",
+      "file_media_storage": true,
+      "full_text_search": true,
+      "ml_features": "none",
+      "multi_tenant": false,
+      "offline_support": false,
+      "p95_latency_ms": 500,
+      "payments": true,
+      "realtime": true,
+      "seo_critical": true
+    },
+    "scale": {
+      "data_volume_gb_12_months": 50,
+      "peak_concurrent_users": 800,
+      "traffic_pattern": "steady",
+      "users_12_months": 30000,
+      "users_at_launch": 2000,
+      "workload": "balanced"
+    },
+    "scenario_id": "P2",
+    "team": {
+      "experience": "intermediate",
+      "has_devops": false,
+      "languages": [
+        "javascript",
+        "typescript",
+        "python"
+      ],
+      "size": 3
+    },
+    "timeline": {
+      "mvp_weeks": 8
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 1500
+    },
+    "compliance": [
+      "gdpr"
+    ],
+    "infrastructure": {
+      "cloud_preference": "any",
+      "data_residency": "none",
+      "deployment_model": "managed_cloud",
+      "existing_systems": []
+    },
+    "priorities": {
+      "cost": 2,
+      "maintainability": 4,
+      "performance": 5,
+      "scalability": 5,
+      "security": 3,
+      "time_to_market": 3
+    },
+    "project": {
+      "description": "Multiplayer whiteboard: many users edit the same board at once with live cursors. Teams pay per seat.",
+      "name": "BoardRoom",
+      "platforms": [
+        "web"
+      ],
+      "type": "realtime_collab"
+    },
+    "requirements": {
+      "auth": "social",
+      "availability": "99.9",
+      "file_media_storage": true,
+      "full_text_search": false,
+      "ml_features": "none",
+      "multi_tenant": true,
+      "offline_support": false,
+      "p95_latency_ms": 100,
+      "payments": true,
+      "realtime": true,
+      "seo_critical": false
+    },
+    "scale": {
+      "data_volume_gb_12_months": 200,
+      "peak_concurrent_users": 5000,
+      "traffic_pattern": "spiky",
+      "users_12_months": 50000,
+      "users_at_launch": 1000,
+      "workload": "write_heavy"
+    },
+    "scenario_id": "P3",
+    "team": {
+      "experience": "senior",
+      "has_devops": true,
+      "languages": [
+        "typescript",
+        "go"
+      ],
+      "size": 5
+    },
+    "timeline": {
+      "mvp_weeks": 12
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 6000
+    },
+    "compliance": [
+      "rbi_localisation",
+      "pci_dss",
+      "dpdp",
+      "iso27001"
+    ],
+    "infrastructure": {
+      "cloud_preference": "aws",
+      "data_residency": "india",
+      "deployment_model": "managed_cloud",
+      "existing_systems": []
+    },
+    "priorities": {
+      "cost": 2,
+      "maintainability": 4,
+      "performance": 3,
+      "scalability": 4,
+      "security": 5,
+      "time_to_market": 3
+    },
+    "project": {
+      "description": "Small personal loans with UPI disbursal and EMI collection. KYC document upload, credit scoring model, double-entry ledger.",
+      "name": "QuickCredit",
+      "platforms": [
+        "android",
+        "ios",
+        "web"
+      ],
+      "type": "fintech"
+    },
+    "requirements": {
+      "auth": "phone_otp",
+      "availability": "99.95",
+      "file_media_storage": true,
+      "full_text_search": false,
+      "ml_features": "inference_api",
+      "multi_tenant": false,
+      "offline_support": false,
+      "p95_latency_ms": 300,
+      "payments": true,
+      "realtime": false,
+      "seo_critical": false
+    },
+    "scale": {
+      "data_volume_gb_12_months": 500,
+      "peak_concurrent_users": 10000,
+      "traffic_pattern": "spiky",
+      "users_12_months": 300000,
+      "users_at_launch": 10000,
+      "workload": "balanced"
+    },
+    "scenario_id": "P4",
+    "team": {
+      "experience": "senior",
+      "has_devops": true,
+      "languages": [
+        "java",
+        "kotlin",
+        "typescript"
+      ],
+      "size": 8
+    },
+    "timeline": {
+      "mvp_weeks": 16
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 300
+    },
+    "compliance": [
+      "iso27001"
+    ],
+    "infrastructure": {
+      "cloud_preference": "azure",
+      "data_residency": "india",
+      "deployment_model": "managed_cloud",
+      "existing_systems": [
+        "Microsoft Entra ID (Azure AD)",
+        "On-prem SQL Server 2019",
+        "Microsoft 365"
+      ]
+    },
+    "priorities": {
+      "cost": 3,
+      "maintainability": 5,
+      "performance": 2,
+      "scalability": 1,
+      "security": 4,
+      "time_to_market": 5
+    },
+    "project": {
+      "description": "Leave requests, approvals and laptop/asset assignment for a 1,200-employee company. Used only by employees.",
+      "name": "PeopleDesk",
+      "platforms": [
+        "web"
+      ],
+      "type": "internal_tool"
+    },
+    "requirements": {
+      "auth": "enterprise_sso",
+      "availability": "99.9",
+      "file_media_storage": true,
+      "full_text_search": false,
+      "ml_features": "none",
+      "multi_tenant": false,
+      "offline_support": false,
+      "p95_latency_ms": 800,
+      "payments": false,
+      "realtime": false,
+      "seo_critical": false
+    },
+    "scale": {
+      "data_volume_gb_12_months": 20,
+      "peak_concurrent_users": 300,
+      "traffic_pattern": "steady",
+      "users_12_months": 1500,
+      "users_at_launch": 1200,
+      "workload": "read_heavy"
+    },
+    "scenario_id": "P5",
+    "team": {
+      "experience": "intermediate",
+      "has_devops": false,
+      "languages": [
+        "csharp",
+        "sql",
+        "javascript"
+      ],
+      "size": 2
+    },
+    "timeline": {
+      "mvp_weeks": 6
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 100
+    },
+    "compliance": [
+      "dpdp"
+    ],
+    "infrastructure": {
+      "cloud_preference": "any",
+      "data_residency": "india",
+      "deployment_model": "managed_cloud",
+      "existing_systems": []
+    },
+    "priorities": {
+      "cost": 5,
+      "maintainability": 4,
+      "performance": 3,
+      "scalability": 2,
+      "security": 3,
+      "time_to_market": 4
+    },
+    "project": {
+      "description": "NGO field agents fill crop surveys with GPS-tagged photos in villages with intermittent 2G/3G. Devices are low-end Android phones (2 GB RAM). Data syncs when signal is available.",
+      "name": "KhetSurvey",
+      "platforms": [
+        "android"
+      ],
+      "type": "other"
+    },
+    "requirements": {
+      "auth": "phone_otp",
+      "availability": "99",
+      "file_media_storage": true,
+      "full_text_search": false,
+      "ml_features": "none",
+      "multi_tenant": false,
+      "offline_support": true,
+      "p95_latency_ms": null,
+      "payments": false,
+      "realtime": false,
+      "seo_critical": false
+    },
+    "scale": {
+      "data_volume_gb_12_months": 100,
+      "peak_concurrent_users": 200,
+      "traffic_pattern": "spiky",
+      "users_12_months": 2000,
+      "users_at_launch": 300,
+      "workload": "write_heavy"
+    },
+    "scenario_id": "P6",
+    "team": {
+      "experience": "mixed",
+      "has_devops": false,
+      "languages": [
+        "javascript",
+        "python"
+      ],
+      "size": 2
+    },
+    "timeline": {
+      "mvp_weeks": 10
+    }
+  },
+  {
+    "scenario_id": "E01"
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 500
+    },
+    "priorities": {
+      "cost": 6
+    },
+    "project": {
+      "platforms": [
+        "web"
+      ],
+      "type": "web_app"
+    },
+    "scale": {
+      "users_12_months": 100,
+      "users_at_launch": -2
+    },
+    "scenario_id": "E02",
+    "team": {
+      "experience": "beginner",
+      "languages": [],
+      "size": "two"
+    },
+    "timeline": {
+      "mvp_weeks": 8
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 0
+    },
+    "project": {
+      "platforms": [
+        "web",
+        "android",
+        "ios"
+      ],
+      "type": "web_app"
+    },
+    "requirements": {
+      "auth": "email_password",
+      "availability": "99.99",
+      "multi_tenant": true,
+      "realtime": true
+    },
+    "scale": {
+      "peak_concurrent_users": 50000,
+      "users_12_months": 1000000,
+      "users_at_launch": 0
+    },
+    "scenario_id": "E03",
+    "team": {
+      "experience": "beginner",
+      "languages": [],
+      "size": 1
+    },
+    "timeline": {
+      "mvp_weeks": 1
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 0
+    },
+    "project": {
+      "description": "Public static reference pages, authored in Markdown.",
+      "platforms": [
+        "web"
+      ],
+      "type": "content_site"
+    },
+    "requirements": {
+      "availability": "99",
+      "seo_critical": true
+    },
+    "scale": {
+      "peak_concurrent_users": 50000,
+      "users_12_months": 5000000,
+      "users_at_launch": 0
+    },
+    "scenario_id": "E04",
+    "team": {
+      "experience": "beginner",
+      "languages": [],
+      "size": 1
+    },
+    "timeline": {
+      "mvp_weeks": 8
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 500
+    },
+    "compliance": [
+      "hipaa"
+    ],
+    "project": {
+      "platforms": [
+        "web"
+      ],
+      "type": "healthtech"
+    },
+    "requirements": {
+      "auth": "email_password"
+    },
+    "scale": {
+      "users_12_months": 100,
+      "users_at_launch": 0
+    },
+    "scenario_id": "E05",
+    "team": {
+      "experience": "beginner",
+      "languages": [],
+      "size": 1
+    },
+    "timeline": {
+      "mvp_weeks": 8
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 500
+    },
+    "infrastructure": {
+      "existing_systems": [
+        "Microsoft Entra ID",
+        "On-prem SQL Server 2019"
+      ]
+    },
+    "priorities": {
+      "maintainability": 5
+    },
+    "project": {
+      "platforms": [
+        "web"
+      ],
+      "type": "internal_tool"
+    },
+    "requirements": {
+      "auth": "enterprise_sso"
+    },
+    "scale": {
+      "users_12_months": 100,
+      "users_at_launch": 0
+    },
+    "scenario_id": "E06",
+    "team": {
+      "experience": "beginner",
+      "languages": [
+        "csharp",
+        "sql",
+        "javascript"
+      ],
+      "size": 1
+    },
+    "timeline": {
+      "mvp_weeks": 8
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 500
+    },
+    "infrastructure": {
+      "cloud_preference": "none",
+      "deployment_model": "air_gapped"
+    },
+    "project": {
+      "platforms": [
+        "web"
+      ],
+      "type": "internal_tool"
+    },
+    "requirements": {
+      "auth": "email_password"
+    },
+    "scale": {
+      "users_12_months": 100,
+      "users_at_launch": 0
+    },
+    "scenario_id": "E07",
+    "team": {
+      "experience": "beginner",
+      "languages": [],
+      "size": 1
+    },
+    "timeline": {
+      "mvp_weeks": 8
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 500
+    },
+    "project": {
+      "platforms": [
+        "web"
+      ],
+      "type": "web_app"
+    },
+    "scale": {
+      "users_12_months": 100,
+      "users_at_launch": 0
+    },
+    "scenario_id": "E08",
+    "team": {
+      "experience": "senior",
+      "has_devops": true,
+      "languages": [
+        "go"
+      ],
+      "size": 1
+    },
+    "timeline": {
+      "mvp_weeks": 8
+    }
+  },
+  {
+    "budget": {
+      "monthly_infra_usd": 500
+    },
+    "infrastructure": {
+      "existing_systems": [
+        "Python 2.7 report service",
+        "AngularJS admin portal"
+      ]
+    },
+    "project": {
+      "platforms": [
+        "web"
+      ],
+      "type": "web_app"
+    },
+    "scale": {
+      "users_12_months": 100,
+      "users_at_launch": 0
+    },
+    "scenario_id": "E09",
+    "team": {
+      "experience": "beginner",
+      "languages": [
+        "python",
+        "javascript"
+      ],
+      "size": 1
+    },
+    "timeline": {
+      "mvp_weeks": 8
+    }
+  }
+]

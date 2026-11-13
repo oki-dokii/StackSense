@@ -1,0 +1,18 @@
+{
+  "archive": "deliverables/StackSense26_SohamBanerjee.zip",
+  "bytes": 1041448,
+  "sha256": "d8455bbbc96701439e23444ba575345f7d65067d4b0416468baeb782b1651969",
+  "source_files": 168,
+  "runtime_source_sha256": "5e71d58978104355456288084899f17aa00fd23c2bd0f3a2b49e3179f4087328",
+  "checks": [
+    "Outer and inner ZIP CRC pass",
+    "Every manifest SHA-256 matches",
+    "Six public outputs and report exactly match working release",
+    "Source README/lockfile/env example present",
+    "No Git/dependency/build/cache/nested-release or secret-file patterns",
+    "Extracted runtime/test source digest equals clean setup rehearsal",
+    "Report QA/hash/page gate passed",
+    "Archive below 1 GB"
+  ],
+  "owner_review_and_online_submission": "pending; not performed by agent"
+}

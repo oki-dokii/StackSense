@@ -38,3 +38,8 @@ Compliance controls, backing services, detailed prices and full data-flow locati
 ## Phase 3 supporting-service evidence
 
 [services.json](../packages/catalog/data/services.json) adds 23 service profiles, 43 dated primary-source records, non-exhaustive framework design records and explicit pricing assumptions. Its [schema](../schemas/services.schema.json) and runtime integrity checks are separate from the 33-entry core catalog. [Phase 3](PHASE_3.md) explains compatibility, data flows, current blockers and design-only control scope.
+
+
+## Release 0.5.0 scope update
+
+The 33-entry core catalog is now version 0.3.0 with 43 source records: AWS Fargate and RDS PostgreSQL primary mapping in ap-south-1 is reviewed. Other AWS database variants do not inherit it. Service policies 0.5.0 have 23 profiles/45 sources and two sourced known lifecycle patterns (Python 2 and AngularJS). Region evidence never establishes external OTP/payment or existing-tenant scope. See [Phase 5](PHASE_5.md).

@@ -1,8 +1,10 @@
 # StackSense
 
-A local, deterministic technology stack recommendation engine for the Synergy ’26 challenge, being implemented in [five phases](docs/PHASES.md).
+A local, deterministic technology stack recommendation engine for the Synergy ’26 challenge, implemented in [five phases](docs/PHASES.md).
 
-**Current implementation: Phases 1–4.** The local API and responsive workspace now support guided input, JSON imports, samples, batch runs, explained results and JSON export using the same deterministic engine as the CLI. Four public scenarios retain explicit evidence blockers. [Phase 4 coverage and verification](docs/PHASE_4.md).
+**Release 0.5.0: all five technical phases are implemented and verified.** The CLI, local API and responsive workspace share a deterministic engine. The final report and submission ZIP are prepared; owner review and Drive/Unstop submission remain pending. Four public scenarios retain explicit evidence blockers. [Phase 5 evidence and limitations](docs/PHASE_5.md).
+
+[Download the submission ZIP](https://github.com/oki-dokii/StackSense/blob/main/deliverables/StackSense26_SohamBanerjee.zip) · [Read the report](https://github.com/oki-dokii/StackSense/blob/main/output/pdf/Report_SohamBanerjee.pdf) · [Owner checklist](docs/SUBMISSION.md)
 
 ## Run
 
@@ -53,15 +55,15 @@ For development, run `npm run dev:api` and `npm run dev:web` in separate termina
 
 The actual public batch returns one `ok`, one `ok_with_warnings` and four `infeasible` reports, with exit **3**. Every item exports as `<scenario_id>_output.json`; the manifest is `recommendation_manifest.json`. Inspect the [committed outputs](outputs/README.md) and [Phase 3 evidence](docs/PHASE_3.md). A no-plan cost of 0–0 means **not estimated**. P1's static assets genuinely have a zero-cost hosting band under its stated limits; P3's USD 875.51–7785.95 band includes explicit sizing/pricing assumptions and a budget-risk warning.
 
-The service catalog has 23 profiles and 43 primary-source records, alongside the 33-entry/40-source core catalog. Sources establish reviewed building blocks; configured controls, contracts, model fit and workload targets still require project-specific verification. The output is a design, not certification or a provider quote.
+The service catalog has 23 profiles, 45 primary-source records and two known EOL rules, alongside the 33-entry/43-source core catalog. Sources establish reviewed building blocks; configured controls, contracts, model fit and workload targets still require project-specific verification. The output is a design, not certification or a provider quote.
 
 ## Provisional core planning
 
-The catalog has **33 entries and 40 official-source records**. The engine checks platform/rendering coverage, explicit provider/deployment constraints, reviewed primary regions, database drivers and deployment compatibility, then applies a deterministic whole-plan rubric. Inspect [Phase 2](docs/PHASE_2.md) and [catalog evidence](docs/CATALOG.md) for exact coverage and limitations.
+The current core catalog has **33 entries and 43 official-source records**, including reviewed AWS Mumbai primary compute/PostgreSQL mappings. The engine checks platform/rendering coverage, explicit provider/deployment constraints, reviewed primary regions, database drivers and deployment compatibility, then applies a deterministic whole-plan rubric. Inspect [Phase 2](docs/PHASE_2.md) and [catalog evidence](docs/CATALOG.md) for exact coverage and limitations.
 
 Core reports use `status: core_plan | blocked | invalid_input`, `scope: core_layers_only`, four selections where unblocked, source IDs, fit contributions, alternatives, assumptions, pending requirements and a rejection trace. They contain no fabricated USD cost estimate. Files use `_core_plan.json`.
 
-**The public core batch currently returns one provisional plan and five blocked reports, with exit 3.** Required compliance-control evidence is not modeled yet; explicit unsupported regional mappings also block. All reports still export. `core_plan` is not approval of complete feature, budget, SLA or compliance feasibility.
+**The public core batch currently returns one provisional plan and five blocked reports, with exit 3.** Core mode deliberately withholds complete control approval; unsupported regional mappings can also block. Final recommendation mode uses the complete service/control model. All reports still export. `core_plan` is not approval of complete feature, budget, SLA or compliance feasibility.
 
 ## Validation report
 
@@ -87,10 +89,12 @@ npm run generate:types   # regenerate TS types after editing schemas
 npm run check           # generated type freshness, type checking, tests
 npm run build
 npm run dev:validate -- --input fixtures/minimal.json --pretty
+npm run evaluate         # author-designed unseen-style and sensitivity evidence
+npm run verify:release   # verify all actual output snapshots
 python3 scripts/check_docs.py
 ```
 
-Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: [Phase 1](docs/PHASE_1.md), [Phase 2](docs/PHASE_2.md), [Phase 3](docs/PHASE_3.md) and [Phase 4](docs/PHASE_4.md): **182 tests pass**, with a successful build. Windows/Linux and final workload/setup benchmarks remain unverified.
+Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: [Phase 1](docs/PHASE_1.md), [Phase 2](docs/PHASE_2.md), [Phase 3](docs/PHASE_3.md), [Phase 4](docs/PHASE_4.md) and [Phase 5](docs/PHASE_5.md): **201 tests pass**, with a successful build. Local API/cached setup timings are recorded in Phase 5. Other-OS and recommended-workload behavior are not established by those local measurements.
 
 | Technology | Pinned version | Role |
 |---|---|---|
@@ -110,6 +114,9 @@ Optional deeper documentation contract checks require Python's `jsonschema` pack
 ```mermaid
 flowchart LR
   Input[Scenario JSON] --> CLI[File / batch CLI]
+  Input --> Web[React workspace]
+  Web --> API[Loopback Fastify API]
+  API --> Parse
   CLI --> Parse[Bounded parsing]
   Parse --> Contracts[Ajv and authoritative schemas]
   Contracts --> Normalize[Defaults and provenance]
@@ -131,7 +138,10 @@ packages/catalog/          Reviewed source/product/deployment catalog and integr
 packages/engine/src/       Features, constraints, complete-plan search, services, costs, explanations
 schemas/                   Authoritative organiser input/output contracts
 fixtures/public/           Supplied array and six individual scenarios
-tests/                     Contract and actual CLI process checks
+tests/                     Contract, engine, actual CLI/API and release invariant checks
+evaluation/                Actual outputs, unseen-style cases and measured evidence
+output/pdf/                Verified final report
+deliverables/              Ready-to-review submission ZIP
 scripts/                   Type generation and documentation checks
 docs/                      Product, design, research and implementation evidence
 dist/                      Generated build; ignored by Git
@@ -145,6 +155,6 @@ Start with [plan.md](plan.md), the [phase tracker](docs/PHASES.md), and [documen
 
 ## Submission and credits
 
-Final delivery still requires broader evidence coverage, reserved evaluation, setup/performance evidence and the PDF report. The API/UI and actual browser screenshots are now implemented. Six genuine development outputs are now committed. See [submission checklist](docs/SUBMISSION.md). Deadline in the supplied brief: **15 November 2026, 23:59 IST**; do not modify the submitted Drive folder afterward.
+The report, 20 genuine public/evaluation outputs, screenshot evidence, local setup/API measurements and submission ZIP are prepared. Owner review, Drive access verification and Unstop submission remain required. Broader regional/vendor evidence and cross-OS/expert validation remain limitations. See [submission checklist](docs/SUBMISSION.md). Deadline in the supplied brief: **15 November 2026, 23:59 IST**; do not modify the submitted Drive folder afterward.
 
 Requirements come from user-supplied `StackSense_Problem_Statement.pdf` v1.0; public fixtures from `stacksense_public_scenarios.json`. No official expected stacks were provided. All installed third-party tools are listed above and locked in `package-lock.json`; source links/research and AI assistance are recorded in [references](docs/REFERENCES.md) and [AI assistance](docs/AI_ASSISTANCE.md). Participant review/ownership remains required by the challenge.

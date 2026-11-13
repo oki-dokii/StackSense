@@ -75,9 +75,9 @@ export interface RecommendationContext extends PlanningContext {
   policies?: Policies;
 }
 export type FinalRecommendation = Recommendation & {
-  engine_version: '0.3.0';
+  engine_version: '0.5.0';
   catalog_version: string;
-  rules_version: '0.3.0';
+  rules_version: '0.5.0';
   services_version: string;
   estimate_status: 'estimated' | 'not_estimated';
   cost_breakdown: CostLine[];

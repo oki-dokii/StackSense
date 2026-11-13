@@ -1,6 +1,6 @@
 # Technical requirements document
 
-Current implementation: [Phases 1–4](PHASES.md), including the shared engine, CLI, Fastify API and React/Vite workspace. [Phase 4 delivery evidence](PHASE_4.md) records pinned dependencies and actual coverage.
+Current implementation: [Phases 1–5](PHASES.md), including the shared engine, CLI, Fastify API and React/Vite workspace. [Phase 5 delivery evidence](PHASE_5.md) records pinned dependencies and actual coverage.
 
 ## Implementation decision
 

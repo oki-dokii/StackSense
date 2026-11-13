@@ -43,3 +43,8 @@ The executable core planner now passes 97 contract/catalog/search/process tests 
 ## Phase 4 implementation update — 13 November 2026
 
 182 tests pass; TypeScript/generated type checks and production API/browser builds pass. Exact parity is tested for all six API outputs. Actual local browser checks cover sample recommendations, P1 export parity, stale-export protection, P3 warned report, mixed invalid/infeasible batches and 360 px result overflow. [Phase 4 evidence and limits](PHASE_4.md).
+
+
+## Phase 5 release evidence — 13 November 2026
+
+201 tests pass. All 20 public/evaluation result files match the current engine byte-for-byte. Author-designed case/sensitivity records, real HTTP timings, a 16.805-second fresh-source cached setup rehearsal, genuine screenshots, 14+10-page rendered PDF and ZIP/source/report hashes are recorded in evaluation/. Actual scope and pending owner actions: [Phase 5](PHASE_5.md).

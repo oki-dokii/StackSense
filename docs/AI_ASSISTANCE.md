@@ -23,3 +23,6 @@ Phase 3 implementation, 13 November 2026: Codex researched official service/pric
 
 
 Phase 4 implementation, 13 November 2026: Codex used the Sites local repository workflow, checked official framework documentation, implemented Fastify HTTP and React/Vite guided/import/result/export UI, added API and browser-model checks, and performed actual local-browser sample, batch, invalid/infeasible, export and stale/mobile checks. The P1 downloaded result was compared with the engine output. No hosted service, production deployment or accessibility certification was claimed. Participant review/ownership remains required. Details: PHASE_4.md.
+
+
+Phase 5 release, 13 November 2026: Codex checked primary lifecycle/regional facts, added known EOL notices and reviewed AWS Mumbai mapping, designed 14 unseen-style test cases (not organiser hidden cases), ran 201 automated tests and six usage-sensitivity experiments, measured actual local API/setup behavior, captured actual UI overviews for public/edge scenarios, and authored/rendered/visually inspected the 24-page PDF. Codex prepared the ZIP/source/output/hash package and read-only CI configuration. Identity and permission to publish the report/email were supplied by the owner. No completed independent owner/expert review, public cloud deployment, Drive sharing or Unstop submission is claimed. See PHASE_5.md.

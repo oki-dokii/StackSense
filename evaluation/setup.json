@@ -1,0 +1,56 @@
+{
+  "measured_at": "2026-11-13T13:55:29Z",
+  "mode": "fresh archive extraction; npm offline install using previously populated cache",
+  "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+  "runtime_source_sha256": "5e71d58978104355456288084899f17aa00fd23c2bd0f3a2b49e3179f4087328",
+  "source_zip_sha256": "9a620cd2307dbdbede22c9b3e23803feef440e8dbea4a29a7c24b77fc110e067",
+  "steps": [
+    {
+      "command": [
+        "npm",
+        "ci",
+        "--offline"
+      ],
+      "seconds": 3.719,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "seconds": 10.876,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "seconds": 1.551,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "evaluate"
+      ],
+      "seconds": 0.314,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "verify:release"
+      ],
+      "seconds": 0.265,
+      "exit_code": 0
+    }
+  ],
+  "total_seconds": 16.805,
+  "scope_limit": "Includes extraction/install/check/build/evaluation verification; real cold API startup measured separately. No new online download or other OS is claimed."
+}

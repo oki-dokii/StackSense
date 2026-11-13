@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.5.0",
   "reviewed_on": "2026-11-13",
   "sources": [
     {
@@ -302,6 +302,20 @@
       "url": "https://git-scm.com/docs/git",
       "checked_on": "2026-11-13",
       "scope": "Local source versioning; build scripts run locally without hosted CI billing."
+    },
+    {
+      "id": "python2-eol",
+      "title": "Python 2 sunset",
+      "url": "https://www.python.org/doc/sunset-python-2/",
+      "checked_on": "2026-11-13",
+      "scope": "Python 2 upstream support ended January 1 2020; not a claim about Python 3."
+    },
+    {
+      "id": "angularjs-eol",
+      "title": "AngularJS support status",
+      "url": "https://docs.angularjs.org/misc/version-support-status",
+      "checked_on": "2026-11-13",
+      "scope": "AngularJS upstream support ended January 2022; distinct from maintained Angular."
     }
   ],
   "services": [
@@ -1058,5 +1072,25 @@
       ],
       "basis": "Assumed per-transaction USD fee envelope, not a tariff quote."
     }
-  }
+  },
+  "lifecycle": [
+    {
+      "id": "python2",
+      "product": "Python 2",
+      "pattern": "\\bpython\\s*2(?:\\.\\d+)*\\b",
+      "ended": "2020-01-01",
+      "source_ids": [
+        "python2-eol"
+      ]
+    },
+    {
+      "id": "angularjs",
+      "product": "AngularJS",
+      "pattern": "\\bangularjs\\b",
+      "ended": "2022-01",
+      "source_ids": [
+        "angularjs-eol"
+      ]
+    }
+  ]
 }

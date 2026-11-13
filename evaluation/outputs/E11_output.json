@@ -1,0 +1,813 @@
+{
+  "applied_extensions": [],
+  "architecture_style": "modular_monolith",
+  "assumptions": [
+    "Email is an account identifier; external verification/reset mail is not enabled until an SMTP provider and its data scope/cost are reviewed. Administrative recovery is assumed initially.",
+    "Offline sync uses versioned records and server-side idempotency; app-specific merge/rejection UX and resumable uploads must be implemented and tested.",
+    "Persistent application data is inferred from project.type=web_app; domain data modeling remains required.",
+    "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
+    "compliance was absent; defaulted to [].",
+    "infrastructure was absent; initialized the optional group before applying field defaults.",
+    "infrastructure.cloud_preference was absent; defaulted to \"any\".",
+    "infrastructure.data_residency was absent; defaulted to \"none\".",
+    "infrastructure.deployment_model was absent; defaulted to \"managed_cloud\".",
+    "infrastructure.existing_systems was absent; defaulted to [].",
+    "priorities was absent; initialized the optional group before applying field defaults.",
+    "priorities.cost was absent; defaulted to 3.",
+    "priorities.maintainability was absent; defaulted to 3.",
+    "priorities.performance was absent; defaulted to 3.",
+    "priorities.scalability was absent; defaulted to 3.",
+    "priorities.security was absent; defaulted to 3.",
+    "priorities.time_to_market was absent; defaulted to 3.",
+    "project.description was absent; defaulted to \"\".",
+    "project.name was absent; defaulted to \"\".",
+    "requirements.availability was absent; defaulted to \"99.9\".",
+    "requirements.full_text_search was absent; defaulted to false.",
+    "requirements.ml_features was absent; defaulted to \"none\".",
+    "requirements.multi_tenant was absent; defaulted to false.",
+    "requirements.p95_latency_ms was absent; defaulted to null.",
+    "requirements.payments was absent; defaulted to false.",
+    "requirements.realtime was absent; defaulted to false.",
+    "requirements.seo_critical was absent; defaulted to false.",
+    "scale.data_volume_gb_12_months was absent; remains unknown (not zero).",
+    "scale.peak_concurrent_users was absent; remains unknown (not zero).",
+    "scale.traffic_pattern was absent; defaulted to \"steady\".",
+    "scale.workload was absent; defaulted to \"balanced\".",
+    "team.has_devops was absent; defaulted to false."
+  ],
+  "catalog_version": "0.3.0",
+  "control_plan": {
+    "deployment_controls": [
+      "TLS at all client/service/database boundaries.",
+      "Least-privilege service identities, secret rotation, encryption at rest and redacted audit logs.",
+      "Explicit regional primary/replica/storage/log/backup locations and retention; no uncontrolled cross-region replication.",
+      "Restore-test backups and test negative authorization, tenant boundaries and deletion workflows."
+    ],
+    "frameworks": []
+  },
+  "cost_breakdown": [
+    {
+      "basis": "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+      "category": "compute",
+      "id": "application-compute",
+      "monthly_usd": {
+        "max": 384.11,
+        "min": 40.01
+      },
+      "quantity": {
+        "max": 2044,
+        "min": 383.25
+      },
+      "source_ids": [
+        "run-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.18792,
+        "min": 0.1044
+      }
+    },
+    {
+      "basis": "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+      "category": "database",
+      "id": "database-cpu",
+      "monthly_usd": {
+        "max": 120.6,
+        "min": 60.29
+      },
+      "quantity": {
+        "max": 1460,
+        "min": 1460
+      },
+      "source_ids": [
+        "sql-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.0826,
+        "min": 0.0413
+      }
+    },
+    {
+      "basis": "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+      "category": "database",
+      "id": "database-memory",
+      "monthly_usd": {
+        "max": 81.76,
+        "min": 40.88
+      },
+      "quantity": {
+        "max": 5840,
+        "min": 5840
+      },
+      "source_ids": [
+        "sql-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.014,
+        "min": 0.007
+      }
+    },
+    {
+      "basis": "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+      "category": "database",
+      "id": "database-storage",
+      "monthly_usd": {
+        "max": 8,
+        "min": 2
+      },
+      "quantity": {
+        "max": 20,
+        "min": 20
+      },
+      "source_ids": [
+        "sql-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.4,
+        "min": 0.1
+      }
+    },
+    {
+      "basis": "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+      "category": "backup",
+      "id": "backup-storage",
+      "monthly_usd": {
+        "max": 3,
+        "min": 0.3
+      },
+      "quantity": {
+        "max": 20,
+        "min": 10
+      },
+      "source_ids": [
+        "storage-price",
+        "s3-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.15,
+        "min": 0.03
+      }
+    },
+    {
+      "basis": "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+      "category": "storage",
+      "id": "object-storage",
+      "monthly_usd": {
+        "max": 0.5,
+        "min": 0.1
+      },
+      "quantity": {
+        "max": 10,
+        "min": 5
+      },
+      "source_ids": [
+        "storage-price",
+        "s3-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.05,
+        "min": 0.02
+      }
+    },
+    {
+      "basis": "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+      "category": "egress",
+      "id": "network-egress",
+      "monthly_usd": {
+        "max": 0.4,
+        "min": 0.08
+      },
+      "quantity": {
+        "max": 2,
+        "min": 1
+      },
+      "source_ids": [
+        "storage-price",
+        "s3-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.2,
+        "min": 0.08
+      }
+    },
+    {
+      "basis": "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+      "category": "observability",
+      "id": "telemetry-operations",
+      "monthly_usd": {
+        "max": 20,
+        "min": 5
+      },
+      "quantity": {
+        "max": 1,
+        "min": 1
+      },
+      "source_ids": [
+        "storage-price"
+      ],
+      "unit_rate_usd": {
+        "max": 20,
+        "min": 5
+      }
+    },
+    {
+      "basis": "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+      "category": "ci_cd",
+      "id": "hosted-ci",
+      "monthly_usd": {
+        "max": 30,
+        "min": 0
+      },
+      "quantity": {
+        "max": 1,
+        "min": 1
+      },
+      "source_ids": [
+        "ci"
+      ],
+      "unit_rate_usd": {
+        "max": 30,
+        "min": 0
+      }
+    }
+  ],
+  "data_flows": [
+    {
+      "component": "primary-compute",
+      "location": "Choose deployment location before provisioning",
+      "scope": "Application processing; configure region, private access, logging and replicas explicitly.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "primary-database",
+      "location": "Choose database location before provisioning",
+      "scope": "Application/auth/search/outbox data and backups; verify retention, restore and deletion.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "keycloak",
+      "location": "Selected deployment region (must be chosen before provisioning)",
+      "scope": "Separate realm/schema and restricted database credentials are required; pin supported driver/database versions. Email delivery needs a separately reviewed SMTP integration if enabled.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "expo",
+      "location": "User device local storage",
+      "scope": "Persist writes before sync; use idempotency keys, versions, conflict policy, resumable photos and network-aware retries. Browser target needs a separate Dexie store.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "gcs",
+      "location": "Selected deployment region (must be chosen before provisioning)",
+      "scope": "Choose the same reviewed region, private access, signed URLs and in-region lifecycle/backup policy; do not use a default multi-region bucket.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "outbox",
+      "location": "Selected deployment region (must be chosen before provisioning)",
+      "scope": "Outbox rows share the database bill. Worker retries must be idempotent; tune polling, retry/dead-letter policy and retention.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "otel",
+      "location": "Selected deployment region (must be chosen before provisioning)",
+      "scope": "Redact sensitive values, use host-region retention/routing, and provision a durable regional log backend. No personal data in tracing baggage.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "actions",
+      "location": "Build environment: source/synthetic fixtures only",
+      "scope": "Never export production data/secrets/personal data to build logs.",
+      "verification": "source_only_no_production_data"
+    }
+  ],
+  "database_region": null,
+  "decision_trace": {
+    "complete_candidates": 56,
+    "core_candidates": 156,
+    "rejected": [
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|react-native|django|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "OBJECT_STORAGE_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|react-native|django|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|react-native|fastapi|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "OBJECT_STORAGE_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|react-native|fastapi|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|react-native|fastify|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "OBJECT_STORAGE_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|react-native|fastify|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|next-native|django|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "OBJECT_STORAGE_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|next-native|django|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|next-native|fastapi|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "OBJECT_STORAGE_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|next-native|fastapi|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|next-native|fastify|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "OBJECT_STORAGE_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|next-native|fastify|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|compose|django|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "OBJECT_STORAGE_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|compose|django|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|compose|fastapi|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "OBJECT_STORAGE_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|compose|fastapi|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|compose|fastify|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "OBJECT_STORAGE_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|compose|fastify|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|flutter|django|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "OBJECT_STORAGE_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|flutter|django|pg|appservice|unspecified"
+      }
+    ],
+    "score": 66,
+    "selected_plan_id": "modular_monolith|react-native|django|pg|cloudrun|unspecified"
+  },
+  "engine_version": "0.5.0",
+  "estimate_status": "estimated",
+  "estimated_monthly_cost_usd": {
+    "assumptions": [
+      "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+      "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
+      "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
+      "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+      "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 3.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+      "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+      "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+      "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+      "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+      "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+      "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+      "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+      "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+      "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+      "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+      "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+    ],
+    "max": 648.37,
+    "min": 148.66
+  },
+  "primary_region": null,
+  "rules_version": "0.5.0",
+  "scenario_id": "E11",
+  "score_breakdown": [
+    {
+      "contribution": 9,
+      "criterion": "cost",
+      "driven_by": [
+        "budget.monthly_infra_usd",
+        "priorities.cost"
+      ],
+      "fit": 3,
+      "reason": "USD 148.66–648.37/month versus budget 500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "weight": 3
+    },
+    {
+      "contribution": 12,
+      "criterion": "time_to_market",
+      "driven_by": [
+        "team.languages",
+        "team.experience",
+        "timeline.mvp_weeks",
+        "priorities.time_to_market"
+      ],
+      "fit": 4,
+      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 2.75/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+      "weight": 3
+    },
+    {
+      "contribution": 12,
+      "criterion": "scalability",
+      "driven_by": [
+        "scale.users_at_launch",
+        "scale.users_12_months",
+        "scale.workload",
+        "priorities.scalability"
+      ],
+      "fit": 4,
+      "reason": "Static delivery avoids application writes; embedded-writer and growth triggers are ordinal review heuristics, not published capacity limits.",
+      "weight": 3
+    },
+    {
+      "contribution": 9,
+      "criterion": "performance",
+      "driven_by": [
+        "scale.workload",
+        "priorities.performance"
+      ],
+      "fit": 3,
+      "reason": "No latency SLA or measured framework throughput is credited; embedded-write concurrency is a review heuristic. Low-memory clients require measurement, not an assumed framework benchmark.",
+      "weight": 3
+    },
+    {
+      "contribution": 15,
+      "criterion": "maintainability",
+      "driven_by": [
+        "team.languages",
+        "team.has_devops",
+        "team.size",
+        "infrastructure.existing_systems",
+        "priorities.maintainability"
+      ],
+      "fit": 5,
+      "reason": "Operational burden 1/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+      "weight": 3
+    },
+    {
+      "contribution": 9,
+      "criterion": "security",
+      "driven_by": [
+        "priorities.security"
+      ],
+      "fit": 3,
+      "reason": "Baseline configured controls: 3; explicit reviewed tenant isolation: 4. No certification/audit credit is assigned.",
+      "weight": 3
+    }
+  ],
+  "services_version": "0.5.0",
+  "stack": {
+    "backend": {
+      "alternatives": [
+        {
+          "choice": "FastAPI",
+          "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
+        }
+      ],
+      "choice": "Django",
+      "driven_by": [
+        "project.type",
+        "team.languages",
+        "timeline.mvp_weeks",
+        "requirements.auth",
+        "requirements.realtime"
+      ],
+      "id": "django",
+      "justification": "Provides a python application runtime for the web_app profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "layer": "backend",
+      "source_ids": [
+        "django"
+      ],
+      "tradeoffs": [
+        "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
+      ]
+    },
+    "database": {
+      "alternatives": [
+        {
+          "choice": "None",
+          "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+        }
+      ],
+      "choice": "PostgreSQL",
+      "driven_by": [
+        "project.type",
+        "requirements.auth",
+        "requirements.offline_support",
+        "infrastructure.existing_systems"
+      ],
+      "id": "pg",
+      "justification": "relational persistence via Cloud SQL for PostgreSQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "layer": "database",
+      "source_ids": [
+        "cloudsql-pg",
+        "pg"
+      ],
+      "tradeoffs": [
+        "Data model, backup policy, licensing and release/driver compatibility need explicit review."
+      ]
+    },
+    "frontend": {
+      "alternatives": [
+        {
+          "choice": "Next.js + React Native",
+          "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
+        }
+      ],
+      "choice": "React Native",
+      "driven_by": [
+        "project.platforms",
+        "project.type",
+        "requirements.seo_critical",
+        "team.languages"
+      ],
+      "id": "react-native",
+      "justification": "Covers requested targets android with native rendering. Team languages: javascript, python. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "layer": "frontend",
+      "source_ids": [
+        "rn"
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ]
+    },
+    "hosting": {
+      "alternatives": [
+        {
+          "choice": "Amazon ECS / Fargate",
+          "why_not": "Best compatible complete plan using this option scored 63, below 66; other layers may also differ."
+        }
+      ],
+      "choice": "Google Cloud Run",
+      "driven_by": [
+        "infrastructure.cloud_preference",
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency",
+        "team.has_devops"
+      ],
+      "id": "cloudrun",
+      "justification": "Matches managed_cloud with provider gcp; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "layer": "hosting",
+      "source_ids": [
+        "run",
+        "run-regions",
+        "run-ws"
+      ],
+      "tradeoffs": [
+        "No workload pricing/SLA is inferred; region, storage, backups, identity and networking require deployment review.",
+        "WebSocket clients must handle request timeouts/reconnection and cross-instance state."
+      ]
+    },
+    "supporting": [
+      {
+        "alternatives": [
+          {
+            "choice": "Jenkins",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "ci"
+        ],
+        "choice": "GitHub Actions",
+        "driven_by": [
+          "infrastructure.deployment_model"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Build/test/deploy with pinned dependencies, synthetic fixtures and controlled secrets; production data does not enter the build service.",
+        "layer": "ci_cd",
+        "placement": "build",
+        "service_id": "actions",
+        "source_ids": [
+          "ci"
+        ],
+        "tradeoffs": [
+          "Source and synthetic fixtures only; production data, secrets and personal data must never be sent to external build logs. Usage above included minutes is billed."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Realm",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "offline"
+        ],
+        "choice": "Expo SQLite + application sync queue",
+        "driven_by": [
+          "requirements.offline_support",
+          "project.platforms"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Persist edits/photos before transmission; enqueue durable operations with idempotency keys/version checks, retry/backoff and an explicit conflict policy.",
+        "layer": "other",
+        "placement": "device",
+        "service_id": "expo",
+        "source_ids": [
+          "expo-sqlite",
+          "android-offline"
+        ],
+        "tradeoffs": [
+          "Persist writes before sync; use idempotency keys, versions, conflict policy, resumable photos and network-aware retries. Browser target needs a separate Dexie store."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Amazon S3",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "storage"
+        ],
+        "choice": "Google Cloud Storage regional bucket",
+        "driven_by": [
+          "requirements.file_media_storage"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Private uploads use explicit regional storage, signed access and malware/content validation; preserve upload retries and retention policy. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "storage",
+        "placement": "host",
+        "service_id": "gcs",
+        "source_ids": [
+          "gcs"
+        ],
+        "tradeoffs": [
+          "Choose the same reviewed region, private access, signed URLs and in-region lifecycle/backup policy; do not use a default multi-region bucket."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Microsoft Entra ID",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "auth"
+        ],
+        "choice": "Keycloak",
+        "driven_by": [
+          "requirements.auth"
+        ],
+        "incremental_compute_units": 1,
+        "justification": "Authentication method email_password uses a separate Keycloak realm/schema and least-privilege database identity. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "auth",
+        "placement": "host",
+        "service_id": "keycloak",
+        "source_ids": [
+          "keycloak-db",
+          "keycloak-admin"
+        ],
+        "tradeoffs": [
+          "Separate realm/schema and restricted database credentials are required; pin supported driver/database versions. Email delivery needs a separately reviewed SMTP integration if enabled."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Prometheus with application instrumentation",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "observability"
+        ],
+        "choice": "OpenTelemetry Collector + structured logs",
+        "driven_by": [
+          "requirements.availability"
+        ],
+        "incremental_compute_units": 0.25,
+        "justification": "Collect redacted metrics/logs/traces with regional retention; on cloud use a configured host-provider regional log bucket, locally use provisioned persistent storage. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "observability",
+        "placement": "host",
+        "service_id": "otel",
+        "source_ids": [
+          "telemetry",
+          "gcp-logs",
+          "aws-logs"
+        ],
+        "tradeoffs": [
+          "Redact sensitive values, use host-region retention/routing, and provision a durable regional log backend. No personal data in tracing baggage."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "RabbitMQ",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "queue"
+        ],
+        "choice": "PostgreSQL transactional outbox + worker",
+        "driven_by": [
+          "requirements.offline_support",
+          "requirements.payments",
+          "requirements.realtime"
+        ],
+        "incremental_compute_units": 0.25,
+        "justification": "Application and outbox writes commit atomically; a separately budgeted worker retries idempotently and records dead letters.",
+        "layer": "queue",
+        "placement": "database",
+        "service_id": "outbox",
+        "source_ids": [
+          "pg-tx"
+        ],
+        "tradeoffs": [
+          "Outbox rows share the database bill. Worker retries must be idempotent; tune polling, retry/dead-letter policy and retention."
+        ]
+      }
+    ]
+  },
+  "status": "ok_with_warnings",
+  "summary": "modular_monolith recommendation selected from 56 complete compatible plans; month-12 infrastructure planning band USD 148.66–648.37/month.",
+  "validation_errors": [],
+  "warnings": [
+    {
+      "code": "AVAILABILITY_TARGET_UNVERIFIED",
+      "fields": [
+        "requirements.availability"
+      ],
+      "message": "99.9% is a target, not a product guarantee. The cost model provisions redundancy assumptions; service terms, failover and workload behavior still require verification.",
+      "severity": "warning"
+    },
+    {
+      "code": "BUDGET_RANGE_RISK",
+      "fields": [
+        "budget.monthly_infra_usd"
+      ],
+      "message": "Upper estimate USD 648.37/month exceeds USD 500; stated usage/price assumptions determine whether it fits.",
+      "severity": "warning"
+    },
+    {
+      "code": "PRICE_AND_CAPACITY_ASSUMPTIONS",
+      "fields": [
+        "scale",
+        "budget.monthly_infra_usd",
+        "requirements"
+      ],
+      "message": "Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase.",
+      "severity": "warning"
+    }
+  ]
+}

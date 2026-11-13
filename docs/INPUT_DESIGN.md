@@ -60,3 +60,8 @@ Do not make extras mandatory, invent their values silently, or collect them with
 ## Phase 3 optional usage inputs
 
 `extensions.monthly_payment_transactions` (nonnegative integer) and `extensions.average_payment_value_usd` (nonnegative number) optionally refine payment fee estimates. RPS, egress, retention and selected OTP/payment usage are applied to pricing; unapplied known extensions retain explicit notices. Core organiser fields remain unchanged; original fixtures are preserved.
+
+
+## Release usage-field scope
+
+Only the six applied usage extensions are collected in the guided form. Legacy primary_user_region and vendor_lock_in_tolerance input values remain structurally accepted and preserved, with explicit unapplied notices; no architectural influence is claimed. All six collected extras have paired cost-effect evidence in evaluation/sensitivity.json.

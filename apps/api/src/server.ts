@@ -40,24 +40,20 @@ export function createServer(
   app.addHook('onRequest', async (request, reply) => {
     const host = request.headers.host ?? '';
     if (!/^(localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/.test(host))
-      return reply
-        .code(403)
-        .send({
-          error: { code: 'HOST_FORBIDDEN', message: 'Use a loopback address.' },
-        });
+      return reply.code(403).send({
+        error: { code: 'HOST_FORBIDDEN', message: 'Use a loopback address.' },
+      });
     const origin = request.headers.origin;
     if (
       (origin && origin !== `http://${host}`) ||
       request.headers['sec-fetch-site'] === 'cross-site'
     )
-      return reply
-        .code(403)
-        .send({
-          error: {
-            code: 'ORIGIN_FORBIDDEN',
-            message: 'Use the local same-origin workspace.',
-          },
-        });
+      return reply.code(403).send({
+        error: {
+          code: 'ORIGIN_FORBIDDEN',
+          message: 'Use the local same-origin workspace.',
+        },
+      });
   });
   app.addHook('onSend', async (_request, reply, payload) => {
     reply
@@ -103,14 +99,12 @@ export function createServer(
   app.setErrorHandler((error, _request, reply) => {
     const code = (error as { code?: string }).code;
     if (code === 'FST_ERR_CTP_BODY_TOO_LARGE')
-      return reply
-        .code(413)
-        .send({
-          error: {
-            code: 'BODY_TOO_LARGE',
-            message: 'JSON body exceeds 2 MiB.',
-          },
-        });
+      return reply.code(413).send({
+        error: {
+          code: 'BODY_TOO_LARGE',
+          message: 'JSON body exceeds 2 MiB.',
+        },
+      });
     if (code === 'INVALID_JSON' || code === 'FST_ERR_CTP_EMPTY_JSON_BODY')
       return reply
         .code(400)
@@ -120,27 +114,23 @@ export function createServer(
           ]),
         );
     if ((error as { statusCode?: number }).statusCode === 415)
-      return reply
-        .code(415)
-        .send({
-          error: { code: 'CONTENT_TYPE', message: 'Send application/json.' },
-        });
-    return reply
-      .code(500)
-      .send({
-        error: {
-          code: 'INTERNAL_ERROR',
-          message:
-            'Recommendation failed internally. No feasibility conclusion was produced.',
-        },
+      return reply.code(415).send({
+        error: { code: 'CONTENT_TYPE', message: 'Send application/json.' },
       });
+    return reply.code(500).send({
+      error: {
+        code: 'INTERNAL_ERROR',
+        message:
+          'Recommendation failed internally. No feasibility conclusion was produced.',
+      },
+    });
   });
   const versions = {
-    engine_version: '0.3.0',
+    engine_version: '0.5.0',
     catalog_version: defaultCatalog.version,
-    rules_version: '0.3.0',
+    rules_version: '0.5.0',
     services_version: defaultPolicies.version,
-    app_version: '0.4.0',
+    app_version: '0.5.0',
   };
   app.get('/api/health', async () => ({ status: 'ok', ...versions }));
   app.get(

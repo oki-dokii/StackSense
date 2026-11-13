@@ -1,0 +1,506 @@
+{
+  "architecture_style": "other",
+  "assumptions": [
+    "Persistent application data is inferred from project.type=healthtech; domain data modeling remains required.",
+    "infrastructure was absent; initialized the optional group before applying field defaults.",
+    "infrastructure.cloud_preference was absent; defaulted to \"any\".",
+    "infrastructure.data_residency was absent; defaulted to \"none\".",
+    "infrastructure.deployment_model was absent; defaulted to \"managed_cloud\".",
+    "infrastructure.existing_systems was absent; defaulted to [].",
+    "priorities was absent; initialized the optional group before applying field defaults.",
+    "priorities.cost was absent; defaulted to 3.",
+    "priorities.maintainability was absent; defaulted to 3.",
+    "priorities.performance was absent; defaulted to 3.",
+    "priorities.scalability was absent; defaulted to 3.",
+    "priorities.security was absent; defaulted to 3.",
+    "priorities.time_to_market was absent; defaulted to 3.",
+    "project.description was absent; defaulted to \"\".",
+    "project.name was absent; defaulted to \"\".",
+    "requirements.availability was absent; defaulted to \"99.9\".",
+    "requirements.file_media_storage was absent; defaulted to false.",
+    "requirements.full_text_search was absent; defaulted to false.",
+    "requirements.ml_features was absent; defaulted to \"none\".",
+    "requirements.multi_tenant was absent; defaulted to false.",
+    "requirements.offline_support was absent; defaulted to false.",
+    "requirements.p95_latency_ms was absent; defaulted to null.",
+    "requirements.payments was absent; defaulted to false.",
+    "requirements.realtime was absent; defaulted to false.",
+    "requirements.seo_critical was absent; defaulted to false.",
+    "scale.data_volume_gb_12_months was absent; remains unknown (not zero).",
+    "scale.peak_concurrent_users was absent; remains unknown (not zero).",
+    "scale.traffic_pattern was absent; defaulted to \"steady\".",
+    "scale.workload was absent; defaulted to \"balanced\".",
+    "team.has_devops was absent; defaulted to false."
+  ],
+  "catalog_version": "0.3.0",
+  "control_plan": null,
+  "core_rejections": [
+    {
+      "candidate_id": "angular|aspnet|mysql|appservice",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|aspnet|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|aspnet|mysql|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|aspnet|pg|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|aspnet|sqlite|appservice",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|aspnet|sqlite|cloudrun",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|aspnet|sqlite|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|aspnet|sqlite|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|aspnet|sqlserver|cloudrun",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|aspnet|sqlserver|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|django|maria|appservice",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|django|maria|cloudrun",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|django|maria|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|django|mysql|appservice",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|django|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|django|mysql|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|django|pg|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|django|sqlite|appservice",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|django|sqlite|cloudrun",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|django|sqlite|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|django|sqlite|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|fastapi|mysql|appservice",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|fastapi|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|fastapi|mysql|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|fastapi|pg|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|fastapi|sqlite|appservice",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|fastapi|sqlite|cloudrun",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|fastapi|sqlite|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|fastapi|sqlite|pages",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Host does not cover all backend and SSR runtimes."
+    },
+    {
+      "candidate_id": "angular|fastify|mongo|appservice",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    }
+  ],
+  "cost_breakdown": [],
+  "data_flows": [],
+  "decision_trace": {
+    "complete_candidates": 0,
+    "core_candidates": 273,
+    "rejected": [
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|aspnet|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|aspnet|pg|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|aspnet|sqlserver|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|django|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|django|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|django|pg|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|fastapi|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|fastapi|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|fastapi|pg|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|fastify|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|fastify|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|go-http|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|go-http|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|go-http|pg|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|go-http|sqlserver|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|laravel|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|laravel|pg|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "BAA_EVIDENCE_REQUIRED"
+        ],
+        "plan_id": "modular_monolith|angular|laravel|pg|cloudrun|unspecified"
+      }
+    ],
+    "score": null,
+    "selected_plan_id": null
+  },
+  "engine_version": "0.5.0",
+  "estimate_status": "not_estimated",
+  "estimated_monthly_cost_usd": {
+    "assumptions": [
+      "No estimate: 0–0 is a required serialization placeholder, not a zero-cost deployment."
+    ],
+    "max": 0,
+    "min": 0
+  },
+  "rules_version": "0.5.0",
+  "scenario_id": "E05",
+  "services_version": "0.5.0",
+  "stack": null,
+  "status": "infeasible",
+  "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",
+  "validation_errors": [],
+  "warnings": [
+    {
+      "code": "BAA_EVIDENCE_REQUIRED",
+      "fields": [
+        "compliance",
+        "infrastructure.deployment_model"
+      ],
+      "message": "HIPAA cloud/external services need eligible-service scope and executed BAA evidence; no such agreement is assumed by this catalog.",
+      "severity": "critical"
+    },
+    {
+      "code": "COMPLETE_PLAN_COVERAGE_GAP",
+      "fields": [
+        "infrastructure",
+        "requirements",
+        "compliance"
+      ],
+      "message": "Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed.",
+      "severity": "critical"
+    }
+  ]
+}

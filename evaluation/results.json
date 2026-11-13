@@ -1,0 +1,194 @@
+{
+  "case_set_sha256": "3d17707b1c1214a25ad9441ee1a88344ec341e9a2e54d09ed1347c8fb8a2e3ed",
+  "engine_version": "0.5.0",
+  "records": [
+    {
+      "category": "Missing fields",
+      "cost": null,
+      "id": "E01",
+      "selected_plan_id": null,
+      "status": "invalid_input",
+      "warnings": []
+    },
+    {
+      "category": "Invalid values",
+      "cost": null,
+      "id": "E02",
+      "selected_plan_id": null,
+      "status": "invalid_input",
+      "warnings": []
+    },
+    {
+      "category": "Contradictions",
+      "cost": {
+        "max": 47771.68,
+        "min": 6749.36
+      },
+      "id": "E03",
+      "selected_plan_id": "modular_monolith|flutter|aspnet|pg|cloudrun|unspecified",
+      "status": "ok_with_warnings",
+      "warnings": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_EXCEEDED",
+        "PRICE_AND_CAPACITY_ASSUMPTIONS",
+        "TIMELINE_RISK"
+      ]
+    },
+    {
+      "category": "Over-engineering traps",
+      "cost": {
+        "max": 0,
+        "min": 0
+      },
+      "id": "E04",
+      "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+      "status": "ok",
+      "warnings": [
+        "FREE_TIER_OR_DEPLOYMENT_LIMITS"
+      ]
+    },
+    {
+      "category": "Regulatory constraints",
+      "cost": null,
+      "id": "E05",
+      "selected_plan_id": null,
+      "status": "infeasible",
+      "warnings": [
+        "BAA_EVIDENCE_REQUIRED",
+        "COMPLETE_PLAN_COVERAGE_GAP"
+      ]
+    },
+    {
+      "category": "Existing systems",
+      "cost": {
+        "max": 620.44,
+        "min": 145.7
+      },
+      "id": "E06",
+      "selected_plan_id": "modular_monolith|react|aspnet|mysql|cloudrun|unspecified",
+      "status": "ok_with_warnings",
+      "warnings": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_RANGE_RISK",
+        "EXISTING_SYSTEM_REVIEW",
+        "PRICE_AND_CAPACITY_ASSUMPTIONS"
+      ]
+    },
+    {
+      "category": "Restricted deployment",
+      "cost": {
+        "max": 369.75,
+        "min": 74.65
+      },
+      "id": "E07",
+      "selected_plan_id": "modular_monolith|angular|fastapi|mysql|local|unspecified",
+      "status": "ok_with_warnings",
+      "warnings": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "OPERATIONS_SKILL_GAP",
+        "PRICE_AND_CAPACITY_ASSUMPTIONS"
+      ]
+    },
+    {
+      "category": "Skill mismatch",
+      "cost": {
+        "max": 510.69,
+        "min": 134.27
+      },
+      "id": "E08",
+      "selected_plan_id": "modular_monolith|angular|go-http|mysql|cloudrun|unspecified",
+      "status": "ok_with_warnings",
+      "warnings": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_RANGE_RISK",
+        "PRICE_AND_CAPACITY_ASSUMPTIONS"
+      ]
+    },
+    {
+      "category": "Deprecated technology",
+      "cost": {
+        "max": 510.69,
+        "min": 134.27
+      },
+      "id": "E09",
+      "selected_plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
+      "status": "ok_with_warnings",
+      "warnings": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_RANGE_RISK",
+        "EXISTING_SYSTEM_REVIEW",
+        "EXISTING_TECH_EOL",
+        "EXISTING_TECH_EOL",
+        "PRICE_AND_CAPACITY_ASSUMPTIONS"
+      ]
+    },
+    {
+      "category": "Reviewed regional support",
+      "cost": {
+        "max": 525.95,
+        "min": 214.64
+      },
+      "id": "E10",
+      "selected_plan_id": "modular_monolith|angular|fastapi|pg|ecs|ap-south-1",
+      "status": "ok_with_warnings",
+      "warnings": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_RANGE_RISK",
+        "PRICE_AND_CAPACITY_ASSUMPTIONS"
+      ]
+    },
+    {
+      "category": "Offline native writes",
+      "cost": {
+        "max": 648.37,
+        "min": 148.66
+      },
+      "id": "E11",
+      "selected_plan_id": "modular_monolith|react-native|django|pg|cloudrun|unspecified",
+      "status": "ok_with_warnings",
+      "warnings": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_RANGE_RISK",
+        "PRICE_AND_CAPACITY_ASSUMPTIONS"
+      ]
+    },
+    {
+      "category": "Contradictory deployment",
+      "cost": null,
+      "id": "E12",
+      "selected_plan_id": null,
+      "status": "infeasible",
+      "warnings": [
+        "CORE_CATALOG_COVERAGE_GAP"
+      ]
+    },
+    {
+      "category": "Unsupported model workload",
+      "cost": null,
+      "id": "E13",
+      "selected_plan_id": null,
+      "status": "infeasible",
+      "warnings": [
+        "COMPLETE_PLAN_COVERAGE_GAP",
+        "ML_DEPLOYMENT_COVERAGE_GAP"
+      ]
+    },
+    {
+      "category": "Unknown extension",
+      "cost": {
+        "max": 510.69,
+        "min": 134.27
+      },
+      "id": "E14",
+      "selected_plan_id": "modular_monolith|angular|aspnet|mysql|cloudrun|unspecified",
+      "status": "ok_with_warnings",
+      "warnings": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_RANGE_RISK",
+        "PRICE_AND_CAPACITY_ASSUMPTIONS",
+        "UNKNOWN_INPUT"
+      ]
+    }
+  ],
+  "scope": "Author-designed unseen-style invariants; not organizer hidden tests or independent expert review."
+}

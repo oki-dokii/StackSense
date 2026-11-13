@@ -8,7 +8,7 @@ Updated 13 November 2026 IST. The detailed method is in [plan.md](../plan.md); t
 | 2 | Reviewed catalog, architecture features, hard constraints, core-plan search and ranking | Implemented and tested | 33 entries/40 sources; 97 tests; provisional core CLI, with explicit blockers |
 | 3 | Supporting services, costs, evidence-derived explanations and conflict/edge cases | Implemented and tested | 145 tests; final-format CLI; six genuine public outputs with explicit evidence blockers |
 | 4 | Local API and responsive web interface | Implemented and tested | 182 tests; exact API/engine parity; actual browser import/run/export, stale and mobile checks |
-| 5 | Reserved evaluation, performance/setup evidence, real outputs/screenshots/report and release | Next | All challenge deliverables and submission checklist verified |
+| 5 | Evaluation, performance/setup evidence, outputs/screenshots/report and release | Technical package prepared | 201 tests; 14 unseen-style cases; 24-page report/ZIP verified; owner review and online submission pending |
 
 ## Phase 1 delivered
 
@@ -33,6 +33,10 @@ Complete service/control evaluation before cost ranking, 23 service profiles/43 
 ## Phase 4 delivered
 
 Same-origin local Fastify API and React/Vite workspace, schema-driven guided fields, samples/imports/batches, explained results and exports, stale-state protection and actual browser evidence. [Phase 4 record](PHASE_4.md). Rules/catalog output versions are unchanged; current infeasibility gaps remain explicit.
+
+## Phase 5 delivered
+
+Author-designed evaluation and mutations, EOL/source coverage fixes, measured cold/warm local API and clean cached setup, genuine public/edge captures, a rendered/verified report and the source/output/report submission ZIP. [Phase 5 evidence](PHASE_5.md). Four public cases remain explicitly infeasible; owner review and Drive/Unstop handoff are not claimed complete.
 
 ## Change discipline
 

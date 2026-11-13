@@ -3,7 +3,7 @@
   "assumptions": [
     "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required."
   ],
-  "catalog_version": "0.2.0",
+  "catalog_version": "0.3.0",
   "control_plan": null,
   "core_rejections": [
     {
@@ -137,7 +137,7 @@
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.3.0",
+  "engine_version": "0.5.0",
   "estimate_status": "not_estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -146,9 +146,9 @@
     "max": 0,
     "min": 0
   },
-  "rules_version": "0.3.0",
+  "rules_version": "0.5.0",
   "scenario_id": "P5",
-  "services_version": "0.3.0",
+  "services_version": "0.5.0",
   "stack": null,
   "status": "infeasible",
   "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",

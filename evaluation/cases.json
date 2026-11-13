@@ -1,0 +1,550 @@
+[
+  {
+    "id": "E01",
+    "category": "Missing fields",
+    "scenario": {
+      "scenario_id": "E01"
+    },
+    "expect": {
+      "status": "invalid_input",
+      "errors": [
+        "project",
+        "scale",
+        "team",
+        "budget",
+        "timeline"
+      ]
+    }
+  },
+  {
+    "id": "E02",
+    "category": "Invalid values",
+    "scenario": {
+      "project": {
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ]
+      },
+      "scale": {
+        "users_at_launch": -2,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": "two",
+        "experience": "beginner",
+        "languages": []
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "priorities": {
+        "cost": 6
+      },
+      "scenario_id": "E02"
+    },
+    "expect": {
+      "status": "invalid_input",
+      "errors": [
+        "scale.users_at_launch",
+        "team.size",
+        "priorities.cost"
+      ]
+    }
+  },
+  {
+    "id": "E03",
+    "category": "Contradictions",
+    "scenario": {
+      "project": {
+        "type": "web_app",
+        "platforms": [
+          "web",
+          "android",
+          "ios"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 1000000,
+        "peak_concurrent_users": 50000
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": []
+      },
+      "budget": {
+        "monthly_infra_usd": 0
+      },
+      "timeline": {
+        "mvp_weeks": 1
+      },
+      "requirements": {
+        "auth": "email_password",
+        "realtime": true,
+        "multi_tenant": true,
+        "availability": "99.99"
+      },
+      "scenario_id": "E03"
+    },
+    "expect": {
+      "status": "ok_with_warnings",
+      "warnings": [
+        "BUDGET_EXCEEDED",
+        "TIMELINE_RISK",
+        "AVAILABILITY_TARGET_UNVERIFIED"
+      ]
+    }
+  },
+  {
+    "id": "E04",
+    "category": "Over-engineering traps",
+    "scenario": {
+      "project": {
+        "type": "content_site",
+        "platforms": [
+          "web"
+        ],
+        "description": "Public static reference pages, authored in Markdown."
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 5000000,
+        "peak_concurrent_users": 50000
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": []
+      },
+      "budget": {
+        "monthly_infra_usd": 0
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "requirements": {
+        "availability": "99",
+        "seo_critical": true
+      },
+      "scenario_id": "E04"
+    },
+    "expect": {
+      "status": "ok",
+      "style": "static",
+      "none_layers": [
+        "backend",
+        "database"
+      ]
+    }
+  },
+  {
+    "id": "E05",
+    "category": "Regulatory constraints",
+    "scenario": {
+      "project": {
+        "type": "healthtech",
+        "platforms": [
+          "web"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": []
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "requirements": {
+        "auth": "email_password"
+      },
+      "compliance": [
+        "hipaa"
+      ],
+      "scenario_id": "E05"
+    },
+    "expect": {
+      "status": "infeasible",
+      "warnings": [
+        "BAA_EVIDENCE_REQUIRED"
+      ]
+    }
+  },
+  {
+    "id": "E06",
+    "category": "Existing systems",
+    "scenario": {
+      "project": {
+        "type": "internal_tool",
+        "platforms": [
+          "web"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": [
+          "csharp",
+          "sql",
+          "javascript"
+        ]
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "requirements": {
+        "auth": "enterprise_sso"
+      },
+      "infrastructure": {
+        "existing_systems": [
+          "Microsoft Entra ID",
+          "On-prem SQL Server 2019"
+        ]
+      },
+      "priorities": {
+        "maintainability": 5
+      },
+      "scenario_id": "E06"
+    },
+    "expect": {
+      "status": "ok_with_warnings",
+      "warnings": [
+        "EXISTING_SYSTEM_REVIEW"
+      ],
+      "services": [
+        "keycloak"
+      ]
+    }
+  },
+  {
+    "id": "E07",
+    "category": "Restricted deployment",
+    "scenario": {
+      "project": {
+        "type": "internal_tool",
+        "platforms": [
+          "web"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": []
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "infrastructure": {
+        "deployment_model": "air_gapped",
+        "cloud_preference": "none"
+      },
+      "requirements": {
+        "auth": "email_password"
+      },
+      "scenario_id": "E07"
+    },
+    "expect": {
+      "status": "ok_with_warnings",
+      "host": "local",
+      "no_external": true
+    }
+  },
+  {
+    "id": "E08",
+    "category": "Skill mismatch",
+    "scenario": {
+      "project": {
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": 1,
+        "experience": "senior",
+        "languages": [
+          "go"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "scenario_id": "E08"
+    },
+    "expect": {
+      "status": "ok_with_warnings",
+      "driver": "team.languages"
+    }
+  },
+  {
+    "id": "E09",
+    "category": "Deprecated technology",
+    "scenario": {
+      "project": {
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": [
+          "python",
+          "javascript"
+        ]
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "infrastructure": {
+        "existing_systems": [
+          "Python 2.7 report service",
+          "AngularJS admin portal"
+        ]
+      },
+      "scenario_id": "E09"
+    },
+    "expect": {
+      "status": "ok_with_warnings",
+      "warnings": [
+        "EXISTING_TECH_EOL"
+      ]
+    }
+  },
+  {
+    "id": "E10",
+    "category": "Reviewed regional support",
+    "scenario": {
+      "project": {
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": []
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "data_residency": "india"
+      },
+      "scenario_id": "E10"
+    },
+    "expect": {
+      "status": "ok_with_warnings",
+      "region": "ap-south-1"
+    }
+  },
+  {
+    "id": "E11",
+    "category": "Offline native writes",
+    "scenario": {
+      "project": {
+        "type": "web_app",
+        "platforms": [
+          "android"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": [
+          "javascript",
+          "python"
+        ]
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "requirements": {
+        "auth": "email_password",
+        "offline_support": true,
+        "file_media_storage": true
+      },
+      "scenario_id": "E11"
+    },
+    "expect": {
+      "status": "ok_with_warnings",
+      "capabilities": [
+        "offline",
+        "queue",
+        "storage"
+      ]
+    }
+  },
+  {
+    "id": "E12",
+    "category": "Contradictory deployment",
+    "scenario": {
+      "project": {
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": []
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "infrastructure": {
+        "cloud_preference": "none",
+        "deployment_model": "managed_cloud"
+      },
+      "scenario_id": "E12"
+    },
+    "expect": {
+      "status": "infeasible",
+      "warnings": [
+        "CORE_CATALOG_COVERAGE_GAP"
+      ]
+    }
+  },
+  {
+    "id": "E13",
+    "category": "Unsupported model workload",
+    "scenario": {
+      "project": {
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": []
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "requirements": {
+        "ml_features": "llm_rag"
+      },
+      "scenario_id": "E13"
+    },
+    "expect": {
+      "status": "infeasible",
+      "warnings": [
+        "ML_DEPLOYMENT_COVERAGE_GAP"
+      ]
+    }
+  },
+  {
+    "id": "E14",
+    "category": "Unknown extension",
+    "scenario": {
+      "project": {
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ]
+      },
+      "scale": {
+        "users_at_launch": 0,
+        "users_12_months": 100
+      },
+      "team": {
+        "size": 1,
+        "experience": "beginner",
+        "languages": []
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 8
+      },
+      "extensions": {
+        "vendor_specific_hint": {
+          "keep": true
+        }
+      },
+      "scenario_id": "E14"
+    },
+    "expect": {
+      "status": "ok_with_warnings",
+      "warnings": [
+        "UNKNOWN_INPUT"
+      ]
+    }
+  }
+]

@@ -32,7 +32,7 @@ def main():
             if not (path.parent / target).resolve().exists():
                 problems.append(f'{path.relative_to(ROOT)}: missing link {target}')
     docs = {}
-    for path in [*ROOT.glob('schemas/*.json'), *ROOT.glob('fixtures/**/*.json'), *ROOT.glob('docs/research/*.json'), *ROOT.glob('packages/catalog/data/*.json'), *ROOT.glob('outputs/*_output.json')]:
+    for path in [*ROOT.glob('schemas/*.json'), *ROOT.glob('fixtures/**/*.json'), *ROOT.glob('docs/research/*.json'), *ROOT.glob('packages/catalog/data/*.json'), *ROOT.glob('outputs/*_output.json'), *ROOT.glob('evaluation/*.json'), *ROOT.glob('evaluation/outputs/*_output.json')]:
         try:
             docs[path] = json.loads(path.read_text(encoding='utf-8'), parse_constant=lambda x: (_ for _ in ()).throw(ValueError(x)))
         except (ValueError, OSError) as exc:
@@ -91,7 +91,7 @@ def main():
                         problems.append(f'Services schema: {list(error.path)}: {error.message}')
                 vin, vout = Draft7Validator(inp), Draft7Validator(out)
                 for path, value in docs.items():
-                    if path.parent == ROOT / 'outputs':
+                    if path.parent.name == 'outputs':
                         for error in vout.iter_errors(value):
                             problems.append(f'{path.name}: {list(error.path)}: {error.message}')
                 for path, value in docs.items():

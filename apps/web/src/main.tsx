@@ -308,6 +308,13 @@ function App() {
     }, 0);
   }
   function field(path: string, node: Schema, required = false): ReactNode {
+    if (
+      [
+        'extensions.primary_user_region',
+        'extensions.vendor_lock_in_tolerance',
+      ].includes(path)
+    )
+      return null;
     const value = read(draft, path);
     const fallback = node.default;
     const shown = value ?? fallback ?? '';

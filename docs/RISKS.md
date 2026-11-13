@@ -21,3 +21,8 @@
 - Extra input fields must be justified by observable decision changes; do not collect unused fields for appearance.
 
 No unanswered preference is required to begin the documented P0 implementation.
+
+
+## Release handoff status
+
+The implementation/report/package are prepared. Four public scenarios retain explicit evidence blockers; pricing/control/sizing rubrics remain uncalibrated, other-OS and independent expert review are not claimed from local tests, and owner review/originality/online submission remain owner actions. The local source/measurement/report evidence is in [Phase 5](PHASE_5.md).

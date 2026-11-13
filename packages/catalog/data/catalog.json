@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "reviewed_on": "2026-11-13",
   "sources": [
     {
@@ -281,6 +281,27 @@
       "url": "https://docs.astro.build/en/guides/markdown-content/",
       "checked_on": "2026-11-13",
       "scope": "Built-in Markdown content authoring; no performance or price claim"
+    },
+    {
+      "id": "fargate-regions",
+      "title": "ECS Fargate supported regions",
+      "url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate-Regions.html",
+      "checked_on": "2026-11-13",
+      "scope": "Linux Fargate support in Mumbai ap-south-1; primary compute mapping only."
+    },
+    {
+      "id": "aws-regions",
+      "title": "AWS region country mapping",
+      "url": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+      "checked_on": "2026-11-13",
+      "scope": "Mumbai ap-south-1 maps to India; does not establish every service data flow."
+    },
+    {
+      "id": "rds-regions",
+      "title": "Amazon RDS regional endpoints",
+      "url": "https://docs.aws.amazon.com/general/latest/gr/rds-service.html",
+      "checked_on": "2026-11-13",
+      "scope": "RDS Mumbai regional service; combined with RDS PostgreSQL product evidence. No SKU/version, legal or workload guarantee."
     }
   ],
   "entries": [
@@ -1090,7 +1111,16 @@
       ],
       "static_assets": true,
       "persistent_volume": false,
-      "regions": [],
+      "regions": [
+        {
+          "residency": "india",
+          "region": "ap-south-1",
+          "source_ids": [
+            "fargate-regions",
+            "aws-regions"
+          ]
+        }
+      ],
       "managed_databases": [
         {
           "database_id": "pg",
@@ -1098,7 +1128,17 @@
           "source_ids": [
             "rds-pg"
           ],
-          "regions": []
+          "regions": [
+            {
+              "residency": "india",
+              "region": "ap-south-1",
+              "source_ids": [
+                "rds-pg",
+                "rds-regions",
+                "aws-regions"
+              ]
+            }
+          ]
         },
         {
           "database_id": "maria",

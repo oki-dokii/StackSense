@@ -1,6 +1,6 @@
 # Test and validation plan
 
-Status: final-product acceptance plan. Core engine/contract/CLI tests are implemented (97 passing, see [Phase 2](PHASE_2.md)); complete recommendations, API/UI and final performance/evidence checks remain pending. The documentation checker runs separately.
+Status: release checks implemented and executed (201 passing tests), with 14 author-designed unseen-style cases, actual browser evidence, measured local API/setup and verified outputs/report/package. See [Phase 5](PHASE_5.md). Full expert/cross-browser/other-OS validation remains outside the local evidence.
 
 ## Verification layers
 

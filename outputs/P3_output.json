@@ -7,7 +7,7 @@
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
     "Social login brokers only necessary identity claims; choose an eligible provider, legal basis and transfer/contract arrangement before production."
   ],
-  "catalog_version": "0.2.0",
+  "catalog_version": "0.3.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -457,7 +457,7 @@
     "score": 85,
     "selected_plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified"
   },
-  "engine_version": "0.3.0",
+  "engine_version": "0.5.0",
   "estimate_status": "estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -485,7 +485,7 @@
     "min": 875.51
   },
   "primary_region": null,
-  "rules_version": "0.3.0",
+  "rules_version": "0.5.0",
   "scenario_id": "P3",
   "score_breakdown": [
     {
@@ -563,7 +563,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.3.0",
+  "services_version": "0.5.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -594,7 +594,7 @@
       "alternatives": [
         {
           "choice": "None",
-          "why_not": "No compatible complete complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+          "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
         }
       ],
       "choice": "PostgreSQL",

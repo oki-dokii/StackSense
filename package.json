@@ -1,6 +1,6 @@
 {
   "name": "stacksense",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "description": "Deterministic, evidence-backed technology stack recommendation engine",
@@ -31,7 +31,10 @@
     "start": "node dist/apps/api/src/main.js",
     "dev:api": "tsx watch apps/api/src/main.ts",
     "dev:web": "vite --config apps/web/vite.config.ts",
-    "build:web": "vite build --config apps/web/vite.config.ts"
+    "build:web": "vite build --config apps/web/vite.config.ts",
+    "evaluate": "node scripts/evaluate.mjs",
+    "verify:release": "node scripts/check-release.mjs",
+    "measure": "node scripts/measure.mjs"
   },
   "dependencies": {
     "ajv": "8.20.0"

@@ -3,7 +3,7 @@
   "assumptions": [
     "Persistent application data is inferred from project.type=marketplace; domain data modeling remains required."
   ],
-  "catalog_version": "0.2.0",
+  "catalog_version": "0.3.0",
   "control_plan": null,
   "core_rejections": [
     {
@@ -74,15 +74,6 @@
       "message": "Hosting variant does not match the requested deployment model."
     },
     {
-      "candidate_id": "ecs",
-      "code": "REGION_EVIDENCE_GAP",
-      "fields": [
-        "infrastructure.data_residency"
-      ],
-      "layer": "hosting",
-      "message": "No reviewed primary-compute region mapping satisfies the requested residency; no country location is inferred."
-    },
-    {
       "candidate_id": "flutter",
       "code": "SEO_RENDERING_GAP",
       "fields": [
@@ -139,7 +130,27 @@
       "message": "Managed database has no reviewed primary-region mapping for requested residency."
     },
     {
+      "candidate_id": "next-native|aspnet|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
       "candidate_id": "next-native|aspnet|sqlite|cloudrun",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "next-native|aspnet|sqlite|ecs",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
         "infrastructure.deployment_model",
@@ -159,6 +170,16 @@
       "message": "No reviewed separately managed database product for this host/provider."
     },
     {
+      "candidate_id": "next-native|aspnet|sqlserver|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
+    },
+    {
       "candidate_id": "next-native|django|maria|cloudrun",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
@@ -167,6 +188,16 @@
       ],
       "layer": "plan",
       "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "next-native|django|maria|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Managed database has no reviewed primary-region mapping for requested residency."
     },
     {
       "candidate_id": "next-native|django|mysql|cloudrun",
@@ -179,7 +210,27 @@
       "message": "Managed database has no reviewed primary-region mapping for requested residency."
     },
     {
+      "candidate_id": "next-native|django|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
       "candidate_id": "next-native|django|sqlite|cloudrun",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "next-native|django|sqlite|ecs",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
         "infrastructure.deployment_model",
@@ -199,7 +250,27 @@
       "message": "Managed database has no reviewed primary-region mapping for requested residency."
     },
     {
+      "candidate_id": "next-native|fastapi|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
       "candidate_id": "next-native|fastapi|sqlite|cloudrun",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "next-native|fastapi|sqlite|ecs",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
         "infrastructure.deployment_model",
@@ -219,77 +290,7 @@
       "message": "No reviewed separately managed database product for this host/provider."
     },
     {
-      "candidate_id": "next-native|fastify|mysql|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
-    },
-    {
-      "candidate_id": "next-native|go-http|mysql|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
-    },
-    {
-      "candidate_id": "next-native|go-http|sqlite|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|go-http|sqlserver|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|laravel|maria|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|laravel|mysql|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
-    },
-    {
-      "candidate_id": "next-native|laravel|sqlite|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|laravel|sqlserver|cloudrun",
+      "candidate_id": "next-native|fastify|mongo|ecs",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
         "infrastructure.deployment_model",
@@ -303,7 +304,7 @@
   "data_flows": [],
   "decision_trace": {
     "complete_candidates": 0,
-    "core_candidates": 7,
+    "core_candidates": 14,
     "rejected": [
       {
         "codes": [
@@ -322,6 +323,24 @@
           "EXTERNAL_RESIDENCY_UNVERIFIED"
         ],
         "plan_id": "modular_monolith|next-native|fastify|pg|cloudrun|asia-south1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|django|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|fastapi|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|fastify|pg|ecs|ap-south-1"
       },
       {
         "codes": [
@@ -346,12 +365,36 @@
           "EXTERNAL_RESIDENCY_UNVERIFIED"
         ],
         "plan_id": "modular_monolith|next-native|spring|pg|cloudrun|asia-south1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|aspnet|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|go-http|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|laravel|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|spring|pg|ecs|ap-south-1"
       }
     ],
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.3.0",
+  "engine_version": "0.5.0",
   "estimate_status": "not_estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -360,9 +403,9 @@
     "max": 0,
     "min": 0
   },
-  "rules_version": "0.3.0",
+  "rules_version": "0.5.0",
   "scenario_id": "P2",
-  "services_version": "0.3.0",
+  "services_version": "0.5.0",
   "stack": null,
   "status": "infeasible",
   "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",
@@ -376,6 +419,15 @@
         "compliance"
       ],
       "message": "Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed.",
+      "severity": "critical"
+    },
+    {
+      "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+      "fields": [
+        "infrastructure.data_residency",
+        "requirements.auth"
+      ],
+      "message": "MSG91 OTP does not have reviewed end-to-end india data-flow evidence; provider location/API endpoint is not sufficient.",
       "severity": "critical"
     },
     {
