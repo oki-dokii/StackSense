@@ -32,7 +32,7 @@ def main():
             if not (path.parent / target).resolve().exists():
                 problems.append(f'{path.relative_to(ROOT)}: missing link {target}')
     docs = {}
-    for path in [*ROOT.glob('schemas/*.json'), *ROOT.glob('fixtures/**/*.json'), *ROOT.glob('docs/research/*.json'), *ROOT.glob('packages/catalog/data/*.json'), *ROOT.glob('outputs/*_output.json'), *ROOT.glob('evaluation/*.json'), *ROOT.glob('evaluation/outputs/*_output.json')]:
+    for path in [*ROOT.glob('schemas/*.json'), *ROOT.glob('fixtures/**/*.json'), *ROOT.glob('docs/research/*.json'), *ROOT.glob('docs/research/comparison/*.json'), *ROOT.glob('packages/catalog/data/*.json'), *ROOT.glob('outputs/*_output.json'), *ROOT.glob('evaluation/*.json'), *ROOT.glob('evaluation/outputs/*_output.json')]:
         try:
             docs[path] = json.loads(path.read_text(encoding='utf-8'), parse_constant=lambda x: (_ for _ in ()).throw(ValueError(x)))
         except (ValueError, OSError) as exc:

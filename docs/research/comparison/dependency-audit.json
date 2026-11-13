@@ -1,0 +1,14 @@
+{
+  "checked_on": "2026-11-13",
+  "command": "npm audit --json",
+  "package_lock_sha256": "09ebbe0ca9af4b6a8404d661bb990324e3b206872e23bc4dc3d7cabc3cc12d64",
+  "registry_reported_vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "scope": "Registry advisories for the current lockfile; not a complete security assessment."
+}

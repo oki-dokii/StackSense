@@ -1,0 +1,178 @@
+{
+  "engine_version": "0.5.0",
+  "scope": "Controlled diagnostics on our engine only. Changed inputs are not solutions satisfying the original public scenarios; hard constraints/features must not be silently revised.",
+  "records": [
+    {
+      "id": "P2-baseline",
+      "source_scenario_id": "P2",
+      "patches": [],
+      "status": "infeasible",
+      "estimate_status": "not_estimated",
+      "cost": null,
+      "critical_diagnostics": [
+        {
+          "code": "COMPLETE_PLAN_COVERAGE_GAP",
+          "fields": [
+            "infrastructure",
+            "requirements",
+            "compliance"
+          ],
+          "message": "Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed."
+        },
+        {
+          "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+          "fields": [
+            "infrastructure.data_residency",
+            "requirements.auth"
+          ],
+          "message": "MSG91 OTP does not have reviewed end-to-end india data-flow evidence; provider location/API endpoint is not sufficient."
+        },
+        {
+          "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+          "fields": [
+            "infrastructure.data_residency",
+            "requirements.payments"
+          ],
+          "message": "Stripe Checkout does not have reviewed end-to-end india data-flow evidence; provider location/API endpoint is not sufficient."
+        }
+      ],
+      "selected_plan_id": null
+    },
+    {
+      "id": "P2-auth-only-debug",
+      "source_scenario_id": "P2",
+      "patches": [
+        {
+          "field": "requirements.auth",
+          "value": "email_password"
+        }
+      ],
+      "status": "infeasible",
+      "estimate_status": "not_estimated",
+      "cost": null,
+      "critical_diagnostics": [
+        {
+          "code": "COMPLETE_PLAN_COVERAGE_GAP",
+          "fields": [
+            "infrastructure",
+            "requirements",
+            "compliance"
+          ],
+          "message": "Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed."
+        },
+        {
+          "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+          "fields": [
+            "infrastructure.data_residency",
+            "requirements.payments"
+          ],
+          "message": "Stripe Checkout does not have reviewed end-to-end india data-flow evidence; provider location/API endpoint is not sufficient."
+        }
+      ],
+      "selected_plan_id": null
+    },
+    {
+      "id": "P2-payments-only-debug",
+      "source_scenario_id": "P2",
+      "patches": [
+        {
+          "field": "requirements.payments",
+          "value": false
+        }
+      ],
+      "status": "infeasible",
+      "estimate_status": "not_estimated",
+      "cost": null,
+      "critical_diagnostics": [
+        {
+          "code": "COMPLETE_PLAN_COVERAGE_GAP",
+          "fields": [
+            "infrastructure",
+            "requirements",
+            "compliance"
+          ],
+          "message": "Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed."
+        },
+        {
+          "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+          "fields": [
+            "infrastructure.data_residency",
+            "requirements.auth"
+          ],
+          "message": "MSG91 OTP does not have reviewed end-to-end india data-flow evidence; provider location/API endpoint is not sufficient."
+        }
+      ],
+      "selected_plan_id": null
+    },
+    {
+      "id": "P6-auth-debug",
+      "source_scenario_id": "P6",
+      "patches": [
+        {
+          "field": "requirements.auth",
+          "value": "email_password"
+        }
+      ],
+      "status": "ok_with_warnings",
+      "estimate_status": "estimated",
+      "cost": {
+        "min": 81.42,
+        "max": 508.55
+      },
+      "critical_diagnostics": [],
+      "selected_plan_id": "modular_monolith|react-native|django|pg|cloudrun|asia-south1"
+    },
+    {
+      "id": "P5-provider-debug",
+      "source_scenario_id": "P5",
+      "patches": [
+        {
+          "field": "infrastructure.cloud_preference",
+          "value": "any"
+        }
+      ],
+      "status": "infeasible",
+      "estimate_status": "not_estimated",
+      "cost": null,
+      "critical_diagnostics": [
+        {
+          "code": "COMPLETE_PLAN_COVERAGE_GAP",
+          "fields": [
+            "infrastructure",
+            "requirements",
+            "compliance"
+          ],
+          "message": "Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed."
+        },
+        {
+          "code": "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
+          "fields": [
+            "infrastructure.existing_systems",
+            "infrastructure.data_residency",
+            "requirements.auth"
+          ],
+          "message": "Existing Microsoft identity must be integrated, but its tenant region/data flows and restricted-network access are not established by the input."
+        }
+      ],
+      "selected_plan_id": null
+    },
+    {
+      "id": "P3-zero-payment-volume-experiment",
+      "source_scenario_id": "P3",
+      "patches": [
+        {
+          "field": "extensions.monthly_payment_transactions",
+          "value": 0
+        }
+      ],
+      "status": "ok_with_warnings",
+      "estimate_status": "estimated",
+      "cost": {
+        "min": 875.51,
+        "max": 5285.95
+      },
+      "critical_diagnostics": [],
+      "selected_plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified"
+    }
+  ]
+}

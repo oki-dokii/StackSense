@@ -2,6 +2,7 @@ import { readFile, access } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { verifyScreenshotInputBinding } from './evidence-bindings.mjs';
 import { recommend } from '../dist/packages/engine/src/index.js';
 import {
   serialize,
@@ -33,6 +34,7 @@ const hash = createHash('sha256')
 if (hash !== results.case_set_sha256)
   throw new Error('Evaluation case-set hash is stale.');
 const screenshots = await load('evaluation/screenshots.json');
+await verifyScreenshotInputBinding(root, screenshots);
 for (const entry of screenshots.images) {
   const bytes = await readFile(join(root, screenshots.directory, entry.file));
   if (createHash('sha256').update(bytes).digest('hex') !== entry.sha256)

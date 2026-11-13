@@ -51,3 +51,6 @@ Updated 13 November 2026 IST. [All five technical phases](PHASES.md) are impleme
 - [Contribution and change discipline](../CONTRIBUTING.md)
 
 Normative order: organiser brief first; then SRS/schema contracts; then technical specifications; then UI presentation. ADRs explain intentional choices. If documents disagree, record and resolve the discrepancy rather than silently changing the contract. In schemas, organiser-required behavior is distinguished from additional project conventions in descriptions and this documentation.
+
+
+Post-release: [repository comparison](REPOSITORY_COMPARISON.md) and [improvement backlog](IMPROVEMENT_BACKLOG.md).

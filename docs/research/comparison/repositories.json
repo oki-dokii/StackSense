@@ -1,0 +1,229 @@
+{
+  "checked_on": "2026-11-13",
+  "timezone": "Asia/Kolkata",
+  "our_release_commit": "1b9b36ad182de13445bac7d55a02c08198a0b002",
+  "selection": "Four same-challenge public repositories and one broader Python dependency-resolution reference; not an exhaustive sample or quality ranking.",
+  "code_reuse": "No external repository code imported. Comparison was performed after the independently implemented 0.5.0 release.",
+  "repositories": [
+    {
+      "repository": "shinjan-2006/StackSense",
+      "commit": "5f6850bfe379b4cb8c6a8a1516c0888454ef6c6a",
+      "commit_date": "2026-11-10T23:57:14+05:30",
+      "branch": "main",
+      "archived_as_checked": false,
+      "github_license_metadata": null,
+      "review": "Static README, source, tests/runner and committed-output inspection; not executed.",
+      "identical_public_input_objects": true,
+      "committed_outputs": [
+        {
+          "scenario_id": "P1",
+          "status": "ok",
+          "has_stack": true,
+          "cost": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        {
+          "scenario_id": "P2",
+          "status": "ok_with_warnings",
+          "has_stack": true,
+          "cost": {
+            "min": 54,
+            "max": 309
+          }
+        },
+        {
+          "scenario_id": "P3",
+          "status": "ok_with_warnings",
+          "has_stack": true,
+          "cost": {
+            "min": 111,
+            "max": 586
+          }
+        },
+        {
+          "scenario_id": "P4",
+          "status": "ok_with_warnings",
+          "has_stack": true,
+          "cost": {
+            "min": 261,
+            "max": 1201
+          }
+        },
+        {
+          "scenario_id": "P5",
+          "status": "ok_with_warnings",
+          "has_stack": true,
+          "cost": {
+            "min": 54,
+            "max": 224
+          }
+        },
+        {
+          "scenario_id": "P6",
+          "status": "ok_with_warnings",
+          "has_stack": true,
+          "cost": {
+            "min": 56,
+            "max": 276
+          }
+        }
+      ]
+    },
+    {
+      "repository": "amantebriwal4321/stacksense-engine",
+      "commit": "2430f4329803e93878034c37f0c44e6b716b33de",
+      "commit_date": "2026-11-10T13:17:50+00:00",
+      "branch": "main",
+      "archived_as_checked": false,
+      "github_license_metadata": "MIT",
+      "review": "Static README, source, tests/runner and committed-output inspection; not executed.",
+      "identical_public_input_objects": true,
+      "committed_outputs": [
+        {
+          "scenario_id": "P1",
+          "status": "ok",
+          "has_stack": true,
+          "cost": {
+            "min": 0,
+            "max": 0
+          }
+        },
+        {
+          "scenario_id": "P2",
+          "status": "ok_with_warnings",
+          "has_stack": true,
+          "cost": {
+            "min": 67,
+            "max": 133
+          }
+        },
+        {
+          "scenario_id": "P3",
+          "status": "ok_with_warnings",
+          "has_stack": true,
+          "cost": {
+            "min": 260,
+            "max": 958
+          }
+        },
+        {
+          "scenario_id": "P4",
+          "status": "ok_with_warnings",
+          "has_stack": true,
+          "cost": {
+            "min": 1157,
+            "max": 3948
+          }
+        },
+        {
+          "scenario_id": "P5",
+          "status": "ok_with_warnings",
+          "has_stack": true,
+          "cost": {
+            "min": 19,
+            "max": 111
+          }
+        },
+        {
+          "scenario_id": "P6",
+          "status": "ok_with_warnings",
+          "has_stack": true,
+          "cost": {
+            "min": 32,
+            "max": 98
+          }
+        }
+      ]
+    },
+    {
+      "repository": "NITISH-027/StackSense26",
+      "commit": "b1f9e1e145208f53d2cee5991ad8f8ddca377887",
+      "commit_date": "2026-11-11T10:16:37+05:30",
+      "branch": "main",
+      "archived_as_checked": false,
+      "github_license_metadata": null,
+      "review": "Static README, source, tests/runner and committed-output inspection; not executed.",
+      "identical_public_input_objects": true,
+      "committed_outputs": [
+        {
+          "scenario_id": "P1",
+          "status": "ok",
+          "has_stack": true,
+          "cost": {
+            "min": 0,
+            "max": 5
+          }
+        },
+        {
+          "scenario_id": "P2",
+          "status": "ok",
+          "has_stack": true,
+          "cost": {
+            "min": 102,
+            "max": 624
+          }
+        },
+        {
+          "scenario_id": "P3",
+          "status": "ok",
+          "has_stack": true,
+          "cost": {
+            "min": 92,
+            "max": 404
+          }
+        },
+        {
+          "scenario_id": "P4",
+          "status": "ok",
+          "has_stack": true,
+          "cost": {
+            "min": 287,
+            "max": 1434
+          }
+        },
+        {
+          "scenario_id": "P5",
+          "status": "ok",
+          "has_stack": true,
+          "cost": {
+            "min": 67,
+            "max": 330
+          }
+        },
+        {
+          "scenario_id": "P6",
+          "status": "ok",
+          "has_stack": true,
+          "cost": {
+            "min": 55,
+            "max": 296
+          }
+        }
+      ]
+    },
+    {
+      "repository": "akshaykp123/StackSense",
+      "commit": "66c1da36b0ca5349e118c1be985a7451765748e1",
+      "commit_date": "2026-11-12T20:07:11+05:30",
+      "branch": "main",
+      "archived_as_checked": false,
+      "github_license_metadata": null,
+      "review": "Static README, source, tests/runner and committed-output inspection; not executed.",
+      "identical_public_input_objects": null,
+      "committed_outputs": []
+    },
+    {
+      "repository": "thoth-station/adviser",
+      "commit": "de8cf66e01ab4aacec8c69f505388ea14be7df01",
+      "commit_date": "2023-05-30T10:33:07+02:00",
+      "branch": "master",
+      "archived_as_checked": false,
+      "github_license_metadata": "GPL-3.0",
+      "review": "Static README, source, tests/runner and committed-output inspection; not executed.",
+      "identical_public_input_objects": null,
+      "committed_outputs": []
+    }
+  ]
+}
