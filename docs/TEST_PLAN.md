@@ -56,3 +56,8 @@ Record command, commit, engine/catalog/rules versions, date, machine/OS/runtime,
 ## Phase 3 execution record
 
 145 automated tests now pass, including complete recommendation status/schema checks, real CLI batch exports, service/database/data-flow compatibility, conservative external residency and BAA evidence, explicit RBI region policy, cost-cent arithmetic, zero budget, retention, extension handling and catalog/metadata ordering invariance. These checks do not validate deployed workload performance or certify compliance. Details: [Phase 3](PHASE_3.md).
+
+
+## Phase 4 execution record
+
+The suite now has 182 passing tests across six files, including HTTP parity/status/security/bounds and real static-serving integration plus browser input-model checks. Actual browser flows and screenshots complement the automated checks; no full accessibility or cross-browser conformance is claimed. See [Phase 4](PHASE_4.md).

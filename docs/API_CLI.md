@@ -1,10 +1,10 @@
 # API and CLI contracts
 
-The complete recommendation CLI is implemented in [Phase 3](PHASE_3.md). Local API routes below remain planned for Phase 4; the implemented provisional core CLI is documented in [Phase 2](PHASE_2.md). The implemented Phase 1 validation CLI is documented in [README](../README.md) and [Phase 1](PHASE_1.md); its reports are separate from recommendation outputs. Structural contracts live in [schemas](../schemas/README.md).
+The complete recommendation CLI is implemented in [Phase 3](PHASE_3.md). The local API below is implemented in [Phase 4](PHASE_4.md); the implemented provisional core CLI is documented in [Phase 2](PHASE_2.md). The implemented Phase 1 validation CLI is documented in [README](../README.md) and [Phase 1](PHASE_1.md); its reports are separate from recommendation outputs. Structural contracts live in [schemas](../schemas/README.md).
 
-## Local API (planned)
+## Local API (implemented)
 
-Bind `127.0.0.1:3000` by default. JSON request bodies ≤2 MiB. Application errors are distinct from evaluation statuses.
+Bind `127.0.0.1:3000` by default; optional `STACKSENSE_PORT` selects another port. `npm start` serves built UI and API together. JSON request bodies ≤2 MiB. Application errors are distinct from evaluation statuses.
 
 | Route | Request | Response |
 |---|---|---|
@@ -16,7 +16,7 @@ Bind `127.0.0.1:3000` by default. JSON request bodies ≤2 MiB. Application erro
 
 Malformed JSON: HTTP 400 with a standard `invalid_input` result and root `$` error. Non-object/array misuse: HTTP 400. Oversize body: 413 with transport error envelope `{error:{code,message}}`. Unexpected internal error: 500 same transport envelope, no stack trace or fake domain result. `infeasible` is a completed evaluation, not a server failure. No user-supplied remote URL fetches or arbitrary server file paths.
 
-Example planned use:
+Example use:
 
 ```sh
 curl -H 'Content-Type: application/json' --data-binary @fixtures/public/P1.json http://127.0.0.1:3000/api/recommend

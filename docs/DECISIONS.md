@@ -11,6 +11,7 @@ Status: proposed implementation baseline for owner review; no existing applicati
 | [005](adr/005-research-backed-planning.md) | Research-backed complete-plan ranking and evidence | Distinguish compatibility, preferences, catalog gaps and true conflicts |
 | [006](adr/006-phase-2-core-scope.md) | Distinct provisional core reports until services/costs/controls are implemented | Avoid fake final prices and unsupported feasibility claims |
 | [007](adr/007-complete-plans-and-cost-evidence.md) | Evaluate complete services/control scope before cost ranking; distinguish reference rates and assumptions | Prevent omitted features, false residency/certification claims and hidden service charges |
+| [008](adr/008-local-api-and-workspace.md) | Same-origin local API and schema-driven in-memory workspace | Preserve engine parity, unknown imports and stale-result integrity |
 
 Other recorded choices: no persistent application database; no user login; no live pricing dependency; canonical output excludes runtime timestamps; unknown extension fields preserved and warned; month-12 cost horizon; initial implementation targets Node.js 24 LTS after dependency verification.
 

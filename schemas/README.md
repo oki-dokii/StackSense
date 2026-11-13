@@ -9,6 +9,6 @@ The output profile is intentionally stronger than the minimum output table: none
 
 Semantic invariants requiring application checks: cost min ≤ max; driver paths resolve to supplied or normalized input; valid versions and source references; no silent hard violations; exact export/display parity; cost placeholders on no-plan outcomes displayed as “Not estimated.”
 
-Run `python3 scripts/check_docs.py --schemas` with the optional jsonschema dependency installed. This checks schema validity, all supplied fixtures, synthetic minimal input, negative contract examples and synthetic result statuses. It does not validate recommendation quality because no engine exists yet.
+Run `python3 scripts/check_docs.py --schemas` with the optional jsonschema dependency installed. This checks schema validity, all supplied fixtures, synthetic minimal input, negative contract examples and synthetic result statuses. It validates structural contracts and committed outputs, not recommendation quality; executable engine/API checks run through `npm run check`.
 
 Additional implemented development contracts: [core catalog](catalog.schema.json) and [provisional core planning report](core-planning.schema.json). They are separate from the organiser scenario/recommendation interfaces; no final cost or compliance approval is implied by a core report.

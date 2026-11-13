@@ -38,3 +38,8 @@ The executable core planner now passes 97 contract/catalog/search/process tests 
 ## Phase 3 implementation update — 13 November 2026
 
 145 automated tests, generated type checks and build pass. The six actual final-format outputs are validated against the organiser schema, and service data against its own schema. The public manifest records one ok, one ok_with_warnings and four evidence-relative infeasible results; exit 3 is expected. Phase 2 regression behavior is preserved. See [Phase 3](PHASE_3.md) for commands and material limitations.
+
+
+## Phase 4 implementation update — 13 November 2026
+
+182 tests pass; TypeScript/generated type checks and production API/browser builds pass. Exact parity is tested for all six API outputs. Actual local browser checks cover sample recommendations, P1 export parity, stale-export protection, P3 warned report, mixed invalid/infeasible batches and 360 px result overflow. [Phase 4 evidence and limits](PHASE_4.md).

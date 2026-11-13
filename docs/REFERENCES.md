@@ -53,3 +53,8 @@ The 40 dated official-source records in [catalog.json](../packages/catalog/data/
 ## Phase 3 primary-source register
 
 [Service/pricing/control policy data](../packages/catalog/data/services.json) records 43 primary-source URLs, review dates and scope limits. Coverage includes Keycloak, MSG91, Yjs/ws, local/offline data libraries, database search/RLS/transactions, storage/logging, hosted checkout, ONNX, CI, reference cloud prices and official framework guidance. [Phase 3](PHASE_3.md) distinguishes published rates from authored planning envelopes and controls from certification.
+
+
+## Phase 4 implementation references
+
+[Fastify server reference](https://fastify.dev/docs/latest/Reference/Server/), [Vite getting started](https://vite.dev/guide/) and [React useState](https://react.dev/reference/react/useState) were checked for the local HTTP/build/state implementation. Exact registry versions are locked in package-lock.json; framework docs do not establish performance or accessibility compliance.

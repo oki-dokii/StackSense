@@ -20,3 +20,6 @@ Phase 2 implementation, 13 November 2026: Codex reviewed official product/driver
 
 
 Phase 3 implementation, 13 November 2026: Codex researched official service/pricing/control documentation, drafted separate service policies and authored price envelopes, implemented complete-plan service/control checks, costs, explanations and final-format CLI, and added automated tests and actual public outputs. Phase 2 was run before changes. Actual checks and evidence limits are in PHASE_3.md. No provider deployment, certification, legal opinion or runtime LLM selection is claimed; participant review and ownership remain required.
+
+
+Phase 4 implementation, 13 November 2026: Codex used the Sites local repository workflow, checked official framework documentation, implemented Fastify HTTP and React/Vite guided/import/result/export UI, added API and browser-model checks, and performed actual local-browser sample, batch, invalid/infeasible, export and stale/mobile checks. The P1 downloaded result was compared with the engine output. No hosted service, production deployment or accessibility certification was claimed. Participant review/ownership remains required. Details: PHASE_4.md.

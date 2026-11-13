@@ -1,6 +1,6 @@
 {
   "name": "stacksense",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "description": "Deterministic, evidence-backed technology stack recommendation engine",
@@ -14,11 +14,11 @@
   "scripts": {
     "generate:types": "node scripts/generate-types.mjs",
     "check:types": "node scripts/generate-types.mjs --check",
-    "typecheck": "tsc --noEmit",
-    "build": "npm run check:types && tsc",
+    "typecheck": "tsc --noEmit && tsc -p apps/web/tsconfig.json",
+    "build": "npm run check:types && tsc && npm run build:web",
     "validate": "node dist/apps/cli/src/main.js",
     "dev:validate": "tsx apps/cli/src/main.ts",
-    "test": "vitest run",
+    "test": "npm run build:web && vitest run",
     "test:watch": "vitest",
     "check": "npm run check:types && npm run typecheck && npm test",
     "validate:batch": "node dist/apps/cli/src/main.js --batch",
@@ -27,7 +27,11 @@
     "dev:plan:core": "tsx apps/cli/src/main.ts --core-plan",
     "recommend": "node dist/apps/cli/src/main.js --recommend",
     "recommend:batch": "node dist/apps/cli/src/main.js --recommend --batch",
-    "dev:recommend": "tsx apps/cli/src/main.ts --recommend"
+    "dev:recommend": "tsx apps/cli/src/main.ts --recommend",
+    "start": "node dist/apps/api/src/main.js",
+    "dev:api": "tsx watch apps/api/src/main.ts",
+    "dev:web": "vite --config apps/web/vite.config.ts",
+    "build:web": "vite build --config apps/web/vite.config.ts"
   },
   "dependencies": {
     "ajv": "8.20.0"

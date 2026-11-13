@@ -1,6 +1,6 @@
 # UI and UX specification
 
-Status: intended interface, not implemented screenshots. Build an architecture decision workspace that makes constraints, risks, and explanations easy to inspect.
+Status: implemented in Phase 4 with actual browser evidence; [delivery and limits](PHASE_4.md). This specification retains design targets for later accessibility evaluation. Build an architecture decision workspace that makes constraints, risks, and explanations easy to inspect.
 
 ## Information architecture
 

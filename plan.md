@@ -333,12 +333,12 @@ The windows are demanding and not guaranteed. Stop expanding catalog breadth/opt
 - [x] Implement supporting services/bundles, cost arithmetic and warnings.
 - [x] Implement explanations/alternatives, statuses and honest catalog-gap errors.
 - [x] Run public/edge cases through CLI; fix generic logic, never IDs.
-- [ ] Add API/UI and parity/stale-state/accessibility checks.
+- [x] Add API/UI and parity/stale-state/accessibility checks (initial browser pass; full accessibility audit remains open).
 - [ ] Freeze and evaluate reserved cases; generate real outputs/report evidence.
 
 ## 13. Repository alignment and release evidence
 
-Implementation update: Phases 1–3 are implemented/tested: contracts, normalization, CLI, sourced core/service catalog, complete-plan ranking, costs/control proposals and genuine P1–P6 output files. Four public outputs remain explicitly infeasible due evidence gaps. API/UI, reserved evaluation, benchmarks and report/screenshots remain later-phase work. See [phase tracker](docs/PHASES.md). The research proposals below do not themselves establish product correctness.
+Implementation update: Phases 1–4 are implemented/tested: contracts, normalization, CLI, sourced core/service catalog, complete-plan ranking, costs/control proposals and genuine P1–P6 output files. Four public outputs remain explicitly infeasible due evidence gaps. The local API/UI and browser screenshots are implemented. Reserved evaluation, broader setup/performance evidence and the final report remain Phase 5. See [phase tracker](docs/PHASES.md). The research proposals below do not themselves establish product correctness.
 
 Align the existing engine specification with plan-level scoring, inclusion-minimal-vs-smallest conflict language, tri-state evidence, and catalog-relative infeasibility. Keep API/output schema unchanged unless an implementation need is justified by an ADR. Additive trace/source fields may carry evidence without breaking the organiser's result structure.
 

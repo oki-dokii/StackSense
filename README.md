@@ -2,7 +2,7 @@
 
 A local, deterministic technology stack recommendation engine for the Synergy ’26 challenge, being implemented in [five phases](docs/PHASES.md).
 
-**Current implementation: Phases 1–3.** Complete recommendations now include compatible supporting services, month-12 cost bands, alternatives, configured-control proposals and data-flow evidence. Four public cases still have explicit evidence blockers. The local API and web interface follow in Phase 4. See [Phase 3](docs/PHASE_3.md) for actual coverage and limitations.
+**Current implementation: Phases 1–4.** The local API and responsive workspace now support guided input, JSON imports, samples, batch runs, explained results and JSON export using the same deterministic engine as the CLI. Four public scenarios retain explicit evidence blockers. [Phase 4 coverage and verification](docs/PHASE_4.md).
 
 ## Run
 
@@ -11,6 +11,13 @@ Prerequisites: **Node.js 22.17.0 or newer within Node 22, or Node 24 LTS**, and 
 ```sh
 npm ci
 npm run build
+npm start
+# Open http://127.0.0.1:3000
+```
+
+Run CLI evaluations independently:
+
+```sh
 npm run recommend -- --input fixtures/public/P1.json --pretty
 npm run recommend:batch -- --input fixtures/public/scenarios.json --output-dir reports --pretty
 npm run validate -- --input fixtures/public/P1.json --pretty
@@ -33,6 +40,12 @@ npm run --silent validate -- --input fixtures/minimal.json
 ```
 
 After building, `node /absolute/path/to/StackSense/dist/apps/cli/src/main.js --input /absolute/path/to/scenario.json` also works from another directory. Keep the complete repository, including `schemas/`, alongside `dist/`.
+
+## Local workspace and API
+
+After building, `npm start` serves both UI and API at **http://127.0.0.1:3000**. Optional `STACKSENSE_PORT` changes the port. Open the workspace, complete a guided brief or import JSON, then evaluate. It supports one scenario or batches of 1–100, all four result statuses, source-backed explanation cards, costs and exact JSON exports. Editing inputs marks results stale and disables export until rerun. Drafts stay in memory; reloading discards them.
+
+For development, run `npm run dev:api` and `npm run dev:web` in separate terminals, then open http://127.0.0.1:5173. No external recommendation requests or account/API keys are needed. See [API contract](docs/API_CLI.md), [Phase 4](docs/PHASE_4.md) and [actual screenshot](docs/evidence/phase4-report-desktop.jpg).
 
 ## Complete recommendations
 
@@ -77,7 +90,7 @@ npm run dev:validate -- --input fixtures/minimal.json --pretty
 python3 scripts/check_docs.py
 ```
 
-Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: [Phase 1](docs/PHASE_1.md), [Phase 2](docs/PHASE_2.md) and [Phase 3](docs/PHASE_3.md): **145 tests pass**, with a successful build. Windows/Linux and final workload/setup benchmarks remain unverified.
+Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: [Phase 1](docs/PHASE_1.md), [Phase 2](docs/PHASE_2.md), [Phase 3](docs/PHASE_3.md) and [Phase 4](docs/PHASE_4.md): **182 tests pass**, with a successful build. Windows/Linux and final workload/setup benchmarks remain unverified.
 
 | Technology | Pinned version | Role |
 |---|---|---|
@@ -86,6 +99,10 @@ Optional deeper documentation contract checks require Python's `jsonschema` pack
 | json-schema-to-typescript | 15.0.4 | Generate types from authoritative schemas |
 | tsx | 4.23.15 | Source-mode development CLI |
 | Vitest | 5.1.0 | Contract and real CLI subprocess tests |
+| Fastify / @fastify/static | 5.12.8 / 10.1.10 | Loopback API and bundled asset serving |
+| React / react-dom | 19.3.1 | In-memory responsive workspace |
+| Vite | 8.3.8 | Browser build and development proxy |
+| @types/react / @types/react-dom | 19.3.0 | Browser TypeScript definitions |
 | @types/node | 22.20.5 | Node runtime types |
 
 ## Current architecture and layout
@@ -107,6 +124,8 @@ flowchart LR
 
 ```text
 apps/cli/src/              Bounded file IO, safe output, CLI adapter
+apps/api/src/              Loopback HTTP API and same-origin web serving
+apps/web/src/              React guided brief, imports, results and exports
 packages/contracts/src/    Generated types, validation, normalization, canonical JSON
 packages/catalog/          Reviewed source/product/deployment catalog and integrity checks
 packages/engine/src/       Features, constraints, complete-plan search, services, costs, explanations
@@ -118,7 +137,7 @@ docs/                      Product, design, research and implementation evidence
 dist/                      Generated build; ignored by Git
 ```
 
-API/UI boundaries and the remaining complete-engine work: [TRD](docs/TRD.md). Core selection uses local rules, hard constraints, compatible-plan search and explainable ordinal ranking. No LLM will choose the stack.
+API/UI boundaries and remaining evidence work: [TRD](docs/TRD.md). Core selection uses local rules, hard constraints, compatible-plan search and explainable ordinal ranking. No LLM will choose the stack.
 
 ## Planning and research
 
@@ -126,6 +145,6 @@ Start with [plan.md](plan.md), the [phase tracker](docs/PHASES.md), and [documen
 
 ## Submission and credits
 
-Final delivery still requires broader evidence coverage, the API/UI, reserved evaluation, real screenshots and the PDF report. Six genuine development outputs are now committed. See [submission checklist](docs/SUBMISSION.md). Deadline in the supplied brief: **15 November 2026, 23:59 IST**; do not modify the submitted Drive folder afterward.
+Final delivery still requires broader evidence coverage, reserved evaluation, setup/performance evidence and the PDF report. The API/UI and actual browser screenshots are now implemented. Six genuine development outputs are now committed. See [submission checklist](docs/SUBMISSION.md). Deadline in the supplied brief: **15 November 2026, 23:59 IST**; do not modify the submitted Drive folder afterward.
 
 Requirements come from user-supplied `StackSense_Problem_Statement.pdf` v1.0; public fixtures from `stacksense_public_scenarios.json`. No official expected stacks were provided. All installed third-party tools are listed above and locked in `package-lock.json`; source links/research and AI assistance are recorded in [references](docs/REFERENCES.md) and [AI assistance](docs/AI_ASSISTANCE.md). Participant review/ownership remains required by the challenge.

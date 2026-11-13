@@ -1,10 +1,10 @@
 # Technical requirements document
 
-Current implementation: [Phases 1–2](PHASES.md) contracts/CLI/catalog/core planning on Node 22.17.1. The React/Vite/Fastify application interfaces below remain planned; exact delivered coverage is in [Phase 2](PHASE_2.md).
+Current implementation: [Phases 1–4](PHASES.md), including the shared engine, CLI, Fastify API and React/Vite workspace. [Phase 4 delivery evidence](PHASE_4.md) records pinned dependencies and actual coverage.
 
 ## Implementation decision
 
-Proposed baseline: TypeScript across engine and adapters; React + Vite web UI; Fastify local HTTP API; npm workspaces; JSON Schema draft-07 contracts validated with Ajv; Vitest for meaningful engine/integration checks; Playwright for essential UI journeys. No runtime database. Catalog/rules/pricing are versioned local JSON. Exact dependency versions and lockfile are implementation tasks; these are not installed dependencies yet.
+Proposed baseline: TypeScript across engine and adapters; React + Vite web UI; Fastify local HTTP API; npm workspaces; JSON Schema draft-07 contracts validated with Ajv; Vitest for meaningful engine/integration checks; Playwright for essential UI journeys. No runtime database. Catalog/rules/pricing are versioned local JSON. Exact dependency versions are installed and locked; see Phase 4 and the root README.
 
 A local modular monolith minimizes setup and allows independent engine tests. The engine is a library with no React/Fastify/filesystem dependency. CLI and API supply data and receive the same result. See [ADRs](DECISIONS.md).
 
