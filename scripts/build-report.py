@@ -41,7 +41,7 @@ def table(headers,rows,widths=None):
  t=Table(data,colWidths=widths or [499/len(headers)]*len(headers),hAlign='LEFT',repeatRows=1)
  t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),PALE),('VALIGN',(0,0),(-1,-1),'TOP'),('LINEBELOW',(0,0),(-1,0),.8,BORDER),('LINEBELOW',(0,1),(-1,-1),.35,BORDER),('LEFTPADDING',(0,0),(-1,-1),8),('RIGHTPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),5)]));story.append(t);story.append(Spacer(1,10))
 def shot(id,width=499):
- image=Image(str(ROOT/f'docs/evidence/release/{id}.jpg'),width=width,height=width*520/900);image.hAlign='CENTER';story.append(image)
+ image=Image(str(ROOT/f'docs/evidence/final/{id}.jpg'),width=width,height=width*520/900);image.hAlign='CENTER';story.append(image)
 def caption(text):p(text,'CaptionReport')
 def diagram():
  d=Drawing(499,155)

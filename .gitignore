@@ -14,5 +14,5 @@ validation-reports/
 *.tsbuildinfo
 core-plans/
 
-release/
-tmp/
+/release/
+/tmp/
