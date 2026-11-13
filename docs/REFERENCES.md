@@ -48,3 +48,8 @@ Pinned versions are recorded in package-lock.json and README: TypeScript, Ajv, j
 ## Phase 2 executable catalog sources
 
 The 40 dated official-source records in [catalog.json](../packages/catalog/data/catalog.json) are the factual evidence register for the 33 core entries and driver/managed-database/primary-region mappings. Scope and ordinal heuristic distinctions are documented in [CATALOG.md](CATALOG.md). These records do not establish complete regulatory compliance, prices or workload performance.
+
+
+## Phase 3 primary-source register
+
+[Service/pricing/control policy data](../packages/catalog/data/services.json) records 43 primary-source URLs, review dates and scope limits. Coverage includes Keycloak, MSG91, Yjs/ws, local/offline data libraries, database search/RLS/transactions, storage/logging, hosted checkout, ONNX, CI, reference cloud prices and official framework guidance. [Phase 3](PHASE_3.md) distinguishes published rates from authored planning envelopes and controls from certification.

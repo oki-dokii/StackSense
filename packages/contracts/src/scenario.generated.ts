@@ -96,6 +96,14 @@ export interface Scenario {
     monthly_egress_gb?: number;
     monthly_otp_count?: number;
     vendor_lock_in_tolerance?: 'low' | 'medium' | 'high';
+    /**
+     * Optional planning volume; not guaranteed transaction throughput.
+     */
+    monthly_payment_transactions?: number;
+    /**
+     * Optional average gross payment value in USD for variable fee estimates.
+     */
+    average_payment_value_usd?: number;
     [k: string]: unknown;
   };
   [k: string]: unknown;

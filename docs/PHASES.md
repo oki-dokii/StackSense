@@ -6,8 +6,8 @@ Updated 13 November 2026 IST. The detailed method is in [plan.md](../plan.md); t
 |---|---|---|---|
 | 1 | Workspaces, schema-derived types, validation, normalization, deterministic JSON, single/batch CLI | Implemented and tested | Build/type generation current; 45 tests; six compiled public validations |
 | 2 | Reviewed catalog, architecture features, hard constraints, core-plan search and ranking | Implemented and tested | 33 entries/40 sources; 97 tests; provisional core CLI, with explicit blockers |
-| 3 | Supporting services, costs, evidence-derived explanations and conflict/edge cases | Next | Required capabilities, costs/warnings/alternatives/trade-offs; no silent hard violations |
-| 4 | Local API and responsive web interface | Planned | Shared-engine parity; input/import/results/export; keyboard/mobile and stale-state checks |
+| 3 | Supporting services, costs, evidence-derived explanations and conflict/edge cases | Implemented and tested | 145 tests; final-format CLI; six genuine public outputs with explicit evidence blockers |
+| 4 | Local API and responsive web interface | Next | Shared-engine parity; input/import/results/export; keyboard/mobile and stale-state checks |
 | 5 | Reserved evaluation, performance/setup evidence, real outputs/screenshots/report and release | Planned | All challenge deliverables and submission checklist verified |
 
 ## Phase 1 delivered
@@ -26,13 +26,9 @@ Evidence, commands and limitations: [Phase 1 record](PHASE_1.md). `valid` is a s
 
 Catalog, source/deployment/driver references, feature extraction, hard core filters, exhaustive compatible core search, fixed-rubric plan ranking and safe single/batch core CLI. [Evidence and limitations](PHASE_2.md). Only core combinations are planned; full recommendation feasibility and final output commands remain Phase 3.
 
-## Phase 3 work queue
+## Phase 3 delivered
 
-1. Implement required supporting capabilities and check their compatibility/data flows.
-2. Research current prices/units/usage assumptions and estimate actual monthly bands.
-3. Model configured controls and end-to-end residency evidence; resolve current compliance/regional blockers conservatively.
-4. Extend explanations/alternatives and conflict handling to complete plans.
-5. Produce standard challenge-format recommendation JSON from generic rules and verified evidence.
+Complete service/control evaluation before cost ranking, 23 service profiles/43 primary-source records, reproducible resource/usage bands, honest framework and data-flow scope, and `recommend`/`recommend:batch` final-format exports. [Evidence and remaining gaps](PHASE_3.md). Two usable public recommendations and four explicit infeasible reports are generated; missing evidence is not replaced with invented feasibility.
 
 ## Change discipline
 

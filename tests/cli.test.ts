@@ -280,3 +280,78 @@ describe('provisional core-planning CLI', () => {
     });
   });
 });
+
+describe('complete recommendation CLI', () => {
+  it('exports all six real outputs and an honest status manifest', async () => {
+    const path = await directory();
+    const result = cli([
+      '--recommend',
+      '--batch',
+      '--input',
+      join(root, 'fixtures/public/scenarios.json'),
+      '--output-dir',
+      path,
+      '--pretty',
+    ]);
+    expect(result.status).toBe(3);
+    expect(result.stderr).toBe('');
+    const manifest = JSON.parse(
+      await readFile(join(path, 'recommendation_manifest.json'), 'utf8'),
+    );
+    expect(manifest).toMatchObject({
+      ok: 1,
+      ok_with_warnings: 1,
+      infeasible: 4,
+      invalid_input: 0,
+    });
+    for (let i = 1; i <= 6; i++) {
+      const report = JSON.parse(
+        await readFile(join(path, `P${i}_output.json`), 'utf8'),
+      );
+      expect(report.engine_version).toBe('0.3.0');
+      expect(report).toHaveProperty('estimated_monthly_cost_usd');
+    }
+    expect(
+      cli([
+        '--recommend',
+        '--batch',
+        '--input',
+        join(root, 'fixtures/public/scenarios.json'),
+        '--output-dir',
+        path,
+      ]).status,
+    ).toBe(1);
+  });
+  it('returns final-format invalid JSON reports and enforces exclusive modes', async () => {
+    const path = await directory();
+    const input = join(path, 'bad.json');
+    await writeFile(input, '{');
+    const result = cli(['--recommend', '--input', input]);
+    expect(result.status).toBe(2);
+    const r = JSON.parse(result.stdout);
+    expect(r.status).toBe('invalid_input');
+    expect(r.stack).toBeNull();
+    expect(r.estimate_status).toBe('not_estimated');
+    expect(cli(['--recommend', '--core-plan', '--input', input]).status).toBe(
+      1,
+    );
+  });
+  it('gives invalid-input precedence in a mixed recommendation batch', async () => {
+    const path = await directory();
+    const input = join(path, 'batch.json');
+    const valid = JSON.parse(
+      await readFile(join(root, 'fixtures/public/P1.json'), 'utf8'),
+    );
+    const infeasible = JSON.parse(
+      await readFile(join(root, 'fixtures/public/P2.json'), 'utf8'),
+    );
+    await writeFile(input, JSON.stringify([{}, valid, infeasible]));
+    const result = cli(['--recommend', '--batch', '--input', input]);
+    expect(result.status).toBe(2);
+    expect(JSON.parse(result.stdout).map((r: any) => r.status)).toEqual([
+      'invalid_input',
+      'ok',
+      'infeasible',
+    ]);
+  });
+});

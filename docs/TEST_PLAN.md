@@ -51,3 +51,8 @@ For each base scenario change cloud, residency, deployment, budget, languages, D
 ## Evidence record
 
 Record command, commit, engine/catalog/rules versions, date, machine/OS/runtime, result, elapsed time, and screenshot/output path. Time 20 warm runs plus cold startup on a stated laptop; report observed maximum/p95, not fabricated benchmark values. Rehearse install on a fresh clone; identify OSes actually tested. Real company case studies/expert review are optional validation evidence, but citations and comparison rationale are required for claims.
+
+
+## Phase 3 execution record
+
+145 automated tests now pass, including complete recommendation status/schema checks, real CLI batch exports, service/database/data-flow compatibility, conservative external residency and BAA evidence, explicit RBI region policy, cost-cent arithmetic, zero budget, retention, extension handling and catalog/metadata ordering invariance. These checks do not validate deployed workload performance or certify compliance. Details: [Phase 3](PHASE_3.md).

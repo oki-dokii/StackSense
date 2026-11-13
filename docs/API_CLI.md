@@ -1,8 +1,8 @@
 # API and CLI contracts
 
-Final recommendation/API interfaces below remain planned; the implemented provisional core CLI is documented in [Phase 2](PHASE_2.md). The implemented Phase 1 validation CLI is documented in [README](../README.md) and [Phase 1](PHASE_1.md); its reports are separate from recommendation outputs. Structural contracts live in [schemas](../schemas/README.md).
+The complete recommendation CLI is implemented in [Phase 3](PHASE_3.md). Local API routes below remain planned for Phase 4; the implemented provisional core CLI is documented in [Phase 2](PHASE_2.md). The implemented Phase 1 validation CLI is documented in [README](../README.md) and [Phase 1](PHASE_1.md); its reports are separate from recommendation outputs. Structural contracts live in [schemas](../schemas/README.md).
 
-## Local API
+## Local API (planned)
 
 Bind `127.0.0.1:3000` by default. JSON request bodies ≤2 MiB. Application errors are distinct from evaluation statuses.
 
@@ -29,7 +29,7 @@ npm run recommend -- --input fixtures/public/P1.json --output outputs/P1_output.
 npm run recommend:batch -- --input fixtures/public/scenarios.json --output-dir outputs
 ```
 
-Flags: `--input` required; `--output` for single; `--output-dir` for batch; `--force` to overwrite; `--no-llm` accepted as documented no-op in MVP; `--pretty` for formatting; `--trace` optional extension. Default stdout is one JSON result when output path absent. Diagnostic logs go to stderr. Resolve paths cross-platform with standard path APIs. Atomic write via temporary sibling file then rename; refuse unintended overwrite.
+Flags: `--input` required; `--output` for single; `--output-dir` for batch; `--force` to overwrite; `--no-llm` accepted as documented no-op in MVP; `--pretty` for formatting; trace fields are included automatically (there is no `--trace` flag). Default stdout is one JSON result when output path absent. Diagnostic logs go to stderr. Resolve paths cross-platform with standard path APIs. Atomic publication uses a sibling temporary file with exclusive hard-link creation, or rename with explicit `--force`; refuse unintended input overwrite.
 
 Exit codes: 0 completed `ok`/`ok_with_warnings`; 2 invalid input or malformed JSON; 3 infeasible; 1 IO/internal/usage failure. Batch writes every evaluable item; use precedence 1 > 2 > 3 > 0 for final exit. Return invalid-input JSON even with exit 2 where possible. Standard output schema remains identical across adapters.
 

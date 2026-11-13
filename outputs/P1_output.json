@@ -1,0 +1,331 @@
+{
+  "applied_extensions": [],
+  "architecture_style": "static",
+  "assumptions": [
+    "Interpreted project.description phrase \"Markdown\" as markdown; this bounded hint does not infer legal or regional requirements.",
+    "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
+  ],
+  "catalog_version": "0.2.0",
+  "control_plan": {
+    "deployment_controls": [
+      "TLS at all client/service/database boundaries.",
+      "Least-privilege service identities, secret rotation, encryption at rest and redacted audit logs.",
+      "Explicit regional primary/replica/storage/log/backup locations and retention; no uncontrolled cross-region replication.",
+      "Restore-test backups and test negative authorization, tenant boundaries and deletion workflows."
+    ],
+    "frameworks": []
+  },
+  "cost_breakdown": [
+    {
+      "basis": "Static assets only; no Functions or paid add-ons. Build/file limits apply.",
+      "category": "hosting",
+      "id": "static-hosting",
+      "monthly_usd": {
+        "max": 0,
+        "min": 0
+      },
+      "quantity": {
+        "max": 1,
+        "min": 1
+      },
+      "source_ids": [
+        "pages-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0,
+        "min": 0
+      }
+    }
+  ],
+  "data_flows": [
+    {
+      "component": "primary-compute",
+      "location": "Choose deployment location before provisioning",
+      "scope": "Application processing; configure region, private access, logging and replicas explicitly.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "local-build",
+      "location": "Build environment: source/synthetic fixtures only",
+      "scope": "Never export production data/secrets/personal data to build logs.",
+      "verification": "source_only_no_production_data"
+    },
+    {
+      "component": "cdn",
+      "location": "Selected deployment region (must be chosen before provisioning)",
+      "scope": "Static/CDN delivery is bundled with hosting and is not billed again. No private/country-restricted data is sent to global edges.",
+      "verification": "configuration_required"
+    }
+  ],
+  "database_region": null,
+  "decision_trace": {
+    "complete_candidates": 8,
+    "core_candidates": 8,
+    "rejected": [],
+    "score": 86,
+    "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified"
+  },
+  "engine_version": "0.3.0",
+  "estimate_status": "estimated",
+  "estimated_monthly_cost_usd": {
+    "assumptions": [
+      "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+      "Peak concurrency supplied: 50; not equated directly with requests/second.",
+      "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+      "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+      "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
+      "Static assets only; no Functions or paid add-ons. Build/file limits apply."
+    ],
+    "max": 0,
+    "min": 0
+  },
+  "primary_region": null,
+  "rules_version": "0.3.0",
+  "scenario_id": "P1",
+  "score_breakdown": [
+    {
+      "contribution": 25,
+      "criterion": "cost",
+      "driven_by": [
+        "budget.monthly_infra_usd",
+        "priorities.cost"
+      ],
+      "fit": 5,
+      "reason": "USD 0–0/month versus budget 0: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "weight": 5
+    },
+    {
+      "contribution": 20,
+      "criterion": "time_to_market",
+      "driven_by": [
+        "team.languages",
+        "team.experience",
+        "timeline.mvp_weeks",
+        "project.description",
+        "priorities.time_to_market"
+      ],
+      "fit": 5,
+      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 1.25/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+      "weight": 4
+    },
+    {
+      "contribution": 5,
+      "criterion": "scalability",
+      "driven_by": [
+        "scale.users_at_launch",
+        "scale.users_12_months",
+        "scale.peak_concurrent_users",
+        "scale.workload",
+        "priorities.scalability"
+      ],
+      "fit": 5,
+      "reason": "Static delivery avoids application writes; embedded-writer and growth triggers are ordinal review heuristics, not published capacity limits.",
+      "weight": 1
+    },
+    {
+      "contribution": 15,
+      "criterion": "performance",
+      "driven_by": [
+        "scale.workload",
+        "scale.peak_concurrent_users",
+        "priorities.performance"
+      ],
+      "fit": 5,
+      "reason": "No latency SLA or measured framework throughput is credited; embedded-write concurrency is a review heuristic. Low-memory clients require measurement, not an assumed framework benchmark.",
+      "weight": 3
+    },
+    {
+      "contribution": 15,
+      "criterion": "maintainability",
+      "driven_by": [
+        "team.languages",
+        "team.has_devops",
+        "team.size",
+        "infrastructure.existing_systems",
+        "priorities.maintainability"
+      ],
+      "fit": 5,
+      "reason": "Operational burden 0/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+      "weight": 3
+    },
+    {
+      "contribution": 6,
+      "criterion": "security",
+      "driven_by": [
+        "priorities.security"
+      ],
+      "fit": 3,
+      "reason": "Baseline configured controls: 3; explicit reviewed tenant isolation: 4. No certification/audit credit is assigned.",
+      "weight": 2
+    }
+  ],
+  "services_version": "0.3.0",
+  "stack": {
+    "backend": {
+      "alternatives": [
+        {
+          "choice": "ASP.NET Core",
+          "why_not": "No compatible complete complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+        }
+      ],
+      "choice": "None",
+      "driven_by": [
+        "project.type",
+        "team.languages",
+        "timeline.mvp_weeks",
+        "requirements.auth",
+        "requirements.realtime"
+      ],
+      "id": "backend-none",
+      "justification": "Static content has no inferred dynamic server requirement; omitting the backend avoids an unnecessary operated application. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "layer": "backend",
+      "source_ids": [
+        "html"
+      ],
+      "tradeoffs": [
+        "Cannot implement dynamic accounts, writes or APIs."
+      ]
+    },
+    "database": {
+      "alternatives": [
+        {
+          "choice": "MariaDB",
+          "why_not": "No compatible complete complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+        }
+      ],
+      "choice": "None",
+      "driven_by": [
+        "project.type",
+        "requirements.auth",
+        "requirements.offline_support",
+        "infrastructure.existing_systems"
+      ],
+      "id": "database-none",
+      "justification": "No server persistence need was inferred; a database is omitted from this core plan. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "layer": "database",
+      "source_ids": [
+        "html"
+      ],
+      "tradeoffs": [
+        "Does not persist dynamic user data."
+      ]
+    },
+    "frontend": {
+      "alternatives": [
+        {
+          "choice": "HTML / CSS",
+          "why_not": "Best compatible complete plan using this option scored 82, below 86; other layers may also differ."
+        }
+      ],
+      "choice": "Astro",
+      "driven_by": [
+        "project.platforms",
+        "project.type",
+        "requirements.seo_critical",
+        "team.languages",
+        "project.description"
+      ],
+      "id": "astro",
+      "justification": "Covers requested targets web with static rendering. Team languages: css, html, javascript. Markdown content authoring was explicitly considered. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "layer": "frontend",
+      "source_ids": [
+        "astro",
+        "astro-markdown"
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ]
+    },
+    "hosting": {
+      "alternatives": [
+        {
+          "choice": "Google Cloud Run",
+          "why_not": "Best compatible complete plan using this option scored 61, below 86; other layers may also differ."
+        }
+      ],
+      "choice": "Cloudflare Pages",
+      "driven_by": [
+        "infrastructure.cloud_preference",
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency",
+        "team.has_devops"
+      ],
+      "id": "pages",
+      "justification": "Matches managed_cloud with provider cloudflare; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "layer": "hosting",
+      "source_ids": [
+        "pages"
+      ],
+      "tradeoffs": [
+        "Country-scoped delivery/residency is not established; dynamic servers/databases are excluded from this variant."
+      ]
+    },
+    "supporting": [
+      {
+        "alternatives": [
+          {
+            "choice": "Amazon CloudFront",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "cdn"
+        ],
+        "choice": "Cloudflare Pages static delivery",
+        "driven_by": [
+          "project.type"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Static delivery is part of the hosting bundle; do not count it as another resource bill. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "cdn",
+        "placement": "host",
+        "service_id": "cdn",
+        "source_ids": [
+          "pages-price"
+        ],
+        "tradeoffs": [
+          "Static/CDN delivery is bundled with hosting and is not billed again. No private/country-restricted data is sent to global edges."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "GitHub Actions",
+            "why_not": "Adds an integration or operating requirement unnecessary for this selected profile."
+          }
+        ],
+        "capabilities": [
+          "ci"
+        ],
+        "choice": "Git with local build scripts",
+        "driven_by": [
+          "infrastructure.deployment_model"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Build/test/deploy with pinned dependencies, synthetic fixtures and controlled secrets; production data does not enter the build service.",
+        "layer": "ci_cd",
+        "placement": "build",
+        "service_id": "local-build",
+        "source_ids": [
+          "git"
+        ],
+        "tradeoffs": [
+          "Local build artifacts must be reproducible and verified before deployment."
+        ]
+      }
+    ]
+  },
+  "status": "ok",
+  "summary": "static recommendation selected from 8 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
+  "validation_errors": [],
+  "warnings": [
+    {
+      "code": "FREE_TIER_OR_DEPLOYMENT_LIMITS",
+      "fields": [
+        "requirements.availability"
+      ],
+      "message": "Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name.",
+      "severity": "info"
+    }
+  ]
+}

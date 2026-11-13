@@ -33,3 +33,8 @@ The expanded checker passes with 11 JSON files, including the 30-record research
 ## Phase 2 implementation update — 13 November 2026
 
 The executable core planner now passes 97 contract/catalog/search/process tests and build checks. The documentation checker parses 14 JSON files, validates all schema definitions plus the core catalog in schema mode, and preserves public-source provenance. Current execution and coverage limits are in PHASE_2.md. Historical starter notes above describe the state before executable code was added.
+
+
+## Phase 3 implementation update — 13 November 2026
+
+145 automated tests, generated type checks and build pass. The six actual final-format outputs are validated against the organiser schema, and service data against its own schema. The public manifest records one ok, one ok_with_warnings and four evidence-relative infeasible results; exit 3 is expected. Phase 2 regression behavior is preserved. See [Phase 3](PHASE_3.md) for commands and material limitations.

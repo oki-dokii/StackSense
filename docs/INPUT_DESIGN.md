@@ -55,3 +55,8 @@ This matrix connects collected inputs to architectural decisions. Validation is 
 | vendor_lock_in_tolerance | Managed speed vs portability trade-off | Low tolerance changes fit among eligible deployments |
 
 Do not make extras mandatory, invent their values silently, or collect them without implementing/justifying their effect. The final report's input research section should cite actual sources and examples for these connections.
+
+
+## Phase 3 optional usage inputs
+
+`extensions.monthly_payment_transactions` (nonnegative integer) and `extensions.average_payment_value_usd` (nonnegative number) optionally refine payment fee estimates. RPS, egress, retention and selected OTP/payment usage are applied to pricing; unapplied known extensions retain explicit notices. Core organiser fields remain unchanged; original fixtures are preserved.

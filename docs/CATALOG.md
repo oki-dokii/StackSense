@@ -33,3 +33,8 @@ Sources are linked, not scraped into runtime requests. All catalog loading is lo
 6. Bump catalog/rules versions when selections can change and rerun the documented corpus.
 
 Compliance controls, backing services, detailed prices and full data-flow locations remain Phase 3 work. Do not repurpose the primary-region fields as whole-application residency certification.
+
+
+## Phase 3 supporting-service evidence
+
+[services.json](../packages/catalog/data/services.json) adds 23 service profiles, 43 dated primary-source records, non-exhaustive framework design records and explicit pricing assumptions. Its [schema](../schemas/services.schema.json) and runtime integrity checks are separate from the 33-entry core catalog. [Phase 3](PHASE_3.md) explains compatibility, data flows, current blockers and design-only control scope.

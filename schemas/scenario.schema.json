@@ -368,6 +368,16 @@
             "medium",
             "high"
           ]
+        },
+        "monthly_payment_transactions": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Optional planning volume; not guaranteed transaction throughput."
+        },
+        "average_payment_value_usd": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Optional average gross payment value in USD for variable fee estimates."
         }
       },
       "additionalProperties": true

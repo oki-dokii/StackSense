@@ -1,6 +1,6 @@
 # Documentation index
 
-Updated 13 November 2026 IST. [Phases 1–2](PHASES.md) are implemented; complete recommendations and UI remain later-phase work.
+Updated 13 November 2026 IST. [Phases 1–3](PHASES.md) are implemented, including complete recommendation CLI outputs; API/UI and release evaluation remain later-phase work. See [Phase 3](PHASE_3.md).
 
 ## Implementation status
 

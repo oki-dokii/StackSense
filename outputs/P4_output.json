@@ -1,0 +1,232 @@
+{
+  "architecture_style": "other",
+  "assumptions": [
+    "Interpreted project.description phrase \"double-entry ledger\" as ledger; this bounded hint does not infer legal or regional requirements.",
+    "Persistent application data is inferred from project.type=fintech; domain data modeling remains required."
+  ],
+  "catalog_version": "0.2.0",
+  "control_plan": null,
+  "core_rejections": [
+    {
+      "candidate_id": "angular",
+      "code": "PLATFORM_MISMATCH",
+      "fields": [
+        "project.platforms"
+      ],
+      "layer": "frontend",
+      "message": "This reviewed frontend variant does not cover every client target."
+    },
+    {
+      "candidate_id": "appservice",
+      "code": "PROVIDER_MISMATCH",
+      "fields": [
+        "infrastructure.cloud_preference"
+      ],
+      "layer": "hosting",
+      "message": "Explicit cloud preference does not match this provider."
+    },
+    {
+      "candidate_id": "astro",
+      "code": "PLATFORM_MISMATCH",
+      "fields": [
+        "project.platforms"
+      ],
+      "layer": "frontend",
+      "message": "This reviewed frontend variant does not cover every client target."
+    },
+    {
+      "candidate_id": "backend-none",
+      "code": "BACKEND_REQUIREMENT",
+      "fields": [
+        "project.type",
+        "requirements.auth",
+        "requirements.realtime"
+      ],
+      "layer": "backend",
+      "message": "A backend is required for this application/API profile."
+    },
+    {
+      "candidate_id": "cloudrun",
+      "code": "PROVIDER_MISMATCH",
+      "fields": [
+        "infrastructure.cloud_preference"
+      ],
+      "layer": "hosting",
+      "message": "Explicit cloud preference does not match this provider."
+    },
+    {
+      "candidate_id": "compose",
+      "code": "PLATFORM_MISMATCH",
+      "fields": [
+        "project.platforms"
+      ],
+      "layer": "frontend",
+      "message": "This reviewed frontend variant does not cover every client target."
+    },
+    {
+      "candidate_id": "database-none",
+      "code": "PERSISTENCE_REQUIREMENT",
+      "fields": [
+        "project.type",
+        "requirements.auth",
+        "requirements.offline_support"
+      ],
+      "layer": "database",
+      "message": "Domain/features require a persistent application database."
+    },
+    {
+      "candidate_id": "ec2",
+      "code": "DEPLOYMENT_MISMATCH",
+      "fields": [
+        "infrastructure.deployment_model"
+      ],
+      "layer": "hosting",
+      "message": "Hosting variant does not match the requested deployment model."
+    },
+    {
+      "candidate_id": "ecs",
+      "code": "REGION_EVIDENCE_GAP",
+      "fields": [
+        "infrastructure.data_residency"
+      ],
+      "layer": "hosting",
+      "message": "No reviewed primary-compute region mapping satisfies the requested residency; no country location is inferred."
+    },
+    {
+      "candidate_id": "frontend-none",
+      "code": "PLATFORM_MISMATCH",
+      "fields": [
+        "project.platforms"
+      ],
+      "layer": "frontend",
+      "message": "This reviewed frontend variant does not cover every client target."
+    },
+    {
+      "candidate_id": "html",
+      "code": "PLATFORM_MISMATCH",
+      "fields": [
+        "project.platforms"
+      ],
+      "layer": "frontend",
+      "message": "This reviewed frontend variant does not cover every client target."
+    },
+    {
+      "candidate_id": "local",
+      "code": "DEPLOYMENT_MISMATCH",
+      "fields": [
+        "infrastructure.deployment_model"
+      ],
+      "layer": "hosting",
+      "message": "Hosting variant does not match the requested deployment model."
+    },
+    {
+      "candidate_id": "mongo",
+      "code": "LEDGER_MODEL_NOT_REVIEWED",
+      "fields": [
+        "project.description"
+      ],
+      "layer": "database",
+      "message": "This catalog has no reviewed ledger design for this database variant; this is a coverage limit, not a claim of technical impossibility."
+    },
+    {
+      "candidate_id": "next",
+      "code": "PLATFORM_MISMATCH",
+      "fields": [
+        "project.platforms"
+      ],
+      "layer": "frontend",
+      "message": "This reviewed frontend variant does not cover every client target."
+    },
+    {
+      "candidate_id": "pages",
+      "code": "PROVIDER_MISMATCH",
+      "fields": [
+        "infrastructure.cloud_preference"
+      ],
+      "layer": "hosting",
+      "message": "Explicit cloud preference does not match this provider."
+    },
+    {
+      "candidate_id": "react",
+      "code": "PLATFORM_MISMATCH",
+      "fields": [
+        "project.platforms"
+      ],
+      "layer": "frontend",
+      "message": "This reviewed frontend variant does not cover every client target."
+    },
+    {
+      "candidate_id": "react-native",
+      "code": "PLATFORM_MISMATCH",
+      "fields": [
+        "project.platforms"
+      ],
+      "layer": "frontend",
+      "message": "This reviewed frontend variant does not cover every client target."
+    },
+    {
+      "candidate_id": "sqlite",
+      "code": "LEDGER_MODEL_NOT_REVIEWED",
+      "fields": [
+        "project.description"
+      ],
+      "layer": "database",
+      "message": "This catalog has no reviewed ledger design for this database variant; this is a coverage limit, not a claim of technical impossibility."
+    },
+    {
+      "candidate_id": "sveltekit",
+      "code": "PLATFORM_MISMATCH",
+      "fields": [
+        "project.platforms"
+      ],
+      "layer": "frontend",
+      "message": "This reviewed frontend variant does not cover every client target."
+    },
+    {
+      "candidate_id": "vue",
+      "code": "PLATFORM_MISMATCH",
+      "fields": [
+        "project.platforms"
+      ],
+      "layer": "frontend",
+      "message": "This reviewed frontend variant does not cover every client target."
+    }
+  ],
+  "cost_breakdown": [],
+  "data_flows": [],
+  "decision_trace": {
+    "complete_candidates": 0,
+    "core_candidates": 0,
+    "rejected": [],
+    "score": null,
+    "selected_plan_id": null
+  },
+  "engine_version": "0.3.0",
+  "estimate_status": "not_estimated",
+  "estimated_monthly_cost_usd": {
+    "assumptions": [
+      "No estimate: 0–0 is a required serialization placeholder, not a zero-cost deployment."
+    ],
+    "max": 0,
+    "min": 0
+  },
+  "rules_version": "0.3.0",
+  "scenario_id": "P4",
+  "services_version": "0.3.0",
+  "stack": null,
+  "status": "infeasible",
+  "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",
+  "validation_errors": [],
+  "warnings": [
+    {
+      "code": "CORE_CATALOG_COVERAGE_GAP",
+      "fields": [
+        "infrastructure",
+        "requirements",
+        "compliance"
+      ],
+      "message": "No reviewed core combination matches platform, deployment, database and region constraints. Add source-backed regional/provider profiles before recommending a deployment.",
+      "severity": "critical"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # Cost estimation specification
 
+Implemented Phase 3 details and limits: [phase evidence](PHASE_3.md). The specification below includes future refinements; current rates contain published references and explicitly authored envelopes, not exact region-specific quotations.
+
 ## Output and meaning
 
 Return `estimated_monthly_cost_usd: {min, max, assumptions[]}`. Estimates are order-of-magnitude operating bands, not quotes. Project convention: estimate the expected month-12 operating footprint and label that horizon; optionally add launch cost as an extension. Budget comparison uses the same horizon. If no stack exists, 0–0 is a structural placeholder with a “no estimate” assumption; never render it as a free solution.
@@ -24,7 +26,7 @@ Unknown requests, egress, transaction value, SMS counts, or token usage must pro
 - max ≤ budget: affordable under stated assumptions; still disclose free-tier/usage limits.
 - min ≤ budget < max: `BUDGET_RANGE_RISK`, warning status.
 - budget < min: `BUDGET_EXCEEDED`; offer explicit reduced scope or mark infeasible when no viable plan.
-- zero budget: recommend only genuinely viable zero-cost configurations; disclose overage limits, paid domain exclusion, and missing guarantees.
+- zero budget: disclose free-tier limits and exclusions for zero-cost designs. If required dynamic features incur costs, return an explicitly over-budget warning design under ADR-004; never claim it fits the zero budget.
 
 Payment transaction fees cannot be accurately modeled without volume/value. State the basis or exclusion; do not hide a potentially material charge. ML usage can dominate costs and requires a stated inference/training workload.
 

@@ -1,0 +1,16 @@
+{
+  "files": [
+    "P1_output.json",
+    "P2_output.json",
+    "P3_output.json",
+    "P4_output.json",
+    "P5_output.json",
+    "P6_output.json"
+  ],
+  "infeasible": 4,
+  "invalid_input": 0,
+  "ok": 1,
+  "ok_with_warnings": 1,
+  "schema_version": "0.3.0",
+  "scope": "complete_recommendations"
+}

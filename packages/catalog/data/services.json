@@ -1,0 +1,1062 @@
+{
+  "version": "0.3.0",
+  "reviewed_on": "2026-11-13",
+  "sources": [
+    {
+      "id": "keycloak-db",
+      "title": "Keycloak database support",
+      "url": "https://www.keycloak.org/server/db",
+      "checked_on": "2026-11-13",
+      "scope": "Relational database support; pin compatible versions."
+    },
+    {
+      "id": "keycloak-admin",
+      "title": "Keycloak administration",
+      "url": "https://www.keycloak.org/docs/latest/server_admin/index.html",
+      "checked_on": "2026-11-13",
+      "scope": "Self-hosted identity, federation and broker configuration; not built-in SMS OTP."
+    },
+    {
+      "id": "stripe",
+      "title": "Stripe Checkout",
+      "url": "https://docs.stripe.com/payments/checkout",
+      "checked_on": "2026-11-13",
+      "scope": "Hosted checkout; merchant eligibility and integration required."
+    },
+    {
+      "id": "stripe-dpa",
+      "title": "Stripe DPA",
+      "url": "https://stripe.com/legal/dpa",
+      "checked_on": "2026-11-13",
+      "scope": "Processor contract and transfer-review starting point, not executed agreement."
+    },
+    {
+      "id": "stripe-pricing",
+      "title": "Stripe pricing",
+      "url": "https://stripe.com/pricing",
+      "checked_on": "2026-11-13",
+      "scope": "Country/payment-specific pricing; model fees below are explicitly assumed envelopes, not this page quoted as USD tariff."
+    },
+    {
+      "id": "msg91",
+      "title": "MSG91 OTP",
+      "url": "https://docs.msg91.com/en/otp/sendotp",
+      "checked_on": "2026-11-13",
+      "scope": "Phone OTP API; country rules and contracts still required."
+    },
+    {
+      "id": "msg91-privacy",
+      "title": "MSG91 privacy",
+      "url": "https://msg91.com/privacy-policy",
+      "checked_on": "2026-11-13",
+      "scope": "Multiple hosting geographies; strict residency not established by this source."
+    },
+    {
+      "id": "yjs",
+      "title": "Yjs",
+      "url": "https://docs.yjs.dev/",
+      "checked_on": "2026-11-13",
+      "scope": "CRDT model separate from transport/persistence."
+    },
+    {
+      "id": "ws",
+      "title": "ws",
+      "url": "https://github.com/websockets/ws",
+      "checked_on": "2026-11-13",
+      "scope": "Node WebSocket server; auth, retries, shared state and deployment required."
+    },
+    {
+      "id": "expo-sqlite",
+      "title": "Expo SQLite",
+      "url": "https://docs.expo.dev/versions/latest/sdk/sqlite/",
+      "checked_on": "2026-11-13",
+      "scope": "Device persistence; sync logic is application work."
+    },
+    {
+      "id": "android-offline",
+      "title": "Android offline architecture",
+      "url": "https://developer.android.com/topic/architecture/data-layer/offline-first",
+      "checked_on": "2026-11-13",
+      "scope": "Local source of truth, queued writes and background reconciliation."
+    },
+    {
+      "id": "dexie",
+      "title": "Dexie IndexedDB",
+      "url": "https://dexie.org/docs/",
+      "checked_on": "2026-11-13",
+      "scope": "Browser persistence; not the hosted Dexie Cloud service."
+    },
+    {
+      "id": "drift",
+      "title": "Drift",
+      "url": "https://drift.simonbinder.eu/",
+      "checked_on": "2026-11-13",
+      "scope": "Flutter/Dart database with native/web integrations; sync remains custom."
+    },
+    {
+      "id": "pg-fts",
+      "title": "PostgreSQL full-text",
+      "url": "https://www.postgresql.org/docs/current/textsearch.html",
+      "checked_on": "2026-11-13",
+      "scope": "Native text search; workload suitability must be tested."
+    },
+    {
+      "id": "mysql-fts",
+      "title": "MySQL full-text",
+      "url": "https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html",
+      "checked_on": "2026-11-13",
+      "scope": "Native full-text indexes."
+    },
+    {
+      "id": "pg-rls",
+      "title": "PostgreSQL row security",
+      "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+      "checked_on": "2026-11-13",
+      "scope": "Policies/forced RLS with owner/BYPASSRLS caveats."
+    },
+    {
+      "id": "gcs",
+      "title": "Cloud Storage locations",
+      "url": "https://cloud.google.com/storage/docs/locations",
+      "checked_on": "2026-11-13",
+      "scope": "Regional bucket configuration, not default multi-region residency."
+    },
+    {
+      "id": "s3",
+      "title": "Amazon S3",
+      "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+      "checked_on": "2026-11-13",
+      "scope": "Regional object storage and configuration responsibilities."
+    },
+    {
+      "id": "telemetry",
+      "title": "OpenTelemetry Collector",
+      "url": "https://opentelemetry.io/docs/collector/",
+      "checked_on": "2026-11-13",
+      "scope": "Collection/redaction/export; backend retention must be configured."
+    },
+    {
+      "id": "gcp-logs",
+      "title": "Regional Cloud Logging",
+      "url": "https://cloud.google.com/logging/docs/regionalized-logs",
+      "checked_on": "2026-11-13",
+      "scope": "Regional log buckets and routing configuration."
+    },
+    {
+      "id": "aws-logs",
+      "title": "CloudWatch Logs",
+      "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html",
+      "checked_on": "2026-11-13",
+      "scope": "Regional logging configuration required."
+    },
+    {
+      "id": "onnx",
+      "title": "ONNX Runtime",
+      "url": "https://onnxruntime.ai/docs/get-started/with-java.html",
+      "checked_on": "2026-11-13",
+      "scope": "CPU inference requires compatible ONNX model; not GPU training/RAG."
+    },
+    {
+      "id": "ci",
+      "title": "GitHub Actions",
+      "url": "https://docs.github.com/en/actions/about-github-actions/understanding-github-actions",
+      "checked_on": "2026-11-13",
+      "scope": "Build only source/synthetic tests; no production data exports."
+    },
+    {
+      "id": "jenkins",
+      "title": "Jenkins installation",
+      "url": "https://www.jenkins.io/doc/book/installing/",
+      "checked_on": "2026-11-13",
+      "scope": "Self-hostable CI including offline installation."
+    },
+    {
+      "id": "pages-price",
+      "title": "Cloudflare Pages pricing",
+      "url": "https://developers.cloudflare.com/pages/functions/pricing/",
+      "checked_on": "2026-11-13",
+      "scope": "Static requests free; build/file limits remain relevant."
+    },
+    {
+      "id": "run-price",
+      "title": "Cloud Run pricing",
+      "url": "https://cloud.google.com/run/pricing",
+      "checked_on": "2026-11-13",
+      "scope": "Reference request-billed active CPU $0.000024/vCPU-s and memory $0.0000025/GiB-s; region/edition/billing may differ."
+    },
+    {
+      "id": "sql-price",
+      "title": "Cloud SQL pricing",
+      "url": "https://cloud.google.com/sql/pricing",
+      "checked_on": "2026-11-13",
+      "scope": "Reference CPU $0.0413/vCPU-hour and memory $0.007/GiB-hour; HA replicas billed; not an India-specific quote."
+    },
+    {
+      "id": "fargate-price",
+      "title": "Fargate pricing",
+      "url": "https://aws.amazon.com/fargate/pricing/",
+      "checked_on": "2026-11-13",
+      "scope": "US East example Linux x86 CPU/memory rates; regional correction is an explicit assumption."
+    },
+    {
+      "id": "azure-price",
+      "title": "App Service pricing",
+      "url": "https://azure.microsoft.com/en-us/pricing/details/app-service/linux/",
+      "checked_on": "2026-11-13",
+      "scope": "SKU/region-specific charges; model uses a declared envelope until a SKU is pinned."
+    },
+    {
+      "id": "ec2-price",
+      "title": "EC2 pricing",
+      "url": "https://aws.amazon.com/ec2/pricing/on-demand/",
+      "checked_on": "2026-11-13",
+      "scope": "Instance type/region pricing; model envelope is not an exact SKU quote."
+    },
+    {
+      "id": "storage-price",
+      "title": "Cloud Storage pricing",
+      "url": "https://cloud.google.com/storage/pricing",
+      "checked_on": "2026-11-13",
+      "scope": "Storage, operations and network are distinct charges."
+    },
+    {
+      "id": "s3-price",
+      "title": "S3 pricing",
+      "url": "https://aws.amazon.com/s3/pricing/",
+      "checked_on": "2026-11-13",
+      "scope": "Storage, requests and egress vary; cross-provider estimate below is a planning envelope."
+    },
+    {
+      "id": "gdpr",
+      "title": "EU data protection obligations",
+      "url": "https://commission.europa.eu/law/law-topic/data-protection/information-business-and-organisations/obligations_en",
+      "checked_on": "2026-11-13",
+      "scope": "Control design and processor obligations; not a comprehensive legal assessment."
+    },
+    {
+      "id": "dpdp",
+      "title": "MeitY DPDP Rules 2025",
+      "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+      "checked_on": "2026-11-13",
+      "scope": "Official rule reference; applicability and phased commencement require qualified review."
+    },
+    {
+      "id": "hipaa",
+      "title": "HHS cloud/ePHI guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/faq/may-a-hipaa-covered-entity-or-business-associate-use-cloud-service-to-store-or-process-ephi/index.html",
+      "checked_on": "2026-11-13",
+      "scope": "BAA/vendor scope cannot be inferred from a product name."
+    },
+    {
+      "id": "pci",
+      "title": "PCI DSS",
+      "url": "https://www.pcisecuritystandards.org/standards/pci-dss/",
+      "checked_on": "2026-11-13",
+      "scope": "Payment-data scope/assessment required; hosted checkout does not certify the merchant."
+    },
+    {
+      "id": "rbi",
+      "title": "RBI payment-data storage FAQ",
+      "url": "https://rbi.org.in/CommonPerson/english/Scripts/FAQs.aspx?Id=2995",
+      "checked_on": "2026-11-13",
+      "scope": "Use requested RBI label to require an India payment-flow policy; jurisdiction/applicability review remains with owner."
+    },
+    {
+      "id": "iso",
+      "title": "ISO/IEC 27001",
+      "url": "https://www.iso.org/standard/27001",
+      "checked_on": "2026-11-13",
+      "scope": "ISMS/audit and organizational scope; no automatic certification."
+    },
+    {
+      "id": "soc",
+      "title": "AICPA SOC 2 criteria",
+      "url": "https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022",
+      "checked_on": "2026-11-13",
+      "scope": "Control/assurance review, not an automatic product certification."
+    },
+    {
+      "id": "pg-tx",
+      "title": "PostgreSQL transactions",
+      "url": "https://www.postgresql.org/docs/current/tutorial-transactions.html",
+      "checked_on": "2026-11-13",
+      "scope": "Atomic application/outbox writes; outbox/worker protocol remains custom."
+    },
+    {
+      "id": "local-fs",
+      "title": "Node filesystem API",
+      "url": "https://nodejs.org/api/fs.html",
+      "checked_on": "2026-11-13",
+      "scope": "Local file API; operational disk encryption/backups must be supplied."
+    },
+    {
+      "id": "workbox",
+      "title": "Workbox precaching",
+      "url": "https://developer.chrome.com/docs/workbox/modules/workbox-precaching",
+      "checked_on": "2026-11-13",
+      "scope": "Offline asset precaching; not transactional data sync."
+    },
+    {
+      "id": "git",
+      "title": "Git documentation",
+      "url": "https://git-scm.com/docs/git",
+      "checked_on": "2026-11-13",
+      "scope": "Local source versioning; build scripts run locally without hosted CI billing."
+    }
+  ],
+  "services": [
+    {
+      "id": "keycloak",
+      "layer": "auth",
+      "choice": "Keycloak",
+      "capability": "auth",
+      "placement": "host",
+      "source_ids": [
+        "keycloak-db",
+        "keycloak-admin"
+      ],
+      "compute_units": 1,
+      "database_ids": [
+        "pg",
+        "mysql",
+        "maria",
+        "sqlserver"
+      ],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Microsoft Entra ID",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Separate realm/schema and restricted database credentials are required; pin supported driver/database versions. Email delivery needs a separately reviewed SMTP integration if enabled."
+      ]
+    },
+    {
+      "id": "msg91",
+      "layer": "auth",
+      "choice": "MSG91 OTP",
+      "capability": "phone_otp",
+      "placement": "external",
+      "source_ids": [
+        "msg91",
+        "msg91-privacy"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Twilio Verify",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Regional API/Indian company status is not proof all data stays in India; DLT rules, contracts, fees and delivery need verification."
+      ]
+    },
+    {
+      "id": "yjs",
+      "layer": "realtime",
+      "choice": "Yjs + ws",
+      "capability": "collaboration",
+      "placement": "host",
+      "source_ids": [
+        "yjs",
+        "ws"
+      ],
+      "compute_units": 1,
+      "database_ids": [],
+      "frontend_ids": [
+        "react",
+        "vue",
+        "angular",
+        "next",
+        "sveltekit",
+        "react-native",
+        "next-native"
+      ],
+      "providers": [],
+      "alternative": "Automerge",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "CRDT state, authorization, document persistence, reconnects and cross-instance coordination must be implemented; live cursors alone are not the shared document."
+      ]
+    },
+    {
+      "id": "ws",
+      "layer": "realtime",
+      "choice": "ws",
+      "capability": "realtime",
+      "placement": "host",
+      "source_ids": [
+        "ws"
+      ],
+      "compute_units": 1,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Socket.IO",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Node sidecar with browser/native WebSocket clients; authentication, reconnect/backpressure and fan-out are custom integration work."
+      ]
+    },
+    {
+      "id": "expo",
+      "layer": "other",
+      "choice": "Expo SQLite + application sync queue",
+      "capability": "offline",
+      "placement": "device",
+      "source_ids": [
+        "expo-sqlite",
+        "android-offline"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [
+        "react-native",
+        "next-native"
+      ],
+      "providers": [],
+      "alternative": "Realm",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Persist writes before sync; use idempotency keys, versions, conflict policy, resumable photos and network-aware retries. Browser target needs a separate Dexie store."
+      ]
+    },
+    {
+      "id": "room",
+      "layer": "other",
+      "choice": "Android Room + WorkManager",
+      "capability": "offline",
+      "placement": "device",
+      "source_ids": [
+        "android-offline"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [
+        "compose"
+      ],
+      "providers": [],
+      "alternative": "SQLite via Android SQLiteOpenHelper",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Local persistence and background retries need an explicit application sync/conflict protocol."
+      ]
+    },
+    {
+      "id": "dexie",
+      "layer": "other",
+      "choice": "Dexie.js + application sync queue",
+      "capability": "offline",
+      "placement": "device",
+      "source_ids": [
+        "dexie",
+        "android-offline"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [
+        "react",
+        "vue",
+        "angular",
+        "next",
+        "sveltekit",
+        "astro",
+        "html"
+      ],
+      "providers": [],
+      "alternative": "IndexedDB API",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "IndexedDB persistence requires eviction handling, service-worker caching and a custom sync protocol; this is not Dexie Cloud."
+      ]
+    },
+    {
+      "id": "drift",
+      "layer": "other",
+      "choice": "Drift + application sync queue",
+      "capability": "offline",
+      "placement": "device",
+      "source_ids": [
+        "drift",
+        "android-offline"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [
+        "flutter"
+      ],
+      "providers": [],
+      "alternative": "sqflite",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Choose matching native/web drivers, test migrations/encryption and implement server reconciliation."
+      ]
+    },
+    {
+      "id": "pg-search",
+      "layer": "search",
+      "choice": "PostgreSQL full-text search",
+      "capability": "search",
+      "placement": "database",
+      "source_ids": [
+        "pg-fts"
+      ],
+      "compute_units": 0,
+      "database_ids": [
+        "pg"
+      ],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Meilisearch",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Indexing, tokenization and language/ranking quality must be tested; not a replacement for advanced search workloads."
+      ]
+    },
+    {
+      "id": "mysql-search",
+      "layer": "search",
+      "choice": "MySQL full-text indexes",
+      "capability": "search",
+      "placement": "database",
+      "source_ids": [
+        "mysql-fts"
+      ],
+      "compute_units": 0,
+      "database_ids": [
+        "mysql"
+      ],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Meilisearch",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Index/tokenizer semantics and language support must fit the product; advanced search is not assumed."
+      ]
+    },
+    {
+      "id": "rls",
+      "layer": "other",
+      "choice": "PostgreSQL forced row-level security",
+      "capability": "tenant_isolation",
+      "placement": "database",
+      "source_ids": [
+        "pg-rls"
+      ],
+      "compute_units": 0,
+      "database_ids": [
+        "pg"
+      ],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "PostgreSQL separate database per tenant",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Application role must not own tables or have BYPASSRLS; FORCE ROW LEVEL SECURITY, tenant checks and negative authorization tests are mandatory."
+      ]
+    },
+    {
+      "id": "gcs",
+      "layer": "storage",
+      "choice": "Google Cloud Storage regional bucket",
+      "capability": "storage",
+      "placement": "host",
+      "source_ids": [
+        "gcs"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [
+        "gcp"
+      ],
+      "alternative": "Amazon S3",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Choose the same reviewed region, private access, signed URLs and in-region lifecycle/backup policy; do not use a default multi-region bucket."
+      ]
+    },
+    {
+      "id": "s3",
+      "layer": "storage",
+      "choice": "Amazon S3 regional bucket",
+      "capability": "storage",
+      "placement": "host",
+      "source_ids": [
+        "s3"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [
+        "aws"
+      ],
+      "alternative": "Google Cloud Storage",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Explicit bucket region, encryption, access policies and no cross-region replication are required when residency restricts data."
+      ]
+    },
+    {
+      "id": "local-storage",
+      "layer": "storage",
+      "choice": "Local filesystem + encrypted backup",
+      "capability": "storage",
+      "placement": "host",
+      "source_ids": [
+        "local-fs"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [
+        "none"
+      ],
+      "alternative": "SeaweedFS",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Provisioned persistent local disks, quotas, access control, encryption and independent restore-tested backup are required; not an S3 deployment."
+      ]
+    },
+    {
+      "id": "stripe",
+      "layer": "payments",
+      "choice": "Stripe Checkout",
+      "capability": "payments",
+      "placement": "external",
+      "source_ids": [
+        "stripe",
+        "stripe-dpa",
+        "stripe-pricing"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Adyen Checkout",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Assumes an eligible merchant jurisdiction. Use hosted checkout, verify webhook signatures and idempotency; do not store card credentials; complete merchant PCI/DPA/transfer review."
+      ]
+    },
+    {
+      "id": "outbox",
+      "layer": "queue",
+      "choice": "PostgreSQL transactional outbox + worker",
+      "capability": "queue",
+      "placement": "database",
+      "source_ids": [
+        "pg-tx"
+      ],
+      "compute_units": 0.25,
+      "database_ids": [
+        "pg"
+      ],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "RabbitMQ",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Outbox rows share the database bill. Worker retries must be idempotent; tune polling, retry/dead-letter policy and retention."
+      ]
+    },
+    {
+      "id": "onnx",
+      "layer": "ml",
+      "choice": "ONNX Runtime CPU inference",
+      "capability": "inference",
+      "placement": "host",
+      "source_ids": [
+        "onnx"
+      ],
+      "compute_units": 1,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "TensorFlow Serving",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Assumes an exportable CPU-compatible ONNX model; validate predictions and CPU/RAM needs. This is not GPU training or a RAG architecture."
+      ]
+    },
+    {
+      "id": "otel",
+      "layer": "observability",
+      "choice": "OpenTelemetry Collector + structured logs",
+      "capability": "observability",
+      "placement": "host",
+      "source_ids": [
+        "telemetry",
+        "gcp-logs",
+        "aws-logs"
+      ],
+      "compute_units": 0.25,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Prometheus with application instrumentation",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Redact sensitive values, use host-region retention/routing, and provision a durable regional log backend. No personal data in tracing baggage."
+      ]
+    },
+    {
+      "id": "actions",
+      "layer": "ci_cd",
+      "choice": "GitHub Actions",
+      "capability": "ci",
+      "placement": "build",
+      "source_ids": [
+        "ci"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Jenkins",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Source and synthetic fixtures only; production data, secrets and personal data must never be sent to external build logs. Usage above included minutes is billed."
+      ]
+    },
+    {
+      "id": "jenkins",
+      "layer": "ci_cd",
+      "choice": "Jenkins on local persistent storage",
+      "capability": "ci",
+      "placement": "host",
+      "source_ids": [
+        "jenkins"
+      ],
+      "compute_units": 0.5,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [
+        "none"
+      ],
+      "alternative": "Git with local build scripts",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Use an offline plugin/artifact mirror in air-gapped deployments; provision persistent CI disk and maintain the controller; no external runtime dependency."
+      ]
+    },
+    {
+      "id": "cdn",
+      "layer": "cdn",
+      "choice": "Cloudflare Pages static delivery",
+      "capability": "cdn",
+      "placement": "host",
+      "source_ids": [
+        "pages-price"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [
+        "cloudflare"
+      ],
+      "alternative": "Amazon CloudFront",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Static/CDN delivery is bundled with hosting and is not billed again. No private/country-restricted data is sent to global edges."
+      ]
+    },
+    {
+      "database_ids": [],
+      "providers": [],
+      "compute_units": 0,
+      "tradeoffs": [
+        "Local build artifacts must be reproducible and verified before deployment."
+      ],
+      "why_not": "Adds an integration or operating requirement unnecessary for this selected profile.",
+      "id": "local-build",
+      "layer": "ci_cd",
+      "choice": "Git with local build scripts",
+      "capability": "ci",
+      "placement": "build",
+      "source_ids": [
+        "git"
+      ],
+      "frontend_ids": [],
+      "alternative": "GitHub Actions"
+    },
+    {
+      "database_ids": [],
+      "providers": [],
+      "compute_units": 0,
+      "tradeoffs": [
+        "Precached public content needs a first successful online load and explicit cache invalidation; browser eviction can remove cached assets."
+      ],
+      "why_not": "Adds an integration or operating requirement unnecessary for this selected profile.",
+      "id": "workbox",
+      "layer": "other",
+      "choice": "Workbox precaching",
+      "capability": "static_offline",
+      "placement": "device",
+      "source_ids": [
+        "workbox"
+      ],
+      "frontend_ids": [
+        "astro",
+        "html",
+        "react",
+        "vue",
+        "angular",
+        "sveltekit",
+        "next"
+      ],
+      "alternative": "Native Service Worker Cache API"
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "gdpr",
+      "source_ids": [
+        "gdpr"
+      ],
+      "technical_controls": [
+        "tls_in_transit",
+        "encryption_at_rest",
+        "least_privilege",
+        "audit_and_retention",
+        "backup_restore",
+        "data_minimization_and_deletion"
+      ],
+      "owner_actions": [
+        "Review scope and effective obligations with qualified personnel.",
+        "Implement and test controls; execute required contracts and obtain independent assessment where applicable."
+      ],
+      "verification": "design_only_not_certified"
+    },
+    {
+      "id": "dpdp",
+      "source_ids": [
+        "dpdp"
+      ],
+      "technical_controls": [
+        "tls_in_transit",
+        "encryption_at_rest",
+        "least_privilege",
+        "audit_and_retention",
+        "backup_restore",
+        "data_minimization_and_deletion"
+      ],
+      "owner_actions": [
+        "Review scope and effective obligations with qualified personnel.",
+        "Implement and test controls; execute required contracts and obtain independent assessment where applicable."
+      ],
+      "verification": "design_only_not_certified"
+    },
+    {
+      "id": "hipaa",
+      "source_ids": [
+        "hipaa"
+      ],
+      "technical_controls": [
+        "tls_in_transit",
+        "encryption_at_rest",
+        "least_privilege",
+        "audit_and_retention",
+        "backup_restore",
+        "data_minimization_and_deletion"
+      ],
+      "owner_actions": [
+        "Review scope and effective obligations with qualified personnel.",
+        "Implement and test controls; execute required contracts and obtain independent assessment where applicable."
+      ],
+      "verification": "design_only_not_certified"
+    },
+    {
+      "id": "pci",
+      "source_ids": [
+        "pci"
+      ],
+      "technical_controls": [
+        "tls_in_transit",
+        "encryption_at_rest",
+        "least_privilege",
+        "audit_and_retention",
+        "backup_restore",
+        "data_minimization_and_deletion"
+      ],
+      "owner_actions": [
+        "Review scope and effective obligations with qualified personnel.",
+        "Implement and test controls; execute required contracts and obtain independent assessment where applicable."
+      ],
+      "verification": "design_only_not_certified"
+    },
+    {
+      "id": "rbi",
+      "source_ids": [
+        "rbi"
+      ],
+      "technical_controls": [
+        "tls_in_transit",
+        "encryption_at_rest",
+        "least_privilege",
+        "audit_and_retention",
+        "backup_restore",
+        "data_minimization_and_deletion"
+      ],
+      "owner_actions": [
+        "Review scope and effective obligations with qualified personnel.",
+        "Implement and test controls; execute required contracts and obtain independent assessment where applicable."
+      ],
+      "verification": "design_only_not_certified"
+    },
+    {
+      "id": "iso",
+      "source_ids": [
+        "iso"
+      ],
+      "technical_controls": [
+        "tls_in_transit",
+        "encryption_at_rest",
+        "least_privilege",
+        "audit_and_retention",
+        "backup_restore",
+        "data_minimization_and_deletion"
+      ],
+      "owner_actions": [
+        "Review scope and effective obligations with qualified personnel.",
+        "Implement and test controls; execute required contracts and obtain independent assessment where applicable."
+      ],
+      "verification": "design_only_not_certified"
+    },
+    {
+      "id": "soc",
+      "source_ids": [
+        "soc"
+      ],
+      "technical_controls": [
+        "tls_in_transit",
+        "encryption_at_rest",
+        "least_privilege",
+        "audit_and_retention",
+        "backup_restore",
+        "data_minimization_and_deletion"
+      ],
+      "owner_actions": [
+        "Review scope and effective obligations with qualified personnel.",
+        "Implement and test controls; execute required contracts and obtain independent assessment where applicable."
+      ],
+      "verification": "design_only_not_certified"
+    }
+  ],
+  "pricing": {
+    "cloudrun_hour": {
+      "min": 0.1044,
+      "max": 0.18792,
+      "source_ids": [
+        "run-price"
+      ],
+      "basis": "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote."
+    },
+    "ecs_hour": {
+      "min": 0.0493704,
+      "max": 0.0987408,
+      "source_ids": [
+        "fargate-price"
+      ],
+      "basis": "1 vCPU and 2 GiB US East Linux x86 example, 1\u20132x regional planning allowance; load balancer/network charged separately."
+    },
+    "appservice_hour": {
+      "min": 0.075,
+      "max": 0.3,
+      "source_ids": [
+        "azure-price"
+      ],
+      "basis": "Authored broad SKU/region planning envelope; exact App Service SKU not quoted by this model."
+    },
+    "ec2_hour": {
+      "min": 0.05,
+      "max": 0.2,
+      "source_ids": [
+        "ec2-price"
+      ],
+      "basis": "Authored VM planning envelope; exact SKU, reserved pricing and license not selected."
+    },
+    "local_hour": {
+      "min": 0.02,
+      "max": 0.1,
+      "source_ids": [
+        "ec2-price"
+      ],
+      "basis": "Authored incremental electricity/storage operating allowance on already-owned hardware; not an AWS/local tariff quote. Hardware purchase and labor excluded."
+    },
+    "database_cpu_hour": {
+      "min": 0.0413,
+      "max": 0.0826,
+      "source_ids": [
+        "sql-price"
+      ],
+      "basis": "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+    },
+    "database_memory_gb_hour": {
+      "min": 0.007,
+      "max": 0.014,
+      "source_ids": [
+        "sql-price"
+      ],
+      "basis": "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate."
+    },
+    "database_storage_gb": {
+      "min": 0.1,
+      "max": 0.4,
+      "source_ids": [
+        "sql-price"
+      ],
+      "basis": "Authored regional persistent-storage envelope, including replica copies explicitly in quantity."
+    },
+    "object_storage_gb": {
+      "min": 0.02,
+      "max": 0.05,
+      "source_ids": [
+        "storage-price",
+        "s3-price"
+      ],
+      "basis": "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance."
+    },
+    "egress_gb": {
+      "min": 0.08,
+      "max": 0.2,
+      "source_ids": [
+        "storage-price",
+        "s3-price"
+      ],
+      "basis": "Authored internet-egress envelope; actual destination, free quota and routes vary."
+    },
+    "backup_gb": {
+      "min": 0.03,
+      "max": 0.15,
+      "source_ids": [
+        "storage-price",
+        "s3-price"
+      ],
+      "basis": "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed."
+    },
+    "otp_message": {
+      "min": 0.002,
+      "max": 0.03,
+      "source_ids": [
+        "msg91"
+      ],
+      "basis": "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed."
+    },
+    "payment_fraction": {
+      "min": 0.02,
+      "max": 0.04,
+      "source_ids": [
+        "stripe-pricing"
+      ],
+      "basis": "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary."
+    },
+    "payment_fixed": {
+      "min": 0,
+      "max": 0.5,
+      "source_ids": [
+        "stripe-pricing"
+      ],
+      "basis": "Assumed per-transaction USD fee envelope, not a tariff quote."
+    }
+  }
+}

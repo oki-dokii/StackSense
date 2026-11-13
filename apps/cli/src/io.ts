@@ -57,7 +57,7 @@ export async function writeJson(
 }
 export function batchNames(
   values: unknown[],
-  suffix: 'validation' | 'core_plan' = 'validation',
+  suffix: 'validation' | 'core_plan' | 'output' = 'validation',
 ): string[] {
   const used = new Set<string>();
   return values.map((value, index) => {
