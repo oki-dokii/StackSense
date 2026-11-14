@@ -1,9 +1,11 @@
 {
   "architecture_style": "other",
   "assumptions": [],
-  "catalog_version": "0.3.0",
+  "catalog_version": "0.4.0",
   "control_plan": null,
   "cost_breakdown": [],
+  "cost_groups": [],
+  "cost_sensitivity": [],
   "data_flows": [],
   "decision_trace": {
     "complete_candidates": 0,
@@ -12,7 +14,7 @@
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.5.0",
+  "engine_version": "0.6.0",
   "estimate_status": "not_estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -21,8 +23,11 @@
     "max": 0,
     "min": 0
   },
-  "rules_version": "0.5.0",
-  "services_version": "0.5.0",
+  "integration_reviews": [],
+  "plan_comparison": [],
+  "review_actions": [],
+  "rules_version": "0.6.0",
+  "services_version": "0.6.0",
   "stack": null,
   "status": "invalid_input",
   "summary": "Input is invalid; no recommendation or cost estimate was produced.",

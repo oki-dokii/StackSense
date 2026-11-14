@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.4.0",
   "reviewed_on": "2026-11-13",
   "sources": [
     {
@@ -302,6 +302,27 @@
       "url": "https://docs.aws.amazon.com/general/latest/gr/rds-service.html",
       "checked_on": "2026-11-13",
       "scope": "RDS Mumbai regional service; combined with RDS PostgreSQL product evidence. No SKU/version, legal or workload guarantee."
+    },
+    {
+      "id": "azure-ase",
+      "title": "App Service Environment v3 region and data boundary",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/environment/overview",
+      "checked_on": "2026-11-13",
+      "scope": "Central India supported; app content/settings/secrets retained within deployment region. Separate services/identity not covered."
+    },
+    {
+      "id": "azure-pg-regions",
+      "title": "Azure PostgreSQL Flexible Server overview",
+      "url": "https://learn.microsoft.com/en-us/azure/postgresql/overview",
+      "checked_on": "2026-11-13",
+      "scope": "Central India Intel compute and in-region HA support. Exact SKU availability/quota and deployment configuration still need review."
+    },
+    {
+      "id": "azure-pg-backup",
+      "title": "Azure PostgreSQL backup and restore",
+      "url": "https://learn.microsoft.com/en-us/azure/postgresql/backup-restore/concepts-backup-restore",
+      "checked_on": "2026-11-13",
+      "scope": "Use in-region local/zone backup storage; disable geo-redundancy and cross-region read replicas for this profile."
     }
   ],
   "entries": [
@@ -1387,6 +1408,72 @@
       "persistent_volume": true,
       "regions": [],
       "managed_databases": []
+    },
+    {
+      "id": "ase-india",
+      "name": "Azure App Service Environment v3 (Central India, Linux Iv2)",
+      "layer": "hosting",
+      "status": "active",
+      "source_ids": [
+        "azure-ase"
+      ],
+      "review_scope": "Central India Linux containers on Isolated v2; choose internal networking, scoped logs/backups and no cross-region replication. Separate Entra/third-party data flows remain independently reviewed.",
+      "languages": [],
+      "complexity": 3,
+      "operations": 2,
+      "cost_class": 5,
+      "strengths": [
+        "Managed application/container runtime; database is a separately provisioned managed service."
+      ],
+      "tradeoffs": [
+        "Isolated v2 is materially more expensive than shared App Service; no dedicated physical host deployment is assumed.",
+        "No Entra geography, SQL Server migration/reuse, application SLA or legal certification follows from the regional compute profile."
+      ],
+      "provider": "azure",
+      "deployments": [
+        "managed_cloud"
+      ],
+      "runtimes": [
+        "none",
+        "node",
+        "python",
+        "jvm",
+        "dotnet",
+        "go",
+        "php"
+      ],
+      "static_assets": true,
+      "persistent_volume": false,
+      "regions": [
+        {
+          "residency": "india",
+          "region": "centralindia",
+          "source_ids": [
+            "azure-ase"
+          ]
+        }
+      ],
+      "managed_databases": [
+        {
+          "database_id": "pg",
+          "choice": "Azure Database for PostgreSQL Flexible Server (Central India, local/zone backups)",
+          "source_ids": [
+            "azure-pg-regions",
+            "azure-pg-backup"
+          ],
+          "regions": [
+            {
+              "residency": "india",
+              "region": "centralindia",
+              "source_ids": [
+                "azure-pg-regions",
+                "azure-pg-backup"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_region": "centralindia"
     }
   ]
 }

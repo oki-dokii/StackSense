@@ -4,7 +4,7 @@
     "Interpreted project.description phrase \"double-entry ledger\" as ledger; this bounded hint does not infer legal or regional requirements.",
     "Persistent application data is inferred from project.type=fintech; domain data modeling remains required."
   ],
-  "catalog_version": "0.3.0",
+  "catalog_version": "0.4.0",
   "control_plan": null,
   "core_rejections": [
     {
@@ -18,6 +18,15 @@
     },
     {
       "candidate_id": "appservice",
+      "code": "PROVIDER_MISMATCH",
+      "fields": [
+        "infrastructure.cloud_preference"
+      ],
+      "layer": "hosting",
+      "message": "Explicit cloud preference does not match this provider."
+    },
+    {
+      "candidate_id": "ase-india",
       "code": "PROVIDER_MISMATCH",
       "fields": [
         "infrastructure.cloud_preference"
@@ -287,19 +296,11 @@
       ],
       "layer": "plan",
       "message": "Managed database has no reviewed primary-region mapping for requested residency."
-    },
-    {
-      "candidate_id": "next-native|django|maria|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
     }
   ],
   "cost_breakdown": [],
+  "cost_groups": [],
+  "cost_sensitivity": [],
   "data_flows": [],
   "decision_trace": {
     "complete_candidates": 0,
@@ -393,7 +394,7 @@
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.5.0",
+  "engine_version": "0.6.0",
   "estimate_status": "not_estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -402,9 +403,90 @@
     "max": 0,
     "min": 0
   },
-  "rules_version": "0.5.0",
+  "integration_reviews": [],
+  "plan_comparison": [],
+  "review_actions": [
+    {
+      "affected_components": [
+        "complete deployment"
+      ],
+      "code": "COMPLETE_PLAN_COVERAGE_GAP",
+      "evidence_required": [
+        "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+      ],
+      "fields": [
+        "infrastructure",
+        "requirements",
+        "compliance"
+      ],
+      "id": "COMPLETE_PLAN_COVERAGE_GAP:infrastructure|requirements|compliance",
+      "kind": "evidence_gap",
+      "next_action": "Review the rejected constraints against the scoped catalog; add reviewed coverage and rerun the unchanged input.",
+      "references": [],
+      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+    },
+    {
+      "affected_components": [
+        "phone delivery",
+        "identity broker"
+      ],
+      "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+      "evidence_required": [
+        "Evidence covering india storage AND processing of phone numbers, message content, delivery records, backups and logs.",
+        "Country routing, telecom/subprocessor list, retention/deletion, support access and tenant-specific contract/configuration; an Indian endpoint is insufficient.",
+        "SMS eligibility, sender/template registration, Keycloak custom authentication SPI and delivery tariff/volume review."
+      ],
+      "fields": [
+        "infrastructure.data_residency",
+        "requirements.auth"
+      ],
+      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.auth",
+      "kind": "evidence_gap",
+      "next_action": "Request the scoped vendor data-flow and configuration evidence. Review a regional alternative without changing the original residency requirement.",
+      "references": [
+        {
+          "checked_on": "2026-11-13",
+          "id": "msg91-privacy",
+          "scope": "Multiple hosting geographies; strict residency not established by this source.",
+          "title": "MSG91 privacy",
+          "url": "https://msg91.com/privacy-policy"
+        }
+      ],
+      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+    },
+    {
+      "affected_components": [
+        "hosted checkout",
+        "payment webhooks"
+      ],
+      "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+      "evidence_required": [
+        "Merchant- and product-specific india payment-data flow, including processors, card networks, webhooks, logs and backups.",
+        "Eligibility, settlement, retention, subprocessors and contract scope; distinguish domestic and international transactions.",
+        "Hosted checkout/tokenization, signed idempotent webhooks, reconciliation and transaction/FX/refund fees."
+      ],
+      "fields": [
+        "infrastructure.data_residency",
+        "requirements.payments"
+      ],
+      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.payments",
+      "kind": "evidence_gap",
+      "next_action": "Request the scoped vendor data-flow and configuration evidence. Review a regional alternative without changing the original residency requirement.",
+      "references": [
+        {
+          "checked_on": "2026-11-13",
+          "id": "razorpay-privacy",
+          "scope": "Candidate regional payment provider privacy terms; not sufficient to approve every merchant, payment product or international data flow. Not selected by this release.",
+          "title": "Razorpay privacy policy",
+          "url": "https://razorpay.com/privacy-policy/"
+        }
+      ],
+      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+    }
+  ],
+  "rules_version": "0.6.0",
   "scenario_id": "P4",
-  "services_version": "0.5.0",
+  "services_version": "0.6.0",
   "stack": null,
   "status": "infeasible",
   "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",

@@ -1,17 +1,17 @@
 # StackSense
 
-A local, deterministic technology stack recommendation engine for the Synergy ’26 challenge, implemented in [five phases](docs/PHASES.md).
+A local, deterministic technology stack recommendation engine for the Synergy ’26 challenge, implemented in [phases](docs/PHASES.md).
 
-**Release 0.5.0: all five technical phases are implemented and verified.** The CLI, local API and responsive workspace share a deterministic engine. The final report and submission ZIP are prepared; owner review and Drive/Unstop submission remain pending. Four public scenarios retain explicit evidence blockers. [Phase 5 evidence and limitations](docs/PHASE_5.md).
+**Release 0.6.0 adds actionable blocker guidance, existing-system reviews, complete-plan comparison and cost sensitivity.** A separate Azure Central India isolated hosting/database/storage profile narrows regional coverage gaps. Four public scenarios still need decisive service/tenant evidence. [Phase 6 implementation and limits](docs/PHASE_6.md). The report and submission ZIP are prepared; owner review and Drive/Unstop submission remain pending.
 
 [Download the submission ZIP](https://github.com/oki-dokii/StackSense/blob/main/deliverables/StackSense26_SohamBanerjee.zip) · [Read the report](https://github.com/oki-dokii/StackSense/blob/main/output/pdf/Report_SohamBanerjee.pdf) · [Owner checklist](docs/SUBMISSION.md)
 
 
-A [post-release repository comparison](docs/REPOSITORY_COMPARISON.md) identifies the remaining coverage and cost-calibration priorities; [backlog and acceptance gates](docs/IMPROVEMENT_BACKLOG.md). Three additional evidence-provenance checks now run in CI. The recommendation engine and report remain 0.5.0.
+A [post-release repository comparison](docs/REPOSITORY_COMPARISON.md) identifies the remaining coverage and cost-calibration priorities; [backlog and acceptance gates](docs/IMPROVEMENT_BACKLOG.md). Three additional evidence-provenance checks now run in CI. Phase 6 implements the first improvements; remaining evidence/calibration tasks are tracked explicitly.
 
 ## Run
 
-Prerequisites: **Node.js 22.17.0 or newer within Node 22, or Node 24 LTS**, and npm. Tested here with Node 22.17.1, npm 10.9.2, macOS arm64. Windows/Linux commands use standard Node/npm APIs but have not yet been exercised on those OSes. `.nvmrc` records the tested runtime; exact dependencies are pinned in `package-lock.json`.
+Prerequisites: **Node.js 22.17.0 or newer within Node 22, or Node 24 LTS**, and npm. Tested here with Node 22.17.1, npm 10.9.2, macOS arm64. GitHub CI exercises macOS, Ubuntu and Windows on Node 22/24; local setup timings are measured separately on macOS. `.nvmrc` records the tested runtime; exact dependencies are pinned in `package-lock.json`.
 
 ```sh
 npm ci
@@ -48,7 +48,7 @@ After building, `node /absolute/path/to/StackSense/dist/apps/cli/src/main.js --i
 
 ## Local workspace and API
 
-After building, `npm start` serves both UI and API at **http://127.0.0.1:3000**. Optional `STACKSENSE_PORT` changes the port. Open the workspace, complete a guided brief or import JSON, then evaluate. It supports one scenario or batches of 1–100, all four result statuses, source-backed explanation cards, costs and exact JSON exports. Editing inputs marks results stale and disables export until rerun. Drafts stay in memory; reloading discards them.
+After building, `npm start` serves both UI and API at **http://127.0.0.1:3000**. Optional `STACKSENSE_PORT` changes the port. Open the workspace, complete a guided brief or import JSON, then evaluate. It supports one scenario or batches of 1–100, all four statuses, source-backed explanations, blocker/integration checklists, complete-plan comparison, cost categories/sensitivity and exact JSON exports. Editing inputs marks results stale and disables export until rerun. Drafts stay in memory; reloading discards them.
 
 For development, run `npm run dev:api` and `npm run dev:web` in separate terminals, then open http://127.0.0.1:5173. No external recommendation requests or account/API keys are needed. See [API contract](docs/API_CLI.md), [Phase 4](docs/PHASE_4.md) and [actual screenshot](docs/evidence/phase4-report-desktop.jpg).
 
@@ -58,11 +58,11 @@ For development, run `npm run dev:api` and `npm run dev:web` in separate termina
 
 The actual public batch returns one `ok`, one `ok_with_warnings` and four `infeasible` reports, with exit **3**. Every item exports as `<scenario_id>_output.json`; the manifest is `recommendation_manifest.json`. Inspect the [committed outputs](outputs/README.md) and [Phase 3 evidence](docs/PHASE_3.md). A no-plan cost of 0–0 means **not estimated**. P1's static assets genuinely have a zero-cost hosting band under its stated limits; P3's USD 875.51–7785.95 band includes explicit sizing/pricing assumptions and a budget-risk warning.
 
-The service catalog has 23 profiles, 45 primary-source records and two known EOL rules, alongside the 33-entry/43-source core catalog. Sources establish reviewed building blocks; configured controls, contracts, model fit and workload targets still require project-specific verification. The output is a design, not certification or a provider quote.
+The service catalog has 24 profiles, 53 primary-source records and two known EOL rules, alongside the 34-entry/46-source core catalog. Sources establish reviewed building blocks; configured controls, contracts, model fit and workload targets still require project-specific verification. The output is a design, not certification or a provider quote.
 
 ## Provisional core planning
 
-The current core catalog has **33 entries and 43 official-source records**, including reviewed AWS Mumbai primary compute/PostgreSQL mappings. The engine checks platform/rendering coverage, explicit provider/deployment constraints, reviewed primary regions, database drivers and deployment compatibility, then applies a deterministic whole-plan rubric. Inspect [Phase 2](docs/PHASE_2.md) and [catalog evidence](docs/CATALOG.md) for exact coverage and limitations.
+The current core catalog has **34 entries and 46 official-source records**, including AWS Mumbai and a separately scoped Azure Central India isolated compute/PostgreSQL profile. The engine checks platform/rendering coverage, explicit provider/deployment constraints, reviewed primary regions, database drivers and deployment compatibility, then applies a deterministic whole-plan rubric. Inspect [Phase 2](docs/PHASE_2.md) and [catalog evidence](docs/CATALOG.md) for exact coverage and limitations.
 
 Core reports use `status: core_plan | blocked | invalid_input`, `scope: core_layers_only`, four selections where unblocked, source IDs, fit contributions, alternatives, assumptions, pending requirements and a rejection trace. They contain no fabricated USD cost estimate. Files use `_core_plan.json`.
 
@@ -97,7 +97,7 @@ npm run verify:release   # verify all actual output snapshots
 python3 scripts/check_docs.py
 ```
 
-Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: [Phase 1](docs/PHASE_1.md), [Phase 2](docs/PHASE_2.md), [Phase 3](docs/PHASE_3.md), [Phase 4](docs/PHASE_4.md) and [Phase 5](docs/PHASE_5.md): **201 tests pass**, with a successful build. Local API/cached setup timings are recorded in Phase 5. Other-OS and recommended-workload behavior are not established by those local measurements.
+Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: [Phase 1](docs/PHASE_1.md), [Phase 2](docs/PHASE_2.md), [Phase 3](docs/PHASE_3.md), [Phase 4](docs/PHASE_4.md) [Phase 5](docs/PHASE_5.md) and [Phase 6](docs/PHASE_6.md): **220 tests pass**, plus three capture-provenance tests, with a successful build. Current local API/cached setup timings are recorded in Phase 6. Other-OS and recommended-workload behavior are not established by those local measurements.
 
 | Technology | Pinned version | Role |
 |---|---|---|
@@ -158,6 +158,6 @@ Start with [plan.md](plan.md), the [phase tracker](docs/PHASES.md), and [documen
 
 ## Submission and credits
 
-The report, 20 genuine public/evaluation outputs, screenshot evidence, local setup/API measurements and submission ZIP are prepared. Owner review, Drive access verification and Unstop submission remain required. Broader regional/vendor evidence and cross-OS/expert validation remain limitations. See [submission checklist](docs/SUBMISSION.md). Deadline in the supplied brief: **15 November 2026, 23:59 IST**; do not modify the submitted Drive folder afterward.
+The report, 20 genuine public/evaluation outputs, screenshot evidence, local setup/API measurements and submission ZIP are prepared. Owner review, Drive access verification and Unstop submission remain required. Broader regional/vendor evidence, workload calibration and independent expert validation remain limitations. See [submission checklist](docs/SUBMISSION.md). Deadline in the supplied brief: **15 November 2026, 23:59 IST**; do not modify the submitted Drive folder afterward.
 
 Requirements come from user-supplied `StackSense_Problem_Statement.pdf` v1.0; public fixtures from `stacksense_public_scenarios.json`. No official expected stacks were provided. All installed third-party tools are listed above and locked in `package-lock.json`; source links/research and AI assistance are recorded in [references](docs/REFERENCES.md) and [AI assistance](docs/AI_ASSISTANCE.md). Participant review/ownership remains required by the challenge.

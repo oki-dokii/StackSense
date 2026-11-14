@@ -1,6 +1,6 @@
 {
   "case_set_sha256": "3d17707b1c1214a25ad9441ee1a88344ec341e9a2e54d09ed1347c8fb8a2e3ed",
-  "engine_version": "0.5.0",
+  "engine_version": "0.6.0",
   "records": [
     {
       "category": "Missing fields",

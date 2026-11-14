@@ -94,7 +94,7 @@ await writeFile(
   join(root, 'evaluation/results.json'),
   serialize(
     {
-      engine_version: '0.5.0',
+      engine_version: '0.6.0',
       case_set_sha256: createHash('sha256')
         .update(await readFile(join(root, 'evaluation/cases.json')))
         .digest('hex'),

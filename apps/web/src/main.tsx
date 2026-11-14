@@ -56,6 +56,8 @@ const money = (value: number) =>
     currency: 'USD',
     maximumFractionDigits: 2,
   }).format(value);
+const quantity = (value: number) =>
+  new Intl.NumberFormat('en-US', { maximumFractionDigits: 3 }).format(value);
 function Mark() {
   return (
     <svg viewBox="0 0 28 28" width="28" height="28" aria-hidden="true">
@@ -872,6 +874,176 @@ function App() {
                           ))}
                         </section>
                       )}
+                      {result.review_actions.length > 0 && (
+                        <section
+                          className="panel"
+                          aria-labelledby="resolution-heading"
+                        >
+                          <h2 id="resolution-heading">
+                            How to resolve the blockers
+                          </h2>
+                          <p>
+                            These tasks preserve your requirements. Completing a
+                            checklist does not approve a deployment; reviewed
+                            evidence and a new evaluation are required.
+                          </p>
+                          {result.review_actions.map((action) => (
+                            <details key={action.id}>
+                              <summary>
+                                {action.affected_components.join(' / ')} ·{' '}
+                                {label(action.kind)}
+                              </summary>
+                              <p>{action.next_action}</p>
+                              <p>
+                                <strong>Affected:</strong>{' '}
+                                {action.affected_components.join(', ')}
+                              </p>
+                              <p>
+                                <strong>Fields:</strong>{' '}
+                                {action.fields.join(', ')}
+                              </p>
+                              <ul>
+                                {action.evidence_required.map((item) => (
+                                  <li key={item}>{item}</li>
+                                ))}
+                              </ul>
+                              <div className="sources">
+                                {action.references.map((source) => (
+                                  <a
+                                    key={source.id}
+                                    href={source.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                  >
+                                    {source.title} ↗
+                                  </a>
+                                ))}
+                              </div>
+                              <p className="muted">{action.resolution_gate}</p>
+                            </details>
+                          ))}
+                        </section>
+                      )}
+                      {result.integration_reviews.length > 0 && (
+                        <section
+                          className="panel"
+                          aria-labelledby="integration-heading"
+                        >
+                          <h2 id="integration-heading">
+                            Existing-system integration review
+                          </h2>
+                          <p>
+                            Reuse and migration need a separate decision from
+                            the new application stack.
+                          </p>
+                          {result.integration_reviews.map(
+                            (integration, index) => (
+                              <details key={index}>
+                                <summary>
+                                  {integration.system} · Pending project
+                                  evidence
+                                </summary>
+                                <p>{integration.protocol}</p>
+                                <p>{integration.data_boundary}</p>
+                                <ul>
+                                  {integration.tasks.map((task) => (
+                                    <li key={task}>{task}</li>
+                                  ))}
+                                </ul>
+                                <p>{integration.cost_treatment}</p>
+                                <div className="sources">
+                                  {integration.references.map((source) => (
+                                    <a
+                                      key={source.id}
+                                      href={source.url}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                    >
+                                      {source.title} ↗
+                                    </a>
+                                  ))}
+                                </div>
+                              </details>
+                            ),
+                          )}
+                        </section>
+                      )}
+                      {result.plan_comparison.length > 0 && (
+                        <section
+                          className="panel"
+                          aria-labelledby="comparison-heading"
+                        >
+                          <h2 id="comparison-heading">
+                            Compare complete plans
+                          </h2>
+                          <p>
+                            Up to three compatible plans after service and
+                            control checks. Scores are engineering preferences,
+                            not confidence probabilities. Ties use cost upper
+                            bound, operated components, then stable identifier.
+                          </p>
+                          {result.plan_comparison.map((plan) => (
+                            <details key={plan.plan_id}>
+                              <summary>
+                                {plan.selected
+                                  ? 'Selected'
+                                  : plan.tied_on_score
+                                    ? 'Equal-score alternative'
+                                    : 'Alternative'}{' '}
+                                · {plan.core.frontend} / {plan.core.backend} /{' '}
+                                {plan.core.hosting} · {plan.score} points
+                              </summary>
+                              <dl>
+                                <dt>Architecture</dt>
+                                <dd>{label(plan.architecture_style)}</dd>
+                                <dt>Database / hosting</dt>
+                                <dd>
+                                  {plan.core.database} / {plan.core.hosting}
+                                </dd>
+                                <dt>Regions</dt>
+                                <dd>
+                                  {plan.primary_region ??
+                                    'Choose before provisioning'}{' '}
+                                  /{' '}
+                                  {plan.database_region ??
+                                    'No fixed database region'}
+                                </dd>
+                                <dt>Monthly band</dt>
+                                <dd>
+                                  {money(plan.monthly_usd.min)} –{' '}
+                                  {money(plan.monthly_usd.max)} ·{' '}
+                                  {label(plan.budget_fit)}
+                                </dd>
+                                <dt>Score difference</dt>
+                                <dd>{plan.score_delta}</dd>
+                                <dt>Operated component units</dt>
+                                <dd>{plan.operated_components} (heuristic)</dd>
+                              </dl>
+                              <p>
+                                <strong>Supporting services:</strong>{' '}
+                                {plan.supporting_services.join(', ') || 'None'}
+                              </p>
+                              <ul>
+                                {plan.retained_constraints.map((constraint) => (
+                                  <li key={constraint}>{constraint}</li>
+                                ))}
+                              </ul>
+                              <p>
+                                <strong>Review codes:</strong>{' '}
+                                {plan.warning_codes.join(', ') ||
+                                  'No additional service/control/budget notices'}
+                                . Shared workload and sizing notices still
+                                apply.
+                              </p>
+                              <ul>
+                                {plan.cost_assumptions.map((assumption) => (
+                                  <li key={assumption}>{assumption}</li>
+                                ))}
+                              </ul>
+                            </details>
+                          ))}
+                        </section>
+                      )}
                       {result.stack && (
                         <>
                           <div
@@ -945,6 +1117,82 @@ function App() {
                             ? 'No usable stack was selected. The JSON 0–0 placeholder is not a free deployment.'
                             : 'A planning band under the stated assumptions, not a provider quote. Development labor, taxes and domain registration are excluded.'}
                         </p>
+                        {result.cost_groups.length > 0 && (
+                          <dl className="cost-groups">
+                            {result.cost_groups.map((group) => (
+                              <div key={group.category}>
+                                <dt>{label(group.category)}</dt>
+                                <dd>
+                                  {money(group.min)} – {money(group.max)}
+                                </dd>
+                              </div>
+                            ))}
+                          </dl>
+                        )}
+                        {result.cost_sensitivity.length > 0 && (
+                          <details>
+                            <summary>What changes the cost?</summary>
+                            <p>
+                              One usage input changes at a time while the
+                              selected plan stays fixed. These experiments do
+                              not rerank or replace your input. Supplying a
+                              previously unknown volume also replaces its
+                              uncertainty range. Unchanged totals can reflect
+                              spare allocation headroom.
+                            </p>
+                            <div
+                              className="table-scroll"
+                              tabIndex={0}
+                              role="region"
+                              aria-label="Usage sensitivity table, scroll horizontally for all columns"
+                            >
+                              <table className="sensitivity-table">
+                                <caption>
+                                  Usage sensitivity on the selected plan
+                                </caption>
+                                <thead>
+                                  <tr>
+                                    <th>Usage input / baseline</th>
+                                    <th>Trial value</th>
+                                    <th>Monthly band</th>
+                                    <th>Upper change</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {result.cost_sensitivity.flatMap((item) =>
+                                    item.samples.map((sample, index) => (
+                                      <tr key={`${item.field}-${index}`}>
+                                        <th scope="row">
+                                          {label(
+                                            item.field.replace(
+                                              'extensions.',
+                                              '',
+                                            ),
+                                          )}
+                                          <small>
+                                            {quantity(item.baseline_value)} ·{' '}
+                                            {item.baseline_origin}
+                                          </small>
+                                        </th>
+                                        <td>{quantity(sample.value)}</td>
+                                        <td>
+                                          {sample.status === 'estimated'
+                                            ? `${money(sample.min!)} – ${money(sample.max!)}`
+                                            : 'Outside pricing model'}
+                                        </td>
+                                        <td>
+                                          {sample.upper_delta_usd === null
+                                            ? 'Not estimated'
+                                            : money(sample.upper_delta_usd)}
+                                        </td>
+                                      </tr>
+                                    )),
+                                  )}
+                                </tbody>
+                              </table>
+                            </div>
+                          </details>
+                        )}
                         {result.cost_breakdown.length > 0 && (
                           <div className="table-scroll">
                             <table>
@@ -964,6 +1212,38 @@ function App() {
                                     <th scope="row">
                                       {label(line.id.replace(/-/g, ' '))}
                                       <small>{line.basis}</small>
+                                      <small>
+                                        {line.quantity.min}–{line.quantity.max}{' '}
+                                        units × USD {line.unit_rate_usd.min}–
+                                        {line.unit_rate_usd.max} per unit
+                                      </small>
+                                      <div className="sources">
+                                        {line.source_ids.map((id) => {
+                                          const source =
+                                            method?.sources.find(
+                                              (item) =>
+                                                item.id === id &&
+                                                item.register === 'services',
+                                            ) ??
+                                            method?.sources.find(
+                                              (item) =>
+                                                item.id === id &&
+                                                item.register === 'core',
+                                            );
+                                          return source ? (
+                                            <a
+                                              href={source.url}
+                                              key={id}
+                                              target="_blank"
+                                              rel="noreferrer"
+                                            >
+                                              {source.title} ↗
+                                            </a>
+                                          ) : (
+                                            <span key={id}>{id}</span>
+                                          );
+                                        })}
+                                      </div>
                                     </th>
                                     <td>{money(line.monthly_usd.min)}</td>
                                     <td>{money(line.monthly_usd.max)}</td>

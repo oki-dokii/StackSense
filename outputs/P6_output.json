@@ -3,7 +3,7 @@
   "assumptions": [
     "Interpreted project.description phrase \"low-end Android phones\" as low_memory; this bounded hint does not infer legal or regional requirements."
   ],
-  "catalog_version": "0.3.0",
+  "catalog_version": "0.4.0",
   "control_plan": null,
   "core_rejections": [
     {
@@ -45,6 +45,16 @@
       "message": "A backend is required for this application/API profile."
     },
     {
+      "candidate_id": "compose|aspnet|mysql|ase-india",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
       "candidate_id": "compose|aspnet|mysql|cloudrun",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
@@ -56,6 +66,16 @@
     },
     {
       "candidate_id": "compose|aspnet|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "compose|aspnet|sqlite|ase-india",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
         "infrastructure.deployment_model",
@@ -85,6 +105,16 @@
       "message": "No reviewed separately managed database product for this host/provider."
     },
     {
+      "candidate_id": "compose|aspnet|sqlserver|ase-india",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
       "candidate_id": "compose|aspnet|sqlserver|cloudrun",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
@@ -103,6 +133,16 @@
       ],
       "layer": "plan",
       "message": "Managed database has no reviewed primary-region mapping for requested residency."
+    },
+    {
+      "candidate_id": "compose|django|maria|ase-india",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
     },
     {
       "candidate_id": "compose|django|maria|cloudrun",
@@ -125,6 +165,16 @@
       "message": "Managed database has no reviewed primary-region mapping for requested residency."
     },
     {
+      "candidate_id": "compose|django|mysql|ase-india",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
       "candidate_id": "compose|django|mysql|cloudrun",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
@@ -136,6 +186,16 @@
     },
     {
       "candidate_id": "compose|django|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "compose|django|sqlite|ase-india",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
         "infrastructure.deployment_model",
@@ -165,6 +225,16 @@
       "message": "No reviewed separately managed database product for this host/provider."
     },
     {
+      "candidate_id": "compose|fastapi|mysql|ase-india",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
       "candidate_id": "compose|fastapi|mysql|cloudrun",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
@@ -176,6 +246,16 @@
     },
     {
       "candidate_id": "compose|fastapi|mysql|ecs",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "compose|fastapi|sqlite|ase-india",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
         "infrastructure.deployment_model",
@@ -205,6 +285,16 @@
       "message": "No reviewed separately managed database product for this host/provider."
     },
     {
+      "candidate_id": "compose|fastify|mongo|ase-india",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
       "candidate_id": "compose|fastify|mongo|cloudrun",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
@@ -213,103 +303,15 @@
       ],
       "layer": "plan",
       "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "compose|fastify|mongo|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "compose|fastify|mysql|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
-    },
-    {
-      "candidate_id": "compose|fastify|mysql|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "compose|go-http|mysql|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
-    },
-    {
-      "candidate_id": "compose|go-http|mysql|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "compose|go-http|sqlite|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "compose|go-http|sqlite|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "compose|go-http|sqlserver|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "compose|go-http|sqlserver|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
     }
   ],
   "cost_breakdown": [],
+  "cost_groups": [],
+  "cost_sensitivity": [],
   "data_flows": [],
   "decision_trace": {
     "complete_candidates": 0,
-    "core_candidates": 56,
+    "core_candidates": 84,
     "rejected": [
       {
         "codes": [
@@ -351,7 +353,19 @@
         "codes": [
           "EXTERNAL_RESIDENCY_UNVERIFIED"
         ],
+        "plan_id": "modular_monolith|react-native|django|pg|ase-india|centralindia"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
         "plan_id": "modular_monolith|react-native|django|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|react-native|fastapi|pg|ase-india|centralindia"
       },
       {
         "codes": [
@@ -363,7 +377,19 @@
         "codes": [
           "EXTERNAL_RESIDENCY_UNVERIFIED"
         ],
+        "plan_id": "modular_monolith|react-native|fastify|pg|ase-india|centralindia"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
         "plan_id": "modular_monolith|react-native|fastify|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|django|pg|ase-india|centralindia"
       },
       {
         "codes": [
@@ -375,7 +401,19 @@
         "codes": [
           "EXTERNAL_RESIDENCY_UNVERIFIED"
         ],
+        "plan_id": "modular_monolith|next-native|fastapi|pg|ase-india|centralindia"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
         "plan_id": "modular_monolith|next-native|fastapi|pg|ecs|ap-south-1"
+      },
+      {
+        "codes": [
+          "EXTERNAL_RESIDENCY_UNVERIFIED"
+        ],
+        "plan_id": "modular_monolith|next-native|fastify|pg|ase-india|centralindia"
       },
       {
         "codes": [
@@ -394,48 +432,12 @@
           "EXTERNAL_RESIDENCY_UNVERIFIED"
         ],
         "plan_id": "modular_monolith|compose|fastapi|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|compose|fastify|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|flutter|django|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|flutter|fastapi|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|flutter|fastify|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|react-native|aspnet|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|react-native|go-http|pg|cloudrun|asia-south1"
       }
     ],
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.5.0",
+  "engine_version": "0.6.0",
   "estimate_status": "not_estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -444,9 +446,61 @@
     "max": 0,
     "min": 0
   },
-  "rules_version": "0.5.0",
+  "integration_reviews": [],
+  "plan_comparison": [],
+  "review_actions": [
+    {
+      "affected_components": [
+        "complete deployment"
+      ],
+      "code": "COMPLETE_PLAN_COVERAGE_GAP",
+      "evidence_required": [
+        "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+      ],
+      "fields": [
+        "infrastructure",
+        "requirements",
+        "compliance"
+      ],
+      "id": "COMPLETE_PLAN_COVERAGE_GAP:infrastructure|requirements|compliance",
+      "kind": "evidence_gap",
+      "next_action": "Review the rejected constraints against the scoped catalog; add reviewed coverage and rerun the unchanged input.",
+      "references": [],
+      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+    },
+    {
+      "affected_components": [
+        "phone delivery",
+        "identity broker"
+      ],
+      "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+      "evidence_required": [
+        "Evidence covering india storage AND processing of phone numbers, message content, delivery records, backups and logs.",
+        "Country routing, telecom/subprocessor list, retention/deletion, support access and tenant-specific contract/configuration; an Indian endpoint is insufficient.",
+        "SMS eligibility, sender/template registration, Keycloak custom authentication SPI and delivery tariff/volume review."
+      ],
+      "fields": [
+        "infrastructure.data_residency",
+        "requirements.auth"
+      ],
+      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.auth",
+      "kind": "evidence_gap",
+      "next_action": "Request the scoped vendor data-flow and configuration evidence. Review a regional alternative without changing the original residency requirement.",
+      "references": [
+        {
+          "checked_on": "2026-11-13",
+          "id": "msg91-privacy",
+          "scope": "Multiple hosting geographies; strict residency not established by this source.",
+          "title": "MSG91 privacy",
+          "url": "https://msg91.com/privacy-policy"
+        }
+      ],
+      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+    }
+  ],
+  "rules_version": "0.6.0",
   "scenario_id": "P6",
-  "services_version": "0.5.0",
+  "services_version": "0.6.0",
   "stack": null,
   "status": "infeasible",
   "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",

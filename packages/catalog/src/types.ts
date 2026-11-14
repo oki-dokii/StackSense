@@ -48,6 +48,7 @@ export interface Entry {
   persistent_volume?: boolean;
   managed_databases?: ManagedDatabase[];
   regions?: Region[];
+  fixed_region?: string;
 }
 export interface Catalog {
   version: string;

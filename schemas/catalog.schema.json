@@ -339,6 +339,10 @@
                 }
               }
             }
+          },
+          "fixed_region": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "allOf": [

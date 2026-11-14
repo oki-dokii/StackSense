@@ -1,16 +1,17 @@
 {
   "file": "output/pdf/Report_SohamBanerjee.pdf",
-  "pages": 24,
-  "main_pages": 14,
+  "pages": 25,
+  "main_pages": 15,
   "appendix_pages": 10,
   "page_size": "A4",
   "body_font_pt": 11,
   "table_reference_font_pt": 10,
-  "source_records": 135,
-  "screenshots": 15,
+  "source_records": 146,
+  "screenshots": 16,
+  "engine_version": "0.6.0",
   "owner_metadata_confirmed": true,
-  "visual_review": "All 24 page renders inspected across authoring passes; final changed pages 2, 19, 23 and 24 re-rendered and checked. No clipping or overlap observed.",
-  "abstract_words": 128,
+  "visual_review": "All 25 current page renders inspected in seven contact sheets; no clipping, overlap or overflow observed. New guidance page, regional scope, source ledgers and updated timing/setup values checked.",
+  "sha256": "17c3328707c67f50cebd7c45c6581ca606c4698688d8bb0dc436ec2770df162b",
   "a4_all_pages": true,
-  "sha256": "b0fd0f22a65123754c5b0a53ea61da049337847e878498da67be541e4b28bcdd"
+  "abstract_words": 128
 }

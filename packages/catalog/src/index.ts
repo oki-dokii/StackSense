@@ -58,6 +58,14 @@ export function assertCatalog(value: unknown): asserts value is Catalog {
   for (const entry of catalog.entries) {
     checkSources(entry.source_ids);
     checkRegions(entry.regions ?? []);
+    if (
+      entry.fixed_region &&
+      (entry.layer !== 'hosting' ||
+        !entry.regions?.some((r) => r.region === entry.fixed_region))
+    )
+      throw new Error(
+        `Fixed region lacks reviewed hosting evidence: ${entry.id}`,
+      );
     for (const id of entry.databases ?? [])
       if (entries.get(id)?.layer !== 'database')
         throw new Error(

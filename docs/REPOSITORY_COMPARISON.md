@@ -1,6 +1,8 @@
 # Repository comparison and improvement audit
 
-Reviewed 13 November 2026 IST, after our independent 0.5.0 release (`1b9b36a`). Four public same-challenge repositories and one broader dependency-resolution reference were inspected at pinned commits. This is a source/artifact comparison, not a leaderboard, expert review or runtime benchmark of their systems. Their programs were not executed. No external source code was imported.
+Historical baseline review: 13 November 2026 IST, after our independent 0.5.0 release (`1b9b36a`). Four public same-challenge repositories and one broader dependency-resolution reference were inspected at pinned commits. This is a source/artifact comparison, not a leaderboard, expert review or runtime benchmark of their systems. Their programs were not executed. No external source code was imported.
+
+**Follow-up:** [Phase 6](PHASE_6.md), implemented 14 November, adds guidance, cost/plan exploration and separate Azure coverage. The comparison below describes the pinned 0.5.0 baseline; its probes and cost table are historical.
 
 Machine-readable [repository snapshots](research/comparison/repositories.json), [our controlled probes](research/comparison/our-probes.json) and [dependency audit](research/comparison/dependency-audit.json) accompany this review. Our release remains reproducible; the engine, recommendation outputs and PDF are unchanged by this audit.
 
@@ -44,7 +46,7 @@ These input edits locate blockers; they are **not** recommendations that satisfy
 - P5: allowing any cloud while retaining India residency and existing Entra still leaves the identity-scope blocker. Adding Azure alone will not resolve the complete case.
 - P3: explicit usage inputs materially change the cost estimate, supporting a sensitivity view instead of an unexplained single cost range.
 
-Reproduce with `npm run build` followed by `node scripts/review-probes.mjs`. The original inputs/outputs remain unchanged.
+To reproduce the historical probes, use the audit snapshot `bfc243e` in a separate checkout, then `npm ci`, `npm run build` and `node scripts/review-probes.mjs`. On the current branch the probe script writes a version-named follow-up file, preserving this baseline. The original inputs/outputs remain unchanged.
 
 ## Work with the highest expected value
 

@@ -1,69 +1,85 @@
 {
-  "engine_version": "0.5.0",
-  "catalog_version": "0.3.0",
-  "services_version": "0.5.0",
-  "capture": "Actual local UI, unedited browser screenshot captures at 900x520 CSS px. Overview views; complete warnings/choices are in matching JSON outputs.",
+  "engine_version": "0.6.0",
+  "catalog_version": "0.4.0",
+  "services_version": "0.6.0",
+  "capture": "Actual local UI, unedited browser captures: 15 overview views at 900x520 CSS px; three feature views at default 1280x720 and one 360x800 mobile sensitivity view. Full results are in matching JSON outputs.",
   "input_sha256": "f443c1ed6ed5ad1e91732fd7b2e72a0b4cda3afaca020c8848c88c89c6c810f2",
   "images": [
     {
       "file": "E01.jpg",
-      "sha256": "4c0b73e52b7b021e515e5f31304e0088934bbc985e5517a1819c043e154ca929"
+      "sha256": "71e096f351f6db4f481e1d6e0e0de2c2932f74f5a031f311663b381dacd65682"
     },
     {
       "file": "E02.jpg",
-      "sha256": "8bc2d8de293504131bdcebb4b75828d4444968f8a688a2c262565d85480daae5"
+      "sha256": "18cf0be101038e3174078d436ce6513d9efd515adb1dcb3e1b5bb08857642fd4"
     },
     {
       "file": "E03.jpg",
-      "sha256": "3f413297152c1d26fb3dfd2544fd7283ef9585def011bb48ae1c20d650943175"
+      "sha256": "f6c009b4955dd804abed36436aa74f9f791123be164d260d4b17a66c39ed1ba6"
     },
     {
       "file": "E04.jpg",
-      "sha256": "ca09c4730e129548eee09b240c3de205b9b62facaa2280717ef32b454ed4cedc"
+      "sha256": "4da18ff18771a7e3ff0d7afea4561edebe59613c8664b113cb2c822b22c0d100"
     },
     {
       "file": "E05.jpg",
-      "sha256": "176eb23a0332d30c1d592fdd56cd301ef4845a5d218caaabee0f28837d05eba6"
+      "sha256": "034404b113b7b44e8cfcd55b84c31570374e6a1d7b3a8f0bb8c6a518dcce8069"
     },
     {
       "file": "E06.jpg",
-      "sha256": "78b85042788b971907ad3d4acca71e07326490572b74853438dd7a066c64def0"
+      "sha256": "cc746bec2741a4d594201c1027bcb33e6414585bbfbbd81f8267c01b70475a1f"
     },
     {
       "file": "E07.jpg",
-      "sha256": "264a1caa87bdfed75efe2ffca47209e070d693da0e85ee5eaba64704e5ae7328"
+      "sha256": "6068ff2f1fce7b87a02ccc4175230dc2c595be9ec62e15a266e9f97412db11c3"
     },
     {
       "file": "E08.jpg",
-      "sha256": "332bfef6dfaa1a063db50e50289ea0cba9a3c4e2c3a1caeee24ca9dcf0eafe7c"
+      "sha256": "71e96a234f174f95de725588a21348875b22113f215403500d9ee8f93b853e72"
     },
     {
       "file": "E09.jpg",
-      "sha256": "a1ac806be4ff6c7c9e47934a198adf5176dc6be6388017620034ac6129ee93f3"
+      "sha256": "dc106d26665c69f97f0bd55dbcd86053ac00e660b37fb3c559fcd3e4292c8ac6"
     },
     {
       "file": "P1.jpg",
-      "sha256": "76913e62a76d9723bb771be24e811f62dfb3f1e676ba34de3ffc89d99fd2ed6d"
+      "sha256": "5f924376a4eef9a4f03d97ebc348273c33adee80115ea66eddafe85aa3cd716d"
     },
     {
       "file": "P2.jpg",
-      "sha256": "fb46d1a5771cd6e390edc0bc3d7068c286226ff2501b6c7b3cf7853f4f78dcf8"
+      "sha256": "fa618fc78d19cc79a2c888893bb06dcc541cd52f4e5f6f1d0b55eef667afd32c"
     },
     {
       "file": "P3.jpg",
-      "sha256": "73a1f8235c3f95ca8ad91684a018df9d02c1b6aae97c0bfe7728c68416e386f3"
+      "sha256": "1e0c012d93bce26ad0899c95f37562d258dd501ab5034df7095c27ebf743ccb4"
     },
     {
       "file": "P4.jpg",
-      "sha256": "a2c115b53cecf4a55fd599bd9f52761cc90f28b93e59b1ef88740caa3514fed6"
+      "sha256": "5cdfdccb5ea24551e8519ffa0c1d4c02182d7d7e74d46417707ee4d6ec5b2ebe"
     },
     {
       "file": "P5.jpg",
-      "sha256": "3b49f226731cf6ad94825e2884536addad5c6021005722f4b903b87e7570e16b"
+      "sha256": "058b6e32823fb8f3de9b1212d39d268d1ae3c5331e1052d2f46fe54ebfd29e50"
     },
     {
       "file": "P6.jpg",
-      "sha256": "7dace0decbdfb1e6bd8134b8903fb19e2f9b1e26260edebcbb558d8acf8cb97f"
+      "sha256": "71c23dc3aa553d0e1646319c22a400be88c2aeafcee2aad6f215294947a09c8e"
+    },
+    {
+      "file": "phase6-alternatives.jpg",
+      "sha256": "64d797acc581a7531c2f51eefd1fad1d963b9388b5c15a1ad949f31f5932e29e"
+    },
+    {
+      "file": "phase6-blockers.jpg",
+      "sha256": "91880cb8b45e90830eaaba6b5a4df197422341e1f4b5459459a56d2dd586851e"
+    },
+    {
+      "file": "phase6-mobile.jpg",
+      "sha256": "9bfefd526d5e21b5be88658246d5f89fcfc707ca5e4cb428c4e29e3ee66e516f"
+    },
+    {
+      "file": "phase6-sensitivity.jpg",
+      "sha256": "9ba6204b329655b7c4ab0279aaa9138be3e5d7c9683e118b7acfa6f3dde34d2e"
     }
   ],
   "directory": "docs/evidence/final"

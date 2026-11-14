@@ -1,0 +1,27 @@
+{
+  "checked_on": "2026-11-13",
+  "request_url": "https://prices.azure.com/api/retail/prices?%24filter=serviceName+eq+%27Azure+App+Service%27+and+armRegionName+eq+%27centralindia%27+and+priceType+eq+%27Consumption%27",
+  "meter": {
+    "currencyCode": "USD",
+    "tierMinimumUnits": 0.0,
+    "retailPrice": 0.395,
+    "unitPrice": 0.395,
+    "armRegionName": "centralindia",
+    "location": "IN Central",
+    "effectiveStartDate": "2021-05-19T00:00:00Z",
+    "meterId": "766eb5d8-6865-5c1a-8c18-c4e266d702f8",
+    "meterName": "I1 v2 App",
+    "productId": "DZH318Z0DCR2",
+    "skuId": "DZH318Z0DCR2/00DR",
+    "productName": "Azure App Service Isolated v2 Plan - Linux",
+    "skuName": "I1 v2",
+    "serviceName": "Azure App Service",
+    "serviceId": "DZH317GT8G5N",
+    "serviceFamily": "Compute",
+    "unitOfMeasure": "1 Hour",
+    "type": "Consumption",
+    "isPrimaryMeterRegion": true,
+    "armSkuName": "App_Service_I1_v2_linux"
+  },
+  "scope": "Public consumption meter, not customer quote; no discounts, tax, quota, availability or deployment proof."
+}

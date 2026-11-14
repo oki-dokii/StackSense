@@ -1,6 +1,6 @@
 # Implementation phase tracker
 
-Updated 13 November 2026 IST. The detailed method is in [plan.md](../plan.md); this tracker records actual completion.
+Updated 14 November 2026 IST. The detailed method is in [plan.md](../plan.md); this tracker records actual completion.
 
 | Phase | Scope | Status | Exit gate |
 |---|---|---|---|
@@ -9,6 +9,7 @@ Updated 13 November 2026 IST. The detailed method is in [plan.md](../plan.md); t
 | 3 | Supporting services, costs, evidence-derived explanations and conflict/edge cases | Implemented and tested | 145 tests; final-format CLI; six genuine public outputs with explicit evidence blockers |
 | 4 | Local API and responsive web interface | Implemented and tested | 182 tests; exact API/engine parity; actual browser import/run/export, stale and mobile checks |
 | 5 | Evaluation, performance/setup evidence, outputs/screenshots/report and release | Technical package prepared | 201 tests; 14 unseen-style cases; 24-page report/ZIP verified; owner review and online submission pending |
+| 6 | Evidence-resolution guidance, Azure scoped coverage, integration reviews, cost sensitivity and complete-plan comparison | Implemented and tested | 220 tests plus three provenance tests; actual browser QA; release evidence refreshed |
 
 ## Phase 1 delivered
 
@@ -37,6 +38,10 @@ Same-origin local Fastify API and React/Vite workspace, schema-driven guided fie
 ## Phase 5 delivered
 
 Author-designed evaluation and mutations, EOL/source coverage fixes, measured cold/warm local API and clean cached setup, genuine public/edge captures, a rendered/verified report and the source/output/report submission ZIP. [Phase 5 evidence](PHASE_5.md). Four public cases remain explicitly infeasible; owner review and Drive/Unstop handoff are not claimed complete.
+
+## Phase 6 delivered
+
+[Phase 6 record](PHASE_6.md): five new structured result extensions, separate Azure India coverage, preserved public evidence blockers and focused desktop/mobile validation. Remaining vendor/tenant evidence and calibration are explicitly open.
 
 ## Change discipline
 

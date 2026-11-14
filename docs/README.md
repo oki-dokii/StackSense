@@ -54,3 +54,5 @@ Normative order: organiser brief first; then SRS/schema contracts; then technica
 
 
 Post-release: [repository comparison](REPOSITORY_COMPARISON.md) and [improvement backlog](IMPROVEMENT_BACKLOG.md).
+
+- [Phase 6: guidance, costs and alternatives](PHASE_6.md)

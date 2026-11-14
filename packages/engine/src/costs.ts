@@ -169,12 +169,14 @@ export function estimateCost(
       plan.hosting.id === 'cloudrun'
         ? { min: lowDuty, max: s.requirements.realtime ? 1 : 0.8 }
         : { min: 1, max: 1 };
+    const ase = plan.hosting.id === 'ase-india';
+    const billedUnits = ase ? Math.max(replicas, Math.ceil(units / 2)) : units;
     add(
       'application-compute',
       'compute',
-      units * H * duty.min,
-      units * H * duty.max,
-      hourKey,
+      billedUnits * H * duty.min,
+      billedUnits * H * duty.max,
+      ase ? 'ase_i1v2_hour' : hourKey,
     );
     assumptions.push(
       `Compute provisioning hypothesis: 50 RPS or ${s.requirements.realtime ? 500 : 1000} active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. ${units} vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.`,
@@ -182,6 +184,10 @@ export function estimateCost(
     assumptions.push(
       `Billed duty ${duty.min}–${duty.max}; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.`,
     );
+    if (ase)
+      assumptions.push(
+        `Azure ASE: ${billedUnits} whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.`,
+      );
     if (plan.hosting.id === 'ecs')
       lines.push(
         priceLine(

@@ -38,3 +38,7 @@ Metadata scenario IDs never enter engine preference logic. Sanitize filenames; d
 ## Versioning and serialization
 
 Keep organiser field names unchanged. Additive fields allowed. Record engine/catalog/rules versions. Canonical key/order rules in engine spec; formatted JSON changes whitespace only. APIs must not include runtime request IDs/timestamps inside deterministic result. The browser exports the exact evaluated result object, with no hidden rerun.
+
+## Release 0.6.0 decision extensions
+
+The same CLI/API objects add `review_actions`, `integration_reviews`, `cost_groups`, `cost_sensitivity` and `plan_comparison`. Details and boundaries: [Phase 6](PHASE_6.md). Infeasible/invalid results have empty cost/comparison arrays. Guidance never changes a result to approved. Sensitivity holds the selected plan fixed and does not mutate/re-evaluate input selection. Comparison entries are completed plans, not independently mixed component alternatives.

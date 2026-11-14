@@ -37,3 +37,21 @@ Freeze logic/catalog → generate all six outputs from the real build → captur
 | result current | Export | same state | Download exact result, no recomputation |
 
 See [flow diagrams](flows/README.md) for user, engine, and batch flows.
+
+## Implemented follow-up workflow (0.6.0)
+
+```mermaid
+flowchart TD
+  Input[Original structured brief] --> Evaluate[Evaluate complete compatible plans]
+  Evaluate -->|Missing decisive evidence| Blocked[Null stack and resolution tasks]
+  Blocked --> Review[Review product, tenant and data-flow evidence]
+  Review --> Update[Version scoped catalog and rules after review]
+  Update --> Evaluate
+  Evaluate -->|Usable| Compare[Compare complete plans and disclosed assumptions]
+  Compare --> Sensitivity[Explore one usage input on fixed plan]
+  Compare --> Edit[Explicitly edit usage or priorities]
+  Edit --> Stale[Exports disabled until rerun]
+  Stale --> Evaluate
+```
+
+A free-text checklist response cannot bypass evidence rules. Existing-system reuse remains an explicit owner/design review with no inferred price credit.

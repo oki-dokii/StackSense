@@ -1,3 +1,5 @@
+import type { ReviewAction, IntegrationReview } from './guidance.js';
+import type { CostGroup, CostSensitivity } from './exploration.js';
 import type { Component } from '../../contracts/src/recommendation.generated.js';
 import type { Recommendation, Warning } from '../../contracts/src/index.js';
 import type {
@@ -75,11 +77,16 @@ export interface RecommendationContext extends PlanningContext {
   policies?: Policies;
 }
 export type FinalRecommendation = Recommendation & {
-  engine_version: '0.5.0';
+  engine_version: '0.6.0';
   catalog_version: string;
-  rules_version: '0.5.0';
+  rules_version: '0.6.0';
   services_version: string;
   estimate_status: 'estimated' | 'not_estimated';
+  review_actions: ReviewAction[];
+  integration_reviews: IntegrationReview[];
+  cost_groups: CostGroup[];
+  cost_sensitivity: CostSensitivity[];
+  plan_comparison: NonNullable<Recommendation['plan_comparison']>;
   cost_breakdown: CostLine[];
   control_plan: Omit<ControlPlan, 'warnings' | 'blockers'> | null;
   data_flows: DataFlow[];

@@ -6,6 +6,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const publicCases = JSON.parse(
   await readFile(join(root, 'fixtures/public/scenarios.json'), 'utf8'),
 );
+const engineVersion = recommend(publicCases[0]).engine_version;
 const probes = [
   { id: 'P2-baseline', index: 1, patches: [] },
   {
@@ -63,10 +64,10 @@ const records = probes.map((probe) => {
   };
 });
 await writeFile(
-  join(root, 'docs/research/comparison/our-probes.json'),
+  join(root, `docs/research/comparison/our-probes-${engineVersion}.json`),
   JSON.stringify(
     {
-      engine_version: '0.5.0',
+      engine_version: engineVersion,
       scope:
         'Controlled diagnostics on our engine only. Changed inputs are not solutions satisfying the original public scenarios; hard constraints/features must not be silently revised.',
       records,

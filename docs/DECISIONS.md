@@ -16,3 +16,13 @@ Status: proposed implementation baseline for owner review; no existing applicati
 Other recorded choices: no persistent application database; no user login; no live pricing dependency; canonical output excludes runtime timestamps; unknown extension fields preserved and warned; month-12 cost horizon; initial implementation targets Node.js 24 LTS after dependency verification.
 
 Revisit only with evidence: a desktop wrapper, hosted backend, vector database, Kubernetes, and microservices add no present MVP requirement. Do not confuse infrastructure StackSense may recommend with infrastructure it needs to run.
+
+## 0.6.0 follow-up decisions
+
+- Keep strict missing-evidence results while adding actionable resolution tasks; no evaluation-only relaxed-input mode or free-text approval bypass.
+- Model ASE Central India as a separate fixed-region product/profile. Exact compute meter evidence does not certify other prices, tenant scope or deployment performance.
+- Present completed alternatives after service/control/cost evaluation; disclose deterministic tie-breaks and heuristic operating scores.
+- Run cost sensitivity on the selected architecture without reranking; distinguish assumed upper envelopes from explicitly supplied usage.
+- Give existing systems concrete integration tasks without silently selecting migration, reusing unverified resources or claiming license savings.
+
+[Phase 6 evidence](PHASE_6.md).

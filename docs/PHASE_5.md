@@ -1,5 +1,7 @@
 # Phase 5 — evaluation, report and release package
 
+**Historical phase record:** current release/report/evidence are superseded by [Phase 6](PHASE_6.md). The numbers below describe the 0.5.0 checkpoint.
+
 Technical release prepared 13 November 2026 IST. App/engine/rules/service policies are 0.5.0; core catalog is 0.3.0. Owner review and external Drive/Unstop submission are separate, pending actions.
 
 ## Implemented and corrected

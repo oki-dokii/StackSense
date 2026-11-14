@@ -32,7 +32,7 @@
     "scale.workload was absent; defaulted to \"balanced\".",
     "team.has_devops was absent; defaulted to false."
   ],
-  "catalog_version": "0.3.0",
+  "catalog_version": "0.4.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -206,6 +206,97 @@
       }
     }
   ],
+  "cost_groups": [
+    {
+      "category": "infrastructure_and_operations",
+      "line_ids": [
+        "application-compute",
+        "database-cpu",
+        "database-memory",
+        "database-storage",
+        "backup-storage",
+        "network-egress",
+        "telemetry-operations",
+        "hosted-ci"
+      ],
+      "max": 47771.68,
+      "min": 6749.36
+    },
+    {
+      "category": "payment_and_message_activity",
+      "line_ids": [],
+      "max": 0,
+      "min": 0
+    }
+  ],
+  "cost_sensitivity": [
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 578.7037037037037,
+      "field": "extensions.expected_requests_per_second",
+      "samples": [
+        {
+          "max": 47771.68,
+          "min": 6749.36,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 289.35185185185185
+        },
+        {
+          "max": 47771.68,
+          "min": 6749.36,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 1157.4074074074074
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 10000,
+      "field": "extensions.monthly_egress_gb",
+      "samples": [
+        {
+          "max": 45771.68,
+          "min": 6349.36,
+          "status": "estimated",
+          "upper_delta_usd": -2000,
+          "value": 5000
+        },
+        {
+          "max": 51771.68,
+          "min": 7549.36,
+          "status": "estimated",
+          "upper_delta_usd": 4000,
+          "value": 20000
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 1,
+      "field": "extensions.retention_months",
+      "samples": [
+        {
+          "max": 47771.68,
+          "min": 6749.36,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 1
+        },
+        {
+          "max": 47774.68,
+          "min": 6749.66,
+          "status": "estimated",
+          "upper_delta_usd": 3,
+          "value": 2
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    }
+  ],
   "data_flows": [
     {
       "component": "primary-compute",
@@ -252,8 +343,8 @@
   ],
   "database_region": null,
   "decision_trace": {
-    "complete_candidates": 42,
-    "core_candidates": 78,
+    "complete_candidates": 56,
+    "core_candidates": 92,
     "rejected": [
       {
         "codes": [
@@ -379,7 +470,7 @@
     "score": 48,
     "selected_plan_id": "modular_monolith|flutter|aspnet|pg|cloudrun|unspecified"
   },
-  "engine_version": "0.5.0",
+  "engine_version": "0.6.0",
   "estimate_status": "estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -402,8 +493,189 @@
     "max": 47771.68,
     "min": 6749.36
   },
+  "integration_reviews": [],
+  "plan_comparison": [
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "over_budget",
+      "core": {
+        "backend": "ASP.NET Core",
+        "database": "PostgreSQL",
+        "frontend": "Flutter",
+        "hosting": "Google Cloud Run"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 50000; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (578.704 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 10 GB assumed because absent; egress 10000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 301.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+      ],
+      "database_region": null,
+      "monthly_usd": {
+        "max": 47771.68,
+        "min": 6749.36
+      },
+      "operated_components": 3.25,
+      "plan_id": "modular_monolith|flutter|aspnet|pg|cloudrun|unspecified",
+      "primary_region": null,
+      "retained_constraints": [
+        "platforms=android,ios,web",
+        "cloud_preference=any",
+        "deployment_model=managed_cloud",
+        "data_residency=none",
+        "compliance=none",
+        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+      ],
+      "score": 48,
+      "score_delta": 0,
+      "selected": true,
+      "supporting_services": [
+        "GitHub Actions",
+        "Keycloak",
+        "OpenTelemetry Collector + structured logs",
+        "PostgreSQL forced row-level security",
+        "ws"
+      ],
+      "tied_on_score": false,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_EXCEEDED",
+        "TIMELINE_RISK"
+      ]
+    },
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "over_budget",
+      "core": {
+        "backend": "Django",
+        "database": "PostgreSQL",
+        "frontend": "Flutter",
+        "hosting": "Google Cloud Run"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 50000; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (578.704 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 10 GB assumed because absent; egress 10000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 301.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+      ],
+      "database_region": null,
+      "monthly_usd": {
+        "max": 47771.68,
+        "min": 6749.36
+      },
+      "operated_components": 3.25,
+      "plan_id": "modular_monolith|flutter|django|pg|cloudrun|unspecified",
+      "primary_region": null,
+      "retained_constraints": [
+        "platforms=android,ios,web",
+        "cloud_preference=any",
+        "deployment_model=managed_cloud",
+        "data_residency=none",
+        "compliance=none",
+        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+      ],
+      "score": 48,
+      "score_delta": 0,
+      "selected": false,
+      "supporting_services": [
+        "GitHub Actions",
+        "Keycloak",
+        "OpenTelemetry Collector + structured logs",
+        "PostgreSQL forced row-level security",
+        "ws"
+      ],
+      "tied_on_score": true,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_EXCEEDED",
+        "TIMELINE_RISK"
+      ]
+    },
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "over_budget",
+      "core": {
+        "backend": "FastAPI",
+        "database": "PostgreSQL",
+        "frontend": "Flutter",
+        "hosting": "Google Cloud Run"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 50000; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (578.704 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 10 GB assumed because absent; egress 10000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 301.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+      ],
+      "database_region": null,
+      "monthly_usd": {
+        "max": 47771.68,
+        "min": 6749.36
+      },
+      "operated_components": 3.25,
+      "plan_id": "modular_monolith|flutter|fastapi|pg|cloudrun|unspecified",
+      "primary_region": null,
+      "retained_constraints": [
+        "platforms=android,ios,web",
+        "cloud_preference=any",
+        "deployment_model=managed_cloud",
+        "data_residency=none",
+        "compliance=none",
+        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+      ],
+      "score": 48,
+      "score_delta": 0,
+      "selected": false,
+      "supporting_services": [
+        "GitHub Actions",
+        "Keycloak",
+        "OpenTelemetry Collector + structured logs",
+        "PostgreSQL forced row-level security",
+        "ws"
+      ],
+      "tied_on_score": true,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_EXCEEDED",
+        "TIMELINE_RISK"
+      ]
+    }
+  ],
   "primary_region": null,
-  "rules_version": "0.5.0",
+  "review_actions": [],
+  "rules_version": "0.6.0",
   "scenario_id": "E03",
   "score_breakdown": [
     {
@@ -481,7 +753,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.5.0",
+  "services_version": "0.6.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -722,7 +994,7 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "modular_monolith recommendation selected from 42 complete compatible plans; month-12 infrastructure planning band USD 6749.36–47771.68/month.",
+  "summary": "modular_monolith recommendation selected from 56 complete compatible plans; month-12 infrastructure planning band USD 6749.36–47771.68/month.",
   "validation_errors": [],
   "warnings": [
     {

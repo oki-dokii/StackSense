@@ -29,3 +29,7 @@ Phase 5 release, 13 November 2026: Codex checked primary lifecycle/regional fact
 
 
 Post-release comparison, 13 November 2026: Codex inspected pinned public sources/committed outputs from four same-challenge repositories and Thoth Adviser without executing their code. No external implementation code was imported. The comparison records static-review limits, independently implemented diagnostic probes on our existing engine, a prioritized backlog and a capture-input provenance check with three regression tests. The original 0.5.0 engine/recommendation outputs/PDF are unchanged; the source package is refreshed with audit documentation/tooling.
+
+## Phase 6 (14 November 2026)
+
+Codex researched official Microsoft/MSG91/Razorpay scopes, implemented guidance/integration metadata, regional Azure profiles, structured whole-plan/cost exploration, schemas/tests and UI; performed focused browser QA, measurement, report/package refresh and CI verification. One captured Azure retail compute meter is distinguished from authored capacity/other-price proxies. No external code was imported, no tenant/vendor contract obtained, no independent reviewer simulated and no original requirement relaxed.

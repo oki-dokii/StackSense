@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "0.6.0",
   "reviewed_on": "2026-11-13",
   "sources": [
     {
@@ -316,6 +316,62 @@
       "url": "https://docs.angularjs.org/misc/version-support-status",
       "checked_on": "2026-11-13",
       "scope": "AngularJS upstream support ended January 2022; distinct from maintained Angular."
+    },
+    {
+      "id": "razorpay-privacy",
+      "title": "Razorpay privacy policy",
+      "url": "https://razorpay.com/privacy-policy/",
+      "checked_on": "2026-11-13",
+      "scope": "Candidate regional payment provider privacy terms; not sufficient to approve every merchant, payment product or international data flow. Not selected by this release."
+    },
+    {
+      "id": "entra-residency",
+      "title": "Microsoft Entra data residency",
+      "url": "https://learn.microsoft.com/en-us/entra/fundamentals/data-residency",
+      "checked_on": "2026-11-13",
+      "scope": "Tenant geography and identity storage are distinct from application regions and Microsoft 365 content residency. No India-only tenant assurance inferred."
+    },
+    {
+      "id": "entra-oidc",
+      "title": "Microsoft identity platform OIDC",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc",
+      "checked_on": "2026-11-13",
+      "scope": "Tenant-scoped OIDC discovery and token protocols; configure issuer/audience, keys, claims and consent; no residency/contract assurance."
+    },
+    {
+      "id": "sql2019-lifecycle",
+      "title": "SQL Server 2019 lifecycle",
+      "url": "https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2019",
+      "checked_on": "2026-11-13",
+      "scope": "Extended support ends January 2030; no edition, patch, license or installed network/capacity entitlement established."
+    },
+    {
+      "id": "azure-vnet-integration",
+      "title": "App Service virtual network integration",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+      "checked_on": "2026-11-13",
+      "scope": "Outbound private resource connectivity; ASE joins a VNet directly. Private inbound access and on-prem VPN/DNS are separate design/configuration tasks."
+    },
+    {
+      "id": "azure-storage-boundary",
+      "title": "Azure Storage redundancy",
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+      "checked_on": "2026-11-13",
+      "scope": "LRS retains replicas within primary region; do not enable geo-redundancy or cross-region copies for this scoped profile."
+    },
+    {
+      "id": "azure-storage-region",
+      "title": "Azure Storage regional routing",
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/network-routing-preference",
+      "checked_on": "2026-11-13",
+      "scope": "Central India Storage regional endpoint support; account SKU/network configuration and quota must be verified before provisioning."
+    },
+    {
+      "id": "azure-ase-retail",
+      "title": "Azure App Service Central India retail pricing API",
+      "url": "https://prices.azure.com/api/retail/prices",
+      "checked_on": "2026-11-13",
+      "scope": "Checked exact primary Linux I1 v2 consumption meter in centralindia: USD 0.395/instance-hour. Snapshot in docs/research/azure-ase-price.json; no customer discount/tax or capacity guarantee."
     }
   ],
   "services": [
@@ -819,6 +875,29 @@
         "next"
       ],
       "alternative": "Native Service Worker Cache API"
+    },
+    {
+      "id": "azure-blob",
+      "layer": "storage",
+      "choice": "Azure Blob Storage (same-region LRS)",
+      "capability": "storage",
+      "placement": "host",
+      "source_ids": [
+        "azure-storage-boundary",
+        "azure-storage-region"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [
+        "azure"
+      ],
+      "alternative": "Amazon S3",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Configure the account in the selected compute region, private access, signed upload URLs and local redundancy; disable geo-redundancy and global copy rules.",
+        "Validate retention, malware scanning, request operations and recovery separately; LRS alone is not a disaster-recovery guarantee."
+      ]
     }
   ],
   "frameworks": [
@@ -1071,6 +1150,14 @@
         "stripe-pricing"
       ],
       "basis": "Assumed per-transaction USD fee envelope, not a tariff quote."
+    },
+    "ase_i1v2_hour": {
+      "min": 0.395,
+      "max": 0.395,
+      "source_ids": [
+        "azure-ase-retail"
+      ],
+      "basis": "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
     }
   },
   "lifecycle": [

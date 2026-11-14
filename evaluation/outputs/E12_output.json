@@ -32,11 +32,20 @@
     "scale.workload was absent; defaulted to \"balanced\".",
     "team.has_devops was absent; defaulted to false."
   ],
-  "catalog_version": "0.3.0",
+  "catalog_version": "0.4.0",
   "control_plan": null,
   "core_rejections": [
     {
       "candidate_id": "appservice",
+      "code": "CLOUD_FORBIDDEN",
+      "fields": [
+        "infrastructure.cloud_preference"
+      ],
+      "layer": "hosting",
+      "message": "cloud_preference=none prohibits this public-cloud variant."
+    },
+    {
+      "candidate_id": "ase-india",
       "code": "CLOUD_FORBIDDEN",
       "fields": [
         "infrastructure.cloud_preference"
@@ -158,6 +167,8 @@
     }
   ],
   "cost_breakdown": [],
+  "cost_groups": [],
+  "cost_sensitivity": [],
   "data_flows": [],
   "decision_trace": {
     "complete_candidates": 0,
@@ -166,7 +177,7 @@
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.5.0",
+  "engine_version": "0.6.0",
   "estimate_status": "not_estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -175,9 +186,35 @@
     "max": 0,
     "min": 0
   },
-  "rules_version": "0.5.0",
+  "integration_reviews": [],
+  "plan_comparison": [],
+  "review_actions": [
+    {
+      "affected_components": [
+        "frontend",
+        "backend",
+        "database",
+        "hosting"
+      ],
+      "code": "CORE_CATALOG_COVERAGE_GAP",
+      "evidence_required": [
+        "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+      ],
+      "fields": [
+        "infrastructure",
+        "requirements",
+        "compliance"
+      ],
+      "id": "CORE_CATALOG_COVERAGE_GAP:infrastructure|requirements|compliance",
+      "kind": "evidence_gap",
+      "next_action": "Inspect core_rejections. Review exact provider/runtime/database regional variants and driver compatibility; do not substitute a different cloud or region.",
+      "references": [],
+      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+    }
+  ],
+  "rules_version": "0.6.0",
   "scenario_id": "E12",
-  "services_version": "0.5.0",
+  "services_version": "0.6.0",
   "stack": null,
   "status": "infeasible",
   "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",

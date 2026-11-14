@@ -71,7 +71,7 @@ describe('Phase 5 author-designed unseen-style cases', () => {
   it('retains lifecycle warnings when other evidence prevents a plan', () => {
     const raw = structuredClone(cases[8].scenario);
     raw.infrastructure.cloud_preference = 'azure';
-    raw.infrastructure.data_residency = 'india';
+    raw.infrastructure.data_residency = 'eu';
     const r = recommend(raw);
     expect(r.status).toBe('infeasible');
     expect(r.warnings.some((w) => w.code === 'EXISTING_TECH_EOL')).toBe(true);
@@ -79,6 +79,7 @@ describe('Phase 5 author-designed unseen-style cases', () => {
   it('does not weaken residency just because preferences favor a blocked product', () => {
     const raw = structuredClone(cases[9].scenario);
     raw.infrastructure.cloud_preference = 'azure';
+    raw.infrastructure.data_residency = 'eu';
     raw.priorities = { cost: 1, security: 5, maintainability: 5 };
     expect(recommend(raw).status).toBe('infeasible');
   });

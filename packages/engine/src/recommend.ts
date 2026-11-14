@@ -24,6 +24,8 @@ import { searchCorePlans } from './planner.js';
 import { selectSupporting } from './supporting.js';
 import { controlPlan, existingLifecycleWarnings } from './controls.js';
 import { estimateCost, budgetWarnings, CostModelLimitError } from './costs.js';
+import { reviewActions, integrationReviews } from './guidance.js';
+import { costGroups, costSensitivity } from './exploration.js';
 import { describeCoreSelection } from './explanations.js';
 import type {
   FinalRecommendation,
@@ -40,9 +42,9 @@ export function invalidRecommendation(
   catalogVersion = defaultCatalog.version,
 ): FinalRecommendation {
   return {
-    engine_version: '0.5.0',
+    engine_version: '0.6.0',
     catalog_version: catalogVersion,
-    rules_version: '0.5.0',
+    rules_version: '0.6.0',
     services_version: defaultPolicies.version,
     status: 'invalid_input',
     summary:
@@ -60,6 +62,11 @@ export function invalidRecommendation(
     warnings: [],
     assumptions: [],
     validation_errors: errors,
+    review_actions: [],
+    integration_reviews: [],
+    cost_groups: [],
+    cost_sensitivity: [],
+    plan_comparison: [],
     cost_breakdown: [],
     control_plan: null,
     data_flows: [],
@@ -257,6 +264,7 @@ export function recommend(
     ...f.assumptions,
     ...extraAssumptions,
   ];
+  base.integration_reviews = integrationReviews(s, policies);
   base.decision_trace = {
     core_candidates: search.ranked.length,
     complete_candidates: candidates.length,
@@ -289,6 +297,7 @@ export function recommend(
         fields: ['infrastructure', 'requirements', 'compliance'],
       },
     ]);
+    base.review_actions = reviewActions(base.warnings, s, policies);
     base.core_rejections = search.rejections.slice(0, 30);
     base.assumptions.sort(compare);
     assertFinal(base, s);
@@ -363,6 +372,53 @@ export function recommend(
     assumptions: cost.assumptions,
   };
   base.cost_breakdown = cost.line_items;
+  base.cost_groups = costGroups(cost.line_items);
+  base.cost_sensitivity = costSensitivity(selected, s, policies);
+  base.plan_comparison = candidates.slice(0, 3).map((candidate) => ({
+    plan_id: candidate.plan.id,
+    selected: candidate === selected,
+    architecture_style: candidate.plan.style,
+    core: Object.fromEntries(
+      (['frontend', 'backend', 'database', 'hosting'] as const).map((layer) => [
+        layer,
+        candidate.plan[layer].name,
+      ]),
+    ) as Record<Layer, string>,
+    supporting_services: candidate.support.components.map(
+      (component) => component.choice,
+    ),
+    primary_region: candidate.plan.primary_region,
+    database_region: candidate.plan.database_region,
+    score: candidate.score,
+    score_delta: candidate.score - selected.score,
+    tied_on_score: candidate !== selected && candidate.score === selected.score,
+    monthly_usd: { min: candidate.cost.min, max: candidate.cost.max },
+    operated_components: candidate.ranked.operated_components,
+    budget_fit:
+      candidate.cost.max <= s.budget.monthly_infra_usd
+        ? 'within_upper'
+        : candidate.cost.min <= s.budget.monthly_infra_usd
+          ? 'range_risk'
+          : 'over_budget',
+    warning_codes: [
+      ...new Set(
+        [
+          ...candidate.support.warnings,
+          ...candidate.control.warnings,
+          ...budgetWarnings(candidate.cost, s.budget.monthly_infra_usd),
+        ].map((w) => w.code),
+      ),
+    ].sort(compare),
+    cost_assumptions: candidate.cost.assumptions,
+    retained_constraints: [
+      `platforms=${s.project.platforms.join(',')}`,
+      `cloud_preference=${s.infrastructure.cloud_preference}`,
+      `deployment_model=${s.infrastructure.deployment_model}`,
+      `data_residency=${s.infrastructure.data_residency}`,
+      `compliance=${s.compliance.join(',') || 'none'}`,
+      'All original enabled features passed supporting-service and control checks; no requirement was relaxed.',
+    ],
+  }));
   base.control_plan = {
     frameworks: control.frameworks,
     deployment_controls: control.deployment_controls,

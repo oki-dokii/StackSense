@@ -34,6 +34,10 @@ const hash = createHash('sha256')
 if (hash !== results.case_set_sha256)
   throw new Error('Evaluation case-set hash is stale.');
 const screenshots = await load('evaluation/screenshots.json');
+const current = recommend(publicCases[0]);
+for (const field of ['engine_version', 'catalog_version', 'services_version'])
+  if (screenshots[field] !== current[field])
+    throw new Error(`Screenshot version is stale: ${field}`);
 await verifyScreenshotInputBinding(root, screenshots);
 for (const entry of screenshots.images) {
   const bytes = await readFile(join(root, screenshots.directory, entry.file));
@@ -53,6 +57,7 @@ if (await exists('output/pdf/Report_SohamBanerjee.pdf')) {
   const bytes = await readFile(join(root, report.file));
   if (
     createHash('sha256').update(bytes).digest('hex') !== report.sha256 ||
+    report.engine_version !== current.engine_version ||
     report.main_pages > 15 ||
     report.appendix_pages > 10 ||
     report.visual_review.startsWith('pending')
@@ -66,5 +71,5 @@ if (await exists('deliverables/StackSense26_SohamBanerjee.zip')) {
     throw new Error('Submission ZIP changed after verification.');
 }
 console.log(
-  'PASS: 20 actual outputs match the current engine; case provenance and all 15 screenshot hashes verified. Report/ZIP hashes checked when present.',
+  `PASS: 20 actual outputs match the current engine; case provenance, capture versions and all ${screenshots.images.length} screenshot hashes verified. Report/ZIP hashes checked when present.`,
 );

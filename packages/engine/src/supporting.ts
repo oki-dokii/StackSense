@@ -273,9 +273,11 @@ export function selectSupporting(
         ? 'gcs'
         : provider === 'aws'
           ? 's3'
-          : provider === 'none'
-            ? 'local-storage'
-            : null;
+          : provider === 'azure'
+            ? 'azure-blob'
+            : provider === 'none'
+              ? 'local-storage'
+              : null;
     if (id)
       add(
         get(id),

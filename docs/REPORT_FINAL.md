@@ -8,13 +8,13 @@ StackSense
 
 An explained technology stack, grounded in project constraints.
 
-Soham BanerjeeIIIT-BangaloreSoham.Banerjee@iiitb.ac.ingithub.com/oki-dokii/StackSense13 November 2026
+Soham BanerjeeIIIT-BangaloreSoham.Banerjee@iiitb.ac.ingithub.com/oki-dokii/StackSense14 November 2026
 
-Application / engine / rules 0.5.0; core catalog 0.3.0; service policies 0.5.0. This is a local review package, not an assertion of online submission or independent owner review.
+Application / engine / rules 0.6.0; core catalog 0.4.0; service policies 0.6.0. This is a local review package, not an assertion of online submission or independent owner review.
 
 1. Abstract
 
-StackSense converts a structured software-project brief into a deterministic, explained architecture. A local TypeScript engine validates inputs, filters compatible core stacks, checks required supporting services and data flows, estimates month-12 cost bands, and ranks complete designs. A CLI, Fastify API and React workspace share the same engine. The release includes 33 core entries, 23 service profiles, source records, actual JSON outputs and browser evidence. Of six supplied scenarios, two receive usable recommendations and four retain explicit evidence-relative blockers. The evaluation includes 201 automated tests, fourteen author-designed unseen-style cases, input-sensitivity experiments and measured local setup/API timings. The system makes no runtime LLM calls and requires no paid key. Costs, performance targets and framework controls are disclosed assumptions and implementation tasks, not provider quotes, benchmarks of suggested stacks, or certification.
+StackSense converts a structured software-project brief into a deterministic, explained architecture. A local TypeScript engine validates inputs, filters compatible core stacks, checks required supporting services and data flows, estimates month-12 cost bands, and ranks complete designs. A CLI, Fastify API and React workspace share the same engine. The release includes 34 core entries, 24 service profiles, source records, actual JSON outputs and browser evidence. Of six supplied scenarios, two receive usable recommendations and four retain explicit evidence-relative blockers. The evaluation includes 220 automated tests, fourteen author-designed unseen-style cases, input-sensitivity experiments and measured local setup/API timings. The system makes no runtime LLM calls and requires no paid key. Costs, performance targets and framework controls are disclosed assumptions and implementation tasks, not provider quotes, benchmarks of suggested stacks, or certification.
 
 2. Problem understanding
 
@@ -64,7 +64,7 @@ Legacy primary_user_region and vendor_lock_in_tolerance values are accepted from
 
 5. Knowledge base and decision logic
 
-The core catalog has 33 entries and 43 dated primary-source records; service policies add 23 profiles, 45 source records and two known lifecycle rules. Records describe product family, runtime, client coverage, driver edges, deployment/provider mappings, regions, complexity/operating burden, trade-offs and source scope. Active status is required; maintained product families still need supported versions pinned during a real build.
+The core catalog has 34 entries and 46 dated primary-source records; service policies add 24 profiles, 53 source records and two known lifecycle rules. Records describe product family, runtime, client coverage, driver edges, deployment/provider mappings, regions, complexity/operating burden, trade-offs and source scope. Active status is required; maintained product families still need supported versions pinned during a real build.
 
 Evaluate complete plans before ranking
 
@@ -84,7 +84,7 @@ Service profiles cover identity, SMS OTP, realtime collaboration, local offline 
 
 Scope and residency are checked separately
 
-GCP reviewed mappings include Mumbai, Belgium and Iowa. The release adds AWS Fargate and RDS PostgreSQL primary mapping in Mumbai using Fargate/region/RDS documentation [core:fargate-regions, core:aws-regions, core:rds-regions]. This does not approve external identity, SMS or payment handling. Azure India remains a catalog gap; App Service Environment evidence is not silently applied to a different App Service profile.
+GCP reviewed mappings include Mumbai, Belgium and Iowa. The release adds AWS Fargate and RDS PostgreSQL primary mapping in Mumbai using Fargate/region/RDS documentation [core:fargate-regions, core:aws-regions, core:rds-regions]. This does not approve external identity, SMS or payment handling. Central India now has a separate App Service Environment v3 Linux Isolated v2 profile, PostgreSQL Flexible Server with in-region backups, and private Blob LRS. This evidence is not applied to shared App Service or other regions. Entra tenant flows are assessed separately.
 
 Strict residency rejects external providers without reviewed end-to-end country scope. Framework designs require configuration, retention/deletion, access/restore tests and qualified review. HIPAA cloud/external services need eligible scope and executed BAA evidence. Explicit RBI localisation derives India only when the label requests it; contradictory regions reject. Known Python 2 and AngularJS support endings warn on existing systems without mislabeling Python 3 or maintained Angular.
 
@@ -102,7 +102,7 @@ An over-budget usable plan is explicitly ok_with_warnings. Hard evidence blocker
 
 6. Sample recommendations: P1
 
-P1 / DevFolio - actual local release UI, engine 0.5.0. The complete output is outputs/P1_output.json.
+P1 / DevFolio - actual local release UI, engine 0.6.0. The complete output is outputs/P1_output.json.
 
 Inputs: a solo beginner, JavaScript/HTML/CSS, two weeks, Markdown portfolio/blog, web-only SEO, no dynamic features, 3,000 year-one users and USD 0 infrastructure budget.
 
@@ -144,7 +144,7 @@ P4 / QuickCredit - AWS Mumbai primary compute/database evidence is now available
 
 6. Public scenarios: P5 and P6
 
-P5 / PeopleDesk - Azure India primary deployment coverage remains absent from this catalog. Existing Entra/Microsoft 365 tenant scope and on-prem SQL Server 2019 connectivity/license/version review also remain project-specific. No silent migration, public region substitution or certified ISO status is asserted.
+P5 / PeopleDesk - A distinct Azure Central India isolated compute/PostgreSQL/storage profile is now reviewed. P5 still cannot approve existing Entra tenant data flows from the supplied input; on-prem SQL Server 2019 reuse, connectivity, licenses and capacity also need project evidence. No silent migration, public region substitution or certified ISO status is asserted.
 
 P6 / KhetSurvey - offline Android durability, retries, resumable media and a server outbox are modeled building blocks. The complete design remains blocked by phone-OTP India data-flow evidence. A device-memory hint requires measurement, not an invented framework benchmark. No-plan cost 0-0 means Not estimated, not a free deployment.
 
@@ -164,17 +164,17 @@ Additional cases test reviewed AWS India, offline native writes, cloud-none/mana
 
 8. Validation and measurements
 
-201 automated tests pass across seven files: contract/default/provenance, catalog/driver integrity, compatible search, complete services/costs, metadata/order mutations, CLI subprocess IO, exact API/engine parity, transport/security, browser model and fourteen release cases. Generated TypeScript freshness, compiler and production browser/server builds pass. Twenty actual public/evaluation output files are checked byte-for-byte against the current engine.
+220 automated tests pass across eight files: contract/default/provenance, catalog/driver integrity, compatible search, complete services/costs, metadata/order mutations, CLI subprocess IO, exact API/engine parity, transport/security, browser model and fourteen release cases. Generated TypeScript freshness, compiler and production browser/server builds pass. Twenty actual public/evaluation output files are checked byte-for-byte against the current engine.
 
 Fourteen author-designed case expectations cover statuses, field errors, required services, local deployment, region retention and simplicity. Metamorphic checks rename metadata/reorder set-like inputs and ensure hard constraints remain filters. Six paired usage experiments show real cost effects. No external expert review, organiser hidden-case results or calibrated recommendation-quality accuracy is claimed.
 
 Observed local API timings
 
-Measured on Apple M2, 8 GB RAM, macOS arm64, Node v22.17.1, npm 10.9.2. Cold Node/API startup to health: 325.867 ms. Each case had one warm-up and twenty real loopback HTTP POSTs through consumed JSON. Browser rendering, recommended workload performance and cloud provisioning are excluded.
+Measured on Apple M2, 8 GB RAM, macOS arm64, Node v22.17.1, npm 10.9.2. Cold Node/API startup to health: 288.056 ms. Each case had one warm-up and twenty real loopback HTTP POSTs through consumed JSON. Browser rendering, recommended workload performance and cloud provisioning are excluded.
 
 Clean setup rehearsal
 
-A source ZIP was extracted to a fresh directory. Cached offline npm ci, all checks, build, evaluation and output verification completed in 16.805 seconds. Runtime/test source digest is recorded and checked during final packaging. The populated dependency cache avoids a new network download; online installation speed and Windows/Linux execution are not claimed. The configured CI matrix covers other OSes/Node versions; its remote runs are separate from these local measurements.
+A source ZIP was extracted to a fresh directory. Cached offline npm ci, all checks, build, evaluation and output verification completed in 20.392 seconds. Runtime/test source digest is recorded and checked during final packaging. The populated dependency cache avoids a new network download; online installation speed and Windows/Linux execution are not claimed. The CI matrix covers macOS, Ubuntu and Windows on Node 22/24; remote run results are separate from this local measurement.
 
 Browser evidence covers sample/import/batch, all statuses, export parity, stale-export blocking, keyboard controls and 360 px overflow checks. This is not a full accessibility or browser conformance audit. Official product/source alignment is reviewed; no paper experiment was reproduced.
 
@@ -182,13 +182,29 @@ Browser evidence covers sample/import/batch, all statuses, export parity, stale-
 ---
 
 
+Decision guidance in release 0.6.0
+
+Actual expanded P3 cost sensitivity view. Infrastructure/operations and payment/message activity are separated. Trial values keep the selected architecture fixed; they do not edit the brief or rerank plans.
+
+Blocked results now export review_actions: affected requirements/components, missing evidence, concrete next actions and primary references. Checklists distinguish evidence gaps, constraint conflicts and pricing-model limits. A free-text vendor assertion cannot clear a blocker. P2 has independent OTP and payment tasks; resolving one does not resolve the other.
+
+Existing systems receive integration_reviews for federation, SQL reuse or inventory. Tenant scope, private connectivity, ownership, licenses, recovery and incremental costs remain pending project evidence; no migration or reuse savings are invented. SQL Server 2019 extended support is distinguished from EOL.
+
+Usable results expose up to three fully evaluated plan_comparison entries, including service sets, regions, scores/ties, cost, operating burden and retained constraints. Cost groups reconcile in cents. One-at-a-time usage trials disclose supplied versus assumed values, headroom and the absence of reranking. Price-line units, rates and source links are visible in the UI.
+
+Azure Central India Linux I1 v2 compute uses a captured public consumption meter at USD 0.395 per instance-hour. Whole two-vCPU instances and replica floors are retained. Other capacity and database/storage/network rates remain disclosed planning proxies; one verified meter does not calibrate an entire deployment.
+
+
+---
+
+
 9. Limitations and future work
 
-Four of six public scenarios remain unusable under the current evidence policy. The engine deliberately does not equate a regional app host, an Indian vendor or a compliance badge with complete identity/payment data-flow assurance. Azure regional/product variants and existing-tenant boundaries need deeper review. This conservative coverage has a real recommendation-quality cost; it is not presented as complete scenario support.
+Four of six public scenarios remain unusable under the current evidence policy. The engine deliberately does not equate a regional app host, an Indian vendor or a compliance badge with complete identity/payment data-flow assurance. Broader Azure variants and existing-tenant boundaries need deeper review; Central India isolated compute/database/storage is now separately scoped. This conservative coverage has a real recommendation-quality cost; it is not presented as complete scenario support.
 
 The catalog is finite and product-family based. Framework/API/driver versions, regional quotas, contract eligibility, data retention and all application controls need deployment review. Training/RAG, broader search/storage options, comprehensive lifecycle coverage, private network integration and general prose understanding remain limited.
 
-Costs use capacity hypotheses and authored allowances as well as reference prices. SLA/latency are targets, not guarantees. Ordinal fits are not statistically calibrated; close plans may tie and stable IDs can determine the winner. Independent architecture review, tariff validation, target-device/load tests and richer constraint diagnostics are the highest-value next improvements.
+Costs use capacity hypotheses and authored allowances as well as reference prices. SLA/latency are targets, not guarantees. Ordinal fits are not statistically calibrated; close plans may tie and stable IDs can determine the winner. Independent architecture review, tariff validation, target-device/load tests and calibrated capacity examples and tenant/vendor evidence remain high-value improvements. Actionable blocker tasks, complete-plan comparisons and fixed-plan usage sensitivity are implemented in 0.6.0.
 
 10. References and third-party tools
 
@@ -330,6 +346,12 @@ core:ecs - Amazon ECS. docs.aws.amazon.com (2026-11-13).
 
 core:appservice - Azure App Service. learn.microsoft.com (2026-11-13).
 
+core:run - Cloud Run overview. cloud.google.com (2026-11-13).
+
+core:run-regions - Cloud Run locations. cloud.google.com (2026-11-13).
+
+core:run-ws - Cloud Run WebSockets. cloud.google.com (2026-11-13).
+
 
 ---
 
@@ -337,12 +359,6 @@ core:appservice - Azure App Service. learn.microsoft.com (2026-11-13).
 Appendix B. Source ledger 2
 
 Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
-
-core:run - Cloud Run overview. cloud.google.com (2026-11-13).
-
-core:run-regions - Cloud Run locations. cloud.google.com (2026-11-13).
-
-core:run-ws - Cloud Run WebSockets. cloud.google.com (2026-11-13).
 
 core:cloudsql-pg - Cloud SQL PostgreSQL locations. cloud.google.com (2026-11-13).
 
@@ -370,6 +386,12 @@ core:aws-regions - AWS region country mapping. docs.aws.amazon.com (2026-11-13).
 
 core:rds-regions - Amazon RDS regional endpoints. docs.aws.amazon.com (2026-11-13).
 
+core:azure-ase - App Service Environment v3 region and data boundary. learn.microsoft.com (2026-11-13).
+
+core:azure-pg-regions - Azure PostgreSQL Flexible Server overview. learn.microsoft.com (2026-11-13).
+
+core:azure-pg-backup - Azure PostgreSQL backup and restore. learn.microsoft.com (2026-11-13).
+
 svc:keycloak-db - Keycloak database support. keycloak.org (2026-11-13).
 
 svc:keycloak-admin - Keycloak administration. keycloak.org (2026-11-13).
@@ -392,6 +414,12 @@ svc:expo-sqlite - Expo SQLite. docs.expo.dev (2026-11-13).
 
 svc:android-offline - Android offline architecture. developer.android.com (2026-11-13).
 
+svc:dexie - Dexie IndexedDB. dexie.org (2026-11-13).
+
+svc:drift - Drift. drift.simonbinder.eu (2026-11-13).
+
+svc:pg-fts - PostgreSQL full-text. postgresql.org (2026-11-13).
+
 
 ---
 
@@ -399,12 +427,6 @@ svc:android-offline - Android offline architecture. developer.android.com (2026-
 Appendix B. Source ledger 3
 
 Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
-
-svc:dexie - Dexie IndexedDB. dexie.org (2026-11-13).
-
-svc:drift - Drift. drift.simonbinder.eu (2026-11-13).
-
-svc:pg-fts - PostgreSQL full-text. postgresql.org (2026-11-13).
 
 svc:mysql-fts - MySQL full-text. dev.mysql.com (2026-11-13).
 
@@ -454,14 +476,6 @@ svc:rbi - RBI payment-data storage FAQ. rbi.org.in (2026-11-13).
 
 svc:iso - ISO/IEC 27001. iso.org (2026-11-13).
 
-
----
-
-
-Appendix B. Source ledger 4
-
-Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
-
 svc:soc - AICPA SOC 2 criteria. aicpa-cima.com (2026-11-13).
 
 svc:pg-tx - PostgreSQL transactions. postgresql.org (2026-11-13).
@@ -474,7 +488,31 @@ svc:git - Git documentation. git-scm.com (2026-11-13).
 
 svc:python2-eol - Python 2 sunset. python.org (2026-11-13).
 
+
+---
+
+
+Appendix B. Source ledger 4
+
+Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
+
 svc:angularjs-eol - AngularJS support status. docs.angularjs.org (2026-11-13).
+
+svc:razorpay-privacy - Razorpay privacy policy. razorpay.com (2026-11-13).
+
+svc:entra-residency - Microsoft Entra data residency. learn.microsoft.com (2026-11-13).
+
+svc:entra-oidc - Microsoft identity platform OIDC. learn.microsoft.com (2026-11-13).
+
+svc:sql2019-lifecycle - SQL Server 2019 lifecycle. learn.microsoft.com (2026-11-13).
+
+svc:azure-vnet-integration - App Service virtual network integration. learn.microsoft.com (2026-11-13).
+
+svc:azure-storage-boundary - Azure Storage redundancy. learn.microsoft.com (2026-11-13).
+
+svc:azure-storage-region - Azure Storage regional routing. learn.microsoft.com (2026-11-13).
+
+svc:azure-ase-retail - Azure App Service Central India retail pricing API. prices.azure.com (2026-11-13).
 
 R01 - Knowledge-based recommender systems: overview and research directions. frontiersin.org (2024).
 
@@ -516,6 +554,8 @@ P04 - Full Text Search. postgresql.org (2026-11-13).
 
 P05 - Transactions. postgresql.org (2026-11-13).
 
+P06 - Choose an Azure compute service. learn.microsoft.com (2026-11-13).
+
 
 ---
 
@@ -523,8 +563,6 @@ P05 - Transactions. postgresql.org (2026-11-13).
 Appendix B. Source ledger 5
 
 Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
-
-P06 - Choose an Azure compute service. learn.microsoft.com (2026-11-13).
 
 P07 - Microservices architecture style. learn.microsoft.com (2026-11-13).
 

@@ -160,7 +160,7 @@ export function compatiblePlan(
   const residency = scenario.infrastructure.data_residency;
   const region =
     residency === 'none'
-      ? null
+      ? (hosting.fixed_region ?? null)
       : (hosting.regions!.find((item) => item.residency === residency)
           ?.region ?? null);
   let databaseDeployment = 'None';
@@ -179,10 +179,13 @@ export function compatiblePlan(
           reason:
             'No reviewed separately managed database product for this host/provider.',
         };
-      if (residency !== 'none') {
+      if (residency !== 'none' || hosting.fixed_region) {
         databaseRegion =
-          managed.regions.find((item) => item.residency === residency)
-            ?.region ?? null;
+          managed.regions.find((item) =>
+            residency === 'none'
+              ? item.region === hosting.fixed_region
+              : item.residency === residency,
+          )?.region ?? null;
         if (!databaseRegion)
           return {
             plan: null,

@@ -90,3 +90,7 @@ Good: “Budget may be exceeded: estimated $120–$210/month against $150. This 
 Avoid: “Enterprise-grade, infinitely scalable, fully compliant.”
 
 Implementation acceptance: keyboard-only import→run→inspect→export; no horizontal overflow at 360 px; status changes announced; stale result blocked; no mocked evidence in report.
+
+## Phase 6 delivered result panels
+
+Blocked results include expandable evidence-resolution tasks with field/component scope and primary links. Existing-system review distinguishes federation, SQL reuse and inventory; task completion is not deployment approval. Usable results include up to three complete-plan comparisons and cost-group/sensitivity disclosures. Price lines expose units, rates and references. At mobile widths the sensitivity table scrolls inside a labeled keyboard-focusable region. [Implementation and QA limits](PHASE_6.md).

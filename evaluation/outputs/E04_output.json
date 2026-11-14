@@ -32,7 +32,7 @@
     "scale.workload was absent; defaulted to \"balanced\".",
     "team.has_devops was absent; defaulted to false."
   ],
-  "catalog_version": "0.3.0",
+  "catalog_version": "0.4.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -64,6 +64,23 @@
       }
     }
   ],
+  "cost_groups": [
+    {
+      "category": "infrastructure_and_operations",
+      "line_ids": [
+        "static-hosting"
+      ],
+      "max": 0,
+      "min": 0
+    },
+    {
+      "category": "payment_and_message_activity",
+      "line_ids": [],
+      "max": 0,
+      "min": 0
+    }
+  ],
+  "cost_sensitivity": [],
   "data_flows": [
     {
       "component": "primary-compute",
@@ -86,13 +103,13 @@
   ],
   "database_region": null,
   "decision_trace": {
-    "complete_candidates": 8,
-    "core_candidates": 8,
+    "complete_candidates": 10,
+    "core_candidates": 10,
     "rejected": [],
     "score": 72,
     "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified"
   },
-  "engine_version": "0.5.0",
+  "engine_version": "0.6.0",
   "estimate_status": "estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -106,8 +123,151 @@
     "max": 0,
     "min": 0
   },
+  "integration_reviews": [],
+  "plan_comparison": [
+    {
+      "architecture_style": "static",
+      "budget_fit": "within_upper",
+      "core": {
+        "backend": "None",
+        "database": "None",
+        "frontend": "Astro",
+        "hosting": "Cloudflare Pages"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 50000; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (2893.519 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 10 GB assumed because absent; egress 50000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
+        "Static assets only; no Functions or paid add-ons. Build/file limits apply."
+      ],
+      "database_region": null,
+      "monthly_usd": {
+        "max": 0,
+        "min": 0
+      },
+      "operated_components": 0,
+      "plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+      "primary_region": null,
+      "retained_constraints": [
+        "platforms=web",
+        "cloud_preference=any",
+        "deployment_model=managed_cloud",
+        "data_residency=none",
+        "compliance=none",
+        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+      ],
+      "score": 72,
+      "score_delta": 0,
+      "selected": true,
+      "supporting_services": [
+        "Cloudflare Pages static delivery",
+        "Git with local build scripts"
+      ],
+      "tied_on_score": false,
+      "warning_codes": [
+        "FREE_TIER_OR_DEPLOYMENT_LIMITS"
+      ]
+    },
+    {
+      "architecture_style": "static",
+      "budget_fit": "within_upper",
+      "core": {
+        "backend": "None",
+        "database": "None",
+        "frontend": "HTML / CSS",
+        "hosting": "Cloudflare Pages"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 50000; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (2893.519 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 10 GB assumed because absent; egress 50000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
+        "Static assets only; no Functions or paid add-ons. Build/file limits apply."
+      ],
+      "database_region": null,
+      "monthly_usd": {
+        "max": 0,
+        "min": 0
+      },
+      "operated_components": 0,
+      "plan_id": "static|html|backend-none|database-none|pages|unspecified",
+      "primary_region": null,
+      "retained_constraints": [
+        "platforms=web",
+        "cloud_preference=any",
+        "deployment_model=managed_cloud",
+        "data_residency=none",
+        "compliance=none",
+        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+      ],
+      "score": 69,
+      "score_delta": -3,
+      "selected": false,
+      "supporting_services": [
+        "Cloudflare Pages static delivery",
+        "Git with local build scripts"
+      ],
+      "tied_on_score": false,
+      "warning_codes": [
+        "FREE_TIER_OR_DEPLOYMENT_LIMITS"
+      ]
+    },
+    {
+      "architecture_style": "static",
+      "budget_fit": "over_budget",
+      "core": {
+        "backend": "None",
+        "database": "None",
+        "frontend": "Astro",
+        "hosting": "Google Cloud Run"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 50000; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (2893.519 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 10 GB assumed because absent; egress 50000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 58 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas."
+      ],
+      "database_region": null,
+      "monthly_usd": {
+        "max": 36368.23,
+        "min": 4668.34
+      },
+      "operated_components": 0,
+      "plan_id": "static|astro|backend-none|database-none|cloudrun|unspecified",
+      "primary_region": null,
+      "retained_constraints": [
+        "platforms=web",
+        "cloud_preference=any",
+        "deployment_model=managed_cloud",
+        "data_residency=none",
+        "compliance=none",
+        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+      ],
+      "score": 57,
+      "score_delta": -15,
+      "selected": false,
+      "supporting_services": [
+        "Git with local build scripts"
+      ],
+      "tied_on_score": false,
+      "warning_codes": [
+        "BUDGET_EXCEEDED",
+        "FREE_TIER_OR_DEPLOYMENT_LIMITS"
+      ]
+    }
+  ],
   "primary_region": null,
-  "rules_version": "0.5.0",
+  "review_actions": [],
+  "rules_version": "0.6.0",
   "scenario_id": "E04",
   "score_breakdown": [
     {
@@ -186,7 +346,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.5.0",
+  "services_version": "0.6.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -343,7 +503,7 @@
     ]
   },
   "status": "ok",
-  "summary": "static recommendation selected from 8 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
+  "summary": "static recommendation selected from 10 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
   "validation_errors": [],
   "warnings": [
     {

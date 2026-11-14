@@ -349,3 +349,7 @@ Final evidence: verified install commands and exact versions; genuine engine/cat
 This plan is substantial engineering guidance, not a calibrated recommender or legal/compliance opinion. Abstract-only sources are labeled in the review; no prototype or paper experiment was reproduced. Prioritize remaining research on the facts that could invalidate a plan: region/service/data-flow support, EOL, authentication/payment integrations, pricing units, and offline/realtime constraints. Specific claimed regulatory obligations require authoritative jurisdiction-specific sources before implementation; no new legal interpretation is asserted here.
 
 For method reading order: R01 → R02 → R05/R04 → R06/R07 → R10 → scenario-specific P01/P02/P03–P05/P14. Use the [annotated review](docs/RESEARCH_REVIEW.md) to understand what to borrow and what not to infer. The owner must review and validate the resulting model before presenting it as their own challenge work.
+
+## Phase 6: comparison-driven improvements
+
+Implemented scope and explicit remaining evidence: [Phase 6 record](docs/PHASE_6.md). Actionable blockers, existing-system review, regional Azure coverage, fixed-plan cost sensitivity and top-three complete-plan comparisons are delivered in 0.6.0. [Backlog](docs/IMPROVEMENT_BACKLOG.md) retains external tenant/vendor evidence, independent cost/quality calibration and wider accessibility testing.

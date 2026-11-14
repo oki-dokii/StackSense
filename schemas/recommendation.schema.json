@@ -105,6 +105,36 @@
           "message"
         ]
       }
+    },
+    "review_actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/reviewAction"
+      }
+    },
+    "integration_reviews": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/integrationReview"
+      }
+    },
+    "cost_groups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/costGroup"
+      }
+    },
+    "cost_sensitivity": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/costSensitivity"
+      }
+    },
+    "plan_comparison": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/planComparison"
+      }
     }
   },
   "additionalProperties": true,
@@ -275,6 +305,441 @@
         "message",
         "fields"
       ]
+    },
+    "reviewAction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "evidence_gap",
+            "constraint_conflict",
+            "model_limit"
+          ]
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "affected_components": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "evidence_required": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "next_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_gate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1
+              },
+              "checked_on": {
+                "type": "string",
+                "minLength": 1
+              },
+              "scope": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "url",
+              "checked_on",
+              "scope"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "id",
+        "code",
+        "kind",
+        "fields",
+        "affected_components",
+        "evidence_required",
+        "next_action",
+        "resolution_gate",
+        "references"
+      ],
+      "additionalProperties": false
+    },
+    "integrationReview": {
+      "type": "object",
+      "properties": {
+        "system": {
+          "type": "string",
+          "minLength": 1
+        },
+        "approach": {
+          "enum": [
+            "federation_review",
+            "database_reuse_review",
+            "inventory_review"
+          ]
+        },
+        "approval": {
+          "const": "pending_project_evidence"
+        },
+        "protocol": {
+          "type": "string",
+          "minLength": 1
+        },
+        "data_boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cost_treatment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1
+              },
+              "checked_on": {
+                "type": "string",
+                "minLength": 1
+              },
+              "scope": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "url",
+              "checked_on",
+              "scope"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "system",
+        "approach",
+        "approval",
+        "protocol",
+        "data_boundary",
+        "cost_treatment",
+        "tasks",
+        "references"
+      ],
+      "additionalProperties": false
+    },
+    "costGroup": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "enum": [
+            "infrastructure_and_operations",
+            "payment_and_message_activity"
+          ]
+        },
+        "min": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max": {
+          "type": "number",
+          "minimum": 0
+        },
+        "line_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "category",
+        "min",
+        "max",
+        "line_ids"
+      ],
+      "additionalProperties": false
+    },
+    "costSensitivity": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "baseline_value": {
+          "type": "number",
+          "minimum": 0
+        },
+        "baseline_origin": {
+          "enum": [
+            "supplied",
+            "assumed"
+          ]
+        },
+        "scope": {
+          "const": "selected_plan_fixed_no_reranking"
+        },
+        "samples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0
+              },
+              "status": {
+                "enum": [
+                  "estimated",
+                  "model_limit"
+                ]
+              },
+              "min": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "max": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "upper_delta_usd": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "value",
+              "status",
+              "min",
+              "max",
+              "upper_delta_usd"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "field",
+        "baseline_value",
+        "baseline_origin",
+        "scope",
+        "samples"
+      ],
+      "additionalProperties": false
+    },
+    "planComparison": {
+      "type": "object",
+      "properties": {
+        "plan_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selected": {
+          "type": "boolean"
+        },
+        "architecture_style": {
+          "type": "string",
+          "minLength": 1
+        },
+        "core": {
+          "type": "object",
+          "properties": {
+            "frontend": {
+              "type": "string",
+              "minLength": 1
+            },
+            "backend": {
+              "type": "string",
+              "minLength": 1
+            },
+            "database": {
+              "type": "string",
+              "minLength": 1
+            },
+            "hosting": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "frontend",
+            "backend",
+            "database",
+            "hosting"
+          ],
+          "additionalProperties": false
+        },
+        "supporting_services": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "primary_region": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "database_region": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0
+        },
+        "score_delta": {
+          "type": "number"
+        },
+        "tied_on_score": {
+          "type": "boolean"
+        },
+        "monthly_usd": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0
+            },
+            "max": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ],
+          "additionalProperties": false
+        },
+        "operated_components": {
+          "type": "number",
+          "minimum": 0
+        },
+        "budget_fit": {
+          "enum": [
+            "within_upper",
+            "range_risk",
+            "over_budget"
+          ]
+        },
+        "warning_codes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "cost_assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "retained_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "plan_id",
+        "selected",
+        "architecture_style",
+        "core",
+        "supporting_services",
+        "primary_region",
+        "database_region",
+        "score",
+        "score_delta",
+        "tied_on_score",
+        "monthly_usd",
+        "operated_components",
+        "budget_fit",
+        "warning_codes",
+        "cost_assumptions",
+        "retained_constraints"
+      ],
+      "additionalProperties": false
     }
   },
   "allOf": [
@@ -394,6 +859,27 @@
             }
           }
         }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "engine_version": {
+            "const": "0.6.0"
+          }
+        },
+        "required": [
+          "engine_version"
+        ]
+      },
+      "then": {
+        "required": [
+          "review_actions",
+          "integration_reviews",
+          "cost_groups",
+          "cost_sensitivity",
+          "plan_comparison"
+        ]
       }
     }
   ]

@@ -34,7 +34,7 @@
     "scale.workload was absent; defaulted to \"balanced\".",
     "team.has_devops was absent; defaulted to false."
   ],
-  "catalog_version": "0.3.0",
+  "catalog_version": "0.4.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -105,6 +105,92 @@
         "max": 20,
         "min": 5
       }
+    }
+  ],
+  "cost_groups": [
+    {
+      "category": "infrastructure_and_operations",
+      "line_ids": [
+        "application-compute",
+        "backup-storage",
+        "telemetry-operations"
+      ],
+      "max": 369.75,
+      "min": 74.65
+    },
+    {
+      "category": "payment_and_message_activity",
+      "line_ids": [],
+      "max": 0,
+      "min": 0
+    }
+  ],
+  "cost_sensitivity": [
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 0.05787037037037037,
+      "field": "extensions.expected_requests_per_second",
+      "samples": [
+        {
+          "max": 369.75,
+          "min": 74.65,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 0.028935185185185185
+        },
+        {
+          "max": 369.75,
+          "min": 74.65,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 0.11574074074074074
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 1,
+      "field": "extensions.monthly_egress_gb",
+      "samples": [
+        {
+          "max": 369.75,
+          "min": 74.65,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 0.5
+        },
+        {
+          "max": 369.75,
+          "min": 74.65,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 2
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 1,
+      "field": "extensions.retention_months",
+      "samples": [
+        {
+          "max": 369.75,
+          "min": 74.65,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 1
+        },
+        {
+          "max": 372.75,
+          "min": 74.95,
+          "status": "estimated",
+          "upper_delta_usd": 3,
+          "value": 2
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
     }
   ],
   "data_flows": [
@@ -268,7 +354,7 @@
     "score": 48,
     "selected_plan_id": "modular_monolith|angular|fastapi|mysql|local|unspecified"
   },
-  "engine_version": "0.5.0",
+  "engine_version": "0.6.0",
   "estimate_status": "estimated",
   "estimated_monthly_cost_usd": {
     "assumptions": [
@@ -287,8 +373,168 @@
     "max": 369.75,
     "min": 74.65
   },
+  "integration_reviews": [],
+  "plan_comparison": [
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "within_upper",
+      "core": {
+        "backend": "FastAPI",
+        "database": "MySQL",
+        "frontend": "Angular",
+        "hosting": "Self-hosted VM + NGINX"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 4.75 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Self-hosted database CPU/disk shares the provisioned host allocation; no second managed database bill is added. Capacity and license review still required.",
+        "Intranet/local-device traffic has no public-cloud egress tariff in this estimate; WAN/carrier contracts are not inferred.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored incremental electricity/storage operating allowance on already-owned hardware; not an AWS/local tariff quote. Hardware purchase and labor excluded.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas."
+      ],
+      "database_region": null,
+      "monthly_usd": {
+        "max": 369.75,
+        "min": 74.65
+      },
+      "operated_components": 3.75,
+      "plan_id": "modular_monolith|angular|fastapi|mysql|local|unspecified",
+      "primary_region": null,
+      "retained_constraints": [
+        "platforms=web",
+        "cloud_preference=none",
+        "deployment_model=air_gapped",
+        "data_residency=none",
+        "compliance=none",
+        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+      ],
+      "score": 48,
+      "score_delta": 0,
+      "selected": true,
+      "supporting_services": [
+        "Jenkins on local persistent storage",
+        "Keycloak",
+        "OpenTelemetry Collector + structured logs"
+      ],
+      "tied_on_score": false,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "OPERATIONS_SKILL_GAP"
+      ]
+    },
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "within_upper",
+      "core": {
+        "backend": "FastAPI",
+        "database": "PostgreSQL",
+        "frontend": "Angular",
+        "hosting": "Self-hosted VM + NGINX"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 4.75 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Self-hosted database CPU/disk shares the provisioned host allocation; no second managed database bill is added. Capacity and license review still required.",
+        "Intranet/local-device traffic has no public-cloud egress tariff in this estimate; WAN/carrier contracts are not inferred.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored incremental electricity/storage operating allowance on already-owned hardware; not an AWS/local tariff quote. Hardware purchase and labor excluded.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas."
+      ],
+      "database_region": null,
+      "monthly_usd": {
+        "max": 369.75,
+        "min": 74.65
+      },
+      "operated_components": 3.75,
+      "plan_id": "modular_monolith|angular|fastapi|pg|local|unspecified",
+      "primary_region": null,
+      "retained_constraints": [
+        "platforms=web",
+        "cloud_preference=none",
+        "deployment_model=air_gapped",
+        "data_residency=none",
+        "compliance=none",
+        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+      ],
+      "score": 48,
+      "score_delta": 0,
+      "selected": false,
+      "supporting_services": [
+        "Jenkins on local persistent storage",
+        "Keycloak",
+        "OpenTelemetry Collector + structured logs"
+      ],
+      "tied_on_score": true,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "OPERATIONS_SKILL_GAP"
+      ]
+    },
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "within_upper",
+      "core": {
+        "backend": "Fastify",
+        "database": "MySQL",
+        "frontend": "Angular",
+        "hosting": "Self-hosted VM + NGINX"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 4.75 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Self-hosted database CPU/disk shares the provisioned host allocation; no second managed database bill is added. Capacity and license review still required.",
+        "Intranet/local-device traffic has no public-cloud egress tariff in this estimate; WAN/carrier contracts are not inferred.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored incremental electricity/storage operating allowance on already-owned hardware; not an AWS/local tariff quote. Hardware purchase and labor excluded.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas."
+      ],
+      "database_region": null,
+      "monthly_usd": {
+        "max": 369.75,
+        "min": 74.65
+      },
+      "operated_components": 3.75,
+      "plan_id": "modular_monolith|angular|fastify|mysql|local|unspecified",
+      "primary_region": null,
+      "retained_constraints": [
+        "platforms=web",
+        "cloud_preference=none",
+        "deployment_model=air_gapped",
+        "data_residency=none",
+        "compliance=none",
+        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+      ],
+      "score": 48,
+      "score_delta": 0,
+      "selected": false,
+      "supporting_services": [
+        "Jenkins on local persistent storage",
+        "Keycloak",
+        "OpenTelemetry Collector + structured logs"
+      ],
+      "tied_on_score": true,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "OPERATIONS_SKILL_GAP"
+      ]
+    }
+  ],
   "primary_region": null,
-  "rules_version": "0.5.0",
+  "review_actions": [],
+  "rules_version": "0.6.0",
   "scenario_id": "E07",
   "score_breakdown": [
     {
@@ -364,7 +610,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.5.0",
+  "services_version": "0.6.0",
   "stack": {
     "backend": {
       "alternatives": [
