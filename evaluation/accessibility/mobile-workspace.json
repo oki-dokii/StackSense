@@ -1,9 +1,9 @@
 {
   "activeElement": {
-    "class": "secondary",
+    "class": "",
     "id": "",
-    "tag": "button",
-    "text": "↥ Import / edit JSON"
+    "tag": "h1",
+    "text": "Choose your stack.Know the trade-offs."
   },
   "issues": {
     "contrast": [],
@@ -17,7 +17,7 @@
   },
   "limitations": "Custom read-only snapshot, not axe or WCAG conformance. Solid-background text only; skips SVG, opacity/gradient cases, disabled and hidden text. Does not test assistive technology, focus obscuring, control borders or all accessible-name rules.",
   "path": "/",
-  "testedTextElements": 142,
+  "testedTextElements": 144,
   "title": "Workspace — StackSense",
   "unmeasured": [],
   "unmeasuredTextElements": 0,

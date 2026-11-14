@@ -1,0 +1,18 @@
+{
+  "current_cases": [
+    "desktop-workspace",
+    "provisional-p2",
+    "methodology",
+    "import-error",
+    "desktop-lab",
+    "mobile-workspace",
+    "mobile-lab",
+    "mobile-budget"
+  ],
+  "retained_case": {
+    "name": "invalid-result",
+    "from_commit": "19c0e3a",
+    "reason": "Validation rendering and focus logic are unchanged and covered by existing React DOM regressions; current browser keyboard activation did not complete the route, so no fresh invalid-result capture is claimed."
+  },
+  "scope": "Custom DOM/contrast checks, not a complete accessibility audit."
+}

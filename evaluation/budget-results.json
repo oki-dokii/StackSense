@@ -1,0 +1,1002 @@
+{
+  "scope": "Cash-cost scenarios and explicitly changed-requirement proposals; not workload, SLA or compliance validation.",
+  "case_set_sha256": "c1fe1d5460dd9f77e7354958dce74e736baab1915d665e4c1e9ae1d1286b6ebd",
+  "records": [
+    {
+      "id": "S01",
+      "primary_infrastructure": {
+        "min": 34.5,
+        "max": 169
+      },
+      "options": [
+        {
+          "plan_id": "static|astro|backend-none|database-none|local|unspecified",
+          "infrastructure": {
+            "min": 19.9,
+            "max": 96
+          },
+          "total": {
+            "min": 19.9,
+            "max": 96
+          },
+          "budget_fit": "range_risk",
+          "changes": [
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S02",
+      "primary_infrastructure": {
+        "min": 103.18,
+        "max": 271.17
+      },
+      "options": [
+        {
+          "plan_id": "static|astro|backend-none|database-none|lightsail|unspecified",
+          "infrastructure": {
+            "min": 29.5,
+            "max": 45
+          },
+          "total": {
+            "min": 29.5,
+            "max": 45
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S03",
+      "primary_infrastructure": {
+        "min": 247.76,
+        "max": 695
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|react|django|maria|lightsail|unspecified",
+          "infrastructure": {
+            "min": 77.5,
+            "max": 123
+          },
+          "total": {
+            "min": 77.5,
+            "max": 123
+          },
+          "budget_fit": "over_budget",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S04",
+      "primary_infrastructure": {
+        "min": 251.4,
+        "max": 601.63
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|angular|fastify|mysql|lightsail|unspecified",
+          "infrastructure": {
+            "min": 77.5,
+            "max": 123
+          },
+          "total": {
+            "min": 77.5,
+            "max": 123
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S05",
+      "primary_infrastructure": {
+        "min": 247.76,
+        "max": 695
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|react|fastify|pg|lightsail|unspecified",
+          "infrastructure": {
+            "min": 77.5,
+            "max": 123
+          },
+          "total": {
+            "min": 77.5,
+            "max": 123
+          },
+          "budget_fit": "range_risk",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S06",
+      "primary_infrastructure": {
+        "min": 287.2,
+        "max": 979.11
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified",
+          "infrastructure": {
+            "min": 180.86,
+            "max": 654.93
+          },
+          "total": {
+            "min": 180.86,
+            "max": 654.93
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S07",
+      "primary_infrastructure": {
+        "min": 259.19,
+        "max": 804.74
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|next|fastify|pg|lightsail|ap-south-1",
+          "infrastructure": {
+            "min": 77.5,
+            "max": 123
+          },
+          "total": {
+            "min": 77.5,
+            "max": 213
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "EXTERNAL_RESIDENCY_UNVERIFIED",
+            "EXTERNAL_RESIDENCY_UNVERIFIED",
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S08",
+      "primary_infrastructure": {
+        "min": 224.37,
+        "max": 547.57
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|frontend-none|go-http|pg|lightsail|us-east-1",
+          "infrastructure": {
+            "min": 53.5,
+            "max": 99
+          },
+          "total": {
+            "min": 53.5,
+            "max": 149
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "EXTERNAL_RESIDENCY_UNVERIFIED",
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S09",
+      "primary_infrastructure": {
+        "min": 259.19,
+        "max": 804.74
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|next-native|fastify|pg|lightsail|eu-west-1",
+          "infrastructure": {
+            "min": 77.5,
+            "max": 123
+          },
+          "total": {
+            "min": 77.5,
+            "max": 233
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "EXTERNAL_RESIDENCY_UNVERIFIED",
+            "EXTERNAL_RESIDENCY_UNVERIFIED",
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S10",
+      "primary_infrastructure": {
+        "min": 247.76,
+        "max": 695
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|flutter|django|mysql|cloudrun|unspecified",
+          "infrastructure": {
+            "min": 184.74,
+            "max": 480.07
+          },
+          "total": {
+            "min": 184.74,
+            "max": 480.07
+          },
+          "budget_fit": "range_risk",
+          "changes": [
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S11",
+      "primary_infrastructure": {
+        "min": 247.86,
+        "max": 695.5
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|react|fastify|mysql|lightsail|unspecified",
+          "infrastructure": {
+            "min": 77.6,
+            "max": 123.5
+          },
+          "total": {
+            "min": 77.6,
+            "max": 123.5
+          },
+          "budget_fit": "range_risk",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S12",
+      "primary_infrastructure": {
+        "min": 287.54,
+        "max": 674.21
+      },
+      "options": []
+    },
+    {
+      "id": "S13",
+      "primary_infrastructure": {
+        "min": 320.81,
+        "max": 853.94
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|angular|fastify|pg|lightsail|unspecified",
+          "infrastructure": {
+            "min": 77.5,
+            "max": 123
+          },
+          "total": {
+            "min": 77.5,
+            "max": 123
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S14",
+      "primary_infrastructure": {
+        "min": 974.32,
+        "max": 1132.41
+      },
+      "options": []
+    },
+    {
+      "id": "S15",
+      "primary_infrastructure": {
+        "min": 260.41,
+        "max": 619.65
+      },
+      "options": []
+    },
+    {
+      "id": "S16",
+      "primary_infrastructure": {
+        "min": 60.05,
+        "max": 296.75
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|frontend-none|go-http|mysql|local|unspecified",
+          "infrastructure": {
+            "min": 45.45,
+            "max": 223.75
+          },
+          "total": {
+            "min": 45.45,
+            "max": 223.75
+          },
+          "budget_fit": "range_risk",
+          "changes": [
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S17",
+      "primary_infrastructure": {
+        "min": 247.86,
+        "max": 695.5
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
+          "infrastructure": {
+            "min": 184.84,
+            "max": 480.57
+          },
+          "total": {
+            "min": 184.84,
+            "max": 480.57
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BAA_EVIDENCE_REQUIRED",
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S18",
+      "primary_infrastructure": {
+        "min": 247.76,
+        "max": 695
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|compose|spring|pg|lightsail|ap-south-1",
+          "infrastructure": {
+            "min": 77.5,
+            "max": 123
+          },
+          "total": {
+            "min": 77.5,
+            "max": 123
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S19",
+      "primary_infrastructure": {
+        "min": 189.94,
+        "max": 590.93
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|frontend-none|django|mysql|lightsail|unspecified",
+          "infrastructure": {
+            "min": 53.5,
+            "max": 99
+          },
+          "total": {
+            "min": 53.5,
+            "max": 99
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S20",
+      "primary_infrastructure": {
+        "min": 287.2,
+        "max": 979.11
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified",
+          "infrastructure": {
+            "min": 180.86,
+            "max": 654.93
+          },
+          "total": {
+            "min": 180.86,
+            "max": 654.93
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S21",
+      "primary_infrastructure": {
+        "min": 215.36,
+        "max": 529.55
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|frontend-none|go-http|mysql|lightsail|unspecified",
+          "infrastructure": {
+            "min": 53.5,
+            "max": 99
+          },
+          "total": {
+            "min": 53.5,
+            "max": 99
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S22",
+      "primary_infrastructure": {
+        "min": 74.65,
+        "max": 369.75
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|react|django|maria|local|unspecified",
+          "infrastructure": {
+            "min": 60.05,
+            "max": 296.75
+          },
+          "total": {
+            "min": 60.05,
+            "max": 296.75
+          },
+          "budget_fit": "range_risk",
+          "changes": [
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S23",
+      "primary_infrastructure": {
+        "min": 144.59,
+        "max": 484.64
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|frontend-none|django|database-none|cloudrun|unspecified",
+          "infrastructure": {
+            "min": 133.16,
+            "max": 374.89
+          },
+          "total": {
+            "min": 133.16,
+            "max": 374.89
+          },
+          "budget_fit": "range_risk",
+          "changes": [
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S24",
+      "primary_infrastructure": null,
+      "options": []
+    },
+    {
+      "id": "S25",
+      "primary_infrastructure": {
+        "min": 74.65,
+        "max": 369.75
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|angular|fastify|mysql|local|unspecified",
+          "infrastructure": {
+            "min": 60.05,
+            "max": 296.75
+          },
+          "total": {
+            "min": 60.05,
+            "max": 296.75
+          },
+          "budget_fit": "over_budget",
+          "changes": [
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S26",
+      "primary_infrastructure": {
+        "min": 247.76,
+        "max": 695
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|react|fastify|mysql|lightsail|unspecified",
+          "infrastructure": {
+            "min": 77.5,
+            "max": 123
+          },
+          "total": {
+            "min": 77.5,
+            "max": 123
+          },
+          "budget_fit": "over_budget",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S27",
+      "primary_infrastructure": {
+        "min": 320.81,
+        "max": 853.94
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|flutter|fastapi|mysql|lightsail|unspecified",
+          "infrastructure": {
+            "min": 77.5,
+            "max": 123
+          },
+          "total": {
+            "min": 77.5,
+            "max": 123
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S28",
+      "primary_infrastructure": {
+        "min": 215.36,
+        "max": 529.55
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|frontend-none|spring|maria|lightsail|unspecified",
+          "infrastructure": {
+            "min": 53.5,
+            "max": 99
+          },
+          "total": {
+            "min": 53.5,
+            "max": 99
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S29",
+      "primary_infrastructure": {
+        "min": 189.94,
+        "max": 590.93
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|frontend-none|go-http|mysql|lightsail|unspecified",
+          "infrastructure": {
+            "min": 53.5,
+            "max": 99
+          },
+          "total": {
+            "min": 53.5,
+            "max": 99
+          },
+          "budget_fit": "within_upper",
+          "changes": [
+            {
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm",
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
+            },
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S30",
+      "primary_infrastructure": {
+        "min": 129.28,
+        "max": 549.75
+      },
+      "options": [
+        {
+          "plan_id": "modular_monolith|frontend-none|django|database-none|appservice|unspecified",
+          "infrastructure": {
+            "min": 74.53,
+            "max": 330.75
+          },
+          "total": {
+            "min": 74.53,
+            "max": 330.75
+          },
+          "budget_fit": "range_risk",
+          "changes": [
+            {
+              "field": "requirements.availability",
+              "from": "99.9",
+              "to": "99",
+              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
+            }
+          ],
+          "requires_acceptance": true,
+          "critical_conditions": [
+            "BUDGET_REQUIREMENT_CHANGE"
+          ]
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "scenarios": 30,
+    "proposals": 26,
+    "proposal_upper_fits": 15,
+    "proposal_range_risk": 8,
+    "proposal_still_over": 3
+  }
+}

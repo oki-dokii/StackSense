@@ -19,7 +19,7 @@ The 46 new tests check all thirty briefs, seven language-only APIs, three provid
 
 Selected hosting: **AWS 7, Azure 4, GCP 14, local/on-premise 4**, with one no-plan case. Holding a stateless API brief constant and changing only AWS/Azure/GCP preference changes the selected provider accordingly. No small-team case selects Kubernetes or microservices; those architectures are not selectable in the current catalog, so this does not demonstrate a sophisticated Kubernetes-vs-monolith decision.
 
-**Remaining budget issue:** twelve briefs exceed their infrastructure budget at the lower bound. All carry budget warnings. One CPU-inference case has a band wider than 5x; the median band and individual bands remain planning assumptions rather than measured capacity. This evaluation does not solve budget feasibility, justify narrower arbitrary intervals, or include payment/SMS fees in the infrastructure headline. A future cost-model revision should compare genuine minimum-deployment alternatives, service duty cycles and explicit reduced-scope options with quoted/reference units.
+**Historical budget finding at commit 19c0e3a:** twelve briefs exceeded their infrastructure budget at the lower bound. All carry budget warnings. One CPU-inference case has a band wider than 5x; the median band and individual bands remain planning assumptions rather than measured capacity. This evaluation does not solve budget feasibility, justify narrower arbitrary intervals, or include payment/SMS fees in the infrastructure headline. A future cost-model revision should compare genuine minimum-deployment alternatives, service duty cycles and explicit reduced-scope options with quoted/reference units.
 
 | ID | Brief | Selected provider | Status | Monthly infrastructure USD | Budget USD |
 |---|---|---|---|---:|---:|
@@ -65,6 +65,6 @@ npx vitest run tests/stress.test.ts
 
 [Inputs and expectations](../fixtures/stress-cases.json), [before-fix observations](../evaluation/stress-baseline.json), [current records](../evaluation/stress-results.json). The release verifier recomputes the stress results, including case/catalog digests, so CI rejects stale results. Inputs are fixed and explicit; no network, randomness, LLM or paid API is required.
 
-All six public recommendation JSON files remain byte-identical. Selected stacks, prices and overview screenshots therefore still match. Decision Lab export ordering changes because the generic tie-break also orders tied alternatives; the six analysis artifacts and current browser export are refreshed.
+At that stress phase, all six public recommendation JSON files remained byte-identical. The subsequent [budget update](BUDGET_PLANNING.md) changes cost bands and adds total-spend/proposal fields; current machine records supersede the historical cost table above. Selected stacks, prices and overview screenshots therefore still match. Decision Lab export ordering changes because the generic tie-break also orders tied alternatives; the six analysis artifacts and current browser export are refreshed.
 
 The runtime/test source digest binds the updated code and regression fixtures to a fresh archive setup rehearsal. Historical version numbers describe this pre-submission 0.8 release line; the Git commit and content digests distinguish its updates.

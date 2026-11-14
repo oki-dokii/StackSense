@@ -1,3 +1,4 @@
+import { BudgetPlanning } from './budget-planning.js';
 import { DecisionLabPanel } from './decision-lab';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -1022,7 +1023,8 @@ export function App() {
                             Up to three compatible plans after service and
                             control checks. Scores are engineering preferences,
                             not confidence probabilities. Ties use cost upper
-                            bound, operated components, then stable identifier.
+                            bound, operated components, fewer unrequested client
+                            targets, then stable identifier.
                           </p>
                           {result.plan_comparison.map((plan) => (
                             <details key={plan.plan_id}>
@@ -1159,6 +1161,31 @@ export function App() {
                             ? 'No usable stack was selected. The JSON 0–0 placeholder is not a free deployment.'
                             : 'Infrastructure and operations only. Payment and SMS activity scenarios below are additional and excluded from this headline and budget fit. Missing usage is assumed, not measured; labor, taxes, license entitlement and merchant-specific extras require separate quotes.'}
                         </p>
+                        {result.estimate_status === 'estimated' &&
+                          result.estimated_total_monthly_cost_usd && (
+                            <div>
+                              <h3>Including payment and SMS activity</h3>
+                              <p>
+                                <strong>
+                                  {money(
+                                    result.estimated_total_monthly_cost_usd.min,
+                                  )}{' '}
+                                  –{' '}
+                                  {money(
+                                    result.estimated_total_monthly_cost_usd.max,
+                                  )}{' '}
+                                  / month
+                                </strong>
+                              </p>
+                              <p>
+                                Additional activity volumes and fee rates are
+                                scenarios, not measured bills. This total can
+                                change with phone login or payments even when
+                                infrastructure stays the same. Taxes, labor and
+                                merchant-specific extras remain excluded.
+                              </p>
+                            </div>
+                          )}
                         {result.cost_groups.length > 0 && (
                           <dl className="cost-groups">
                             {result.cost_groups.map((group) => (
@@ -1308,6 +1335,7 @@ export function App() {
                           </ul>
                         </details>
                       </section>
+                      <BudgetPlanning result={result} />
                       <section className="panel">
                         <h2>Assumptions & provenance</h2>
                         <ul>

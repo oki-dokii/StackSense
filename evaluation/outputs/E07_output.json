@@ -34,6 +34,31 @@
     "scale.workload was absent; defaulted to \"balanced\".",
     "team.has_devops was absent; defaulted to false."
   ],
+  "budget_planning": {
+    "budget_usd": 500,
+    "cheapest_same_scope": {
+      "budget_fit": "within_upper",
+      "core": {
+        "backend": "ASP.NET Core",
+        "database": "MySQL",
+        "frontend": "Angular",
+        "hosting": "Self-hosted VM + NGINX"
+      },
+      "monthly_infrastructure_usd": {
+        "max": 369.75,
+        "min": 74.65
+      },
+      "plan_id": "modular_monolith|angular|aspnet|mysql|local|unspecified"
+    },
+    "notes": [
+      "Infrastructure uncertainty: application-compute contributes USD 277.4 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Infrastructure uncertainty: telemetry-operations contributes USD 15 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Infrastructure uncertainty: backup-storage contributes USD 2.7 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions."
+    ],
+    "options": [],
+    "scope": "optional_proposals_original_result_unchanged"
+  },
   "catalog_version": "0.4.0",
   "control_plan": {
     "deployment_controls": [
@@ -374,6 +399,25 @@
       "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
       "Authored incremental electricity/storage operating allowance on already-owned hardware; not an AWS/local tariff quote. Hardware purchase and labor excluded.",
       "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas."
+    ],
+    "max": 369.75,
+    "min": 74.65
+  },
+  "estimated_total_monthly_cost_usd": {
+    "assumptions": [
+      "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+      "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
+      "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
+      "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+      "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 4.75 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+      "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+      "Self-hosted database CPU/disk shares the provisioned host allocation; no second managed database bill is added. Capacity and license review still required.",
+      "Intranet/local-device traffic has no public-cloud egress tariff in this estimate; WAN/carrier contracts are not inferred.",
+      "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+      "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+      "Authored incremental electricity/storage operating allowance on already-owned hardware; not an AWS/local tariff quote. Hardware purchase and labor excluded.",
+      "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+      "Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded."
     ],
     "max": 369.75,
     "min": 74.65

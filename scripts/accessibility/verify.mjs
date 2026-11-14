@@ -13,6 +13,7 @@ const cases = [
   'invalid-result',
   'desktop-lab',
   'mobile-workspace',
+  'mobile-budget',
   'mobile-lab',
 ];
 const images = [
@@ -24,6 +25,7 @@ const images = [
 ];
 const sources = [
   'apps/web/src/main.tsx',
+  'apps/web/src/budget-planning.tsx',
   'apps/web/src/style.css',
   'apps/web/src/decision-lab.tsx',
   'apps/web/src/model.ts',

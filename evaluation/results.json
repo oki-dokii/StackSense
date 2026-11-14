@@ -1,6 +1,6 @@
 {
   "case_set_sha256": "8e63aeb5cfac709166f7d4f295e77146e5625059775773759de48589f91f5303",
-  "engine_version": "0.6.0",
+  "engine_version": "0.8.0",
   "records": [
     {
       "category": "Missing fields",
@@ -21,8 +21,8 @@
     {
       "category": "Contradictions",
       "cost": {
-        "max": 20472.54,
-        "min": 2957.81
+        "max": 20476.09,
+        "min": 3088.39
       },
       "id": "E03",
       "selected_plan_id": "modular_monolith|flutter|aspnet|pg|cloudrun|unspecified",
@@ -50,8 +50,8 @@
     {
       "category": "Regulatory constraints",
       "cost": {
-        "max": 620.44,
-        "min": 145.7
+        "max": 691.4,
+        "min": 247.04
       },
       "id": "E05",
       "selected_plan_id": "modular_monolith|angular|aspnet|mysql|cloudrun|unspecified",
@@ -67,8 +67,8 @@
     {
       "category": "Existing systems",
       "cost": {
-        "max": 510.69,
-        "min": 134.27
+        "max": 587.33,
+        "min": 189.22
       },
       "id": "E06",
       "selected_plan_id": "modular_monolith|react|aspnet|mysql|cloudrun|unspecified",
@@ -98,8 +98,8 @@
     {
       "category": "Skill mismatch",
       "cost": {
-        "max": 510.69,
-        "min": 134.27
+        "max": 587.33,
+        "min": 189.22
       },
       "id": "E08",
       "selected_plan_id": "modular_monolith|angular|go-http|mysql|cloudrun|unspecified",
@@ -113,8 +113,8 @@
     {
       "category": "Deprecated technology",
       "cost": {
-        "max": 510.69,
-        "min": 134.27
+        "max": 587.33,
+        "min": 189.22
       },
       "id": "E09",
       "selected_plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
@@ -146,8 +146,8 @@
     {
       "category": "Offline native writes",
       "cost": {
-        "max": 648.37,
-        "min": 148.66
+        "max": 691.9,
+        "min": 247.14
       },
       "id": "E11",
       "selected_plan_id": "modular_monolith|react-native|django|pg|cloudrun|unspecified",
@@ -182,8 +182,8 @@
     {
       "category": "Unknown extension",
       "cost": {
-        "max": 510.69,
-        "min": 134.27
+        "max": 587.33,
+        "min": 189.22
       },
       "id": "E14",
       "selected_plan_id": "modular_monolith|angular|aspnet|mysql|cloudrun|unspecified",

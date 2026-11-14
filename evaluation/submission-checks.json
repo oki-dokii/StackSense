@@ -22,8 +22,8 @@
         "EXTERNAL_RESIDENCY_UNVERIFIED"
       ],
       "infrastructure_usd": {
-        "min": 241.96,
-        "max": 1224.36
+        "min": 367.76,
+        "max": 1193.62
       },
       "llm_off_exact_match": true,
       "identifier_and_order_invariance": true
@@ -34,8 +34,8 @@
       "stack_present": true,
       "critical_warnings": [],
       "infrastructure_usd": {
-        "min": 513.51,
-        "max": 2679.49
+        "min": 639.32,
+        "max": 2648.75
       },
       "llm_off_exact_match": true,
       "identifier_and_order_invariance": true
@@ -78,15 +78,15 @@
         "EXTERNAL_RESIDENCY_UNVERIFIED"
       ],
       "infrastructure_usd": {
-        "min": 81.42,
-        "max": 508.55
+        "min": 187.9,
+        "max": 552.07
       },
       "llm_off_exact_match": true,
       "identifier_and_order_invariance": true
     }
   ],
   "history": {
-    "available_commits": 15,
+    "available_commits": 17,
     "earliest_author_date": "2026-11-13T01:45:56+05:30",
     "earliest_committer_date": "2026-11-13T01:45:56+05:30",
     "commits_with_author_or_committer_date_before_release": 0,

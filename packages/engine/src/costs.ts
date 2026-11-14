@@ -139,7 +139,11 @@ export function estimateCost(
     const databaseUnits =
       plan.database.model !== 'none' &&
       s.infrastructure.deployment_model !== 'managed_cloud'
-        ? 1
+        ? plan.hosting.id === 'lightsail'
+          ? peak >= 1000
+            ? 4
+            : 2
+          : 1
         : 0;
     const units =
       databaseUnits +
@@ -167,13 +171,58 @@ export function estimateCost(
         : { min: 1, max: 1 };
     const ase = plan.hosting.id === 'ase-india';
     const billedUnits = ase ? Math.max(replicas, Math.ceil(units / 2)) : units;
-    add(
-      'application-compute',
-      'compute',
-      billedUnits * H * duty.min,
-      billedUnits * H * duty.max,
-      ase ? 'ase_i1v2_hour' : hourKey,
-    );
+    const lightsail = plan.hosting.id === 'lightsail';
+    const bundles = Math.max(1, Math.ceil(units / 2));
+    if (lightsail) {
+      add(
+        'application-compute',
+        'compute',
+        bundles,
+        bundles,
+        'lightsail_bundle_month',
+      );
+      const extraDisk = Math.max(0, Math.ceil((totalData - 60) / 8) * 8);
+      if (extraDisk)
+        add(
+          'database-extra-disk',
+          'database',
+          extraDisk,
+          extraDisk,
+          'lightsail_disk_gb',
+        );
+      assumptions.push(
+        `Lightsail: ${bundles} full-month Linux IPv4 4-GiB/2-vCPU/80-GB-SSD bundles at USD 24 each. Reference service allocations are packed into these bundles; reserve 20 GB OS space on the database host and add block disk above 60 GB application data. Database and identity are self-operated. Burstable CPU baselines, memory, inter-node routing, recovery and the requested throughput/latency are NOT validated by this cash-cost estimate.`,
+      );
+    } else if (plan.hosting.id === 'cloudrun') {
+      const requestUnits =
+        replicas + (plan.frontend.runtime === 'node' ? 1 : 0);
+      const alwaysOnUnits = Math.ceil(background);
+      add(
+        'application-compute',
+        'compute',
+        requestUnits * H * duty.min,
+        requestUnits * H * duty.max,
+        hourKey,
+      );
+      if (alwaysOnUnits)
+        add(
+          'background-compute',
+          'compute',
+          alwaysOnUnits * H,
+          alwaysOnUnits * H,
+          'cloudrun_instance_hour',
+        );
+      assumptions.push(
+        `Cloud Run billing separates ${requestUnits} request-driven allocations from ${alwaysOnUnits} always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.`,
+      );
+    } else
+      add(
+        'application-compute',
+        'compute',
+        billedUnits * H * duty.min,
+        billedUnits * H * duty.max,
+        ase ? 'ase_i1v2_hour' : hourKey,
+      );
     assumptions.push(
       `Compute provisioning hypothesis: 50 RPS or ${s.requirements.realtime ? 500 : 1000} active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. ${units} vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.`,
     );
@@ -254,7 +303,7 @@ export function estimateCost(
       'backup',
       Math.max(10, totalData) * retention,
       Math.max(10, totalData) * retention * 2,
-      'backup_gb',
+      lightsail ? 'lightsail_snapshot_gb' : 'backup_gb',
     );
     if (s.requirements.file_media_storage)
       add(
@@ -266,9 +315,25 @@ export function estimateCost(
       );
     if (
       !['on_premise', 'air_gapped'].includes(s.infrastructure.deployment_model)
-    )
-      add('network-egress', 'egress', egress, egress * 2, 'egress_gb');
-    else
+    ) {
+      // Reserve half one VM's transfer quota for inbound/inter-node traffic; never pool every VM's quota.
+      const included = lightsail
+        ? plan.primary_region === 'ap-south-1'
+          ? 1000
+          : 2000
+        : 0;
+      add(
+        'network-egress',
+        'egress',
+        Math.max(0, egress - included),
+        Math.max(0, egress * 2 - included),
+        'egress_gb',
+      );
+      if (lightsail)
+        assumptions.push(
+          `Transfer model reserves half one bundle's quota for inbound/other traffic: ${included} GB outbound allowance remains (Mumbai quota is halved). Additional VMs' quotas are not pooled. External S3 delivery, cross-region/private network routes or inbound above this reservation can create extra charges; verify actual routing and tariffs.`,
+        );
+    } else
       assumptions.push(
         'Intranet/local-device traffic has no public-cloud egress tariff in this estimate; WAN/carrier contracts are not inferred.',
       );

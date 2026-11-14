@@ -6,7 +6,7 @@ StackSense searches compatible designs; it does not ask a language model for a s
 2. **Determine the architectural needs.** Platforms, persistence, SEO, realtime, offline use and other declared features constrain eligible components. Limited description hints remain explicitly disclosed.
 3. **Search complete combinations.** Core candidates must have compatible clients, runtimes, drivers, provider/deployment mappings and reviewed primary regions. Supporting services are added before the complete plan is ranked.
 4. **Separate conflicts from missing evidence.** An external payment service cannot operate in an air gap. That remains a blocking conflict. MSG91 having incomplete India data-flow evidence is different: it can be proposed with a critical warning and an explicit unverified-boundary assumption. The stack is provisional until that condition is resolved.
-5. **Estimate quantities and costs.** The month-12 infrastructure model uses disclosed traffic, concurrency, duty-cycle and resource hypotheses. WebSocket concurrency is counted once. Payment and message fees have separate activity scenarios; they do not inflate the infrastructure budget comparison.
+5. **Estimate quantities and costs.** The month-12 infrastructure model uses disclosed traffic, concurrency, duty-cycle and resource hypotheses. WebSocket concurrency is counted once. Payment and message fees have separate activity scenarios and an additional combined total; they do not alter the infrastructure budget comparison. Cloud Run support allocations have a full-month instance-based floor.
 6. **Rank deterministically.** Six priorities weight explainable ordinal fits. Stable cost/operations/unused-client-targets/identifier tie-breaks select one complete design. A higher score cannot erase a warning or certify a deployment.
 7. **Explain and export.** Each selection carries input drivers, alternatives and tradeoffs. Critical exceptions, source references, assumptions and review tasks remain visible. Decision Lab reruns actual alternatives and priorities without applying them.
 
@@ -28,3 +28,5 @@ StackSense searches compatible designs; it does not ask a language model for a s
 - Where does AI assistance end and participant responsibility for design decisions, knowledge-base review and reasoning begin?
 
 The AI-assistance disclosure describes the actual development process. This walkthrough helps review the implementation; it is not a substitute for understanding or an assertion of unaided authorship.
+
+Budget proposals are a separate bounded rerun. Inspect each field change and its consequences, apply them to a copy only if accepted, and rerun. The original selected plan, inputs and critical vendor conditions remain intact. Lowest cash cost does not prove capacity or availability.

@@ -7,56 +7,56 @@
   "measurement_scope": "Loopback HTTP through consumed JSON; parity validated separately after timing. Three measured runs per case after one warm-up; excludes browser rendering and performance of recommended architectures.",
   "measurements": [
     {
-      "max_ms": 12.676,
+      "max_ms": 12.468,
       "samples_ms": [
-        11.959,
-        12.676,
-        10.513
+        12.468,
+        11.924,
+        10.644
       ],
       "scenario_id": "P1"
     },
     {
-      "max_ms": 30.541,
+      "max_ms": 28.684,
       "samples_ms": [
-        26.524,
-        30.541,
-        27.804
+        27.397,
+        28.684,
+        27.153
       ],
       "scenario_id": "P2"
     },
     {
-      "max_ms": 126.761,
+      "max_ms": 136.61,
       "samples_ms": [
-        126.761,
-        125.435,
-        123.498
+        132.112,
+        136.61,
+        134.25
       ],
       "scenario_id": "P3"
     },
     {
-      "max_ms": 23.61,
+      "max_ms": 23.4,
       "samples_ms": [
-        23.61,
-        23.409,
-        22.988
+        23.169,
+        23.344,
+        23.4
       ],
       "scenario_id": "P4"
     },
     {
-      "max_ms": 31.252,
+      "max_ms": 33.154,
       "samples_ms": [
-        30.656,
-        30.962,
-        31.252
+        31.809,
+        31.437,
+        33.154
       ],
       "scenario_id": "P5"
     },
     {
-      "max_ms": 46.738,
+      "max_ms": 53.734,
       "samples_ms": [
-        46.738,
-        46.468,
-        46.403
+        53.734,
+        49.717,
+        51.392
       ],
       "scenario_id": "P6"
     }
@@ -120,7 +120,7 @@
     {
       "complete_candidates": 84,
       "engine_evaluations": 25,
-      "frontier_plans": 3,
+      "frontier_plans": 6,
       "functional_variants": 0,
       "original_status": "ok_with_warnings",
       "retained_winner_settings": 25,

@@ -33,6 +33,13 @@
     "scale.workload was absent; defaulted to \"balanced\".",
     "team.has_devops was absent; defaulted to false."
   ],
+  "budget_planning": {
+    "budget_usd": null,
+    "cheapest_same_scope": null,
+    "notes": [],
+    "options": [],
+    "scope": "optional_proposals_original_result_unchanged"
+  },
   "catalog_version": "0.4.0",
   "control_plan": null,
   "core_rejections": [
@@ -475,6 +482,13 @@
   "estimated_monthly_cost_usd": {
     "assumptions": [
       "No estimate: 0–0 is a required serialization placeholder, not a zero-cost deployment."
+    ],
+    "max": 0,
+    "min": 0
+  },
+  "estimated_total_monthly_cost_usd": {
+    "assumptions": [
+      "Not estimated; no stack was selected."
     ],
     "max": 0,
     "min": 0

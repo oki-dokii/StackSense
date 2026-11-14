@@ -1,44 +1,155 @@
 [
   {
-    "name": "desktop-workspace",
-    "tested": 158,
-    "issues": 0,
-    "width": 1280
+    "case": "provisional-p2",
+    "path": "/results",
+    "tested_text_elements": 583,
+    "viewport": {
+      "documentWidth": 1280,
+      "height": 720,
+      "width": 1280
+    },
+    "issues": {
+      "contrast": 0,
+      "duplicateIds": 0,
+      "missingDescriptions": 0,
+      "unnamedControls": 0
+    },
+    "retained_reference": false
   },
   {
-    "name": "methodology",
-    "tested": 143,
-    "issues": 0,
-    "width": 1280
+    "case": "desktop-workspace",
+    "path": "/",
+    "tested_text_elements": 158,
+    "viewport": {
+      "documentWidth": 1280,
+      "height": 720,
+      "width": 1280
+    },
+    "issues": {
+      "contrast": 0,
+      "duplicateIds": 0,
+      "missingDescriptions": 0,
+      "unnamedControls": 0
+    },
+    "retained_reference": false
   },
   {
-    "name": "import-error",
-    "tested": 166,
-    "issues": 0,
-    "width": 1280
+    "case": "methodology",
+    "path": "/about",
+    "tested_text_elements": 148,
+    "viewport": {
+      "documentWidth": 1280,
+      "height": 720,
+      "width": 1280
+    },
+    "issues": {
+      "contrast": 0,
+      "duplicateIds": 0,
+      "missingDescriptions": 0,
+      "unnamedControls": 0
+    },
+    "retained_reference": false
   },
   {
-    "name": "desktop-lab",
-    "tested": 641,
-    "issues": 0,
-    "width": 1280
+    "case": "import-error",
+    "path": "/",
+    "tested_text_elements": 165,
+    "viewport": {
+      "documentWidth": 1280,
+      "height": 720,
+      "width": 1280
+    },
+    "issues": {
+      "contrast": 0,
+      "duplicateIds": 0,
+      "missingDescriptions": 0,
+      "unnamedControls": 0
+    },
+    "retained_reference": false
   },
   {
-    "name": "mobile-lab",
-    "tested": 626,
-    "issues": 0,
-    "width": 320
+    "case": "invalid-result",
+    "path": "/results",
+    "tested_text_elements": 50,
+    "viewport": {
+      "documentWidth": 1280,
+      "height": 720,
+      "width": 1280
+    },
+    "issues": {
+      "contrast": 0,
+      "duplicateIds": 0,
+      "missingDescriptions": 0,
+      "unnamedControls": 0
+    },
+    "retained_reference": true
   },
   {
-    "name": "mobile-workspace",
-    "tested": 142,
-    "issues": 0,
-    "width": 320
+    "case": "desktop-lab",
+    "path": "/results",
+    "tested_text_elements": 711,
+    "viewport": {
+      "documentWidth": 1280,
+      "height": 720,
+      "width": 1280
+    },
+    "issues": {
+      "contrast": 0,
+      "duplicateIds": 0,
+      "missingDescriptions": 0,
+      "unnamedControls": 0
+    },
+    "retained_reference": false
   },
   {
-    "name": "invalid-result",
-    "tested": 50,
-    "issues": 0,
-    "width": 1280
+    "case": "mobile-workspace",
+    "path": "/",
+    "tested_text_elements": 144,
+    "viewport": {
+      "documentWidth": 320,
+      "height": 800,
+      "width": 320
+    },
+    "issues": {
+      "contrast": 0,
+      "duplicateIds": 0,
+      "missingDescriptions": 0,
+      "unnamedControls": 0
+    },
+    "retained_reference": false
+  },
+  {
+    "case": "mobile-lab",
+    "path": "/results",
+    "tested_text_elements": 694,
+    "viewport": {
+      "documentWidth": 320,
+      "height": 800,
+      "width": 320
+    },
+    "issues": {
+      "contrast": 0,
+      "duplicateIds": 0,
+      "missingDescriptions": 0,
+      "unnamedControls": 0
+    },
+    "retained_reference": false
+  },
+  {
+    "case": "mobile-budget",
+    "path": "/results",
+    "tested_text_elements": 572,
+    "viewport": {
+      "documentWidth": 320,
+      "height": 800,
+      "width": 320
+    },
+    "issues": {
+      "contrast": 0,
+      "duplicateIds": 0,
+      "missingDescriptions": 0,
+      "unnamedControls": 0
+    },
+    "retained_reference": false
   }
 ]

@@ -18,6 +18,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const load = async (path) =>
   JSON.parse(await readFile(join(root, path), 'utf8'));
 const publicCases = await load('fixtures/public/scenarios.json');
+execFileSync(process.execPath, ['scripts/evaluate-budget.mjs','--check'], {cwd:root,stdio:'pipe'});
 const cases = await load('evaluation/cases.json');
 execFileSync(process.execPath, ['scripts/evaluate-stress.mjs', '--check'], {
   cwd: root,

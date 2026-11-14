@@ -58,14 +58,16 @@ for (const [field, low, high, requirements] of changes) {
   const first = recommend(input);
   input.extensions[field] = high;
   const second = recommend(input);
-  const category = ['monthly_otp_count', 'monthly_payment_transactions', 'average_payment_value_usd'].includes(field) ? 'payment_and_message_activity' : 'infrastructure_and_operations';
-  const firstCost = first.cost_groups.find(g => g.category === category);
-  const secondCost = second.cost_groups.find(g => g.category === category);
-  if (
-    !first.stack ||
-    !second.stack ||
-    firstCost?.max === secondCost?.max
-  )
+  const category = [
+    'monthly_otp_count',
+    'monthly_payment_transactions',
+    'average_payment_value_usd',
+  ].includes(field)
+    ? 'payment_and_message_activity'
+    : 'infrastructure_and_operations';
+  const firstCost = first.cost_groups.find((g) => g.category === category);
+  const secondCost = second.cost_groups.find((g) => g.category === category);
+  if (!first.stack || !second.stack || firstCost?.max === secondCost?.max)
     throw new Error(`No demonstrated cost effect for ${field}`);
   sensitivity.push({
     field,
@@ -97,7 +99,7 @@ await writeFile(
   join(root, 'evaluation/results.json'),
   serialize(
     {
-      engine_version: '0.6.0',
+      engine_version: recommend(publicCases[0]).engine_version,
       case_set_sha256: createHash('sha256')
         .update(await readFile(join(root, 'evaluation/cases.json')))
         .digest('hex'),

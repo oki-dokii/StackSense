@@ -41,6 +41,72 @@ export type Recommendation = {
   cost_sensitivity?: CostSensitivity[];
   plan_comparison?: PlanComparison[];
   estimated_cost_scope?: 'infrastructure_and_operations';
+  estimated_total_monthly_cost_usd?: {
+    min: number;
+    max: number;
+    assumptions: string[];
+    [k: string]: unknown;
+  };
+  budget_planning?: {
+    scope: 'optional_proposals_original_result_unchanged';
+    cheapest_same_scope: {
+      plan_id: string;
+      core: {
+        frontend: string;
+        backend: string;
+        database: string;
+        hosting: string;
+      };
+      monthly_infrastructure_usd: {
+        min: number;
+        max: number;
+      };
+      budget_fit: 'within_upper' | 'range_risk' | 'over_budget';
+    } | null;
+    options: {
+      id: string;
+      requires_acceptance: true;
+      /**
+       * @minItems 1
+       */
+      changes: [
+        {
+          field: 'infrastructure.deployment_model' | 'requirements.availability';
+          from: string;
+          to: string;
+          consequence: string;
+        },
+        ...{
+          field: 'infrastructure.deployment_model' | 'requirements.availability';
+          from: string;
+          to: string;
+          consequence: string;
+        }[]
+      ];
+      core: {
+        frontend: string;
+        backend: string;
+        database: string;
+        hosting: string;
+      };
+      supporting_services: string[];
+      plan_id: string;
+      primary_region: string | null;
+      monthly_infrastructure_usd: {
+        min: number;
+        max: number;
+      };
+      monthly_total_usd: {
+        min: number;
+        max: number;
+      };
+      budget_fit: 'within_upper' | 'range_risk' | 'over_budget';
+      warnings: Warning[];
+      assumptions: string[];
+    }[];
+    notes: string[];
+    budget_usd: number | null;
+  };
   [k: string]: unknown;
 };
 

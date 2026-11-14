@@ -1,92 +1,77 @@
 [
   {
     "id": "P1",
-    "index": 0,
     "status": "ok",
-    "summary_observed": true
+    "observed_summary": "static recommendation selected from 10 complete compatible plans; month-12 infrastructure planning band USD 0–0/month."
   },
   {
     "id": "P2",
-    "index": 1,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 21 complete compatible plans; month-12 infrastructure planning band USD 367.76–1193.62/month."
   },
   {
     "id": "P3",
-    "index": 2,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "modular_monolith recommendation selected from 168 complete compatible plans; month-12 infrastructure planning band USD 639.32–2648.75/month."
   },
   {
     "id": "P4",
-    "index": 3,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 14 complete compatible plans; month-12 infrastructure planning band USD 1028.89–3882.82/month."
   },
   {
     "id": "P5",
-    "index": 4,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 49 complete compatible plans; month-12 infrastructure planning band USD 686.87–858.06/month."
   },
   {
     "id": "P6",
-    "index": 5,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 84 complete compatible plans; month-12 infrastructure planning band USD 187.9–552.07/month."
   },
   {
     "id": "E01",
-    "index": 6,
     "status": "invalid_input",
-    "summary_observed": true
+    "observed_summary": "Input is invalid; no recommendation or cost estimate was produced."
   },
   {
     "id": "E02",
-    "index": 7,
     "status": "invalid_input",
-    "summary_observed": true
+    "observed_summary": "Input is invalid; no recommendation or cost estimate was produced."
   },
   {
     "id": "E03",
-    "index": 8,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "modular_monolith recommendation selected from 56 complete compatible plans; month-12 infrastructure planning band USD 3088.39–20476.09/month."
   },
   {
     "id": "E04",
-    "index": 9,
     "status": "ok",
-    "summary_observed": true
+    "observed_summary": "static recommendation selected from 10 complete compatible plans; month-12 infrastructure planning band USD 0–0/month."
   },
   {
     "id": "E05",
-    "index": 10,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 322 complete compatible plans; month-12 infrastructure planning band USD 247.04–691.4/month."
   },
   {
     "id": "E06",
-    "index": 11,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "modular_monolith recommendation selected from 322 complete compatible plans; month-12 infrastructure planning band USD 189.22–587.33/month."
   },
   {
     "id": "E07",
-    "index": 12,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "modular_monolith recommendation selected from 147 complete compatible plans; month-12 infrastructure planning band USD 74.65–369.75/month."
   },
   {
     "id": "E08",
-    "index": 13,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "modular_monolith recommendation selected from 322 complete compatible plans; month-12 infrastructure planning band USD 189.22–587.33/month."
   },
   {
     "id": "E09",
-    "index": 14,
     "status": "ok_with_warnings",
-    "summary_observed": true
+    "observed_summary": "modular_monolith recommendation selected from 322 complete compatible plans; month-12 infrastructure planning band USD 189.22–587.33/month."
   }
 ]

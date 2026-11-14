@@ -6,11 +6,11 @@
   "page_size": "A4",
   "body_font_pt": 11,
   "table_reference_font_pt": 10,
-  "source_records": 152,
+  "source_records": 157,
   "screenshots": 16,
   "engine_version": "0.8.0",
   "application_version": "0.8.0",
   "owner_metadata_confirmed": true,
-  "visual_review": "All 25 final pages rendered. Updated pages 1, 5, 12 and 22 were visually inspected at full size without clipping or overlap; unchanged pages matched previously inspected rasters. Final setup-timing-only rebuild changed page 12, which was re-inspected.",
-  "sha256": "c3b350fcc483452aebc112d82237f75f79a6cd2cf47dd946e5d73338a9795a14"
+  "visual_review": "All 25 rendered A4 pages inspected in seven contact sheets. No clipped text, overlap or unintended spill; 15 main pages and 10 appendix pages.",
+  "sha256": "5469da4fe72c61b417bdd3fcd08868cf647919e8295ab660443322ac564f205f"
 }

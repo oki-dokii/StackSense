@@ -5,6 +5,28 @@
     "Interpreted project.description phrase \"Markdown\" as markdown; this bounded hint does not infer legal or regional requirements.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
   ],
+  "budget_planning": {
+    "budget_usd": 0,
+    "cheapest_same_scope": {
+      "budget_fit": "within_upper",
+      "core": {
+        "backend": "None",
+        "database": "None",
+        "frontend": "Astro",
+        "hosting": "Cloudflare Pages"
+      },
+      "monthly_infrastructure_usd": {
+        "max": 0,
+        "min": 0
+      },
+      "plan_id": "static|astro|backend-none|database-none|pages|unspecified"
+    },
+    "notes": [
+      "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions."
+    ],
+    "options": [],
+    "scope": "optional_proposals_original_result_unchanged"
+  },
   "catalog_version": "0.4.0",
   "control_plan": {
     "deployment_controls": [
@@ -94,6 +116,20 @@
       "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
       "Static assets only; no Functions or paid add-ons. Build/file limits apply."
+    ],
+    "max": 0,
+    "min": 0
+  },
+  "estimated_total_monthly_cost_usd": {
+    "assumptions": [
+      "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+      "Peak concurrency supplied: 50; not equated directly with requests/second.",
+      "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+      "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+      "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
+      "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+      "Static assets only; no Functions or paid add-ons. Build/file limits apply.",
+      "Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded."
     ],
     "max": 0,
     "min": 0
@@ -206,6 +242,7 @@
         "Peak concurrency supplied: 50; not equated directly with requests/second.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Cloud Run billing separates 1 request-driven allocations from 0 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 1 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",

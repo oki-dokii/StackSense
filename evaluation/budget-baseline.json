@@ -1,0 +1,48 @@
+{
+  "commit": "19c0e3a4c8361443ac69c879111e4f54296f755d",
+  "scope": "Original public infrastructure bands before separating always-on Cloud Run billing.",
+  "records": [
+    {
+      "id": "P1",
+      "infrastructure": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    {
+      "id": "P2",
+      "infrastructure": {
+        "min": 241.96,
+        "max": 1224.36
+      }
+    },
+    {
+      "id": "P3",
+      "infrastructure": {
+        "min": 513.51,
+        "max": 2679.49
+      }
+    },
+    {
+      "id": "P4",
+      "infrastructure": {
+        "min": 1028.89,
+        "max": 3882.82
+      }
+    },
+    {
+      "id": "P5",
+      "infrastructure": {
+        "min": 686.87,
+        "max": 858.06
+      }
+    },
+    {
+      "id": "P6",
+      "infrastructure": {
+        "min": 81.42,
+        "max": 508.55
+      }
+    }
+  ]
+}

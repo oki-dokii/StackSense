@@ -154,6 +154,80 @@ export function validateOutput(value: unknown): ValidationIssue[] {
   const errors: ValidationIssue[] = [];
   const issue = (field: string, message: string) =>
     errors.push({ field, message });
+  if (report.estimated_total_monthly_cost_usd) {
+    const total = report.estimated_total_monthly_cost_usd;
+    if (total.min > total.max)
+      issue('estimated_total_monthly_cost_usd', 'min must not exceed max.');
+    if (report.cost_groups?.length)
+      for (const bound of ['min', 'max'] as const) {
+        const cents = report.cost_groups.reduce(
+          (n, g) => n + Math.round(g[bound] * 100),
+          0,
+        );
+        if (cents !== Math.round(total[bound] * 100))
+          issue(
+            'estimated_total_monthly_cost_usd',
+            'Total must reconcile to every infrastructure and activity category.',
+          );
+      }
+  }
+  if (report.budget_planning) {
+    const planning = report.budget_planning;
+    if (planning.options.length > 1)
+      issue(
+        'budget_planning.options',
+        'At most one explicitly changed-requirement proposal is supported.',
+      );
+    for (const option of planning.options) {
+      const changes = option.changes;
+      if (
+        new Set(changes.map((c) => c.field)).size !== changes.length ||
+        changes.some((c) => c.from === c.to)
+      )
+        issue(
+          'budget_planning.options',
+          'Changes must be distinct and must change a requirement.',
+        );
+      if (
+        !option.warnings.some(
+          (w) =>
+            w.severity === 'critical' && w.code === 'BUDGET_REQUIREMENT_CHANGE',
+        )
+      )
+        issue(
+          'budget_planning.options',
+          'Changed-requirement proposals must carry the critical scope-change condition.',
+        );
+      for (const amount of [
+        option.monthly_infrastructure_usd,
+        option.monthly_total_usd,
+      ])
+        if (amount.min > amount.max)
+          issue('budget_planning.options', 'Cost bounds must be ordered.');
+      if (
+        option.monthly_total_usd.min < option.monthly_infrastructure_usd.min ||
+        option.monthly_total_usd.max < option.monthly_infrastructure_usd.max
+      )
+        issue(
+          'budget_planning.options',
+          'Total cannot exclude infrastructure spend.',
+        );
+      const budget = planning.budget_usd;
+      const fit =
+        budget === null
+          ? 'over_budget'
+          : option.monthly_infrastructure_usd.max <= budget
+            ? 'within_upper'
+            : option.monthly_infrastructure_usd.min <= budget
+              ? 'range_risk'
+              : 'over_budget';
+      if (option.budget_fit !== fit)
+        issue(
+          'budget_planning.options',
+          'Budget fit must match the infrastructure band and declared budget.',
+        );
+    }
+  }
   for (const [index, group] of (report.cost_groups ?? []).entries())
     if (group.min > group.max)
       issue(`cost_groups.${index}`, 'min must not exceed max.');

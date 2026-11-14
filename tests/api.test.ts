@@ -147,7 +147,7 @@ describe('local HTTP API', () => {
     expect((await app.inject('/api/samples')).json()).toEqual(samples);
     const metadata = (await app.inject('/api/methodology')).json();
     expect(metadata.schema.required).toContain('project');
-    expect(metadata.sources.length).toBe(101);
+    expect(metadata.sources.length).toBe(106);
     expect(metadata.notes.join(' ')).toContain('not certification');
     expect((await app.inject('/api/health')).json()).toMatchObject({
       status: 'ok',

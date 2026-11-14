@@ -181,8 +181,8 @@
       "id": "run-price",
       "title": "Cloud Run pricing",
       "url": "https://cloud.google.com/run/pricing",
-      "checked_on": "2026-11-13",
-      "scope": "Reference request-billed active CPU $0.000024/vCPU-s and memory $0.0000025/GiB-s; region/edition/billing may differ."
+      "checked_on": "2026-11-15",
+      "scope": "On-demand Iowa request-based and instance-based CPU/memory references. Region/SKU bands remain authored allowances; no regional quote, commitment discount, free-tier or production capacity guarantee."
     },
     {
       "id": "sql-price",
@@ -386,6 +386,20 @@
       "url": "https://razorpay.com/pricing/",
       "checked_on": "2026-11-14",
       "scope": "Published domestic pricing starting point; payment mix, GST, payouts and merchant terms require an exact quote. No USD conversion assumed."
+    },
+    {
+      "id": "lightsail-bundles",
+      "title": "Lightsail Linux IPv4 instance bundles",
+      "url": "https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-bundles.html",
+      "checked_on": "2026-11-15",
+      "scope": "4 GiB/2 vCPU/80 GB SSD Linux IPv4 bundle at USD 24/month; burstable CPU and quotas need workload review."
+    },
+    {
+      "id": "lightsail-pricing",
+      "title": "Lightsail transfer, disk and snapshots",
+      "url": "https://aws.amazon.com/lightsail/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "Included transfer is halved in Mumbai; inbound and outbound count toward allowances. Snapshot USD 0.05/GB-month and block disk USD 0.10/GB-month. No taxes, support or production capacity claim."
     }
   ],
   "services": [
@@ -1229,6 +1243,38 @@
         "razorpay-pricing"
       ],
       "basis": "No separate fixed per-transaction fee modeled for standard domestic checkout; other merchant/product/settlement fees require a quote and are excluded, not assumed universally free."
+    },
+    "lightsail_bundle_month": {
+      "min": 24,
+      "max": 24,
+      "source_ids": [
+        "lightsail-bundles"
+      ],
+      "basis": "Linux IPv4 general-purpose 4 GiB/2 vCPU/80 GB SSD bundle, full month USD 24. No promotion or reserved discount; burstable performance requires measurement."
+    },
+    "lightsail_snapshot_gb": {
+      "min": 0.05,
+      "max": 0.05,
+      "source_ids": [
+        "lightsail-pricing"
+      ],
+      "basis": "Published snapshot storage USD 0.05/GB-month. Application-consistent database backups require explicit recovery tests."
+    },
+    "lightsail_disk_gb": {
+      "min": 0.1,
+      "max": 0.1,
+      "source_ids": [
+        "lightsail-pricing"
+      ],
+      "basis": "Published additional SSD block disk USD 0.10/allocated GB-month, minimum 8 GB. OS/root SSD allowance is accounted separately."
+    },
+    "cloudrun_instance_hour": {
+      "min": 0.0792,
+      "max": 0.14256,
+      "source_ids": [
+        "run-price"
+      ],
+      "basis": "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB \u00d7 USD 0.000002/GiB-second) \u00d7 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
     }
   },
   "lifecycle": [

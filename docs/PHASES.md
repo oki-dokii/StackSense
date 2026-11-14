@@ -20,6 +20,8 @@ Updated 14 November 2026 IST. The detailed method is in [plan.md](../plan.md); t
 
 | 13 | Thirty varied briefs, language/provider controls and generic persistence/client/region fixes | Implemented and tested | 308 application tests; 29/30 usable with GPU training explicitly out of scope; budget gaps recorded |
 
+| 14 | Always-on billing floor, total spend, fixed-price VM model and explicit budget proposals | Implemented and tested | 326 application tests; no stress infrastructure band above 5x; original budget gaps remain visible |
+
 ## Phase 1 delivered
 
 - npm workspaces with pinned tooling and lockfile.

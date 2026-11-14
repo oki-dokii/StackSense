@@ -3,13 +3,13 @@
     "cost_category": "infrastructure_and_operations",
     "field": "expected_requests_per_second",
     "high_cost": {
-      "max": 2486.11,
-      "min": 340.04
+      "max": 2562.74,
+      "min": 394.99
     },
     "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
     "low_cost": {
-      "max": 510.69,
-      "min": 134.27
+      "max": 587.33,
+      "min": 189.22
     },
     "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
     "values": [
@@ -21,13 +21,13 @@
     "cost_category": "infrastructure_and_operations",
     "field": "monthly_egress_gb",
     "high_cost": {
-      "max": 4510.29,
-      "min": 934.19
+      "max": 4586.93,
+      "min": 989.14
     },
     "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
     "low_cost": {
-      "max": 510.69,
-      "min": 134.27
+      "max": 587.33,
+      "min": 189.22
     },
     "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
     "values": [
@@ -39,13 +39,13 @@
     "cost_category": "infrastructure_and_operations",
     "field": "retention_months",
     "high_cost": {
-      "max": 579.69,
-      "min": 141.17
+      "max": 656.33,
+      "min": 196.12
     },
     "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
     "low_cost": {
-      "max": 510.69,
-      "min": 134.27
+      "max": 587.33,
+      "min": 189.22
     },
     "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
     "values": [

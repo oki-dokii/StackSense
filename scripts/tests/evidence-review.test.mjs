@@ -33,8 +33,8 @@ test('strict calendar dates reject rollover dates and timestamps', () => {
 });
 test('audit covers every source, records consumers and leaves catalogs unchanged', () => {
   const before = canonical(bundle);
-  const result = audit(bundle, '2026-11-14', policy);
-  assert.equal(result.counts.sources, 101);
+  const result = audit(bundle, '2026-11-15', policy);
+  assert.equal(result.counts.sources, 106);
   assert.equal(result.counts.review_due, 0);
   assert.equal(
     result.sources.find((s) => s.key === 'services:run-price').cadence_days,
@@ -52,27 +52,27 @@ test('audit covers every source, records consumers and leaves catalogs unchanged
 test('review becomes due exactly on cadence boundary and future dates are flagged', () => {
   const b = clone(bundle);
   b.services.sources.find((s) => s.id === 'run-price').checked_on =
-    '2026-10-31';
+    '2026-11-01';
   assert.equal(
-    audit(b, '2026-11-14', policy).sources.find(
+    audit(b, '2026-11-15', policy).sources.find(
       (s) => s.key === 'services:run-price',
     ).status,
     'review_due',
   );
-  b.services.sources[0].checked_on = '2026-11-15';
-  assert.equal(audit(b, '2026-11-14', policy).counts.future_review_dates, 1);
+  b.services.sources[0].checked_on = '2026-11-16';
+  assert.equal(audit(b, '2026-11-15', policy).counts.future_review_dates, 1);
 });
 test('shortest applicable cadence wins and invalid cadence is rejected', () => {
   const b = clone(bundle);
   b.services.pricing.cloudrun_hour.source_ids.push('keycloak-db');
   assert.equal(
-    audit(b, '2026-11-14', policy).sources.find(
+    audit(b, '2026-11-15', policy).sources.find(
       (s) => s.key === 'services:keycloak-db',
     ).cadence_days,
     14,
   );
   assert.throws(() =>
-    audit(bundle, '2026-11-14', {
+    audit(bundle, '2026-11-15', {
       ...policy,
       cadence_days: { ...policy.cadence_days, pricing: 0 },
     }),
@@ -82,7 +82,7 @@ test('proposal binds exact bundles, identifies tariff consumer and never accepts
   const before = canonical(bundle),
     b = clone(bundle);
   b.services.pricing.cloudrun_hour.min += 0.01;
-  const result = proposal(bundle, b, '2026-11-14', policy);
+  const result = proposal(bundle, b, '2026-11-15', policy);
   assert.equal(result.changes.length, 1);
   assert.equal(result.changes[0].path, '/pricing/cloudrun_hour/min');
   assert.deepEqual(result.changes[0].source_keys, ['services:run-price']);
@@ -91,12 +91,12 @@ test('proposal binds exact bundles, identifies tariff consumer and never accepts
   assert.equal(result.status, 'pending_human_review');
   assert.equal(result.review.reviewer, null);
   assert.equal(canonical(bundle), before);
-  assert.deepEqual(proposal(bundle, bundle, '2026-11-14', policy).changes, []);
+  assert.deepEqual(proposal(bundle, bundle, '2026-11-15', policy).changes, []);
 });
 test('source URL/date/removal changes retain both original and candidate attribution', () => {
   const b = clone(bundle);
   b.core.sources[0].id = 'html-new';
-  const result = proposal(bundle, b, '2026-11-14', policy);
+  const result = proposal(bundle, b, '2026-11-15', policy);
   assert.deepEqual(result.changes[0].source_keys, [
     'core:html',
     'core:html-new',
@@ -226,7 +226,7 @@ test('real CLI writes deterministic audit and refuses to overwrite earlier evide
     'scripts/evidence.mjs',
     'audit',
     '--as-of',
-    '2026-11-14',
+    '2026-11-15',
     '--out',
     path.join(temp, 'result'),
   ];
@@ -239,7 +239,7 @@ test('real CLI writes deterministic audit and refuses to overwrite earlier evide
     const result = JSON.parse(
       await readFile(path.join(temp, 'result/report.json')),
     );
-    assert.equal(result.counts.sources, 101);
+    assert.equal(result.counts.sources, 106);
     assert.equal(
       spawnSync(process.execPath, command, { cwd: root, encoding: 'utf8' })
         .status,
@@ -266,7 +266,7 @@ test('real CLI writes deterministic audit and refuses to overwrite earlier evide
 
 test('guidance-only references get explicit scope cadences and output impact', async () => {
   const output = await json(path.join(root, 'outputs/P5_output.json'));
-  const row = audit(bundle, '2026-11-14', policy, [output]).sources.find(
+  const row = audit(bundle, '2026-11-15', policy, [output]).sources.find(
     (s) => s.key === 'services:entra-residency',
   );
   assert.equal(row.no_structured_catalog_reference, false);
@@ -274,7 +274,7 @@ test('guidance-only references get explicit scope cadences and output impact', a
   assert.deepEqual(row.public_output_mentions, ['P5']);
   assert.throws(
     () =>
-      audit(bundle, '2026-11-14', {
+      audit(bundle, '2026-11-15', {
         ...policy,
         source_categories: { 'services:missing': ['pricing'] },
       }),

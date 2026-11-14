@@ -1,5 +1,7 @@
 # Cost estimation specification
 
+Current budget-planning implementation: [method and evidence](BUDGET_PLANNING.md). Always-on support has a full-month floor; activity fees are included in an additional reconciled total. The original infrastructure budget comparison remains explicit. Optional changed-requirement proposals do not replace the baseline.
+
 Implemented Phase 3 details and limits: [phase evidence](PHASE_3.md). The specification below includes future refinements; current rates contain published references and explicitly authored envelopes, not exact region-specific quotations.
 
 ## Output and meaning

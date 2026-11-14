@@ -66,13 +66,13 @@ The headline `estimated_monthly_cost_usd` is **infrastructure and operations**, 
 | Input | Month-12 infrastructure USD/month |
 |---|---:|
 | P1 | 0–0, static bundle within stated limits |
-| P2 | 241.96–1,224.36 |
-| P3 | 513.51–2,679.49 |
+| P2 | 367.76–1,193.62 |
+| P3 | 639.32–2,648.75 |
 | P4 | 1,028.89–3,882.82 |
 | P5 | 686.87–858.06 |
-| P6 | 81.42–508.55 |
+| P6 | 187.90–552.07 |
 
-These are order-of-magnitude bands, not provider quotes or measured production capacity. The model no longer counts peak WebSocket capacity twice. It still exposes duty-cycle, sizing and rate uncertainty. P2 and P5 exceed their stated budgets even at the lower bound. License entitlements, merchant-specific extras, taxes, labor, domain registration and procurement require separate review. Supply documented usage extensions to replace assumed usage volumes; narrower estimates require better workload and tariff evidence, not arbitrary clipping to the budget.
+These are order-of-magnitude bands, not provider quotes or measured production capacity. The model no longer counts peak WebSocket capacity twice. It still exposes duty-cycle, sizing and rate uncertainty. P2, P5 and P6 exceed their stated budgets even at the lower bound. License entitlements, merchant-specific extras, taxes, labor, domain registration and procurement require separate review. Supply documented usage extensions to replace assumed usage volumes; narrower estimates require better workload and tariff evidence, not arbitrary clipping to the budget.
 
 For a null-stack result, `estimate_status: not_estimated` makes the required 0–0 serialization a placeholder rather than a free architecture.
 
@@ -160,6 +160,14 @@ sequenceDiagram
   UI-->>User: Mark result stale and disable export
 ```
 
+## Budget planning
+
+Cloud Run request-driven compute and always-on support are billed separately. `estimated_total_monthly_cost_usd` adds payment/SMS activity scenarios to infrastructure; phone login therefore changes displayed total spend even when the infrastructure allocation is unchanged.
+
+`budget_planning` shows the lowest upper estimate among unchanged-brief catalog candidates and at most one optional proposal. Any move to a self-managed VM or lower availability target is explicit, critically flagged and never applied automatically. Published Lightsail bundles narrow the VM cash-cost band; burst capacity, memory, recovery and operating labor still need review. P2's optional infrastructure band is $104–$193.50 against $150, so only its lower bound fits. P5 remains over budget.
+
+[Budget methodology and evidence](docs/BUDGET_PLANNING.md).
+
 ## Decision Lab
 
 Select **Analyze this decision** after evaluation. The lab reruns one priority at a time, exposes every completed catalog candidate and its declared cost/operations/score tradeoff front, and exports JSON plus a **Proposed** ADR. Inspecting alternatives does not change the original recommendation.
@@ -188,7 +196,7 @@ node --test scripts/tests/evidence-bindings.test.mjs scripts/tests/calibration.t
 python3 scripts/check_docs.py
 ```
 
-The application suite contains **308 tests**, including schema/engine invariants, actual CLI/API parity, focus behavior, original public cases, 12 region/auth/payment combinations and [30 varied project briefs](docs/STRESS_EVALUATION.md). Native provenance/workload/evidence checks supplement it. GitHub CI runs the application on Windows, Linux and macOS with Node 22/24, plus a real PostgreSQL integration job. These OS tests are not a complete browser or screen-reader accessibility matrix.
+The application suite contains **326 tests**, including schema/engine invariants, actual CLI/API parity, focus behavior, original public cases, 12 region/auth/payment combinations and [30 varied project briefs](docs/STRESS_EVALUATION.md). Native provenance/workload/evidence checks supplement it. GitHub CI runs the application on Windows, Linux and macOS with Node 22/24, plus a real PostgreSQL integration job. These OS tests are not a complete browser or screen-reader accessibility matrix.
 
 The [source-evidence audit](docs/PHASE_10.md) and [accessibility checks](docs/PHASE_11.md) record their exact scope. The custom browser audit is limited to sampled leaf text/basic labels; it is not WCAG certification. Source retrieval never approves claims or changes catalog rules automatically.
 

@@ -1,9 +1,9 @@
 {
   "archive": "deliverables/StackSense26_SohamBanerjee.zip",
-  "bytes": 4288507,
-  "sha256": "5c6f39c382810c7be387c6bd5a9facd9e9623baf714e884066ae9156e0962645",
-  "source_files": 324,
-  "runtime_source_sha256": "b6a89f7b99ad54e438a21d8a8c60198558a3e75df99e44ee57c0703fe0941df7",
+  "bytes": 9636186,
+  "sha256": "57c2e01db4255eb7629300802580637ae62ad6f3d43ac82f5e76b90cd016649e",
+  "source_files": 334,
+  "runtime_source_sha256": "f749cc6224cedbed41b3e83109a2497eff18d5c48489e64f332f4db2431a54a1",
   "checks": [
     "Outer and inner ZIP CRC pass",
     "Every manifest SHA-256 matches",

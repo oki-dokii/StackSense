@@ -26,6 +26,7 @@ import { controlPlan, existingLifecycleWarnings } from './controls.js';
 import { estimateCost, budgetWarnings, CostModelLimitError } from './costs.js';
 import { reviewActions, integrationReviews } from './guidance.js';
 import { costGroups, costSensitivity } from './exploration.js';
+import { budgetPlanning, emptyBudgetPlanning } from './budget.js';
 import { describeCoreSelection } from './explanations.js';
 import type {
   FinalRecommendation,
@@ -60,6 +61,12 @@ export function invalidRecommendation(
     },
     estimate_status: 'not_estimated',
     estimated_cost_scope: 'infrastructure_and_operations',
+    estimated_total_monthly_cost_usd: {
+      min: 0,
+      max: 0,
+      assumptions: ['Not estimated; no stack was selected.'],
+    },
+    budget_planning: emptyBudgetPlanning(),
     warnings: [],
     assumptions: [],
     validation_errors: errors,
@@ -253,7 +260,8 @@ export function recommend(
   // Prefer a narrower reviewed client variant only after score, cost and operating burden tie.
   const unusedClientTargets = (candidate: CompleteCandidate) =>
     candidate.plan.frontend.platforms!.filter(
-      (target) => !s.project.platforms.some((requested) => requested === target),
+      (target) =>
+        !s.project.platforms.some((requested) => requested === target),
     ).length;
   candidates.sort(
     (a, b) =>
@@ -396,6 +404,22 @@ export function recommend(
     max: cost.max,
     assumptions: cost.assumptions,
   };
+  base.estimated_total_monthly_cost_usd = {
+    min:
+      cost.line_items.reduce(
+        (n, l) => n + Math.round(l.monthly_usd.min * 100),
+        0,
+      ) / 100,
+    max:
+      cost.line_items.reduce(
+        (n, l) => n + Math.round(l.monthly_usd.max * 100),
+        0,
+      ) / 100,
+    assumptions: [
+      ...cost.assumptions,
+      'Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded.',
+    ],
+  };
   base.cost_breakdown = cost.line_items;
   base.cost_groups = costGroups(cost.line_items);
   base.cost_sensitivity = costSensitivity(selected, s, policies);
@@ -531,6 +555,12 @@ export function recommend(
     .filter((key) => applied.has(key))
     .sort(compare);
   base.review_actions = reviewActions(base.warnings, s, policies);
+  if (context.budgetPlanning !== false) {
+    const { onCompletePlans: _onCompletePlans, ...childContext } = context;
+    base.budget_planning = budgetPlanning(s, candidates, (changed) =>
+      recommend(changed, { ...childContext, budgetPlanning: false }),
+    );
+  }
   assertFinal(base, s);
   return base;
 }

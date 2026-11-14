@@ -23,4 +23,8 @@ Sources: [Razorpay integration](https://razorpay.com/docs/payments/payment-gatew
 
 Peak WebSocket capacity is counted once in the replica floor. Auth, workers and telemetry retain their disclosed allocations. Duty-cycle, rate and database/storage proxies still create uncertainty; local reference workload measurements are not used to manufacture production capacity claims. Sensitivity reports identify the affected cost category, so fee changes do not masquerade as infrastructure-budget changes.
 
-All six public inputs now receive stacks: P1 `ok`, P2–P6 `ok_with_warnings`. P2/P4/P5/P6 include critical conditions. P2 and P5 remain over budget even at the lower infrastructure estimate. The policy improves proposal coverage without pretending every original constraint is verified or every budget can be met.
+All six public inputs now receive stacks: P1 `ok`, P2–P6 `ok_with_warnings`. P2/P4/P5/P6 include critical conditions. P2, P5 and P6 remain over budget even at the lower infrastructure estimate. The policy improves proposal coverage without pretending every original constraint is verified or every budget can be met.
+
+## Optional budget proposals
+
+`estimated_total_monthly_cost_usd` reconciles infrastructure plus payment/SMS activity scenarios. `budget_planning` preserves the original selected stack and exposes a same-brief catalog cost floor plus a bounded alternative with explicitly listed availability/deployment edits. It never changes platforms, requested features, scale, residency, provider, compliance or team to invent budget fit. Requires-acceptance and critical scope conditions are serialized. A self-managed 99% target is not equivalent to the original managed/99.9% proposal. Continuous Cloud Run support allocations have full-month instance-based charges, separately from request duty.

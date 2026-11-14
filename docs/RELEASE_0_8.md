@@ -15,3 +15,5 @@ Current browser evidence covers all public outputs, nine edge cases, JSON/ADR ex
 The README includes Credits and visible LLM-off instructions. AI assistance remains truthfully disclosed. Cross-platform GitHub Actions results are available on the repository Actions page; external submission is not implied by packaging.
 
 The subsequent [thirty-scenario stress evaluation](STRESS_EVALUATION.md) adds 46 regression tests, bringing the application suite to 308 tests across twelve files. It fixes search-only persistence, reviews AWS US/EU primary mappings, and avoids extra client bundles on ties. Current setup and artifact records supersede the initial timing above; all six public recommendation JSON files remain unchanged.
+
+The 15 November [budget-planning update](BUDGET_PLANNING.md) separates full-month support billing, adds a reconciled activity-inclusive total and optional self-management/availability proposals. Current suite: 326 application tests across thirteen files. The original requested stacks remain distinct from changed-requirement proposals; the current report and package supersede earlier artifacts.

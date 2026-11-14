@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1.0",
-  "as_of": "2026-11-14",
+  "as_of": "2026-11-15",
   "policy": {
     "version": "0.1.0",
     "cadence_days": {
@@ -38,15 +38,15 @@
   "catalogs": {
     "core": {
       "version": "0.4.0",
-      "sha256": "700892da754619395b991a0587d708e65a16262fbc3c61486bd9133d78d76923"
+      "sha256": "5fc31bc2081e1d44f738f90fb0f1c85fcc1a8c6d2dd8492baa94908b0128f418"
     },
     "services": {
       "version": "0.8.0",
-      "sha256": "317ad0e42c14b9108a8bedac9907f02eba5dfff89d739c86dfbd237256987ad9"
+      "sha256": "47fbc5aff773b72bab3ab5944595dc490971350a491906d1da72d6b982557c9d"
     }
   },
   "counts": {
-    "sources": 101,
+    "sources": 106,
     "review_due": 0,
     "future_review_dates": 0,
     "no_structured_catalog_reference": 2
@@ -63,7 +63,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -89,7 +89,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -113,7 +113,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -139,7 +139,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -165,7 +165,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -191,7 +191,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 0,
+      "age_days": 1,
       "review_due_on": "2026-12-14",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -225,6 +225,21 @@
           "id": "aws-regions",
           "path": "/entries/28/managed_databases/0/regions/2/source_ids",
           "owner": "ecs"
+        },
+        {
+          "id": "aws-regions",
+          "path": "/entries/34/regions/0/source_ids",
+          "owner": "lightsail"
+        },
+        {
+          "id": "aws-regions",
+          "path": "/entries/34/regions/1/source_ids",
+          "owner": "lightsail"
+        },
+        {
+          "id": "aws-regions",
+          "path": "/entries/34/regions/2/source_ids",
+          "owner": "lightsail"
         }
       ],
       "public_output_mentions": [
@@ -243,7 +258,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -274,7 +289,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -298,7 +313,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -329,7 +344,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -360,7 +375,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -384,7 +399,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -408,7 +423,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -451,7 +466,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -475,7 +490,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -502,7 +517,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -526,7 +541,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -552,7 +567,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 0,
+      "age_days": 1,
       "review_due_on": "2026-12-14",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -588,7 +603,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -612,7 +627,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -639,7 +654,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -663,7 +678,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -687,7 +702,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -711,7 +726,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -752,7 +767,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -761,6 +776,94 @@
           "id": "laravel",
           "path": "/entries/19/source_ids",
           "owner": "laravel"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:lightsail-bundles",
+      "id": "lightsail-bundles",
+      "title": "Lightsail Linux IPv4 instance bundles",
+      "url": "https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-bundles.html",
+      "checked_on": "2026-11-15",
+      "scope": "4 GiB/2 vCPU/80 GB SSD Linux IPv4 bundle at USD 24/month; burstable CPU and quotas need workload review.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "lightsail-bundles",
+          "path": "/entries/34/source_ids",
+          "owner": "lightsail"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:lightsail-pricing",
+      "id": "lightsail-pricing",
+      "title": "Lightsail transfer, disk and snapshots",
+      "url": "https://aws.amazon.com/lightsail/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "Included transfer is halved in Mumbai; inbound and outbound count toward allowances. Snapshot USD 0.05/GB-month and block disk USD 0.10/GB-month. No taxes, support or production capacity claim.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "lightsail-pricing",
+          "path": "/entries/34/source_ids",
+          "owner": "lightsail"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:lightsail-regions",
+      "id": "lightsail-regions",
+      "title": "Lightsail regional endpoints",
+      "url": "https://docs.aws.amazon.com/general/latest/gr/lightsail.html",
+      "checked_on": "2026-11-15",
+      "scope": "Mumbai, N. Virginia and Ireland service availability; primary VM placement only.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "lightsail-regions",
+          "path": "/entries/34/source_ids",
+          "owner": "lightsail"
+        },
+        {
+          "id": "lightsail-regions",
+          "path": "/entries/34/regions/0/source_ids",
+          "owner": "lightsail"
+        },
+        {
+          "id": "lightsail-regions",
+          "path": "/entries/34/regions/1/source_ids",
+          "owner": "lightsail"
+        },
+        {
+          "id": "lightsail-regions",
+          "path": "/entries/34/regions/2/source_ids",
+          "owner": "lightsail"
         }
       ],
       "public_output_mentions": []
@@ -776,7 +879,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -800,7 +903,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -824,7 +927,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -848,7 +951,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -880,7 +983,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -904,7 +1007,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -930,7 +1033,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -960,7 +1063,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -984,7 +1087,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1025,7 +1128,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 0,
+      "age_days": 1,
       "review_due_on": "2026-12-14",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1061,7 +1164,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1085,7 +1188,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1111,7 +1214,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1144,7 +1247,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1173,7 +1276,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1216,7 +1319,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1244,7 +1347,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1268,7 +1371,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1292,7 +1395,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1316,7 +1419,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1340,7 +1443,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1364,7 +1467,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1405,7 +1508,7 @@
         "lifecycle"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1429,7 +1532,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1459,7 +1562,7 @@
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-11-27",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1485,7 +1588,7 @@
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-11-27",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1509,7 +1612,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1535,7 +1638,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1562,7 +1665,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": true,
@@ -1582,7 +1685,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1612,7 +1715,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1636,7 +1739,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1664,7 +1767,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1688,7 +1791,7 @@
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-11-27",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1718,7 +1821,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1745,7 +1848,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1771,7 +1874,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1797,7 +1900,7 @@
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-11-27",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1823,7 +1926,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1853,7 +1956,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1881,7 +1984,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1907,7 +2010,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1933,7 +2036,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1957,7 +2060,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -1984,7 +2087,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2008,7 +2111,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2037,7 +2140,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2056,6 +2159,59 @@
       ]
     },
     {
+      "key": "services:lightsail-bundles",
+      "id": "lightsail-bundles",
+      "title": "Lightsail Linux IPv4 instance bundles",
+      "url": "https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-bundles.html",
+      "checked_on": "2026-11-15",
+      "scope": "4 GiB/2 vCPU/80 GB SSD Linux IPv4 bundle at USD 24/month; burstable CPU and quotas need workload review.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 0,
+      "review_due_on": "2026-11-29",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "lightsail-bundles",
+          "path": "/pricing/lightsail_bundle_month/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:lightsail-pricing",
+      "id": "lightsail-pricing",
+      "title": "Lightsail transfer, disk and snapshots",
+      "url": "https://aws.amazon.com/lightsail/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "Included transfer is halved in Mumbai; inbound and outbound count toward allowances. Snapshot USD 0.05/GB-month and block disk USD 0.10/GB-month. No taxes, support or production capacity claim.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 0,
+      "review_due_on": "2026-11-29",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "lightsail-pricing",
+          "path": "/pricing/lightsail_snapshot_gb/source_ids",
+          "owner": null
+        },
+        {
+          "id": "lightsail-pricing",
+          "path": "/pricing/lightsail_disk_gb/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
       "key": "services:local-fs",
       "id": "local-fs",
       "title": "Node filesystem API",
@@ -2066,7 +2222,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2091,7 +2247,7 @@
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-11-27",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2125,7 +2281,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2153,7 +2309,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2177,7 +2333,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2203,7 +2359,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2229,7 +2385,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2255,7 +2411,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2281,7 +2437,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2307,7 +2463,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2336,7 +2492,7 @@
         "lifecycle"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2360,7 +2516,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 0,
+      "age_days": 1,
       "review_due_on": "2027-02-12",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2388,7 +2544,7 @@
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 0,
+      "age_days": 1,
       "review_due_on": "2026-11-28",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2426,7 +2582,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2453,7 +2609,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2473,20 +2629,25 @@
       "id": "run-price",
       "title": "Cloud Run pricing",
       "url": "https://cloud.google.com/run/pricing",
-      "checked_on": "2026-11-13",
-      "scope": "Reference request-billed active CPU $0.000024/vCPU-s and memory $0.0000025/GiB-s; region/edition/billing may differ.",
+      "checked_on": "2026-11-15",
+      "scope": "On-demand Iowa request-based and instance-based CPU/memory references. Region/SKU bands remain authored allowances; no regional quote, commitment discount, free-tier or production capacity guarantee.",
       "categories": [
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 1,
-      "review_due_on": "2026-11-27",
+      "age_days": 0,
+      "review_due_on": "2026-11-29",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
       "catalog_references": [
         {
           "id": "run-price",
           "path": "/pricing/cloudrun_hour/source_ids",
+          "owner": null
+        },
+        {
+          "id": "run-price",
+          "path": "/pricing/cloudrun_instance_hour/source_ids",
           "owner": null
         }
       ],
@@ -2507,7 +2668,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2533,7 +2694,7 @@
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-11-27",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2573,7 +2734,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2597,7 +2758,7 @@
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-11-27",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2638,7 +2799,7 @@
         "lifecycle"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": true,
@@ -2658,7 +2819,7 @@
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-11-27",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2698,7 +2859,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2725,7 +2886,7 @@
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-12-13",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2752,7 +2913,7 @@
         "pricing"
       ],
       "cadence_days": 14,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2026-11-27",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2788,7 +2949,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2818,7 +2979,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2842,7 +3003,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
@@ -2874,7 +3035,7 @@
         "capability"
       ],
       "cadence_days": 90,
-      "age_days": 1,
+      "age_days": 2,
       "review_due_on": "2027-02-11",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,

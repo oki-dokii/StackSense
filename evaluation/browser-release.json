@@ -1,34 +1,37 @@
 {
-  "checked_on": "2026-11-14",
+  "checked_on": "2026-11-15",
   "app_version": "0.8.0",
   "engine_version": "0.8.0",
   "analysis_version": "0.2.0",
   "input_fixture": "fixtures/public/scenarios.json",
   "input_sha256": "6a4aa08bd2fddfaf6a6498188867848d721c5cb6822164b27a783ae8ead76d57",
   "browser_export_sha256": {
-    "p3jsonPath": "7ad1b0570fec551994c606465090d01863faf2b7000cb6ccc04b322b8e368773",
-    "p3adrPath": "08258d486334cbdf58af764a8e475fb2ae7974dfcb56ebbb39f8862889014cf1",
-    "p2jsonPath": "2dd8f6cfc2ce93a38e761cd441f068bd6e2e420a2e6ab51ab0ae86ce98586a8b"
+    "p2jsonPath": "a3151a477307696188127cd263a0aaf5115c3ce59279ff3c5971ec2648c5a768",
+    "p3jsonPath": "2bcaf5009e969b04d38defcfa11710492f82a271094c8100f70cb0a386924b20",
+    "p3adrPath": "adfa871941b94d5623af77e624e18b853ea248aa358082c85f97982120cdffdb"
   },
   "checks": [
-    "Current P2 recommendation JSON matches engine output including critical warnings and selected services",
-    "Current P3 analysis JSON and Proposed ADR match engine artifacts",
-    "All 15 batch overview captures waited for their current rendered result summary",
-    "Refreshed eight scoped accessibility audit snapshots on the current release",
-    "After the generic unused-client tie-break, refreshed P3 browser JSON and ADR exactly match current engine artifacts; all six public recommendation outputs remain byte-identical."
+    "Current P2 JSON and P3 analysis JSON/ADR downloaded from the budget build and compared to engine artifacts",
+    "All 15 overviews recaptured after observing their current engine summaries",
+    "Current desktop and mobile budget snapshots show no recorded custom-audit failures or overflow",
+    "The unchanged validation route retains the prior invalid-result focus snapshot; existing React DOM focus regression tests passed. This snapshot was not freshly reproduced during this browser pass."
   ],
   "captures": [
     {
       "file": "docs/evidence/current/tradeoffs.png",
-      "sha256": "9ccfc18ab6a145bf1f0a4bc7309eede58d3d94b5e8b14c79906f0648e977a245"
+      "sha256": "d43418bed1dbdcb8d7e8b369d7334ae648f5cddc55d740efbae752cadc42edb1"
     },
     {
       "file": "docs/evidence/current/P2-stack.png",
-      "sha256": "53fe759d83b0982bbb840d86be78da07e5eebfa5658831d7bdfdc89f2967bd51"
+      "sha256": "8e098f269be5ac7241902c01d49a2285e196fa523270f94bf9aa0fc3285a2e0d"
     },
     {
       "file": "docs/evidence/current/stress-lab.png",
-      "sha256": "aa191c13fafe7272fbacf74de7589dc1917abe928938dc5957a2c94affb1e1d6"
+      "sha256": "7735d322e284b7c71955878523592692bc842e08a00fc8a0bd748da5c6e399b2"
+    },
+    {
+      "file": "docs/evidence/current/budget-options.jpg",
+      "sha256": "802a30d85ba982950b3b0fba4ed321939ea60a90bd0328ee530109a6f8381404"
     }
   ]
 }

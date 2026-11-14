@@ -4,6 +4,8 @@ Updated 14 November 2026 IST. Current application/engine/services release: **0.8
 
 - [30-scenario stress evaluation and findings](STRESS_EVALUATION.md)
 
+- [Budget planning and billing correction](BUDGET_PLANNING.md)
+
 ## Implementation status
 
 - [Implementation phase tracker](PHASES.md)

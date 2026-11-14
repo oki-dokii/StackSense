@@ -1,9 +1,9 @@
 {
   "activeElement": {
-    "class": "",
+    "class": "table-scroll",
     "id": "",
-    "tag": "body",
-    "text": "Skip to workspaceStackSenseWORKSPACEWorkspaceResults1MethodologyLocal & privateYOUR DECISI"
+    "tag": "div",
+    "text": "$0$3,921.22Monthly cost upper estimate →8568Original-priority score →Angular / Fastify: $2"
   },
   "issues": {
     "contrast": [],
@@ -17,7 +17,7 @@
   },
   "limitations": "Custom read-only snapshot, not axe or WCAG conformance. Solid-background text only; skips SVG, opacity/gradient cases, disabled and hidden text. Does not test assistive technology, focus obscuring, control borders or all accessible-name rules.",
   "path": "/results",
-  "testedTextElements": 626,
+  "testedTextElements": 694,
   "title": "Results — StackSense",
   "unmeasured": [],
   "unmeasuredTextElements": 0,

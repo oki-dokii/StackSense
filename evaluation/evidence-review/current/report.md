@@ -1,6 +1,6 @@
 # Evidence review
 
-As of 2026-11-14: 101 sources; 0 due; 0 future review dates.
+As of 2026-11-15: 106 sources; 0 due; 0 future review dates.
 
 | Source | Last review | Due | Status | Categories | Output mentions |
 |---|---|---|---|---|---|
@@ -29,6 +29,9 @@ As of 2026-11-14: 101 sources; 0 due; 0 future review dates.
 | core:go | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | core:html | 2026-11-13 | 2027-02-11 | within_review_window | capability | P1 |
 | core:laravel | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
+| core:lightsail-bundles | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| core:lightsail-pricing | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| core:lightsail-regions | 2026-11-15 | 2026-12-15 | within_review_window | capability, region_or_controls |  |
 | core:maria | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | core:mongo | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | core:mysql | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
@@ -76,6 +79,8 @@ As of 2026-11-14: 101 sources; 0 due; 0 future review dates.
 | services:jenkins | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | services:keycloak-admin | 2026-11-13 | 2027-02-11 | within_review_window | capability | P2, P3, P4, P6 |
 | services:keycloak-db | 2026-11-13 | 2027-02-11 | within_review_window | capability | P2, P3, P4, P6 |
+| services:lightsail-bundles | 2026-11-15 | 2026-11-29 | within_review_window | pricing |  |
+| services:lightsail-pricing | 2026-11-15 | 2026-11-29 | within_review_window | pricing |  |
 | services:local-fs | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | services:msg91 | 2026-11-13 | 2026-11-27 | within_review_window | capability, pricing | P2, P4, P6 |
 | services:msg91-privacy | 2026-11-13 | 2026-12-13 | within_review_window | capability, region_or_controls | P2, P4, P6 |
@@ -91,7 +96,7 @@ As of 2026-11-14: 101 sources; 0 due; 0 future review dates.
 | services:razorpay-pricing | 2026-11-14 | 2026-11-28 | within_review_window | capability, pricing | P2, P4 |
 | services:razorpay-privacy | 2026-11-13 | 2026-12-13 | within_review_window | capability, region_or_controls | P2, P4 |
 | services:rbi | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls | P4 |
-| services:run-price | 2026-11-13 | 2026-11-27 | within_review_window | pricing | P2, P3, P6 |
+| services:run-price | 2026-11-15 | 2026-11-29 | within_review_window | pricing | P2, P3, P6 |
 | services:s3 | 2026-11-13 | 2027-02-11 | within_review_window | capability | P4 |
 | services:s3-price | 2026-11-13 | 2026-11-27 | within_review_window | pricing | P2, P3, P4, P5, P6 |
 | services:soc | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls |  |

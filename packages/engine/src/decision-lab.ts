@@ -167,8 +167,9 @@ export function analyzeDecision(
       'Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.',
       'The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.',
       'Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.',
-      'Compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.',
+      'Within Decision Lab functional experiments, compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.',
       'No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.',
+      'engine_evaluations counts top-level scenario trials; the baseline recommendation may additionally evaluate one separately labeled budget proposal. Budget proposals are outside the functional-experiment sweep and never change the baseline brief.',
       'The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.',
     ],
     adr_markdown: '',
@@ -206,7 +207,10 @@ export function analyzeDecision(
         if (weight === s.priorities[criterion]) continue;
         const changed = structuredClone(input);
         changed.priorities = { ...s.priorities, [criterion]: weight };
-        const result = recommend(changed, context);
+        const result = recommend(changed, {
+          ...context,
+          budgetPlanning: false,
+        });
         report.engine_evaluations++;
         if (!result.stack)
           throw new Error(
@@ -275,7 +279,7 @@ export function analyzeDecision(
       for (const edit of combination)
         (changed.requirements as Record<string, unknown>)[edit.key] =
           edit.after;
-      const result = recommend(changed, context);
+      const result = recommend(changed, { ...context, budgetPlanning: false });
       report.engine_evaluations++;
       const trial: FunctionalTrial = {
         edits: combination.map((edit) => ({

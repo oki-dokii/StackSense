@@ -41,8 +41,8 @@ function entry(id: string) {
 describe('source-backed catalog integrity', () => {
   it('validates the shipped catalog with unique sources and supported layers', () => {
     expect(() => assertCatalog(defaultCatalog)).not.toThrow();
-    expect(defaultCatalog.entries.length).toBe(34);
-    expect(defaultCatalog.sources.length).toBe(46);
+    expect(defaultCatalog.entries.length).toBe(35);
+    expect(defaultCatalog.sources.length).toBe(49);
     expect(Object.isFrozen(defaultCatalog.entries[0])).toBe(true);
   });
   it.each(['missing-source', 'duplicate-id', 'bad-edge', 'missing-field'])(

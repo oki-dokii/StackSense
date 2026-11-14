@@ -323,6 +323,27 @@
       "url": "https://learn.microsoft.com/en-us/azure/postgresql/backup-restore/concepts-backup-restore",
       "checked_on": "2026-11-13",
       "scope": "Use in-region local/zone backup storage; disable geo-redundancy and cross-region read replicas for this profile."
+    },
+    {
+      "id": "lightsail-bundles",
+      "title": "Lightsail Linux IPv4 instance bundles",
+      "url": "https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-bundles.html",
+      "checked_on": "2026-11-15",
+      "scope": "4 GiB/2 vCPU/80 GB SSD Linux IPv4 bundle at USD 24/month; burstable CPU and quotas need workload review."
+    },
+    {
+      "id": "lightsail-regions",
+      "title": "Lightsail regional endpoints",
+      "url": "https://docs.aws.amazon.com/general/latest/gr/lightsail.html",
+      "checked_on": "2026-11-15",
+      "scope": "Mumbai, N. Virginia and Ireland service availability; primary VM placement only."
+    },
+    {
+      "id": "lightsail-pricing",
+      "title": "Lightsail transfer, disk and snapshots",
+      "url": "https://aws.amazon.com/lightsail/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "Included transfer is halved in Mumbai; inbound and outbound count toward allowances. Snapshot USD 0.05/GB-month and block disk USD 0.10/GB-month. No taxes, support or production capacity claim."
     }
   ],
   "entries": [
@@ -1508,6 +1529,70 @@
         }
       ],
       "fixed_region": "centralindia"
+    },
+    {
+      "id": "lightsail",
+      "name": "Amazon Lightsail Linux VM",
+      "layer": "hosting",
+      "status": "active",
+      "source_ids": [
+        "lightsail-bundles",
+        "lightsail-regions",
+        "lightsail-pricing"
+      ],
+      "review_scope": "Self-managed Linux VM with local PostgreSQL/MySQL, explicit region and burst-capacity review; not a managed database or HA service.",
+      "languages": [],
+      "complexity": 4,
+      "operations": 4,
+      "cost_class": 1,
+      "strengths": [
+        "Published fixed monthly Linux IPv4 bundles include RAM, SSD and transfer allowance."
+      ],
+      "tradeoffs": [
+        "Own patching, database recovery, TLS and burst CPU monitoring; no availability or capacity guarantee."
+      ],
+      "provider": "aws",
+      "deployments": [
+        "self_hosted_cloud_vm"
+      ],
+      "runtimes": [
+        "none",
+        "node",
+        "python",
+        "jvm",
+        "dotnet",
+        "go",
+        "php"
+      ],
+      "static_assets": true,
+      "persistent_volume": true,
+      "regions": [
+        {
+          "residency": "india",
+          "region": "ap-south-1",
+          "source_ids": [
+            "lightsail-regions",
+            "aws-regions"
+          ]
+        },
+        {
+          "residency": "us",
+          "region": "us-east-1",
+          "source_ids": [
+            "lightsail-regions",
+            "aws-regions"
+          ]
+        },
+        {
+          "residency": "eu",
+          "region": "eu-west-1",
+          "source_ids": [
+            "lightsail-regions",
+            "aws-regions"
+          ]
+        }
+      ],
+      "managed_databases": []
     }
   ]
 }

@@ -2,15 +2,15 @@
   "scope": "Author-designed functional stress evaluation; not organiser hidden tests, independent quality grading or production sizing validation.",
   "engine_version": "0.8.0",
   "case_set_sha256": "c1fe1d5460dd9f77e7354958dce74e736baab1915d665e4c1e9ae1d1286b6ebd",
-  "catalog_sha256": "c77853c08d3d640ff3de910caf2260e23e49128af3572748ecfa2c9baccaf79b",
+  "catalog_sha256": "8144ebe3b2f925cab4488996d4494d27ab41c3e23b0dd21614afa4f792e7ce95",
   "counts": {
     "scenarios": 30,
     "concrete_types": 15,
     "usable": 29,
     "infeasible": 1,
     "failed_checks": [],
-    "over_budget_at_lower_bound": 12,
-    "bands_over_5x": 1,
+    "over_budget_at_lower_bound": 15,
+    "bands_over_5x": 0,
     "selected_providers": {
       "aws": 7,
       "azure": 4,
@@ -80,10 +80,10 @@
       "plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 146.42,
-        "max": 624.04
+        "min": 247.76,
+        "max": 695
       },
-      "band_ratio": 4.26,
+      "band_ratio": 2.81,
       "budget_usd": 60,
       "over_budget_at_lower_bound": true,
       "critical_warnings": [],
@@ -132,10 +132,10 @@
       "plan_id": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 146.42,
-        "max": 624.04
+        "min": 247.76,
+        "max": 695
       },
-      "band_ratio": 4.26,
+      "band_ratio": 2.81,
       "budget_usd": 100,
       "over_budget_at_lower_bound": true,
       "critical_warnings": [],
@@ -184,10 +184,10 @@
       "plan_id": "modular_monolith|next|fastify|pg|cloudrun|asia-south1",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 160.71,
-        "max": 761.22
+        "min": 259.19,
+        "max": 804.74
       },
-      "band_ratio": 4.74,
+      "band_ratio": 3.1,
       "budget_usd": 150,
       "over_budget_at_lower_bound": true,
       "critical_warnings": [
@@ -241,12 +241,12 @@
       "plan_id": "modular_monolith|next-native|fastify|pg|cloudrun|europe-west1",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 160.71,
-        "max": 761.22
+        "min": 259.19,
+        "max": 804.74
       },
-      "band_ratio": 4.74,
+      "band_ratio": 3.1,
       "budget_usd": 180,
-      "over_budget_at_lower_bound": false,
+      "over_budget_at_lower_bound": true,
       "critical_warnings": [
         "EXTERNAL_RESIDENCY_UNVERIFIED",
         "EXTERNAL_RESIDENCY_UNVERIFIED"
@@ -270,10 +270,10 @@
       "plan_id": "modular_monolith|flutter|django|mysql|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 146.42,
-        "max": 624.04
+        "min": 247.76,
+        "max": 695
       },
-      "band_ratio": 4.26,
+      "band_ratio": 2.81,
       "budget_usd": 400,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [],
@@ -296,10 +296,10 @@
       "plan_id": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 146.52,
-        "max": 624.54
+        "min": 247.86,
+        "max": 695.5
       },
-      "band_ratio": 4.26,
+      "band_ratio": 2.81,
       "budget_usd": 80,
       "over_budget_at_lower_bound": true,
       "critical_warnings": [],
@@ -348,12 +348,12 @@
       "plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 195,
-        "max": 884.68
+        "min": 320.81,
+        "max": 853.94
       },
-      "band_ratio": 4.54,
+      "band_ratio": 2.66,
       "budget_usd": 200,
-      "over_budget_at_lower_bound": false,
+      "over_budget_at_lower_bound": true,
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
@@ -456,10 +456,10 @@
       "plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 146.52,
-        "max": 624.54
+        "min": 247.86,
+        "max": 695.5
       },
-      "band_ratio": 4.26,
+      "band_ratio": 2.81,
       "budget_usd": 600,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
@@ -484,10 +484,10 @@
       "plan_id": "modular_monolith|compose|spring|pg|cloudrun|asia-south1",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 149.28,
-        "max": 651.47
+        "min": 247.76,
+        "max": 695
       },
-      "band_ratio": 4.36,
+      "band_ratio": 2.81,
       "budget_usd": 250,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [],
@@ -510,10 +510,10 @@
       "plan_id": "modular_monolith|frontend-none|fastapi|mysql|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 134.99,
-        "max": 514.29
+        "min": 189.94,
+        "max": 590.93
       },
-      "band_ratio": 3.81,
+      "band_ratio": 3.11,
       "budget_usd": 100,
       "over_budget_at_lower_bound": true,
       "critical_warnings": [],
@@ -614,10 +614,10 @@
       "plan_id": "modular_monolith|frontend-none|django|database-none|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 43.25,
-        "max": 413.68
+        "min": 144.59,
+        "max": 484.64
       },
-      "band_ratio": 9.56,
+      "band_ratio": 3.35,
       "budget_usd": 250,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [],
@@ -695,10 +695,10 @@
       "plan_id": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 146.42,
-        "max": 624.04
+        "min": 247.76,
+        "max": 695
       },
-      "band_ratio": 4.26,
+      "band_ratio": 2.81,
       "budget_usd": 50,
       "over_budget_at_lower_bound": true,
       "critical_warnings": [],
@@ -721,12 +721,12 @@
       "plan_id": "modular_monolith|flutter|go-http|mysql|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 190.24,
-        "max": 850.39
+        "min": 320.81,
+        "max": 853.94
       },
-      "band_ratio": 4.47,
+      "band_ratio": 2.66,
       "budget_usd": 300,
-      "over_budget_at_lower_bound": false,
+      "over_budget_at_lower_bound": true,
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
@@ -773,10 +773,10 @@
       "plan_id": "modular_monolith|frontend-none|go-http|mysql|cloudrun|unspecified",
       "provider": "gcp",
       "infrastructure_usd": {
-        "min": 134.99,
-        "max": 514.29
+        "min": 189.94,
+        "max": 590.93
       },
-      "band_ratio": 3.81,
+      "band_ratio": 3.11,
       "budget_usd": 120,
       "over_budget_at_lower_bound": true,
       "critical_warnings": [],

@@ -1,5 +1,5 @@
 {
-  "adr_markdown": "# Proposed architecture decision\n\n**Status: Proposed — project acceptance required.**\n\nEngine 0.8.0; catalog 0.4.0; services 0.8.0; analysis 0.2.0.\nInput SHA-256: 00e0e33f3acc4dbd27dc7c1de3d38092ad4f180821bd647a22d91dff17d5193e.\n\n## Original result\n\nPROVISIONAL STACK — unresolved critical constraints require review before production\\. modular\\_monolith recommendation selected from 84 complete compatible plans; month\\-12 infrastructure planning band USD 81\\.42–508\\.55/month\\.\nResult: ok_with_warnings.\n\n- frontend: React Native — Covers requested targets android with native rendering\\. Team languages: javascript, python\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- backend: Django — Provides a python application runtime for the other profile\\. Language familiarity and delivery complexity were compared across compatible whole plans\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- database: PostgreSQL — relational persistence via Cloud SQL for PostgreSQL\\.  Database drivers and host deployment were checked as a combination\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- hosting: Google Cloud Run — Matches managed\\_cloud with provider gcp; reviewed primary compute region asia\\-south1\\. Required runtimes and separate database deployment were checked\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n\nMonthly infrastructure/operations band (activity fees additional): USD 81.42–508.55.\n\n## Complete alternatives\n\n- modular\\_monolith\\|react\\-native\\|django\\|pg\\|cloudrun\\|asia\\-south1; score 77; USD 81.42–508.55; selected.\n- modular\\_monolith\\|react\\-native\\|fastapi\\|pg\\|cloudrun\\|asia\\-south1; score 77; USD 81.42–508.55; alternative.\n- modular\\_monolith\\|react\\-native\\|fastify\\|pg\\|cloudrun\\|asia\\-south1; score 77; USD 81.42–508.55; alternative.\n\n## Preference stability\n\nOriginal winner retained in 25/25 tested settings; 1 observed winners. Counts are not confidence probabilities.\n\n## Cost assumptions\n\n- Horizon: expected month\\-12 footprint; 730 hours/month\\. No tax, development/on\\-call labor, domain registration or new on\\-prem hardware procurement is included\\.\n- Peak concurrency supplied: 200; not equated directly with requests/second\\.\n- RPS absent: assumed 50 requests/user/day averaged across the day \\(1\\.157 RPS\\); peak capacity still uses the concurrency hypothesis\\.\n- Data volume 100 GB supplied; egress 20 GB/month assumed at 0\\.01 GB per year\\-12 user, minimum 1 GB; backup retention 1 months assumed\\.\n- Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak\\-concurrency replica floor, not charged again as per\\-connection sidecars\\. 2\\.5 vCPU/2\\-GiB\\-equivalent units include frontend/backend, auth, workers, inference and telemetry once\\. These are sizing assumptions requiring load tests, not capacity guarantees\\.\n- Billed duty 0\\.08–0\\.8; run polling workers with allocated CPU/minimum instances\\. Higher availability adds at least two application allocations and in\\-region database copies, but does not guarantee an SLA\\. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes\\.\n- Managed database: 1 vCPU/4 GiB reference primary and 0 failover copies in\\-region; no SLA is guaranteed\\. Auth/search/outbox share logical database capacity and are not billed as duplicate databases\\.\n- OTP volume unknown, assumed range 0 to twice the year\\-12 users: upper 4000 messages/month\\. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees\\.\n- Headline estimate and budget fit cover infrastructure/operations only\\. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure\\.\n- 1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region\\-specific quote\\.\n- Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote\\. No currency conversion or MSG91 tariff is claimed\\.\n- Authored backup\\-storage envelope with retained copy quantity; no cross\\-region copy assumed\\.\n- Authored hosted build\\-minute allowance, assuming included quota at the lower bound\\. Paid runners/minutes/artifacts require a repository\\-specific quote and spending cap\\.\n- Authored internet\\-egress envelope; actual destination, free quota and routes vary\\.\n- Authored logs/metrics/request\\-operations allowance; redact data and set regional retention/quotas\\.\n- Authored regional persistent\\-storage envelope, including replica copies explicitly in quantity\\.\n- Authored standard\\-storage envelope; requests/lifecycle operations have a separate allowance\\.\n- Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate\\.\n- Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes\\.\n\n## Blockers, validation and owner actions\n\n- critical: MSG91 OTP is proposed provisionally: end\\-to\\-end india data residency is NOT established\\. Verify tenant/merchant eligibility, processing, logs, backups, delivery partners and contracts before production\\. This warning is an explicit exception to verified residency, not approval\\.\n- warning: Upper estimate USD 508\\.55/month exceeds USD 100; stated usage/price assumptions determine whether it fits\\.\n- warning: The output proposes technical control designs only\\. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit\\. Implement controls and obtain scope\\-specific review\\.\n- warning: Low\\-memory device suitability requires an actual device benchmark; no framework is credited with unmeasured RAM/latency performance\\.\n- warning: Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity\\. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase\\.\n- info: Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name\\.\n- infrastructure\\.data\\_residency, requirements\\.auth: Request the scoped vendor data\\-flow and configuration evidence\\. Review a regional alternative without changing the original residency requirement\\.\n\n## Evidence register\n\n- core:cloudsql\\-pg: [Cloud SQL PostgreSQL locations](https://cloud.google.com/sql/docs/postgres/locations); checked 2026\\-11\\-13; Primary PostgreSQL instance locations: Mumbai, Belgium, Iowa; backup locations need separate review\n- core:django: [Django databases](https://docs.djangoproject.com/en/stable/ref/databases/); checked 2026\\-11\\-13; Supported relational databases\n- core:pg: [PostgreSQL introduction](https://www.postgresql.org/docs/current/intro-whatis.html); checked 2026\\-11\\-13; Relational engine, transactional integrity\n- core:rn: [React Native introduction](https://reactnative.dev/docs/getting-started); checked 2026\\-11\\-13; JavaScript mobile application UI; runtime integration required\n- core:run: [Cloud Run overview](https://cloud.google.com/run/docs/overview/what-is-cloud-run); checked 2026\\-11\\-13; Managed HTTP container services, not durable database disks\n- core:run\\-regions: [Cloud Run locations](https://cloud.google.com/run/docs/locations); checked 2026\\-11\\-13; Primary compute service locations: Mumbai, Belgium, Iowa; not complete application data flows\n- core:run\\-ws: [Cloud Run WebSockets](https://cloud.google.com/run/docs/triggering/websockets); checked 2026\\-11\\-13; Connection request timeouts and reconnection requirements\n- services:android\\-offline: [Android offline architecture](https://developer.android.com/topic/architecture/data-layer/offline-first); checked 2026\\-11\\-13; Local source of truth, queued writes and background reconciliation\\.\n- services:aws\\-logs: [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html); checked 2026\\-11\\-13; Regional logging configuration required\\.\n- services:ci: [GitHub Actions](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions); checked 2026\\-11\\-13; Build only source/synthetic tests; no production data exports\\.\n- services:expo\\-sqlite: [Expo SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/); checked 2026\\-11\\-13; Device persistence; sync logic is application work\\.\n- services:gcp\\-logs: [Regional Cloud Logging](https://cloud.google.com/logging/docs/regionalized-logs); checked 2026\\-11\\-13; Regional log buckets and routing configuration\\.\n- services:gcs: [Cloud Storage locations](https://cloud.google.com/storage/docs/locations); checked 2026\\-11\\-13; Regional bucket configuration, not default multi\\-region residency\\.\n- services:keycloak\\-admin: [Keycloak administration](https://www.keycloak.org/docs/latest/server_admin/index.html); checked 2026\\-11\\-13; Self\\-hosted identity, federation and broker configuration; not built\\-in SMS OTP\\.\n- services:keycloak\\-db: [Keycloak database support](https://www.keycloak.org/server/db); checked 2026\\-11\\-13; Relational database support; pin compatible versions\\.\n- services:msg91: [MSG91 OTP](https://docs.msg91.com/en/otp/sendotp); checked 2026\\-11\\-13; Phone OTP API; country rules and contracts still required\\.\n- services:msg91\\-privacy: [MSG91 privacy](https://msg91.com/privacy-policy); checked 2026\\-11\\-13; Multiple hosting geographies; strict residency not established by this source\\.\n- services:pg\\-tx: [PostgreSQL transactions](https://www.postgresql.org/docs/current/tutorial-transactions.html); checked 2026\\-11\\-13; Atomic application/outbox writes; outbox/worker protocol remains custom\\.\n- services:run\\-price: [Cloud Run pricing](https://cloud.google.com/run/pricing); checked 2026\\-11\\-13; Reference request\\-billed active CPU $0\\.000024/vCPU\\-s and memory $0\\.0000025/GiB\\-s; region/edition/billing may differ\\.\n- services:s3\\-price: [S3 pricing](https://aws.amazon.com/s3/pricing/); checked 2026\\-11\\-13; Storage, requests and egress vary; cross\\-provider estimate below is a planning envelope\\.\n- services:sql\\-price: [Cloud SQL pricing](https://cloud.google.com/sql/pricing); checked 2026\\-11\\-13; Reference CPU $0\\.0413/vCPU\\-hour and memory $0\\.007/GiB\\-hour; HA replicas billed; not an India\\-specific quote\\.\n- services:storage\\-price: [Cloud Storage pricing](https://cloud.google.com/storage/pricing); checked 2026\\-11\\-13; Storage, operations and network are distinct charges\\.\n- services:telemetry: [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/); checked 2026\\-11\\-13; Collection/redaction/export; backend retention must be configured\\.\n\n## Limits and acceptance\n\n- Exploratory analysis only. The original recommendation and original requirements are unchanged.\n- Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.\n- The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.\n- Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.\n- Compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.\n- No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.\n- The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.\n\nAcceptance, independent review, vendor eligibility, implementation and deployment remain owner tasks. No acceptance is recorded.\n",
+  "adr_markdown": "# Proposed architecture decision\n\n**Status: Proposed — project acceptance required.**\n\nEngine 0.8.0; catalog 0.4.0; services 0.8.0; analysis 0.2.0.\nInput SHA-256: 00e0e33f3acc4dbd27dc7c1de3d38092ad4f180821bd647a22d91dff17d5193e.\n\n## Original result\n\nPROVISIONAL STACK — unresolved critical constraints require review before production\\. modular\\_monolith recommendation selected from 84 complete compatible plans; month\\-12 infrastructure planning band USD 187\\.9–552\\.07/month\\.\nResult: ok_with_warnings.\n\n- frontend: React Native — Covers requested targets android with native rendering\\. Team languages: javascript, python\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- backend: Django — Provides a python application runtime for the other profile\\. Language familiarity and delivery complexity were compared across compatible whole plans\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- database: PostgreSQL — relational persistence via Cloud SQL for PostgreSQL\\.  Database drivers and host deployment were checked as a combination\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- hosting: Google Cloud Run — Matches managed\\_cloud with provider gcp; reviewed primary compute region asia\\-south1\\. Required runtimes and separate database deployment were checked\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n\nMonthly infrastructure/operations band (activity fees additional): USD 187.9–552.07.\n\n## Complete alternatives\n\n- modular\\_monolith\\|react\\-native\\|django\\|pg\\|cloudrun\\|asia\\-south1; score 67; USD 187.9–552.07; selected.\n- modular\\_monolith\\|react\\-native\\|fastapi\\|pg\\|cloudrun\\|asia\\-south1; score 67; USD 187.9–552.07; alternative.\n- modular\\_monolith\\|react\\-native\\|fastify\\|pg\\|cloudrun\\|asia\\-south1; score 67; USD 187.9–552.07; alternative.\n\n## Preference stability\n\nOriginal winner retained in 25/25 tested settings; 1 observed winners. Counts are not confidence probabilities.\n\n## Cost assumptions\n\n- Horizon: expected month\\-12 footprint; 730 hours/month\\. No tax, development/on\\-call labor, domain registration or new on\\-prem hardware procurement is included\\.\n- Peak concurrency supplied: 200; not equated directly with requests/second\\.\n- RPS absent: assumed 50 requests/user/day averaged across the day \\(1\\.157 RPS\\); peak capacity still uses the concurrency hypothesis\\.\n- Data volume 100 GB supplied; egress 20 GB/month assumed at 0\\.01 GB per year\\-12 user, minimum 1 GB; backup retention 1 months assumed\\.\n- Cloud Run billing separates 1 request\\-driven allocations from 2 always\\-on reference allocations \\(support footprint rounded up\\)\\. Identity/background workers/inference/telemetry use instance\\-based CPU with minimum instances and are charged for the full month; they do not inherit a request\\-only duty discount\\. Service packing, startup, concurrency and exact regional billing require validation\\.\n- Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak\\-concurrency replica floor, not charged again as per\\-connection sidecars\\. 2\\.5 vCPU/2\\-GiB\\-equivalent units include frontend/backend, auth, workers, inference and telemetry once\\. These are sizing assumptions requiring load tests, not capacity guarantees\\.\n- Billed duty 0\\.08–0\\.8; run polling workers with allocated CPU/minimum instances\\. Higher availability adds at least two application allocations and in\\-region database copies, but does not guarantee an SLA\\. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes\\.\n- Managed database: 1 vCPU/4 GiB reference primary and 0 failover copies in\\-region; no SLA is guaranteed\\. Auth/search/outbox share logical database capacity and are not billed as duplicate databases\\.\n- OTP volume unknown, assumed range 0 to twice the year\\-12 users: upper 4000 messages/month\\. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees\\.\n- Headline estimate and budget fit cover infrastructure/operations only\\. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure\\.\n- 1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region\\-specific quote\\.\n- Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote\\. No currency conversion or MSG91 tariff is claimed\\.\n- Authored backup\\-storage envelope with retained copy quantity; no cross\\-region copy assumed\\.\n- Authored hosted build\\-minute allowance, assuming included quota at the lower bound\\. Paid runners/minutes/artifacts require a repository\\-specific quote and spending cap\\.\n- Authored internet\\-egress envelope; actual destination, free quota and routes vary\\.\n- Authored logs/metrics/request\\-operations allowance; redact data and set regional retention/quotas\\.\n- Authored regional persistent\\-storage envelope, including replica copies explicitly in quantity\\.\n- Authored standard\\-storage envelope; requests/lifecycle operations have a separate allowance\\.\n- Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate\\.\n- Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes\\.\n- Iowa on\\-demand instance\\-based reference: \\(USD 0\\.000018/vCPU\\-second \\+ 2 GiB × USD 0\\.000002/GiB\\-second\\) × 3600 = USD 0\\.0792/hour\\. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied\\.\n\n## Blockers, validation and owner actions\n\n- critical: MSG91 OTP is proposed provisionally: end\\-to\\-end india data residency is NOT established\\. Verify tenant/merchant eligibility, processing, logs, backups, delivery partners and contracts before production\\. This warning is an explicit exception to verified residency, not approval\\.\n- warning: Infrastructure estimate USD 187\\.9–552\\.07/month exceeds the USD 100 budget at the lower bound; this is an explicitly over\\-budget plan, with no requirement silently relaxed\\.\n- warning: The output proposes technical control designs only\\. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit\\. Implement controls and obtain scope\\-specific review\\.\n- warning: Low\\-memory device suitability requires an actual device benchmark; no framework is credited with unmeasured RAM/latency performance\\.\n- warning: Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity\\. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase\\.\n- info: Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name\\.\n- infrastructure\\.data\\_residency, requirements\\.auth: Request the scoped vendor data\\-flow and configuration evidence\\. Review a regional alternative without changing the original residency requirement\\.\n\n## Evidence register\n\n- core:cloudsql\\-pg: [Cloud SQL PostgreSQL locations](https://cloud.google.com/sql/docs/postgres/locations); checked 2026\\-11\\-13; Primary PostgreSQL instance locations: Mumbai, Belgium, Iowa; backup locations need separate review\n- core:django: [Django databases](https://docs.djangoproject.com/en/stable/ref/databases/); checked 2026\\-11\\-13; Supported relational databases\n- core:pg: [PostgreSQL introduction](https://www.postgresql.org/docs/current/intro-whatis.html); checked 2026\\-11\\-13; Relational engine, transactional integrity\n- core:rn: [React Native introduction](https://reactnative.dev/docs/getting-started); checked 2026\\-11\\-13; JavaScript mobile application UI; runtime integration required\n- core:run: [Cloud Run overview](https://cloud.google.com/run/docs/overview/what-is-cloud-run); checked 2026\\-11\\-13; Managed HTTP container services, not durable database disks\n- core:run\\-regions: [Cloud Run locations](https://cloud.google.com/run/docs/locations); checked 2026\\-11\\-13; Primary compute service locations: Mumbai, Belgium, Iowa; not complete application data flows\n- core:run\\-ws: [Cloud Run WebSockets](https://cloud.google.com/run/docs/triggering/websockets); checked 2026\\-11\\-13; Connection request timeouts and reconnection requirements\n- services:android\\-offline: [Android offline architecture](https://developer.android.com/topic/architecture/data-layer/offline-first); checked 2026\\-11\\-13; Local source of truth, queued writes and background reconciliation\\.\n- services:aws\\-logs: [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html); checked 2026\\-11\\-13; Regional logging configuration required\\.\n- services:ci: [GitHub Actions](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions); checked 2026\\-11\\-13; Build only source/synthetic tests; no production data exports\\.\n- services:expo\\-sqlite: [Expo SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/); checked 2026\\-11\\-13; Device persistence; sync logic is application work\\.\n- services:gcp\\-logs: [Regional Cloud Logging](https://cloud.google.com/logging/docs/regionalized-logs); checked 2026\\-11\\-13; Regional log buckets and routing configuration\\.\n- services:gcs: [Cloud Storage locations](https://cloud.google.com/storage/docs/locations); checked 2026\\-11\\-13; Regional bucket configuration, not default multi\\-region residency\\.\n- services:keycloak\\-admin: [Keycloak administration](https://www.keycloak.org/docs/latest/server_admin/index.html); checked 2026\\-11\\-13; Self\\-hosted identity, federation and broker configuration; not built\\-in SMS OTP\\.\n- services:keycloak\\-db: [Keycloak database support](https://www.keycloak.org/server/db); checked 2026\\-11\\-13; Relational database support; pin compatible versions\\.\n- services:msg91: [MSG91 OTP](https://docs.msg91.com/en/otp/sendotp); checked 2026\\-11\\-13; Phone OTP API; country rules and contracts still required\\.\n- services:msg91\\-privacy: [MSG91 privacy](https://msg91.com/privacy-policy); checked 2026\\-11\\-13; Multiple hosting geographies; strict residency not established by this source\\.\n- services:pg\\-tx: [PostgreSQL transactions](https://www.postgresql.org/docs/current/tutorial-transactions.html); checked 2026\\-11\\-13; Atomic application/outbox writes; outbox/worker protocol remains custom\\.\n- services:run\\-price: [Cloud Run pricing](https://cloud.google.com/run/pricing); checked 2026\\-11\\-15; On\\-demand Iowa request\\-based and instance\\-based CPU/memory references\\. Region/SKU bands remain authored allowances; no regional quote, commitment discount, free\\-tier or production capacity guarantee\\.\n- services:s3\\-price: [S3 pricing](https://aws.amazon.com/s3/pricing/); checked 2026\\-11\\-13; Storage, requests and egress vary; cross\\-provider estimate below is a planning envelope\\.\n- services:sql\\-price: [Cloud SQL pricing](https://cloud.google.com/sql/pricing); checked 2026\\-11\\-13; Reference CPU $0\\.0413/vCPU\\-hour and memory $0\\.007/GiB\\-hour; HA replicas billed; not an India\\-specific quote\\.\n- services:storage\\-price: [Cloud Storage pricing](https://cloud.google.com/storage/pricing); checked 2026\\-11\\-13; Storage, operations and network are distinct charges\\.\n- services:telemetry: [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/); checked 2026\\-11\\-13; Collection/redaction/export; backend retention must be configured\\.\n\n## Limits and acceptance\n\n- Exploratory analysis only. The original recommendation and original requirements are unchanged.\n- Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.\n- The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.\n- Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.\n- Within Decision Lab functional experiments, compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.\n- No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.\n- engine_evaluations counts top-level scenario trials; the baseline recommendation may additionally evaluate one separately labeled budget proposal. Budget proposals are outside the functional-experiment sweep and never change the baseline brief.\n- The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.\n\nAcceptance, independent review, vendor eligibility, implementation and deployment remain owner tasks. No acceptance is recorded.\n",
   "analysis_version": "0.2.0",
   "baseline": {
     "applied_extensions": [],
@@ -12,6 +12,169 @@
       "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
       "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
     ],
+    "budget_planning": {
+      "budget_usd": 100,
+      "cheapest_same_scope": {
+        "budget_fit": "over_budget",
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "Jetpack Compose",
+          "hosting": "Amazon ECS / Fargate"
+        },
+        "monthly_infrastructure_usd": {
+          "max": 514.39,
+          "min": 181.28
+        },
+        "plan_id": "modular_monolith|compose|aspnet|pg|ecs|ap-south-1"
+      },
+      "notes": [
+        "Infrastructure uncertainty: application-compute contributes USD 103.66 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+        "Infrastructure uncertainty: background-compute contributes USD 92.51 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+        "Infrastructure uncertainty: database-storage contributes USD 35 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+        "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions."
+      ],
+      "options": [
+        {
+          "assumptions": [
+            "All host/database/storage/log/backup configurations must use the reviewed india region, no cross-region copies, private access and retention/deletion controls. Device data and explicit external identity/OTP/payment flows are assessed separately.",
+            "Interpreted project.description phrase \"low-end Android phones\" as low_memory; this bounded hint does not infer legal or regional requirements.",
+            "Offline sync uses versioned records and server-side idempotency; app-specific merge/rejection UX and resumable uploads must be implemented and tested.",
+            "PROVISIONAL RESIDENCY EXCEPTION: MSG91 OTP remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
+            "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
+            "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
+            "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+            "Peak concurrency supplied: 200; not equated directly with requests/second.",
+            "RPS absent: assumed 50 requests/user/day averaged across the day (1.157 RPS); peak capacity still uses the concurrency hypothesis.",
+            "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+            "Lightsail: 3 full-month Linux IPv4 4-GiB/2-vCPU/80-GB-SSD bundles at USD 24 each. Reference service allocations are packed into these bundles; reserve 20 GB OS space on the database host and add block disk above 60 GB application data. Database and identity are self-operated. Burstable CPU baselines, memory, inter-node routing, recovery and the requested throughput/latency are NOT validated by this cash-cost estimate.",
+            "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 4.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+            "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+            "Self-hosted database CPU/disk shares the provisioned host allocation; no second managed database bill is added. Capacity and license review still required.",
+            "Transfer model reserves half one bundle's quota for inbound/other traffic: 1000 GB outbound allowance remains (Mumbai quota is halved). Additional VMs' quotas are not pooled. External S3 delivery, cross-region/private network routes or inbound above this reservation can create extra charges; verify actual routing and tariffs.",
+            "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 4000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
+            "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+            "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
+            "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+            "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+            "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+            "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+            "Linux IPv4 general-purpose 4 GiB/2 vCPU/80 GB SSD bundle, full month USD 24. No promotion or reserved discount; burstable performance requires measurement.",
+            "Published additional SSD block disk USD 0.10/allocated GB-month, minimum 8 GB. OS/root SSD allowance is accounted separately.",
+            "Published snapshot storage USD 0.05/GB-month. Application-consistent database backups require explicit recovery tests.",
+            "Original feature flags, platforms, scale, languages, provider preference, residency and compliance requests remain unchanged. All vendor/contract exceptions and capacity hypotheses still require review."
+          ],
+          "budget_fit": "range_risk",
+          "changes": [
+            {
+              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate.",
+              "field": "infrastructure.deployment_model",
+              "from": "managed_cloud",
+              "to": "self_hosted_cloud_vm"
+            }
+          ],
+          "core": {
+            "backend": "Django",
+            "database": "PostgreSQL",
+            "frontend": "React Native",
+            "hosting": "Amazon Lightsail Linux VM"
+          },
+          "id": "explicit_budget_tradeoff",
+          "monthly_infrastructure_usd": {
+            "max": 141,
+            "min": 87
+          },
+          "monthly_total_usd": {
+            "max": 261,
+            "min": 87
+          },
+          "plan_id": "modular_monolith|react-native|django|pg|lightsail|ap-south-1",
+          "primary_region": "ap-south-1",
+          "requires_acceptance": true,
+          "supporting_services": [
+            "GitHub Actions",
+            "Expo SQLite + application sync queue",
+            "Keycloak",
+            "MSG91 OTP",
+            "OpenTelemetry Collector + structured logs",
+            "PostgreSQL transactional outbox + worker",
+            "Amazon S3 regional bucket"
+          ],
+          "warnings": [
+            {
+              "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
+              "fields": [
+                "infrastructure.data_residency",
+                "requirements.auth"
+              ],
+              "message": "MSG91 OTP is proposed provisionally: end-to-end india data residency is NOT established. Verify tenant/merchant eligibility, processing, logs, backups, delivery partners and contracts before production. This warning is an explicit exception to verified residency, not approval.",
+              "severity": "critical"
+            },
+            {
+              "code": "BUDGET_RANGE_RISK",
+              "fields": [
+                "budget.monthly_infra_usd"
+              ],
+              "message": "Upper estimate USD 141/month exceeds USD 100; stated usage/price assumptions determine whether it fits.",
+              "severity": "warning"
+            },
+            {
+              "code": "COMPLIANCE_IMPLEMENTATION_REVIEW",
+              "fields": [
+                "compliance"
+              ],
+              "message": "The output proposes technical control designs only. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit. Implement controls and obtain scope-specific review.",
+              "severity": "warning"
+            },
+            {
+              "code": "DEVICE_BENCHMARK_PENDING",
+              "fields": [
+                "project.description"
+              ],
+              "message": "Low-memory device suitability requires an actual device benchmark; no framework is credited with unmeasured RAM/latency performance.",
+              "severity": "warning"
+            },
+            {
+              "code": "OPERATIONS_SKILL_GAP",
+              "fields": [
+                "team.size",
+                "team.has_devops",
+                "infrastructure.deployment_model"
+              ],
+              "message": "Requested self-operated infrastructure needs patching, backups and on-call capacity absent from the stated DevOps capability.",
+              "severity": "warning"
+            },
+            {
+              "code": "PRICE_AND_CAPACITY_ASSUMPTIONS",
+              "fields": [
+                "scale",
+                "budget.monthly_infra_usd",
+                "requirements"
+              ],
+              "message": "Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase.",
+              "severity": "warning"
+            },
+            {
+              "code": "FREE_TIER_OR_DEPLOYMENT_LIMITS",
+              "fields": [
+                "requirements.availability"
+              ],
+              "message": "Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name.",
+              "severity": "info"
+            },
+            {
+              "code": "BUDGET_REQUIREMENT_CHANGE",
+              "fields": [
+                "infrastructure.deployment_model"
+              ],
+              "message": "Optional changed-requirement proposal only. Original recommendation is unchanged. Accept each listed edit explicitly and rerun; reduced availability/self-management is not an equivalent deployment or production approval.",
+              "severity": "critical"
+            }
+          ]
+        }
+      ],
+      "scope": "optional_proposals_original_result_unchanged"
+    },
     "catalog_version": "0.4.0",
     "control_plan": {
       "deployment_controls": [
@@ -48,12 +211,12 @@
         "category": "compute",
         "id": "application-compute",
         "monthly_usd": {
-          "max": 274.37,
-          "min": 15.24
+          "max": 109.75,
+          "min": 6.09
         },
         "quantity": {
-          "max": 1460,
-          "min": 146
+          "max": 584,
+          "min": 58.4
         },
         "source_ids": [
           "run-price"
@@ -61,6 +224,26 @@
         "unit_rate_usd": {
           "max": 0.18792,
           "min": 0.1044
+        }
+      },
+      {
+        "basis": "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied.",
+        "category": "compute",
+        "id": "background-compute",
+        "monthly_usd": {
+          "max": 208.14,
+          "min": 115.63
+        },
+        "quantity": {
+          "max": 1460,
+          "min": 1460
+        },
+        "source_ids": [
+          "run-price"
+        ],
+        "unit_rate_usd": {
+          "max": 0.14256,
+          "min": 0.0792
         }
       },
       {
@@ -252,6 +435,7 @@
         "category": "infrastructure_and_operations",
         "line_ids": [
           "application-compute",
+          "background-compute",
           "database-cpu",
           "database-memory",
           "database-storage",
@@ -261,8 +445,8 @@
           "telemetry-operations",
           "hosted-ci"
         ],
-        "max": 508.55,
-        "min": 81.42
+        "max": 552.07,
+        "min": 187.9
       },
       {
         "category": "payment_and_message_activity",
@@ -281,15 +465,15 @@
         "field": "extensions.expected_requests_per_second",
         "samples": [
           {
-            "max": 508.55,
-            "min": 81.42,
+            "max": 552.07,
+            "min": 187.9,
             "status": "estimated",
             "upper_delta_usd": 0,
             "value": 0.5787037037037037
           },
           {
-            "max": 508.55,
-            "min": 81.42,
+            "max": 552.07,
+            "min": 187.9,
             "status": "estimated",
             "upper_delta_usd": 0,
             "value": 2.314814814814815
@@ -304,15 +488,15 @@
         "field": "extensions.monthly_egress_gb",
         "samples": [
           {
-            "max": 504.55,
-            "min": 80.62,
+            "max": 548.07,
+            "min": 187.1,
             "status": "estimated",
             "upper_delta_usd": -4,
             "value": 10
           },
           {
-            "max": 516.55,
-            "min": 83.02,
+            "max": 560.07,
+            "min": 189.5,
             "status": "estimated",
             "upper_delta_usd": 8,
             "value": 40
@@ -327,15 +511,15 @@
         "field": "extensions.retention_months",
         "samples": [
           {
-            "max": 508.55,
-            "min": 81.42,
+            "max": 552.07,
+            "min": 187.9,
             "status": "estimated",
             "upper_delta_usd": 0,
             "value": 1
           },
           {
-            "max": 538.55,
-            "min": 84.42,
+            "max": 582.07,
+            "min": 190.9,
             "status": "estimated",
             "upper_delta_usd": 30,
             "value": 2
@@ -428,7 +612,7 @@
       "complete_candidates": 84,
       "core_candidates": 84,
       "rejected": [],
-      "score": 77,
+      "score": 67,
       "selected_plan_id": "modular_monolith|react-native|django|pg|cloudrun|asia-south1"
     },
     "engine_version": "0.8.0",
@@ -440,6 +624,7 @@
         "Peak concurrency supplied: 200; not equated directly with requests/second.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (1.157 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Cloud Run billing separates 1 request-driven allocations from 2 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.08–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 1 vCPU/4 GiB reference primary and 0 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
@@ -454,16 +639,45 @@
         "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
         "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+        "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
       ],
-      "max": 508.55,
-      "min": 81.42
+      "max": 552.07,
+      "min": 187.9
+    },
+    "estimated_total_monthly_cost_usd": {
+      "assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 200; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (1.157 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Cloud Run billing separates 1 request-driven allocations from 2 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 0.08–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Managed database: 1 vCPU/4 GiB reference primary and 0 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 4000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+        "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+        "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied.",
+        "Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded."
+      ],
+      "max": 672.07,
+      "min": 187.9
     },
     "integration_reviews": [],
     "plan_comparison": [
       {
         "architecture_style": "modular_monolith",
-        "budget_fit": "range_risk",
+        "budget_fit": "over_budget",
         "core": {
           "backend": "Django",
           "database": "PostgreSQL",
@@ -475,6 +689,7 @@
           "Peak concurrency supplied: 200; not equated directly with requests/second.",
           "RPS absent: assumed 50 requests/user/day averaged across the day (1.157 RPS); peak capacity still uses the concurrency hypothesis.",
           "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+          "Cloud Run billing separates 1 request-driven allocations from 2 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
           "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
           "Billed duty 0.08–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
           "Managed database: 1 vCPU/4 GiB reference primary and 0 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
@@ -489,12 +704,13 @@
           "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
           "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
           "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-          "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+          "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+          "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
         ],
         "database_region": "asia-south1",
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
         "plan_id": "modular_monolith|react-native|django|pg|cloudrun|asia-south1",
@@ -507,7 +723,7 @@
           "compliance=dpdp",
           "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
         ],
-        "score": 77,
+        "score": 67,
         "score_delta": 0,
         "selected": true,
         "supporting_services": [
@@ -521,7 +737,7 @@
         ],
         "tied_on_score": false,
         "warning_codes": [
-          "BUDGET_RANGE_RISK",
+          "BUDGET_EXCEEDED",
           "COMPLIANCE_IMPLEMENTATION_REVIEW",
           "EXTERNAL_RESIDENCY_UNVERIFIED",
           "FREE_TIER_OR_DEPLOYMENT_LIMITS"
@@ -529,7 +745,7 @@
       },
       {
         "architecture_style": "modular_monolith",
-        "budget_fit": "range_risk",
+        "budget_fit": "over_budget",
         "core": {
           "backend": "FastAPI",
           "database": "PostgreSQL",
@@ -541,6 +757,7 @@
           "Peak concurrency supplied: 200; not equated directly with requests/second.",
           "RPS absent: assumed 50 requests/user/day averaged across the day (1.157 RPS); peak capacity still uses the concurrency hypothesis.",
           "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+          "Cloud Run billing separates 1 request-driven allocations from 2 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
           "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
           "Billed duty 0.08–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
           "Managed database: 1 vCPU/4 GiB reference primary and 0 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
@@ -555,12 +772,13 @@
           "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
           "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
           "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-          "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+          "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+          "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
         ],
         "database_region": "asia-south1",
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
         "plan_id": "modular_monolith|react-native|fastapi|pg|cloudrun|asia-south1",
@@ -573,7 +791,7 @@
           "compliance=dpdp",
           "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
         ],
-        "score": 77,
+        "score": 67,
         "score_delta": 0,
         "selected": false,
         "supporting_services": [
@@ -587,7 +805,7 @@
         ],
         "tied_on_score": true,
         "warning_codes": [
-          "BUDGET_RANGE_RISK",
+          "BUDGET_EXCEEDED",
           "COMPLIANCE_IMPLEMENTATION_REVIEW",
           "EXTERNAL_RESIDENCY_UNVERIFIED",
           "FREE_TIER_OR_DEPLOYMENT_LIMITS"
@@ -595,7 +813,7 @@
       },
       {
         "architecture_style": "modular_monolith",
-        "budget_fit": "range_risk",
+        "budget_fit": "over_budget",
         "core": {
           "backend": "Fastify",
           "database": "PostgreSQL",
@@ -607,6 +825,7 @@
           "Peak concurrency supplied: 200; not equated directly with requests/second.",
           "RPS absent: assumed 50 requests/user/day averaged across the day (1.157 RPS); peak capacity still uses the concurrency hypothesis.",
           "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+          "Cloud Run billing separates 1 request-driven allocations from 2 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
           "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
           "Billed duty 0.08–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
           "Managed database: 1 vCPU/4 GiB reference primary and 0 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
@@ -621,12 +840,13 @@
           "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
           "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
           "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-          "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+          "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+          "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
         ],
         "database_region": "asia-south1",
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
         "plan_id": "modular_monolith|react-native|fastify|pg|cloudrun|asia-south1",
@@ -639,7 +859,7 @@
           "compliance=dpdp",
           "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
         ],
-        "score": 77,
+        "score": 67,
         "score_delta": 0,
         "selected": false,
         "supporting_services": [
@@ -653,7 +873,7 @@
         ],
         "tied_on_score": true,
         "warning_codes": [
-          "BUDGET_RANGE_RISK",
+          "BUDGET_EXCEEDED",
           "COMPLIANCE_IMPLEMENTATION_REVIEW",
           "EXTERNAL_RESIDENCY_UNVERIFIED",
           "FREE_TIER_OR_DEPLOYMENT_LIMITS"
@@ -696,14 +916,14 @@
     "scenario_id": "P6",
     "score_breakdown": [
       {
-        "contribution": 15,
+        "contribution": 5,
         "criterion": "cost",
         "driven_by": [
           "budget.monthly_infra_usd",
           "priorities.cost"
         ],
-        "fit": 3,
-        "reason": "USD 81.42–508.55/month versus budget 100: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+        "fit": 1,
+        "reason": "USD 187.9–552.07/month versus budget 100: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
         "weight": 5
       },
       {
@@ -851,7 +1071,7 @@
         "alternatives": [
           {
             "choice": "Amazon ECS / Fargate",
-            "why_not": "Best compatible complete plan using this option scored 63, below 77; other layers may also differ."
+            "why_not": "Best compatible complete plan using this option scored 63, below 67; other layers may also differ."
           }
         ],
         "choice": "Google Cloud Run",
@@ -1068,7 +1288,7 @@
       ]
     },
     "status": "ok_with_warnings",
-    "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 84 complete compatible plans; month-12 infrastructure planning band USD 81.42–508.55/month.",
+    "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 84 complete compatible plans; month-12 infrastructure planning band USD 187.9–552.07/month.",
     "validation_errors": [],
     "warnings": [
       {
@@ -1081,11 +1301,11 @@
         "severity": "critical"
       },
       {
-        "code": "BUDGET_RANGE_RISK",
+        "code": "BUDGET_EXCEEDED",
         "fields": [
           "budget.monthly_infra_usd"
         ],
-        "message": "Upper estimate USD 508.55/month exceeds USD 100; stated usage/price assumptions determine whether it fits.",
+        "message": "Infrastructure estimate USD 187.9–552.07/month exceeds the USD 100 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
         "severity": "warning"
       },
       {
@@ -1253,9 +1473,9 @@
       "url": "https://www.postgresql.org/docs/current/tutorial-transactions.html"
     },
     {
-      "checked_on": "2026-11-13",
+      "checked_on": "2026-11-15",
       "id": "services:run-price",
-      "scope": "Reference request-billed active CPU $0.000024/vCPU-s and memory $0.0000025/GiB-s; region/edition/billing may differ.",
+      "scope": "On-demand Iowa request-based and instance-based CPU/memory references. Region/SKU bands remain authored allowances; no regional quote, commitment discount, free-tier or production capacity guarantee.",
       "title": "Cloud Run pricing",
       "url": "https://cloud.google.com/run/pricing"
     },
@@ -1311,8 +1531,9 @@
     "Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.",
     "The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.",
     "Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.",
-    "Compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.",
+    "Within Decision Lab functional experiments, compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.",
     "No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.",
+    "engine_evaluations counts top-level scenario trials; the baseline recommendation may additionally evaluate one separately labeled budget proposal. Budget proposals are outside the functional-experiment sweep and never change the baseline brief.",
     "The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred."
   ],
   "priority_analysis": {
@@ -1326,7 +1547,7 @@
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
+          "cost": 1,
           "maintainability": 5,
           "performance": 3,
           "scalability": 4,
@@ -1334,11 +1555,11 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
-        "original_priority_score": 77,
+        "original_priority_score": 67,
         "plan_id": "modular_monolith|react-native|django|pg|cloudrun|asia-south1"
       },
       {
@@ -1349,7 +1570,7 @@
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
+          "cost": 1,
           "maintainability": 5,
           "performance": 3,
           "scalability": 4,
@@ -1357,11 +1578,11 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
-        "original_priority_score": 77,
+        "original_priority_score": 67,
         "plan_id": "modular_monolith|react-native|fastapi|pg|cloudrun|asia-south1"
       },
       {
@@ -1372,7 +1593,7 @@
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
+          "cost": 1,
           "maintainability": 5,
           "performance": 3,
           "scalability": 4,
@@ -1380,11 +1601,11 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
-        "original_priority_score": 77,
+        "original_priority_score": 67,
         "plan_id": "modular_monolith|react-native|fastify|pg|cloudrun|asia-south1"
       },
       {
@@ -1395,7 +1616,7 @@
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
+          "cost": 1,
           "maintainability": 5,
           "performance": 3,
           "scalability": 4,
@@ -1403,11 +1624,11 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 618.29,
-          "min": 87.51
+          "max": 661.82,
+          "min": 194
         },
         "operated_components": 3.5,
-        "original_priority_score": 77,
+        "original_priority_score": 67,
         "plan_id": "modular_monolith|next-native|django|pg|cloudrun|asia-south1"
       },
       {
@@ -1418,7 +1639,7 @@
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
+          "cost": 1,
           "maintainability": 5,
           "performance": 3,
           "scalability": 4,
@@ -1426,11 +1647,11 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 618.29,
-          "min": 87.51
+          "max": 661.82,
+          "min": 194
         },
         "operated_components": 3.5,
-        "original_priority_score": 77,
+        "original_priority_score": 67,
         "plan_id": "modular_monolith|next-native|fastapi|pg|cloudrun|asia-south1"
       },
       {
@@ -1441,7 +1662,7 @@
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
+          "cost": 1,
           "maintainability": 5,
           "performance": 3,
           "scalability": 4,
@@ -1449,334 +1670,12 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 618.29,
-          "min": 87.51
+          "max": 661.82,
+          "min": 194
         },
         "operated_components": 3.5,
-        "original_priority_score": 77,
+        "original_priority_score": 67,
         "plan_id": "modular_monolith|next-native|fastify|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "Jetpack Compose",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|compose|django|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "Jetpack Compose",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|compose|fastapi|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Jetpack Compose",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|compose|fastify|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "React Native",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|react-native|aspnet|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Go net/http",
-          "database": "PostgreSQL",
-          "frontend": "React Native",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|react-native|go-http|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Laravel",
-          "database": "PostgreSQL",
-          "frontend": "React Native",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|react-native|laravel|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Spring Boot",
-          "database": "PostgreSQL",
-          "frontend": "React Native",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|react-native|spring|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|flutter|django|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|flutter|fastapi|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|flutter|fastify|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 618.29,
-          "min": 87.51
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|next-native|aspnet|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Go net/http",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 618.29,
-          "min": 87.51
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|next-native|go-http|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Laravel",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 618.29,
-          "min": 87.51
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|next-native|laravel|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Spring Boot",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 618.29,
-          "min": 87.51
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|next-native|spring|pg|cloudrun|asia-south1"
       },
       {
         "core": {
@@ -1849,187 +1748,325 @@
       },
       {
         "core": {
-          "backend": "ASP.NET Core",
+          "backend": "Django",
           "database": "PostgreSQL",
           "frontend": "Jetpack Compose",
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
-          "maintainability": 3,
+          "cost": 1,
+          "maintainability": 4,
           "performance": 3,
           "scalability": 4,
           "security": 3,
-          "time_to_market": 2
+          "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
-        "original_priority_score": 61,
-        "plan_id": "modular_monolith|compose|aspnet|pg|cloudrun|asia-south1"
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|compose|django|pg|cloudrun|asia-south1"
       },
       {
         "core": {
-          "backend": "Go net/http",
+          "backend": "FastAPI",
           "database": "PostgreSQL",
           "frontend": "Jetpack Compose",
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
-          "maintainability": 3,
+          "cost": 1,
+          "maintainability": 4,
           "performance": 3,
           "scalability": 4,
           "security": 3,
-          "time_to_market": 2
+          "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
-        "original_priority_score": 61,
-        "plan_id": "modular_monolith|compose|go-http|pg|cloudrun|asia-south1"
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|compose|fastapi|pg|cloudrun|asia-south1"
       },
       {
         "core": {
-          "backend": "Laravel",
+          "backend": "Fastify",
           "database": "PostgreSQL",
           "frontend": "Jetpack Compose",
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
-          "maintainability": 3,
+          "cost": 1,
+          "maintainability": 4,
           "performance": 3,
           "scalability": 4,
           "security": 3,
-          "time_to_market": 2
+          "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
-        "original_priority_score": 61,
-        "plan_id": "modular_monolith|compose|laravel|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Spring Boot",
-          "database": "PostgreSQL",
-          "frontend": "Jetpack Compose",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 2
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 61,
-        "plan_id": "modular_monolith|compose|spring|pg|cloudrun|asia-south1"
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|compose|fastify|pg|cloudrun|asia-south1"
       },
       {
         "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
-          "frontend": "Flutter",
+          "frontend": "React Native",
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
-          "maintainability": 3,
+          "cost": 1,
+          "maintainability": 4,
           "performance": 3,
           "scalability": 4,
           "security": 3,
-          "time_to_market": 2
+          "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
-        "original_priority_score": 61,
-        "plan_id": "modular_monolith|flutter|aspnet|pg|cloudrun|asia-south1"
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|react-native|aspnet|pg|cloudrun|asia-south1"
       },
       {
         "core": {
           "backend": "Go net/http",
           "database": "PostgreSQL",
-          "frontend": "Flutter",
+          "frontend": "React Native",
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
-          "maintainability": 3,
+          "cost": 1,
+          "maintainability": 4,
           "performance": 3,
           "scalability": 4,
           "security": 3,
-          "time_to_market": 2
+          "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
-        "original_priority_score": 61,
-        "plan_id": "modular_monolith|flutter|go-http|pg|cloudrun|asia-south1"
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|react-native|go-http|pg|cloudrun|asia-south1"
       },
       {
         "core": {
           "backend": "Laravel",
           "database": "PostgreSQL",
-          "frontend": "Flutter",
+          "frontend": "React Native",
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
-          "maintainability": 3,
+          "cost": 1,
+          "maintainability": 4,
           "performance": 3,
           "scalability": 4,
           "security": 3,
-          "time_to_market": 2
+          "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
-        "original_priority_score": 61,
-        "plan_id": "modular_monolith|flutter|laravel|pg|cloudrun|asia-south1"
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|react-native|laravel|pg|cloudrun|asia-south1"
       },
       {
         "core": {
           "backend": "Spring Boot",
           "database": "PostgreSQL",
+          "frontend": "React Native",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|react-native|spring|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
           "frontend": "Flutter",
           "hosting": "Google Cloud Run"
         },
         "fit": {
-          "cost": 3,
-          "maintainability": 3,
+          "cost": 1,
+          "maintainability": 4,
           "performance": 3,
           "scalability": 4,
           "security": 3,
-          "time_to_market": 2
+          "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
+          "max": 552.07,
+          "min": 187.9
         },
         "operated_components": 2.5,
-        "original_priority_score": 61,
-        "plan_id": "modular_monolith|flutter|spring|pg|cloudrun|asia-south1"
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|flutter|django|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|flutter|fastapi|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|flutter|fastify|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 661.82,
+          "min": 194
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|next-native|aspnet|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 661.82,
+          "min": 194
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|next-native|go-http|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 661.82,
+          "min": 194
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|next-native|laravel|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 661.82,
+          "min": 194
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 59,
+        "plan_id": "modular_monolith|next-native|spring|pg|cloudrun|asia-south1"
       },
       {
         "core": {
@@ -2467,6 +2504,190 @@
         "operated_components": 2.5,
         "original_priority_score": 55,
         "plan_id": "modular_monolith|flutter|fastify|pg|ecs|ap-south-1"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "Jetpack Compose",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|compose|aspnet|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "PostgreSQL",
+          "frontend": "Jetpack Compose",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|compose|go-http|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "PostgreSQL",
+          "frontend": "Jetpack Compose",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|compose|laravel|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "PostgreSQL",
+          "frontend": "Jetpack Compose",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|compose|spring|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|flutter|aspnet|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|flutter|go-http|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|flutter|laravel|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 552.07,
+          "min": 187.9
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|flutter|spring|pg|cloudrun|asia-south1"
       },
       {
         "core": {
@@ -3254,7 +3475,10 @@
     "frontier_plan_ids": [
       "modular_monolith|react-native|django|pg|cloudrun|asia-south1",
       "modular_monolith|react-native|fastapi|pg|cloudrun|asia-south1",
-      "modular_monolith|react-native|fastify|pg|cloudrun|asia-south1"
+      "modular_monolith|react-native|fastify|pg|cloudrun|asia-south1",
+      "modular_monolith|react-native|django|pg|ecs|ap-south-1",
+      "modular_monolith|react-native|fastapi|pg|ecs|ap-south-1",
+      "modular_monolith|react-native|fastify|pg|ecs|ap-south-1"
     ],
     "retained_winner_settings": 25,
     "status": "evaluated",

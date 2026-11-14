@@ -7,6 +7,158 @@
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
     "Social login brokers only necessary identity claims; choose an eligible provider, legal basis and transfer/contract arrangement before production."
   ],
+  "budget_planning": {
+    "budget_usd": 1500,
+    "cheapest_same_scope": {
+      "budget_fit": "range_risk",
+      "core": {
+        "backend": "ASP.NET Core",
+        "database": "PostgreSQL",
+        "frontend": "Angular",
+        "hosting": "Amazon ECS / Fargate"
+      },
+      "monthly_infrastructure_usd": {
+        "max": 1965.74,
+        "min": 750.85
+      },
+      "plan_id": "modular_monolith|angular|aspnet|pg|ecs|unspecified"
+    },
+    "notes": [
+      "Infrastructure uncertainty: application-compute contributes USD 1181.29 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Infrastructure uncertainty: network-egress contributes USD 160 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Infrastructure uncertainty: database-storage contributes USD 140 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions."
+    ],
+    "options": [
+      {
+        "assumptions": [
+          "Interpreted project.description phrase \"whiteboard\" as collaboration_hint; this bounded hint does not infer legal or regional requirements.",
+          "Persistent application data is inferred from project.type=realtime_collab; domain data modeling remains required.",
+          "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
+          "Social login brokers only necessary identity claims; choose an eligible provider, legal basis and transfer/contract arrangement before production.",
+          "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+          "Peak concurrency supplied: 5000; not equated directly with requests/second.",
+          "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
+          "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+          "Lightsail: 9 full-month Linux IPv4 4-GiB/2-vCPU/80-GB-SSD bundles at USD 24 each. Reference service allocations are packed into these bundles; reserve 20 GB OS space on the database host and add block disk above 60 GB application data. Database and identity are self-operated. Burstable CPU baselines, memory, inter-node routing, recovery and the requested throughput/latency are NOT validated by this cash-cost estimate.",
+          "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 16.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+          "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+          "Self-hosted database CPU/disk shares the provisioned host allocation; no second managed database bill is added. Capacity and license review still required.",
+          "Transfer model reserves half one bundle's quota for inbound/other traffic: 2000 GB outbound allowance remains (Mumbai quota is halved). Additional VMs' quotas are not pooled. External S3 delivery, cross-region/private network routes or inbound above this reservation can create extra charges; verify actual routing and tariffs.",
+          "Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+          "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+          "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary.",
+          "Assumed per-transaction USD fee envelope, not a tariff quote.",
+          "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+          "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+          "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+          "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+          "Linux IPv4 general-purpose 4 GiB/2 vCPU/80 GB SSD bundle, full month USD 24. No promotion or reserved discount; burstable performance requires measurement.",
+          "Published additional SSD block disk USD 0.10/allocated GB-month, minimum 8 GB. OS/root SSD allowance is accounted separately.",
+          "Published snapshot storage USD 0.05/GB-month. Application-consistent database backups require explicit recovery tests.",
+          "Original feature flags, platforms, scale, languages, provider preference, residency and compliance requests remain unchanged. All vendor/contract exceptions and capacity hypotheses still require review."
+        ],
+        "budget_fit": "within_upper",
+        "changes": [
+          {
+            "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate.",
+            "field": "infrastructure.deployment_model",
+            "from": "managed_cloud",
+            "to": "self_hosted_cloud_vm"
+          },
+          {
+            "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval.",
+            "field": "requirements.availability",
+            "from": "99.9",
+            "to": "99"
+          }
+        ],
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Angular",
+          "hosting": "Amazon Lightsail Linux VM"
+        },
+        "id": "explicit_budget_tradeoff",
+        "monthly_infrastructure_usd": {
+          "max": 390.4,
+          "min": 247.4
+        },
+        "monthly_total_usd": {
+          "max": 2890.4,
+          "min": 247.4
+        },
+        "plan_id": "modular_monolith|angular|fastify|pg|lightsail|unspecified",
+        "primary_region": null,
+        "requires_acceptance": true,
+        "supporting_services": [
+          "GitHub Actions",
+          "Keycloak",
+          "OpenTelemetry Collector + structured logs",
+          "PostgreSQL transactional outbox + worker",
+          "PostgreSQL forced row-level security",
+          "Amazon S3 regional bucket",
+          "Stripe Checkout",
+          "Yjs + ws"
+        ],
+        "warnings": [
+          {
+            "code": "COMPLIANCE_IMPLEMENTATION_REVIEW",
+            "fields": [
+              "compliance"
+            ],
+            "message": "The output proposes technical control designs only. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit. Implement controls and obtain scope-specific review.",
+            "severity": "warning"
+          },
+          {
+            "code": "IDENTITY_PROVIDER_REVIEW",
+            "fields": [
+              "requirements.auth",
+              "compliance"
+            ],
+            "message": "Social provider selection and privacy/transfer terms need explicit review; Keycloak is only the local broker.",
+            "severity": "warning"
+          },
+          {
+            "code": "LATENCY_TARGET_UNVERIFIED",
+            "fields": [
+              "requirements.p95_latency_ms"
+            ],
+            "message": "No measured evidence establishes the 100 ms p95 target; load-test the complete client/network/data path.",
+            "severity": "warning"
+          },
+          {
+            "code": "PRICE_AND_CAPACITY_ASSUMPTIONS",
+            "fields": [
+              "scale",
+              "budget.monthly_infra_usd",
+              "requirements"
+            ],
+            "message": "Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase.",
+            "severity": "warning"
+          },
+          {
+            "code": "FREE_TIER_OR_DEPLOYMENT_LIMITS",
+            "fields": [
+              "requirements.availability"
+            ],
+            "message": "Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name.",
+            "severity": "info"
+          },
+          {
+            "code": "BUDGET_REQUIREMENT_CHANGE",
+            "fields": [
+              "infrastructure.deployment_model",
+              "requirements.availability"
+            ],
+            "message": "Optional changed-requirement proposal only. Original recommendation is unchanged. Accept each listed edit explicitly and rerun; reduced availability/self-management is not an equivalent deployment or production approval.",
+            "severity": "critical"
+          }
+        ]
+      }
+    ],
+    "scope": "optional_proposals_original_result_unchanged"
+  },
   "catalog_version": "0.4.0",
   "control_plan": {
     "deployment_controls": [
@@ -43,12 +195,12 @@
       "category": "compute",
       "id": "application-compute",
       "monthly_usd": {
-        "max": 1714.77,
-        "min": 238.16
+        "max": 1371.82,
+        "min": 190.53
       },
       "quantity": {
-        "max": 9125,
-        "min": 2281.25
+        "max": 7300,
+        "min": 1825
       },
       "source_ids": [
         "run-price"
@@ -56,6 +208,26 @@
       "unit_rate_usd": {
         "max": 0.18792,
         "min": 0.1044
+      }
+    },
+    {
+      "basis": "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied.",
+      "category": "compute",
+      "id": "background-compute",
+      "monthly_usd": {
+        "max": 312.21,
+        "min": 173.44
+      },
+      "quantity": {
+        "max": 2190,
+        "min": 2190
+      },
+      "source_ids": [
+        "run-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.14256,
+        "min": 0.0792
       }
     },
     {
@@ -267,6 +439,7 @@
       "category": "infrastructure_and_operations",
       "line_ids": [
         "application-compute",
+        "background-compute",
         "database-cpu",
         "database-memory",
         "database-storage",
@@ -276,8 +449,8 @@
         "telemetry-operations",
         "hosted-ci"
       ],
-      "max": 2679.49,
-      "min": 513.51
+      "max": 2648.75,
+      "min": 639.32
     },
     {
       "category": "payment_and_message_activity",
@@ -297,15 +470,15 @@
       "field": "extensions.expected_requests_per_second",
       "samples": [
         {
-          "max": 2679.49,
-          "min": 513.51,
+          "max": 2648.75,
+          "min": 639.32,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 14.467592592592593
         },
         {
-          "max": 2679.49,
-          "min": 513.51,
+          "max": 2648.75,
+          "min": 639.32,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 57.870370370370374
@@ -320,15 +493,15 @@
       "field": "extensions.monthly_egress_gb",
       "samples": [
         {
-          "max": 2579.49,
-          "min": 493.51,
+          "max": 2548.75,
+          "min": 619.32,
           "status": "estimated",
           "upper_delta_usd": -100,
           "value": 250
         },
         {
-          "max": 2879.49,
-          "min": 553.51,
+          "max": 2848.75,
+          "min": 679.32,
           "status": "estimated",
           "upper_delta_usd": 200,
           "value": 1000
@@ -343,15 +516,15 @@
       "field": "extensions.retention_months",
       "samples": [
         {
-          "max": 2679.49,
-          "min": 513.51,
+          "max": 2648.75,
+          "min": 639.32,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 1
         },
         {
-          "max": 2739.49,
-          "min": 519.51,
+          "max": 2708.75,
+          "min": 645.32,
           "status": "estimated",
           "upper_delta_usd": 60,
           "value": 2
@@ -606,6 +779,7 @@
       "Peak concurrency supplied: 5000; not equated directly with requests/second.",
       "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
       "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+      "Cloud Run billing separates 10 request-driven allocations from 3 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
       "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
       "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
@@ -621,10 +795,40 @@
       "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
       "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
       "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-      "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+      "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+      "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
     ],
-    "max": 2679.49,
-    "min": 513.51
+    "max": 2648.75,
+    "min": 639.32
+  },
+  "estimated_total_monthly_cost_usd": {
+    "assumptions": [
+      "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+      "Peak concurrency supplied: 5000; not equated directly with requests/second.",
+      "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
+      "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+      "Cloud Run billing separates 10 request-driven allocations from 3 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
+      "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+      "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+      "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+      "Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+      "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+      "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+      "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary.",
+      "Assumed per-transaction USD fee envelope, not a tariff quote.",
+      "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+      "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+      "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+      "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+      "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+      "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+      "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+      "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+      "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied.",
+      "Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded."
+    ],
+    "max": 5148.75,
+    "min": 639.32
   },
   "integration_reviews": [],
   "plan_comparison": [
@@ -642,6 +846,7 @@
         "Peak concurrency supplied: 5000; not equated directly with requests/second.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Cloud Run billing separates 10 request-driven allocations from 3 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
         "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
@@ -657,12 +862,13 @@
         "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
         "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+        "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 2679.49,
-        "min": 513.51
+        "max": 2648.75,
+        "min": 639.32
       },
       "operated_components": 3.5,
       "plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified",
@@ -711,6 +917,7 @@
         "Peak concurrency supplied: 5000; not equated directly with requests/second.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Cloud Run billing separates 10 request-driven allocations from 3 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
         "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
@@ -726,12 +933,13 @@
         "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
         "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+        "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 2679.49,
-        "min": 513.51
+        "max": 2648.75,
+        "min": 639.32
       },
       "operated_components": 3.5,
       "plan_id": "modular_monolith|angular|go-http|pg|cloudrun|unspecified",
@@ -780,6 +988,7 @@
         "Peak concurrency supplied: 5000; not equated directly with requests/second.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Cloud Run billing separates 10 request-driven allocations from 3 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
         "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
@@ -795,12 +1004,13 @@
         "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
         "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+        "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 2679.49,
-        "min": 513.51
+        "max": 2648.75,
+        "min": 639.32
       },
       "operated_components": 3.5,
       "plan_id": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
@@ -849,7 +1059,7 @@
         "priorities.cost"
       ],
       "fit": 3,
-      "reason": "USD 513.51–2679.49/month versus budget 1500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "reason": "USD 639.32–2648.75/month versus budget 1500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
       "weight": 2
     },
     {
@@ -1240,7 +1450,7 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "modular_monolith recommendation selected from 168 complete compatible plans; month-12 infrastructure planning band USD 513.51–2679.49/month.",
+  "summary": "modular_monolith recommendation selected from 168 complete compatible plans; month-12 infrastructure planning band USD 639.32–2648.75/month.",
   "validation_errors": [],
   "warnings": [
     {
@@ -1256,7 +1466,7 @@
       "fields": [
         "budget.monthly_infra_usd"
       ],
-      "message": "Upper estimate USD 2679.49/month exceeds USD 1500; stated usage/price assumptions determine whether it fits.",
+      "message": "Upper estimate USD 2648.75/month exceeds USD 1500; stated usage/price assumptions determine whether it fits.",
       "severity": "warning"
     },
     {

@@ -82,6 +82,8 @@ export interface EvaluatedPlanSnapshot {
   fits: { criterion: import('./types.js').Criterion; fit: number }[];
 }
 export interface RecommendationContext extends PlanningContext {
+  /** Internal recursion guard; optional proposals never alter the baseline input/result. */
+  budgetPlanning?: boolean;
   /** Internal analysis projection; receives detached scalar metadata, never mutable candidates. */
   onCompletePlans?: (plans: EvaluatedPlanSnapshot[]) => void;
   policies?: Policies;

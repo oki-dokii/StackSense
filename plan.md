@@ -377,3 +377,7 @@ Implemented scope and explicit remaining evidence: [Phase 6 record](docs/PHASE_6
 ## Scenario coverage follow-up
 
 The [thirty-scenario stress evaluation](docs/STRESS_EVALUATION.md) covers fifteen concrete project types and records three corrected refusals plus the narrower-client tie-break. There are 308 application tests. Next priority is honest budget feasibility: twelve stress briefs exceed the infrastructure budget at the lower bound; do not truncate price intervals or silently drop required services.
+
+## Budget planning follow-up
+
+[Implemented billing correction and optional proposals](docs/BUDGET_PLANNING.md): full-month support floor, reconciled total spend, published Lightsail bundle pricing and explicit input edits. 326 application tests. Fifteen stress inputs remain over budget at the lower bound under original requirements; 0 have infrastructure bands wider than 5x. Regional quotes, capacity measurements and viable same-requirement budget options remain open.
