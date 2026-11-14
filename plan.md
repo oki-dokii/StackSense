@@ -361,3 +361,7 @@ Implemented scope and explicit remaining evidence: [Phase 6 record](docs/PHASE_6
 ## Phase 8: first measured reference recipe
 
 [Implemented workload and next gate](docs/PHASE_8.md): bounded separate-process local HTTP catalog recipe, actual raw JSONL measurements, source/profile/environment provenance, independently recomputed metrics and failure tests. This starts the evidence roadmap; it does not calibrate any cloud price or capacity coefficient. Next: real database/deployment recipe, repeated steady-state open-arrival-rate tests and reviewed billing before model changes.
+
+## Phase 9: database-backed scheduled-arrival measurements
+
+[Implemented recipe and results](docs/PHASE_9.md): isolated Fastify/pg lockfile, disposable PostgreSQL cluster, indexed reads/search and committed writes, bounded scheduled arrivals with visible drops, three repetitions per rate, raw evidence verification and live SQL correctness CI. Next cost gate still requires externally generated sustained load, resource-limited deployment and observed billing with human-reviewed model mapping.

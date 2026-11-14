@@ -29,3 +29,7 @@ Implementation evidence: [Phase 6](PHASE_6.md). Original public requirements rem
 ## Phase 8 follow-up
 
 [Local reference measurement](PHASE_8.md) is implemented with raw evidence, explicit acceptance, tamper detection and failure tests. Deployed-stack cost calibration remains open: add actual database/resources/region, externally generated open-arrival-rate load, repeated measurements and billing. The local in-memory recipe provides no capacity or price update for existing recommendations.
+
+## Phase 9 follow-up
+
+[Fastify/PostgreSQL measurements](PHASE_9.md) add a real database, scheduled arrivals and repeated stages. This narrows the workload-evidence gap. Paid deployment, external generator, sustained resource/maintenance behavior, independent reruns and observed billing remain required before any sizing or cost-model calibration.

@@ -1,9 +1,9 @@
 {
-  "measured_at": "2026-11-14T06:15:05Z",
+  "measured_at": "2026-11-14T06:28:28Z",
   "mode": "fresh archive extraction; npm offline install using previously populated cache",
   "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
   "runtime_source_sha256": "a38fd835905b19f6ad51c93c95f5db2c6b9c213ddb12707a89c77646ef72ab31",
-  "source_zip_sha256": "e688495687b94c0a61797ba0402f17228890f33558aee14d95d1970899f1a00a",
+  "source_zip_sha256": "dad7bd2ef39bf2255e71f96fd04c33e55b5980a945cba1d570d16dc20e83e103",
   "steps": [
     {
       "command": [
@@ -11,7 +11,27 @@
         "ci",
         "--offline"
       ],
-      "seconds": 5.562,
+      "seconds": 2.745,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "ci",
+        "--prefix",
+        "benchmarks/postgres",
+        "--offline"
+      ],
+      "seconds": 0.6,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "benchmarks/postgres/tests.mjs"
+      ],
+      "seconds": 0.333,
       "exit_code": 0
     },
     {
@@ -20,7 +40,7 @@
         "run",
         "check"
       ],
-      "seconds": 10.916,
+      "seconds": 13.099,
       "exit_code": 0
     },
     {
@@ -30,7 +50,7 @@
         "scripts/tests/evidence-bindings.test.mjs",
         "scripts/tests/calibration.test.mjs"
       ],
-      "seconds": 0.169,
+      "seconds": 0.166,
       "exit_code": 0
     },
     {
@@ -39,7 +59,7 @@
         "run",
         "build"
       ],
-      "seconds": 1.727,
+      "seconds": 1.834,
       "exit_code": 0
     },
     {
@@ -48,7 +68,7 @@
         "run",
         "evaluate"
       ],
-      "seconds": 0.357,
+      "seconds": 0.346,
       "exit_code": 0
     },
     {
@@ -57,10 +77,10 @@
         "run",
         "verify:release"
       ],
-      "seconds": 0.596,
+      "seconds": 0.595,
       "exit_code": 0
     }
   ],
-  "total_seconds": 19.426,
+  "total_seconds": 19.828,
   "scope_limit": "Includes extraction/install/check/build/evaluation verification; real cold API startup measured separately. No new online download or other OS is claimed."
 }

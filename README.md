@@ -4,7 +4,7 @@ A local, deterministic technology stack recommendation engine for the Synergy â€
 
 StackSense evaluates the frontend, backend, database, hosting and supporting services together. Hard constraints filter candidates before explainable ranking. The same engine powers the CLI, loopback API and browser workspace; it makes no runtime LLM or external recommendation calls.
 
-**Latest work: Phase 8** adds an isolated reference workload, raw measurements, threshold failure tests and evidence verification. These measurements do not modify architecture estimates. See [the implementation and measured results](docs/PHASE_8.md).
+**Latest work: Phase 9** adds a real Fastify/PostgreSQL reference workload with scheduled arrivals, committed-write checks and three repetitions at each load rate. All 3,600 measured requests completed with zero errors or drops. These local measurements do not modify architecture cost estimates. See [the database recipe and results](docs/PHASE_9.md).
 
 ## Contents
 
@@ -199,7 +199,7 @@ node benchmarks/reference/verify.mjs evaluation/calibration/reference-run-1
 python3 scripts/check_docs.py
 ```
 
-Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: [Phase 7](docs/PHASE_7.md): **235 tests pass**, plus three capture-provenance and five reference-workload checks, with a successful build. Current local API/cached setup timings are recorded there; these do not measure recommended-workload behavior.
+Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: **235 application tests**, three capture-provenance checks, five in-memory workload checks and eight [PostgreSQL recipe checks](docs/PHASE_9.md) pass locally with the live DB enabled, with a successful build. The SQL suite explicitly skips its live-database case when not enabled. Current local API/cached setup timings are recorded there; these do not measure recommended-workload behavior.
 
 | Technology | Pinned version | Role |
 |---|---|---|
@@ -244,7 +244,8 @@ packages/engine/src/       Features, constraints, complete-plan search, services
 schemas/                   Authoritative organiser input/output contracts
 fixtures/public/           Supplied array and six individual scenarios
 tests/                     Contract, engine, actual CLI/API and release invariant checks
-benchmarks/reference/      Isolated HTTP workload, bounded generator and evidence verifier
+benchmarks/reference/      In-memory HTTP reference and evidence verifier
+benchmarks/postgres/       Optional Fastify/SQL recipe, isolated lockfile and scheduled load
 evaluation/                Actual outputs, cases, API timings and raw workload evidence
 output/pdf/                Verified final report
 deliverables/              Ready-to-review submission ZIP
@@ -333,6 +334,20 @@ flowchart LR
 ```
 
 Network research does not automatically change selection rules. The reviewed report is the Phase 7 report; Phase 8 measurements are documented separately and included in the source archive. No independent expert acceptance or online submission is implied by a passing build.
+
+### Database-backed reference recipe
+
+The optional PostgreSQL recipe uses isolated dependencies and a disposable native database cluster. It requires a non-root macOS/Linux user and PostgreSQL 18.1 binaries. It does not connect to an existing database. Application setup above does not require PostgreSQL.
+
+```sh
+npm ci --prefix benchmarks/postgres
+# postgres/initdb must be on PATH, or set STACKSENSE_PG_BIN to their directory.
+node benchmarks/postgres/run.mjs --out tmp/calibration/postgres-my-run
+node benchmarks/postgres/verify.mjs tmp/calibration/postgres-my-run
+node --test benchmarks/postgres/tests.mjs
+```
+
+The recipe offers 100 and 300 requests/second independently of response completion, repeats each rate three times, and records every dropped slot. It validates point reads, indexed searches and committed inserts. The committed run issued all **3,600 scheduled requests**, with **zero errors/drops**, **2.817â€“4.659 ms p95** scheduled-to-completion latency, and **390 committed inserts including warmup**, verified by a fresh connection. This short local run does not measure cloud resources or billing. [Method, diagram, CI coverage, version caveats and remaining gate](docs/PHASE_9.md).
 
 ## Troubleshooting
 

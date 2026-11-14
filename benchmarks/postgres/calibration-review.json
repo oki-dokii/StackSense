@@ -1,0 +1,15 @@
+{
+  "recipe": "fastify-postgres-catalog-v1",
+  "local_evidence": "evaluation/calibration/postgres-run-1/summary.json",
+  "state": "local_reference_only",
+  "cloud_deployment": null,
+  "resource_limits_and_region": null,
+  "external_generator_evidence": null,
+  "steady_state_and_independent_repetitions": null,
+  "billing_export": null,
+  "observed_billing_usd": null,
+  "proposed_engine_coefficient_changes": [],
+  "reviewer": null,
+  "review_date": null,
+  "decision": "pending; preserve existing engine coefficients"
+}

@@ -1,0 +1,12 @@
+{
+  "recipe": "fastify-postgres-catalog-v1",
+  "postgres_version": "18.1",
+  "duration_ms": 3000,
+  "rates_per_second": [100, 300],
+  "repetitions": 3,
+  "warmup_requests": 50,
+  "max_inflight": 32,
+  "timeout_ms": 1000,
+  "max_start_lag_ms": 50,
+  "thresholds": { "p95_end_to_end_ms": 100, "error_rate": 0, "drop_rate": 0 }
+}

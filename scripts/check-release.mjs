@@ -2,6 +2,7 @@ import { readFile, access } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { verify as verifyPostgres } from '../benchmarks/postgres/verify.mjs';
 import { verify as verifyCalibration } from '../benchmarks/reference/verify.mjs';
 import { verifyScreenshotInputBinding } from './evidence-bindings.mjs';
 import { analyzeDecision } from '../dist/packages/engine/src/decision-lab.js';
@@ -104,6 +105,7 @@ if (await exists('deliverables/StackSense26_SohamBanerjee.zip')) {
     throw new Error('Submission ZIP changed after verification.');
 }
 await verifyCalibration(join(root, 'evaluation/calibration/reference-run-1'));
+await verifyPostgres(join(root, 'evaluation/calibration/postgres-run-1'));
 console.log(
-  `PASS: 20 actual outputs and ${labCount} Decision Lab reports match the current engine; case provenance, capture versions and all ${screenshots.images.length} screenshot hashes verified. Reference workload raw/source evidence verified; report/ZIP hashes checked when present.`,
+  `PASS: 20 actual outputs and ${labCount} Decision Lab reports match the current engine; case provenance, capture versions and all ${screenshots.images.length} screenshot hashes verified. HTTP and PostgreSQL workload raw/source evidence verified; report/ZIP hashes checked when present.`,
 );

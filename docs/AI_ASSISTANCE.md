@@ -41,3 +41,7 @@ Codex performed targeted primary-source research, separated published methods fr
 ## Phase 8 (14 November 2026)
 
 Codex reviewed official Node timing and Grafana threshold/load-model documentation, implemented an isolated local reference workload and independent raw-evidence verifier, ran actual measurements and deliberate-failure tests, expanded the README with Mermaid diagrams and refreshed the source package. No k6 execution, paid cloud provisioning, production sizing/cost calibration or independent expert review is claimed. The existing reviewed Phase 7 PDF is retained and distinguished from the new experiment.
+
+## Phase 9 (14 November 2026)
+
+Codex reviewed primary PostgreSQL/node-postgres/Grafana/GitHub documentation, implemented the isolated SQL workload, bounded scheduled-arrival generator, raw verifier and tests, and ran actual native PostgreSQL measurements and schema-isolated integration tests. CI adds a real PostgreSQL service case. No local Docker execution, cloud deployment, billing, production SLA or independent expert acceptance is claimed. The existing Phase 7 PDF is retained; new measurements are separate evidence.

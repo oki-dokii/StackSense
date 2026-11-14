@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.0.0",
+  "measured_at": "2026-11-14T06:23:35.242Z",
+  "recipe": "fastify-postgres-catalog-v1",
+  "profile": {
+    "recipe": "fastify-postgres-catalog-v1",
+    "postgres_version": "18.1",
+    "duration_ms": 3000,
+    "rates_per_second": [
+      100,
+      300
+    ],
+    "repetitions": 3,
+    "warmup_requests": 50,
+    "max_inflight": 32,
+    "timeout_ms": 1000,
+    "max_start_lag_ms": 50,
+    "thresholds": {
+      "p95_end_to_end_ms": 100,
+      "error_rate": 0,
+      "drop_rate": 0
+    }
+  },
+  "profile_sha256": "e864a7f7835077d06f28df3b0c17042a5a17ce150c0fe30d215c432e849e29bc",
+  "sources": {
+    "package.json": "1bf5bd88504d3c9cfe9d68e549bead8b6bcfc605a14fb5a91fbe28d0d009eb2a",
+    "package-lock.json": "e358e38769adcf98ad13423e4cbe8b4e931f9cadb29089d69450200fb15c229a",
+    "profile.json": "c42037f8ef8e1bf442691bb9a7ea118e4a432c81325a2bd3669667111434d6ae",
+    "seed.sql": "f27f77d893211cf0d9154dd1de79b6b5a16e253733b882470c52b8a48869e480",
+    "load.mjs": "362325f1e2a8745edd2969e4f3c95954799230190022cd74fa07914a3940b078",
+    "workload.mjs": "775b16ab301b3c490097b9be68c2102c4c141a794175f2e42cb88bad03c23dd2",
+    "run.mjs": "585720bd05bb5cbcf785677e95cef8106f50865d8deb7dced7a76c94b79bccfb"
+  },
+  "environment": {
+    "node": "v22.17.1",
+    "postgres": "postgres (PostgreSQL) 18.1",
+    "fastify": "5.12.8",
+    "pg": "8.23.1",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "os_release": "25.3.0",
+    "cpu_model": "Apple M2",
+    "logical_cpus": 8,
+    "total_memory_bytes": 8589934592,
+    "topology": "generator, separate HTTP process and separate PostgreSQL process on one host; Unix socket database; loopback HTTP"
+  },
+  "database": {
+    "settings": [
+      {
+        "name": "fsync",
+        "setting": "on",
+        "unit": null
+      },
+      {
+        "name": "full_page_writes",
+        "setting": "on",
+        "unit": null
+      },
+      {
+        "name": "listen_addresses",
+        "setting": "",
+        "unit": null
+      },
+      {
+        "name": "max_connections",
+        "setting": "20",
+        "unit": null
+      },
+      {
+        "name": "server_version",
+        "setting": "18.1",
+        "unit": null
+      },
+      {
+        "name": "shared_buffers",
+        "setting": "4096",
+        "unit": "8kB"
+      },
+      {
+        "name": "synchronous_commit",
+        "setting": "on",
+        "unit": null
+      },
+      {
+        "name": "unix_socket_permissions",
+        "setting": "0777",
+        "unit": null
+      }
+    ],
+    "before": {
+      "database_bytes": "11810495",
+      "products_bytes": "3801088",
+      "products": 10000
+    },
+    "after": {
+      "database_bytes": "11867839",
+      "events_bytes": "65536"
+    },
+    "acknowledged_writes_including_warmup": 390,
+    "committed_events": 390,
+    "matches_acknowledged_writes": true
+  },
+  "model": "scheduled arrivals; deterministic 80% read / 10% indexed search / 10% committed insert; warmup excluded; all lag and inflight drops retained; no retries; drain included",
+  "stages": [
+    {
+      "repetition": 1,
+      "rate_per_second": 100,
+      "planned": 300,
+      "issued": 300,
+      "dropped": 0,
+      "errors": 0,
+      "error_rate": 0,
+      "drop_rate": 0,
+      "p95_end_to_end_ms": 4.658625000000029,
+      "elapsed_ms": 2999.357834,
+      "completed_per_second": 100.02141011628291,
+      "checks": {
+        "p95": true,
+        "error_rate": true,
+        "drop_rate": true
+      },
+      "passed": true,
+      "raw": "samples-1.jsonl",
+      "raw_sha256": "3915075edde6da7d1ba442c121483ffc5b449ca34b2f3379c776f4152b94a9d2"
+    },
+    {
+      "repetition": 1,
+      "rate_per_second": 300,
+      "planned": 900,
+      "issued": 900,
+      "dropped": 0,
+      "errors": 0,
+      "error_rate": 0,
+      "drop_rate": 0,
+      "p95_end_to_end_ms": 2.8173336666666273,
+      "elapsed_ms": 3000.799959,
+      "completed_per_second": 299.9200254254602,
+      "checks": {
+        "p95": true,
+        "error_rate": true,
+        "drop_rate": true
+      },
+      "passed": true,
+      "raw": "samples-2.jsonl",
+      "raw_sha256": "2d9f1fd285d53a9c98728d343cfead9200bc555966a51e6e94e94fab968395ad"
+    },
+    {
+      "repetition": 2,
+      "rate_per_second": 100,
+      "planned": 300,
+      "issued": 300,
+      "dropped": 0,
+      "errors": 0,
+      "error_rate": 0,
+      "drop_rate": 0,
+      "p95_end_to_end_ms": 4.238916999999674,
+      "elapsed_ms": 3000.5216250000003,
+      "completed_per_second": 99.98261552272598,
+      "checks": {
+        "p95": true,
+        "error_rate": true,
+        "drop_rate": true
+      },
+      "passed": true,
+      "raw": "samples-3.jsonl",
+      "raw_sha256": "3d7da9f7e79954f50a42fea26b933a03c331cf98f2447dc98461b22c501861f2"
+    },
+    {
+      "repetition": 2,
+      "rate_per_second": 300,
+      "planned": 900,
+      "issued": 900,
+      "dropped": 0,
+      "errors": 0,
+      "error_rate": 0,
+      "drop_rate": 0,
+      "p95_end_to_end_ms": 2.918290999999954,
+      "elapsed_ms": 2999.2261660000004,
+      "completed_per_second": 300.0774033657853,
+      "checks": {
+        "p95": true,
+        "error_rate": true,
+        "drop_rate": true
+      },
+      "passed": true,
+      "raw": "samples-4.jsonl",
+      "raw_sha256": "b6c27db3dadce69c350c323d6b2bd790410edb26bd6e9154612532d814f40b59"
+    },
+    {
+      "repetition": 3,
+      "rate_per_second": 100,
+      "planned": 300,
+      "issued": 300,
+      "dropped": 0,
+      "errors": 0,
+      "error_rate": 0,
+      "drop_rate": 0,
+      "p95_end_to_end_ms": 3.7364999999990687,
+      "elapsed_ms": 2999.5211249999993,
+      "completed_per_second": 100.01596504842088,
+      "checks": {
+        "p95": true,
+        "error_rate": true,
+        "drop_rate": true
+      },
+      "passed": true,
+      "raw": "samples-5.jsonl",
+      "raw_sha256": "965194981a524fc4fe8f2b62ad828a6c49893d7473fd5a8716813b7af418da48"
+    },
+    {
+      "repetition": 3,
+      "rate_per_second": 300,
+      "planned": 900,
+      "issued": 900,
+      "dropped": 0,
+      "errors": 0,
+      "error_rate": 0,
+      "drop_rate": 0,
+      "p95_end_to_end_ms": 3.261999666667748,
+      "elapsed_ms": 3000.2688750000016,
+      "completed_per_second": 299.97311490957605,
+      "checks": {
+        "p95": true,
+        "error_rate": true,
+        "drop_rate": true
+      },
+      "passed": true,
+      "raw": "samples-6.jsonl",
+      "raw_sha256": "19d9b410eff3fcf07d80b99d169d6e259aaf00e0c6607d97b2eb35032b12efb1"
+    }
+  ],
+  "passed": true,
+  "scope": "Local Fastify/PostgreSQL reference only; no browser, TLS, external network, cloud deployment, resource isolation, billing, monthly cost calibration or production SLA. Same-host generator can cause scheduler lag. PostgreSQL 18.1 is the installed test version, not a recommendation to deploy that patch. Fresh-connection visibility verifies commit acknowledgement, not crash recovery."
+}
