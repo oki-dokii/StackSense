@@ -94,3 +94,7 @@ Implementation acceptance: keyboard-only import→run→inspect→export; no hor
 ## Phase 6 delivered result panels
 
 Blocked results include expandable evidence-resolution tasks with field/component scope and primary links. Existing-system review distinguishes federation, SQL reuse and inventory; task completion is not deployment approval. Usable results include up to three complete-plan comparisons and cost-group/sensitivity disclosures. Price lines expose units, rates and references. At mobile widths the sensitivity table scrolls inside a labeled keyboard-focusable region. [Implementation and QA limits](PHASE_6.md).
+
+## Decision Lab (0.7.0)
+
+An optional analysis panel keeps the original result fixed. Users inspect full completed-plan tradeoffs with an accessible native selector and readable horizontally scrolling chart, inspect priority trials or clearly labeled changed-project experiments, then export exact JSON or a Proposed ADR. No feature edit is automatically applied; input changes hide analysis exports and disable the original export until rerun. [QA evidence and limits](PHASE_7.md).

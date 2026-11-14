@@ -15,3 +15,5 @@ These are author-designed unseen-style cases, not organiser hidden cases or inde
 After building, run `npm run evaluate` and `npm run verify:release`. Timing is deliberately separate (`npm run measure`) so normal checks do not pretend stable benchmark timings. Repeated measurements can vary; they do not benchmark the recommended stacks.
 
 Release 0.6.0 adds `phase6-browser-checks.json` and four feature/mobile views to the 15 standard overview captures. The current report is 15 main pages plus 10 appendix pages. Historic phase documents identify their checkpoint versions; these evidence JSON files describe the current release.
+
+Application 0.7.0: `decision-lab/` contains six deterministic analysis artifacts; `decision-lab-results.json` records summaries and separate loopback timing scope. `phase7-browser-checks.json` binds new screenshots/exports to unchanged public inputs. Older overview captures are retained from the unchanged 0.6.0 engine checkpoint; new features have their own captures.

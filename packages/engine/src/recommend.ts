@@ -256,6 +256,24 @@ export function recommend(
       a.ranked.operated_components - b.ranked.operated_components ||
       compare(a.plan.id, b.plan.id),
   );
+  context.onCompletePlans?.(
+    candidates.map((candidate) => ({
+      plan_id: candidate.plan.id,
+      core: {
+        frontend: candidate.plan.frontend.name,
+        backend: candidate.plan.backend.name,
+        database: candidate.plan.database.name,
+        hosting: candidate.plan.hosting.name,
+      },
+      monthly_usd: { min: candidate.cost.min, max: candidate.cost.max },
+      operated_components: candidate.ranked.operated_components,
+      score: candidate.score,
+      fits: candidate.ranked.breakdown.map((part) => ({
+        criterion: part.criterion,
+        fit: part.fit,
+      })),
+    })),
+  );
   const base = invalidRecommendation([], catalog.version);
   base.services_version = policies.version;
   if (typeof s.scenario_id === 'string') base.scenario_id = s.scenario_id;

@@ -73,7 +73,17 @@ export interface CompleteCandidate {
   security_fit: number;
   operation_penalty: number;
 }
+export interface EvaluatedPlanSnapshot {
+  plan_id: string;
+  core: Record<'frontend' | 'backend' | 'database' | 'hosting', string>;
+  monthly_usd: { min: number; max: number };
+  operated_components: number;
+  score: number;
+  fits: { criterion: import('./types.js').Criterion; fit: number }[];
+}
 export interface RecommendationContext extends PlanningContext {
+  /** Internal analysis projection; receives detached scalar metadata, never mutable candidates. */
+  onCompletePlans?: (plans: EvaluatedPlanSnapshot[]) => void;
   policies?: Policies;
 }
 export type FinalRecommendation = Recommendation & {

@@ -6,12 +6,13 @@
   "page_size": "A4",
   "body_font_pt": 11,
   "table_reference_font_pt": 10,
-  "source_records": 146,
+  "source_records": 150,
   "screenshots": 16,
   "engine_version": "0.6.0",
+  "application_version": "0.7.0",
   "owner_metadata_confirmed": true,
-  "visual_review": "All 25 current page renders inspected in seven contact sheets; no clipping, overlap or overflow observed. New guidance page, regional scope, source ledgers and updated timing/setup values checked.",
-  "sha256": "17c3328707c67f50cebd7c45c6581ca606c4698688d8bb0dc436ec2770df162b",
+  "visual_review": "All 25 current page renders inspected in seven contact sheets; updated cover, Decision Lab chart/page, metrics and final method-source ledger checked. No clipping or overlap observed.",
+  "sha256": "acec5623662c260dba202a9f2da644ce0ef52e6b6a6a7908f05985791e2e9c34",
   "a4_all_pages": true,
   "abstract_words": 128
 }

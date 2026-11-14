@@ -1,6 +1,6 @@
 # Submission readiness and owner checklist
 
-Technical release 0.6.0 is packaged locally and published in the repository. The organiser's final submission is a Drive folder/link; a GitHub URL alone does not replace it.
+Technical application release 0.7.0 (recommendation engine 0.6.0) is packaged locally and published in the repository. The organiser's final submission is a Drive folder/link; a GitHub URL alone does not replace it.
 
 ## Prepared package
 
@@ -13,7 +13,7 @@ StackSense26_SohamBanerjee/
 └── manifest.json                    # SHA-256 records and runtime-source digest
 ```
 
-Download [the ZIP](https://github.com/oki-dokii/StackSense/blob/main/deliverables/StackSense26_SohamBanerjee.zip); [release evidence](PHASE_6.md) records checks and limitations. Extract the outer archive before uploading the named folder.
+Download [the ZIP](https://github.com/oki-dokii/StackSense/blob/main/deliverables/StackSense26_SohamBanerjee.zip); [release evidence](PHASE_7.md) records checks and limitations. Extract the outer archive before uploading the named folder.
 
 ## Technical checks completed
 
@@ -21,7 +21,7 @@ Download [the ZIP](https://github.com/oki-dokii/StackSense/blob/main/deliverable
 - [x] Core/supporting explanations, cost assumptions, all four statuses and no-plan Not estimated behavior.
 - [x] No name/ID selection branches, runtime LLM selection or paid-key requirement.
 - [x] Exact runtime/dependencies locked; local run/export commands and architecture documented.
-- [x] 220 passing tests plus three provenance tests, output freshness verification, measured local API/clean cached setup with limits.
+- [x] 235 passing tests plus three provenance tests, output freshness verification, measured local API/clean cached setup with limits.
 - [x] Six final-version public JSON files generated and schema checked; four remain explicitly infeasible.
 - [x] Genuine screenshots for six public cases and all nine edge categories; P1/P3 deep dives.
 - [x] PDF follows numbered sections, 15 main A4 pages plus 10 appendix pages, 10–11 pt body/table text; rendered and inspected.

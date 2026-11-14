@@ -1,3 +1,4 @@
+import { DecisionLabPanel } from './decision-lab';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import type { FinalRecommendation } from '../../../packages/engine/src/complete-types.js';
@@ -874,6 +875,12 @@ function App() {
                           ))}
                         </section>
                       )}
+                      <DecisionLabPanel
+                        key={`${run.revision}:${selected}`}
+                        input={run.inputs[selected]}
+                        result={result}
+                        stale={stale}
+                      />
                       {result.review_actions.length > 0 && (
                         <section
                           className="panel"

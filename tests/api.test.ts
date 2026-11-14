@@ -152,7 +152,7 @@ describe('local HTTP API', () => {
     expect((await app.inject('/api/health')).json()).toMatchObject({
       status: 'ok',
       engine_version: '0.6.0',
-      app_version: '0.6.0',
+      app_version: '0.7.0',
     });
   });
   it('keeps internal failures separate from invalid/infeasible outcomes', async () => {

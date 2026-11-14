@@ -70,3 +70,7 @@ Exact thresholds and fit tables remain research/implementation tasks. Do not pre
 ## Conflict explanation refinement
 
 Start with rejection traces; optional deterministic deletion shrinking may identify an inclusion-minimal conflict only with a complete, monotone feasibility predicate and fixed, consistent catalog background. Inclusion-minimal does not mean smallest cardinality. Search cutoffs and missing catalog coverage are not proof that the real-world requirements contradict. QuickXplain is a later optimization, not an MVP prerequisite. See [research plan](../plan.md) and [research ADR](adr/005-research-backed-planning.md).
+
+## Separate Decision Lab
+
+Application 0.7.0 uses analysis 0.1.0 alongside unchanged recommendation results. A detached completed-plan projection supports declared-objective dominance over the finite reviewed catalog. Actual priority reruns keep requirements fixed; bounded functional experiments explicitly change a copied project. Neither is evidence of probability, global minimal repair, measured architecture quality or owner acceptance. [Method](PHASE_7.md) · [ADR](adr/008-decision-lab.md).

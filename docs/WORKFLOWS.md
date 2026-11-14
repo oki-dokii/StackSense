@@ -55,3 +55,19 @@ flowchart TD
 ```
 
 A free-text checklist response cannot bypass evidence rules. Existing-system reuse remains an explicit owner/design review with no inferred price credit.
+
+## Decision Lab workflow
+
+```mermaid
+flowchart TD
+  Brief[Evaluated original brief] --> Original[Unchanged recommendation]
+  Original --> Lab[Optional local Decision Lab]
+  Lab -->|Usable original| Sweep[25 priority settings and all completed plans]
+  Lab -->|Blocked original| Experiments[Bounded changed-project functional trials]
+  Sweep --> Review[Inspect scopes, ties, objectives and warnings]
+  Experiments --> Review
+  Review --> Export[Export Proposed ADR and exact evidence JSON]
+  Brief -->|Input edited| Stale[Hide analysis exports; require rerun]
+```
+
+All approval, vendor assurance and implementation claims remain outside this exploratory workflow.

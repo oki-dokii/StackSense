@@ -21,3 +21,7 @@ An evaluation-only proposal mode should be a separate, opt-in design. The origin
 Before publishing a changed engine: bump relevant versions, add independent invariant tests, rerun public and author-designed cases, regenerate outputs/screenshot evidence and sensitivity data, repeat relevant measurements, update/render the PDF and rebuild/reverify the package. Approval of an exploratory design must not be inferred from its presentation.
 
 Implementation evidence: [Phase 6](PHASE_6.md). Original public requirements remain unchanged; four evidence-relative infeasible results persist.
+
+## Phase 7 follow-up
+
+[Decision Lab](PHASE_7.md) now provides full completed-candidate tradeoff exploration, one-at-a-time priority trials, bounded functional experiments and proposed ADR/evidence exports. These narrow the plan-comparison/preference-explanation backlog but do not provide global sensitivity, current vendor/tenant contracts, measured capacity or independent quality calibration. [Prioritized research plan](PHASE_7_RESEARCH.md).

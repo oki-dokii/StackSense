@@ -1,0 +1,681 @@
+{
+  "adr_markdown": "# Proposed architecture decision\n\n**Status: Proposed — owner review required.**\n\nEngine 0.6.0; catalog 0.4.0; services 0.6.0; analysis 0.1.0.\nInput SHA-256: 2410b17ffe7b48b1a53e3383a668a754f31eef28e8d327a3eef71a5d327d284a.\n\n## Original result\n\nNo complete recommendation satisfies the reviewed catalog and service/control evidence\\. This is a catalog coverage result, not proof of real\\-world impossibility\\.\nResult: infeasible.\n\nNo approved stack or cost estimate is available for the original brief.\n\n## Blockers, validation and owner actions\n\n- critical: Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed\\.\n- critical: Existing Microsoft identity must be integrated, but its tenant region/data flows and restricted\\-network access are not established by the input\\.\n- infrastructure, requirements, compliance: Review the rejected constraints against the scoped catalog; add reviewed coverage and rerun the unchanged input\\.\n- infrastructure\\.existing\\_systems, infrastructure\\.data\\_residency, requirements\\.auth: Ask the tenant owner for the identity boundary and connectivity details\\. Microsoft 365 content geography does not establish Entra identity residency\\.\n\n## Changed-project experiments\n\nChecked 0 eligible single/pair functional variants. Smallest successful edit count within this bounded set: none found. These do not satisfy the original requirements. No change is applied.\n\n## Evidence register\n\n- services:entra\\-oidc: [Microsoft identity platform OIDC](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc); checked 2026\\-11\\-13; Tenant\\-scoped OIDC discovery and token protocols; configure issuer/audience, keys, claims and consent; no residency/contract assurance\\.\n- services:entra\\-residency: [Microsoft Entra data residency](https://learn.microsoft.com/en-us/entra/fundamentals/data-residency); checked 2026\\-11\\-13; Tenant geography and identity storage are distinct from application regions and Microsoft 365 content residency\\. No India\\-only tenant assurance inferred\\.\n\n## Limits and acceptance\n\n- Exploratory analysis only. The original recommendation and original requirements are unchanged.\n- Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.\n- The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.\n- Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.\n- Compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.\n- No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.\n- The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.\n\nAcceptance, independent review, vendor eligibility, implementation and deployment remain owner tasks. No acceptance is recorded.\n",
+  "analysis_version": "0.1.0",
+  "baseline": {
+    "architecture_style": "other",
+    "assumptions": [
+      "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required."
+    ],
+    "catalog_version": "0.4.0",
+    "control_plan": null,
+    "core_rejections": [
+      {
+        "candidate_id": "angular|aspnet|mysql|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|aspnet|sqlite|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|aspnet|sqlserver|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|django|maria|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|django|mysql|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|django|sqlite|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|fastapi|mysql|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|fastapi|sqlite|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|fastify|mongo|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|fastify|mysql|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|go-http|mysql|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|go-http|sqlite|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|go-http|sqlserver|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|laravel|maria|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|laravel|mysql|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|laravel|sqlite|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|laravel|sqlserver|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|spring|maria|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|spring|mysql|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "angular|spring|sqlserver|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "appservice",
+        "code": "REGION_EVIDENCE_GAP",
+        "fields": [
+          "infrastructure.data_residency"
+        ],
+        "layer": "hosting",
+        "message": "No reviewed primary-compute region mapping satisfies the requested residency; no country location is inferred."
+      },
+      {
+        "candidate_id": "astro",
+        "code": "STATIC_VARIANT_ONLY",
+        "fields": [
+          "project.type"
+        ],
+        "layer": "frontend",
+        "message": "This catalog entry is reviewed only for static content, not a dynamic client."
+      },
+      {
+        "candidate_id": "backend-none",
+        "code": "BACKEND_REQUIREMENT",
+        "fields": [
+          "project.type",
+          "requirements.auth",
+          "requirements.realtime"
+        ],
+        "layer": "backend",
+        "message": "A backend is required for this application/API profile."
+      },
+      {
+        "candidate_id": "cloudrun",
+        "code": "PROVIDER_MISMATCH",
+        "fields": [
+          "infrastructure.cloud_preference"
+        ],
+        "layer": "hosting",
+        "message": "Explicit cloud preference does not match this provider."
+      },
+      {
+        "candidate_id": "compose",
+        "code": "PLATFORM_MISMATCH",
+        "fields": [
+          "project.platforms"
+        ],
+        "layer": "frontend",
+        "message": "This reviewed frontend variant does not cover every client target."
+      },
+      {
+        "candidate_id": "database-none",
+        "code": "PERSISTENCE_REQUIREMENT",
+        "fields": [
+          "project.type",
+          "requirements.auth",
+          "requirements.offline_support"
+        ],
+        "layer": "database",
+        "message": "Domain/features require a persistent application database."
+      },
+      {
+        "candidate_id": "ec2",
+        "code": "DEPLOYMENT_MISMATCH",
+        "fields": [
+          "infrastructure.deployment_model"
+        ],
+        "layer": "hosting",
+        "message": "Hosting variant does not match the requested deployment model."
+      },
+      {
+        "candidate_id": "ecs",
+        "code": "PROVIDER_MISMATCH",
+        "fields": [
+          "infrastructure.cloud_preference"
+        ],
+        "layer": "hosting",
+        "message": "Explicit cloud preference does not match this provider."
+      },
+      {
+        "candidate_id": "flutter|aspnet|mysql|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      },
+      {
+        "candidate_id": "flutter|aspnet|sqlite|ase-india",
+        "code": "COMBINATION_INCOMPATIBLE",
+        "fields": [
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency"
+        ],
+        "layer": "plan",
+        "message": "No reviewed separately managed database product for this host/provider."
+      }
+    ],
+    "cost_breakdown": [],
+    "cost_groups": [],
+    "cost_sensitivity": [],
+    "data_flows": [],
+    "decision_trace": {
+      "complete_candidates": 0,
+      "core_candidates": 49,
+      "rejected": [
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|react|fastify|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|vue|aspnet|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|vue|fastify|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|next-native|aspnet|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|next-native|fastify|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|next|aspnet|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|next|fastify|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|sveltekit|aspnet|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|sveltekit|fastify|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|angular|aspnet|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|angular|fastify|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|flutter|aspnet|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|flutter|fastify|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|react|django|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|react|fastapi|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|react|go-http|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|react|laravel|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|react|spring|pg|ase-india|centralindia"
+        },
+        {
+          "codes": [
+            "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+          ],
+          "plan_id": "modular_monolith|vue|django|pg|ase-india|centralindia"
+        }
+      ],
+      "score": null,
+      "selected_plan_id": null
+    },
+    "engine_version": "0.6.0",
+    "estimate_status": "not_estimated",
+    "estimated_monthly_cost_usd": {
+      "assumptions": [
+        "No estimate: 0–0 is a required serialization placeholder, not a zero-cost deployment."
+      ],
+      "max": 0,
+      "min": 0
+    },
+    "integration_reviews": [
+      {
+        "approach": "federation_review",
+        "approval": "pending_project_evidence",
+        "cost_treatment": "No reuse savings, existing license entitlement or migration approval is inferred. The selected new application resources are priced separately; existing system operation, private connectivity, licenses and migration work need a project quote.",
+        "data_boundary": "Tenant identity, claims, tokens and audit flows are separate from application and Microsoft 365 content residency.",
+        "protocol": "OIDC or SAML federation; no password migration assumed.",
+        "references": [
+          {
+            "checked_on": "2026-11-13",
+            "id": "entra-residency",
+            "scope": "Tenant geography and identity storage are distinct from application regions and Microsoft 365 content residency. No India-only tenant assurance inferred.",
+            "title": "Microsoft Entra data residency",
+            "url": "https://learn.microsoft.com/en-us/entra/fundamentals/data-residency"
+          },
+          {
+            "checked_on": "2026-11-13",
+            "id": "entra-oidc",
+            "scope": "Tenant-scoped OIDC discovery and token protocols; configure issuer/audience, keys, claims and consent; no residency/contract assurance.",
+            "title": "Microsoft identity platform OIDC",
+            "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"
+          }
+        ],
+        "system": "Microsoft 365",
+        "tasks": [
+          "Record tenant ID/geography, issuer, audiences, allowed claims and retention.",
+          "Verify tenant consent, license entitlements, reachable endpoints and failure/recovery behavior.",
+          "Review identity data residency separately; changing the compute region does not resolve it."
+        ]
+      },
+      {
+        "approach": "federation_review",
+        "approval": "pending_project_evidence",
+        "cost_treatment": "No reuse savings, existing license entitlement or migration approval is inferred. The selected new application resources are priced separately; existing system operation, private connectivity, licenses and migration work need a project quote.",
+        "data_boundary": "Tenant identity, claims, tokens and audit flows are separate from application and Microsoft 365 content residency.",
+        "protocol": "OIDC or SAML federation; no password migration assumed.",
+        "references": [
+          {
+            "checked_on": "2026-11-13",
+            "id": "entra-residency",
+            "scope": "Tenant geography and identity storage are distinct from application regions and Microsoft 365 content residency. No India-only tenant assurance inferred.",
+            "title": "Microsoft Entra data residency",
+            "url": "https://learn.microsoft.com/en-us/entra/fundamentals/data-residency"
+          },
+          {
+            "checked_on": "2026-11-13",
+            "id": "entra-oidc",
+            "scope": "Tenant-scoped OIDC discovery and token protocols; configure issuer/audience, keys, claims and consent; no residency/contract assurance.",
+            "title": "Microsoft identity platform OIDC",
+            "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"
+          }
+        ],
+        "system": "Microsoft Entra ID (Azure AD)",
+        "tasks": [
+          "Record tenant ID/geography, issuer, audiences, allowed claims and retention.",
+          "Verify tenant consent, license entitlements, reachable endpoints and failure/recovery behavior.",
+          "Review identity data residency separately; changing the compute region does not resolve it."
+        ]
+      },
+      {
+        "approach": "database_reuse_review",
+        "approval": "pending_project_evidence",
+        "cost_treatment": "No reuse savings, existing license entitlement or migration approval is inferred. The selected new application resources are priced separately; existing system operation, private connectivity, licenses and migration work need a project quote.",
+        "data_boundary": "Confirm whether this system remains the system of record; review read/write ownership, schema and transaction boundaries before reuse or migration.",
+        "protocol": "TLS-protected SQL Server driver over an approved private network/VPN; no public database exposure assumed.",
+        "references": [
+          {
+            "checked_on": "2026-11-13",
+            "id": "sql2019-lifecycle",
+            "scope": "Extended support ends January 2030; no edition, patch, license or installed network/capacity entitlement established.",
+            "title": "SQL Server 2019 lifecycle",
+            "url": "https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2019"
+          },
+          {
+            "checked_on": "2026-11-13",
+            "id": "azure-vnet-integration",
+            "scope": "Outbound private resource connectivity; ASE joins a VNet directly. Private inbound access and on-prem VPN/DNS are separate design/configuration tasks.",
+            "title": "App Service virtual network integration",
+            "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration"
+          }
+        ],
+        "system": "On-prem SQL Server 2019",
+        "tasks": [
+          "Confirm version/edition, patch level, licenses, spare capacity and support dates. SQL Server 2019 extended support ends in January 2030; this is not an EOL finding.",
+          "Choose reuse, adapter or migration explicitly with the system owner; validate driver/schema compatibility and read/write ownership.",
+          "Specify private DNS/routing/VPN, TLS trust, least-privilege accounts and credential rotation.",
+          "Test latency, outages, backup/restore and reconciliation; obtain incremental connectivity/license/operations costs."
+        ]
+      }
+    ],
+    "plan_comparison": [],
+    "review_actions": [
+      {
+        "affected_components": [
+          "complete deployment"
+        ],
+        "code": "COMPLETE_PLAN_COVERAGE_GAP",
+        "evidence_required": [
+          "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+        ],
+        "fields": [
+          "infrastructure",
+          "requirements",
+          "compliance"
+        ],
+        "id": "COMPLETE_PLAN_COVERAGE_GAP:infrastructure|requirements|compliance",
+        "kind": "evidence_gap",
+        "next_action": "Review the rejected constraints against the scoped catalog; add reviewed coverage and rerun the unchanged input.",
+        "references": [],
+        "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+      },
+      {
+        "affected_components": [
+          "existing identity provider",
+          "identity broker"
+        ],
+        "code": "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
+        "evidence_required": [
+          "Tenant geography and service-specific storage/processing/replication evidence for identity, tokens, audit and support flows.",
+          "OIDC/SAML endpoints, claims minimization, issuer/audience checks, admin consent, licenses and reachable network path."
+        ],
+        "fields": [
+          "infrastructure.existing_systems",
+          "infrastructure.data_residency",
+          "requirements.auth"
+        ],
+        "id": "EXISTING_IDENTITY_SCOPE_UNVERIFIED:infrastructure.existing_systems|infrastructure.data_residency|requirements.auth",
+        "kind": "evidence_gap",
+        "next_action": "Ask the tenant owner for the identity boundary and connectivity details. Microsoft 365 content geography does not establish Entra identity residency.",
+        "references": [
+          {
+            "checked_on": "2026-11-13",
+            "id": "entra-residency",
+            "scope": "Tenant geography and identity storage are distinct from application regions and Microsoft 365 content residency. No India-only tenant assurance inferred.",
+            "title": "Microsoft Entra data residency",
+            "url": "https://learn.microsoft.com/en-us/entra/fundamentals/data-residency"
+          },
+          {
+            "checked_on": "2026-11-13",
+            "id": "entra-oidc",
+            "scope": "Tenant-scoped OIDC discovery and token protocols; configure issuer/audience, keys, claims and consent; no residency/contract assurance.",
+            "title": "Microsoft identity platform OIDC",
+            "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"
+          }
+        ],
+        "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+      }
+    ],
+    "rules_version": "0.6.0",
+    "scenario_id": "P5",
+    "services_version": "0.6.0",
+    "stack": null,
+    "status": "infeasible",
+    "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",
+    "validation_errors": [],
+    "warnings": [
+      {
+        "code": "COMPLETE_PLAN_COVERAGE_GAP",
+        "fields": [
+          "infrastructure",
+          "requirements",
+          "compliance"
+        ],
+        "message": "Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed.",
+        "severity": "critical"
+      },
+      {
+        "code": "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
+        "fields": [
+          "infrastructure.existing_systems",
+          "infrastructure.data_residency",
+          "requirements.auth"
+        ],
+        "message": "Existing Microsoft identity must be integrated, but its tenant region/data flows and restricted-network access are not established by the input.",
+        "severity": "critical"
+      }
+    ]
+  },
+  "engine_evaluations": 1,
+  "evidence": [
+    {
+      "checked_on": "2026-11-13",
+      "id": "services:entra-oidc",
+      "scope": "Tenant-scoped OIDC discovery and token protocols; configure issuer/audience, keys, claims and consent; no residency/contract assurance.",
+      "title": "Microsoft identity platform OIDC",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"
+    },
+    {
+      "checked_on": "2026-11-13",
+      "id": "services:entra-residency",
+      "scope": "Tenant geography and identity storage are distinct from application regions and Microsoft 365 content residency. No India-only tenant assurance inferred.",
+      "title": "Microsoft Entra data residency",
+      "url": "https://learn.microsoft.com/en-us/entra/fundamentals/data-residency"
+    }
+  ],
+  "functional_experiments": {
+    "max_edits": 2,
+    "protected_fields": [
+      "compliance",
+      "infrastructure",
+      "requirements.multi_tenant",
+      "requirements.availability",
+      "budget",
+      "team",
+      "timeline"
+    ],
+    "smallest_successful_edit_count": null,
+    "status": "evaluated",
+    "successful_variants": [],
+    "tested_variants": 0,
+    "trials": []
+  },
+  "input_sha256": "2410b17ffe7b48b1a53e3383a668a754f31eef28e8d327a3eef71a5d327d284a",
+  "limitations": [
+    "Exploratory analysis only. The original recommendation and original requirements are unchanged.",
+    "Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.",
+    "The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.",
+    "Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.",
+    "Compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.",
+    "No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.",
+    "The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred."
+  ],
+  "priority_analysis": {
+    "distinct_winners": 0,
+    "evaluated_plans": [],
+    "frontier_plan_ids": [],
+    "retained_winner_settings": 0,
+    "status": "not_applicable",
+    "tested_settings": 0,
+    "trials": []
+  }
+}

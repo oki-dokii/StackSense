@@ -10,11 +10,11 @@ An explained technology stack, grounded in project constraints.
 
 Soham BanerjeeIIIT-BangaloreSoham.Banerjee@iiitb.ac.ingithub.com/oki-dokii/StackSense14 November 2026
 
-Application / engine / rules 0.6.0; core catalog 0.4.0; service policies 0.6.0. This is a local review package, not an assertion of online submission or independent owner review.
+Application 0.7.0; recommendation engine/rules/services 0.6.0; analysis 0.1.0; core catalog 0.4.0. This is a local review package, not an assertion of online submission or independent owner review.
 
 1. Abstract
 
-StackSense converts a structured software-project brief into a deterministic, explained architecture. A local TypeScript engine validates inputs, filters compatible core stacks, checks required supporting services and data flows, estimates month-12 cost bands, and ranks complete designs. A CLI, Fastify API and React workspace share the same engine. The release includes 34 core entries, 24 service profiles, source records, actual JSON outputs and browser evidence. Of six supplied scenarios, two receive usable recommendations and four retain explicit evidence-relative blockers. The evaluation includes 220 automated tests, fourteen author-designed unseen-style cases, input-sensitivity experiments and measured local setup/API timings. The system makes no runtime LLM calls and requires no paid key. Costs, performance targets and framework controls are disclosed assumptions and implementation tasks, not provider quotes, benchmarks of suggested stacks, or certification.
+StackSense converts a structured software-project brief into a deterministic, explained architecture. A local TypeScript engine validates inputs, filters compatible core stacks, checks required supporting services and data flows, estimates month-12 cost bands, and ranks complete designs. A CLI, Fastify API and React workspace share the same engine. The release includes 34 core entries, 24 service profiles, source records, actual JSON outputs and browser evidence. Of six supplied scenarios, two receive usable recommendations and four retain explicit evidence-relative blockers. The evaluation includes 235 automated tests, fourteen author-designed unseen-style cases, input-sensitivity experiments and measured local setup/API timings. The system makes no runtime LLM calls and requires no paid key. Costs, performance targets and framework controls are disclosed assumptions and implementation tasks, not provider quotes, benchmarks of suggested stacks, or certification.
 
 2. Problem understanding
 
@@ -164,17 +164,17 @@ Additional cases test reviewed AWS India, offline native writes, cloud-none/mana
 
 8. Validation and measurements
 
-220 automated tests pass across eight files: contract/default/provenance, catalog/driver integrity, compatible search, complete services/costs, metadata/order mutations, CLI subprocess IO, exact API/engine parity, transport/security, browser model and fourteen release cases. Generated TypeScript freshness, compiler and production browser/server builds pass. Twenty actual public/evaluation output files are checked byte-for-byte against the current engine.
+235 automated tests pass across nine files: contract/default/provenance, catalog/driver integrity, compatible search, complete services/costs, metadata/order mutations, CLI subprocess IO, exact API/engine parity, transport/security, browser model and fourteen release cases. Generated TypeScript freshness, compiler and production browser/server builds pass. Twenty recommendation snapshots and six Decision Lab artifacts are checked byte-for-byte against current code; three additional capture-provenance tests pass.
 
 Fourteen author-designed case expectations cover statuses, field errors, required services, local deployment, region retention and simplicity. Metamorphic checks rename metadata/reorder set-like inputs and ensure hard constraints remain filters. Six paired usage experiments show real cost effects. No external expert review, organiser hidden-case results or calibrated recommendation-quality accuracy is claimed.
 
 Observed local API timings
 
-Measured on Apple M2, 8 GB RAM, macOS arm64, Node v22.17.1, npm 10.9.2. Cold Node/API startup to health: 288.056 ms. Each case had one warm-up and twenty real loopback HTTP POSTs through consumed JSON. Browser rendering, recommended workload performance and cloud provisioning are excluded.
+Measured on Apple M2, 8 GB RAM, macOS arm64, Node v22.17.1, npm 10.9.2. Cold Node/API startup to health: 687.304 ms. Each case had one warm-up and twenty real loopback HTTP POSTs through consumed JSON. Browser rendering, recommended workload performance and cloud provisioning are excluded.
 
 Clean setup rehearsal
 
-A source ZIP was extracted to a fresh directory. Cached offline npm ci, all checks, build, evaluation and output verification completed in 20.392 seconds. Runtime/test source digest is recorded and checked during final packaging. The populated dependency cache avoids a new network download; online installation speed and Windows/Linux execution are not claimed. The CI matrix covers macOS, Ubuntu and Windows on Node 22/24; remote run results are separate from this local measurement.
+A source ZIP was extracted to a fresh directory. Cached offline npm ci, all checks, build, evaluation and output verification completed in 18.517 seconds. Runtime/test source digest is recorded and checked during final packaging. The populated dependency cache avoids a new network download; online installation speed and Windows/Linux execution are not claimed. The CI matrix covers macOS, Ubuntu and Windows on Node 22/24; remote run results are separate from this local measurement.
 
 Browser evidence covers sample/import/batch, all statuses, export parity, stale-export blocking, keyboard controls and 360 px overflow checks. This is not a full accessibility or browser conformance audit. Official product/source alignment is reviewed; no paper experiment was reproduced.
 
@@ -182,17 +182,17 @@ Browser evidence covers sample/import/batch, all statuses, export parity, stale-
 ---
 
 
-Decision guidance in release 0.6.0
+Decision Lab: application 0.7.0
 
-Actual expanded P3 cost sensitivity view. Infrastructure/operations and payment/message activity are separated. Trial values keep the selected architecture fixed; they do not edit the brief or rerank plans.
+Actual P3 Decision Lab view. All 168 completed catalog plans are plotted; 12 identifiers are nondominated under the three declared model objectives. Inspecting an alternative never changes the original recommendation.
 
-Blocked results now export review_actions: affected requirements/components, missing evidence, concrete next actions and primary references. Checklists distinguish evidence gaps, constraint conflicts and pricing-model limits. A free-text vendor assertion cannot clear a blocker. P2 has independent OTP and payment tasks; resolving one does not resolve the other.
+The separate analysis endpoint runs the original recommendation plus 24 one-priority-at-a-time changes. P3 retains its winner in 25/25 settings while equal-score alternatives remain. This count is not a confidence probability, unique superiority or global sensitivity analysis; interactions are not exhaustively explored.
 
-Existing systems receive integration_reviews for federation, SQL reuse or inventory. Tenant scope, private connectivity, ownership, licenses, recovery and incremental costs remain pending project evidence; no migration or reuse savings are invented. SQL Server 2019 extended support is distinguished from EOL.
+The tradeoff front minimizes monthly cost upper bound and operated component units while maximizing the ORIGINAL-priority weighted score. It uses every completed candidate, not just the top three. All metrics retain their heuristic/planning scope. A lower upper cost can still have a higher lower cost, so inspect both bounds and assumptions.
 
-Usable results expose up to three fully evaluated plan_comparison entries, including service sets, regions, scores/ties, cost, operating burden and retained constraints. Cost groups reconcile in cents. One-at-a-time usage trials disclose supplied versus assumed values, headroom and the absence of reranking. Price-line units, rates and source links are visible in the UI.
+Blocked briefs receive bounded single/pair functional experiments on copies. P2 needs two functional changes within the checked set and still exceeds its budget; P6 has a one-edit login experiment. Neither satisfies its original brief. P5 tenant evidence is not invented. Compliance, infrastructure/residency/provider, isolation and quality targets remain fixed; no automatic Apply action exists.
 
-Azure Central India Linux I1 v2 compute uses a captured public consumption meter at USD 0.395 per instance-hour. Whole two-vCPU instances and replica floors are retained. Other capacity and database/storage/network rates remain disclosed planning proxies; one verified meter does not calibrate an entire deployment.
+Proposed ADR Markdown and exact JSON exports include the original result, input digest, versions, alternatives, scoped references and owner tasks. Browser exports match API/engine artifacts; stale exports are blocked after edits. The standard 0.6.0 recommendations remain byte-for-byte unchanged. Counterfactual, Pareto evaluation, sensitivity and ADR sources are N01-N04 in Appendix B; their experiments were not reproduced.
 
 
 ---
@@ -204,7 +204,7 @@ Four of six public scenarios remain unusable under the current evidence policy. 
 
 The catalog is finite and product-family based. Framework/API/driver versions, regional quotas, contract eligibility, data retention and all application controls need deployment review. Training/RAG, broader search/storage options, comprehensive lifecycle coverage, private network integration and general prose understanding remain limited.
 
-Costs use capacity hypotheses and authored allowances as well as reference prices. SLA/latency are targets, not guarantees. Ordinal fits are not statistically calibrated; close plans may tie and stable IDs can determine the winner. Independent architecture review, tariff validation, target-device/load tests and calibrated capacity examples and tenant/vendor evidence remain high-value improvements. Actionable blocker tasks, complete-plan comparisons and fixed-plan usage sensitivity are implemented in 0.6.0.
+Costs use capacity hypotheses and authored allowances as well as reference prices. SLA/latency are targets, not guarantees. Ordinal fits are not statistically calibrated; close plans may tie and stable IDs can determine the winner. Independent architecture review, tariff validation, target-device/load tests and calibrated capacity examples and tenant/vendor evidence remain high-value improvements. Release 0.6.0 guidance/cost features are retained; application 0.7.0 adds the separate Decision Lab. Measured workload calibration, reviewed source diffs and independent assessment remain next work.
 
 10. References and third-party tools
 
@@ -615,3 +615,11 @@ tool:poppler - Poppler utilities. poppler.freedesktop.org (2026-11-13).
 tool:checkout - GitHub Actions checkout. github.com (2026-11-13).
 
 tool:setup-node - GitHub Actions setup-node. github.com (2026-11-13).
+
+N01 - Finding Counterfactual Explanations through Constraint Relaxations. arxiv.org (2026-11-14).
+
+N02 - How to Evaluate Solutions in Pareto-based Search-Based Software Engineering?. arxiv.org (2026-11-14).
+
+N03 - Why So Many Published Sensitivity Analyses Are False. arxiv.org (2026-11-14).
+
+N04 - Maintain an architecture decision record. learn.microsoft.com (2026-11-14).

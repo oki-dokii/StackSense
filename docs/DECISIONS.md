@@ -26,3 +26,7 @@ Revisit only with evidence: a desktop wrapper, hosted backend, vector database, 
 - Give existing systems concrete integration tasks without silently selecting migration, reusing unverified resources or claiming license savings.
 
 [Phase 6 evidence](PHASE_6.md).
+
+## Decision Lab
+
+[ADR 008](adr/008-decision-lab.md) records the separate analysis contract, bounded reruns/experiments, detached candidate projection and Proposed artifact ownership. [Research and rejected ideas](PHASE_7_RESEARCH.md).

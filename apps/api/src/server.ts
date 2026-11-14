@@ -1,4 +1,5 @@
 import Fastify from 'fastify';
+import { analyzeDecision } from '../../../packages/engine/src/decision-lab.js';
 import staticFiles from '@fastify/static';
 import { readFileSync, existsSync } from 'node:fs';
 import { dirname, join, parse } from 'node:path';
@@ -130,7 +131,7 @@ export function createServer(
     catalog_version: defaultCatalog.version,
     rules_version: '0.6.0',
     services_version: defaultPolicies.version,
-    app_version: '0.6.0',
+    app_version: '0.7.0',
   };
   app.get('/api/health', async () => ({ status: 'ok', ...versions }));
   app.get(
@@ -201,6 +202,25 @@ export function createServer(
       ),
     );
     return reply.type('application/json').send(serialize({ results, counts }));
+  });
+  app.post('/api/analyze', async (request, reply) => {
+    if (
+      !request.body ||
+      typeof request.body !== 'object' ||
+      Array.isArray(request.body)
+    )
+      return reply
+        .code(400)
+        .send({
+          error: {
+            code: 'ANALYSIS_INPUT',
+            message:
+              'Send one scenario object; analysis is bounded to one brief per request.',
+          },
+        });
+    return reply
+      .type('application/json')
+      .send(serialize(analyzeDecision(request.body)));
   });
   const web = join(root, 'dist/web');
   if (options.serveWeb !== false && existsSync(join(web, 'index.html'))) {

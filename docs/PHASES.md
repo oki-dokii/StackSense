@@ -10,6 +10,7 @@ Updated 14 November 2026 IST. The detailed method is in [plan.md](../plan.md); t
 | 4 | Local API and responsive web interface | Implemented and tested | 182 tests; exact API/engine parity; actual browser import/run/export, stale and mobile checks |
 | 5 | Evaluation, performance/setup evidence, outputs/screenshots/report and release | Technical package prepared | 201 tests; 14 unseen-style cases; 24-page report/ZIP verified; owner review and online submission pending |
 | 6 | Evidence-resolution guidance, Azure scoped coverage, integration reviews, cost sensitivity and complete-plan comparison | Implemented and tested | 220 tests plus three provenance tests; actual browser QA; release evidence refreshed |
+| 7 | Research-driven Decision Lab, full tradeoff front, bounded experiments and proposed ADRs | Implemented and tested | 235 tests plus three provenance checks; exact browser/API/CLI exports; unchanged recommendation outputs |
 
 ## Phase 1 delivered
 

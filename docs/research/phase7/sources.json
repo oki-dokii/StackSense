@@ -1,0 +1,92 @@
+[
+  {
+    "id": "N01",
+    "title": "Finding Counterfactual Explanations through Constraint Relaxations",
+    "url": "https://arxiv.org/html/2204.03429v1",
+    "kind": "workshop paper, 2022",
+    "review_depth": "Relevant HTML introduction and methodology context",
+    "application_and_limit": "Explicit changed-input explanations; our bounded enumeration is not the published algorithm.",
+    "checked_on": "2026-11-14"
+  },
+  {
+    "id": "N02",
+    "title": "How to Evaluate Solutions in Pareto-based Search-Based Software Engineering?",
+    "url": "https://arxiv.org/html/2002.09040v4",
+    "kind": "accepted TSE paper, 2020 revision",
+    "review_depth": "Definitions and context-sensitive evaluation sections",
+    "application_and_limit": "Declare objectives and candidate scope; no global empirical optimality.",
+    "checked_on": "2026-11-14"
+  },
+  {
+    "id": "N03",
+    "title": "Why So Many Published Sensitivity Analyses Are False",
+    "url": "https://arxiv.org/abs/1711.11359",
+    "kind": "preprint, 2017",
+    "review_depth": "Abstract and metadata",
+    "application_and_limit": "Finite one-at-a-time trials do not measure global interactions or probability.",
+    "checked_on": "2026-11-14"
+  },
+  {
+    "id": "N04",
+    "title": "Maintain an architecture decision record",
+    "url": "https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record",
+    "kind": "official guidance",
+    "review_depth": "Relevant full page",
+    "application_and_limit": "Proposed record with context, alternatives, consequences and ownership.",
+    "checked_on": "2026-11-14"
+  },
+  {
+    "id": "N05",
+    "title": "Using architectural decision records",
+    "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/introduction.html",
+    "kind": "official guidance",
+    "review_depth": "Introduction/process summaries",
+    "application_and_limit": "Portable decision artifacts; no simulated stakeholder acceptance.",
+    "checked_on": "2026-11-14"
+  },
+  {
+    "id": "N06",
+    "title": "Fitness functions",
+    "url": "https://www.thoughtworks.com/insights/decoder/f/fitness-functions",
+    "kind": "practitioner guidance",
+    "review_depth": "Definition",
+    "application_and_limit": "Future measurable architecture checks; not a validated score calibration.",
+    "checked_on": "2026-11-14"
+  },
+  {
+    "id": "N07",
+    "title": "k6 thresholds",
+    "url": "https://grafana.com/docs/k6/latest/using-k6/thresholds/",
+    "kind": "official documentation",
+    "review_depth": "Threshold mechanics",
+    "application_and_limit": "Future scoped benchmark harness; no benchmark executed here.",
+    "checked_on": "2026-11-14"
+  },
+  {
+    "id": "N08",
+    "title": "Microsoft Entra data residency",
+    "url": "https://learn.microsoft.com/en-us/entra/fundamentals/data-residency",
+    "kind": "official documentation",
+    "review_depth": "Tenant and external-tenant scope",
+    "application_and_limit": "Does not establish this project tenant geography.",
+    "checked_on": "2026-11-14"
+  },
+  {
+    "id": "N09",
+    "title": "MSG91 privacy policy",
+    "url": "https://msg91.com/privacy-policy",
+    "kind": "vendor policy",
+    "review_depth": "Hosting and delivery scope",
+    "application_and_limit": "Multiple geographies; exact tenant/routing evidence still missing.",
+    "checked_on": "2026-11-14"
+  },
+  {
+    "id": "N10",
+    "title": "Razorpay certifications portal",
+    "url": "https://razorpay.com/security/certifications/",
+    "kind": "vendor trust portal",
+    "review_depth": "Localization section and linked historical excerpt",
+    "application_and_limit": "2023 assessment-time excerpt is not current merchant/product end-to-end approval.",
+    "checked_on": "2026-11-14"
+  }
+]

@@ -1,0 +1,529 @@
+{
+  "type": "object",
+  "properties": {
+    "analysis_version": {
+      "const": "0.1.0"
+    },
+    "input_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "baseline": {
+      "$ref": "urn:stacksense:recommendation:0.1"
+    },
+    "priority_analysis": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "evaluated",
+            "not_applicable"
+          ]
+        },
+        "tested_settings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retained_winner_settings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "distinct_winners": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "trials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "criterion": {
+                "enum": [
+                  "cost",
+                  "time_to_market",
+                  "scalability",
+                  "performance",
+                  "maintainability",
+                  "security"
+                ]
+              },
+              "original_weight": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "trial_weight": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "selected_plan_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "changed_winner": {
+                "type": "boolean"
+              },
+              "displayed_equal_score_alternatives": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "criterion",
+              "original_weight",
+              "trial_weight",
+              "selected_plan_id",
+              "changed_winner",
+              "displayed_equal_score_alternatives"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "evaluated_plans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "plan_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "core": {
+                "type": "object",
+                "properties": {
+                  "frontend": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "backend": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "database": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "hosting": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "frontend",
+                  "backend",
+                  "database",
+                  "hosting"
+                ],
+                "additionalProperties": false
+              },
+              "monthly_usd": {
+                "type": "object",
+                "properties": {
+                  "min": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "max": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "min",
+                  "max"
+                ],
+                "additionalProperties": false
+              },
+              "operated_components": {
+                "type": "number",
+                "minimum": 0
+              },
+              "original_priority_score": {
+                "type": "number",
+                "minimum": 0
+              },
+              "fit": {
+                "type": "object",
+                "properties": {
+                  "cost": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 5
+                  },
+                  "time_to_market": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 5
+                  },
+                  "scalability": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 5
+                  },
+                  "performance": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 5
+                  },
+                  "maintainability": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 5
+                  },
+                  "security": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 5
+                  }
+                },
+                "required": [
+                  "cost",
+                  "time_to_market",
+                  "scalability",
+                  "performance",
+                  "maintainability",
+                  "security"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "plan_id",
+              "core",
+              "monthly_usd",
+              "operated_components",
+              "original_priority_score",
+              "fit"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "frontier_plan_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "status",
+        "tested_settings",
+        "retained_winner_settings",
+        "distinct_winners",
+        "trials",
+        "evaluated_plans",
+        "frontier_plan_ids"
+      ],
+      "additionalProperties": false
+    },
+    "functional_experiments": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "evaluated",
+            "not_applicable"
+          ]
+        },
+        "max_edits": {
+          "const": 2
+        },
+        "protected_fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "tested_variants": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "smallest_successful_edit_count": {
+          "enum": [
+            null,
+            1,
+            2
+          ]
+        },
+        "successful_variants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "edits": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "field": {
+                      "enum": [
+                        "requirements.auth",
+                        "requirements.payments",
+                        "requirements.offline_support",
+                        "requirements.full_text_search",
+                        "requirements.ml_features"
+                      ]
+                    },
+                    "before": {},
+                    "after": {}
+                  },
+                  "required": [
+                    "field",
+                    "before",
+                    "after"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "status": {
+                "enum": [
+                  "ok",
+                  "ok_with_warnings",
+                  "infeasible",
+                  "invalid_input"
+                ]
+              },
+              "selected_plan_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "remaining_blocker_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "monthly_usd": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "min": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "max": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "min",
+                      "max"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "warning_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "edits",
+              "status",
+              "selected_plan_id",
+              "remaining_blocker_codes",
+              "monthly_usd",
+              "warning_codes"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "trials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "edits": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "field": {
+                      "enum": [
+                        "requirements.auth",
+                        "requirements.payments",
+                        "requirements.offline_support",
+                        "requirements.full_text_search",
+                        "requirements.ml_features"
+                      ]
+                    },
+                    "before": {},
+                    "after": {}
+                  },
+                  "required": [
+                    "field",
+                    "before",
+                    "after"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "status": {
+                "enum": [
+                  "ok",
+                  "ok_with_warnings",
+                  "infeasible",
+                  "invalid_input"
+                ]
+              },
+              "selected_plan_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "remaining_blocker_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "monthly_usd": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "min": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "max": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "min",
+                      "max"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "warning_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "edits",
+              "status",
+              "selected_plan_id",
+              "remaining_blocker_codes",
+              "monthly_usd",
+              "warning_codes"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "status",
+        "max_edits",
+        "protected_fields",
+        "tested_variants",
+        "smallest_successful_edit_count",
+        "successful_variants",
+        "trials"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "checked_on": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "url",
+          "checked_on",
+          "scope"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "engine_evaluations": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 40
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "adr_markdown": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "analysis_version",
+    "input_sha256",
+    "baseline",
+    "priority_analysis",
+    "functional_experiments",
+    "evidence",
+    "engine_evaluations",
+    "limitations",
+    "adr_markdown"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:stacksense:decision-lab:0.1",
+  "title": "StackSense Decision Lab analysis; separate from the original recommendation"
+}

@@ -353,3 +353,7 @@ For method reading order: R01 → R02 → R05/R04 → R06/R07 → R10 → scenar
 ## Phase 6: comparison-driven improvements
 
 Implemented scope and explicit remaining evidence: [Phase 6 record](docs/PHASE_6.md). Actionable blockers, existing-system review, regional Azure coverage, fixed-plan cost sensitivity and top-three complete-plan comparisons are delivered in 0.6.0. [Backlog](docs/IMPROVEMENT_BACKLOG.md) retains external tenant/vendor evidence, independent cost/quality calibration and wider accessibility testing.
+
+## Phase 7 and subsequent evidence work
+
+[Decision Lab implementation](docs/PHASE_7.md) and [research-driven prioritization](docs/PHASE_7_RESEARCH.md). Application 0.7.0 adds bounded decision analysis while retaining 0.6.0 recommendations. Next concrete research target: one reproducible measured workload recipe, then source-change review and independent/accessibility validation. Future artifacts must stay scoped to what was actually measured/reviewed.

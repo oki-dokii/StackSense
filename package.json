@@ -1,6 +1,6 @@
 {
   "name": "stacksense",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "type": "module",
   "description": "Deterministic, evidence-backed technology stack recommendation engine",
@@ -34,7 +34,8 @@
     "build:web": "vite build --config apps/web/vite.config.ts",
     "evaluate": "node scripts/evaluate.mjs",
     "verify:release": "node scripts/check-release.mjs",
-    "measure": "node scripts/measure.mjs"
+    "measure": "node scripts/measure.mjs",
+    "analyze": "node dist/apps/cli/src/analyze.js"
   },
   "dependencies": {
     "ajv": "8.20.0"

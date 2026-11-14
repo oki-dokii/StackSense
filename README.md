@@ -2,7 +2,7 @@
 
 A local, deterministic technology stack recommendation engine for the Synergy ’26 challenge, implemented in [phases](docs/PHASES.md).
 
-**Release 0.6.0 adds actionable blocker guidance, existing-system reviews, complete-plan comparison and cost sensitivity.** A separate Azure Central India isolated hosting/database/storage profile narrows regional coverage gaps. Four public scenarios still need decisive service/tenant evidence. [Phase 6 implementation and limits](docs/PHASE_6.md). The report and submission ZIP are prepared; owner review and Drive/Unstop submission remain pending.
+**Application 0.7.0 adds the Decision Lab:** actual priority reruns, the full catalog tradeoff front, bounded functional experiments, and proposed ADR/evidence exports. The original recommendation engine and outputs remain 0.6.0; four public evidence blockers remain explicit. [Phase 7 implementation](docs/PHASE_7.md) · [Research and next features](docs/PHASE_7_RESEARCH.md). Owner review and online submission remain pending.
 
 [Download the submission ZIP](https://github.com/oki-dokii/StackSense/blob/main/deliverables/StackSense26_SohamBanerjee.zip) · [Read the report](https://github.com/oki-dokii/StackSense/blob/main/output/pdf/Report_SohamBanerjee.pdf) · [Owner checklist](docs/SUBMISSION.md)
 
@@ -52,6 +52,17 @@ After building, `npm start` serves both UI and API at **http://127.0.0.1:3000**.
 
 For development, run `npm run dev:api` and `npm run dev:web` in separate terminals, then open http://127.0.0.1:5173. No external recommendation requests or account/API keys are needed. See [API contract](docs/API_CLI.md), [Phase 4](docs/PHASE_4.md) and [actual screenshot](docs/evidence/phase4-report-desktop.jpg).
 
+## Decision Lab
+
+Evaluate a brief, then choose **Analyze this decision**. Inspect preference stability and every completed catalog plan, or review bounded changed-project experiments for a blocked brief. Export analysis JSON and a **Proposed** ADR. Inspecting alternatives never changes the original recommendation; editing inputs invalidates exports.
+
+```sh
+npm run --silent analyze -- --input fixtures/public/P3.json --format json
+npm run --silent analyze -- --input fixtures/public/P6.json --format adr
+```
+
+The original result still controls CLI exit status (P6 exits 3). The analysis endpoint is `POST /api/analyze`, one scenario per request. [Methods, protected fields and limits](docs/PHASE_7.md).
+
 ## Complete recommendations
 
 `recommend` and `recommend:batch` export the organiser output format with `ok`, `ok_with_warnings`, `infeasible` or `invalid_input`. The engine checks required service compatibility/control scope for every compatible core candidate, estimates complete plans and then ranks them. No runtime network, API keys or LLM is required.
@@ -97,7 +108,7 @@ npm run verify:release   # verify all actual output snapshots
 python3 scripts/check_docs.py
 ```
 
-Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: [Phase 1](docs/PHASE_1.md), [Phase 2](docs/PHASE_2.md), [Phase 3](docs/PHASE_3.md), [Phase 4](docs/PHASE_4.md) [Phase 5](docs/PHASE_5.md) and [Phase 6](docs/PHASE_6.md): **220 tests pass**, plus three capture-provenance tests, with a successful build. Current local API/cached setup timings are recorded in Phase 6. Other-OS and recommended-workload behavior are not established by those local measurements.
+Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: [Phase 7](docs/PHASE_7.md): **235 tests pass**, plus three capture-provenance checks, with a successful build. Current local API/cached setup timings are recorded there; these do not measure recommended-workload behavior.
 
 | Technology | Pinned version | Role |
 |---|---|---|

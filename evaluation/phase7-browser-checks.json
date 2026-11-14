@@ -1,0 +1,37 @@
+{
+  "checked_on": "2026-11-14",
+  "app_version": "0.7.0",
+  "analysis_version": "0.1.0",
+  "engine_version": "0.6.0",
+  "input_fixture": "fixtures/public/scenarios.json",
+  "input_sha256": "6a4aa08bd2fddfaf6a6498188867848d721c5cb6822164b27a783ae8ead76d57",
+  "browser_export_sha256": {
+    "P3_JSON": "011f0ef149dd70458a7f70bfbcc918f5141040e35ee9e6e84e03d7e0d41782f6",
+    "P3_ADR": "1d5314007258ed188dcddf373d7b37f9ead2131235bf0d3dc8f0012fa87faaf0",
+    "P2_JSON": "359520852c3a3f740b4311c13709ed50d9f27aa1d9b67499aa9aed6b54c9d3ca"
+  },
+  "checks": [
+    "P3 analyzes 168 complete candidates, 12 declared-objective frontier plans and all 25 one-at-a-time priority settings",
+    "Inspecting an AWS alternative leaves the original Cloud Run recommendation and exported baseline unchanged",
+    "Downloaded P3/P2 analysis JSON and P3 ADR exactly match current engine artifacts",
+    "P2 changed-project experiment explicitly preserves protected fields and exposes over-budget warnings",
+    "At 360 px the document remains 360 px while the readable 600 px chart scrolls inside a labeled 284 px container",
+    "Editing the brief removes analysis exports and disables original exports until rerun",
+    "No error logs observed during the final checked flow"
+  ],
+  "captures": [
+    {
+      "file": "docs/evidence/phase7/functional-experiments.jpg",
+      "sha256": "472647a92c190dafee8b2034d29e530d2359c88661655d217805f79564c69897"
+    },
+    {
+      "file": "docs/evidence/phase7/mobile.jpg",
+      "sha256": "f0b1094505d1f3213e802cba9d5320c39c2b8de74ebe6feb1f17a3dc7794f56e"
+    },
+    {
+      "file": "docs/evidence/phase7/tradeoffs.jpg",
+      "sha256": "cbaf7c3f8f93f0c48cdeb3f0e1049979c4deb915c5143717acbd3d6b589d44a3"
+    }
+  ],
+  "scope_limit": "Focused local QA, not a complete screen-reader, accessibility or cross-browser certification. Fifteen standard overview captures and four Phase 6 feature captures are retained from the unchanged 0.6.0 recommendation checkpoint; these three Phase 7 captures show the new UI."
+}

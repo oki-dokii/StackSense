@@ -3,6 +3,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { verifyScreenshotInputBinding } from './evidence-bindings.mjs';
+import { analyzeDecision } from '../dist/packages/engine/src/decision-lab.js';
 import { recommend } from '../dist/packages/engine/src/index.js';
 import {
   serialize,
@@ -27,6 +28,18 @@ for (const [directory, inputs] of [
     )
       throw new Error(`Stale or invalid release output: ${path}`);
   }
+let labCount = 0;
+if (await exists('evaluation/decision-lab-results.json')) {
+  for (const input of publicCases) {
+    const saved = await readFile(
+      join(root, `evaluation/decision-lab/${input.scenario_id}_analysis.json`),
+      'utf8',
+    );
+    if (saved !== serialize(analyzeDecision(input), true))
+      throw Error(`Stale Decision Lab output: ${input.scenario_id}`);
+    labCount++;
+  }
+}
 const results = await load('evaluation/results.json');
 const hash = createHash('sha256')
   .update(await readFile(join(root, 'evaluation/cases.json')))
@@ -44,6 +57,24 @@ for (const entry of screenshots.images) {
   if (createHash('sha256').update(bytes).digest('hex') !== entry.sha256)
     throw new Error(`Screenshot changed: ${entry.file}`);
 }
+if (await exists('evaluation/phase7-browser-checks.json')) {
+  const browser = await load('evaluation/phase7-browser-checks.json');
+  if (
+    browser.app_version !== (await load('package.json')).version ||
+    browser.input_sha256 !==
+      createHash('sha256')
+        .update(await readFile(join(root, browser.input_fixture)))
+        .digest('hex')
+  )
+    throw Error('Decision Lab browser provenance is stale.');
+  for (const capture of browser.captures)
+    if (
+      createHash('sha256')
+        .update(await readFile(join(root, capture.file)))
+        .digest('hex') !== capture.sha256
+    )
+      throw Error(`Decision Lab capture changed: ${capture.file}`);
+}
 async function exists(path) {
   try {
     await access(join(root, path));
@@ -58,6 +89,7 @@ if (await exists('output/pdf/Report_SohamBanerjee.pdf')) {
   if (
     createHash('sha256').update(bytes).digest('hex') !== report.sha256 ||
     report.engine_version !== current.engine_version ||
+    report.application_version !== (await load('package.json')).version ||
     report.main_pages > 15 ||
     report.appendix_pages > 10 ||
     report.visual_review.startsWith('pending')
@@ -71,5 +103,5 @@ if (await exists('deliverables/StackSense26_SohamBanerjee.zip')) {
     throw new Error('Submission ZIP changed after verification.');
 }
 console.log(
-  `PASS: 20 actual outputs match the current engine; case provenance, capture versions and all ${screenshots.images.length} screenshot hashes verified. Report/ZIP hashes checked when present.`,
+  `PASS: 20 actual outputs and ${labCount} Decision Lab reports match the current engine; case provenance, capture versions and all ${screenshots.images.length} screenshot hashes verified. Report/ZIP hashes checked when present.`,
 );

@@ -42,3 +42,9 @@ Keep organiser field names unchanged. Additive fields allowed. Record engine/cat
 ## Release 0.6.0 decision extensions
 
 The same CLI/API objects add `review_actions`, `integration_reviews`, `cost_groups`, `cost_sensitivity` and `plan_comparison`. Details and boundaries: [Phase 6](PHASE_6.md). Infeasible/invalid results have empty cost/comparison arrays. Guidance never changes a result to approved. Sensitivity holds the selected plan fixed and does not mutate/re-evaluate input selection. Comparison entries are completed plans, not independently mixed component alternatives.
+
+## Decision Lab (application 0.7.0)
+
+`POST /api/analyze` accepts one scenario object and returns a separate `analysis_version: 0.1.0` artifact containing the unchanged recommendation, complete-candidate metadata, priority trials or bounded functional experiments, evidence and proposed ADR Markdown. Arrays are rejected with HTTP 400. The existing origin/body/internal-error boundaries apply. No new request can approve evidence or supply arbitrary edit paths.
+
+`npm run --silent analyze -- --input scenario.json --format json|adr` writes stdout; it never writes the input. Exit status follows the original baseline: 0 usable, 2 invalid input/JSON, 3 infeasible, 1 usage/IO/internal failure. The normal recommendation commands and 0.6.0 output objects remain unchanged. [Method and limits](PHASE_7.md).

@@ -1,0 +1,1002 @@
+{
+  "adr_markdown": "# Proposed architecture decision\n\n**Status: Proposed — owner review required.**\n\nEngine 0.6.0; catalog 0.4.0; services 0.6.0; analysis 0.1.0.\nInput SHA-256: e59b99293f954ec6519e26d493899ec3da1d113b94de259cd8b64ac6c3c9dbba.\n\n## Original result\n\nstatic recommendation selected from 10 complete compatible plans; month\\-12 infrastructure planning band USD 0–0/month\\.\nResult: ok.\n\n- frontend: Astro — Covers requested targets web with static rendering\\. Team languages: css, html, javascript\\. Markdown content authoring was explicitly considered\\. Selected after supporting\\-service compatibility, data\\-flow/control checks and whole\\-plan cost scoring\\.\n- backend: None — Static content has no inferred dynamic server requirement; omitting the backend avoids an unnecessary operated application\\. Selected after supporting\\-service compatibility, data\\-flow/control checks and whole\\-plan cost scoring\\.\n- database: None — No server persistence need was inferred; a database is omitted from this core plan\\. Selected after supporting\\-service compatibility, data\\-flow/control checks and whole\\-plan cost scoring\\.\n- hosting: Cloudflare Pages — Matches managed\\_cloud with provider cloudflare; no country/region assurance was requested or inferred\\. Required runtimes and separate database deployment were checked\\. Selected after supporting\\-service compatibility, data\\-flow/control checks and whole\\-plan cost scoring\\.\n\nMonthly planning band: USD 0–0.\n\n## Complete alternatives\n\n- static\\|astro\\|backend\\-none\\|database\\-none\\|pages\\|unspecified; score 86; USD 0–0; selected.\n- static\\|html\\|backend\\-none\\|database\\-none\\|pages\\|unspecified; score 82; USD 0–0; alternative.\n- static\\|astro\\|backend\\-none\\|database\\-none\\|cloudrun\\|unspecified; score 61; USD 19.13–144.75; alternative.\n\n## Preference stability\n\nOriginal winner retained in 25/25 tested settings; 1 observed winners. Counts are not confidence probabilities.\n\n## Cost assumptions\n\n- Horizon: expected month\\-12 footprint; 730 hours/month\\. No tax, development/on\\-call labor, domain registration or new on\\-prem hardware procurement is included\\.\n- Peak concurrency supplied: 50; not equated directly with requests/second\\.\n- RPS absent: assumed 50 requests/user/day averaged across the day \\(1\\.736 RPS\\); peak capacity still uses the concurrency hypothesis\\.\n- Data volume 1 GB supplied; egress 30 GB/month assumed at 0\\.01 GB per year\\-12 user, minimum 1 GB; backup retention 1 months assumed\\.\n- Static hosting/CDN is one bundled resource\\. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed\\.\n- Static assets only; no Functions or paid add\\-ons\\. Build/file limits apply\\.\n\n## Blockers, validation and owner actions\n\n- info: Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name\\.\n\n## Evidence register\n\n- core:astro: [Astro deployment](https://docs.astro.build/en/guides/deploy/); checked 2026\\-11\\-13; Static build/deployment\n- core:astro\\-markdown: [Astro Markdown](https://docs.astro.build/en/guides/markdown-content/); checked 2026\\-11\\-13; Built\\-in Markdown content authoring; no performance or price claim\n- core:html: [HTML content](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content); checked 2026\\-11\\-13; Static HTML content delivery\n- core:pages: [Cloudflare Pages](https://developers.cloudflare.com/pages/); checked 2026\\-11\\-13; Static web asset hosting; no country\\-residency assurance\n- services:git: [Git documentation](https://git-scm.com/docs/git); checked 2026\\-11\\-13; Local source versioning; build scripts run locally without hosted CI billing\\.\n- services:pages\\-price: [Cloudflare Pages pricing](https://developers.cloudflare.com/pages/functions/pricing/); checked 2026\\-11\\-13; Static requests free; build/file limits remain relevant\\.\n\n## Limits and acceptance\n\n- Exploratory analysis only. The original recommendation and original requirements are unchanged.\n- Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.\n- The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.\n- Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.\n- Compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.\n- No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.\n- The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.\n\nAcceptance, independent review, vendor eligibility, implementation and deployment remain owner tasks. No acceptance is recorded.\n",
+  "analysis_version": "0.1.0",
+  "baseline": {
+    "applied_extensions": [],
+    "architecture_style": "static",
+    "assumptions": [
+      "Interpreted project.description phrase \"Markdown\" as markdown; this bounded hint does not infer legal or regional requirements.",
+      "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
+    ],
+    "catalog_version": "0.4.0",
+    "control_plan": {
+      "deployment_controls": [
+        "TLS at all client/service/database boundaries.",
+        "Least-privilege service identities, secret rotation, encryption at rest and redacted audit logs.",
+        "Explicit regional primary/replica/storage/log/backup locations and retention; no uncontrolled cross-region replication.",
+        "Restore-test backups and test negative authorization, tenant boundaries and deletion workflows."
+      ],
+      "frameworks": []
+    },
+    "cost_breakdown": [
+      {
+        "basis": "Static assets only; no Functions or paid add-ons. Build/file limits apply.",
+        "category": "hosting",
+        "id": "static-hosting",
+        "monthly_usd": {
+          "max": 0,
+          "min": 0
+        },
+        "quantity": {
+          "max": 1,
+          "min": 1
+        },
+        "source_ids": [
+          "pages-price"
+        ],
+        "unit_rate_usd": {
+          "max": 0,
+          "min": 0
+        }
+      }
+    ],
+    "cost_groups": [
+      {
+        "category": "infrastructure_and_operations",
+        "line_ids": [
+          "static-hosting"
+        ],
+        "max": 0,
+        "min": 0
+      },
+      {
+        "category": "payment_and_message_activity",
+        "line_ids": [],
+        "max": 0,
+        "min": 0
+      }
+    ],
+    "cost_sensitivity": [],
+    "data_flows": [
+      {
+        "component": "primary-compute",
+        "location": "Choose deployment location before provisioning",
+        "scope": "Application processing; configure region, private access, logging and replicas explicitly.",
+        "verification": "configuration_required"
+      },
+      {
+        "component": "local-build",
+        "location": "Build environment: source/synthetic fixtures only",
+        "scope": "Never export production data/secrets/personal data to build logs.",
+        "verification": "source_only_no_production_data"
+      },
+      {
+        "component": "cdn",
+        "location": "Selected deployment region (must be chosen before provisioning)",
+        "scope": "Static/CDN delivery is bundled with hosting and is not billed again. No private/country-restricted data is sent to global edges.",
+        "verification": "configuration_required"
+      }
+    ],
+    "database_region": null,
+    "decision_trace": {
+      "complete_candidates": 10,
+      "core_candidates": 10,
+      "rejected": [],
+      "score": 86,
+      "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified"
+    },
+    "engine_version": "0.6.0",
+    "estimate_status": "estimated",
+    "estimated_monthly_cost_usd": {
+      "assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 50; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
+        "Static assets only; no Functions or paid add-ons. Build/file limits apply."
+      ],
+      "max": 0,
+      "min": 0
+    },
+    "integration_reviews": [],
+    "plan_comparison": [
+      {
+        "architecture_style": "static",
+        "budget_fit": "within_upper",
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "Astro",
+          "hosting": "Cloudflare Pages"
+        },
+        "cost_assumptions": [
+          "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+          "Peak concurrency supplied: 50; not equated directly with requests/second.",
+          "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+          "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+          "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
+          "Static assets only; no Functions or paid add-ons. Build/file limits apply."
+        ],
+        "database_region": null,
+        "monthly_usd": {
+          "max": 0,
+          "min": 0
+        },
+        "operated_components": 0,
+        "plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "primary_region": null,
+        "retained_constraints": [
+          "platforms=web",
+          "cloud_preference=any",
+          "deployment_model=managed_cloud",
+          "data_residency=none",
+          "compliance=none",
+          "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        ],
+        "score": 86,
+        "score_delta": 0,
+        "selected": true,
+        "supporting_services": [
+          "Cloudflare Pages static delivery",
+          "Git with local build scripts"
+        ],
+        "tied_on_score": false,
+        "warning_codes": [
+          "FREE_TIER_OR_DEPLOYMENT_LIMITS"
+        ]
+      },
+      {
+        "architecture_style": "static",
+        "budget_fit": "within_upper",
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "HTML / CSS",
+          "hosting": "Cloudflare Pages"
+        },
+        "cost_assumptions": [
+          "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+          "Peak concurrency supplied: 50; not equated directly with requests/second.",
+          "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+          "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+          "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
+          "Static assets only; no Functions or paid add-ons. Build/file limits apply."
+        ],
+        "database_region": null,
+        "monthly_usd": {
+          "max": 0,
+          "min": 0
+        },
+        "operated_components": 0,
+        "plan_id": "static|html|backend-none|database-none|pages|unspecified",
+        "primary_region": null,
+        "retained_constraints": [
+          "platforms=web",
+          "cloud_preference=any",
+          "deployment_model=managed_cloud",
+          "data_residency=none",
+          "compliance=none",
+          "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        ],
+        "score": 82,
+        "score_delta": -4,
+        "selected": false,
+        "supporting_services": [
+          "Cloudflare Pages static delivery",
+          "Git with local build scripts"
+        ],
+        "tied_on_score": false,
+        "warning_codes": [
+          "FREE_TIER_OR_DEPLOYMENT_LIMITS"
+        ]
+      },
+      {
+        "architecture_style": "static",
+        "budget_fit": "over_budget",
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "Astro",
+          "hosting": "Google Cloud Run"
+        },
+        "cost_assumptions": [
+          "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+          "Peak concurrency supplied: 50; not equated directly with requests/second.",
+          "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+          "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+          "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 1 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+          "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+          "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+          "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+          "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+          "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas."
+        ],
+        "database_region": null,
+        "monthly_usd": {
+          "max": 144.75,
+          "min": 19.13
+        },
+        "operated_components": 0,
+        "plan_id": "static|astro|backend-none|database-none|cloudrun|unspecified",
+        "primary_region": null,
+        "retained_constraints": [
+          "platforms=web",
+          "cloud_preference=any",
+          "deployment_model=managed_cloud",
+          "data_residency=none",
+          "compliance=none",
+          "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        ],
+        "score": 61,
+        "score_delta": -25,
+        "selected": false,
+        "supporting_services": [
+          "Git with local build scripts"
+        ],
+        "tied_on_score": false,
+        "warning_codes": [
+          "BUDGET_EXCEEDED",
+          "FREE_TIER_OR_DEPLOYMENT_LIMITS"
+        ]
+      }
+    ],
+    "primary_region": null,
+    "review_actions": [],
+    "rules_version": "0.6.0",
+    "scenario_id": "P1",
+    "score_breakdown": [
+      {
+        "contribution": 25,
+        "criterion": "cost",
+        "driven_by": [
+          "budget.monthly_infra_usd",
+          "priorities.cost"
+        ],
+        "fit": 5,
+        "reason": "USD 0–0/month versus budget 0: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+        "weight": 5
+      },
+      {
+        "contribution": 20,
+        "criterion": "time_to_market",
+        "driven_by": [
+          "team.languages",
+          "team.experience",
+          "timeline.mvp_weeks",
+          "project.description",
+          "priorities.time_to_market"
+        ],
+        "fit": 5,
+        "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 1.25/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+        "weight": 4
+      },
+      {
+        "contribution": 5,
+        "criterion": "scalability",
+        "driven_by": [
+          "scale.users_at_launch",
+          "scale.users_12_months",
+          "scale.peak_concurrent_users",
+          "scale.workload",
+          "priorities.scalability"
+        ],
+        "fit": 5,
+        "reason": "Static delivery avoids application writes; embedded-writer and growth triggers are ordinal review heuristics, not published capacity limits.",
+        "weight": 1
+      },
+      {
+        "contribution": 15,
+        "criterion": "performance",
+        "driven_by": [
+          "scale.workload",
+          "scale.peak_concurrent_users",
+          "priorities.performance"
+        ],
+        "fit": 5,
+        "reason": "No latency SLA or measured framework throughput is credited; embedded-write concurrency is a review heuristic. Low-memory clients require measurement, not an assumed framework benchmark.",
+        "weight": 3
+      },
+      {
+        "contribution": 15,
+        "criterion": "maintainability",
+        "driven_by": [
+          "team.languages",
+          "team.has_devops",
+          "team.size",
+          "infrastructure.existing_systems",
+          "priorities.maintainability"
+        ],
+        "fit": 5,
+        "reason": "Operational burden 0/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+        "weight": 3
+      },
+      {
+        "contribution": 6,
+        "criterion": "security",
+        "driven_by": [
+          "priorities.security"
+        ],
+        "fit": 3,
+        "reason": "Baseline configured controls: 3; explicit reviewed tenant isolation: 4. No certification/audit credit is assigned.",
+        "weight": 2
+      }
+    ],
+    "services_version": "0.6.0",
+    "stack": {
+      "backend": {
+        "alternatives": [
+          {
+            "choice": "ASP.NET Core",
+            "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+          }
+        ],
+        "choice": "None",
+        "driven_by": [
+          "project.type",
+          "team.languages",
+          "timeline.mvp_weeks",
+          "requirements.auth",
+          "requirements.realtime"
+        ],
+        "id": "backend-none",
+        "justification": "Static content has no inferred dynamic server requirement; omitting the backend avoids an unnecessary operated application. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+        "layer": "backend",
+        "source_ids": [
+          "html"
+        ],
+        "tradeoffs": [
+          "Cannot implement dynamic accounts, writes or APIs."
+        ]
+      },
+      "database": {
+        "alternatives": [
+          {
+            "choice": "MariaDB",
+            "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+          }
+        ],
+        "choice": "None",
+        "driven_by": [
+          "project.type",
+          "requirements.auth",
+          "requirements.offline_support",
+          "infrastructure.existing_systems"
+        ],
+        "id": "database-none",
+        "justification": "No server persistence need was inferred; a database is omitted from this core plan. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+        "layer": "database",
+        "source_ids": [
+          "html"
+        ],
+        "tradeoffs": [
+          "Does not persist dynamic user data."
+        ]
+      },
+      "frontend": {
+        "alternatives": [
+          {
+            "choice": "HTML / CSS",
+            "why_not": "Best compatible complete plan using this option scored 82, below 86; other layers may also differ."
+          }
+        ],
+        "choice": "Astro",
+        "driven_by": [
+          "project.platforms",
+          "project.type",
+          "requirements.seo_critical",
+          "team.languages",
+          "project.description"
+        ],
+        "id": "astro",
+        "justification": "Covers requested targets web with static rendering. Team languages: css, html, javascript. Markdown content authoring was explicitly considered. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+        "layer": "frontend",
+        "source_ids": [
+          "astro",
+          "astro-markdown"
+        ],
+        "tradeoffs": [
+          "Client accessibility, security and device behavior still require implementation and testing."
+        ]
+      },
+      "hosting": {
+        "alternatives": [
+          {
+            "choice": "Google Cloud Run",
+            "why_not": "Best compatible complete plan using this option scored 61, below 86; other layers may also differ."
+          }
+        ],
+        "choice": "Cloudflare Pages",
+        "driven_by": [
+          "infrastructure.cloud_preference",
+          "infrastructure.deployment_model",
+          "infrastructure.data_residency",
+          "team.has_devops"
+        ],
+        "id": "pages",
+        "justification": "Matches managed_cloud with provider cloudflare; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+        "layer": "hosting",
+        "source_ids": [
+          "pages"
+        ],
+        "tradeoffs": [
+          "Country-scoped delivery/residency is not established; dynamic servers/databases are excluded from this variant."
+        ]
+      },
+      "supporting": [
+        {
+          "alternatives": [
+            {
+              "choice": "Amazon CloudFront",
+              "why_not": "More custom integration/operation than this reviewed option."
+            }
+          ],
+          "capabilities": [
+            "cdn"
+          ],
+          "choice": "Cloudflare Pages static delivery",
+          "driven_by": [
+            "project.type"
+          ],
+          "incremental_compute_units": 0,
+          "justification": "Static delivery is part of the hosting bundle; do not count it as another resource bill. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+          "layer": "cdn",
+          "placement": "host",
+          "service_id": "cdn",
+          "source_ids": [
+            "pages-price"
+          ],
+          "tradeoffs": [
+            "Static/CDN delivery is bundled with hosting and is not billed again. No private/country-restricted data is sent to global edges."
+          ]
+        },
+        {
+          "alternatives": [
+            {
+              "choice": "GitHub Actions",
+              "why_not": "Adds an integration or operating requirement unnecessary for this selected profile."
+            }
+          ],
+          "capabilities": [
+            "ci"
+          ],
+          "choice": "Git with local build scripts",
+          "driven_by": [
+            "infrastructure.deployment_model"
+          ],
+          "incremental_compute_units": 0,
+          "justification": "Build/test/deploy with pinned dependencies, synthetic fixtures and controlled secrets; production data does not enter the build service.",
+          "layer": "ci_cd",
+          "placement": "build",
+          "service_id": "local-build",
+          "source_ids": [
+            "git"
+          ],
+          "tradeoffs": [
+            "Local build artifacts must be reproducible and verified before deployment."
+          ]
+        }
+      ]
+    },
+    "status": "ok",
+    "summary": "static recommendation selected from 10 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
+    "validation_errors": [],
+    "warnings": [
+      {
+        "code": "FREE_TIER_OR_DEPLOYMENT_LIMITS",
+        "fields": [
+          "requirements.availability"
+        ],
+        "message": "Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name.",
+        "severity": "info"
+      }
+    ]
+  },
+  "engine_evaluations": 25,
+  "evidence": [
+    {
+      "checked_on": "2026-11-13",
+      "id": "core:astro",
+      "scope": "Static build/deployment",
+      "title": "Astro deployment",
+      "url": "https://docs.astro.build/en/guides/deploy/"
+    },
+    {
+      "checked_on": "2026-11-13",
+      "id": "core:astro-markdown",
+      "scope": "Built-in Markdown content authoring; no performance or price claim",
+      "title": "Astro Markdown",
+      "url": "https://docs.astro.build/en/guides/markdown-content/"
+    },
+    {
+      "checked_on": "2026-11-13",
+      "id": "core:html",
+      "scope": "Static HTML content delivery",
+      "title": "HTML content",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content"
+    },
+    {
+      "checked_on": "2026-11-13",
+      "id": "core:pages",
+      "scope": "Static web asset hosting; no country-residency assurance",
+      "title": "Cloudflare Pages",
+      "url": "https://developers.cloudflare.com/pages/"
+    },
+    {
+      "checked_on": "2026-11-13",
+      "id": "services:git",
+      "scope": "Local source versioning; build scripts run locally without hosted CI billing.",
+      "title": "Git documentation",
+      "url": "https://git-scm.com/docs/git"
+    },
+    {
+      "checked_on": "2026-11-13",
+      "id": "services:pages-price",
+      "scope": "Static requests free; build/file limits remain relevant.",
+      "title": "Cloudflare Pages pricing",
+      "url": "https://developers.cloudflare.com/pages/functions/pricing/"
+    }
+  ],
+  "functional_experiments": {
+    "max_edits": 2,
+    "protected_fields": [
+      "compliance",
+      "infrastructure",
+      "requirements.multi_tenant",
+      "requirements.availability",
+      "budget",
+      "team",
+      "timeline"
+    ],
+    "smallest_successful_edit_count": null,
+    "status": "not_applicable",
+    "successful_variants": [],
+    "tested_variants": 0,
+    "trials": []
+  },
+  "input_sha256": "e59b99293f954ec6519e26d493899ec3da1d113b94de259cd8b64ac6c3c9dbba",
+  "limitations": [
+    "Exploratory analysis only. The original recommendation and original requirements are unchanged.",
+    "Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.",
+    "The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.",
+    "Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.",
+    "Compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.",
+    "No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.",
+    "The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred."
+  ],
+  "priority_analysis": {
+    "distinct_winners": 1,
+    "evaluated_plans": [
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "Astro",
+          "hosting": "Cloudflare Pages"
+        },
+        "fit": {
+          "cost": 5,
+          "maintainability": 5,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 5
+        },
+        "monthly_usd": {
+          "max": 0,
+          "min": 0
+        },
+        "operated_components": 0,
+        "original_priority_score": 86,
+        "plan_id": "static|astro|backend-none|database-none|pages|unspecified"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "HTML / CSS",
+          "hosting": "Cloudflare Pages"
+        },
+        "fit": {
+          "cost": 5,
+          "maintainability": 5,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 0,
+          "min": 0
+        },
+        "operated_components": 0,
+        "original_priority_score": 82,
+        "plan_id": "static|html|backend-none|database-none|pages|unspecified"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "Astro",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 5
+        },
+        "monthly_usd": {
+          "max": 144.75,
+          "min": 19.13
+        },
+        "operated_components": 0,
+        "original_priority_score": 61,
+        "plan_id": "static|astro|backend-none|database-none|cloudrun|unspecified"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "Astro",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 5
+        },
+        "monthly_usd": {
+          "max": 254,
+          "min": 62.45
+        },
+        "operated_components": 0,
+        "original_priority_score": 61,
+        "plan_id": "static|astro|backend-none|database-none|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "Astro",
+          "hosting": "Amazon ECS / Fargate"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 5
+        },
+        "monthly_usd": {
+          "max": 207.09,
+          "min": 68.74
+        },
+        "operated_components": 0,
+        "original_priority_score": 58,
+        "plan_id": "static|astro|backend-none|database-none|ecs|unspecified"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "Astro",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 5
+        },
+        "monthly_usd": {
+          "max": 323.35,
+          "min": 296.05
+        },
+        "operated_components": 0,
+        "original_priority_score": 58,
+        "plan_id": "static|astro|backend-none|database-none|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "HTML / CSS",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 144.75,
+          "min": 19.13
+        },
+        "operated_components": 0,
+        "original_priority_score": 57,
+        "plan_id": "static|html|backend-none|database-none|cloudrun|unspecified"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "HTML / CSS",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 254,
+          "min": 62.45
+        },
+        "operated_components": 0,
+        "original_priority_score": 57,
+        "plan_id": "static|html|backend-none|database-none|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "HTML / CSS",
+          "hosting": "Amazon ECS / Fargate"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 207.09,
+          "min": 68.74
+        },
+        "operated_components": 0,
+        "original_priority_score": 54,
+        "plan_id": "static|html|backend-none|database-none|ecs|unspecified"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "HTML / CSS",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 323.35,
+          "min": 296.05
+        },
+        "operated_components": 0,
+        "original_priority_score": 54,
+        "plan_id": "static|html|backend-none|database-none|ase-india|centralindia"
+      }
+    ],
+    "frontier_plan_ids": [
+      "static|astro|backend-none|database-none|pages|unspecified"
+    ],
+    "retained_winner_settings": 25,
+    "status": "evaluated",
+    "tested_settings": 25,
+    "trials": [
+      {
+        "changed_winner": false,
+        "criterion": "cost",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 5,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 1
+      },
+      {
+        "changed_winner": false,
+        "criterion": "cost",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 5,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 2
+      },
+      {
+        "changed_winner": false,
+        "criterion": "cost",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 5,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 3
+      },
+      {
+        "changed_winner": false,
+        "criterion": "cost",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 5,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 4
+      },
+      {
+        "changed_winner": false,
+        "criterion": "time_to_market",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 4,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 1
+      },
+      {
+        "changed_winner": false,
+        "criterion": "time_to_market",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 4,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 2
+      },
+      {
+        "changed_winner": false,
+        "criterion": "time_to_market",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 4,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 3
+      },
+      {
+        "changed_winner": false,
+        "criterion": "time_to_market",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 4,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 5
+      },
+      {
+        "changed_winner": false,
+        "criterion": "scalability",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 1,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 2
+      },
+      {
+        "changed_winner": false,
+        "criterion": "scalability",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 1,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 3
+      },
+      {
+        "changed_winner": false,
+        "criterion": "scalability",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 1,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 4
+      },
+      {
+        "changed_winner": false,
+        "criterion": "scalability",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 1,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 5
+      },
+      {
+        "changed_winner": false,
+        "criterion": "performance",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 3,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 1
+      },
+      {
+        "changed_winner": false,
+        "criterion": "performance",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 3,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 2
+      },
+      {
+        "changed_winner": false,
+        "criterion": "performance",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 3,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 4
+      },
+      {
+        "changed_winner": false,
+        "criterion": "performance",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 3,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 5
+      },
+      {
+        "changed_winner": false,
+        "criterion": "maintainability",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 3,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 1
+      },
+      {
+        "changed_winner": false,
+        "criterion": "maintainability",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 3,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 2
+      },
+      {
+        "changed_winner": false,
+        "criterion": "maintainability",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 3,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 4
+      },
+      {
+        "changed_winner": false,
+        "criterion": "maintainability",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 3,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 5
+      },
+      {
+        "changed_winner": false,
+        "criterion": "security",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 2,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 1
+      },
+      {
+        "changed_winner": false,
+        "criterion": "security",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 2,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 3
+      },
+      {
+        "changed_winner": false,
+        "criterion": "security",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 2,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 4
+      },
+      {
+        "changed_winner": false,
+        "criterion": "security",
+        "displayed_equal_score_alternatives": 0,
+        "original_weight": 2,
+        "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified",
+        "trial_weight": 5
+      }
+    ]
+  }
+}

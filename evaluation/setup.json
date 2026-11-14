@@ -1,9 +1,9 @@
 {
-  "measured_at": "2026-11-14T05:20:34Z",
+  "measured_at": "2026-11-14T05:54:22Z",
   "mode": "fresh archive extraction; npm offline install using previously populated cache",
   "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
-  "runtime_source_sha256": "8d08e2e2bd182b53474c5749731dd278681714936aaf095b10bc8d00286bf3ec",
-  "source_zip_sha256": "cb1fb7a2d254aa88a9096c77cf998e433fb7b56fbe7d27236aecf32bef7cd2da",
+  "runtime_source_sha256": "a38fd835905b19f6ad51c93c95f5db2c6b9c213ddb12707a89c77646ef72ab31",
+  "source_zip_sha256": "0005fb9d1b30850b36b809a24c441e88d1ba94456363a3796a316736fd8bf569",
   "steps": [
     {
       "command": [
@@ -11,7 +11,7 @@
         "ci",
         "--offline"
       ],
-      "seconds": 3.25,
+      "seconds": 3.332,
       "exit_code": 0
     },
     {
@@ -20,7 +20,7 @@
         "run",
         "check"
       ],
-      "seconds": 13.426,
+      "seconds": 11.835,
       "exit_code": 0
     },
     {
@@ -29,7 +29,7 @@
         "run",
         "build"
       ],
-      "seconds": 2.671,
+      "seconds": 2.341,
       "exit_code": 0
     },
     {
@@ -38,7 +38,7 @@
         "run",
         "evaluate"
       ],
-      "seconds": 0.372,
+      "seconds": 0.366,
       "exit_code": 0
     },
     {
@@ -47,10 +47,10 @@
         "run",
         "verify:release"
       ],
-      "seconds": 0.372,
+      "seconds": 0.546,
       "exit_code": 0
     }
   ],
-  "total_seconds": 20.392,
+  "total_seconds": 18.517,
   "scope_limit": "Includes extraction/install/check/build/evaluation verification; real cold API startup measured separately. No new online download or other OS is claimed."
 }
