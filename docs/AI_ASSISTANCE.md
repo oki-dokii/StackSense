@@ -57,3 +57,5 @@ Codex used the Sites local-preview workflow, reviewed W3C focus/contrast/form gu
 ## Critically qualified recommendation revision (14 November 2026)
 
 Following participant feedback, Codex checked the brief's explicit allowance for critically warned/reduced-scope stacks, researched primary vendor integration/pricing documentation, implemented the evidence-gap versus conflict distinction, direct Entra and India Razorpay profiles, infrastructure/activity cost separation, removed duplicate WebSocket sizing, and refreshed tests/outputs/browser/report/package evidence. The README/report were edited for submission-facing clarity while preserving truthful AI attribution. No independent authorship, human acceptance, vendor contract or production compliance approval is fabricated.
+
+The same assistance was used to design and run 30 varied project briefs, diagnose search-persistence and unused-client selection defects, review official AWS primary-region documentation, implement generic fixes and regression checks, and refresh submission evidence. These author-designed tests are not independent grading or organiser hidden tests.

@@ -250,11 +250,17 @@ export function recommend(
       operation_penalty: operationPenalty,
     });
   }
+  // Prefer a narrower reviewed client variant only after score, cost and operating burden tie.
+  const unusedClientTargets = (candidate: CompleteCandidate) =>
+    candidate.plan.frontend.platforms!.filter(
+      (target) => !s.project.platforms.some((requested) => requested === target),
+    ).length;
   candidates.sort(
     (a, b) =>
       b.score - a.score ||
       a.cost.max - b.cost.max ||
       a.ranked.operated_components - b.ranked.operated_components ||
+      unusedClientTargets(a) - unusedClientTargets(b) ||
       compare(a.plan.id, b.plan.id),
   );
   context.onCompletePlans?.(

@@ -1,62 +1,62 @@
 {
-  "analysis_version": "0.1.0",
-  "app_version": "0.7.0",
+  "analysis_version": "0.2.0",
+  "app_version": "0.8.0",
   "checked_on": "2026-11-14",
-  "engine_version": "0.6.0",
+  "engine_version": "0.8.0",
   "input_sha256": "6a4aa08bd2fddfaf6a6498188867848d721c5cb6822164b27a783ae8ead76d57",
   "measurement_scope": "Loopback HTTP through consumed JSON; parity validated separately after timing. Three measured runs per case after one warm-up; excludes browser rendering and performance of recommended architectures.",
   "measurements": [
     {
-      "max_ms": 11.14,
+      "max_ms": 12.676,
       "samples_ms": [
-        11.135,
-        11.14,
-        10.781
+        11.959,
+        12.676,
+        10.513
       ],
       "scenario_id": "P1"
     },
     {
-      "max_ms": 25.835,
+      "max_ms": 30.541,
       "samples_ms": [
-        25.771,
-        25.835,
-        24.523
+        26.524,
+        30.541,
+        27.804
       ],
       "scenario_id": "P2"
     },
     {
-      "max_ms": 119.073,
+      "max_ms": 126.761,
       "samples_ms": [
-        119.073,
-        117.903,
-        118.392
+        126.761,
+        125.435,
+        123.498
       ],
       "scenario_id": "P3"
     },
     {
-      "max_ms": 22.5,
+      "max_ms": 23.61,
       "samples_ms": [
-        22.5,
-        22.242,
-        21.757
+        23.61,
+        23.409,
+        22.988
       ],
       "scenario_id": "P4"
     },
     {
-      "max_ms": 28.507,
+      "max_ms": 31.252,
       "samples_ms": [
-        28.507,
-        28.052,
-        27.87
+        30.656,
+        30.962,
+        31.252
       ],
       "scenario_id": "P5"
     },
     {
-      "max_ms": 43.515,
+      "max_ms": 46.738,
       "samples_ms": [
-        42.939,
-        43.515,
-        43.246
+        46.738,
+        46.468,
+        46.403
       ],
       "scenario_id": "P6"
     }

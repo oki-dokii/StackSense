@@ -373,3 +373,7 @@ Implemented scope and explicit remaining evidence: [Phase 6 record](docs/PHASE_6
 ## Phase 11: focused accessibility QA
 
 [Implemented keyboard/contrast work](docs/PHASE_11.md): actual browser findings, route/section/error/import focus fixes, darker muted text, six actual React DOM tests and seven bounded browser audit snapshots. Remaining: VoiceOver/NVDA, browser/zoom/control-semantic checks, actual uncached-machine installation and independent review.
+
+## Scenario coverage follow-up
+
+The [thirty-scenario stress evaluation](docs/STRESS_EVALUATION.md) covers fifteen concrete project types and records three corrected refusals plus the narrower-client tie-break. There are 308 application tests. Next priority is honest budget feasibility: twelve stress briefs exceed the infrastructure budget at the lower bound; do not truncate price intervals or silently drop required services.

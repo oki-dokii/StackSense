@@ -98,7 +98,8 @@ def main():
                     if 'fixtures' not in path.parts:
                         continue
                     for item in (value if isinstance(value, list) else [value]):
-                        for error in vin.iter_errors(item):
+                        scenario = item['scenario'] if path.name == 'stress-cases.json' else item
+                        for error in vin.iter_errors(scenario):
                             problems.append(f'{path.name}: {list(error.path)}: {error.message}')
                 base = docs[ROOT / 'fixtures/minimal.json']
                 negatives = []

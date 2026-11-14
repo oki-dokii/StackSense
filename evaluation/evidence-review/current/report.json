@@ -38,7 +38,7 @@
   "catalogs": {
     "core": {
       "version": "0.4.0",
-      "sha256": "5432f8df6f65b94043ad9a2655ae9765b074f67977d2f240c43a54f80bee0978"
+      "sha256": "700892da754619395b991a0587d708e65a16262fbc3c61486bd9133d78d76923"
     },
     "services": {
       "version": "0.8.0",
@@ -185,14 +185,14 @@
       "id": "aws-regions",
       "title": "AWS region country mapping",
       "url": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-      "checked_on": "2026-11-13",
-      "scope": "Mumbai ap-south-1 maps to India; does not establish every service data flow.",
+      "checked_on": "2026-11-14",
+      "scope": "Mumbai ap-south-1 maps to India, N. Virginia us-east-1 to the US and Ireland eu-west-1 to the EU; does not establish every service data flow.",
       "categories": [
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
-      "review_due_on": "2026-12-13",
+      "age_days": 0,
+      "review_due_on": "2026-12-14",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
       "catalog_references": [
@@ -203,7 +203,27 @@
         },
         {
           "id": "aws-regions",
+          "path": "/entries/28/regions/1/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "aws-regions",
+          "path": "/entries/28/regions/2/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "aws-regions",
           "path": "/entries/28/managed_databases/0/regions/0/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "aws-regions",
+          "path": "/entries/28/managed_databases/0/regions/1/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "aws-regions",
+          "path": "/entries/28/managed_databases/0/regions/2/source_ids",
           "owner": "ecs"
         }
       ],
@@ -526,20 +546,30 @@
       "id": "fargate-regions",
       "title": "ECS Fargate supported regions",
       "url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate-Regions.html",
-      "checked_on": "2026-11-13",
-      "scope": "Linux Fargate support in Mumbai ap-south-1; primary compute mapping only.",
+      "checked_on": "2026-11-14",
+      "scope": "Linux Fargate primary compute availability in Mumbai ap-south-1, N. Virginia us-east-1 and Ireland eu-west-1; no end-to-end data-flow assurance.",
       "categories": [
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
-      "review_due_on": "2026-12-13",
+      "age_days": 0,
+      "review_due_on": "2026-12-14",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
       "catalog_references": [
         {
           "id": "fargate-regions",
           "path": "/entries/28/regions/0/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "fargate-regions",
+          "path": "/entries/28/regions/1/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "fargate-regions",
+          "path": "/entries/28/regions/2/source_ids",
           "owner": "ecs"
         }
       ],
@@ -968,6 +998,16 @@
           "id": "rds-pg",
           "path": "/entries/28/managed_databases/0/regions/0/source_ids",
           "owner": "ecs"
+        },
+        {
+          "id": "rds-pg",
+          "path": "/entries/28/managed_databases/0/regions/1/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "rds-pg",
+          "path": "/entries/28/managed_databases/0/regions/2/source_ids",
+          "owner": "ecs"
         }
       ],
       "public_output_mentions": [
@@ -979,20 +1019,30 @@
       "id": "rds-regions",
       "title": "Amazon RDS regional endpoints",
       "url": "https://docs.aws.amazon.com/general/latest/gr/rds-service.html",
-      "checked_on": "2026-11-13",
-      "scope": "RDS Mumbai regional service; combined with RDS PostgreSQL product evidence. No SKU/version, legal or workload guarantee.",
+      "checked_on": "2026-11-14",
+      "scope": "RDS service endpoints in Mumbai, N. Virginia and Ireland, combined with RDS PostgreSQL product evidence for primary deployment mappings. Exact engine version/SKU eligibility, backup placement and contracts remain deployment review tasks.",
       "categories": [
         "region_or_controls"
       ],
       "cadence_days": 30,
-      "age_days": 1,
-      "review_due_on": "2026-12-13",
+      "age_days": 0,
+      "review_due_on": "2026-12-14",
       "status": "within_review_window",
       "no_structured_catalog_reference": false,
       "catalog_references": [
         {
           "id": "rds-regions",
           "path": "/entries/28/managed_databases/0/regions/0/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "rds-regions",
+          "path": "/entries/28/managed_databases/0/regions/1/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "rds-regions",
+          "path": "/entries/28/managed_databases/0/regions/2/source_ids",
           "owner": "ecs"
         }
       ],

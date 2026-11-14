@@ -1,4 +1,5 @@
 import { readFile, access } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -18,6 +19,10 @@ const load = async (path) =>
   JSON.parse(await readFile(join(root, path), 'utf8'));
 const publicCases = await load('fixtures/public/scenarios.json');
 const cases = await load('evaluation/cases.json');
+execFileSync(process.execPath, ['scripts/evaluate-stress.mjs', '--check'], {
+  cwd: root,
+  stdio: 'pipe',
+});
 for (const [directory, inputs] of [
   ['outputs', publicCases],
   ['evaluation/outputs', cases.map((item) => item.scenario)],

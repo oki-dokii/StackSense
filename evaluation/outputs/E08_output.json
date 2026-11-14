@@ -483,7 +483,7 @@
       "core": {
         "backend": "Go net/http",
         "database": "MySQL",
-        "frontend": "Flutter",
+        "frontend": "React / Vite",
         "hosting": "Google Cloud Run"
       },
       "cost_assumptions": [
@@ -510,7 +510,7 @@
         "min": 134.27
       },
       "operated_components": 1.25,
-      "plan_id": "modular_monolith|flutter|go-http|mysql|cloudrun|unspecified",
+      "plan_id": "modular_monolith|react|go-http|mysql|cloudrun|unspecified",
       "primary_region": null,
       "retained_constraints": [
         "platforms=web",
@@ -667,7 +667,7 @@
     "frontend": {
       "alternatives": [
         {
-          "choice": "Flutter",
+          "choice": "React / Vite",
           "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
         }
       ],

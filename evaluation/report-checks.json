@@ -11,6 +11,6 @@
   "engine_version": "0.8.0",
   "application_version": "0.8.0",
   "owner_metadata_confirmed": true,
-  "visual_review": "All 25 rendered A4 pages inspected in seven contact sheets; no clipped text, overlap or unintended page spill observed.",
-  "sha256": "40fb35bebaf274506d4fc9712886afbf7210c9af44b9f4d26728fed4bd27615a"
+  "visual_review": "All 25 final pages rendered. Updated pages 1, 5, 12 and 22 were visually inspected at full size without clipping or overlap; unchanged pages matched previously inspected rasters. Final setup-timing-only rebuild changed page 12, which was re-inspected.",
+  "sha256": "c3b350fcc483452aebc112d82237f75f79a6cd2cf47dd946e5d73338a9795a14"
 }

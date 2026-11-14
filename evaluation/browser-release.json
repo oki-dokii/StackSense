@@ -6,7 +6,7 @@
   "input_fixture": "fixtures/public/scenarios.json",
   "input_sha256": "6a4aa08bd2fddfaf6a6498188867848d721c5cb6822164b27a783ae8ead76d57",
   "browser_export_sha256": {
-    "p3jsonPath": "dc7434d67946ac74a4412272d895223f4a67cb0920e8aeea3d5d52d536a3a0d2",
+    "p3jsonPath": "7ad1b0570fec551994c606465090d01863faf2b7000cb6ccc04b322b8e368773",
     "p3adrPath": "08258d486334cbdf58af764a8e475fb2ae7974dfcb56ebbb39f8862889014cf1",
     "p2jsonPath": "2dd8f6cfc2ce93a38e761cd441f068bd6e2e420a2e6ab51ab0ae86ce98586a8b"
   },
@@ -14,7 +14,8 @@
     "Current P2 recommendation JSON matches engine output including critical warnings and selected services",
     "Current P3 analysis JSON and Proposed ADR match engine artifacts",
     "All 15 batch overview captures waited for their current rendered result summary",
-    "Refreshed eight scoped accessibility audit snapshots on the current release"
+    "Refreshed eight scoped accessibility audit snapshots on the current release",
+    "After the generic unused-client tie-break, refreshed P3 browser JSON and ADR exactly match current engine artifacts; all six public recommendation outputs remain byte-identical."
   ],
   "captures": [
     {
@@ -24,6 +25,10 @@
     {
       "file": "docs/evidence/current/P2-stack.png",
       "sha256": "53fe759d83b0982bbb840d86be78da07e5eebfa5658831d7bdfdc89f2967bd51"
+    },
+    {
+      "file": "docs/evidence/current/stress-lab.png",
+      "sha256": "aa191c13fafe7272fbacf74de7589dc1917abe928938dc5957a2c94affb1e1d6"
     }
   ]
 }

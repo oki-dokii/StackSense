@@ -2,6 +2,8 @@
 
 Updated 14 November 2026 IST. Current application/engine/services release: **0.8.0**. All six public scenarios produce stacks, with explicit critical qualifications on four. See the [release record](RELEASE_0_8.md), [recommendation policy](RECOMMENDATION_POLICY.md) and [submission instructions](SUBMISSION.md). Earlier phase records describe the release at that time.
 
+- [30-scenario stress evaluation and findings](STRESS_EVALUATION.md)
+
 ## Implementation status
 
 - [Implementation phase tracker](PHASES.md)

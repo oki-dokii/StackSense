@@ -97,6 +97,7 @@ export function deriveFeatures(scenario: NormalizedScenario): Features {
       requirements.auth !== 'none' ||
       requirements.payments ||
       requirements.file_media_storage ||
+      requirements.full_text_search ||
       requirements.multi_tenant ||
       requirements.offline_support ||
       requirements.realtime ||
@@ -130,6 +131,7 @@ export function deriveFeatures(scenario: NormalizedScenario): Features {
       'requirements.payments',
       'requirements.offline_support',
       'requirements.file_media_storage',
+      'requirements.full_text_search',
       'requirements.multi_tenant',
       'requirements.realtime',
       ...(ledger ? ['project.description'] : []),

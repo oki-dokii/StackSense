@@ -1,0 +1,820 @@
+{
+  "scope": "Author-designed functional stress evaluation; not organiser hidden tests, independent quality grading or production sizing validation.",
+  "engine_version": "0.8.0",
+  "case_set_sha256": "c1fe1d5460dd9f77e7354958dce74e736baab1915d665e4c1e9ae1d1286b6ebd",
+  "catalog_sha256": "c77853c08d3d640ff3de910caf2260e23e49128af3572748ecfa2c9baccaf79b",
+  "counts": {
+    "scenarios": 30,
+    "concrete_types": 15,
+    "usable": 29,
+    "infeasible": 1,
+    "failed_checks": [],
+    "over_budget_at_lower_bound": 12,
+    "bands_over_5x": 1,
+    "selected_providers": {
+      "aws": 7,
+      "azure": 4,
+      "gcp": 14,
+      "none": 4
+    }
+  },
+  "records": [
+    {
+      "id": "S01",
+      "title": "Markdown journal",
+      "project_type": "content_site",
+      "input_sha256": "f1089cd1772ddd7e7b5decf3a18aed0664d701e2812a6f524ca92dda50b35148",
+      "status": "ok_with_warnings",
+      "plan_id": "static|astro|backend-none|database-none|local|unspecified",
+      "provider": "none",
+      "infrastructure_usd": {
+        "min": 34.5,
+        "max": 169
+      },
+      "band_ratio": 4.9,
+      "budget_usd": 25,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S02",
+      "title": "AWS documentation portal",
+      "project_type": "content_site",
+      "input_sha256": "6dc161c2a34d9b77c7ad52772362b906bdfdf81a9283a2b3c6574af77bd8d766",
+      "status": "ok_with_warnings",
+      "plan_id": "static|astro|backend-none|database-none|ecs|unspecified",
+      "provider": "aws",
+      "infrastructure_usd": {
+        "min": 103.18,
+        "max": 271.17
+      },
+      "band_ratio": 2.63,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S03",
+      "title": "Solo appointment tool",
+      "project_type": "web_app",
+      "input_sha256": "cfebcab47baff6faea71ff649bbb58d527e8861754faf68813527aa018aec38a",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 146.42,
+        "max": 624.04
+      },
+      "band_ratio": 4.26,
+      "budget_usd": 60,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S04",
+      "title": "Java enterprise portal",
+      "project_type": "web_app",
+      "input_sha256": "d10b80da72c706506cd1b0154bdc4c0db9f2ef1d63b4a91ec9fcd6a8ae8608ec",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|fastify|pg|ecs|unspecified",
+      "provider": "aws",
+      "infrastructure_usd": {
+        "min": 251.4,
+        "max": 601.63
+      },
+      "band_ratio": 2.39,
+      "budget_usd": 500,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S05",
+      "title": "Small tenant billing dashboard",
+      "project_type": "saas_b2b",
+      "input_sha256": "e24d303834d9c30856bc520b009ea0629f9928e11f1eb8e428baacc5b967c2f1",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 146.42,
+        "max": 624.04
+      },
+      "band_ratio": 4.26,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S06",
+      "title": "Azure tenant workspace",
+      "project_type": "saas_b2b",
+      "input_sha256": "cb35821a01a6d35f1bf765194225aab410d4cf2a8e8a5472f957b87fa26a26c2",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified",
+      "provider": "azure",
+      "infrastructure_usd": {
+        "min": 287.2,
+        "max": 979.11
+      },
+      "band_ratio": 3.41,
+      "budget_usd": 800,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S07",
+      "title": "India small shop",
+      "project_type": "ecommerce",
+      "input_sha256": "46bf5603bd51395fd1c75a0dfaa80ec96ad0a883346fcd37f3dcb03108cce56d",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|next|fastify|pg|cloudrun|asia-south1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 160.71,
+        "max": 761.22
+      },
+      "band_ratio": 4.74,
+      "budget_usd": 150,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED"
+      ],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S08",
+      "title": "US checkout API",
+      "project_type": "ecommerce",
+      "input_sha256": "ed2e8713a02e82b850481f90fd61346783f83095338e893f647ce98eab62b80f",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|go-http|pg|ecs|us-east-1",
+      "provider": "aws",
+      "infrastructure_usd": {
+        "min": 224.37,
+        "max": 547.57
+      },
+      "band_ratio": 2.44,
+      "budget_usd": 500,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED"
+      ],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S09",
+      "title": "EU local services",
+      "project_type": "marketplace",
+      "input_sha256": "15575f7ae83a1a11257e519ee28d32f30c708bd4cde87afe0a671f35fa7e5741",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|next-native|fastify|pg|cloudrun|europe-west1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 160.71,
+        "max": 761.22
+      },
+      "band_ratio": 4.74,
+      "budget_usd": 180,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED"
+      ],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S10",
+      "title": "Flutter services directory",
+      "project_type": "marketplace",
+      "input_sha256": "a5a7b354e14603d8c360caa992e16fe30556f484b006d4072e05ab19f0083f8c",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|flutter|django|mysql|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 146.42,
+        "max": 624.04
+      },
+      "band_ratio": 4.26,
+      "budget_usd": 400,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S11",
+      "title": "Small community feed",
+      "project_type": "social",
+      "input_sha256": "ef4d95dafa1f4d1d916457d85b2d75c7d8aec73ab23aa84d55db6a13690e99f9",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 146.52,
+        "max": 624.54
+      },
+      "band_ratio": 4.26,
+      "budget_usd": 80,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S12",
+      "title": "Mobile messaging",
+      "project_type": "social",
+      "input_sha256": "a3f8de475c16de72a0db04e1ff9b63f5238af6f22d1dcc5c5c7859ca6ab59e37",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|flutter|go-http|pg|ecs|unspecified",
+      "provider": "aws",
+      "infrastructure_usd": {
+        "min": 287.54,
+        "max": 674.21
+      },
+      "band_ratio": 2.34,
+      "budget_usd": 900,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S13",
+      "title": "Small shared editor",
+      "project_type": "realtime_collab",
+      "input_sha256": "06a66303ba01d897adca0b23abf920e7e1b30d4cb629dec261e7f434cab05dc3",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 195,
+        "max": 884.68
+      },
+      "band_ratio": 4.54,
+      "budget_usd": 200,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S14",
+      "title": "Azure board",
+      "project_type": "realtime_collab",
+      "input_sha256": "f59c1af80ac43f6f93b47343b54f9c8d25bbdb77842aff333089074536446d36",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|aspnet|pg|ase-india|centralindia",
+      "provider": "azure",
+      "infrastructure_usd": {
+        "min": 974.32,
+        "max": 1132.41
+      },
+      "band_ratio": 1.16,
+      "budget_usd": 1200,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S15",
+      "title": "India collections",
+      "project_type": "fintech",
+      "input_sha256": "fd52523d73d1772d2058c83f9b233ee4331ae0c19d3ed598a4b86cf7e48e605d",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|flutter|fastify|pg|ecs|ap-south-1",
+      "provider": "aws",
+      "infrastructure_usd": {
+        "min": 260.41,
+        "max": 619.65
+      },
+      "band_ratio": 2.38,
+      "budget_usd": 800,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "FINTECH_PAYMENT_SCOPE_REVIEW"
+      ],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S16",
+      "title": "Internal ledger API",
+      "project_type": "fintech",
+      "input_sha256": "35288e09344517c1e1d7a090faaef53b060ef613f15f76e2e4bbd800ab9733ea",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|go-http|mysql|local|unspecified",
+      "provider": "none",
+      "infrastructure_usd": {
+        "min": 60.05,
+        "max": 296.75
+      },
+      "band_ratio": 4.94,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S17",
+      "title": "Clinic appointments",
+      "project_type": "healthtech",
+      "input_sha256": "ff1bb9239fd5469bfddf7f39b2d092865b0153985e9e1e5d6913ac8af55a19cb",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 146.52,
+        "max": 624.54
+      },
+      "band_ratio": 4.26,
+      "budget_usd": 600,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "BAA_EVIDENCE_REQUIRED"
+      ],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S18",
+      "title": "Offline field care",
+      "project_type": "healthtech",
+      "input_sha256": "29d8fd77be2f4e8ac2c44c4feca0445479039fa7e8e9b5e19b9749a830c9e2b2",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|compose|spring|pg|cloudrun|asia-south1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 149.28,
+        "max": 651.47
+      },
+      "band_ratio": 4.36,
+      "budget_usd": 250,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S19",
+      "title": "Search-only analytics API",
+      "project_type": "data_analytics",
+      "input_sha256": "d12bb3d32326ae3f77db714d151ae7597c37c968ff347339ae2fa635f13bdcb5",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|fastapi|mysql|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 134.99,
+        "max": 514.29
+      },
+      "band_ratio": 3.81,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S20",
+      "title": "Azure analytics dashboard",
+      "project_type": "data_analytics",
+      "input_sha256": "bbfc45ab436e5766bec798dd6de1aaac05982e9bf813b2f1f24aad10ef64c44c",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified",
+      "provider": "azure",
+      "infrastructure_usd": {
+        "min": 287.2,
+        "max": 979.11
+      },
+      "band_ratio": 3.41,
+      "budget_usd": 700,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S21",
+      "title": "Device telemetry gateway",
+      "project_type": "iot",
+      "input_sha256": "bffb470a797da94ca639accbbc696e595ffb6657f2cae88244bd65ca1b559a6f",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|go-http|pg|ecs|unspecified",
+      "provider": "aws",
+      "infrastructure_usd": {
+        "min": 215.36,
+        "max": 529.55
+      },
+      "band_ratio": 2.46,
+      "budget_usd": 300,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S22",
+      "title": "Local factory dashboard",
+      "project_type": "iot",
+      "input_sha256": "6e3a0e69d6d3262b3cd1c58787623c0e5ece1cfef34fb8ccbc3787d89037a5e2",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|django|maria|local|unspecified",
+      "provider": "none",
+      "infrastructure_usd": {
+        "min": 74.65,
+        "max": 369.75
+      },
+      "band_ratio": 4.95,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S23",
+      "title": "Python inference endpoint",
+      "project_type": "ai_ml_product",
+      "input_sha256": "c175ce7a2671b6a048b7cad01df79375f0783ef4bbe7b8636ab5433b5ddca9c2",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|django|database-none|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 43.25,
+        "max": 413.68
+      },
+      "band_ratio": 9.56,
+      "budget_usd": 250,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S24",
+      "title": "GPU training platform",
+      "project_type": "ai_ml_product",
+      "input_sha256": "58b908e2acd2ecf125a5fe1fc9aad1c45fc7fa0c7b5819a4bb39bb349bb162a3",
+      "status": "infeasible",
+      "plan_id": null,
+      "provider": null,
+      "infrastructure_usd": {
+        "min": 0,
+        "max": 0
+      },
+      "band_ratio": null,
+      "budget_usd": 2000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "COMPLETE_PLAN_COVERAGE_GAP",
+        "ML_DEPLOYMENT_COVERAGE_GAP"
+      ],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S25",
+      "title": "Air-gapped inventory",
+      "project_type": "internal_tool",
+      "input_sha256": "ef5d42a5bc089b026fd6018cb0b3a2fdfe362a3fcf857057f7f0d6ef31711e8c",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|fastify|mysql|local|unspecified",
+      "provider": "none",
+      "infrastructure_usd": {
+        "min": 74.65,
+        "max": 369.75
+      },
+      "band_ratio": 4.95,
+      "budget_usd": 50,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S26",
+      "title": "Small PHP back office",
+      "project_type": "internal_tool",
+      "input_sha256": "0eed1d7a96d84ad67d91f51d12857c807b405d3dc492d5241c03def7a4e241ed",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 146.42,
+        "max": 624.04
+      },
+      "band_ratio": 4.26,
+      "budget_usd": 50,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S27",
+      "title": "Turn-based game",
+      "project_type": "gaming",
+      "input_sha256": "a537c0314602a715cbb529f91f4295fe26f6b4982631c21ec044ea425d7613fa",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|flutter|go-http|mysql|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 190.24,
+        "max": 850.39
+      },
+      "band_ratio": 4.47,
+      "budget_usd": 300,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S28",
+      "title": "Small game leaderboard",
+      "project_type": "gaming",
+      "input_sha256": "403e08d6eb8aaa2b776d6eeab1ffac33f71adc81b42fe3d62d53df3add029a89",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|spring|maria|ecs|unspecified",
+      "provider": "aws",
+      "infrastructure_usd": {
+        "min": 215.36,
+        "max": 529.55
+      },
+      "band_ratio": 2.46,
+      "budget_usd": 150,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S29",
+      "title": "Search service",
+      "project_type": "api_platform",
+      "input_sha256": "a0ad62d48e51d7365805cb381b8eb21b69bc2d36fb3d73f8946231c730fc9c8d",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|go-http|mysql|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 134.99,
+        "max": 514.29
+      },
+      "band_ratio": 3.81,
+      "budget_usd": 120,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S30",
+      "title": "Stateless transform API",
+      "project_type": "api_platform",
+      "input_sha256": "9be00c050a9821325048165129fa5e34329d49845c641337d516590ad2830159",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|django|database-none|appservice|unspecified",
+      "provider": "azure",
+      "infrastructure_usd": {
+        "min": 129.28,
+        "max": 549.75
+      },
+      "band_ratio": 4.25,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    }
+  ]
+}

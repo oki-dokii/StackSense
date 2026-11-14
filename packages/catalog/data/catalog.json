@@ -286,22 +286,22 @@
       "id": "fargate-regions",
       "title": "ECS Fargate supported regions",
       "url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate-Regions.html",
-      "checked_on": "2026-11-13",
-      "scope": "Linux Fargate support in Mumbai ap-south-1; primary compute mapping only."
+      "checked_on": "2026-11-14",
+      "scope": "Linux Fargate primary compute availability in Mumbai ap-south-1, N. Virginia us-east-1 and Ireland eu-west-1; no end-to-end data-flow assurance."
     },
     {
       "id": "aws-regions",
       "title": "AWS region country mapping",
       "url": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-      "checked_on": "2026-11-13",
-      "scope": "Mumbai ap-south-1 maps to India; does not establish every service data flow."
+      "checked_on": "2026-11-14",
+      "scope": "Mumbai ap-south-1 maps to India, N. Virginia us-east-1 to the US and Ireland eu-west-1 to the EU; does not establish every service data flow."
     },
     {
       "id": "rds-regions",
       "title": "Amazon RDS regional endpoints",
       "url": "https://docs.aws.amazon.com/general/latest/gr/rds-service.html",
-      "checked_on": "2026-11-13",
-      "scope": "RDS Mumbai regional service; combined with RDS PostgreSQL product evidence. No SKU/version, legal or workload guarantee."
+      "checked_on": "2026-11-14",
+      "scope": "RDS service endpoints in Mumbai, N. Virginia and Ireland, combined with RDS PostgreSQL product evidence for primary deployment mappings. Exact engine version/SKU eligibility, backup placement and contracts remain deployment review tasks."
     },
     {
       "id": "azure-ase",
@@ -1140,6 +1140,22 @@
             "fargate-regions",
             "aws-regions"
           ]
+        },
+        {
+          "residency": "us",
+          "region": "us-east-1",
+          "source_ids": [
+            "fargate-regions",
+            "aws-regions"
+          ]
+        },
+        {
+          "residency": "eu",
+          "region": "eu-west-1",
+          "source_ids": [
+            "fargate-regions",
+            "aws-regions"
+          ]
         }
       ],
       "managed_databases": [
@@ -1153,6 +1169,24 @@
             {
               "residency": "india",
               "region": "ap-south-1",
+              "source_ids": [
+                "rds-pg",
+                "rds-regions",
+                "aws-regions"
+              ]
+            },
+            {
+              "residency": "us",
+              "region": "us-east-1",
+              "source_ids": [
+                "rds-pg",
+                "rds-regions",
+                "aws-regions"
+              ]
+            },
+            {
+              "residency": "eu",
+              "region": "eu-west-1",
               "source_ids": [
                 "rds-pg",
                 "rds-regions",

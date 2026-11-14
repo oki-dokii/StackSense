@@ -18,6 +18,8 @@ Updated 14 November 2026 IST. The detailed method is in [plan.md](../plan.md); t
 
 | 12 | Provisional vendor integration, direct Entra, India payments, cost scope and submission refresh | Implemented and tested | 262 application tests; 12 region/auth/payment combinations; all six public stacks; current browser/export evidence and 25-page report |
 
+| 13 | Thirty varied briefs, language/provider controls and generic persistence/client/region fixes | Implemented and tested | 308 application tests; 29/30 usable with GPU training explicitly out of scope; budget gaps recorded |
+
 ## Phase 1 delivered
 
 - npm workspaces with pinned tooling and lockfile.

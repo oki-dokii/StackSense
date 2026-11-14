@@ -65,9 +65,11 @@ try {
 }
 const record = {
   checked_on: '2026-11-14',
-  analysis_version: '0.1.0',
-  app_version: '0.7.0',
-  engine_version: '0.6.0',
+  analysis_version: analyzeDecision(inputs[0]).analysis_version,
+  app_version: JSON.parse(
+    await readFile(new URL('../package.json', import.meta.url), 'utf8'),
+  ).version,
+  engine_version: analyzeDecision(inputs[0]).baseline.engine_version,
   input_sha256: createHash('sha256').update(raw).digest('hex'),
   records,
   measurements,

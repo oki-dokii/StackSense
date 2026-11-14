@@ -722,7 +722,7 @@
     "frontend": {
       "alternatives": [
         {
-          "choice": "Flutter",
+          "choice": "React / Vite",
           "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
         }
       ],

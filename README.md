@@ -188,9 +188,21 @@ node --test scripts/tests/evidence-bindings.test.mjs scripts/tests/calibration.t
 python3 scripts/check_docs.py
 ```
 
-The application suite contains **262 tests**, including schema/engine invariants, actual CLI/API parity, focus behavior, original public cases and 12 region/auth/payment combinations. Native provenance/workload/evidence checks supplement it. GitHub CI runs the application on Windows, Linux and macOS with Node 22/24, plus a real PostgreSQL integration job. These OS tests are not a complete browser or screen-reader accessibility matrix.
+The application suite contains **308 tests**, including schema/engine invariants, actual CLI/API parity, focus behavior, original public cases, 12 region/auth/payment combinations and [30 varied project briefs](docs/STRESS_EVALUATION.md). Native provenance/workload/evidence checks supplement it. GitHub CI runs the application on Windows, Linux and macOS with Node 22/24, plus a real PostgreSQL integration job. These OS tests are not a complete browser or screen-reader accessibility matrix.
 
 The [source-evidence audit](docs/PHASE_10.md) and [accessibility checks](docs/PHASE_11.md) record their exact scope. The custom browser audit is limited to sampled leaf text/basic labels; it is not WCAG certification. Source retrieval never approves claims or changes catalog rules automatically.
+
+A plain architecture view:
+
+```text
+CLI ----------------------+
+                          v
+Browser -> Local API -> Shared engine -> Catalog + service/pricing rules
+                          |
+                          +-> Validate -> Complete-plan search -> Rank
+                          |                                      |
+                          +<--- Explained JSON + critical warnings+
+```
 
 ## Reference measurements
 

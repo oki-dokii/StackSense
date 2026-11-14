@@ -9,7 +9,7 @@ As of 2026-11-14: 101 sources; 0 due; 0 future review dates.
 | core:aspnet | 2026-11-13 | 2027-02-11 | within_review_window | capability | P5 |
 | core:astro | 2026-11-13 | 2027-02-11 | within_review_window | capability | P1 |
 | core:astro-markdown | 2026-11-13 | 2027-02-11 | within_review_window | capability | P1 |
-| core:aws-regions | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls | P4 |
+| core:aws-regions | 2026-11-14 | 2026-12-14 | within_review_window | region_or_controls | P4 |
 | core:azure-ase | 2026-11-13 | 2026-12-13 | within_review_window | capability, region_or_controls | P5 |
 | core:azure-pg | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls |  |
 | core:azure-pg-backup | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls | P5 |
@@ -21,7 +21,7 @@ As of 2026-11-14: 101 sources; 0 due; 0 future review dates.
 | core:django | 2026-11-13 | 2027-02-11 | within_review_window | capability | P2, P6 |
 | core:ec2 | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | core:ecs | 2026-11-13 | 2027-02-11 | within_review_window | capability | P4 |
-| core:fargate-regions | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls | P4 |
+| core:fargate-regions | 2026-11-14 | 2026-12-14 | within_review_window | region_or_controls | P4 |
 | core:fastapi | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | core:fastify | 2026-11-13 | 2027-02-11 | within_review_window | capability | P3, P4 |
 | core:flutter | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
@@ -38,7 +38,7 @@ As of 2026-11-14: 101 sources; 0 due; 0 future review dates.
 | core:pg | 2026-11-13 | 2027-02-11 | within_review_window | capability | P2, P3, P4, P5, P6 |
 | core:rds-maria | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls |  |
 | core:rds-pg | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls | P4 |
-| core:rds-regions | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls | P4 |
+| core:rds-regions | 2026-11-14 | 2026-12-14 | within_review_window | region_or_controls | P4 |
 | core:rds-sql | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls |  |
 | core:react | 2026-11-13 | 2027-02-11 | within_review_window | capability | P5 |
 | core:rn | 2026-11-13 | 2027-02-11 | within_review_window | capability | P2, P4, P6 |

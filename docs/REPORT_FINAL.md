@@ -14,7 +14,7 @@ Application and recommendation engine/rules/services 0.8.0; Decision Lab analysi
 
 1. Abstract
 
-StackSense converts a structured software-project brief into a deterministic, explained architecture. A local TypeScript engine validates inputs, filters compatible core stacks, checks required supporting services and data flows, estimates month-12 cost bands, and ranks complete designs. A CLI, Fastify API and React workspace share the same engine. The release includes 34 core entries, 26 service profiles, source records, actual JSON outputs and browser evidence. All six supplied scenarios receive stacks; four carry critical external-boundary exceptions rather than unsupported compliance claims. The evaluation includes 262 automated tests, fourteen author-designed unseen-style cases, twelve region/auth/payment combinations, sensitivity experiments and measured local setup/API timings. The system makes no runtime LLM calls and requires no paid key. Costs, performance targets and framework controls are disclosed assumptions and implementation tasks, not provider quotes, benchmarks of suggested stacks, or certification.
+StackSense converts a structured software-project brief into a deterministic, explained architecture. A local TypeScript engine validates inputs, filters compatible core stacks, checks required supporting services and data flows, estimates month-12 cost bands, and ranks complete designs. A CLI, Fastify API and React workspace share the same engine. The release includes 34 core entries, 26 service profiles, source records, actual JSON outputs and browser evidence. All six supplied scenarios receive stacks; four carry critical external-boundary exceptions rather than unsupported compliance claims. The evaluation includes 308 automated tests, thirty varied project briefs across fifteen concrete types, fourteen edge cases, twelve region/auth/payment combinations, sensitivity experiments and measured local setup/API timings. The system makes no runtime LLM calls and requires no paid key. Costs, performance targets and framework controls are disclosed assumptions and implementation tasks, not provider quotes, benchmarks of suggested stacks, or certification.
 
 2. Problem understanding
 
@@ -72,7 +72,7 @@ Evaluate complete plans before ranking
 
 Search uses smallest domains and stable IDs, without a top-K core shortlist. An assignment limit raises an internal failure; it never turns interrupted search into infeasibility. Infeasibility means no complete design in this reviewed catalog, not impossibility in the real world.
 
-Each 0-5 fit is multiplied by its supplied 1-5 priority. Ties use lower cost upper bound, fewer operated resources and stable plan ID. Rubrics are transparent but uncalibrated; rounding and stable ties can select among similarly scored technologies. No scenario ID/name or runtime LLM chooses a stack.
+Each 0-5 fit is multiplied by its supplied 1-5 priority. Ties use lower cost upper bound, fewer operated resources, fewer unrequested client targets and stable plan ID. Rubrics are transparent but uncalibrated; rounding and stable ties can select among similarly scored technologies. No scenario ID/name or runtime LLM chooses a stack.
 
 
 ---
@@ -164,7 +164,7 @@ Additional cases test reviewed AWS India, offline native writes, cloud-none/mana
 
 8. Validation and measurements
 
-262 automated tests pass across eleven files: contract/default/provenance, catalog/driver integrity, compatible search, complete services/costs, metadata/order mutations, CLI subprocess IO, exact API/engine parity, transport/security, browser model and fourteen release cases. Generated TypeScript freshness, compiler and production browser/server builds pass. Twenty recommendation snapshots and six Decision Lab artifacts are checked byte-for-byte against current code; native provenance, workload and evidence checks supplement the application suite. The twelve region/auth/payment combinations retain real air-gap and contradictory-region failure tests.
+308 automated tests pass across twelve files: contract/default/provenance, catalog/driver integrity, compatible search, complete services/costs, metadata/order mutations, CLI subprocess IO, exact API/engine parity, transport/security, browser model and fourteen release cases. Generated TypeScript freshness, compiler and production browser/server builds pass. Twenty recommendation snapshots and six Decision Lab artifacts are checked byte-for-byte against current code; native provenance, workload and evidence checks supplement the application suite. Thirty varied briefs cover fifteen concrete project types; 29 receive stacks and GPU training remains outside catalog scope. Seven language-only probes, provider checks and the twelve region/auth/payment combinations retain real conflict tests.
 
 Fourteen author-designed case expectations cover statuses, field errors, required services, local deployment, region retention and simplicity. Metamorphic checks rename metadata/reorder set-like inputs and ensure hard constraints remain filters. Six paired usage experiments show real cost effects. No external expert review, organiser hidden-case results or calibrated recommendation-quality accuracy is claimed.
 
@@ -174,7 +174,7 @@ Measured on Apple M2, 8 GB RAM, macOS arm64, Node v22.17.1, npm 10.9.2. Cold Nod
 
 Clean setup rehearsal
 
-A source ZIP was extracted to a fresh directory. Cached offline npm ci, all checks, build, evaluation and output verification completed in 20.204 seconds. Runtime/test source digest is recorded and checked during final packaging. The populated dependency cache avoids a new network download; online installation speed and Windows/Linux execution are not claimed. The CI matrix covers macOS, Ubuntu and Windows on Node 22/24; remote run results are separate from this local measurement.
+A source ZIP was extracted to a fresh directory. Cached offline npm ci, all checks, build, evaluation and output verification completed in 19.348 seconds. Runtime/test source digest is recorded and checked during final packaging. The populated dependency cache avoids a new network download; online installation speed and Windows/Linux execution are not claimed. The CI matrix covers macOS, Ubuntu and Windows on Node 22/24; remote run results are separate from this local measurement.
 
 Browser evidence covers sample/import/batch, all statuses, export parity, stale-export blocking, keyboard controls and 360 px overflow checks. This is not a full accessibility or browser conformance audit. Official product/source alignment is reviewed; no paper experiment was reproduced.
 
@@ -380,11 +380,11 @@ core:nginx - NGINX static serving. docs.nginx.com (2026-11-13).
 
 core:astro-markdown - Astro Markdown. docs.astro.build (2026-11-13).
 
-core:fargate-regions - ECS Fargate supported regions. docs.aws.amazon.com (2026-11-13).
+core:fargate-regions - ECS Fargate supported regions. docs.aws.amazon.com (2026-11-14).
 
-core:aws-regions - AWS region country mapping. docs.aws.amazon.com (2026-11-13).
+core:aws-regions - AWS region country mapping. docs.aws.amazon.com (2026-11-14).
 
-core:rds-regions - Amazon RDS regional endpoints. docs.aws.amazon.com (2026-11-13).
+core:rds-regions - Amazon RDS regional endpoints. docs.aws.amazon.com (2026-11-14).
 
 core:azure-ase - App Service Environment v3 region and data boundary. learn.microsoft.com (2026-11-13).
 

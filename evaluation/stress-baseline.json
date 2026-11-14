@@ -1,0 +1,360 @@
+{
+  "commit": "c275cfbb80d4b68d8e62529441257dd107407f98",
+  "scope": "Observed before generic fixes, using these same scenario values. Not independent grading.",
+  "case_set_sha256": "c1fe1d5460dd9f77e7354958dce74e736baab1915d665e4c1e9ae1d1286b6ebd",
+  "records": [
+    {
+      "id": "S01",
+      "project_type": "content_site",
+      "status": "ok_with_warnings",
+      "plan_id": "static|astro|backend-none|database-none|local|unspecified",
+      "infrastructure_usd": {
+        "min": 34.5,
+        "max": 169
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S02",
+      "project_type": "content_site",
+      "status": "ok_with_warnings",
+      "plan_id": "static|astro|backend-none|database-none|ecs|unspecified",
+      "infrastructure_usd": {
+        "min": 103.18,
+        "max": 271.17
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S03",
+      "project_type": "web_app",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
+      "infrastructure_usd": {
+        "min": 146.42,
+        "max": 624.04
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S04",
+      "project_type": "web_app",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|fastify|pg|ecs|unspecified",
+      "infrastructure_usd": {
+        "min": 251.4,
+        "max": 601.63
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S05",
+      "project_type": "saas_b2b",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
+      "infrastructure_usd": {
+        "min": 146.42,
+        "max": 624.04
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S06",
+      "project_type": "saas_b2b",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified",
+      "infrastructure_usd": {
+        "min": 287.2,
+        "max": 979.11
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S07",
+      "project_type": "ecommerce",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|next-native|fastify|pg|cloudrun|asia-south1",
+      "infrastructure_usd": {
+        "min": 160.71,
+        "max": 761.22
+      },
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED"
+      ]
+    },
+    {
+      "id": "S08",
+      "project_type": "ecommerce",
+      "status": "infeasible",
+      "plan_id": null,
+      "infrastructure_usd": {
+        "min": 0,
+        "max": 0
+      },
+      "critical_warnings": [
+        "CORE_CATALOG_COVERAGE_GAP"
+      ]
+    },
+    {
+      "id": "S09",
+      "project_type": "marketplace",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|next-native|fastify|pg|cloudrun|europe-west1",
+      "infrastructure_usd": {
+        "min": 160.71,
+        "max": 761.22
+      },
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED"
+      ]
+    },
+    {
+      "id": "S10",
+      "project_type": "marketplace",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|flutter|django|mysql|cloudrun|unspecified",
+      "infrastructure_usd": {
+        "min": 146.42,
+        "max": 624.04
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S11",
+      "project_type": "social",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+      "infrastructure_usd": {
+        "min": 146.52,
+        "max": 624.54
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S12",
+      "project_type": "social",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|flutter|go-http|pg|ecs|unspecified",
+      "infrastructure_usd": {
+        "min": 287.54,
+        "max": 674.21
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S13",
+      "project_type": "realtime_collab",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified",
+      "infrastructure_usd": {
+        "min": 195,
+        "max": 884.68
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S14",
+      "project_type": "realtime_collab",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|aspnet|pg|ase-india|centralindia",
+      "infrastructure_usd": {
+        "min": 974.32,
+        "max": 1132.41
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S15",
+      "project_type": "fintech",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|flutter|fastify|pg|ecs|ap-south-1",
+      "infrastructure_usd": {
+        "min": 260.41,
+        "max": 619.65
+      },
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "FINTECH_PAYMENT_SCOPE_REVIEW"
+      ]
+    },
+    {
+      "id": "S16",
+      "project_type": "fintech",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|go-http|mysql|local|unspecified",
+      "infrastructure_usd": {
+        "min": 60.05,
+        "max": 296.75
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S17",
+      "project_type": "healthtech",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
+      "infrastructure_usd": {
+        "min": 146.52,
+        "max": 624.54
+      },
+      "critical_warnings": [
+        "BAA_EVIDENCE_REQUIRED"
+      ]
+    },
+    {
+      "id": "S18",
+      "project_type": "healthtech",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|compose|spring|pg|cloudrun|asia-south1",
+      "infrastructure_usd": {
+        "min": 149.28,
+        "max": 651.47
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S19",
+      "project_type": "data_analytics",
+      "status": "infeasible",
+      "plan_id": null,
+      "infrastructure_usd": {
+        "min": 0,
+        "max": 0
+      },
+      "critical_warnings": [
+        "COMPLETE_PLAN_COVERAGE_GAP",
+        "SEARCH_COVERAGE_GAP"
+      ]
+    },
+    {
+      "id": "S20",
+      "project_type": "data_analytics",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified",
+      "infrastructure_usd": {
+        "min": 287.2,
+        "max": 979.11
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S21",
+      "project_type": "iot",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|go-http|pg|ecs|unspecified",
+      "infrastructure_usd": {
+        "min": 215.36,
+        "max": 529.55
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S22",
+      "project_type": "iot",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|django|maria|local|unspecified",
+      "infrastructure_usd": {
+        "min": 74.65,
+        "max": 369.75
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S23",
+      "project_type": "ai_ml_product",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|django|database-none|cloudrun|unspecified",
+      "infrastructure_usd": {
+        "min": 43.25,
+        "max": 413.68
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S24",
+      "project_type": "ai_ml_product",
+      "status": "infeasible",
+      "plan_id": null,
+      "infrastructure_usd": {
+        "min": 0,
+        "max": 0
+      },
+      "critical_warnings": [
+        "COMPLETE_PLAN_COVERAGE_GAP",
+        "ML_DEPLOYMENT_COVERAGE_GAP"
+      ]
+    },
+    {
+      "id": "S25",
+      "project_type": "internal_tool",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|fastify|mysql|local|unspecified",
+      "infrastructure_usd": {
+        "min": 74.65,
+        "max": 369.75
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S26",
+      "project_type": "internal_tool",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+      "infrastructure_usd": {
+        "min": 146.42,
+        "max": 624.04
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S27",
+      "project_type": "gaming",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|flutter|go-http|mysql|cloudrun|unspecified",
+      "infrastructure_usd": {
+        "min": 190.24,
+        "max": 850.39
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S28",
+      "project_type": "gaming",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|spring|maria|ecs|unspecified",
+      "infrastructure_usd": {
+        "min": 215.36,
+        "max": 529.55
+      },
+      "critical_warnings": []
+    },
+    {
+      "id": "S29",
+      "project_type": "api_platform",
+      "status": "infeasible",
+      "plan_id": null,
+      "infrastructure_usd": {
+        "min": 0,
+        "max": 0
+      },
+      "critical_warnings": [
+        "COMPLETE_PLAN_COVERAGE_GAP",
+        "SEARCH_COVERAGE_GAP"
+      ]
+    },
+    {
+      "id": "S30",
+      "project_type": "api_platform",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|django|database-none|appservice|unspecified",
+      "infrastructure_usd": {
+        "min": 129.28,
+        "max": 549.75
+      },
+      "critical_warnings": []
+    }
+  ]
+}

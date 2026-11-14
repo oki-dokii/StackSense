@@ -1527,75 +1527,6 @@
       },
       {
         "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|flutter|django|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|flutter|fastapi|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Google Cloud Run"
-        },
-        "fit": {
-          "cost": 3,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 508.55,
-          "min": 81.42
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 69,
-        "plan_id": "modular_monolith|flutter|fastify|pg|cloudrun|asia-south1"
-      },
-      {
-        "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
           "frontend": "React Native",
@@ -1685,6 +1616,75 @@
         "operated_components": 2.5,
         "original_priority_score": 69,
         "plan_id": "modular_monolith|react-native|spring|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 508.55,
+          "min": 81.42
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 69,
+        "plan_id": "modular_monolith|flutter|django|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 508.55,
+          "min": 81.42
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 69,
+        "plan_id": "modular_monolith|flutter|fastapi|pg|cloudrun|asia-south1"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Google Cloud Run"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 508.55,
+          "min": 81.42
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 69,
+        "plan_id": "modular_monolith|flutter|fastify|pg|cloudrun|asia-south1"
       },
       {
         "core": {
@@ -2309,75 +2309,6 @@
       },
       {
         "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Amazon ECS / Fargate"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 514.39,
-          "min": 181.28
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 55,
-        "plan_id": "modular_monolith|flutter|django|pg|ecs|ap-south-1"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Amazon ECS / Fargate"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 514.39,
-          "min": 181.28
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 55,
-        "plan_id": "modular_monolith|flutter|fastapi|pg|ecs|ap-south-1"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Amazon ECS / Fargate"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 514.39,
-          "min": 181.28
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 55,
-        "plan_id": "modular_monolith|flutter|fastify|pg|ecs|ap-south-1"
-      },
-      {
-        "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
           "frontend": "React Native",
@@ -2467,6 +2398,75 @@
         "operated_components": 2.5,
         "original_priority_score": 55,
         "plan_id": "modular_monolith|react-native|spring|pg|ecs|ap-south-1"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Amazon ECS / Fargate"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 514.39,
+          "min": 181.28
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 55,
+        "plan_id": "modular_monolith|flutter|django|pg|ecs|ap-south-1"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Amazon ECS / Fargate"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 514.39,
+          "min": 181.28
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 55,
+        "plan_id": "modular_monolith|flutter|fastapi|pg|ecs|ap-south-1"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Amazon ECS / Fargate"
+        },
+        "fit": {
+          "cost": 1,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 514.39,
+          "min": 181.28
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 55,
+        "plan_id": "modular_monolith|flutter|fastify|pg|ecs|ap-south-1"
       },
       {
         "core": {
@@ -2631,75 +2631,6 @@
       },
       {
         "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 810.88,
-          "min": 642.88
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 50,
-        "plan_id": "modular_monolith|flutter|django|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 810.88,
-          "min": 642.88
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 50,
-        "plan_id": "modular_monolith|flutter|fastapi|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 4,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 810.88,
-          "min": 642.88
-        },
-        "operated_components": 2.5,
-        "original_priority_score": 50,
-        "plan_id": "modular_monolith|flutter|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
           "frontend": "React Native",
@@ -2789,6 +2720,75 @@
         "operated_components": 2.5,
         "original_priority_score": 50,
         "plan_id": "modular_monolith|react-native|spring|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 810.88,
+          "min": 642.88
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 50,
+        "plan_id": "modular_monolith|flutter|django|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 810.88,
+          "min": 642.88
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 50,
+        "plan_id": "modular_monolith|flutter|fastapi|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 4,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 810.88,
+          "min": 642.88
+        },
+        "operated_components": 2.5,
+        "original_priority_score": 50,
+        "plan_id": "modular_monolith|flutter|fastify|pg|ase-india|centralindia"
       },
       {
         "core": {

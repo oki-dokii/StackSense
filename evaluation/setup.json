@@ -1,9 +1,9 @@
 {
-  "measured_at": "2026-11-14T14:34:10Z",
+  "measured_at": "2026-11-14T17:46:16Z",
   "mode": "fresh archive extraction; npm offline install using previously populated cache",
   "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
-  "runtime_source_sha256": "ce399b0cbb47241aa7bec338ee0382463f0a12c56c175f02451cc967d7e04fea",
-  "source_zip_sha256": "11961060dbcf72d7b92981671f324a6a6917ed644e5f3f7e874732f61977b22a",
+  "runtime_source_sha256": "b6a89f7b99ad54e438a21d8a8c60198558a3e75df99e44ee57c0703fe0941df7",
+  "source_zip_sha256": "04f590d7920c366ffdc53f6e293c0ee621f51357c322e8a2d7bdcbed54a829b3",
   "steps": [
     {
       "command": [
@@ -11,7 +11,7 @@
         "ci",
         "--offline"
       ],
-      "seconds": 2.871,
+      "seconds": 2.535,
       "exit_code": 0
     },
     {
@@ -22,7 +22,7 @@
         "benchmarks/postgres",
         "--offline"
       ],
-      "seconds": 0.632,
+      "seconds": 0.575,
       "exit_code": 0
     },
     {
@@ -31,7 +31,7 @@
         "--test",
         "benchmarks/postgres/tests.mjs"
       ],
-      "seconds": 0.333,
+      "seconds": 0.326,
       "exit_code": 0
     },
     {
@@ -40,7 +40,7 @@
         "run",
         "check"
       ],
-      "seconds": 12.276,
+      "seconds": 11.61,
       "exit_code": 0
     },
     {
@@ -51,7 +51,7 @@
         "scripts/tests/calibration.test.mjs",
         "scripts/tests/evidence-review.test.mjs"
       ],
-      "seconds": 0.912,
+      "seconds": 0.911,
       "exit_code": 0
     },
     {
@@ -60,7 +60,7 @@
         "run",
         "build"
       ],
-      "seconds": 1.641,
+      "seconds": 1.65,
       "exit_code": 0
     },
     {
@@ -78,10 +78,10 @@
         "run",
         "verify:release"
       ],
-      "seconds": 0.916,
+      "seconds": 1.157,
       "exit_code": 0
     }
   ],
-  "total_seconds": 20.204,
+  "total_seconds": 19.348,
   "scope_limit": "Includes extraction/install/check/build/evaluation verification; real cold API startup measured separately. No new online download or other OS is claimed."
 }

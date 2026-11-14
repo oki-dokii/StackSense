@@ -1329,52 +1329,6 @@
         "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 3,
-          "security": 3,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
-        },
-        "operated_components": 2.25,
-        "original_priority_score": 61,
-        "plan_id": "modular_monolith|next-native|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 3,
-          "security": 3,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
-        },
-        "operated_components": 2.25,
-        "original_priority_score": 61,
-        "plan_id": "modular_monolith|next-native|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
           "frontend": "Next.js",
           "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
         },
@@ -1467,6 +1421,52 @@
         "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|next-native|aspnet|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|next-native|fastify|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
           "frontend": "Angular",
           "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
         },
@@ -1508,52 +1508,6 @@
         "operated_components": 1.25,
         "original_priority_score": 51,
         "plan_id": "modular_monolith|angular|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 3,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
-        },
-        "operated_components": 1.25,
-        "original_priority_score": 51,
-        "plan_id": "modular_monolith|flutter|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 3,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
-        },
-        "operated_components": 1.25,
-        "original_priority_score": 51,
-        "plan_id": "modular_monolith|flutter|fastify|pg|ase-india|centralindia"
       },
       {
         "core": {
@@ -1787,9 +1741,9 @@
       },
       {
         "core": {
-          "backend": "Django",
+          "backend": "ASP.NET Core",
           "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
+          "frontend": "Flutter",
           "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
         },
         "fit": {
@@ -1804,15 +1758,15 @@
           "max": 858.06,
           "min": 686.87
         },
-        "operated_components": 2.25,
+        "operated_components": 1.25,
         "original_priority_score": 51,
-        "plan_id": "modular_monolith|next-native|django|pg|ase-india|centralindia"
+        "plan_id": "modular_monolith|flutter|aspnet|pg|ase-india|centralindia"
       },
       {
         "core": {
-          "backend": "FastAPI",
+          "backend": "Fastify",
           "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
+          "frontend": "Flutter",
           "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
         },
         "fit": {
@@ -1827,78 +1781,9 @@
           "max": 858.06,
           "min": 686.87
         },
-        "operated_components": 2.25,
+        "operated_components": 1.25,
         "original_priority_score": 51,
-        "plan_id": "modular_monolith|next-native|fastapi|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "Go net/http",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 3,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
-        },
-        "operated_components": 2.25,
-        "original_priority_score": 51,
-        "plan_id": "modular_monolith|next-native|go-http|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "Laravel",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 3,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
-        },
-        "operated_components": 2.25,
-        "original_priority_score": 51,
-        "plan_id": "modular_monolith|next-native|laravel|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "Spring Boot",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 3,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
-        },
-        "operated_components": 2.25,
-        "original_priority_score": 51,
-        "plan_id": "modular_monolith|next-native|spring|pg|ase-india|centralindia"
+        "plan_id": "modular_monolith|flutter|fastify|pg|ase-india|centralindia"
       },
       {
         "core": {
@@ -2129,6 +2014,121 @@
         "operated_components": 2.25,
         "original_priority_score": 51,
         "plan_id": "modular_monolith|sveltekit|spring|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|next-native|django|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|next-native|fastapi|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|next-native|go-http|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|next-native|laravel|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|next-native|spring|pg|ase-india|centralindia"
       },
       {
         "core": {

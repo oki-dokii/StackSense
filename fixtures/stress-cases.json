@@ -1,0 +1,1830 @@
+[
+  {
+    "id": "S01",
+    "title": "Markdown journal",
+    "scenario": {
+      "scenario_id": "S01",
+      "project": {
+        "name": "Markdown journal",
+        "type": "content_site",
+        "platforms": [
+          "web"
+        ],
+        "description": "Markdown articles and documentation."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "javascript",
+          "html",
+          "css"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 25
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "none",
+        "deployment_model": "on_premise",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "seo_critical": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "none",
+      "backend_language": [
+        "javascript"
+      ],
+      "persistent": false,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S02",
+    "title": "AWS documentation portal",
+    "scenario": {
+      "scenario_id": "S02",
+      "project": {
+        "name": "AWS documentation portal",
+        "type": "content_site",
+        "platforms": [
+          "web"
+        ],
+        "description": "Static public documentation."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "seo_critical": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "aws",
+      "backend_language": [
+        "typescript"
+      ],
+      "persistent": false,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S03",
+    "title": "Solo appointment tool",
+    "scenario": {
+      "scenario_id": "S03",
+      "project": {
+        "name": "Solo appointment tool",
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ],
+        "description": "Appointment records and daily schedules."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "python",
+          "javascript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 60
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "python",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S04",
+    "title": "Java enterprise portal",
+    "scenario": {
+      "scenario_id": "S04",
+      "project": {
+        "name": "Java enterprise portal",
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ],
+        "description": "Staff workflow application."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "java",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "enterprise_sso"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "aws",
+      "backend_language": [
+        "java",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S05",
+    "title": "Small tenant billing dashboard",
+    "scenario": {
+      "scenario_id": "S05",
+      "project": {
+        "name": "Small tenant billing dashboard",
+        "type": "saas_b2b",
+        "platforms": [
+          "web"
+        ],
+        "description": "Tenant-isolated business records."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "php",
+          "javascript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "multi_tenant": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "php",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S06",
+    "title": "Azure tenant workspace",
+    "scenario": {
+      "scenario_id": "S06",
+      "project": {
+        "name": "Azure tenant workspace",
+        "type": "saas_b2b",
+        "platforms": [
+          "web"
+        ],
+        "description": "Tenant workspace with audit controls."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "csharp",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 800
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "azure",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "enterprise_sso",
+        "multi_tenant": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "azure",
+      "backend_language": [
+        "csharp",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S07",
+    "title": "India small shop",
+    "scenario": {
+      "scenario_id": "S07",
+      "project": {
+        "name": "India small shop",
+        "type": "ecommerce",
+        "platforms": [
+          "web"
+        ],
+        "description": "Product catalog and hosted checkout."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "php",
+          "javascript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 150
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "india"
+      },
+      "requirements": {
+        "auth": "phone_otp",
+        "payments": true,
+        "seo_critical": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "php",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S08",
+    "title": "US checkout API",
+    "scenario": {
+      "scenario_id": "S08",
+      "project": {
+        "name": "US checkout API",
+        "type": "ecommerce",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Stateless checkout orchestration with order persistence."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "go"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 500
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "payments": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "compliance": [
+        "pci_dss"
+      ]
+    },
+    "expect": {
+      "usable": true,
+      "provider": "aws",
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S09",
+    "title": "EU local services",
+    "scenario": {
+      "scenario_id": "S09",
+      "project": {
+        "name": "EU local services",
+        "type": "marketplace",
+        "platforms": [
+          "web",
+          "android"
+        ],
+        "description": "Booking marketplace and hosted checkout."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "typescript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 180
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "eu"
+      },
+      "requirements": {
+        "auth": "phone_otp",
+        "payments": true,
+        "seo_critical": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S10",
+    "title": "Flutter services directory",
+    "scenario": {
+      "scenario_id": "S10",
+      "project": {
+        "name": "Flutter services directory",
+        "type": "marketplace",
+        "platforms": [
+          "android",
+          "ios"
+        ],
+        "description": "Searchable provider directory."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "dart",
+          "python"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 400
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "full_text_search": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "python"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S11",
+    "title": "Small community feed",
+    "scenario": {
+      "scenario_id": "S11",
+      "project": {
+        "name": "Small community feed",
+        "type": "social",
+        "platforms": [
+          "web"
+        ],
+        "description": "Posts and image sharing."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "javascript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 80
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "social",
+        "file_media_storage": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S12",
+    "title": "Mobile messaging",
+    "scenario": {
+      "scenario_id": "S12",
+      "project": {
+        "name": "Mobile messaging",
+        "type": "social",
+        "platforms": [
+          "android",
+          "ios"
+        ],
+        "description": "Realtime messages."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "dart",
+          "go"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 900
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "phone_otp",
+        "realtime": true,
+        "file_media_storage": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "aws",
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S13",
+    "title": "Small shared editor",
+    "scenario": {
+      "scenario_id": "S13",
+      "project": {
+        "name": "Small shared editor",
+        "type": "realtime_collab",
+        "platforms": [
+          "web"
+        ],
+        "description": "Collaborative editing with live cursors."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "typescript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 200
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "realtime": true,
+        "multi_tenant": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S14",
+    "title": "Azure board",
+    "scenario": {
+      "scenario_id": "S14",
+      "project": {
+        "name": "Azure board",
+        "type": "realtime_collab",
+        "platforms": [
+          "web"
+        ],
+        "description": "Collaborative whiteboard."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "csharp",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1200
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "azure",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "enterprise_sso",
+        "realtime": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "azure",
+      "backend_language": [
+        "csharp",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S15",
+    "title": "India collections",
+    "scenario": {
+      "scenario_id": "S15",
+      "project": {
+        "name": "India collections",
+        "type": "fintech",
+        "platforms": [
+          "web",
+          "android"
+        ],
+        "description": "Double-entry ledger for installment collections."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "kotlin",
+          "java",
+          "typescript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 800
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "deployment_model": "managed_cloud",
+        "data_residency": "india"
+      },
+      "requirements": {
+        "auth": "phone_otp",
+        "payments": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "compliance": [
+        "rbi_localisation"
+      ]
+    },
+    "expect": {
+      "usable": true,
+      "provider": "aws",
+      "backend_language": [
+        "java",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S16",
+    "title": "Internal ledger API",
+    "scenario": {
+      "scenario_id": "S16",
+      "project": {
+        "name": "Internal ledger API",
+        "type": "fintech",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Double-entry ledger, on-premise internal service."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "go"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "none",
+        "deployment_model": "on_premise",
+        "data_residency": "none"
+      },
+      "requirements": {},
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "none",
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S17",
+    "title": "Clinic appointments",
+    "scenario": {
+      "scenario_id": "S17",
+      "project": {
+        "name": "Clinic appointments",
+        "type": "healthtech",
+        "platforms": [
+          "web"
+        ],
+        "description": "Clinical appointment and document records."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "python",
+          "javascript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 600
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "file_media_storage": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "compliance": [
+        "hipaa"
+      ]
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "python",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S18",
+    "title": "Offline field care",
+    "scenario": {
+      "scenario_id": "S18",
+      "project": {
+        "name": "Offline field care",
+        "type": "healthtech",
+        "platforms": [
+          "android"
+        ],
+        "description": "Offline forms with later synchronization."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "kotlin",
+          "java"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 250
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "india"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "offline_support": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "java"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S19",
+    "title": "Search-only analytics API",
+    "scenario": {
+      "scenario_id": "S19",
+      "project": {
+        "name": "Search-only analytics API",
+        "type": "data_analytics",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Index and search incident reports."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "python"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "full_text_search": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "python"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S20",
+    "title": "Azure analytics dashboard",
+    "scenario": {
+      "scenario_id": "S20",
+      "project": {
+        "name": "Azure analytics dashboard",
+        "type": "data_analytics",
+        "platforms": [
+          "web"
+        ],
+        "description": "Searchable historical business reports."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "csharp",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 700
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "azure",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "enterprise_sso",
+        "full_text_search": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "azure",
+      "backend_language": [
+        "csharp",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S21",
+    "title": "Device telemetry gateway",
+    "scenario": {
+      "scenario_id": "S21",
+      "project": {
+        "name": "Device telemetry gateway",
+        "type": "iot",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Ingest and retain sensor readings over HTTP."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "go"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 300
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {},
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "aws",
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S22",
+    "title": "Local factory dashboard",
+    "scenario": {
+      "scenario_id": "S22",
+      "project": {
+        "name": "Local factory dashboard",
+        "type": "iot",
+        "platforms": [
+          "web"
+        ],
+        "description": "Local factory sensor dashboard."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "python",
+          "javascript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "none",
+        "deployment_model": "on_premise",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "realtime": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "none",
+      "backend_language": [
+        "python",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S23",
+    "title": "Python inference endpoint",
+    "scenario": {
+      "scenario_id": "S23",
+      "project": {
+        "name": "Python inference endpoint",
+        "type": "ai_ml_product",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "CPU ONNX model inference; no training."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "python"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 250
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "ml_features": "inference_api"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "python"
+      ],
+      "persistent": false,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S24",
+    "title": "GPU training platform",
+    "scenario": {
+      "scenario_id": "S24",
+      "project": {
+        "name": "GPU training platform",
+        "type": "ai_ml_product",
+        "platforms": [
+          "web"
+        ],
+        "description": "GPU model training and job scheduling."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "python",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 2000
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "ml_features": "training"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": false,
+      "provider": "aws",
+      "backend_language": [
+        "python",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Training capacity and GPU deployment are explicitly outside the reviewed catalog."
+    }
+  },
+  {
+    "id": "S25",
+    "title": "Air-gapped inventory",
+    "scenario": {
+      "scenario_id": "S25",
+      "project": {
+        "name": "Air-gapped inventory",
+        "type": "internal_tool",
+        "platforms": [
+          "web"
+        ],
+        "description": "Inventory on existing isolated hardware."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "csharp",
+          "typescript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 50
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "none",
+        "deployment_model": "air_gapped",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "none",
+      "backend_language": [
+        "csharp",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S26",
+    "title": "Small PHP back office",
+    "scenario": {
+      "scenario_id": "S26",
+      "project": {
+        "name": "Small PHP back office",
+        "type": "internal_tool",
+        "platforms": [
+          "web"
+        ],
+        "description": "Staff records and task management."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "php",
+          "javascript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 50
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "php",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S27",
+    "title": "Turn-based game",
+    "scenario": {
+      "scenario_id": "S27",
+      "project": {
+        "name": "Turn-based game",
+        "type": "gaming",
+        "platforms": [
+          "android",
+          "ios"
+        ],
+        "description": "Turn-based game state over WebSocket."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "dart",
+          "go"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 300
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "realtime": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S28",
+    "title": "Small game leaderboard",
+    "scenario": {
+      "scenario_id": "S28",
+      "project": {
+        "name": "Small game leaderboard",
+        "type": "gaming",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Persistent scores for an asynchronous mobile game."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "java"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 150
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {},
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "aws",
+      "backend_language": [
+        "java"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S29",
+    "title": "Search service",
+    "scenario": {
+      "scenario_id": "S29",
+      "project": {
+        "name": "Search service",
+        "type": "api_platform",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Persistent searchable API records."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "go"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 120
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "full_text_search": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  },
+  {
+    "id": "S30",
+    "title": "Stateless transform API",
+    "scenario": {
+      "scenario_id": "S30",
+      "project": {
+        "name": "Stateless transform API",
+        "type": "api_platform",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Stateless JSON transformations; no persistent user records."
+      },
+      "scale": {
+        "users_at_launch": 100,
+        "users_12_months": 1000,
+        "peak_concurrent_users": 20
+      },
+      "team": {
+        "size": 6,
+        "experience": "intermediate",
+        "languages": [
+          "python"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 12
+      },
+      "infrastructure": {
+        "cloud_preference": "azure",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {},
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "azure",
+      "backend_language": [
+        "python"
+      ],
+      "persistent": false,
+      "reason": "Reviewed client/server/service capabilities should cover this brief."
+    }
+  }
+]
