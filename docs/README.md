@@ -58,3 +58,5 @@ Post-release: [repository comparison](REPOSITORY_COMPARISON.md) and [improvement
 - [Phase 6: guidance, costs and alternatives](PHASE_6.md)
 
 - [Phase 7: Decision Lab](PHASE_7.md) · [Research and future features](PHASE_7_RESEARCH.md)
+
+- [Phase 8: reference workload, raw measurements and next calibration gate](PHASE_8.md)

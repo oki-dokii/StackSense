@@ -11,6 +11,7 @@ Updated 14 November 2026 IST. The detailed method is in [plan.md](../plan.md); t
 | 5 | Evaluation, performance/setup evidence, outputs/screenshots/report and release | Technical package prepared | 201 tests; 14 unseen-style cases; 24-page report/ZIP verified; owner review and online submission pending |
 | 6 | Evidence-resolution guidance, Azure scoped coverage, integration reviews, cost sensitivity and complete-plan comparison | Implemented and tested | 220 tests plus three provenance tests; actual browser QA; release evidence refreshed |
 | 7 | Research-driven Decision Lab, full tradeoff front, bounded experiments and proposed ADRs | Implemented and tested | 235 tests plus three provenance checks; exact browser/API/CLI exports; unchanged recommendation outputs |
+| 8 | Local reference workload, raw measurement verification and detailed README diagrams | Implemented and tested | Three measured stages; five workload correctness/failure tests; full application regressions unchanged |
 
 ## Phase 1 delivered
 
@@ -47,3 +48,7 @@ Author-designed evaluation and mutations, EOL/source coverage fixes, measured co
 ## Change discipline
 
 Each phase must update README instructions, tests, phase evidence and AI assistance. Preserve the original fixtures. Do not mark later phases complete based on planning artifacts or synthetic outputs. Do not tune selection by public scenario IDs/names.
+
+## Phase 8 delivered
+
+[Reference workload methodology and results](PHASE_8.md). This is the first local capacity-evidence step; deployed-stack billing/cost calibration remains open. Expanded README includes architecture, request sequence, engine search, Decision Lab, measurement and evidence diagrams.

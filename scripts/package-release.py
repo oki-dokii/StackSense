@@ -53,6 +53,9 @@ Open http://127.0.0.1:3000. Node 22.17+ within 22, or Node 24.
 Public results: one ok, one ok_with_warnings, four infeasible due reviewed
 external-residency/provider evidence gaps. No-plan 0-0 costs are not estimates.
 The report documents actual tests, assumptions, references and AI assistance.
+It is the reviewed Phase 7 report. The source additionally includes Phase 8
+local reference workload measurements and a detailed README with six diagrams;
+see docs/PHASE_8.md. No deployed-stack cost calibration is claimed.
 
 Owner actions remain: review and own the AI-assisted design/research; verify
 Drive sharing/access, submit the folder link on Unstop, and freeze the folder

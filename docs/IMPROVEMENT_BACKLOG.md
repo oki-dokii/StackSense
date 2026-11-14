@@ -25,3 +25,7 @@ Implementation evidence: [Phase 6](PHASE_6.md). Original public requirements rem
 ## Phase 7 follow-up
 
 [Decision Lab](PHASE_7.md) now provides full completed-candidate tradeoff exploration, one-at-a-time priority trials, bounded functional experiments and proposed ADR/evidence exports. These narrow the plan-comparison/preference-explanation backlog but do not provide global sensitivity, current vendor/tenant contracts, measured capacity or independent quality calibration. [Prioritized research plan](PHASE_7_RESEARCH.md).
+
+## Phase 8 follow-up
+
+[Local reference measurement](PHASE_8.md) is implemented with raw evidence, explicit acceptance, tamper detection and failure tests. Deployed-stack cost calibration remains open: add actual database/resources/region, externally generated open-arrival-rate load, repeated measurements and billing. The local in-memory recipe provides no capacity or price update for existing recommendations.

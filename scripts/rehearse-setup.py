@@ -20,10 +20,10 @@ for file in sorted(destination.rglob('*')):
  relative=file.relative_to(destination)
  if relative.parts[0] in {'apps','packages','schemas','tests','fixtures'} or str(relative) in {'package.json','package-lock.json','tsconfig.json','vitest.config.ts','.nvmrc'}:code_hash.update(str(relative).encode()+b'\0'+file.read_bytes()+b'\0')
 steps=[]
-for command in [['npm','ci','--offline','--cache',str(a.npm_cache.resolve()),'--no-audit','--no-fund'],['npm','run','check'],['npm','run','build'],['npm','run','evaluate'],['npm','run','verify:release']]:
+for command in [['npm','ci','--offline','--cache',str(a.npm_cache.resolve()),'--no-audit','--no-fund'],['npm','run','check'],['node','--test','scripts/tests/evidence-bindings.test.mjs','scripts/tests/calibration.test.mjs'],['npm','run','build'],['npm','run','evaluate'],['npm','run','verify:release']]:
  tick=time.perf_counter();result=subprocess.run(command,cwd=destination,capture_output=True,text=True,timeout=600)
  if result.returncode:raise RuntimeError(f'{command[:3]} failed:\n{result.stdout}\n{result.stderr}')
- steps.append({'command':command[:3], 'seconds':round(time.perf_counter()-tick,3),'exit_code':result.returncode})
+ steps.append({'command':command if command[0]=='node' else command[:3], 'seconds':round(time.perf_counter()-tick,3),'exit_code':result.returncode})
 record={'measured_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'mode':'fresh archive extraction; npm offline install using previously populated cache','platform':platform.platform(),'runtime_source_sha256':code_hash.hexdigest(),'source_zip_sha256':hashlib.sha256(a.source_zip.read_bytes()).hexdigest(),'steps':steps,'total_seconds':round(time.perf_counter()-started,3),'scope_limit':'Includes extraction/install/check/build/evaluation verification; real cold API startup measured separately. No new online download or other OS is claimed.'}
 a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record,indent=2))
 if record['total_seconds']>=900:raise RuntimeError('Observed setup exceeded 15 minutes')

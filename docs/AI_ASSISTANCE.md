@@ -37,3 +37,7 @@ Codex researched official Microsoft/MSG91/Razorpay scopes, implemented guidance/
 ## Phase 7 (14 November 2026)
 
 Codex performed targeted primary-source research, separated published methods from local design inferences, implemented the Decision Lab/adapters/UI and a detached full-candidate projection, tested protected edits/dominance/parity, checked actual browser exports/mobile/stale behavior, and refreshed evaluation/report/package evidence. No external implementation was copied; no paper experiment, independent review, vendor approval or contest outcome was fabricated.
+
+## Phase 8 (14 November 2026)
+
+Codex reviewed official Node timing and Grafana threshold/load-model documentation, implemented an isolated local reference workload and independent raw-evidence verifier, ran actual measurements and deliberate-failure tests, expanded the README with Mermaid diagrams and refreshed the source package. No k6 execution, paid cloud provisioning, production sizing/cost calibration or independent expert review is claimed. The existing reviewed Phase 7 PDF is retained and distinguished from the new experiment.

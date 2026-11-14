@@ -357,3 +357,7 @@ Implemented scope and explicit remaining evidence: [Phase 6 record](docs/PHASE_6
 ## Phase 7 and subsequent evidence work
 
 [Decision Lab implementation](docs/PHASE_7.md) and [research-driven prioritization](docs/PHASE_7_RESEARCH.md). Application 0.7.0 adds bounded decision analysis while retaining 0.6.0 recommendations. Next concrete research target: one reproducible measured workload recipe, then source-change review and independent/accessibility validation. Future artifacts must stay scoped to what was actually measured/reviewed.
+
+## Phase 8: first measured reference recipe
+
+[Implemented workload and next gate](docs/PHASE_8.md): bounded separate-process local HTTP catalog recipe, actual raw JSONL measurements, source/profile/environment provenance, independently recomputed metrics and failure tests. This starts the evidence roadmap; it does not calibrate any cloud price or capacity coefficient. Next: real database/deployment recipe, repeated steady-state open-arrival-rate tests and reviewed billing before model changes.

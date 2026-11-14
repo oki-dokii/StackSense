@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0.0",
+  "measured_at": "2026-11-14T06:09:48.635Z",
+  "recipe": "node-http-in-memory-catalog-v1",
+  "profile": {
+    "recipe": "node-http-in-memory-catalog-v1",
+    "warmup_requests": 50,
+    "duration_ms": 2000,
+    "concurrency": [
+      1,
+      4,
+      16
+    ],
+    "timeout_ms": 2000,
+    "max_samples_per_stage": 20000,
+    "thresholds": {
+      "p95_ms": 100,
+      "error_rate": 0,
+      "min_requests": 100
+    }
+  },
+  "profile_sha256": "fbaba04fd074477f64a19217c3c79d047bd407546165868d0ed3393a84ab9327",
+  "sources": {
+    "run.mjs": "2b5b4f8f341d5c7d60eea9b6803079f41d91fed137e564ad4e08a6e45493f9df",
+    "workload.mjs": "3e475c34f431d48f527c7acb14a7e9663f9818a1ba86004d8859a9f2cb9a6138",
+    "profile.json": "b95f21560494fd7124d78843ca1661e24bccdecd2121704d85b7c1aafb76254a"
+  },
+  "environment": {
+    "node": "v22.17.1",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "os_release": "25.3.0",
+    "cpu_model": "Apple M2",
+    "logical_cpus": 8,
+    "total_memory_bytes": 8589934592,
+    "server_process_separate": true,
+    "generator_on_same_host": true
+  },
+  "model": "closed-loop, zero think time; deterministic 80% read / 20% search by request index; warmup excluded; drain included; no retries",
+  "resources": {
+    "cpu_microseconds": {
+      "user": 1372588,
+      "system": 521877
+    },
+    "peak_rss_bytes": 67764224
+  },
+  "stages": [
+    {
+      "concurrency": 1,
+      "requests": 16687,
+      "errors": 0,
+      "error_rate": 0,
+      "elapsed_ms": 2000.03425,
+      "requests_per_second": 8343.35712000932,
+      "p50_ms": 0.08412500000008549,
+      "p95_ms": 0.22537499999998545,
+      "p99_ms": 0.6378330000000005,
+      "max_ms": 4.900249999999971,
+      "checks": {
+        "p95": true,
+        "error_rate": true,
+        "min_requests": true
+      },
+      "passed": true,
+      "sample_cap_reached": false,
+      "raw": "samples-1.jsonl",
+      "raw_sha256": "a104bd77a6331e2b192b8372c5a814e72102d5e96c094dfabf7b4dc213634298"
+    },
+    {
+      "concurrency": 4,
+      "requests": 20000,
+      "errors": 0,
+      "error_rate": 0,
+      "elapsed_ms": 1384.5353329999998,
+      "requests_per_second": 14445.279599086982,
+      "p50_ms": 0.22545800000034433,
+      "p95_ms": 0.40337499999986903,
+      "p99_ms": 1.772457999999915,
+      "max_ms": 5.1922920000001795,
+      "checks": {
+        "p95": true,
+        "error_rate": true,
+        "min_requests": true
+      },
+      "passed": true,
+      "sample_cap_reached": true,
+      "raw": "samples-2.jsonl",
+      "raw_sha256": "549708a036dc6fd4acb6820d51330dc99bb7ca1f1d1205541c9929b43391d5ef"
+    },
+    {
+      "concurrency": 16,
+      "requests": 20000,
+      "errors": 0,
+      "error_rate": 0,
+      "elapsed_ms": 1289.1295839999998,
+      "requests_per_second": 15514.344134390762,
+      "p50_ms": 0.8756249999996726,
+      "p95_ms": 2.44524999999976,
+      "p99_ms": 3.131583000000319,
+      "max_ms": 4.818249999999807,
+      "checks": {
+        "p95": true,
+        "error_rate": true,
+        "min_requests": true
+      },
+      "passed": true,
+      "sample_cap_reached": true,
+      "raw": "samples-3.jsonl",
+      "raw_sha256": "000b545453ade3b12cc4c31e26b980485fa959a50928241274f6c603d2b9440f"
+    }
+  ],
+  "passed": true,
+  "scope": "Local Node HTTP in-memory catalog only. No database, persistence, auth, TLS, external network, deployment, cloud cost calibration, production capacity or SLA validation. Same-host generator competes for resources; closed-loop load omits demand during stalls. CPU/RSS span warmup and all stages, not individual requests."
+}
