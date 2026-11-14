@@ -14,6 +14,7 @@ Updated 14 November 2026 IST. The detailed method is in [plan.md](../plan.md); t
 | 8 | Local reference workload, raw measurement verification and detailed README diagrams | Implemented and tested | Three measured stages; five workload correctness/failure tests; full application regressions unchanged |
 | 9 | Real Fastify/PostgreSQL reference, arrival-rate scheduler and repeated measured stages | Implemented and tested locally | 3,600 issued, zero errors/drops; commit counts verified; eight correctness/integrity cases with live DB enabled separately |
 | 10 | Evidence freshness audits, source tracing, candidate diffs and unreviewed URL observations | Implemented and tested | 99 sources; 14 new tests; four bounded live observations; no source/engine date or output changes |
+| 11 | Keyboard focus, text contrast, React DOM regressions and desktop/narrow browser QA | Implemented and tested | Six new component tests; seven scoped browser audits; remaining assistive/browser/zoom gates explicit |
 
 ## Phase 1 delivered
 
@@ -62,3 +63,7 @@ Each phase must update README instructions, tests, phase evidence and AI assista
 ## Phase 10 delivered
 
 [Evidence maintenance workflow](PHASE_10.md): deterministic offline audit, candidate changes and bounded metadata capture; retrieval, integrity and human approval remain distinct. Complete vendor/tenant revalidation and accessibility/independent review remain open.
+
+## Phase 11 delivered
+
+[Keyboard/contrast changes and browser evidence](PHASE_11.md). Focus destinations, title changes, import/error behavior, scoped contrast and 320-pixel layout are checked. Full WCAG/assistive-technology/browser/zoom QA and actual uncached-machine setup remain open.

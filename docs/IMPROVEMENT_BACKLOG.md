@@ -37,3 +37,7 @@ Implementation evidence: [Phase 6](PHASE_6.md). Original public requirements rem
 ## Phase 10 follow-up
 
 [Evidence maintenance](PHASE_10.md) delivers reminder audits, direct reference tracing, structural candidate proposals and bounded unreviewed HTTP metadata/digests. Actual semantic re-review of all sources, authenticated reviewer decisions, transitive impact analysis and current vendor/tenant contracts remain open. No source review date or recommendation changed in this phase.
+
+## Phase 11 follow-up
+
+[Scoped keyboard/contrast QA](PHASE_11.md) adds concrete focus fixes and component/browser evidence, including narrow layouts. It narrows accessibility work without claiming full conformance. Assistive technology, broader browser/zoom/control testing and actual uncached-machine installation remain open.

@@ -128,7 +128,7 @@ const titles: Record<string, string> = {
   'requirements.availability': 'Availability target',
   'project.name': 'Project name',
 };
-function App() {
+export function App() {
   const [method, setMethod] = useState<Method>();
   const [samples, setSamples] = useState<Draft[]>([]);
   const [loadError, setLoadError] = useState('');
@@ -151,6 +151,9 @@ function App() {
   const [selected, setSelected] = useState(0);
   const errorRef = useRef<HTMLDivElement>(null);
   const resultRef = useRef<HTMLHeadingElement>(null);
+  const importButtonRef = useRef<HTMLButtonElement>(null);
+  const previousRoute = useRef(route);
+  const previousImport = useRef(false);
   const stale = Boolean(run && (run.revision !== revision || pendingImport));
   const raw = items[active];
   const draft =
@@ -201,6 +204,30 @@ function App() {
   useEffect(() => {
     if (message) errorRef.current?.focus();
   }, [message]);
+  useEffect(() => {
+    document.title = `${route === '/about' ? 'Methodology' : route === '/results' ? 'Results' : 'Workspace'} — StackSense`;
+    if (previousRoute.current !== route) {
+      const heading =
+        (route === '/results'
+          ? document.getElementById('validation-errors')
+          : null) ?? document.querySelector<HTMLElement>('main h1');
+      if (heading) {
+        heading.tabIndex = -1;
+        heading.focus({ preventScroll: true });
+      }
+    }
+    previousRoute.current = route;
+  }, [route]);
+  useEffect(() => {
+    if (importOpen) document.getElementById('json-editor')?.focus();
+    else if (previousImport.current) importButtonRef.current?.focus();
+    previousImport.current = importOpen;
+  }, [importOpen]);
+  function jumpToSection(key: string) {
+    const section = document.getElementById(`section-${key}`);
+    section?.scrollIntoView({ block: 'start' });
+    section?.focus({ preventScroll: true });
+  }
   function navigate(path: string) {
     history.pushState({}, '', path);
     setRoute(path);
@@ -583,13 +610,7 @@ function App() {
                 key={key}
                 onClick={() => {
                   navigate('/');
-                  setTimeout(
-                    () =>
-                      document
-                        .getElementById(`section-${key}`)
-                        ?.scrollIntoView({ block: 'start' }),
-                    0,
-                  );
+                  setTimeout(() => jumpToSection(key), 0);
                 }}
               >
                 <span>{String(index + 1).padStart(2, '0')}</span>
@@ -1350,6 +1371,8 @@ function App() {
                 <button
                   className="secondary"
                   disabled={running}
+                  ref={importButtonRef}
+                  aria-controls="import-panel"
                   aria-expanded={importOpen}
                   onClick={() => setImportOpen(!importOpen)}
                 >
@@ -1379,7 +1402,7 @@ function App() {
                 </div>
               </section>
               {importOpen && (
-                <section className="panel import-panel">
+                <section id="import-panel" className="panel import-panel">
                   <h2>Import a project brief</h2>
                   <p>
                     One scenario or an array of 1–100. Up to 2 MiB. Applying
@@ -1632,4 +1655,5 @@ function App() {
     </>
   );
 }
-createRoot(document.getElementById('root')!).render(<App />);
+const rootElement = document.getElementById('root');
+if (rootElement) createRoot(rootElement).render(<App />);

@@ -49,3 +49,7 @@ Codex reviewed primary PostgreSQL/node-postgres/Grafana/GitHub documentation, im
 ## Phase 10 (14 November 2026)
 
 Codex reviewed primary HTTP/provenance guidance, implemented offline source audits, structural proposal and bounded capture/comparison tooling, ran synthetic regression cases and four real public HTTP observations, and refreshed documentation/package evidence. HTTP content was treated as data and not retained in full. No reviewer acceptance, vendor fact change, automatic catalog promotion or compliance approval was fabricated.
+
+## Phase 11 (14 November 2026)
+
+Codex used the Sites local-preview workflow, reviewed W3C focus/contrast/form guidance, observed keyboard/contrast issues in the actual browser, implemented focused fixes and six React/jsdom regressions, and recorded seven custom read-only DOM snapshots plus captures. Export parity and stale protection were checked. The audit is intentionally limited and no axe run, screen-reader usability, multi-browser coverage or WCAG conformance is claimed. The reviewed Phase 7 PDF is retained separately.

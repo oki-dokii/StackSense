@@ -4,7 +4,7 @@ A local, deterministic technology stack recommendation engine for the Synergy �
 
 StackSense evaluates the frontend, backend, database, hosting and supporting services together. Hard constraints filter candidates before explainable ranking. The same engine powers the CLI, loopback API and browser workspace; it makes no runtime LLM or external recommendation calls.
 
-**Latest work: Phase 10** adds offline review-date audits for all 99 catalog sources, source-to-report tracing, hash-bound catalog proposals and optional bounded URL observations. Retrieval and byte changes remain separate from human approval. See [the evidence workflow](docs/PHASE_10.md).
+**Latest work: Phase 11** improves keyboard route/section focus, validation-summary focus, JSON editor focus restoration and text contrast. Six React DOM tests and seven scoped browser snapshots cover the changes, including 320-pixel layouts. [Accessibility QA, evidence and limits](docs/PHASE_11.md).
 
 ## Contents
 
@@ -200,7 +200,7 @@ node benchmarks/reference/verify.mjs evaluation/calibration/reference-run-1
 python3 scripts/check_docs.py
 ```
 
-Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: **235 application tests**, three capture-provenance checks, five in-memory workload checks and eight [PostgreSQL recipe checks](docs/PHASE_9.md) and fourteen [evidence-review checks](docs/PHASE_10.md) pass locally with the live DB enabled, with a successful build. The SQL suite explicitly skips its live-database case when not enabled. Current local API/cached setup timings are recorded there; these do not measure recommended-workload behavior.
+Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: **241 application tests**, three capture-provenance checks, five in-memory workload checks and eight [PostgreSQL recipe checks](docs/PHASE_9.md) and fourteen [evidence-review checks](docs/PHASE_10.md) pass locally with the live DB enabled, with a successful build. The SQL suite explicitly skips its live-database case when not enabled. Current local API/cached setup timings are recorded there; these do not measure recommended-workload behavior.
 
 | Technology | Pinned version | Role |
 |---|---|---|
@@ -208,7 +208,8 @@ Optional deeper documentation contract checks require Python's `jsonschema` pack
 | Ajv | 8.20.0 | Standard JSON Schema validation without coercion |
 | json-schema-to-typescript | 15.0.4 | Generate types from authoritative schemas |
 | tsx | 4.23.15 | Source-mode development CLI |
-| Vitest | 5.1.0 | Contract and real CLI subprocess tests |
+| Vitest | 5.1.0 | Contract, component and real CLI subprocess tests |
+| jsdom | 27.4.0 | React DOM focus regressions; not browser layout or assistive-technology testing |
 | Fastify / @fastify/static | 5.12.8 / 10.1.10 | Loopback API and bundled asset serving |
 | React / react-dom | 19.3.1 | In-memory responsive workspace |
 | Vite | 8.3.8 | Browser build and development proxy |
@@ -346,7 +347,7 @@ The candidate directory must contain copied `catalog.json` and `services.json` f
 
 The [committed audit](evaluation/evidence-review/current/report.md) covers **99 sources** with no due/future dates as of its declared 14 November 2026 date. Five guidance sources have no structured catalog consumer and are explicitly distinguished from unused sources. A [synthetic tariff proposal](evaluation/evidence-review/synthetic-tariff-proposal/report.json) demonstrates before/after tracing; it is not an observed price update. Four real HTTP observations of two lifecycle URLs retain headers and byte hashes only; their identical representations remain unreviewed. There is no apply command or automatic date reset.
 
-Network research does not automatically change selection rules. The reviewed report is the Phase 7 report; Phase 8–10 measurements and maintenance records are documented separately and included in the source archive. No independent expert acceptance or online submission is implied by a passing build.
+Network research does not automatically change selection rules. The reviewed report is the Phase 7 report; Phase 8–11 measurements and maintenance records are documented separately and included in the source archive. No independent expert acceptance or online submission is implied by a passing build.
 
 ### Database-backed reference recipe
 
@@ -361,6 +362,17 @@ node --test benchmarks/postgres/tests.mjs
 ```
 
 The recipe offers 100 and 300 requests/second independently of response completion, repeats each rate three times, and records every dropped slot. It validates point reads, indexed searches and committed inserts. The committed run issued all **3,600 scheduled requests**, with **zero errors/drops**, **2.817–4.659 ms p95** scheduled-to-completion latency, and **390 committed inserts including warmup**, verified by a fresh connection. This short local run does not measure cloud resources or billing. [Method, diagram, CI coverage, version caveats and remaining gate](docs/PHASE_9.md).
+
+## Accessibility QA
+
+Navigation now moves focus to the destination heading or input section and updates the page title. Invalid results prioritize the error summary. The JSON editor restores focus when closed, and muted text is darker. Focus outlines remain visible; charts and wide tables retain keyboard-scrollable regions.
+
+```sh
+npx vitest run tests/web-accessibility.test.ts
+node scripts/accessibility/verify.mjs
+```
+
+[Phase 11](docs/PHASE_11.md) records six component tests and seven actual browser snapshots at desktop/320-pixel widths. Its custom solid-background leaf-text audit recorded no findings in the saved views. This is limited QA, not WCAG certification or screen-reader testing; the remaining checks are listed there.
 
 ## Troubleshooting
 

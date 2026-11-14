@@ -369,3 +369,7 @@ Implemented scope and explicit remaining evidence: [Phase 6 record](docs/PHASE_6
 ## Phase 10: evidence maintenance
 
 [Implemented workflow](docs/PHASE_10.md): 99-source offline audits with explicit cadence, direct source consumers/report mentions, hash-bound structural proposals, bounded registered-URL observations, integrity and regression tests. No automatic acceptance, date reset or rule promotion. Next: broader accessibility/browser QA and an actual uncached setup; external contracts/billing remain separate evidence needs.
+
+## Phase 11: focused accessibility QA
+
+[Implemented keyboard/contrast work](docs/PHASE_11.md): actual browser findings, route/section/error/import focus fixes, darker muted text, six actual React DOM tests and seven bounded browser audit snapshots. Remaining: VoiceOver/NVDA, browser/zoom/control-semantic checks, actual uncached-machine installation and independent review.

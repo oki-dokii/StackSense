@@ -64,3 +64,5 @@ Post-release: [repository comparison](REPOSITORY_COMPARISON.md) and [improvement
 - [Phase 9: database-backed reference recipe and calibration gate](PHASE_9.md)
 
 - [Phase 10: evidence freshness and change review](PHASE_10.md)
+
+- [Phase 11: keyboard focus, contrast and browser QA](PHASE_11.md)

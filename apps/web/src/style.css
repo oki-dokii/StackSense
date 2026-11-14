@@ -76,7 +76,7 @@ h1 {
   margin-bottom: 20px;
 }
 h1 span {
-  color: #8a859b;
+  color: #655773;
 }
 h2 {
   font-size: 19px;
@@ -199,7 +199,7 @@ button:hover:not(:disabled) {
   letter-spacing: 1.6px;
   font-weight: 650;
   background: #f2f0f8;
-  color: #7b718f;
+  color: #655773;
   border-radius: 4px;
   padding: 4px 7px;
   margin-left: 4px;
@@ -267,7 +267,7 @@ button:hover:not(:disabled) {
   font-size: 9px;
   letter-spacing: 1.6px;
   font-weight: 700;
-  color: #767083;
+  color: #655773;
   margin-bottom: 14px;
 }
 .sidebar .eyebrow {
@@ -292,7 +292,7 @@ button:hover:not(:disabled) {
   background: #eeebf6;
 }
 .sidebar nav button span {
-  color: #a29bab;
+  color: #655773;
   font-size: 9px;
   align-self: center;
   font-variant-numeric: tabular-nums;
@@ -301,14 +301,14 @@ button:hover:not(:disabled) {
   margin-top: auto;
   border-top: 1px solid var(--border);
   padding: 23px 12px 0;
-  color: #7e758d;
+  color: #655773;
 }
 .sidebar-note svg {
   width: 22px;
   height: 22px;
   display: block;
   margin-bottom: 12px;
-  color: #8779af;
+  color: #655773;
 }
 .sidebar-note strong {
   display: block;
@@ -338,7 +338,7 @@ button:hover:not(:disabled) {
   margin: 5px 0 30px;
 }
 .heading-row .eyebrow {
-  color: #7d6ca2;
+  color: #655773;
 }
 .lead {
   font-size: 13px;
@@ -351,13 +351,13 @@ button:hover:not(:disabled) {
   letter-spacing: 1px;
   line-height: 1.9;
   text-align: right;
-  color: #a09aa9;
+  color: #655773;
   min-width: 120px;
 }
 .edition strong {
   font-size: 22px;
   letter-spacing: 3px;
-  color: #bcb4ca;
+  color: #655773;
   font-weight: 400;
   line-height: 2;
 }
@@ -445,7 +445,7 @@ button:hover:not(:disabled) {
   justify-content: center;
   border: 1px solid #e8e3f1;
   border-radius: 7px;
-  color: #8a78ad;
+  color: #655773;
   background: #f8f6fc;
   font-size: 10px;
   font-variant-numeric: tabular-nums;
@@ -526,7 +526,7 @@ button:hover:not(:disabled) {
 }
 .toggle small {
   font-size: 8px;
-  color: #8e879a;
+  color: #655773;
   overflow-wrap: anywhere;
 }
 .review {
@@ -559,7 +559,7 @@ button:hover:not(:disabled) {
 }
 .brief > p {
   font-size: 10px;
-  color: #7a708c;
+  color: #655773;
 }
 .brief dl {
   margin: 23px 0;
@@ -571,7 +571,7 @@ button:hover:not(:disabled) {
   padding-top: 20px;
 }
 .brief dt {
-  color: #8b809a;
+  color: #655773;
 }
 .brief dd {
   text-align: right;
@@ -588,12 +588,12 @@ button:hover:not(:disabled) {
   line-height: 1.9;
   text-align: center;
   margin: 13px 0 0;
-  color: #86799a;
+  color: #655773;
 }
 .review-note {
   padding: 25px 13px;
   font-size: 10px;
-  color: #7a7286;
+  color: #655773;
 }
 .review-note strong {
   font-size: 10px;
@@ -609,7 +609,7 @@ button:hover:not(:disabled) {
 .review-note li:before {
   content: '✓';
   padding-right: 8px;
-  color: #8b7ca8;
+  color: #655773;
 }
 .review-note p {
   font-size: 9px;
@@ -640,7 +640,7 @@ footer {
   border-top: 1px solid var(--border);
   padding: 22px 0 27px;
   font-size: 10px;
-  color: #8f879b;
+  color: #655773;
   display: flex;
   gap: 18px;
   flex-wrap: wrap;
@@ -713,7 +713,7 @@ footer > span:last-child {
   padding: 70px 25px;
 }
 .empty svg {
-  color: #8876b1;
+  color: #655773;
   width: 45px;
   height: 45px;
   margin-bottom: 22px;
@@ -815,7 +815,7 @@ footer > span:last-child {
 }
 .chip span {
   display: block;
-  color: #80748f;
+  color: #655773;
   font-size: 8px;
   max-width: 200px;
   overflow: hidden;
@@ -832,7 +832,7 @@ footer > span:last-child {
   padding: 22px;
   margin-bottom: 32px;
   text-align: center;
-  color: #82718f;
+  color: #655773;
   font-size: 10px;
 }
 .topology strong {
@@ -850,7 +850,7 @@ footer > span:last-child {
 .section-title > span {
   font-size: 9px;
   letter-spacing: 1px;
-  color: #8d829a;
+  color: #655773;
   text-transform: uppercase;
   font-weight: 400;
 }
@@ -867,7 +867,7 @@ footer > span:last-child {
   min-width: 0;
 }
 .component > .eyebrow {
-  color: #87749f;
+  color: #655773;
   margin-bottom: 12px;
 }
 .component > p:not(.eyebrow) {
@@ -919,7 +919,7 @@ details p {
 }
 .cost h2 > span {
   font-size: 13px;
-  color: #897b98;
+  color: #655773;
   letter-spacing: 0;
   font-weight: 400;
 }
@@ -939,7 +939,7 @@ table {
 }
 caption {
   text-align: left;
-  color: #8a7b96;
+  color: #655773;
   font-size: 9px;
   padding: 15px 0;
 }
@@ -962,7 +962,7 @@ th small {
   max-width: 500px;
 }
 thead th {
-  color: #887896;
+  color: #655773;
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 1px;

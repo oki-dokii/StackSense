@@ -56,7 +56,8 @@ The report documents actual tests, assumptions, references and AI assistance.
 It is the reviewed Phase 7 report. The source additionally includes Phase 8
 local HTTP and Phase 9 Fastify/PostgreSQL reference measurements and a detailed
 README with diagrams, plus Phase 10 evidence audits and review tooling;
-see docs/PHASE_8.md, docs/PHASE_9.md and docs/PHASE_10.md. No deployed-stack cost calibration is claimed.
+see docs/PHASE_8.md through docs/PHASE_11.md for measurements, maintenance
+and focused accessibility fixes. The PDF remains the Phase 7 report. No deployed-stack cost calibration is claimed.
 
 Owner actions remain: review and own the AI-assisted design/research; verify
 Drive sharing/access, submit the folder link on Unstop, and freeze the folder

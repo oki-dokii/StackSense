@@ -1,0 +1,102 @@
+{
+  "schema_version": "0.1.0",
+  "method": "Actual in-app Chromium browser snapshots and keyboard activations; custom read-only leaf-text audit. No axe, screen-reader, multi-browser or WCAG-conformance claim.",
+  "checks": {
+    "skip_link_focus": "main (native Tab/Enter checked before patch)",
+    "route_focus": "h1",
+    "section_focus": "section-budget",
+    "import_open_focus": "json-editor",
+    "import_close_focus": "trigger button",
+    "invalid_summary_focus": "validation-errors",
+    "error_link_focus": "section-budget",
+    "mobile_chart": {
+      "width": 244,
+      "scrollWidth": 600,
+      "scrollLeft_after_arrow": 40
+    },
+    "p3_export": "JSON data exactly matched committed P3 output",
+    "stale_export_disabled": true
+  },
+  "files": [
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "3d498a0d4f6d0c73f3cec6175d1249df5a2410df1c446e8e9fc5b1fb5b195fc5"
+    },
+    {
+      "path": "apps/web/src/style.css",
+      "sha256": "614e8bdb644980286dc29c24b16752517a94813ec3c6e7c0e735a6e13a5c5b74"
+    },
+    {
+      "path": "apps/web/src/decision-lab.tsx",
+      "sha256": "65887fd7778f7b40cccd7e2ff9d0ef672822ceb1c108dce92792ece528eb736e"
+    },
+    {
+      "path": "apps/web/src/model.ts",
+      "sha256": "212737fba1a31ce6c5b0964dc306c6ea055f5db36c958d06696b92ebdb60c603"
+    },
+    {
+      "path": "scripts/accessibility/dom-audit.mjs",
+      "sha256": "c8ad610bbbdfb866f7aef22a032dcec8cdb20fe8ad5acb2048089ddf49dcc83e"
+    },
+    {
+      "path": "package.json",
+      "sha256": "d38939b8d2935d95f6b5db7f03577b32ebb24390db7ba5abfc7f4e82778c224b"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "093ca6a776060eb38c0c6ca57661a5e426c0a0ab5cf3db73b34abc8392f2a973"
+    },
+    {
+      "path": "tests/web-accessibility.test.ts",
+      "sha256": "02d413c1026bbbd7c5f63ab3c798541833605807403e1d968fa60d6fa1c7ee6b"
+    },
+    {
+      "path": "evaluation/accessibility/desktop-workspace.json",
+      "sha256": "4762e4e7160b441e6a5a240058e7b3a1c7540ca5c62ef7d51fef3b8e9fe290e3"
+    },
+    {
+      "path": "evaluation/accessibility/methodology.json",
+      "sha256": "5a751d656d8e030d96f7066a87568ab9261b22926eb8b631d67997b1769248c3"
+    },
+    {
+      "path": "evaluation/accessibility/import-error.json",
+      "sha256": "f1bffe7c70587e00d48ba632c6d37d561be8c093f7aaf909f15bc36ff7b0b02b"
+    },
+    {
+      "path": "evaluation/accessibility/invalid-result.json",
+      "sha256": "76d61754d48da6c149e4d87e4bc7f4e10ac0c73b557f6e1b26c6d899ecc5d56f"
+    },
+    {
+      "path": "evaluation/accessibility/desktop-lab.json",
+      "sha256": "6544153777e838e96472269bb058bbb6b72321e327fba35221eb9e36c03bec3e"
+    },
+    {
+      "path": "evaluation/accessibility/mobile-workspace.json",
+      "sha256": "8a5a5a3334510ecaa311b500ced3c06457839722e27607f5685d66f55e843b94"
+    },
+    {
+      "path": "evaluation/accessibility/mobile-lab.json",
+      "sha256": "e228efeac15a90c6c1039ee433e28d8c7a057a5edefb3c7f28320ed7953f4f4c"
+    },
+    {
+      "path": "docs/evidence/phase11/workspace.png",
+      "sha256": "2955a2c3024ad601f37cd577672face4be5444f3633211c4908cdcafc96807db"
+    },
+    {
+      "path": "docs/evidence/phase11/import-error.png",
+      "sha256": "8c0891bb2326f8e83dd07d8e428d79ec9e8e8a919ce303883eaf1df64c9fd446"
+    },
+    {
+      "path": "docs/evidence/phase11/validation-focus.png",
+      "sha256": "8a8de4745b67ff2141cbfd3a6d51d296c85b6fe15e8fd63d566cdc6179fe785b"
+    },
+    {
+      "path": "docs/evidence/phase11/desktop-lab.png",
+      "sha256": "4a7476a0224e69c8b8ef88ab1b0413a18ef007548c49cad8374eb165764b983c"
+    },
+    {
+      "path": "docs/evidence/phase11/mobile-chart.png",
+      "sha256": "1c0cf7778a7b16886984b7ef4030bc935d4d80727960277af6a187322ef43e2c"
+    }
+  ]
+}
