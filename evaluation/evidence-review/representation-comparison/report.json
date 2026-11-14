@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.1.0",
+  "status": "pending_human_review",
+  "before_sha256": "389084dfe6193e186011171d0801de1cb37cdd639a601d2a5f096ff670c94a78",
+  "after_sha256": "d08d1976c34e9a6400bdce1d204c24da677e0d82df1a758595e7be99ba9e6cee",
+  "changes": [
+    {
+      "key": "services:angularjs-eol",
+      "state": "representation_unchanged",
+      "before": {
+        "key": "services:angularjs-eol",
+        "url": "https://docs.angularjs.org/misc/version-support-status",
+        "observed_at": "2026-11-14T09:41:50.866Z",
+        "status": 200,
+        "response_sha256": "30fc90bbe5602650c1f2a81d6daa2c78d427d8310da066495ee3db3e7f7cbd88",
+        "bytes": 11890,
+        "content_type": "text/html; charset=UTF-8",
+        "etag": "W/\"2e72-49773873e8\"",
+        "last_modified": "Tue, 01 Jan 1980 00:00:01 GMT",
+        "retrieval": "retrieved_unreviewed",
+        "error": null
+      },
+      "after": {
+        "key": "services:angularjs-eol",
+        "url": "https://docs.angularjs.org/misc/version-support-status",
+        "observed_at": "2026-11-14T10:06:10.991Z",
+        "status": 200,
+        "response_sha256": "30fc90bbe5602650c1f2a81d6daa2c78d427d8310da066495ee3db3e7f7cbd88",
+        "bytes": 11890,
+        "content_type": "text/html; charset=UTF-8",
+        "etag": "W/\"2e72-49773873e8\"",
+        "last_modified": "Tue, 01 Jan 1980 00:00:01 GMT",
+        "retrieval": "retrieved_unreviewed",
+        "error": null
+      }
+    },
+    {
+      "key": "services:python2-eol",
+      "state": "representation_unchanged",
+      "before": {
+        "key": "services:python2-eol",
+        "url": "https://www.python.org/doc/sunset-python-2/",
+        "observed_at": "2026-11-14T09:41:50.166Z",
+        "status": 200,
+        "response_sha256": "06f34b17d41c9827ae378384ca6ecc59825b7eb20622c009f6826b3cf63d2c23",
+        "bytes": 38209,
+        "content_type": "text/html",
+        "etag": null,
+        "last_modified": null,
+        "retrieval": "retrieved_unreviewed",
+        "error": null
+      },
+      "after": {
+        "key": "services:python2-eol",
+        "url": "https://www.python.org/doc/sunset-python-2/",
+        "observed_at": "2026-11-14T10:06:10.457Z",
+        "status": 200,
+        "response_sha256": "06f34b17d41c9827ae378384ca6ecc59825b7eb20622c009f6826b3cf63d2c23",
+        "bytes": 38209,
+        "content_type": "text/html",
+        "etag": null,
+        "last_modified": null,
+        "retrieval": "retrieved_unreviewed",
+        "error": null
+      }
+    }
+  ],
+  "scope": "Representation digest comparison only. Dynamic markup can cause changes without fact changes. No semantic approval, catalog update or freshness reset."
+}

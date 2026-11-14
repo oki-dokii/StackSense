@@ -13,6 +13,7 @@ Updated 14 November 2026 IST. The detailed method is in [plan.md](../plan.md); t
 | 7 | Research-driven Decision Lab, full tradeoff front, bounded experiments and proposed ADRs | Implemented and tested | 235 tests plus three provenance checks; exact browser/API/CLI exports; unchanged recommendation outputs |
 | 8 | Local reference workload, raw measurement verification and detailed README diagrams | Implemented and tested | Three measured stages; five workload correctness/failure tests; full application regressions unchanged |
 | 9 | Real Fastify/PostgreSQL reference, arrival-rate scheduler and repeated measured stages | Implemented and tested locally | 3,600 issued, zero errors/drops; commit counts verified; eight correctness/integrity cases with live DB enabled separately |
+| 10 | Evidence freshness audits, source tracing, candidate diffs and unreviewed URL observations | Implemented and tested | 99 sources; 14 new tests; four bounded live observations; no source/engine date or output changes |
 
 ## Phase 1 delivered
 
@@ -57,3 +58,7 @@ Each phase must update README instructions, tests, phase evidence and AI assista
 ## Phase 9 delivered
 
 [Database-backed recipe and calibration boundary](PHASE_9.md). Local native PostgreSQL cluster and repeated open-arrival measurements are delivered. External cloud deployment, sustained resource measurement and billing-based cost calibration remain pending.
+
+## Phase 10 delivered
+
+[Evidence maintenance workflow](PHASE_10.md): deterministic offline audit, candidate changes and bounded metadata capture; retrieval, integrity and human approval remain distinct. Complete vendor/tenant revalidation and accessibility/independent review remain open.

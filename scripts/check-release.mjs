@@ -2,6 +2,7 @@ import { readFile, access } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { verify as verifyEvidence } from './evidence/verify.mjs';
 import { verify as verifyPostgres } from '../benchmarks/postgres/verify.mjs';
 import { verify as verifyCalibration } from '../benchmarks/reference/verify.mjs';
 import { verifyScreenshotInputBinding } from './evidence-bindings.mjs';
@@ -106,6 +107,7 @@ if (await exists('deliverables/StackSense26_SohamBanerjee.zip')) {
 }
 await verifyCalibration(join(root, 'evaluation/calibration/reference-run-1'));
 await verifyPostgres(join(root, 'evaluation/calibration/postgres-run-1'));
+await verifyEvidence();
 console.log(
-  `PASS: 20 actual outputs and ${labCount} Decision Lab reports match the current engine; case provenance, capture versions and all ${screenshots.images.length} screenshot hashes verified. HTTP and PostgreSQL workload raw/source evidence verified; report/ZIP hashes checked when present.`,
+  `PASS: 20 actual outputs and ${labCount} Decision Lab reports match the current engine; case provenance, capture versions and all ${screenshots.images.length} screenshot hashes verified. HTTP/PostgreSQL workload and 99-source review artifacts verified; report/ZIP hashes checked when present.`,
 );

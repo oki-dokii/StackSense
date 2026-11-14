@@ -4,7 +4,7 @@ A local, deterministic technology stack recommendation engine for the Synergy â€
 
 StackSense evaluates the frontend, backend, database, hosting and supporting services together. Hard constraints filter candidates before explainable ranking. The same engine powers the CLI, loopback API and browser workspace; it makes no runtime LLM or external recommendation calls.
 
-**Latest work: Phase 9** adds a real Fastify/PostgreSQL reference workload with scheduled arrivals, committed-write checks and three repetitions at each load rate. All 3,600 measured requests completed with zero errors or drops. These local measurements do not modify architecture cost estimates. See [the database recipe and results](docs/PHASE_9.md).
+**Latest work: Phase 10** adds offline review-date audits for all 99 catalog sources, source-to-report tracing, hash-bound catalog proposals and optional bounded URL observations. Retrieval and byte changes remain separate from human approval. See [the evidence workflow](docs/PHASE_10.md).
 
 ## Contents
 
@@ -19,6 +19,7 @@ StackSense evaluates the frontend, backend, database, hosting and supporting ser
 - [Current architecture and layout](#current-architecture-and-layout)
 - [How a recommendation is made](#how-a-recommendation-is-made)
 - [Reference workload and measurement](#reference-workload-and-measurement)
+- [Evidence freshness and change review](#evidence-freshness-and-change-review)
 - [Troubleshooting](#troubleshooting)
 - [Planning and research](#planning-and-research)
 - [Submission and credits](#submission-and-credits)
@@ -199,7 +200,7 @@ node benchmarks/reference/verify.mjs evaluation/calibration/reference-run-1
 python3 scripts/check_docs.py
 ```
 
-Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: **235 application tests**, three capture-provenance checks, five in-memory workload checks and eight [PostgreSQL recipe checks](docs/PHASE_9.md) pass locally with the live DB enabled, with a successful build. The SQL suite explicitly skips its live-database case when not enabled. Current local API/cached setup timings are recorded there; these do not measure recommended-workload behavior.
+Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: **235 application tests**, three capture-provenance checks, five in-memory workload checks and eight [PostgreSQL recipe checks](docs/PHASE_9.md) and fourteen [evidence-review checks](docs/PHASE_10.md) pass locally with the live DB enabled, with a successful build. The SQL suite explicitly skips its live-database case when not enabled. Current local API/cached setup timings are recorded there; these do not measure recommended-workload behavior.
 
 | Technology | Pinned version | Role |
 |---|---|---|
@@ -249,7 +250,7 @@ benchmarks/postgres/       Optional Fastify/SQL recipe, isolated lockfile and sc
 evaluation/                Actual outputs, cases, API timings and raw workload evidence
 output/pdf/                Verified final report
 deliverables/              Ready-to-review submission ZIP
-scripts/                   Type generation and documentation checks
+scripts/                   Type generation, bounded evidence review and release checks
 docs/                      Product, design, research and implementation evidence
 dist/                      Generated build; ignored by Git
 ```
@@ -318,7 +319,7 @@ flowchart LR
 
 The committed run completed **56,687 requests with zero errors**. Its p95 values were **0.225 / 0.403 / 2.445 ms** at concurrency 1/4/16. The last two stages hit the sample cap early; exact elapsed times are retained. These are short same-host, closed-loop observations, with no database, auth, TLS, external network or cloud deployment. They do not determine monthly cost, sustained capacity or SLA. See [Phase 8 methodology, limits and next calibration gate](docs/PHASE_8.md).
 
-### Evidence maintenance
+## Evidence freshness and change review
 
 ```mermaid
 flowchart LR
@@ -333,7 +334,19 @@ flowchart LR
   Human -. future approved mapping .-> Catalog
 ```
 
-Network research does not automatically change selection rules. The reviewed report is the Phase 7 report; Phase 8 measurements are documented separately and included in the source archive. No independent expert acceptance or online submission is implied by a passing build.
+Run an offline audit against an explicit date, inspect source consumers and public-report mentions, or compare an edited catalog copy before changing rules:
+
+```sh
+node scripts/evidence.mjs audit --as-of 2026-11-14 --out tmp/evidence/audit-1
+node scripts/evidence.mjs compare --base packages/catalog/data --candidate tmp/catalog-candidate --as-of 2026-11-14 --out tmp/evidence/proposal-1
+node scripts/evidence/verify.mjs
+```
+
+The candidate directory must contain copied `catalog.json` and `services.json` files. [Phase 10](docs/PHASE_10.md) includes copy commands, optional URL capture/comparison, reminder policy and exit codes. Pricing review reminders use 14 days; region/control/lifecycle use 30 days; other capabilities use 90 days, with the shortest applicable interval winning. These are author-defined reminders, not evidence expiry dates.
+
+The [committed audit](evaluation/evidence-review/current/report.md) covers **99 sources** with no due/future dates as of its declared 14 November 2026 date. Five guidance sources have no structured catalog consumer and are explicitly distinguished from unused sources. A [synthetic tariff proposal](evaluation/evidence-review/synthetic-tariff-proposal/report.json) demonstrates before/after tracing; it is not an observed price update. Four real HTTP observations of two lifecycle URLs retain headers and byte hashes only; their identical representations remain unreviewed. There is no apply command or automatic date reset.
+
+Network research does not automatically change selection rules. The reviewed report is the Phase 7 report; Phase 8â€“10 measurements and maintenance records are documented separately and included in the source archive. No independent expert acceptance or online submission is implied by a passing build.
 
 ### Database-backed reference recipe
 

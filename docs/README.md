@@ -62,3 +62,5 @@ Post-release: [repository comparison](REPOSITORY_COMPARISON.md) and [improvement
 - [Phase 8: reference workload, raw measurements and next calibration gate](PHASE_8.md)
 
 - [Phase 9: database-backed reference recipe and calibration gate](PHASE_9.md)
+
+- [Phase 10: evidence freshness and change review](PHASE_10.md)

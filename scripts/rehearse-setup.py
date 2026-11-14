@@ -20,7 +20,7 @@ for file in sorted(destination.rglob('*')):
  relative=file.relative_to(destination)
  if relative.parts[0] in {'apps','packages','schemas','tests','fixtures'} or str(relative) in {'package.json','package-lock.json','tsconfig.json','vitest.config.ts','.nvmrc'}:code_hash.update(str(relative).encode()+b'\0'+file.read_bytes()+b'\0')
 steps=[]
-for command in [['npm','ci','--offline','--cache',str(a.npm_cache.resolve()),'--no-audit','--no-fund'],['npm','ci','--prefix','benchmarks/postgres','--offline','--cache',str(a.npm_cache.resolve()),'--no-audit','--no-fund'],['node','--test','benchmarks/postgres/tests.mjs'],['npm','run','check'],['node','--test','scripts/tests/evidence-bindings.test.mjs','scripts/tests/calibration.test.mjs'],['npm','run','build'],['npm','run','evaluate'],['npm','run','verify:release']]:
+for command in [['npm','ci','--offline','--cache',str(a.npm_cache.resolve()),'--no-audit','--no-fund'],['npm','ci','--prefix','benchmarks/postgres','--offline','--cache',str(a.npm_cache.resolve()),'--no-audit','--no-fund'],['node','--test','benchmarks/postgres/tests.mjs'],['npm','run','check'],['node','--test','scripts/tests/evidence-bindings.test.mjs','scripts/tests/calibration.test.mjs','scripts/tests/evidence-review.test.mjs'],['npm','run','build'],['npm','run','evaluate'],['npm','run','verify:release']]:
  tick=time.perf_counter();result=subprocess.run(command,cwd=destination,capture_output=True,text=True,timeout=600)
  if result.returncode:raise RuntimeError(f'{command[:3]} failed:\n{result.stdout}\n{result.stderr}')
  steps.append({'command':command[:-4] if '--cache' in command else command, 'seconds':round(time.perf_counter()-tick,3),'exit_code':result.returncode})

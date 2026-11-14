@@ -1,0 +1,33 @@
+{
+  "version": "0.1.0",
+  "cadence_days": {
+    "pricing": 14,
+    "region_or_controls": 30,
+    "lifecycle": 30,
+    "capability": 90
+  },
+  "basis": "Author-defined review reminders, not vendor guarantees or evidence validity periods. The shortest applicable cadence wins. Fetching a URL never resets checked_on or approves a claim.",
+  "source_categories": {
+    "services:entra-oidc": [
+      "region_or_controls"
+    ],
+    "services:entra-residency": [
+      "region_or_controls"
+    ],
+    "services:azure-vnet-integration": [
+      "region_or_controls"
+    ],
+    "services:razorpay-privacy": [
+      "region_or_controls"
+    ],
+    "services:sql2019-lifecycle": [
+      "lifecycle"
+    ],
+    "services:msg91-privacy": [
+      "region_or_controls"
+    ],
+    "services:stripe-dpa": [
+      "region_or_controls"
+    ]
+  }
+}

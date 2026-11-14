@@ -23,7 +23,7 @@ jobs:
       - run: npm ci --prefix benchmarks/postgres
       - run: node --test benchmarks/postgres/tests.mjs
       - run: npm run check
-      - run: node --test scripts/tests/evidence-bindings.test.mjs scripts/tests/calibration.test.mjs
+      - run: node --test scripts/tests/evidence-bindings.test.mjs scripts/tests/calibration.test.mjs scripts/tests/evidence-review.test.mjs
       - run: npm run build
       - run: npm run evaluate
       - run: npm run verify:release

@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "status": "integrity_only_not_human_approval",
+  "files": [
+    {
+      "path": "scripts/evidence.mjs",
+      "sha256": "177b600289ed951d219af3754fe8b571cee6ccd8238be316bc6b3f0adf38a631"
+    },
+    {
+      "path": "scripts/evidence/core.mjs",
+      "sha256": "0c86db51ef422113441658ae9cd329f2c33114c4ea83f81a2c10c75340eb1e7e"
+    },
+    {
+      "path": "scripts/evidence/policy.json",
+      "sha256": "b93b36aac40631617a2b5624199e48d018ab771e04b51b2b6d26e9913a830ea5"
+    },
+    {
+      "path": "scripts/evidence/verify.mjs",
+      "sha256": "9b04a3da5f3a6f18a874ebf791764fa955a3d352ead77eb1058d5027a77471f5"
+    },
+    {
+      "path": "evaluation/evidence-review/current/report.json",
+      "sha256": "d4c729c27fd1d36afb24557022cccf073f2677f110defa89eb525085d3f4d248"
+    },
+    {
+      "path": "evaluation/evidence-review/current/report.md",
+      "sha256": "6c815d6478d5e650b02cf91ee633b3533de004a5c1e0b581ee2bf84963a69c96"
+    },
+    {
+      "path": "evaluation/evidence-review/observations-1/report.json",
+      "sha256": "6da8144c1fe88ffaecc79baac3b2bc496b7b044277cf4bede55cf6b149e2eeff"
+    },
+    {
+      "path": "evaluation/evidence-review/observations-1/report.md",
+      "sha256": "44581540b36a19e972a1b049587e581cb916576c652452e8c5bd8e32d52b91f3"
+    },
+    {
+      "path": "evaluation/evidence-review/observations-2/report.json",
+      "sha256": "235e7526ef2c4ae1075c2f00ca6ed1a099d35022c05564772191708ae8833810"
+    },
+    {
+      "path": "evaluation/evidence-review/observations-2/report.md",
+      "sha256": "44581540b36a19e972a1b049587e581cb916576c652452e8c5bd8e32d52b91f3"
+    },
+    {
+      "path": "evaluation/evidence-review/representation-comparison/report.json",
+      "sha256": "25ecf981f7e430ca03a16c99d88f7054a704e0fac54ffcb7f82fb87e66e14ce4"
+    },
+    {
+      "path": "evaluation/evidence-review/representation-comparison/report.md",
+      "sha256": "b3755e882daad47220e658b99b7db8b1097cabe790d14515659970f4d8beb31c"
+    },
+    {
+      "path": "evaluation/evidence-review/synthetic-tariff-proposal/report.json",
+      "sha256": "fff1c3d1bdf389fb94ccbba849e4593809fe602bb32c946b96b2527a08eaefe2"
+    },
+    {
+      "path": "evaluation/evidence-review/synthetic-tariff-proposal/report.md",
+      "sha256": "c478944aae6d20c4686bb7981725321ae0ed0fa4098bd1915189ef31252c4041"
+    }
+  ]
+}

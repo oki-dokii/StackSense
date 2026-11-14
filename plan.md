@@ -365,3 +365,7 @@ Implemented scope and explicit remaining evidence: [Phase 6 record](docs/PHASE_6
 ## Phase 9: database-backed scheduled-arrival measurements
 
 [Implemented recipe and results](docs/PHASE_9.md): isolated Fastify/pg lockfile, disposable PostgreSQL cluster, indexed reads/search and committed writes, bounded scheduled arrivals with visible drops, three repetitions per rate, raw evidence verification and live SQL correctness CI. Next cost gate still requires externally generated sustained load, resource-limited deployment and observed billing with human-reviewed model mapping.
+
+## Phase 10: evidence maintenance
+
+[Implemented workflow](docs/PHASE_10.md): 99-source offline audits with explicit cadence, direct source consumers/report mentions, hash-bound structural proposals, bounded registered-URL observations, integrity and regression tests. No automatic acceptance, date reset or rule promotion. Next: broader accessibility/browser QA and an actual uncached setup; external contracts/billing remain separate evidence needs.

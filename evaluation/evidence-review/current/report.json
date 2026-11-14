@@ -1,0 +1,2643 @@
+{
+  "schema_version": "0.1.0",
+  "as_of": "2026-11-14",
+  "policy": {
+    "version": "0.1.0",
+    "cadence_days": {
+      "pricing": 14,
+      "region_or_controls": 30,
+      "lifecycle": 30,
+      "capability": 90
+    },
+    "basis": "Author-defined review reminders, not vendor guarantees or evidence validity periods. The shortest applicable cadence wins. Fetching a URL never resets checked_on or approves a claim.",
+    "source_categories": {
+      "services:entra-oidc": [
+        "region_or_controls"
+      ],
+      "services:entra-residency": [
+        "region_or_controls"
+      ],
+      "services:azure-vnet-integration": [
+        "region_or_controls"
+      ],
+      "services:razorpay-privacy": [
+        "region_or_controls"
+      ],
+      "services:sql2019-lifecycle": [
+        "lifecycle"
+      ],
+      "services:msg91-privacy": [
+        "region_or_controls"
+      ],
+      "services:stripe-dpa": [
+        "region_or_controls"
+      ]
+    }
+  },
+  "policy_sha256": "a93e728b7f52bcddfbc72e0914200e0441bd16b3c368a38a45f9a40dedb93132",
+  "catalogs": {
+    "core": {
+      "version": "0.4.0",
+      "sha256": "5432f8df6f65b94043ad9a2655ae9765b074f67977d2f240c43a54f80bee0978"
+    },
+    "services": {
+      "version": "0.6.0",
+      "sha256": "6ef00a9d5effa224d5c051a9800a5df9b1523fc9a6d724f05150b85ea1a3fccd"
+    }
+  },
+  "counts": {
+    "sources": 99,
+    "review_due": 0,
+    "future_review_dates": 0,
+    "no_structured_catalog_reference": 5
+  },
+  "sources": [
+    {
+      "key": "core:angular",
+      "id": "angular",
+      "title": "Angular deployment",
+      "url": "https://angular.dev/tools/cli/deployment",
+      "checked_on": "2026-11-13",
+      "scope": "Web asset deployment",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "angular",
+          "path": "/entries/7/source_ids",
+          "owner": "angular"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "core:appservice",
+      "id": "appservice",
+      "title": "Azure App Service",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview",
+      "checked_on": "2026-11-13",
+      "scope": "Managed web/runtime and container hosting; exact regions not verified here",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "appservice",
+          "path": "/entries/29/source_ids",
+          "owner": "appservice"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:aspnet",
+      "id": "aspnet",
+      "title": "EF Core providers",
+      "url": "https://learn.microsoft.com/en-us/ef/core/providers/",
+      "checked_on": "2026-11-13",
+      "scope": "Database-specific providers, with independent compatibility/version requirements",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "aspnet",
+          "path": "/entries/17/source_ids",
+          "owner": "aspnet"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:astro",
+      "id": "astro",
+      "title": "Astro deployment",
+      "url": "https://docs.astro.build/en/guides/deploy/",
+      "checked_on": "2026-11-13",
+      "scope": "Static build/deployment",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "astro",
+          "path": "/entries/2/source_ids",
+          "owner": "astro"
+        }
+      ],
+      "public_output_mentions": [
+        "P1"
+      ]
+    },
+    {
+      "key": "core:astro-markdown",
+      "id": "astro-markdown",
+      "title": "Astro Markdown",
+      "url": "https://docs.astro.build/en/guides/markdown-content/",
+      "checked_on": "2026-11-13",
+      "scope": "Built-in Markdown content authoring; no performance or price claim",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "astro-markdown",
+          "path": "/entries/2/source_ids",
+          "owner": "astro"
+        }
+      ],
+      "public_output_mentions": [
+        "P1"
+      ]
+    },
+    {
+      "key": "core:aws-regions",
+      "id": "aws-regions",
+      "title": "AWS region country mapping",
+      "url": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+      "checked_on": "2026-11-13",
+      "scope": "Mumbai ap-south-1 maps to India; does not establish every service data flow.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "aws-regions",
+          "path": "/entries/28/regions/0/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "aws-regions",
+          "path": "/entries/28/managed_databases/0/regions/0/source_ids",
+          "owner": "ecs"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:azure-ase",
+      "id": "azure-ase",
+      "title": "App Service Environment v3 region and data boundary",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/environment/overview",
+      "checked_on": "2026-11-13",
+      "scope": "Central India supported; app content/settings/secrets retained within deployment region. Separate services/identity not covered.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-ase",
+          "path": "/entries/33/source_ids",
+          "owner": "ase-india"
+        },
+        {
+          "id": "azure-ase",
+          "path": "/entries/33/regions/0/source_ids",
+          "owner": "ase-india"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:azure-pg",
+      "id": "azure-pg",
+      "title": "Azure PostgreSQL",
+      "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/overview",
+      "checked_on": "2026-11-13",
+      "scope": "Managed PostgreSQL product; exact region not verified here",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-pg",
+          "path": "/entries/29/managed_databases/0/source_ids",
+          "owner": "appservice"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:azure-pg-backup",
+      "id": "azure-pg-backup",
+      "title": "Azure PostgreSQL backup and restore",
+      "url": "https://learn.microsoft.com/en-us/azure/postgresql/backup-restore/concepts-backup-restore",
+      "checked_on": "2026-11-13",
+      "scope": "Use in-region local/zone backup storage; disable geo-redundancy and cross-region read replicas for this profile.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-pg-backup",
+          "path": "/entries/33/managed_databases/0/source_ids",
+          "owner": "ase-india"
+        },
+        {
+          "id": "azure-pg-backup",
+          "path": "/entries/33/managed_databases/0/regions/0/source_ids",
+          "owner": "ase-india"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:azure-pg-regions",
+      "id": "azure-pg-regions",
+      "title": "Azure PostgreSQL Flexible Server overview",
+      "url": "https://learn.microsoft.com/en-us/azure/postgresql/overview",
+      "checked_on": "2026-11-13",
+      "scope": "Central India Intel compute and in-region HA support. Exact SKU availability/quota and deployment configuration still need review.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-pg-regions",
+          "path": "/entries/33/managed_databases/0/source_ids",
+          "owner": "ase-india"
+        },
+        {
+          "id": "azure-pg-regions",
+          "path": "/entries/33/managed_databases/0/regions/0/source_ids",
+          "owner": "ase-india"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:azure-sql",
+      "id": "azure-sql",
+      "title": "Azure SQL Managed Instance",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview",
+      "checked_on": "2026-11-13",
+      "scope": "Managed SQL Server compatibility; not proof a legacy migration is transparent",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-sql",
+          "path": "/entries/29/managed_databases/1/source_ids",
+          "owner": "appservice"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:cloudsql-my",
+      "id": "cloudsql-my",
+      "title": "Cloud SQL MySQL overview",
+      "url": "https://cloud.google.com/sql/docs/mysql/introduction",
+      "checked_on": "2026-11-13",
+      "scope": "Managed MySQL product; exact regions not verified here",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "cloudsql-my",
+          "path": "/entries/30/managed_databases/1/source_ids",
+          "owner": "cloudrun"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:cloudsql-pg",
+      "id": "cloudsql-pg",
+      "title": "Cloud SQL PostgreSQL locations",
+      "url": "https://cloud.google.com/sql/docs/postgres/locations",
+      "checked_on": "2026-11-13",
+      "scope": "Primary PostgreSQL instance locations: Mumbai, Belgium, Iowa; backup locations need separate review",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "cloudsql-pg",
+          "path": "/entries/30/managed_databases/0/source_ids",
+          "owner": "cloudrun"
+        },
+        {
+          "id": "cloudsql-pg",
+          "path": "/entries/30/managed_databases/0/regions/0/source_ids",
+          "owner": "cloudrun"
+        },
+        {
+          "id": "cloudsql-pg",
+          "path": "/entries/30/managed_databases/0/regions/1/source_ids",
+          "owner": "cloudrun"
+        },
+        {
+          "id": "cloudsql-pg",
+          "path": "/entries/30/managed_databases/0/regions/2/source_ids",
+          "owner": "cloudrun"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "core:compose",
+      "id": "compose",
+      "title": "Jetpack Compose",
+      "url": "https://developer.android.com/compose",
+      "checked_on": "2026-11-13",
+      "scope": "Kotlin Android native UI",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "compose",
+          "path": "/entries/11/source_ids",
+          "owner": "compose"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:django",
+      "id": "django",
+      "title": "Django databases",
+      "url": "https://docs.djangoproject.com/en/stable/ref/databases/",
+      "checked_on": "2026-11-13",
+      "scope": "Supported relational databases",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "django",
+          "path": "/entries/14/source_ids",
+          "owner": "django"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:ec2",
+      "id": "ec2",
+      "title": "Amazon EC2",
+      "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
+      "checked_on": "2026-11-13",
+      "scope": "Self-operated VM compute; exact country location not verified here",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "ec2",
+          "path": "/entries/31/source_ids",
+          "owner": "ec2"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:ecs",
+      "id": "ecs",
+      "title": "Amazon ECS",
+      "url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html",
+      "checked_on": "2026-11-13",
+      "scope": "Managed container compute; exact regions not verified in this catalog",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "ecs",
+          "path": "/entries/28/source_ids",
+          "owner": "ecs"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:fargate-regions",
+      "id": "fargate-regions",
+      "title": "ECS Fargate supported regions",
+      "url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate-Regions.html",
+      "checked_on": "2026-11-13",
+      "scope": "Linux Fargate support in Mumbai ap-south-1; primary compute mapping only.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "fargate-regions",
+          "path": "/entries/28/regions/0/source_ids",
+          "owner": "ecs"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:fastapi",
+      "id": "fastapi",
+      "title": "FastAPI SQL databases",
+      "url": "https://fastapi.tiangolo.com/tutorial/sql-databases/",
+      "checked_on": "2026-11-13",
+      "scope": "Python SQL integration with drivers/SQLAlchemy",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "fastapi",
+          "path": "/entries/15/source_ids",
+          "owner": "fastapi"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:fastify",
+      "id": "fastify",
+      "title": "Fastify database guide",
+      "url": "https://fastify.dev/docs/latest/Guides/Database/",
+      "checked_on": "2026-11-13",
+      "scope": "Node backend and documented database plugins",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "fastify",
+          "path": "/entries/13/source_ids",
+          "owner": "fastify"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "core:flutter",
+      "id": "flutter",
+      "title": "Flutter supported platforms",
+      "url": "https://docs.flutter.dev/reference/supported-platforms",
+      "checked_on": "2026-11-13",
+      "scope": "Web/mobile/desktop deployment targets",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "flutter",
+          "path": "/entries/10/source_ids",
+          "owner": "flutter"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:flutter-seo",
+      "id": "flutter-seo",
+      "title": "Flutter web FAQ",
+      "url": "https://docs.flutter.dev/platform-integration/web/faq",
+      "checked_on": "2026-11-13",
+      "scope": "App-centric web; SEO caveats",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "flutter-seo",
+          "path": "/entries/10/source_ids",
+          "owner": "flutter"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:go",
+      "id": "go",
+      "title": "Go SQL drivers",
+      "url": "https://go.dev/wiki/SQLDrivers",
+      "checked_on": "2026-11-13",
+      "scope": "Go SQL driver options, not performance claims",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "go",
+          "path": "/entries/18/source_ids",
+          "owner": "go-http"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:html",
+      "id": "html",
+      "title": "HTML content",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content",
+      "checked_on": "2026-11-13",
+      "scope": "Static HTML content delivery",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "html",
+          "path": "/entries/0/source_ids",
+          "owner": "frontend-none"
+        },
+        {
+          "id": "html",
+          "path": "/entries/1/source_ids",
+          "owner": "html"
+        },
+        {
+          "id": "html",
+          "path": "/entries/12/source_ids",
+          "owner": "backend-none"
+        },
+        {
+          "id": "html",
+          "path": "/entries/20/source_ids",
+          "owner": "database-none"
+        }
+      ],
+      "public_output_mentions": [
+        "P1"
+      ]
+    },
+    {
+      "key": "core:laravel",
+      "id": "laravel",
+      "title": "Laravel database",
+      "url": "https://laravel.com/docs/database",
+      "checked_on": "2026-11-13",
+      "scope": "PHP framework database support",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "laravel",
+          "path": "/entries/19/source_ids",
+          "owner": "laravel"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:maria",
+      "id": "maria",
+      "title": "MariaDB deployment",
+      "url": "https://mariadb.com/docs/server/server-management/install-and-upgrade-mariadb",
+      "checked_on": "2026-11-13",
+      "scope": "Self-hosted server installation",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "maria",
+          "path": "/entries/23/source_ids",
+          "owner": "maria"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:mongo",
+      "id": "mongo",
+      "title": "MongoDB Community installation",
+      "url": "https://www.mongodb.com/docs/manual/administration/install-community/",
+      "checked_on": "2026-11-13",
+      "scope": "Self-hostable document database",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "mongo",
+          "path": "/entries/26/source_ids",
+          "owner": "mongo"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:mysql",
+      "id": "mysql",
+      "title": "MySQL overview",
+      "url": "https://dev.mysql.com/doc/refman/8.4/en/what-is-mysql.html",
+      "checked_on": "2026-11-13",
+      "scope": "Relational client/server engine",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "mysql",
+          "path": "/entries/22/source_ids",
+          "owner": "mysql"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:next",
+      "id": "next",
+      "title": "Next.js self-hosting",
+      "url": "https://nextjs.org/docs/app/guides/self-hosting",
+      "checked_on": "2026-11-13",
+      "scope": "Node-hosted server rendering; not a hosting quota guarantee",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "next",
+          "path": "/entries/3/source_ids",
+          "owner": "next"
+        },
+        {
+          "id": "next",
+          "path": "/entries/9/source_ids",
+          "owner": "next-native"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:nginx",
+      "id": "nginx",
+      "title": "NGINX static serving",
+      "url": "https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/",
+      "checked_on": "2026-11-13",
+      "scope": "Local/static web serving on provisioned VM; server location must be supplied/reviewed",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "nginx",
+          "path": "/entries/32/source_ids",
+          "owner": "local"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:pages",
+      "id": "pages",
+      "title": "Cloudflare Pages",
+      "url": "https://developers.cloudflare.com/pages/",
+      "checked_on": "2026-11-13",
+      "scope": "Static web asset hosting; no country-residency assurance",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "pages",
+          "path": "/entries/27/source_ids",
+          "owner": "pages"
+        }
+      ],
+      "public_output_mentions": [
+        "P1"
+      ]
+    },
+    {
+      "key": "core:pg",
+      "id": "pg",
+      "title": "PostgreSQL introduction",
+      "url": "https://www.postgresql.org/docs/current/intro-whatis.html",
+      "checked_on": "2026-11-13",
+      "scope": "Relational engine, transactional integrity",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "pg",
+          "path": "/entries/21/source_ids",
+          "owner": "pg"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "core:rds-maria",
+      "id": "rds-maria",
+      "title": "RDS MariaDB",
+      "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html",
+      "checked_on": "2026-11-13",
+      "scope": "Managed MariaDB product",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "rds-maria",
+          "path": "/entries/28/managed_databases/1/source_ids",
+          "owner": "ecs"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:rds-pg",
+      "id": "rds-pg",
+      "title": "RDS PostgreSQL",
+      "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html",
+      "checked_on": "2026-11-13",
+      "scope": "Managed PostgreSQL product; exact region not verified here",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "rds-pg",
+          "path": "/entries/28/managed_databases/0/source_ids",
+          "owner": "ecs"
+        },
+        {
+          "id": "rds-pg",
+          "path": "/entries/28/managed_databases/0/regions/0/source_ids",
+          "owner": "ecs"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:rds-regions",
+      "id": "rds-regions",
+      "title": "Amazon RDS regional endpoints",
+      "url": "https://docs.aws.amazon.com/general/latest/gr/rds-service.html",
+      "checked_on": "2026-11-13",
+      "scope": "RDS Mumbai regional service; combined with RDS PostgreSQL product evidence. No SKU/version, legal or workload guarantee.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "rds-regions",
+          "path": "/entries/28/managed_databases/0/regions/0/source_ids",
+          "owner": "ecs"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:rds-sql",
+      "id": "rds-sql",
+      "title": "RDS SQL Server",
+      "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html",
+      "checked_on": "2026-11-13",
+      "scope": "Managed SQL Server product; licensing/region need separate verification",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "rds-sql",
+          "path": "/entries/28/managed_databases/2/source_ids",
+          "owner": "ecs"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:react",
+      "id": "react",
+      "title": "React from scratch",
+      "url": "https://react.dev/learn/build-a-react-app-from-scratch",
+      "checked_on": "2026-11-13",
+      "scope": "Client web apps; SSR requires additional framework work",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "react",
+          "path": "/entries/4/source_ids",
+          "owner": "react"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:rn",
+      "id": "rn",
+      "title": "React Native introduction",
+      "url": "https://reactnative.dev/docs/getting-started",
+      "checked_on": "2026-11-13",
+      "scope": "JavaScript mobile application UI; runtime integration required",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "rn",
+          "path": "/entries/8/source_ids",
+          "owner": "react-native"
+        },
+        {
+          "id": "rn",
+          "path": "/entries/9/source_ids",
+          "owner": "next-native"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:run",
+      "id": "run",
+      "title": "Cloud Run overview",
+      "url": "https://cloud.google.com/run/docs/overview/what-is-cloud-run",
+      "checked_on": "2026-11-13",
+      "scope": "Managed HTTP container services, not durable database disks",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "run",
+          "path": "/entries/30/source_ids",
+          "owner": "cloudrun"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "core:run-regions",
+      "id": "run-regions",
+      "title": "Cloud Run locations",
+      "url": "https://cloud.google.com/run/docs/locations",
+      "checked_on": "2026-11-13",
+      "scope": "Primary compute service locations: Mumbai, Belgium, Iowa; not complete application data flows",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "run-regions",
+          "path": "/entries/30/source_ids",
+          "owner": "cloudrun"
+        },
+        {
+          "id": "run-regions",
+          "path": "/entries/30/regions/0/source_ids",
+          "owner": "cloudrun"
+        },
+        {
+          "id": "run-regions",
+          "path": "/entries/30/regions/1/source_ids",
+          "owner": "cloudrun"
+        },
+        {
+          "id": "run-regions",
+          "path": "/entries/30/regions/2/source_ids",
+          "owner": "cloudrun"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "core:run-ws",
+      "id": "run-ws",
+      "title": "Cloud Run WebSockets",
+      "url": "https://cloud.google.com/run/docs/triggering/websockets",
+      "checked_on": "2026-11-13",
+      "scope": "Connection request timeouts and reconnection requirements",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "run-ws",
+          "path": "/entries/30/source_ids",
+          "owner": "cloudrun"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "core:spring",
+      "id": "spring",
+      "title": "Spring Boot SQL",
+      "url": "https://docs.spring.io/spring-boot/reference/data/sql.html",
+      "checked_on": "2026-11-13",
+      "scope": "Java/Kotlin JDBC SQL integration; matching driver required",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "spring",
+          "path": "/entries/16/source_ids",
+          "owner": "spring"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:sqlite",
+      "id": "sqlite",
+      "title": "SQLite appropriate uses",
+      "url": "https://www.sqlite.org/whentouse.html",
+      "checked_on": "2026-11-13",
+      "scope": "Embedded database, concurrency and deployment trade-offs",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "sqlite",
+          "path": "/entries/24/source_ids",
+          "owner": "sqlite"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:sqlserver",
+      "id": "sqlserver",
+      "title": "SQL Server Linux",
+      "url": "https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-overview",
+      "checked_on": "2026-11-13",
+      "scope": "Server installation on Linux/VM/container; release compatibility still required",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "sqlserver",
+          "path": "/entries/25/source_ids",
+          "owner": "sqlserver"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:svelte",
+      "id": "svelte",
+      "title": "SvelteKit Node adapter",
+      "url": "https://svelte.dev/docs/kit/adapter-node",
+      "checked_on": "2026-11-13",
+      "scope": "Node server deployment",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "svelte",
+          "path": "/entries/6/source_ids",
+          "owner": "sveltekit"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:vue",
+      "id": "vue",
+      "title": "Vue introduction",
+      "url": "https://vuejs.org/guide/introduction.html",
+      "checked_on": "2026-11-13",
+      "scope": "Web UI framework",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "vue",
+          "path": "/entries/5/source_ids",
+          "owner": "vue"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:android-offline",
+      "id": "android-offline",
+      "title": "Android offline architecture",
+      "url": "https://developer.android.com/topic/architecture/data-layer/offline-first",
+      "checked_on": "2026-11-13",
+      "scope": "Local source of truth, queued writes and background reconciliation.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "android-offline",
+          "path": "/services/4/source_ids",
+          "owner": "expo"
+        },
+        {
+          "id": "android-offline",
+          "path": "/services/5/source_ids",
+          "owner": "room"
+        },
+        {
+          "id": "android-offline",
+          "path": "/services/6/source_ids",
+          "owner": "dexie"
+        },
+        {
+          "id": "android-offline",
+          "path": "/services/7/source_ids",
+          "owner": "drift"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:angularjs-eol",
+      "id": "angularjs-eol",
+      "title": "AngularJS support status",
+      "url": "https://docs.angularjs.org/misc/version-support-status",
+      "checked_on": "2026-11-13",
+      "scope": "AngularJS upstream support ended January 2022; distinct from maintained Angular.",
+      "categories": [
+        "lifecycle"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "angularjs-eol",
+          "path": "/lifecycle/1/source_ids",
+          "owner": "angularjs"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:aws-logs",
+      "id": "aws-logs",
+      "title": "CloudWatch Logs",
+      "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html",
+      "checked_on": "2026-11-13",
+      "scope": "Regional logging configuration required.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "aws-logs",
+          "path": "/services/17/source_ids",
+          "owner": "otel"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:azure-ase-retail",
+      "id": "azure-ase-retail",
+      "title": "Azure App Service Central India retail pricing API",
+      "url": "https://prices.azure.com/api/retail/prices",
+      "checked_on": "2026-11-13",
+      "scope": "Checked exact primary Linux I1 v2 consumption meter in centralindia: USD 0.395/instance-hour. Snapshot in docs/research/azure-ase-price.json; no customer discount/tax or capacity guarantee.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 1,
+      "review_due_on": "2026-11-27",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-ase-retail",
+          "path": "/pricing/ase_i1v2_hour/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:azure-price",
+      "id": "azure-price",
+      "title": "App Service pricing",
+      "url": "https://azure.microsoft.com/en-us/pricing/details/app-service/linux/",
+      "checked_on": "2026-11-13",
+      "scope": "SKU/region-specific charges; model uses a declared envelope until a SKU is pinned.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 1,
+      "review_due_on": "2026-11-27",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-price",
+          "path": "/pricing/appservice_hour/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:azure-storage-boundary",
+      "id": "azure-storage-boundary",
+      "title": "Azure Storage redundancy",
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy",
+      "checked_on": "2026-11-13",
+      "scope": "LRS retains replicas within primary region; do not enable geo-redundancy or cross-region copies for this scoped profile.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-storage-boundary",
+          "path": "/services/23/source_ids",
+          "owner": "azure-blob"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:azure-storage-region",
+      "id": "azure-storage-region",
+      "title": "Azure Storage regional routing",
+      "url": "https://learn.microsoft.com/en-us/azure/storage/common/network-routing-preference",
+      "checked_on": "2026-11-13",
+      "scope": "Central India Storage regional endpoint support; account SKU/network configuration and quota must be verified before provisioning.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-storage-region",
+          "path": "/services/23/source_ids",
+          "owner": "azure-blob"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:azure-vnet-integration",
+      "id": "azure-vnet-integration",
+      "title": "App Service virtual network integration",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+      "checked_on": "2026-11-13",
+      "scope": "Outbound private resource connectivity; ASE joins a VNet directly. Private inbound access and on-prem VPN/DNS are separate design/configuration tasks.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P5"
+      ]
+    },
+    {
+      "key": "services:ci",
+      "id": "ci",
+      "title": "GitHub Actions",
+      "url": "https://docs.github.com/en/actions/about-github-actions/understanding-github-actions",
+      "checked_on": "2026-11-13",
+      "scope": "Build only source/synthetic tests; no production data exports.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "ci",
+          "path": "/services/18/source_ids",
+          "owner": "actions"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:dexie",
+      "id": "dexie",
+      "title": "Dexie IndexedDB",
+      "url": "https://dexie.org/docs/",
+      "checked_on": "2026-11-13",
+      "scope": "Browser persistence; not the hosted Dexie Cloud service.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "dexie",
+          "path": "/services/6/source_ids",
+          "owner": "dexie"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:dpdp",
+      "id": "dpdp",
+      "title": "MeitY DPDP Rules 2025",
+      "url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+      "checked_on": "2026-11-13",
+      "scope": "Official rule reference; applicability and phased commencement require qualified review.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "dpdp",
+          "path": "/frameworks/1/source_ids",
+          "owner": "dpdp"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:drift",
+      "id": "drift",
+      "title": "Drift",
+      "url": "https://drift.simonbinder.eu/",
+      "checked_on": "2026-11-13",
+      "scope": "Flutter/Dart database with native/web integrations; sync remains custom.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "drift",
+          "path": "/services/7/source_ids",
+          "owner": "drift"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:ec2-price",
+      "id": "ec2-price",
+      "title": "EC2 pricing",
+      "url": "https://aws.amazon.com/ec2/pricing/on-demand/",
+      "checked_on": "2026-11-13",
+      "scope": "Instance type/region pricing; model envelope is not an exact SKU quote.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 1,
+      "review_due_on": "2026-11-27",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "ec2-price",
+          "path": "/pricing/ec2_hour/source_ids",
+          "owner": null
+        },
+        {
+          "id": "ec2-price",
+          "path": "/pricing/local_hour/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:entra-oidc",
+      "id": "entra-oidc",
+      "title": "Microsoft identity platform OIDC",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc",
+      "checked_on": "2026-11-13",
+      "scope": "Tenant-scoped OIDC discovery and token protocols; configure issuer/audience, keys, claims and consent; no residency/contract assurance.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P5"
+      ]
+    },
+    {
+      "key": "services:entra-residency",
+      "id": "entra-residency",
+      "title": "Microsoft Entra data residency",
+      "url": "https://learn.microsoft.com/en-us/entra/fundamentals/data-residency",
+      "checked_on": "2026-11-13",
+      "scope": "Tenant geography and identity storage are distinct from application regions and Microsoft 365 content residency. No India-only tenant assurance inferred.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P5"
+      ]
+    },
+    {
+      "key": "services:expo-sqlite",
+      "id": "expo-sqlite",
+      "title": "Expo SQLite",
+      "url": "https://docs.expo.dev/versions/latest/sdk/sqlite/",
+      "checked_on": "2026-11-13",
+      "scope": "Device persistence; sync logic is application work.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "expo-sqlite",
+          "path": "/services/4/source_ids",
+          "owner": "expo"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:fargate-price",
+      "id": "fargate-price",
+      "title": "Fargate pricing",
+      "url": "https://aws.amazon.com/fargate/pricing/",
+      "checked_on": "2026-11-13",
+      "scope": "US East example Linux x86 CPU/memory rates; regional correction is an explicit assumption.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 1,
+      "review_due_on": "2026-11-27",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "fargate-price",
+          "path": "/pricing/ecs_hour/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:gcp-logs",
+      "id": "gcp-logs",
+      "title": "Regional Cloud Logging",
+      "url": "https://cloud.google.com/logging/docs/regionalized-logs",
+      "checked_on": "2026-11-13",
+      "scope": "Regional log buckets and routing configuration.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "gcp-logs",
+          "path": "/services/17/source_ids",
+          "owner": "otel"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:gcs",
+      "id": "gcs",
+      "title": "Cloud Storage locations",
+      "url": "https://cloud.google.com/storage/docs/locations",
+      "checked_on": "2026-11-13",
+      "scope": "Regional bucket configuration, not default multi-region residency.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "gcs",
+          "path": "/services/11/source_ids",
+          "owner": "gcs"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:gdpr",
+      "id": "gdpr",
+      "title": "EU data protection obligations",
+      "url": "https://commission.europa.eu/law/law-topic/data-protection/information-business-and-organisations/obligations_en",
+      "checked_on": "2026-11-13",
+      "scope": "Control design and processor obligations; not a comprehensive legal assessment.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "gdpr",
+          "path": "/frameworks/0/source_ids",
+          "owner": "gdpr"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:git",
+      "id": "git",
+      "title": "Git documentation",
+      "url": "https://git-scm.com/docs/git",
+      "checked_on": "2026-11-13",
+      "scope": "Local source versioning; build scripts run locally without hosted CI billing.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "git",
+          "path": "/services/21/source_ids",
+          "owner": "local-build"
+        }
+      ],
+      "public_output_mentions": [
+        "P1"
+      ]
+    },
+    {
+      "key": "services:hipaa",
+      "id": "hipaa",
+      "title": "HHS cloud/ePHI guidance",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/faq/may-a-hipaa-covered-entity-or-business-associate-use-cloud-service-to-store-or-process-ephi/index.html",
+      "checked_on": "2026-11-13",
+      "scope": "BAA/vendor scope cannot be inferred from a product name.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "hipaa",
+          "path": "/frameworks/2/source_ids",
+          "owner": "hipaa"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:iso",
+      "id": "iso",
+      "title": "ISO/IEC 27001",
+      "url": "https://www.iso.org/standard/27001",
+      "checked_on": "2026-11-13",
+      "scope": "ISMS/audit and organizational scope; no automatic certification.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "iso",
+          "path": "/frameworks/5/source_ids",
+          "owner": "iso"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:jenkins",
+      "id": "jenkins",
+      "title": "Jenkins installation",
+      "url": "https://www.jenkins.io/doc/book/installing/",
+      "checked_on": "2026-11-13",
+      "scope": "Self-hostable CI including offline installation.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "jenkins",
+          "path": "/services/19/source_ids",
+          "owner": "jenkins"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:keycloak-admin",
+      "id": "keycloak-admin",
+      "title": "Keycloak administration",
+      "url": "https://www.keycloak.org/docs/latest/server_admin/index.html",
+      "checked_on": "2026-11-13",
+      "scope": "Self-hosted identity, federation and broker configuration; not built-in SMS OTP.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "keycloak-admin",
+          "path": "/services/0/source_ids",
+          "owner": "keycloak"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:keycloak-db",
+      "id": "keycloak-db",
+      "title": "Keycloak database support",
+      "url": "https://www.keycloak.org/server/db",
+      "checked_on": "2026-11-13",
+      "scope": "Relational database support; pin compatible versions.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "keycloak-db",
+          "path": "/services/0/source_ids",
+          "owner": "keycloak"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:local-fs",
+      "id": "local-fs",
+      "title": "Node filesystem API",
+      "url": "https://nodejs.org/api/fs.html",
+      "checked_on": "2026-11-13",
+      "scope": "Local file API; operational disk encryption/backups must be supplied.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "local-fs",
+          "path": "/services/13/source_ids",
+          "owner": "local-storage"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:msg91",
+      "id": "msg91",
+      "title": "MSG91 OTP",
+      "url": "https://docs.msg91.com/en/otp/sendotp",
+      "checked_on": "2026-11-13",
+      "scope": "Phone OTP API; country rules and contracts still required.",
+      "categories": [
+        "capability",
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 1,
+      "review_due_on": "2026-11-27",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "msg91",
+          "path": "/services/1/source_ids",
+          "owner": "msg91"
+        },
+        {
+          "id": "msg91",
+          "path": "/pricing/otp_message/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:msg91-privacy",
+      "id": "msg91-privacy",
+      "title": "MSG91 privacy",
+      "url": "https://msg91.com/privacy-policy",
+      "checked_on": "2026-11-13",
+      "scope": "Multiple hosting geographies; strict residency not established by this source.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "msg91-privacy",
+          "path": "/services/1/source_ids",
+          "owner": "msg91"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P4",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:mysql-fts",
+      "id": "mysql-fts",
+      "title": "MySQL full-text",
+      "url": "https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html",
+      "checked_on": "2026-11-13",
+      "scope": "Native full-text indexes.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "mysql-fts",
+          "path": "/services/9/source_ids",
+          "owner": "mysql-search"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:onnx",
+      "id": "onnx",
+      "title": "ONNX Runtime",
+      "url": "https://onnxruntime.ai/docs/get-started/with-java.html",
+      "checked_on": "2026-11-13",
+      "scope": "CPU inference requires compatible ONNX model; not GPU training/RAG.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "onnx",
+          "path": "/services/16/source_ids",
+          "owner": "onnx"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:pages-price",
+      "id": "pages-price",
+      "title": "Cloudflare Pages pricing",
+      "url": "https://developers.cloudflare.com/pages/functions/pricing/",
+      "checked_on": "2026-11-13",
+      "scope": "Static requests free; build/file limits remain relevant.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "pages-price",
+          "path": "/services/20/source_ids",
+          "owner": "cdn"
+        }
+      ],
+      "public_output_mentions": [
+        "P1"
+      ]
+    },
+    {
+      "key": "services:pci",
+      "id": "pci",
+      "title": "PCI DSS",
+      "url": "https://www.pcisecuritystandards.org/standards/pci-dss/",
+      "checked_on": "2026-11-13",
+      "scope": "Payment-data scope/assessment required; hosted checkout does not certify the merchant.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "pci",
+          "path": "/frameworks/3/source_ids",
+          "owner": "pci"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:pg-fts",
+      "id": "pg-fts",
+      "title": "PostgreSQL full-text",
+      "url": "https://www.postgresql.org/docs/current/textsearch.html",
+      "checked_on": "2026-11-13",
+      "scope": "Native text search; workload suitability must be tested.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "pg-fts",
+          "path": "/services/8/source_ids",
+          "owner": "pg-search"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:pg-rls",
+      "id": "pg-rls",
+      "title": "PostgreSQL row security",
+      "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+      "checked_on": "2026-11-13",
+      "scope": "Policies/forced RLS with owner/BYPASSRLS caveats.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "pg-rls",
+          "path": "/services/10/source_ids",
+          "owner": "rls"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:pg-tx",
+      "id": "pg-tx",
+      "title": "PostgreSQL transactions",
+      "url": "https://www.postgresql.org/docs/current/tutorial-transactions.html",
+      "checked_on": "2026-11-13",
+      "scope": "Atomic application/outbox writes; outbox/worker protocol remains custom.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "pg-tx",
+          "path": "/services/15/source_ids",
+          "owner": "outbox"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:python2-eol",
+      "id": "python2-eol",
+      "title": "Python 2 sunset",
+      "url": "https://www.python.org/doc/sunset-python-2/",
+      "checked_on": "2026-11-13",
+      "scope": "Python 2 upstream support ended January 1 2020; not a claim about Python 3.",
+      "categories": [
+        "lifecycle"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "python2-eol",
+          "path": "/lifecycle/0/source_ids",
+          "owner": "python2"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:razorpay-privacy",
+      "id": "razorpay-privacy",
+      "title": "Razorpay privacy policy",
+      "url": "https://razorpay.com/privacy-policy/",
+      "checked_on": "2026-11-13",
+      "scope": "Candidate regional payment provider privacy terms; not sufficient to approve every merchant, payment product or international data flow. Not selected by this release.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P4"
+      ]
+    },
+    {
+      "key": "services:rbi",
+      "id": "rbi",
+      "title": "RBI payment-data storage FAQ",
+      "url": "https://rbi.org.in/CommonPerson/english/Scripts/FAQs.aspx?Id=2995",
+      "checked_on": "2026-11-13",
+      "scope": "Use requested RBI label to require an India payment-flow policy; jurisdiction/applicability review remains with owner.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "rbi",
+          "path": "/frameworks/4/source_ids",
+          "owner": "rbi"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:run-price",
+      "id": "run-price",
+      "title": "Cloud Run pricing",
+      "url": "https://cloud.google.com/run/pricing",
+      "checked_on": "2026-11-13",
+      "scope": "Reference request-billed active CPU $0.000024/vCPU-s and memory $0.0000025/GiB-s; region/edition/billing may differ.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 1,
+      "review_due_on": "2026-11-27",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "run-price",
+          "path": "/pricing/cloudrun_hour/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:s3",
+      "id": "s3",
+      "title": "Amazon S3",
+      "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+      "checked_on": "2026-11-13",
+      "scope": "Regional object storage and configuration responsibilities.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "s3",
+          "path": "/services/12/source_ids",
+          "owner": "s3"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:s3-price",
+      "id": "s3-price",
+      "title": "S3 pricing",
+      "url": "https://aws.amazon.com/s3/pricing/",
+      "checked_on": "2026-11-13",
+      "scope": "Storage, requests and egress vary; cross-provider estimate below is a planning envelope.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 1,
+      "review_due_on": "2026-11-27",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "s3-price",
+          "path": "/pricing/object_storage_gb/source_ids",
+          "owner": null
+        },
+        {
+          "id": "s3-price",
+          "path": "/pricing/egress_gb/source_ids",
+          "owner": null
+        },
+        {
+          "id": "s3-price",
+          "path": "/pricing/backup_gb/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:soc",
+      "id": "soc",
+      "title": "AICPA SOC 2 criteria",
+      "url": "https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022",
+      "checked_on": "2026-11-13",
+      "scope": "Control/assurance review, not an automatic product certification.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "soc",
+          "path": "/frameworks/6/source_ids",
+          "owner": "soc"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:sql-price",
+      "id": "sql-price",
+      "title": "Cloud SQL pricing",
+      "url": "https://cloud.google.com/sql/pricing",
+      "checked_on": "2026-11-13",
+      "scope": "Reference CPU $0.0413/vCPU-hour and memory $0.007/GiB-hour; HA replicas billed; not an India-specific quote.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 1,
+      "review_due_on": "2026-11-27",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "sql-price",
+          "path": "/pricing/database_cpu_hour/source_ids",
+          "owner": null
+        },
+        {
+          "id": "sql-price",
+          "path": "/pricing/database_memory_gb_hour/source_ids",
+          "owner": null
+        },
+        {
+          "id": "sql-price",
+          "path": "/pricing/database_storage_gb/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:sql2019-lifecycle",
+      "id": "sql2019-lifecycle",
+      "title": "SQL Server 2019 lifecycle",
+      "url": "https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2019",
+      "checked_on": "2026-11-13",
+      "scope": "Extended support ends January 2030; no edition, patch, license or installed network/capacity entitlement established.",
+      "categories": [
+        "capability",
+        "lifecycle"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P5"
+      ]
+    },
+    {
+      "key": "services:storage-price",
+      "id": "storage-price",
+      "title": "Cloud Storage pricing",
+      "url": "https://cloud.google.com/storage/pricing",
+      "checked_on": "2026-11-13",
+      "scope": "Storage, operations and network are distinct charges.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 1,
+      "review_due_on": "2026-11-27",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "storage-price",
+          "path": "/pricing/object_storage_gb/source_ids",
+          "owner": null
+        },
+        {
+          "id": "storage-price",
+          "path": "/pricing/egress_gb/source_ids",
+          "owner": null
+        },
+        {
+          "id": "storage-price",
+          "path": "/pricing/backup_gb/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:stripe",
+      "id": "stripe",
+      "title": "Stripe Checkout",
+      "url": "https://docs.stripe.com/payments/checkout",
+      "checked_on": "2026-11-13",
+      "scope": "Hosted checkout; merchant eligibility and integration required.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "stripe",
+          "path": "/services/14/source_ids",
+          "owner": "stripe"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:stripe-dpa",
+      "id": "stripe-dpa",
+      "title": "Stripe DPA",
+      "url": "https://stripe.com/legal/dpa",
+      "checked_on": "2026-11-13",
+      "scope": "Processor contract and transfer-review starting point, not executed agreement.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 1,
+      "review_due_on": "2026-12-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "stripe-dpa",
+          "path": "/services/14/source_ids",
+          "owner": "stripe"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:stripe-pricing",
+      "id": "stripe-pricing",
+      "title": "Stripe pricing",
+      "url": "https://stripe.com/pricing",
+      "checked_on": "2026-11-13",
+      "scope": "Country/payment-specific pricing; model fees below are explicitly assumed envelopes, not this page quoted as USD tariff.",
+      "categories": [
+        "capability",
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 1,
+      "review_due_on": "2026-11-27",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "stripe-pricing",
+          "path": "/services/14/source_ids",
+          "owner": "stripe"
+        },
+        {
+          "id": "stripe-pricing",
+          "path": "/pricing/payment_fraction/source_ids",
+          "owner": null
+        },
+        {
+          "id": "stripe-pricing",
+          "path": "/pricing/payment_fixed/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:telemetry",
+      "id": "telemetry",
+      "title": "OpenTelemetry Collector",
+      "url": "https://opentelemetry.io/docs/collector/",
+      "checked_on": "2026-11-13",
+      "scope": "Collection/redaction/export; backend retention must be configured.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "telemetry",
+          "path": "/services/17/source_ids",
+          "owner": "otel"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:workbox",
+      "id": "workbox",
+      "title": "Workbox precaching",
+      "url": "https://developer.chrome.com/docs/workbox/modules/workbox-precaching",
+      "checked_on": "2026-11-13",
+      "scope": "Offline asset precaching; not transactional data sync.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "workbox",
+          "path": "/services/22/source_ids",
+          "owner": "workbox"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:ws",
+      "id": "ws",
+      "title": "ws",
+      "url": "https://github.com/websockets/ws",
+      "checked_on": "2026-11-13",
+      "scope": "Node WebSocket server; auth, retries, shared state and deployment required.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "ws",
+          "path": "/services/2/source_ids",
+          "owner": "yjs"
+        },
+        {
+          "id": "ws",
+          "path": "/services/3/source_ids",
+          "owner": "ws"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:yjs",
+      "id": "yjs",
+      "title": "Yjs",
+      "url": "https://docs.yjs.dev/",
+      "checked_on": "2026-11-13",
+      "scope": "CRDT model separate from transport/persistence.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 1,
+      "review_due_on": "2027-02-11",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "yjs",
+          "path": "/services/2/source_ids",
+          "owner": "yjs"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    }
+  ],
+  "scope": "Offline reminders based on recorded checked_on dates and declared policy. Not live verification, certification or proof of unchanged claims. Output mentions include alternatives and review tasks; shared source IDs across namespaces conservatively match both. No engine or source dates are changed."
+}
