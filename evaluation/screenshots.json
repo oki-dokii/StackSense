@@ -1,86 +1,86 @@
 {
-  "engine_version": "0.6.0",
+  "engine_version": "0.8.0",
   "catalog_version": "0.4.0",
-  "services_version": "0.6.0",
-  "capture": "Actual local UI, unedited browser captures: 15 overview views at 900x520 CSS px; three feature views at default 1280x720 and one 360x800 mobile sensitivity view. Full results are in matching JSON outputs.",
+  "services_version": "0.8.0",
+  "capture": "Actual current UI: 15 result overviews at 900x520; three 1280x720 feature views and one 360x800 mobile sensitivity view. Each overview waits for the rendered engine summary.",
   "input_sha256": "f443c1ed6ed5ad1e91732fd7b2e72a0b4cda3afaca020c8848c88c89c6c810f2",
   "images": [
     {
-      "file": "E01.jpg",
-      "sha256": "71e096f351f6db4f481e1d6e0e0de2c2932f74f5a031f311663b381dacd65682"
+      "file": "E01.png",
+      "sha256": "2d2972e254494c7b411ec9760ebc134efc7a3620a139057a5c1e33b0fb0d96c5"
     },
     {
-      "file": "E02.jpg",
-      "sha256": "18cf0be101038e3174078d436ce6513d9efd515adb1dcb3e1b5bb08857642fd4"
+      "file": "E02.png",
+      "sha256": "fcab4ea93014acdcacae3c424ce46544b2f43632593ac1cd1f085e95b8682b17"
     },
     {
-      "file": "E03.jpg",
-      "sha256": "f6c009b4955dd804abed36436aa74f9f791123be164d260d4b17a66c39ed1ba6"
+      "file": "E03.png",
+      "sha256": "804b2fc0ba194bf3ad24d018ae56d39b15f68e611646f640c43442874ae5a6b3"
     },
     {
-      "file": "E04.jpg",
-      "sha256": "4da18ff18771a7e3ff0d7afea4561edebe59613c8664b113cb2c822b22c0d100"
+      "file": "E04.png",
+      "sha256": "ee749f0698b0e3c19d79d5fc20e1587384e74d1b2eb8b34bea69a8af542ebc42"
     },
     {
-      "file": "E05.jpg",
-      "sha256": "034404b113b7b44e8cfcd55b84c31570374e6a1d7b3a8f0bb8c6a518dcce8069"
+      "file": "E05.png",
+      "sha256": "55a5c2cac602405a6d001a8c0b4c682b30ffb80fbbf9d2b66fb1fba037c238a2"
     },
     {
-      "file": "E06.jpg",
-      "sha256": "cc746bec2741a4d594201c1027bcb33e6414585bbfbbd81f8267c01b70475a1f"
+      "file": "E06.png",
+      "sha256": "af3a5871000b526954bf52b4938bdd0b6045c480c084b361331caa97ecb71473"
     },
     {
-      "file": "E07.jpg",
-      "sha256": "6068ff2f1fce7b87a02ccc4175230dc2c595be9ec62e15a266e9f97412db11c3"
+      "file": "E07.png",
+      "sha256": "d2cafae5ab25ca570b7d670b182ead4ad1549562fef8da34ca4a83778567d963"
     },
     {
-      "file": "E08.jpg",
-      "sha256": "71e96a234f174f95de725588a21348875b22113f215403500d9ee8f93b853e72"
+      "file": "E08.png",
+      "sha256": "31ec3c2edce67e10c5a5b3a183afb6d9d78ea0c824b4cccf960dacf5f5bb84f1"
     },
     {
-      "file": "E09.jpg",
-      "sha256": "dc106d26665c69f97f0bd55dbcd86053ac00e660b37fb3c559fcd3e4292c8ac6"
+      "file": "E09.png",
+      "sha256": "3cfb582ddb59161bc9f0995eff4027802bd3601e1555169d479e2c39f9b4eac2"
     },
     {
-      "file": "P1.jpg",
-      "sha256": "5f924376a4eef9a4f03d97ebc348273c33adee80115ea66eddafe85aa3cd716d"
+      "file": "P1.png",
+      "sha256": "705bad495d1e6cb3274fb1bd4859984bb0fe8855479cc10ddc68cd00449f1f23"
     },
     {
-      "file": "P2.jpg",
-      "sha256": "fa618fc78d19cc79a2c888893bb06dcc541cd52f4e5f6f1d0b55eef667afd32c"
+      "file": "P2.png",
+      "sha256": "6eba5be11643f9542ef49d157308e6f7631e607194f2c617f3ff06f8dee9c294"
     },
     {
-      "file": "P3.jpg",
-      "sha256": "1e0c012d93bce26ad0899c95f37562d258dd501ab5034df7095c27ebf743ccb4"
+      "file": "P3.png",
+      "sha256": "75bb7c81bff000eff1ac1ecb255a0e03fa4ed4ebcfb671c8b55cbb8f7010aab0"
     },
     {
-      "file": "P4.jpg",
-      "sha256": "5cdfdccb5ea24551e8519ffa0c1d4c02182d7d7e74d46417707ee4d6ec5b2ebe"
+      "file": "P4.png",
+      "sha256": "b4ca807aba78e0dc345f2c1df233bf427034e77977029eb29b43f446d4ceffc0"
     },
     {
-      "file": "P5.jpg",
-      "sha256": "058b6e32823fb8f3de9b1212d39d268d1ae3c5331e1052d2f46fe54ebfd29e50"
+      "file": "P5.png",
+      "sha256": "c2a02e90bd34ea2eea82ec137573e350269dd6a14481917e3ace7ef13064743f"
     },
     {
-      "file": "P6.jpg",
-      "sha256": "71c23dc3aa553d0e1646319c22a400be88c2aeafcee2aad6f215294947a09c8e"
+      "file": "P6.png",
+      "sha256": "b22245c7a39ae27b8a9e63229a0f003c9f73451db7ffc6b3102eb55e1b2fd4b1"
     },
     {
-      "file": "phase6-alternatives.jpg",
-      "sha256": "64d797acc581a7531c2f51eefd1fad1d963b9388b5c15a1ad949f31f5932e29e"
+      "file": "alternatives.png",
+      "sha256": "06d9ac9ce880cc40a1992a3aae26b4bbac429ab323de3309d01669ca50fe18ac"
     },
     {
-      "file": "phase6-blockers.jpg",
-      "sha256": "91880cb8b45e90830eaaba6b5a4df197422341e1f4b5459459a56d2dd586851e"
+      "file": "mobile-sensitivity.png",
+      "sha256": "be3e26689d71132f7d7ce73f35effd220314dd5d124dffa421a4f4bacfab783e"
     },
     {
-      "file": "phase6-mobile.jpg",
-      "sha256": "9bfefd526d5e21b5be88658246d5f89fcfc707ca5e4cb428c4e29e3ee66e516f"
+      "file": "review-actions.png",
+      "sha256": "3e7deef4071e1a622f753f7f276b76252a1ddbcff8fb70b8a05ee3e1fb46b497"
     },
     {
-      "file": "phase6-sensitivity.jpg",
-      "sha256": "9ba6204b329655b7c4ab0279aaa9138be3e5d7c9683e118b7acfa6f3dde34d2e"
+      "file": "sensitivity.png",
+      "sha256": "68f9d1ba592b74c2f2357cfe46b647a43cbc2794352b31920a521e787fbcc945"
     }
   ],
-  "directory": "docs/evidence/final"
+  "directory": "docs/evidence/current"
 }

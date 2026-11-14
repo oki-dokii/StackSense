@@ -3,7 +3,6 @@
   "architecture_style": "modular_monolith",
   "assumptions": [
     "Enterprise identity integration assumes a reachable, eligible OIDC/SAML identity provider; verify tenant scopes, licenses and network paths before provisioning.",
-    "Integrate existing Entra through OIDC/SAML; tenant configuration, network connectivity and licensing must be verified.",
     "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
     "compliance was absent; defaulted to [].",
@@ -49,12 +48,12 @@
       "category": "compute",
       "id": "application-compute",
       "monthly_usd": {
-        "max": 356.68,
-        "min": 37.15
+        "max": 246.93,
+        "min": 25.72
       },
       "quantity": {
-        "max": 1898,
-        "min": 355.875
+        "max": 1314,
+        "min": 246.375
       },
       "source_ids": [
         "run-price"
@@ -220,8 +219,8 @@
         "telemetry-operations",
         "hosted-ci"
       ],
-      "max": 620.44,
-      "min": 145.7
+      "max": 510.69,
+      "min": 134.27
     },
     {
       "category": "payment_and_message_activity",
@@ -234,18 +233,19 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 0.05787037037037037,
+      "cost_category": "infrastructure_and_operations",
       "field": "extensions.expected_requests_per_second",
       "samples": [
         {
-          "max": 620.44,
-          "min": 145.7,
+          "max": 510.69,
+          "min": 134.27,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 0.028935185185185185
         },
         {
-          "max": 620.44,
-          "min": 145.7,
+          "max": 510.69,
+          "min": 134.27,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 0.11574074074074074
@@ -256,18 +256,19 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 1,
+      "cost_category": "infrastructure_and_operations",
       "field": "extensions.monthly_egress_gb",
       "samples": [
         {
-          "max": 620.24,
-          "min": 145.66,
+          "max": 510.49,
+          "min": 134.23,
           "status": "estimated",
           "upper_delta_usd": -0.2,
           "value": 0.5
         },
         {
-          "max": 620.84,
-          "min": 145.78,
+          "max": 511.09,
+          "min": 134.35,
           "status": "estimated",
           "upper_delta_usd": 0.4,
           "value": 2
@@ -278,18 +279,19 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 1,
+      "cost_category": "infrastructure_and_operations",
       "field": "extensions.retention_months",
       "samples": [
         {
-          "max": 620.44,
-          "min": 145.7,
+          "max": 510.69,
+          "min": 134.27,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 1
         },
         {
-          "max": 623.44,
-          "min": 146,
+          "max": 513.69,
+          "min": 134.57,
           "status": "estimated",
           "upper_delta_usd": 3,
           "value": 2
@@ -312,10 +314,10 @@
       "verification": "configuration_required"
     },
     {
-      "component": "keycloak",
-      "location": "Selected deployment region (must be chosen before provisioning)",
-      "scope": "Separate realm/schema and restricted database credentials are required; pin supported driver/database versions. Email delivery needs a separately reviewed SMTP integration if enabled.",
-      "verification": "configuration_required"
+      "component": "entra",
+      "location": "External service geography not established",
+      "scope": "Register the application in the existing tenant, validate issuer/audience/signatures, map groups/roles and verify license and conditional-access requirements. Tenant identity geography is separate from application hosting. Existing license entitlement is not assumed.",
+      "verification": "external_scope_review"
     },
     {
       "component": "otel",
@@ -338,17 +340,19 @@
     "score": 76,
     "selected_plan_id": "modular_monolith|react|aspnet|mysql|cloudrun|unspecified"
   },
-  "engine_version": "0.6.0",
+  "engine_version": "0.8.0",
   "estimate_status": "estimated",
+  "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
       "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
       "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-      "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 3.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+      "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
       "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+      "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
       "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
       "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
       "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
@@ -358,8 +362,8 @@
       "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
       "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
     ],
-    "max": 620.44,
-    "min": 145.7
+    "max": 510.69,
+    "min": 134.27
   },
   "integration_reviews": [
     {
@@ -437,9 +441,10 @@
         "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 3.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
@@ -451,10 +456,10 @@
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 620.44,
-        "min": 145.7
+        "max": 510.69,
+        "min": 134.27
       },
-      "operated_components": 2.25,
+      "operated_components": 1.25,
       "plan_id": "modular_monolith|react|aspnet|mysql|cloudrun|unspecified",
       "primary_region": null,
       "retained_constraints": [
@@ -463,14 +468,14 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=none",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 76,
       "score_delta": 0,
       "selected": true,
       "supporting_services": [
         "GitHub Actions",
-        "Keycloak",
+        "Microsoft Entra ID (tenant OIDC/SAML integration)",
         "OpenTelemetry Collector + structured logs"
       ],
       "tied_on_score": false,
@@ -494,9 +499,10 @@
         "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 3.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
@@ -508,10 +514,10 @@
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 620.44,
-        "min": 145.7
+        "max": 510.69,
+        "min": 134.27
       },
-      "operated_components": 2.25,
+      "operated_components": 1.25,
       "plan_id": "modular_monolith|react|aspnet|pg|cloudrun|unspecified",
       "primary_region": null,
       "retained_constraints": [
@@ -520,14 +526,14 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=none",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 76,
       "score_delta": 0,
       "selected": false,
       "supporting_services": [
         "GitHub Actions",
-        "Keycloak",
+        "Microsoft Entra ID (tenant OIDC/SAML integration)",
         "OpenTelemetry Collector + structured logs"
       ],
       "tied_on_score": true,
@@ -551,9 +557,10 @@
         "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 3.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
@@ -565,10 +572,10 @@
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 620.44,
-        "min": 145.7
+        "max": 510.69,
+        "min": 134.27
       },
-      "operated_components": 2.25,
+      "operated_components": 1.25,
       "plan_id": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
       "primary_region": null,
       "retained_constraints": [
@@ -577,14 +584,14 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=none",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 76,
       "score_delta": 0,
       "selected": false,
       "supporting_services": [
         "GitHub Actions",
-        "Keycloak",
+        "Microsoft Entra ID (tenant OIDC/SAML integration)",
         "OpenTelemetry Collector + structured logs"
       ],
       "tied_on_score": true,
@@ -597,7 +604,7 @@
   ],
   "primary_region": null,
   "review_actions": [],
-  "rules_version": "0.6.0",
+  "rules_version": "0.8.0",
   "scenario_id": "E06",
   "score_breakdown": [
     {
@@ -608,7 +615,7 @@
         "priorities.cost"
       ],
       "fit": 3,
-      "reason": "USD 145.7–620.44/month versus budget 500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "reason": "USD 134.27–510.69/month versus budget 500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
       "weight": 3
     },
     {
@@ -673,7 +680,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.6.0",
+  "services_version": "0.8.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -691,7 +698,7 @@
         "requirements.realtime"
       ],
       "id": "aspnet",
-      "justification": "Provides a dotnet application runtime for the internal_tool profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Provides a dotnet application runtime for the internal_tool profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "backend",
       "source_ids": [
         "aspnet"
@@ -715,7 +722,7 @@
         "infrastructure.existing_systems"
       ],
       "id": "mysql",
-      "justification": "relational persistence via Cloud SQL for MySQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "relational persistence via Cloud SQL for MySQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "database",
       "source_ids": [
         "cloudsql-my",
@@ -740,7 +747,7 @@
         "team.languages"
       ],
       "id": "react",
-      "justification": "Covers requested targets web with spa rendering. Team languages: csharp, javascript, sql. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Covers requested targets web with spa rendering. Team languages: csharp, javascript, sql. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "frontend",
       "source_ids": [
         "react"
@@ -764,7 +771,7 @@
         "team.has_devops"
       ],
       "id": "cloudrun",
-      "justification": "Matches managed_cloud with provider gcp; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Matches managed_cloud with provider gcp; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "hosting",
       "source_ids": [
         "run",
@@ -806,28 +813,28 @@
       {
         "alternatives": [
           {
-            "choice": "Microsoft Entra ID",
-            "why_not": "More custom integration/operation than this reviewed option."
+            "choice": "Keycloak identity broker",
+            "why_not": "A separate operated identity broker is unnecessary when the application can federate directly with the existing Entra tenant."
           }
         ],
         "capabilities": [
           "auth"
         ],
-        "choice": "Keycloak",
+        "choice": "Microsoft Entra ID (tenant OIDC/SAML integration)",
         "driven_by": [
           "requirements.auth"
         ],
-        "incremental_compute_units": 1,
-        "justification": "Authentication method enterprise_sso uses a separate Keycloak realm/schema and least-privilege database identity. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "incremental_compute_units": 0,
+        "justification": "Integrate the existing Microsoft Entra tenant directly using application OIDC/SAML middleware; do not migrate passwords or add an unnecessary identity broker.",
         "layer": "auth",
-        "placement": "host",
-        "service_id": "keycloak",
+        "placement": "external",
+        "service_id": "entra",
         "source_ids": [
-          "keycloak-db",
-          "keycloak-admin"
+          "entra-oidc",
+          "entra-residency"
         ],
         "tradeoffs": [
-          "Separate realm/schema and restricted database credentials are required; pin supported driver/database versions. Email delivery needs a separately reviewed SMTP integration if enabled."
+          "Register the application in the existing tenant, validate issuer/audience/signatures, map groups/roles and verify license and conditional-access requirements. Tenant identity geography is separate from application hosting. Existing license entitlement is not assumed."
         ]
       },
       {
@@ -861,7 +868,7 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "modular_monolith recommendation selected from 322 complete compatible plans; month-12 infrastructure planning band USD 145.7–620.44/month.",
+  "summary": "modular_monolith recommendation selected from 322 complete compatible plans; month-12 infrastructure planning band USD 134.27–510.69/month.",
   "validation_errors": [],
   "warnings": [
     {
@@ -877,7 +884,7 @@
       "fields": [
         "budget.monthly_infra_usd"
       ],
-      "message": "Upper estimate USD 620.44/month exceeds USD 500; stated usage/price assumptions determine whether it fits.",
+      "message": "Upper estimate USD 510.69/month exceeds USD 500; stated usage/price assumptions determine whether it fits.",
       "severity": "warning"
     },
     {

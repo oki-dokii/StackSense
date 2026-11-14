@@ -135,6 +135,12 @@
       "items": {
         "$ref": "#/definitions/planComparison"
       }
+    },
+    "estimated_cost_scope": {
+      "type": "string",
+      "enum": [
+        "infrastructure_and_operations"
+      ]
     }
   },
   "additionalProperties": true,
@@ -587,6 +593,13 @@
             ],
             "additionalProperties": false
           }
+        },
+        "cost_category": {
+          "type": "string",
+          "enum": [
+            "infrastructure_and_operations",
+            "payment_and_message_activity"
+          ]
         }
       },
       "required": [
@@ -594,7 +607,8 @@
         "baseline_value",
         "baseline_origin",
         "scope",
-        "samples"
+        "samples",
+        "cost_category"
       ],
       "additionalProperties": false
     },
@@ -865,7 +879,7 @@
       "if": {
         "properties": {
           "engine_version": {
-            "const": "0.6.0"
+            "const": "0.8.0"
           }
         },
         "required": [
@@ -878,7 +892,8 @@
           "integration_reviews",
           "cost_groups",
           "cost_sensitivity",
-          "plan_comparison"
+          "plan_comparison",
+          "estimated_cost_scope"
         ]
       }
     }

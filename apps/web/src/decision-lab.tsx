@@ -53,7 +53,7 @@ function Frontier({
           className="frontier-chart"
           viewBox="0 0 700 275"
           role="img"
-          aria-label="All complete candidates: cost upper estimate horizontally and original-priority score vertically. Purple indicates the declared three-objective frontier; the dark ring marks the inspected plan. Operating units are listed below, not on an axis."
+          aria-label="All complete candidates; infrastructure cost only, activity fees additional: cost upper estimate horizontally and original-priority score vertically. Purple indicates the declared three-objective frontier; the dark ring marks the inspected plan. Operating units are listed below, not on an axis."
         >
           <line x1="65" y1="225" x2="650" y2="225" stroke="currentColor" />
           <line x1="65" y1="30" x2="65" y2="225" stroke="currentColor" />

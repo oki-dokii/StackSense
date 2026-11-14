@@ -47,8 +47,8 @@ describe('local HTTP API', () => {
     ]);
     expect(result.json().counts).toEqual({
       ok: 1,
-      ok_with_warnings: 0,
-      infeasible: 1,
+      ok_with_warnings: 1,
+      infeasible: 0,
       invalid_input: 1,
     });
   });
@@ -147,12 +147,12 @@ describe('local HTTP API', () => {
     expect((await app.inject('/api/samples')).json()).toEqual(samples);
     const metadata = (await app.inject('/api/methodology')).json();
     expect(metadata.schema.required).toContain('project');
-    expect(metadata.sources.length).toBe(99);
+    expect(metadata.sources.length).toBe(101);
     expect(metadata.notes.join(' ')).toContain('not certification');
     expect((await app.inject('/api/health')).json()).toMatchObject({
       status: 'ok',
-      engine_version: '0.6.0',
-      app_version: '0.7.0',
+      engine_version: '0.8.0',
+      app_version: '0.8.0',
     });
   });
   it('keeps internal failures separate from invalid/infeasible outcomes', async () => {

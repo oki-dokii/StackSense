@@ -293,22 +293,22 @@ describe('complete recommendation CLI', () => {
       path,
       '--pretty',
     ]);
-    expect(result.status).toBe(3);
+    expect(result.status).toBe(0);
     expect(result.stderr).toBe('');
     const manifest = JSON.parse(
       await readFile(join(path, 'recommendation_manifest.json'), 'utf8'),
     );
     expect(manifest).toMatchObject({
       ok: 1,
-      ok_with_warnings: 1,
-      infeasible: 4,
+      ok_with_warnings: 5,
+      infeasible: 0,
       invalid_input: 0,
     });
     for (let i = 1; i <= 6; i++) {
       const report = JSON.parse(
         await readFile(join(path, `P${i}_output.json`), 'utf8'),
       );
-      expect(report.engine_version).toBe('0.6.0');
+      expect(report.engine_version).toBe('0.8.0');
       expect(report).toHaveProperty('estimated_monthly_cost_usd');
     }
     expect(
@@ -343,7 +343,7 @@ describe('complete recommendation CLI', () => {
       await readFile(join(root, 'fixtures/public/P1.json'), 'utf8'),
     );
     const infeasible = JSON.parse(
-      await readFile(join(root, 'fixtures/public/P2.json'), 'utf8'),
+      await readFile(join(root, 'fixtures/airgap-conflict.json'), 'utf8'),
     );
     await writeFile(input, JSON.stringify([{}, valid, infeasible]));
     const result = cli(['--recommend', '--batch', '--input', input]);

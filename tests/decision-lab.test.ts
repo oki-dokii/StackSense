@@ -119,8 +119,13 @@ describe('bounded decision analysis', () => {
       .map((p) => p.plan_id);
     expect(r.priority_analysis.frontier_plan_ids).toEqual(expected);
   });
-  it('finds independent OTP/payment functional changes while retaining original India/compliance requirements', () => {
-    const input = raw(1),
+  it('finds independent OTP/payment edits for a real air-gap conflict without changing protected constraints', () => {
+    const input = JSON.parse(
+        readFileSync(
+          new URL('../fixtures/airgap-conflict.json', import.meta.url),
+          'utf8',
+        ),
+      ),
       before = structuredClone(input),
       r = analyzeDecision(input),
       f = r.functional_experiments;
@@ -145,8 +150,15 @@ describe('bounded decision analysis', () => {
       expect(recommend(modified).status).toBe(t.status);
     }
   });
-  it('finds the bounded P6 phone alternative but never applies it', () => {
-    const input = raw(5),
+  it('finds the bounded phone alternative under an air gap but never applies it', () => {
+    const input = {
+        ...raw(5),
+        infrastructure: {
+          deployment_model: 'air_gapped',
+          cloud_preference: 'none',
+          data_residency: 'none',
+        },
+      },
       r = analyzeDecision(input);
     expect(r.functional_experiments.smallest_successful_edit_count).toBe(1);
     expect(r.functional_experiments.successful_variants[0]!.edits).toEqual([
@@ -159,9 +171,16 @@ describe('bounded decision analysis', () => {
     expect(input.requirements.auth).toBe('phone_otp');
     expect(r.baseline.stack).toBeNull();
   });
-  it('cannot bypass an existing Entra tenant blocker or waive compliance', () => {
+  it('preserves critical Entra qualifications without waiving compliance', () => {
     const r = analyzeDecision(raw(4));
-    expect(r.baseline.status).toBe('infeasible');
+    expect(r.baseline.status).toBe('ok_with_warnings');
+    expect(
+      r.baseline.warnings.some(
+        (w) =>
+          w.code === 'EXISTING_IDENTITY_SCOPE_UNVERIFIED' &&
+          w.severity === 'critical',
+      ),
+    ).toBe(true);
     expect(r.functional_experiments.smallest_successful_edit_count).toBeNull();
     expect(
       r.functional_experiments.trials
@@ -276,7 +295,7 @@ describe('Decision Lab adapters', () => {
       new URL('../apps/cli/src/analyze.ts', import.meta.url),
     );
     const input = fileURLToPath(
-      new URL('../fixtures/public/P6.json', import.meta.url),
+      new URL('../fixtures/airgap-conflict.json', import.meta.url),
     );
     const json = spawnSync(
       process.execPath,

@@ -1,6 +1,6 @@
 # Implementation phase tracker
 
-Updated 14 November 2026 IST. The detailed method is in [plan.md](../plan.md); this tracker records actual completion.
+Updated 14 November 2026 IST. The detailed method is in [plan.md](../plan.md); this tracker records actual completion. Earlier phase counts are historical; the current release is [0.8.0](RELEASE_0_8.md).
 
 | Phase | Scope | Status | Exit gate |
 |---|---|---|---|
@@ -15,6 +15,8 @@ Updated 14 November 2026 IST. The detailed method is in [plan.md](../plan.md); t
 | 9 | Real Fastify/PostgreSQL reference, arrival-rate scheduler and repeated measured stages | Implemented and tested locally | 3,600 issued, zero errors/drops; commit counts verified; eight correctness/integrity cases with live DB enabled separately |
 | 10 | Evidence freshness audits, source tracing, candidate diffs and unreviewed URL observations | Implemented and tested | 99 sources; 14 new tests; four bounded live observations; no source/engine date or output changes |
 | 11 | Keyboard focus, text contrast, React DOM regressions and desktop/narrow browser QA | Implemented and tested | Six new component tests; seven scoped browser audits; remaining assistive/browser/zoom gates explicit |
+
+| 12 | Provisional vendor integration, direct Entra, India payments, cost scope and submission refresh | Implemented and tested | 262 application tests; 12 region/auth/payment combinations; all six public stacks; current browser/export evidence and 25-page report |
 
 ## Phase 1 delivered
 

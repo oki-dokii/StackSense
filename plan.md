@@ -338,7 +338,7 @@ The windows are demanding and not guaranteed. Stop expanding catalog breadth/opt
 
 ## 13. Repository alignment and release evidence
 
-Implementation update: all five technical phases are implemented/tested: contracts, normalization, CLI, sourced core/service catalog, complete-plan ranking, costs/control proposals and genuine P1–P6 output files. Four public outputs remain explicitly infeasible due evidence gaps. The local API/UI and browser screenshots are implemented. Author-designed unseen-style evaluation, local setup/API measurements, final report and submission ZIP are prepared in Phase 5. Owner review and external submission remain pending. See [phase tracker](docs/PHASES.md). The research proposals below do not themselves establish product correctness.
+Current release: application/engine/services 0.8.0 returns all six public stacks. P2, P4, P5 and P6 retain explicit critical external-boundary conditions; actual deployment/region contradictions remain blocking. Infrastructure bands exclude separately itemized payment/SMS activity, and peak WebSocket capacity is counted once. The release includes refreshed outputs, browser evidence, a 25-page report and regression coverage. See the [0.8 release record](docs/RELEASE_0_8.md) and [phase tracker](docs/PHASES.md). Online submission is a separate external action; no submission is claimed.
 
 Align the existing engine specification with plan-level scoring, inclusion-minimal-vs-smallest conflict language, tri-state evidence, and catalog-relative infeasibility. Keep API/output schema unchanged unless an implementation need is justified by an ADR. Additive trace/source fields may carry evidence without breaking the organiser's result structure.
 

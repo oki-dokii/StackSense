@@ -237,6 +237,7 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 0.05787037037037037,
+      "cost_category": "infrastructure_and_operations",
       "field": "extensions.expected_requests_per_second",
       "samples": [
         {
@@ -259,6 +260,7 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 1,
+      "cost_category": "infrastructure_and_operations",
       "field": "extensions.monthly_egress_gb",
       "samples": [
         {
@@ -281,6 +283,7 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 1,
+      "cost_category": "infrastructure_and_operations",
       "field": "extensions.retention_months",
       "samples": [
         {
@@ -335,17 +338,19 @@
     "score": 60,
     "selected_plan_id": "modular_monolith|angular|go-http|mysql|cloudrun|unspecified"
   },
-  "engine_version": "0.6.0",
+  "engine_version": "0.8.0",
   "estimate_status": "estimated",
+  "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
       "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
       "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-      "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+      "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
       "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+      "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
       "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
       "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
       "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
@@ -374,9 +379,10 @@
         "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
@@ -400,7 +406,7 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=none",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 60,
       "score_delta": 0,
@@ -429,9 +435,10 @@
         "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
@@ -455,7 +462,7 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=none",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 60,
       "score_delta": 0,
@@ -484,9 +491,10 @@
         "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
@@ -510,7 +518,7 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=none",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 60,
       "score_delta": 0,
@@ -528,7 +536,7 @@
   ],
   "primary_region": null,
   "review_actions": [],
-  "rules_version": "0.6.0",
+  "rules_version": "0.8.0",
   "scenario_id": "E08",
   "score_breakdown": [
     {
@@ -604,7 +612,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.6.0",
+  "services_version": "0.8.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -622,7 +630,7 @@
         "requirements.realtime"
       ],
       "id": "go-http",
-      "justification": "Provides a go application runtime for the web_app profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Provides a go application runtime for the web_app profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "backend",
       "source_ids": [
         "go"
@@ -646,7 +654,7 @@
         "infrastructure.existing_systems"
       ],
       "id": "mysql",
-      "justification": "relational persistence via Cloud SQL for MySQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "relational persistence via Cloud SQL for MySQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "database",
       "source_ids": [
         "cloudsql-my",
@@ -671,7 +679,7 @@
         "team.languages"
       ],
       "id": "angular",
-      "justification": "Covers requested targets web with spa rendering. Team languages: go. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Covers requested targets web with spa rendering. Team languages: go. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "frontend",
       "source_ids": [
         "angular"
@@ -695,7 +703,7 @@
         "team.has_devops"
       ],
       "id": "cloudrun",
-      "justification": "Matches managed_cloud with provider gcp; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Matches managed_cloud with provider gcp; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "hosting",
       "source_ids": [
         "run",

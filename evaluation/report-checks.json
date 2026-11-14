@@ -6,13 +6,11 @@
   "page_size": "A4",
   "body_font_pt": 11,
   "table_reference_font_pt": 10,
-  "source_records": 150,
+  "source_records": 152,
   "screenshots": 16,
-  "engine_version": "0.6.0",
-  "application_version": "0.7.0",
+  "engine_version": "0.8.0",
+  "application_version": "0.8.0",
   "owner_metadata_confirmed": true,
-  "visual_review": "All 25 current page renders inspected in seven contact sheets; updated cover, Decision Lab chart/page, metrics and final method-source ledger checked. No clipping or overlap observed.",
-  "sha256": "acec5623662c260dba202a9f2da644ce0ef52e6b6a6a7908f05985791e2e9c34",
-  "a4_all_pages": true,
-  "abstract_words": 128
+  "visual_review": "All 25 rendered A4 pages inspected in seven contact sheets; no clipped text, overlap or unintended page spill observed.",
+  "sha256": "40fb35bebaf274506d4fc9712886afbf7210c9af44b9f4d26728fed4bd27615a"
 }

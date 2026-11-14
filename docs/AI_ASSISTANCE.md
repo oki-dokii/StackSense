@@ -53,3 +53,7 @@ Codex reviewed primary HTTP/provenance guidance, implemented offline source audi
 ## Phase 11 (14 November 2026)
 
 Codex used the Sites local-preview workflow, reviewed W3C focus/contrast/form guidance, observed keyboard/contrast issues in the actual browser, implemented focused fixes and six React/jsdom regressions, and recorded seven custom read-only DOM snapshots plus captures. Export parity and stale protection were checked. The audit is intentionally limited and no axe run, screen-reader usability, multi-browser coverage or WCAG conformance is claimed. The reviewed Phase 7 PDF is retained separately.
+
+## Critically qualified recommendation revision (14 November 2026)
+
+Following participant feedback, Codex checked the brief's explicit allowance for critically warned/reduced-scope stacks, researched primary vendor integration/pricing documentation, implemented the evidence-gap versus conflict distinction, direct Entra and India Razorpay profiles, infrastructure/activity cost separation, removed duplicate WebSocket sizing, and refreshed tests/outputs/browser/report/package evidence. The README/report were edited for submission-facing clarity while preserving truthful AI attribution. No independent authorship, human acceptance, vendor contract or production compliance approval is fabricated.

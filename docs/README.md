@@ -1,10 +1,10 @@
 # Documentation index
 
-Updated 13 November 2026 IST. [All five technical phases](PHASES.md) are implemented, including release evaluation, report and packaging. Owner review and online submission remain pending. See [Phase 5](PHASE_5.md).
+Updated 14 November 2026 IST. Current application/engine/services release: **0.8.0**. All six public scenarios produce stacks, with explicit critical qualifications on four. See the [release record](RELEASE_0_8.md), [recommendation policy](RECOMMENDATION_POLICY.md) and [submission instructions](SUBMISSION.md). Earlier phase records describe the release at that time.
 
 ## Implementation status
 
-- [Five-phase implementation tracker](PHASES.md)
+- [Implementation phase tracker](PHASES.md)
 - [Phase 1 evidence and limitations](PHASE_1.md)
 - [Phase 2 evidence and limitations](PHASE_2.md)
 - [Executable catalog and source scope](CATALOG.md)
@@ -66,3 +66,5 @@ Post-release: [repository comparison](REPOSITORY_COMPARISON.md) and [improvement
 - [Phase 10: evidence freshness and change review](PHASE_10.md)
 
 - [Phase 11: keyboard focus, contrast and browser QA](PHASE_11.md)
+
+Current release: [Recommendation policy and cost scope](RECOMMENDATION_POLICY.md) · [Engine walkthrough](ENGINE_WALKTHROUGH.md). Historical phase records describe their corresponding revisions.

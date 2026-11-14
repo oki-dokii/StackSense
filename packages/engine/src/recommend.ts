@@ -42,9 +42,9 @@ export function invalidRecommendation(
   catalogVersion = defaultCatalog.version,
 ): FinalRecommendation {
   return {
-    engine_version: '0.6.0',
+    engine_version: '0.8.0',
     catalog_version: catalogVersion,
-    rules_version: '0.6.0',
+    rules_version: '0.8.0',
     services_version: defaultPolicies.version,
     status: 'invalid_input',
     summary:
@@ -59,6 +59,7 @@ export function invalidRecommendation(
       ],
     },
     estimate_status: 'not_estimated',
+    estimated_cost_scope: 'infrastructure_and_operations',
     warnings: [],
     assumptions: [],
     validation_errors: errors,
@@ -339,7 +340,7 @@ export function recommend(
       f,
     );
     component.justification +=
-      ' Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.';
+      ' Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.';
     component.alternatives.forEach((alternative) => {
       alternative.why_not = alternative.why_not
         .replace('complete core plan', 'complete plan')
@@ -434,7 +435,7 @@ export function recommend(
       `deployment_model=${s.infrastructure.deployment_model}`,
       `data_residency=${s.infrastructure.data_residency}`,
       `compliance=${s.compliance.join(',') || 'none'}`,
-      'All original enabled features passed supporting-service and control checks; no requirement was relaxed.',
+      'Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied.',
     ],
   }));
   base.control_plan = {
@@ -499,8 +500,17 @@ export function recommend(
   base.status = base.warnings.some((item) => item.severity !== 'info')
     ? 'ok_with_warnings'
     : 'ok';
+  if (base.warnings.some((w) => w.severity === 'critical'))
+    base.summary =
+      'PROVISIONAL STACK — unresolved critical constraints require review before production. ' +
+      base.summary;
   base.assumptions = [
     ...new Set([
+      ...(base.warnings.some((w) => w.severity === 'critical')
+        ? [
+            'Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.',
+          ]
+        : []),
       ...base.assumptions,
       ...support.assumptions,
       'Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.',
@@ -514,6 +524,7 @@ export function recommend(
   base.applied_extensions = Object.keys(s.extensions ?? {})
     .filter((key) => applied.has(key))
     .sort(compare);
+  base.review_actions = reviewActions(base.warnings, s, policies);
   assertFinal(base, s);
   return base;
 }

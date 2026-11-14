@@ -13,6 +13,7 @@ export interface CostGroup {
   line_ids: string[];
 }
 export interface CostSensitivity {
+  cost_category: CostGroup['category'];
   field: string;
   baseline_value: number;
   baseline_origin: 'supplied' | 'assumed';
@@ -81,7 +82,18 @@ export function costSensitivity(
         baseline * 2,
       ]),
     ];
+    const category: CostGroup['category'] = [
+      'monthly_otp_count',
+      'monthly_payment_transactions',
+      'average_payment_value_usd',
+    ].includes(field)
+      ? 'payment_and_message_activity'
+      : 'infrastructure_and_operations';
+    const baselineCost = costGroups(candidate.cost.line_items).find(
+      (g) => g.category === category,
+    )!;
     return {
+      cost_category: category,
       field: `extensions.${field}`,
       baseline_value: baseline,
       baseline_origin: supplied ? 'supplied' : 'assumed',
@@ -102,14 +114,17 @@ export function costSensitivity(
             upper_delta_usd: null,
           };
         }
+        const measured = costGroups(cost.line_items).find(
+          (g) => g.category === category,
+        )!;
         return {
           value,
           status: 'estimated' as const,
-          min: cost.min,
-          max: cost.max,
+          min: measured.min,
+          max: measured.max,
           upper_delta_usd:
-            (Math.round(cost.max * 100) -
-              Math.round(candidate.cost.max * 100)) /
+            (Math.round(measured.max * 100) -
+              Math.round(baselineCost.max * 100)) /
             100,
         };
       }),

@@ -7,56 +7,56 @@
   "measurement_scope": "Loopback HTTP through consumed JSON; parity validated separately after timing. Three measured runs per case after one warm-up; excludes browser rendering and performance of recommended architectures.",
   "measurements": [
     {
-      "max_ms": 14.104,
+      "max_ms": 11.14,
       "samples_ms": [
-        14.104,
-        11.29,
-        9.974
+        11.135,
+        11.14,
+        10.781
       ],
       "scenario_id": "P1"
     },
     {
-      "max_ms": 5.51,
+      "max_ms": 25.835,
       "samples_ms": [
-        5.176,
-        5.51,
-        4.621
+        25.771,
+        25.835,
+        24.523
       ],
       "scenario_id": "P2"
     },
     {
-      "max_ms": 136.572,
+      "max_ms": 119.073,
       "samples_ms": [
-        136.572,
-        124.939,
-        119.472
+        119.073,
+        117.903,
+        118.392
       ],
       "scenario_id": "P3"
     },
     {
-      "max_ms": 2.793,
+      "max_ms": 22.5,
       "samples_ms": [
-        2.793,
-        2.503,
-        2.492
+        22.5,
+        22.242,
+        21.757
       ],
       "scenario_id": "P4"
     },
     {
-      "max_ms": 1.4,
+      "max_ms": 28.507,
       "samples_ms": [
-        1.388,
-        1.384,
-        1.4
+        28.507,
+        28.052,
+        27.87
       ],
       "scenario_id": "P5"
     },
     {
-      "max_ms": 11.795,
+      "max_ms": 43.515,
       "samples_ms": [
-        5.788,
-        11.795,
-        6.194
+        42.939,
+        43.515,
+        43.246
       ],
       "scenario_id": "P6"
     }
@@ -74,15 +74,15 @@
       "tested_priority_settings": 25
     },
     {
-      "complete_candidates": 0,
-      "engine_evaluations": 7,
-      "frontier_plans": 0,
-      "functional_variants": 6,
-      "original_status": "infeasible",
-      "retained_winner_settings": 0,
+      "complete_candidates": 21,
+      "engine_evaluations": 25,
+      "frontier_plans": 6,
+      "functional_variants": 0,
+      "original_status": "ok_with_warnings",
+      "retained_winner_settings": 25,
       "scenario_id": "P2",
-      "smallest_successful_edits": 2,
-      "tested_priority_settings": 0
+      "smallest_successful_edits": null,
+      "tested_priority_settings": 25
     },
     {
       "complete_candidates": 168,
@@ -96,37 +96,37 @@
       "tested_priority_settings": 25
     },
     {
-      "complete_candidates": 0,
-      "engine_evaluations": 4,
-      "frontier_plans": 0,
-      "functional_variants": 3,
-      "original_status": "infeasible",
-      "retained_winner_settings": 0,
+      "complete_candidates": 14,
+      "engine_evaluations": 25,
+      "frontier_plans": 4,
+      "functional_variants": 0,
+      "original_status": "ok_with_warnings",
+      "retained_winner_settings": 25,
       "scenario_id": "P4",
       "smallest_successful_edits": null,
-      "tested_priority_settings": 0
+      "tested_priority_settings": 25
     },
     {
-      "complete_candidates": 0,
-      "engine_evaluations": 1,
-      "frontier_plans": 0,
+      "complete_candidates": 49,
+      "engine_evaluations": 25,
+      "frontier_plans": 4,
       "functional_variants": 0,
-      "original_status": "infeasible",
-      "retained_winner_settings": 0,
+      "original_status": "ok_with_warnings",
+      "retained_winner_settings": 25,
       "scenario_id": "P5",
       "smallest_successful_edits": null,
-      "tested_priority_settings": 0
+      "tested_priority_settings": 25
     },
     {
-      "complete_candidates": 0,
-      "engine_evaluations": 4,
-      "frontier_plans": 0,
-      "functional_variants": 3,
-      "original_status": "infeasible",
-      "retained_winner_settings": 0,
+      "complete_candidates": 84,
+      "engine_evaluations": 25,
+      "frontier_plans": 3,
+      "functional_variants": 0,
+      "original_status": "ok_with_warnings",
+      "retained_winner_settings": 25,
       "scenario_id": "P6",
-      "smallest_successful_edits": 1,
-      "tested_priority_settings": 0
+      "smallest_successful_edits": null,
+      "tested_priority_settings": 25
     }
   ]
 }

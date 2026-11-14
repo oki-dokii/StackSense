@@ -34,7 +34,7 @@ test('strict calendar dates reject rollover dates and timestamps', () => {
 test('audit covers every source, records consumers and leaves catalogs unchanged', () => {
   const before = canonical(bundle);
   const result = audit(bundle, '2026-11-14', policy);
-  assert.equal(result.counts.sources, 99);
+  assert.equal(result.counts.sources, 101);
   assert.equal(result.counts.review_due, 0);
   assert.equal(
     result.sources.find((s) => s.key === 'services:run-price').cadence_days,
@@ -239,7 +239,7 @@ test('real CLI writes deterministic audit and refuses to overwrite earlier evide
     const result = JSON.parse(
       await readFile(path.join(temp, 'result/report.json')),
     );
-    assert.equal(result.counts.sources, 99);
+    assert.equal(result.counts.sources, 101);
     assert.equal(
       spawnSync(process.execPath, command, { cwd: root, encoding: 'utf8' })
         .status,
@@ -269,7 +269,7 @@ test('guidance-only references get explicit scope cadences and output impact', a
   const row = audit(bundle, '2026-11-14', policy, [output]).sources.find(
     (s) => s.key === 'services:entra-residency',
   );
-  assert.equal(row.no_structured_catalog_reference, true);
+  assert.equal(row.no_structured_catalog_reference, false);
   assert.equal(row.cadence_days, 30);
   assert.deepEqual(row.public_output_mentions, ['P5']);
   assert.throws(

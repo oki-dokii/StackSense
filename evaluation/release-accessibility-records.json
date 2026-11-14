@@ -1,0 +1,44 @@
+[
+  {
+    "name": "desktop-workspace",
+    "tested": 158,
+    "issues": 0,
+    "width": 1280
+  },
+  {
+    "name": "methodology",
+    "tested": 143,
+    "issues": 0,
+    "width": 1280
+  },
+  {
+    "name": "import-error",
+    "tested": 166,
+    "issues": 0,
+    "width": 1280
+  },
+  {
+    "name": "desktop-lab",
+    "tested": 641,
+    "issues": 0,
+    "width": 1280
+  },
+  {
+    "name": "mobile-lab",
+    "tested": 626,
+    "issues": 0,
+    "width": 320
+  },
+  {
+    "name": "mobile-workspace",
+    "tested": 142,
+    "issues": 0,
+    "width": 320
+  },
+  {
+    "name": "invalid-result",
+    "tested": 50,
+    "issues": 0,
+    "width": 1280
+  }
+]

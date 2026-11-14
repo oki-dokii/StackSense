@@ -79,12 +79,18 @@ export function selectSupporting(
       return;
     }
     if (profile.placement === 'external' && region !== 'none') {
-      fail(
-        'EXTERNAL_RESIDENCY_UNVERIFIED',
-        `${profile.choice} does not have reviewed end-to-end ${region} data-flow evidence; provider location/API endpoint is not sufficient.`,
-        ['infrastructure.data_residency', ...fields],
+      result.warnings.push({
+        code:
+          profile.id === 'entra'
+            ? 'EXISTING_IDENTITY_SCOPE_UNVERIFIED'
+            : 'EXTERNAL_RESIDENCY_UNVERIFIED',
+        severity: 'critical',
+        message: `${profile.choice} is proposed provisionally: end-to-end ${region} data residency is NOT established. Verify tenant/merchant eligibility, processing, logs, backups, delivery partners and contracts before production. This warning is an explicit exception to verified residency, not approval.`,
+        fields: ['infrastructure.data_residency', ...fields],
+      });
+      result.assumptions.push(
+        `PROVISIONAL RESIDENCY EXCEPTION: ${profile.choice} remains in the proposed stack without verified end-to-end ${region} geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.`,
       );
-      return;
     }
     result.components.push({
       layer: profile.layer,
@@ -129,10 +135,17 @@ export function selectSupporting(
     return profile;
   };
   if (s.requirements.auth !== 'none') {
+    const existingEntra =
+      s.requirements.auth === 'enterprise_sso' &&
+      s.infrastructure.existing_systems.some((system) =>
+        /entra|azure\s+ad|microsoft\s*365/i.test(system),
+      );
     add(
-      get('keycloak'),
+      get(existingEntra ? 'entra' : 'keycloak'),
       ['requirements.auth'],
-      `Authentication method ${s.requirements.auth} uses a separate Keycloak realm/schema and least-privilege database identity.`,
+      existingEntra
+        ? 'Integrate the existing Microsoft Entra tenant directly using application OIDC/SAML middleware; do not migrate passwords or add an unnecessary identity broker.'
+        : `Authentication method ${s.requirements.auth} uses a separate Keycloak realm/schema and least-privilege database identity.`,
     );
     if (s.requirements.auth === 'phone_otp')
       add(
@@ -148,11 +161,13 @@ export function selectSupporting(
           ['requirements.auth', 'infrastructure.deployment_model'],
         );
       if (region !== 'none')
-        fail(
-          'IDENTITY_RESIDENCY_UNVERIFIED',
-          'Public social identity data-flow country scope has not been verified.',
-          ['requirements.auth', 'infrastructure.data_residency'],
-        );
+        result.warnings.push({
+          code: 'IDENTITY_RESIDENCY_UNVERIFIED',
+          severity: 'critical',
+          message:
+            'Public social identity geography is unverified; this integration is provisional and requires provider-specific residency/transfer review before production.',
+          fields: ['requirements.auth', 'infrastructure.data_residency'],
+        });
       result.assumptions.push(
         'Social login brokers only necessary identity claims; choose an eligible provider, legal basis and transfer/contract arrangement before production.',
       );
@@ -163,27 +178,6 @@ export function selectSupporting(
           'Social provider selection and privacy/transfer terms need explicit review; Keycloak is only the local broker.',
         fields: ['requirements.auth', 'compliance'],
       });
-    }
-    if (
-      s.requirements.auth === 'enterprise_sso' &&
-      s.infrastructure.existing_systems.some((system) =>
-        /entra|azure\s+ad|microsoft\s*365/i.test(system),
-      )
-    ) {
-      if (region !== 'none' || restricted)
-        fail(
-          'EXISTING_IDENTITY_SCOPE_UNVERIFIED',
-          'Existing Microsoft identity must be integrated, but its tenant region/data flows and restricted-network access are not established by the input.',
-          [
-            'infrastructure.existing_systems',
-            'infrastructure.data_residency',
-            'requirements.auth',
-          ],
-        );
-      else
-        result.assumptions.push(
-          'Integrate existing Entra through OIDC/SAML; tenant configuration, network connectivity and licensing must be verified.',
-        );
     }
     if (s.requirements.auth === 'enterprise_sso')
       result.assumptions.push(
@@ -293,10 +287,22 @@ export function selectSupporting(
   }
   if (s.requirements.payments)
     add(
-      get('stripe'),
+      get(region === 'india' ? 'razorpay' : 'stripe'),
       ['requirements.payments'],
       'Hosted checkout keeps raw payment credentials outside the application; verify webhook signatures, idempotency and merchant scope.',
     );
+  if (s.requirements.payments && s.project.type === 'fintech') {
+    result.warnings.push({
+      code: 'FINTECH_PAYMENT_SCOPE_REVIEW',
+      severity: 'critical',
+      message:
+        'Checkout is only the collection integration. Lending authorization, KYC, double-entry ledger controls, disbursal/payout product eligibility and EMI mandates require a separately scoped implementation and contractual review; no approval or complete lending product is implied.',
+      fields: ['project.type', 'requirements.payments', 'compliance'],
+    });
+    result.assumptions.push(
+      'Fintech scope exception: checkout/collection is proposed; lending, KYC, ledger and disbursal/mandate integrations are application and specialist-provider work, not fulfilled merely by selecting a payment gateway.',
+    );
+  }
   if (s.requirements.ml_features === 'inference_api') {
     add(
       get('onnx'),

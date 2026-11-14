@@ -158,21 +158,21 @@ export function validateOutput(value: unknown): ValidationIssue[] {
     if (group.min > group.max)
       issue(`cost_groups.${index}`, 'min must not exceed max.');
   if (report.cost_groups?.length) {
-    const min = report.cost_groups.reduce(
-      (n, g) => n + Math.round(g.min * 100),
-      0,
-    );
-    const max = report.cost_groups.reduce(
-      (n, g) => n + Math.round(g.max * 100),
-      0,
-    );
+    const includedGroups =
+      report.estimated_cost_scope === 'infrastructure_and_operations'
+        ? report.cost_groups.filter(
+            (g) => g.category === 'infrastructure_and_operations',
+          )
+        : report.cost_groups;
+    const min = includedGroups.reduce((n, g) => n + Math.round(g.min * 100), 0);
+    const max = includedGroups.reduce((n, g) => n + Math.round(g.max * 100), 0);
     if (
       min !== Math.round(result.estimated_monthly_cost_usd.min * 100) ||
       max !== Math.round(result.estimated_monthly_cost_usd.max * 100)
     )
       issue(
         'cost_groups',
-        'Category totals must reconcile to the monthly estimate.',
+        'Included category totals must reconcile to the declared monthly estimate scope.',
       );
   }
   for (const [i, sensitivity] of (report.cost_sensitivity ?? []).entries())
@@ -196,7 +196,13 @@ export function validateOutput(value: unknown): ValidationIssue[] {
         sample.status === 'estimated' &&
         Math.round(sample.upper_delta_usd! * 100) !==
           Math.round(sample.max! * 100) -
-            Math.round(result.estimated_monthly_cost_usd.max * 100)
+            Math.round(
+              (sensitivity.cost_category === 'payment_and_message_activity'
+                ? (report.cost_groups?.find(
+                    (g) => g.category === 'payment_and_message_activity',
+                  )?.max ?? 0)
+                : result.estimated_monthly_cost_usd.max) * 100,
+            )
       )
         issue(
           `cost_sensitivity.${i}.samples.${j}`,

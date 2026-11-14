@@ -826,6 +826,20 @@ export function App() {
                           Export all {run.results.length} results ↓
                         </button>
                       )}
+                      {result.stack &&
+                        result.warnings.some(
+                          (w) => w.severity === 'critical',
+                        ) && (
+                          <div className="alert critical" role="alert">
+                            <strong>
+                              Provisional stack — critical constraints
+                              unresolved.
+                            </strong>{' '}
+                            The features are proposed, but external residency or
+                            contractual conditions named below are not verified.
+                            Resolve these conditions before production.
+                          </div>
+                        )}
                       {result.validation_errors.length > 0 && (
                         <section
                           className="panel"
@@ -908,7 +922,7 @@ export function App() {
                           aria-labelledby="resolution-heading"
                         >
                           <h2 id="resolution-heading">
-                            How to resolve the blockers
+                            Critical conditions to resolve
                           </h2>
                           <p>
                             These tasks preserve your requirements. Completing a
@@ -1143,7 +1157,7 @@ export function App() {
                         <p>
                           {result.estimate_status === 'not_estimated'
                             ? 'No usable stack was selected. The JSON 0–0 placeholder is not a free deployment.'
-                            : 'A planning band under the stated assumptions, not a provider quote. Development labor, taxes and domain registration are excluded.'}
+                            : 'Infrastructure and operations only. Payment and SMS activity scenarios below are additional and excluded from this headline and budget fit. Missing usage is assumed, not measured; labor, taxes, license entitlement and merchant-specific extras require separate quotes.'}
                         </p>
                         {result.cost_groups.length > 0 && (
                           <dl className="cost-groups">
@@ -1200,6 +1214,8 @@ export function App() {
                                           <small>
                                             {quantity(item.baseline_value)} ·{' '}
                                             {item.baseline_origin}
+                                            <br />
+                                            {label(item.cost_category)}
                                           </small>
                                         </th>
                                         <td>{quantity(sample.value)}</td>

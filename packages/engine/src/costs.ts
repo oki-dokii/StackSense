@@ -136,9 +136,6 @@ export function estimateCost(
         (item) => item.placement === 'host' || item.service_id === 'outbox',
       )
       .reduce((sum, item) => sum + item.incremental_compute_units, 0);
-    const realtimeExtra = s.requirements.realtime
-      ? Math.max(0, Math.ceil(peak / 250) - 1)
-      : 0;
     const databaseUnits =
       plan.database.model !== 'none' &&
       s.infrastructure.deployment_model !== 'managed_cloud'
@@ -148,8 +145,7 @@ export function estimateCost(
       databaseUnits +
       replicas +
       (plan.frontend.runtime === 'node' ? 1 : 0) +
-      background +
-      realtimeExtra;
+      background;
     const hourKey =
       plan.hosting.id === 'cloudrun'
         ? 'cloudrun_hour'
@@ -179,7 +175,7 @@ export function estimateCost(
       ase ? 'ase_i1v2_hour' : hourKey,
     );
     assumptions.push(
-      `Compute provisioning hypothesis: 50 RPS or ${s.requirements.realtime ? 500 : 1000} active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. ${units} vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.`,
+      `Compute provisioning hypothesis: 50 RPS or ${s.requirements.realtime ? 500 : 1000} active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. ${units} vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.`,
     );
     assumptions.push(
       `Billed duty ${duty.min}–${duty.max}; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.`,
@@ -338,18 +334,34 @@ export function estimateCost(
       'payments',
       minCount * ticket,
       count * ticket,
-      'payment_fraction',
+      support.components.some((c) => c.service_id === 'razorpay')
+        ? 'razorpay_fraction'
+        : 'payment_fraction',
     );
-    add('payment-fixed', 'payments', minCount, count, 'payment_fixed');
+    add(
+      'payment-fixed',
+      'payments',
+      minCount,
+      count,
+      support.components.some((c) => c.service_id === 'razorpay')
+        ? 'razorpay_fixed'
+        : 'payment_fixed',
+    );
     assumptions.push(
       `Payment assumptions: ${minCount}–${count} transactions/month, average USD ${ticket}; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.`,
     );
   }
-  const minCents = lines.reduce(
+  const infrastructureLines = lines.filter(
+    (line) => line.category !== 'payments' && line.id !== 'otp-delivery',
+  );
+  assumptions.push(
+    'Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.',
+  );
+  const minCents = infrastructureLines.reduce(
     (sum, line) => sum + Math.round(line.monthly_usd.min * 100),
     0,
   );
-  const maxCents = lines.reduce(
+  const maxCents = infrastructureLines.reduce(
     (sum, line) => sum + Math.round(line.monthly_usd.max * 100),
     0,
   );
@@ -371,7 +383,7 @@ export function budgetWarnings(cost: CostEstimate, budget: number): Warning[] {
       {
         code: 'BUDGET_EXCEEDED',
         severity: 'warning',
-        message: `Estimated USD ${cost.min}–${cost.max}/month exceeds the USD ${budget} budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.`,
+        message: `Infrastructure estimate USD ${cost.min}–${cost.max}/month exceeds the USD ${budget} budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.`,
         fields: ['budget.monthly_infra_usd'],
       },
     ];

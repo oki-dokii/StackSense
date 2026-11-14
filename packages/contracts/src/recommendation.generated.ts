@@ -40,6 +40,7 @@ export type Recommendation = {
   cost_groups?: CostGroup[];
   cost_sensitivity?: CostSensitivity[];
   plan_comparison?: PlanComparison[];
+  estimated_cost_scope?: 'infrastructure_and_operations';
   [k: string]: unknown;
 };
 
@@ -161,6 +162,7 @@ export interface CostSensitivity {
     max: number | null;
     upper_delta_usd: number | null;
   }[];
+  cost_category: 'infrastructure_and_operations' | 'payment_and_message_activity';
 }
 export interface PlanComparison {
   plan_id: string;

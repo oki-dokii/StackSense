@@ -1,0 +1,92 @@
+[
+  {
+    "id": "P1",
+    "index": 0,
+    "status": "ok",
+    "summary_observed": true
+  },
+  {
+    "id": "P2",
+    "index": 1,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  },
+  {
+    "id": "P3",
+    "index": 2,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  },
+  {
+    "id": "P4",
+    "index": 3,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  },
+  {
+    "id": "P5",
+    "index": 4,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  },
+  {
+    "id": "P6",
+    "index": 5,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  },
+  {
+    "id": "E01",
+    "index": 6,
+    "status": "invalid_input",
+    "summary_observed": true
+  },
+  {
+    "id": "E02",
+    "index": 7,
+    "status": "invalid_input",
+    "summary_observed": true
+  },
+  {
+    "id": "E03",
+    "index": 8,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  },
+  {
+    "id": "E04",
+    "index": 9,
+    "status": "ok",
+    "summary_observed": true
+  },
+  {
+    "id": "E05",
+    "index": 10,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  },
+  {
+    "id": "E06",
+    "index": 11,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  },
+  {
+    "id": "E07",
+    "index": 12,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  },
+  {
+    "id": "E08",
+    "index": 13,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  },
+  {
+    "id": "E09",
+    "index": 14,
+    "status": "ok_with_warnings",
+    "summary_observed": true
+  }
+]

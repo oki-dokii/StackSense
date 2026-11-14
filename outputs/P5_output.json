@@ -1,448 +1,396 @@
 {
-  "architecture_style": "other",
+  "applied_extensions": [],
+  "architecture_style": "modular_monolith",
   "assumptions": [
-    "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required."
+    "All host/database/storage/log/backup configurations must use the reviewed india region, no cross-region copies, private access and retention/deletion controls. Device data and explicit external identity/OTP/payment flows are assessed separately.",
+    "Enterprise identity integration assumes a reachable, eligible OIDC/SAML identity provider; verify tenant scopes, licenses and network paths before provisioning.",
+    "PROVISIONAL RESIDENCY EXCEPTION: Microsoft Entra ID (tenant OIDC/SAML integration) remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
+    "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required.",
+    "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
+    "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
   ],
   "catalog_version": "0.4.0",
-  "control_plan": null,
-  "core_rejections": [
+  "control_plan": {
+    "deployment_controls": [
+      "TLS at all client/service/database boundaries.",
+      "Least-privilege service identities, secret rotation, encryption at rest and redacted audit logs.",
+      "Explicit regional primary/replica/storage/log/backup locations and retention; no uncontrolled cross-region replication.",
+      "Restore-test backups and test negative authorization, tenant boundaries and deletion workflows."
+    ],
+    "frameworks": [
+      {
+        "id": "iso",
+        "owner_actions": [
+          "Review scope and effective obligations with qualified personnel.",
+          "Implement and test controls; execute required contracts and obtain independent assessment where applicable."
+        ],
+        "source_ids": [
+          "iso"
+        ],
+        "technical_controls": [
+          "tls_in_transit",
+          "encryption_at_rest",
+          "least_privilege",
+          "audit_and_retention",
+          "backup_restore",
+          "data_minimization_and_deletion"
+        ],
+        "verification": "design_only_not_certified"
+      }
+    ]
+  },
+  "cost_breakdown": [
     {
-      "candidate_id": "angular|aspnet|mysql|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
+      "basis": "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
+      "category": "compute",
+      "id": "application-compute",
+      "monthly_usd": {
+        "max": 576.7,
+        "min": 576.7
+      },
+      "quantity": {
+        "max": 1460,
+        "min": 1460
+      },
+      "source_ids": [
+        "azure-ase-retail"
       ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
+      "unit_rate_usd": {
+        "max": 0.395,
+        "min": 0.395
+      }
     },
     {
-      "candidate_id": "angular|aspnet|sqlite|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
+      "basis": "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+      "category": "database",
+      "id": "database-cpu",
+      "monthly_usd": {
+        "max": 120.6,
+        "min": 60.29
+      },
+      "quantity": {
+        "max": 1460,
+        "min": 1460
+      },
+      "source_ids": [
+        "sql-price"
       ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
+      "unit_rate_usd": {
+        "max": 0.0826,
+        "min": 0.0413
+      }
     },
     {
-      "candidate_id": "angular|aspnet|sqlserver|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
+      "basis": "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+      "category": "database",
+      "id": "database-memory",
+      "monthly_usd": {
+        "max": 81.76,
+        "min": 40.88
+      },
+      "quantity": {
+        "max": 5840,
+        "min": 5840
+      },
+      "source_ids": [
+        "sql-price"
       ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
+      "unit_rate_usd": {
+        "max": 0.014,
+        "min": 0.007
+      }
     },
     {
-      "candidate_id": "angular|django|maria|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
+      "basis": "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+      "category": "database",
+      "id": "database-storage",
+      "monthly_usd": {
+        "max": 16,
+        "min": 2
+      },
+      "quantity": {
+        "max": 40,
+        "min": 20
+      },
+      "source_ids": [
+        "sql-price"
       ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
+      "unit_rate_usd": {
+        "max": 0.4,
+        "min": 0.1
+      }
     },
     {
-      "candidate_id": "angular|django|mysql|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
+      "basis": "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+      "category": "backup",
+      "id": "backup-storage",
+      "monthly_usd": {
+        "max": 6,
+        "min": 0.6
+      },
+      "quantity": {
+        "max": 40,
+        "min": 20
+      },
+      "source_ids": [
+        "storage-price",
+        "s3-price"
       ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
+      "unit_rate_usd": {
+        "max": 0.15,
+        "min": 0.03
+      }
     },
     {
-      "candidate_id": "angular|django|sqlite|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
+      "basis": "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+      "category": "storage",
+      "id": "object-storage",
+      "monthly_usd": {
+        "max": 1,
+        "min": 0.2
+      },
+      "quantity": {
+        "max": 20,
+        "min": 10
+      },
+      "source_ids": [
+        "storage-price",
+        "s3-price"
       ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
+      "unit_rate_usd": {
+        "max": 0.05,
+        "min": 0.02
+      }
     },
     {
-      "candidate_id": "angular|fastapi|mysql|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
+      "basis": "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+      "category": "egress",
+      "id": "network-egress",
+      "monthly_usd": {
+        "max": 6,
+        "min": 1.2
+      },
+      "quantity": {
+        "max": 30,
+        "min": 15
+      },
+      "source_ids": [
+        "storage-price",
+        "s3-price"
       ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
+      "unit_rate_usd": {
+        "max": 0.2,
+        "min": 0.08
+      }
     },
     {
-      "candidate_id": "angular|fastapi|sqlite|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
+      "basis": "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+      "category": "observability",
+      "id": "telemetry-operations",
+      "monthly_usd": {
+        "max": 20,
+        "min": 5
+      },
+      "quantity": {
+        "max": 1,
+        "min": 1
+      },
+      "source_ids": [
+        "storage-price"
       ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
+      "unit_rate_usd": {
+        "max": 20,
+        "min": 5
+      }
     },
     {
-      "candidate_id": "angular|fastify|mongo|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
+      "basis": "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+      "category": "ci_cd",
+      "id": "hosted-ci",
+      "monthly_usd": {
+        "max": 30,
+        "min": 0
+      },
+      "quantity": {
+        "max": 1,
+        "min": 1
+      },
+      "source_ids": [
+        "ci"
       ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|fastify|mysql|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|go-http|mysql|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|go-http|sqlite|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|go-http|sqlserver|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|laravel|maria|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|laravel|mysql|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|laravel|sqlite|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|laravel|sqlserver|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|spring|maria|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|spring|mysql|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|spring|sqlserver|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "appservice",
-      "code": "REGION_EVIDENCE_GAP",
-      "fields": [
-        "infrastructure.data_residency"
-      ],
-      "layer": "hosting",
-      "message": "No reviewed primary-compute region mapping satisfies the requested residency; no country location is inferred."
-    },
-    {
-      "candidate_id": "astro",
-      "code": "STATIC_VARIANT_ONLY",
-      "fields": [
-        "project.type"
-      ],
-      "layer": "frontend",
-      "message": "This catalog entry is reviewed only for static content, not a dynamic client."
-    },
-    {
-      "candidate_id": "backend-none",
-      "code": "BACKEND_REQUIREMENT",
-      "fields": [
-        "project.type",
-        "requirements.auth",
-        "requirements.realtime"
-      ],
-      "layer": "backend",
-      "message": "A backend is required for this application/API profile."
-    },
-    {
-      "candidate_id": "cloudrun",
-      "code": "PROVIDER_MISMATCH",
-      "fields": [
-        "infrastructure.cloud_preference"
-      ],
-      "layer": "hosting",
-      "message": "Explicit cloud preference does not match this provider."
-    },
-    {
-      "candidate_id": "compose",
-      "code": "PLATFORM_MISMATCH",
-      "fields": [
-        "project.platforms"
-      ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
-    },
-    {
-      "candidate_id": "database-none",
-      "code": "PERSISTENCE_REQUIREMENT",
-      "fields": [
-        "project.type",
-        "requirements.auth",
-        "requirements.offline_support"
-      ],
-      "layer": "database",
-      "message": "Domain/features require a persistent application database."
-    },
-    {
-      "candidate_id": "ec2",
-      "code": "DEPLOYMENT_MISMATCH",
-      "fields": [
-        "infrastructure.deployment_model"
-      ],
-      "layer": "hosting",
-      "message": "Hosting variant does not match the requested deployment model."
-    },
-    {
-      "candidate_id": "ecs",
-      "code": "PROVIDER_MISMATCH",
-      "fields": [
-        "infrastructure.cloud_preference"
-      ],
-      "layer": "hosting",
-      "message": "Explicit cloud preference does not match this provider."
-    },
-    {
-      "candidate_id": "flutter|aspnet|mysql|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "flutter|aspnet|sqlite|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
+      "unit_rate_usd": {
+        "max": 30,
+        "min": 0
+      }
     }
   ],
-  "cost_breakdown": [],
-  "cost_groups": [],
-  "cost_sensitivity": [],
-  "data_flows": [],
+  "cost_groups": [
+    {
+      "category": "infrastructure_and_operations",
+      "line_ids": [
+        "application-compute",
+        "database-cpu",
+        "database-memory",
+        "database-storage",
+        "backup-storage",
+        "object-storage",
+        "network-egress",
+        "telemetry-operations",
+        "hosted-ci"
+      ],
+      "max": 858.06,
+      "min": 686.87
+    },
+    {
+      "category": "payment_and_message_activity",
+      "line_ids": [],
+      "max": 0,
+      "min": 0
+    }
+  ],
+  "cost_sensitivity": [
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 0.8680555555555556,
+      "cost_category": "infrastructure_and_operations",
+      "field": "extensions.expected_requests_per_second",
+      "samples": [
+        {
+          "max": 858.06,
+          "min": 686.87,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 0.4340277777777778
+        },
+        {
+          "max": 858.06,
+          "min": 686.87,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 1.7361111111111112
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 15,
+      "cost_category": "infrastructure_and_operations",
+      "field": "extensions.monthly_egress_gb",
+      "samples": [
+        {
+          "max": 855.06,
+          "min": 686.27,
+          "status": "estimated",
+          "upper_delta_usd": -3,
+          "value": 7.5
+        },
+        {
+          "max": 864.06,
+          "min": 688.07,
+          "status": "estimated",
+          "upper_delta_usd": 6,
+          "value": 30
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 1,
+      "cost_category": "infrastructure_and_operations",
+      "field": "extensions.retention_months",
+      "samples": [
+        {
+          "max": 858.06,
+          "min": 686.87,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 1
+        },
+        {
+          "max": 864.06,
+          "min": 687.47,
+          "status": "estimated",
+          "upper_delta_usd": 6,
+          "value": 2
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    }
+  ],
+  "data_flows": [
+    {
+      "component": "primary-compute",
+      "location": "centralindia",
+      "scope": "Application processing; configure region, private access, logging and replicas explicitly.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "primary-database",
+      "location": "centralindia",
+      "scope": "Application/auth/search/outbox data and backups; verify retention, restore and deletion.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "entra",
+      "location": "External service geography not established",
+      "scope": "Register the application in the existing tenant, validate issuer/audience/signatures, map groups/roles and verify license and conditional-access requirements. Tenant identity geography is separate from application hosting. Existing license entitlement is not assumed.",
+      "verification": "external_scope_review"
+    },
+    {
+      "component": "azure-blob",
+      "location": "centralindia",
+      "scope": "Configure the account in the selected compute region, private access, signed upload URLs and local redundancy; disable geo-redundancy and global copy rules. Validate retention, malware scanning, request operations and recovery separately; LRS alone is not a disaster-recovery guarantee.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "otel",
+      "location": "centralindia",
+      "scope": "Redact sensitive values, use host-region retention/routing, and provision a durable regional log backend. No personal data in tracing baggage.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "actions",
+      "location": "Build environment: source/synthetic fixtures only",
+      "scope": "Never export production data/secrets/personal data to build logs.",
+      "verification": "source_only_no_production_data"
+    }
+  ],
+  "database_region": "centralindia",
   "decision_trace": {
-    "complete_candidates": 0,
+    "complete_candidates": 49,
     "core_candidates": 49,
-    "rejected": [
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|react|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|vue|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|vue|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|sveltekit|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|sveltekit|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|angular|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|angular|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|flutter|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|flutter|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|react|django|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|react|fastapi|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|react|go-http|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|react|laravel|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|react|spring|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|vue|django|pg|ase-india|centralindia"
-      }
-    ],
-    "score": null,
-    "selected_plan_id": null
+    "rejected": [],
+    "score": 61,
+    "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia"
   },
-  "engine_version": "0.6.0",
-  "estimate_status": "not_estimated",
+  "engine_version": "0.8.0",
+  "estimate_status": "estimated",
+  "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
     "assumptions": [
-      "No estimate: 0–0 is a required serialization placeholder, not a zero-cost deployment."
+      "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+      "Peak concurrency supplied: 300; not equated directly with requests/second.",
+      "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+      "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+      "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+      "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+      "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
+      "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+      "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+      "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+      "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+      "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+      "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+      "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+      "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+      "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
+      "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+      "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
     ],
-    "max": 0,
-    "min": 0
+    "max": 858.06,
+    "min": 686.87
   },
   "integration_reviews": [
     {
@@ -534,27 +482,202 @@
       ]
     }
   ],
-  "plan_comparison": [],
-  "review_actions": [
+  "plan_comparison": [
     {
-      "affected_components": [
-        "complete deployment"
+      "architecture_style": "modular_monolith",
+      "budget_fit": "over_budget",
+      "core": {
+        "backend": "ASP.NET Core",
+        "database": "PostgreSQL",
+        "frontend": "React / Vite",
+        "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 300; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
+        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
       ],
-      "code": "COMPLETE_PLAN_COVERAGE_GAP",
-      "evidence_required": [
-        "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+      "database_region": "centralindia",
+      "monthly_usd": {
+        "max": 858.06,
+        "min": 686.87
+      },
+      "operated_components": 1.25,
+      "plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+      "primary_region": "centralindia",
+      "retained_constraints": [
+        "platforms=web",
+        "cloud_preference=azure",
+        "deployment_model=managed_cloud",
+        "data_residency=india",
+        "compliance=iso27001",
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "fields": [
-        "infrastructure",
-        "requirements",
-        "compliance"
+      "score": 61,
+      "score_delta": 0,
+      "selected": true,
+      "supporting_services": [
+        "GitHub Actions",
+        "Azure Blob Storage (same-region LRS)",
+        "Microsoft Entra ID (tenant OIDC/SAML integration)",
+        "OpenTelemetry Collector + structured logs"
       ],
-      "id": "COMPLETE_PLAN_COVERAGE_GAP:infrastructure|requirements|compliance",
-      "kind": "evidence_gap",
-      "next_action": "Review the rejected constraints against the scoped catalog; add reviewed coverage and rerun the unchanged input.",
-      "references": [],
-      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+      "tied_on_score": false,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_EXCEEDED",
+        "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
+        "EXISTING_SYSTEM_REVIEW",
+        "LATENCY_TARGET_UNVERIFIED"
+      ]
     },
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "over_budget",
+      "core": {
+        "backend": "Fastify",
+        "database": "PostgreSQL",
+        "frontend": "React / Vite",
+        "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 300; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
+        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+      ],
+      "database_region": "centralindia",
+      "monthly_usd": {
+        "max": 858.06,
+        "min": 686.87
+      },
+      "operated_components": 1.25,
+      "plan_id": "modular_monolith|react|fastify|pg|ase-india|centralindia",
+      "primary_region": "centralindia",
+      "retained_constraints": [
+        "platforms=web",
+        "cloud_preference=azure",
+        "deployment_model=managed_cloud",
+        "data_residency=india",
+        "compliance=iso27001",
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
+      ],
+      "score": 61,
+      "score_delta": 0,
+      "selected": false,
+      "supporting_services": [
+        "GitHub Actions",
+        "Azure Blob Storage (same-region LRS)",
+        "Microsoft Entra ID (tenant OIDC/SAML integration)",
+        "OpenTelemetry Collector + structured logs"
+      ],
+      "tied_on_score": true,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_EXCEEDED",
+        "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
+        "EXISTING_SYSTEM_REVIEW",
+        "LATENCY_TARGET_UNVERIFIED"
+      ]
+    },
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "over_budget",
+      "core": {
+        "backend": "ASP.NET Core",
+        "database": "PostgreSQL",
+        "frontend": "Vue",
+        "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 300; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
+        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+      ],
+      "database_region": "centralindia",
+      "monthly_usd": {
+        "max": 858.06,
+        "min": 686.87
+      },
+      "operated_components": 1.25,
+      "plan_id": "modular_monolith|vue|aspnet|pg|ase-india|centralindia",
+      "primary_region": "centralindia",
+      "retained_constraints": [
+        "platforms=web",
+        "cloud_preference=azure",
+        "deployment_model=managed_cloud",
+        "data_residency=india",
+        "compliance=iso27001",
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
+      ],
+      "score": 61,
+      "score_delta": 0,
+      "selected": false,
+      "supporting_services": [
+        "GitHub Actions",
+        "Azure Blob Storage (same-region LRS)",
+        "Microsoft Entra ID (tenant OIDC/SAML integration)",
+        "OpenTelemetry Collector + structured logs"
+      ],
+      "tied_on_score": true,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_EXCEEDED",
+        "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
+        "EXISTING_SYSTEM_REVIEW",
+        "LATENCY_TARGET_UNVERIFIED"
+      ]
+    }
+  ],
+  "primary_region": "centralindia",
+  "review_actions": [
     {
       "affected_components": [
         "existing identity provider",
@@ -566,11 +689,10 @@
         "OIDC/SAML endpoints, claims minimization, issuer/audience checks, admin consent, licenses and reachable network path."
       ],
       "fields": [
-        "infrastructure.existing_systems",
         "infrastructure.data_residency",
         "requirements.auth"
       ],
-      "id": "EXISTING_IDENTITY_SCOPE_UNVERIFIED:infrastructure.existing_systems|infrastructure.data_residency|requirements.auth",
+      "id": "EXISTING_IDENTITY_SCOPE_UNVERIFIED:infrastructure.data_residency|requirements.auth",
       "kind": "evidence_gap",
       "next_action": "Ask the tenant owner for the identity boundary and connectivity details. Microsoft 365 content geography does not establish Entra identity residency.",
       "references": [
@@ -589,36 +711,363 @@
           "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"
         }
       ],
-      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+      "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.6.0",
+  "rules_version": "0.8.0",
   "scenario_id": "P5",
-  "services_version": "0.6.0",
-  "stack": null,
-  "status": "infeasible",
-  "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",
+  "score_breakdown": [
+    {
+      "contribution": 0,
+      "criterion": "cost",
+      "driven_by": [
+        "budget.monthly_infra_usd",
+        "priorities.cost"
+      ],
+      "fit": 0,
+      "reason": "USD 686.87–858.06/month versus budget 300: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "weight": 3
+    },
+    {
+      "contribution": 20,
+      "criterion": "time_to_market",
+      "driven_by": [
+        "team.languages",
+        "team.experience",
+        "timeline.mvp_weeks",
+        "priorities.time_to_market"
+      ],
+      "fit": 4,
+      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 2.75/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+      "weight": 5
+    },
+    {
+      "contribution": 3,
+      "criterion": "scalability",
+      "driven_by": [
+        "scale.users_at_launch",
+        "scale.users_12_months",
+        "scale.peak_concurrent_users",
+        "scale.workload",
+        "priorities.scalability"
+      ],
+      "fit": 3,
+      "reason": "Static delivery avoids application writes; embedded-writer and growth triggers are ordinal review heuristics, not published capacity limits.",
+      "weight": 1
+    },
+    {
+      "contribution": 6,
+      "criterion": "performance",
+      "driven_by": [
+        "scale.workload",
+        "scale.peak_concurrent_users",
+        "priorities.performance"
+      ],
+      "fit": 3,
+      "reason": "No latency SLA or measured framework throughput is credited; embedded-write concurrency is a review heuristic. Low-memory clients require measurement, not an assumed framework benchmark.",
+      "weight": 2
+    },
+    {
+      "contribution": 20,
+      "criterion": "maintainability",
+      "driven_by": [
+        "team.languages",
+        "team.has_devops",
+        "team.size",
+        "infrastructure.existing_systems",
+        "priorities.maintainability"
+      ],
+      "fit": 4,
+      "reason": "Operational burden 2/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+      "weight": 5
+    },
+    {
+      "contribution": 12,
+      "criterion": "security",
+      "driven_by": [
+        "priorities.security"
+      ],
+      "fit": 3,
+      "reason": "Baseline configured controls: 3; explicit reviewed tenant isolation: 4. No certification/audit credit is assigned.",
+      "weight": 4
+    }
+  ],
+  "services_version": "0.8.0",
+  "stack": {
+    "backend": {
+      "alternatives": [
+        {
+          "choice": "Fastify",
+          "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
+        }
+      ],
+      "choice": "ASP.NET Core",
+      "driven_by": [
+        "project.type",
+        "team.languages",
+        "timeline.mvp_weeks",
+        "requirements.auth",
+        "requirements.realtime"
+      ],
+      "id": "aspnet",
+      "justification": "Provides a dotnet application runtime for the internal_tool profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "layer": "backend",
+      "source_ids": [
+        "aspnet"
+      ],
+      "tradeoffs": [
+        "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
+      ]
+    },
+    "database": {
+      "alternatives": [
+        {
+          "choice": "None",
+          "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+        }
+      ],
+      "choice": "PostgreSQL",
+      "driven_by": [
+        "project.type",
+        "requirements.auth",
+        "requirements.offline_support",
+        "infrastructure.existing_systems"
+      ],
+      "id": "pg",
+      "justification": "relational persistence via Azure Database for PostgreSQL Flexible Server (Central India, local/zone backups).  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "layer": "database",
+      "source_ids": [
+        "azure-pg-backup",
+        "azure-pg-regions",
+        "pg"
+      ],
+      "tradeoffs": [
+        "Data model, backup policy, licensing and release/driver compatibility need explicit review."
+      ]
+    },
+    "frontend": {
+      "alternatives": [
+        {
+          "choice": "Vue",
+          "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
+        }
+      ],
+      "choice": "React / Vite",
+      "driven_by": [
+        "project.platforms",
+        "project.type",
+        "requirements.seo_critical",
+        "team.languages"
+      ],
+      "id": "react",
+      "justification": "Covers requested targets web with spa rendering. Team languages: csharp, javascript, sql. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "layer": "frontend",
+      "source_ids": [
+        "react"
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ]
+    },
+    "hosting": {
+      "alternatives": [
+        {
+          "choice": "Azure App Service",
+          "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+        }
+      ],
+      "choice": "Azure App Service Environment v3 (Central India, Linux Iv2)",
+      "driven_by": [
+        "infrastructure.cloud_preference",
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency",
+        "team.has_devops"
+      ],
+      "id": "ase-india",
+      "justification": "Matches managed_cloud with provider azure; reviewed primary compute region centralindia. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "layer": "hosting",
+      "source_ids": [
+        "azure-ase"
+      ],
+      "tradeoffs": [
+        "Isolated v2 is materially more expensive than shared App Service; no dedicated physical host deployment is assumed.",
+        "No Entra geography, SQL Server migration/reuse, application SLA or legal certification follows from the regional compute profile."
+      ]
+    },
+    "supporting": [
+      {
+        "alternatives": [
+          {
+            "choice": "Jenkins",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "ci"
+        ],
+        "choice": "GitHub Actions",
+        "driven_by": [
+          "infrastructure.deployment_model"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Build/test/deploy with pinned dependencies, synthetic fixtures and controlled secrets; production data does not enter the build service.",
+        "layer": "ci_cd",
+        "placement": "build",
+        "service_id": "actions",
+        "source_ids": [
+          "ci"
+        ],
+        "tradeoffs": [
+          "Source and synthetic fixtures only; production data, secrets and personal data must never be sent to external build logs. Usage above included minutes is billed."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Amazon S3",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "storage"
+        ],
+        "choice": "Azure Blob Storage (same-region LRS)",
+        "driven_by": [
+          "requirements.file_media_storage"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Private uploads use explicit regional storage, signed access and malware/content validation; preserve upload retries and retention policy. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "storage",
+        "placement": "host",
+        "service_id": "azure-blob",
+        "source_ids": [
+          "azure-storage-boundary",
+          "azure-storage-region"
+        ],
+        "tradeoffs": [
+          "Configure the account in the selected compute region, private access, signed upload URLs and local redundancy; disable geo-redundancy and global copy rules.",
+          "Validate retention, malware scanning, request operations and recovery separately; LRS alone is not a disaster-recovery guarantee."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Keycloak identity broker",
+            "why_not": "A separate operated identity broker is unnecessary when the application can federate directly with the existing Entra tenant."
+          }
+        ],
+        "capabilities": [
+          "auth"
+        ],
+        "choice": "Microsoft Entra ID (tenant OIDC/SAML integration)",
+        "driven_by": [
+          "requirements.auth"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Integrate the existing Microsoft Entra tenant directly using application OIDC/SAML middleware; do not migrate passwords or add an unnecessary identity broker.",
+        "layer": "auth",
+        "placement": "external",
+        "service_id": "entra",
+        "source_ids": [
+          "entra-oidc",
+          "entra-residency"
+        ],
+        "tradeoffs": [
+          "Register the application in the existing tenant, validate issuer/audience/signatures, map groups/roles and verify license and conditional-access requirements. Tenant identity geography is separate from application hosting. Existing license entitlement is not assumed."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Prometheus with application instrumentation",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "observability"
+        ],
+        "choice": "OpenTelemetry Collector + structured logs",
+        "driven_by": [
+          "requirements.availability"
+        ],
+        "incremental_compute_units": 0.25,
+        "justification": "Collect redacted metrics/logs/traces with regional retention; on cloud use a configured host-provider regional log bucket, locally use provisioned persistent storage. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "observability",
+        "placement": "host",
+        "service_id": "otel",
+        "source_ids": [
+          "telemetry",
+          "gcp-logs",
+          "aws-logs"
+        ],
+        "tradeoffs": [
+          "Redact sensitive values, use host-region retention/routing, and provision a durable regional log backend. No personal data in tracing baggage."
+        ]
+      }
+    ]
+  },
+  "status": "ok_with_warnings",
+  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 49 complete compatible plans; month-12 infrastructure planning band USD 686.87–858.06/month.",
   "validation_errors": [],
   "warnings": [
     {
-      "code": "COMPLETE_PLAN_COVERAGE_GAP",
-      "fields": [
-        "infrastructure",
-        "requirements",
-        "compliance"
-      ],
-      "message": "Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed.",
-      "severity": "critical"
-    },
-    {
       "code": "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
       "fields": [
-        "infrastructure.existing_systems",
         "infrastructure.data_residency",
         "requirements.auth"
       ],
-      "message": "Existing Microsoft identity must be integrated, but its tenant region/data flows and restricted-network access are not established by the input.",
+      "message": "Microsoft Entra ID (tenant OIDC/SAML integration) is proposed provisionally: end-to-end india data residency is NOT established. Verify tenant/merchant eligibility, processing, logs, backups, delivery partners and contracts before production. This warning is an explicit exception to verified residency, not approval.",
       "severity": "critical"
+    },
+    {
+      "code": "AVAILABILITY_TARGET_UNVERIFIED",
+      "fields": [
+        "requirements.availability"
+      ],
+      "message": "99.9% is a target, not a product guarantee. The cost model provisions redundancy assumptions; service terms, failover and workload behavior still require verification.",
+      "severity": "warning"
+    },
+    {
+      "code": "BUDGET_EXCEEDED",
+      "fields": [
+        "budget.monthly_infra_usd"
+      ],
+      "message": "Infrastructure estimate USD 686.87–858.06/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
+      "severity": "warning"
+    },
+    {
+      "code": "COMPLIANCE_IMPLEMENTATION_REVIEW",
+      "fields": [
+        "compliance"
+      ],
+      "message": "The output proposes technical control designs only. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit. Implement controls and obtain scope-specific review.",
+      "severity": "warning"
+    },
+    {
+      "code": "EXISTING_SYSTEM_REVIEW",
+      "fields": [
+        "infrastructure.existing_systems"
+      ],
+      "message": "Legacy reuse requires version/EOL, license, network, schema and identity integration checks; no migration or connectivity is assumed verified.",
+      "severity": "warning"
+    },
+    {
+      "code": "LATENCY_TARGET_UNVERIFIED",
+      "fields": [
+        "requirements.p95_latency_ms"
+      ],
+      "message": "No measured evidence establishes the 800 ms p95 target; load-test the complete client/network/data path.",
+      "severity": "warning"
+    },
+    {
+      "code": "PRICE_AND_CAPACITY_ASSUMPTIONS",
+      "fields": [
+        "scale",
+        "budget.monthly_infra_usd",
+        "requirements"
+      ],
+      "message": "Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase.",
+      "severity": "warning"
     }
   ]
 }

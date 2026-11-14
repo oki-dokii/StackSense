@@ -7,10 +7,10 @@
     "P5_output.json",
     "P6_output.json"
   ],
-  "infeasible": 4,
+  "infeasible": 0,
   "invalid_input": 0,
   "ok": 1,
-  "ok_with_warnings": 1,
+  "ok_with_warnings": 5,
   "schema_version": "0.3.0",
   "scope": "complete_recommendations"
 }

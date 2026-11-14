@@ -25,7 +25,7 @@ const minimal = () =>
   );
 
 describe('evidence-resolution guidance', () => {
-  it('identifies two independent external blockers without approving either checklist', () => {
+  it('keeps two independent external review conditions on a provisional stack', () => {
     const input = raw(1),
       before = structuredClone(input),
       result = recommend(input);
@@ -33,11 +33,6 @@ describe('evidence-resolution guidance', () => {
       (a) => a.code === 'EXTERNAL_RESIDENCY_UNVERIFIED',
     );
     expect(actions).toHaveLength(2);
-    expect(
-      result.review_actions.find(
-        (a) => a.code === 'COMPLETE_PLAN_COVERAGE_GAP',
-      )!.affected_components,
-    ).toEqual(['complete deployment']);
     expect(new Set(actions.map((a) => a.id)).size).toBe(2);
     expect(
       actions.some(
@@ -53,8 +48,8 @@ describe('evidence-resolution guidance', () => {
           a.evidence_required.some((e) => e.includes('international')),
       ),
     ).toBe(true);
-    expect(result.stack).toBeNull();
-    expect(result.cost_sensitivity).toEqual([]);
+    expect(result.stack).not.toBeNull();
+    expect(result.cost_sensitivity.length).toBeGreaterThan(0);
     expect(input).toEqual(before);
   });
   it('does not accept a free-text vendor attestation as residency approval', () => {
@@ -62,9 +57,15 @@ describe('evidence-resolution guidance', () => {
     input.extensions = {
       vendor_attestation: 'All data stays in India; approved',
     };
-    expect(recommend(input).status).toBe('infeasible');
+    expect(
+      recommend(input).warnings.some(
+        (w) =>
+          w.code === 'EXTERNAL_RESIDENCY_UNVERIFIED' &&
+          w.severity === 'critical',
+      ),
+    ).toBe(true);
   });
-  it('preserves the existing identity blocker after adding Azure regional compute', () => {
+  it('preserves critical identity scope review alongside Azure regional compute', () => {
     const result = recommend(raw(4));
     expect(result.decision_trace.core_candidates).toBeGreaterThan(0);
     expect(
@@ -72,7 +73,7 @@ describe('evidence-resolution guidance', () => {
         (a) => a.code === 'EXISTING_IDENTITY_SCOPE_UNVERIFIED',
       ),
     ).toBe(true);
-    expect(result.stack).toBeNull();
+    expect(result.stack).not.toBeNull();
     expect(result.integration_reviews).toHaveLength(3);
     expect(
       result.integration_reviews.find(
@@ -182,7 +183,7 @@ describe('complete alternatives and cost sensitivity', () => {
         ),
       );
       expect(comparison.retained_constraints.join(' ')).toContain(
-        'No requirement was relaxed'.toLowerCase(),
+        'Critical warnings explicitly identify',
       );
     }
     expect(result.plan_comparison[0]!.selected).toBe(true);
@@ -198,7 +199,9 @@ describe('complete alternatives and cost sensitivity', () => {
   it('reconciles groups exactly and isolates payment activity', () => {
     const result = recommend(raw(2));
     const cents = (key: 'min' | 'max') =>
-      result.cost_groups.reduce((n, g) => n + Math.round(g[key] * 100), 0);
+      result.cost_groups
+        .filter((g) => g.category === 'infrastructure_and_operations')
+        .reduce((n, g) => n + Math.round(g[key] * 100), 0);
     expect(cents('min')).toBe(
       Math.round(result.estimated_monthly_cost_usd.min * 100),
     );
@@ -245,7 +248,14 @@ describe('complete alternatives and cost sensitivity', () => {
     ).toBe('assumed');
   });
   it('never fabricates sensitivity or alternatives for unusable inputs', () => {
-    for (const input of [{}, raw(1)]) {
+    for (const input of [
+      {},
+      {
+        ...minimal(),
+        infrastructure: { deployment_model: 'air_gapped' },
+        requirements: { payments: true },
+      },
+    ]) {
       const result = recommend(input);
       expect(result.plan_comparison).toEqual([]);
       expect(result.cost_sensitivity).toEqual([]);

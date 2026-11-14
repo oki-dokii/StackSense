@@ -1,0 +1,95 @@
+{
+  "engine_version": "0.8.0",
+  "public_results": [
+    {
+      "scenario_id": "P1",
+      "status": "ok",
+      "stack_present": true,
+      "critical_warnings": [],
+      "infrastructure_usd": {
+        "min": 0,
+        "max": 0
+      },
+      "llm_off_exact_match": true,
+      "identifier_and_order_invariance": true
+    },
+    {
+      "scenario_id": "P2",
+      "status": "ok_with_warnings",
+      "stack_present": true,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED"
+      ],
+      "infrastructure_usd": {
+        "min": 241.96,
+        "max": 1224.36
+      },
+      "llm_off_exact_match": true,
+      "identifier_and_order_invariance": true
+    },
+    {
+      "scenario_id": "P3",
+      "status": "ok_with_warnings",
+      "stack_present": true,
+      "critical_warnings": [],
+      "infrastructure_usd": {
+        "min": 513.51,
+        "max": 2679.49
+      },
+      "llm_off_exact_match": true,
+      "identifier_and_order_invariance": true
+    },
+    {
+      "scenario_id": "P4",
+      "status": "ok_with_warnings",
+      "stack_present": true,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "FINTECH_PAYMENT_SCOPE_REVIEW"
+      ],
+      "infrastructure_usd": {
+        "min": 1028.89,
+        "max": 3882.82
+      },
+      "llm_off_exact_match": true,
+      "identifier_and_order_invariance": true
+    },
+    {
+      "scenario_id": "P5",
+      "status": "ok_with_warnings",
+      "stack_present": true,
+      "critical_warnings": [
+        "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
+      ],
+      "infrastructure_usd": {
+        "min": 686.87,
+        "max": 858.06
+      },
+      "llm_off_exact_match": true,
+      "identifier_and_order_invariance": true
+    },
+    {
+      "scenario_id": "P6",
+      "status": "ok_with_warnings",
+      "stack_present": true,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED"
+      ],
+      "infrastructure_usd": {
+        "min": 81.42,
+        "max": 508.55
+      },
+      "llm_off_exact_match": true,
+      "identifier_and_order_invariance": true
+    }
+  ],
+  "history": {
+    "available_commits": 15,
+    "earliest_author_date": "2026-11-13T01:45:56+05:30",
+    "earliest_committer_date": "2026-11-13T01:45:56+05:30",
+    "commits_with_author_or_committer_date_before_release": 0,
+    "scope": "Available repository history only. Timestamps support a timeline; they do not establish original authorship or rule compliance."
+  }
+}

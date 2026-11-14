@@ -43,12 +43,12 @@
       "category": "compute",
       "id": "application-compute",
       "monthly_usd": {
-        "max": 4321.23,
-        "min": 600.16
+        "max": 1714.77,
+        "min": 238.16
       },
       "quantity": {
-        "max": 22995,
-        "min": 5748.75
+        "max": 9125,
+        "min": 2281.25
       },
       "source_ids": [
         "run-price"
@@ -276,8 +276,8 @@
         "telemetry-operations",
         "hosted-ci"
       ],
-      "max": 5285.95,
-      "min": 875.51
+      "max": 2679.49,
+      "min": 513.51
     },
     {
       "category": "payment_and_message_activity",
@@ -293,18 +293,19 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 28.935185185185187,
+      "cost_category": "infrastructure_and_operations",
       "field": "extensions.expected_requests_per_second",
       "samples": [
         {
-          "max": 7785.95,
-          "min": 875.51,
+          "max": 2679.49,
+          "min": 513.51,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 14.467592592592593
         },
         {
-          "max": 7785.95,
-          "min": 875.51,
+          "max": 2679.49,
+          "min": 513.51,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 57.870370370370374
@@ -315,18 +316,19 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 500,
+      "cost_category": "infrastructure_and_operations",
       "field": "extensions.monthly_egress_gb",
       "samples": [
         {
-          "max": 7685.95,
-          "min": 855.51,
+          "max": 2579.49,
+          "min": 493.51,
           "status": "estimated",
           "upper_delta_usd": -100,
           "value": 250
         },
         {
-          "max": 7985.95,
-          "min": 915.51,
+          "max": 2879.49,
+          "min": 553.51,
           "status": "estimated",
           "upper_delta_usd": 200,
           "value": 1000
@@ -337,18 +339,19 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 1,
+      "cost_category": "infrastructure_and_operations",
       "field": "extensions.retention_months",
       "samples": [
         {
-          "max": 7785.95,
-          "min": 875.51,
+          "max": 2679.49,
+          "min": 513.51,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 1
         },
         {
-          "max": 7845.95,
-          "min": 881.51,
+          "max": 2739.49,
+          "min": 519.51,
           "status": "estimated",
           "upper_delta_usd": 60,
           "value": 2
@@ -359,18 +362,19 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 1000,
+      "cost_category": "payment_and_message_activity",
       "field": "extensions.monthly_payment_transactions",
       "samples": [
         {
-          "max": 6535.95,
-          "min": 1375.51,
+          "max": 1250,
+          "min": 500,
           "status": "estimated",
           "upper_delta_usd": -1250,
           "value": 500
         },
         {
-          "max": 10285.95,
-          "min": 2875.51,
+          "max": 5000,
+          "min": 2000,
           "status": "estimated",
           "upper_delta_usd": 2500,
           "value": 2000
@@ -381,18 +385,19 @@
     {
       "baseline_origin": "assumed",
       "baseline_value": 50,
+      "cost_category": "payment_and_message_activity",
       "field": "extensions.average_payment_value_usd",
       "samples": [
         {
-          "max": 6785.95,
-          "min": 875.51,
+          "max": 1500,
+          "min": 0,
           "status": "estimated",
           "upper_delta_usd": -1000,
           "value": 25
         },
         {
-          "max": 9785.95,
-          "min": 875.51,
+          "max": 4500,
+          "min": 0,
           "status": "estimated",
           "upper_delta_usd": 2000,
           "value": 100
@@ -592,18 +597,20 @@
     "score": 85,
     "selected_plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified"
   },
-  "engine_version": "0.6.0",
+  "engine_version": "0.8.0",
   "estimate_status": "estimated",
+  "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency supplied: 5000; not equated directly with requests/second.",
       "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
       "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-      "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 31.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+      "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
       "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
       "Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+      "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
       "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
       "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary.",
       "Assumed per-transaction USD fee envelope, not a tariff quote.",
@@ -616,8 +623,8 @@
       "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
       "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
     ],
-    "max": 7785.95,
-    "min": 875.51
+    "max": 2679.49,
+    "min": 513.51
   },
   "integration_reviews": [],
   "plan_comparison": [
@@ -635,10 +642,11 @@
         "Peak concurrency supplied: 5000; not equated directly with requests/second.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 31.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
         "Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary.",
         "Assumed per-transaction USD fee envelope, not a tariff quote.",
@@ -653,8 +661,8 @@
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 7785.95,
-        "min": 875.51
+        "max": 2679.49,
+        "min": 513.51
       },
       "operated_components": 3.5,
       "plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified",
@@ -665,7 +673,7 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=gdpr",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 85,
       "score_delta": 0,
@@ -703,10 +711,11 @@
         "Peak concurrency supplied: 5000; not equated directly with requests/second.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 31.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
         "Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary.",
         "Assumed per-transaction USD fee envelope, not a tariff quote.",
@@ -721,8 +730,8 @@
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 7785.95,
-        "min": 875.51
+        "max": 2679.49,
+        "min": 513.51
       },
       "operated_components": 3.5,
       "plan_id": "modular_monolith|angular|go-http|pg|cloudrun|unspecified",
@@ -733,7 +742,7 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=gdpr",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 85,
       "score_delta": 0,
@@ -771,10 +780,11 @@
         "Peak concurrency supplied: 5000; not equated directly with requests/second.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 31.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
         "Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary.",
         "Assumed per-transaction USD fee envelope, not a tariff quote.",
@@ -789,8 +799,8 @@
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 7785.95,
-        "min": 875.51
+        "max": 2679.49,
+        "min": 513.51
       },
       "operated_components": 3.5,
       "plan_id": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
@@ -801,7 +811,7 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=gdpr",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 85,
       "score_delta": 0,
@@ -828,7 +838,7 @@
   ],
   "primary_region": null,
   "review_actions": [],
-  "rules_version": "0.6.0",
+  "rules_version": "0.8.0",
   "scenario_id": "P3",
   "score_breakdown": [
     {
@@ -839,7 +849,7 @@
         "priorities.cost"
       ],
       "fit": 3,
-      "reason": "USD 875.51–7785.95/month versus budget 1500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "reason": "USD 513.51–2679.49/month versus budget 1500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
       "weight": 2
     },
     {
@@ -906,7 +916,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.6.0",
+  "services_version": "0.8.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -924,7 +934,7 @@
         "requirements.realtime"
       ],
       "id": "fastify",
-      "justification": "Provides a node application runtime for the realtime_collab profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Provides a node application runtime for the realtime_collab profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "backend",
       "source_ids": [
         "fastify"
@@ -948,7 +958,7 @@
         "infrastructure.existing_systems"
       ],
       "id": "pg",
-      "justification": "relational persistence via Cloud SQL for PostgreSQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "relational persistence via Cloud SQL for PostgreSQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "database",
       "source_ids": [
         "cloudsql-pg",
@@ -973,7 +983,7 @@
         "team.languages"
       ],
       "id": "angular",
-      "justification": "Covers requested targets web with spa rendering. Team languages: go, typescript. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Covers requested targets web with spa rendering. Team languages: go, typescript. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "frontend",
       "source_ids": [
         "angular"
@@ -985,8 +995,8 @@
     "hosting": {
       "alternatives": [
         {
-          "choice": "Amazon ECS / Fargate",
-          "why_not": "Best compatible complete plan using this option scored 81, below 85; other layers may also differ."
+          "choice": "Azure App Service",
+          "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
         }
       ],
       "choice": "Google Cloud Run",
@@ -997,7 +1007,7 @@
         "team.has_devops"
       ],
       "id": "cloudrun",
-      "justification": "Matches managed_cloud with provider gcp; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Matches managed_cloud with provider gcp; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "hosting",
       "source_ids": [
         "run",
@@ -1230,7 +1240,7 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "modular_monolith recommendation selected from 168 complete compatible plans; month-12 infrastructure planning band USD 875.51–7785.95/month.",
+  "summary": "modular_monolith recommendation selected from 168 complete compatible plans; month-12 infrastructure planning band USD 513.51–2679.49/month.",
   "validation_errors": [],
   "warnings": [
     {
@@ -1246,7 +1256,7 @@
       "fields": [
         "budget.monthly_infra_usd"
       ],
-      "message": "Upper estimate USD 7785.95/month exceeds USD 1500; stated usage/price assumptions determine whether it fits.",
+      "message": "Upper estimate USD 2679.49/month exceeds USD 1500; stated usage/price assumptions determine whether it fits.",
       "severity": "warning"
     },
     {

@@ -82,8 +82,9 @@
     "score": 86,
     "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified"
   },
-  "engine_version": "0.6.0",
+  "engine_version": "0.8.0",
   "estimate_status": "estimated",
+  "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
@@ -91,6 +92,7 @@
       "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
       "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
       "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
+      "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
       "Static assets only; no Functions or paid add-ons. Build/file limits apply."
     ],
     "max": 0,
@@ -113,6 +115,7 @@
         "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "Static assets only; no Functions or paid add-ons. Build/file limits apply."
       ],
       "database_region": null,
@@ -129,7 +132,7 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=none",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 86,
       "score_delta": 0,
@@ -158,6 +161,7 @@
         "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "Static assets only; no Functions or paid add-ons. Build/file limits apply."
       ],
       "database_region": null,
@@ -174,7 +178,7 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=none",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 82,
       "score_delta": -4,
@@ -202,8 +206,9 @@
         "Peak concurrency supplied: 50; not equated directly with requests/second.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 1 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 1 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored internet-egress envelope; actual destination, free quota and routes vary.",
@@ -223,7 +228,7 @@
         "deployment_model=managed_cloud",
         "data_residency=none",
         "compliance=none",
-        "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
       "score": 61,
       "score_delta": -25,
@@ -240,7 +245,7 @@
   ],
   "primary_region": null,
   "review_actions": [],
-  "rules_version": "0.6.0",
+  "rules_version": "0.8.0",
   "scenario_id": "P1",
   "score_breakdown": [
     {
@@ -319,7 +324,7 @@
       "weight": 2
     }
   ],
-  "services_version": "0.6.0",
+  "services_version": "0.8.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -337,7 +342,7 @@
         "requirements.realtime"
       ],
       "id": "backend-none",
-      "justification": "Static content has no inferred dynamic server requirement; omitting the backend avoids an unnecessary operated application. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Static content has no inferred dynamic server requirement; omitting the backend avoids an unnecessary operated application. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "backend",
       "source_ids": [
         "html"
@@ -361,7 +366,7 @@
         "infrastructure.existing_systems"
       ],
       "id": "database-none",
-      "justification": "No server persistence need was inferred; a database is omitted from this core plan. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "No server persistence need was inferred; a database is omitted from this core plan. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "database",
       "source_ids": [
         "html"
@@ -386,7 +391,7 @@
         "project.description"
       ],
       "id": "astro",
-      "justification": "Covers requested targets web with static rendering. Team languages: css, html, javascript. Markdown content authoring was explicitly considered. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Covers requested targets web with static rendering. Team languages: css, html, javascript. Markdown content authoring was explicitly considered. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "frontend",
       "source_ids": [
         "astro",
@@ -411,7 +416,7 @@
         "team.has_devops"
       ],
       "id": "pages",
-      "justification": "Matches managed_cloud with provider cloudflare; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+      "justification": "Matches managed_cloud with provider cloudflare; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "hosting",
       "source_ids": [
         "pages"

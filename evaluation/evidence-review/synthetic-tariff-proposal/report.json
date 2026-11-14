@@ -2,8 +2,8 @@
   "schema_version": "0.1.0",
   "created_on": "2026-11-14",
   "status": "pending_human_review",
-  "before_sha256": "300a066cd8deb02fbe2ed58f238eb3381f5c670ecb425fc37d7783366b98189c",
-  "candidate_sha256": "8a98b66992fd9bc33d2df8b7e8b74574ef783b39db82d764baacdcfff399fb09",
+  "before_sha256": "2d7148fac59b00f083f09727a5699666564c2c214a085988fc16c78f91a93c44",
+  "candidate_sha256": "796e9e416e6f234054358a57fa1826d13c1b24a3244ad2adaa9b8d330065baeb",
   "policy_sha256": "a93e728b7f52bcddfbc72e0914200e0441bd16b3c368a38a45f9a40dedb93132",
   "changes": [
     {

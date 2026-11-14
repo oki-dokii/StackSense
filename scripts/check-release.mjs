@@ -61,10 +61,14 @@ for (const entry of screenshots.images) {
   if (createHash('sha256').update(bytes).digest('hex') !== entry.sha256)
     throw new Error(`Screenshot changed: ${entry.file}`);
 }
-if (await exists('evaluation/phase7-browser-checks.json')) {
-  const browser = await load('evaluation/phase7-browser-checks.json');
+for (const browserFile of [
+  'evaluation/phase7-browser-checks.json',
+  'evaluation/browser-release.json',
+]) {
+  const browser = await load(browserFile);
   if (
-    browser.app_version !== (await load('package.json')).version ||
+    (!browser.historical &&
+      browser.app_version !== (await load('package.json')).version) ||
     browser.input_sha256 !==
       createHash('sha256')
         .update(await readFile(join(root, browser.input_fixture)))
@@ -111,5 +115,5 @@ await verifyPostgres(join(root, 'evaluation/calibration/postgres-run-1'));
 await verifyEvidence();
 await verifyAccessibility();
 console.log(
-  `PASS: 20 actual outputs and ${labCount} Decision Lab reports match the current engine; case provenance, capture versions and all ${screenshots.images.length} screenshot hashes verified. HTTP/PostgreSQL workload and 99-source review and scoped accessibility artifacts verified; report/ZIP hashes checked when present.`,
+  `PASS: 20 actual outputs and ${labCount} Decision Lab reports match the current engine; case provenance, capture versions and all ${screenshots.images.length} screenshot hashes verified. HTTP/PostgreSQL workload and source-review and scoped accessibility artifacts verified; report/ZIP hashes checked when present.`,
 );

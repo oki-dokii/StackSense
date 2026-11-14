@@ -39,7 +39,7 @@ export function reviewActions(
         ids = auth
           ? ['msg91-privacy']
           : payment
-            ? ['payment', 'razorpay-privacy']
+            ? ['razorpay-checkout', 'razorpay-privacy']
             : [];
         evidence = auth
           ? [
@@ -118,7 +118,7 @@ export function reviewActions(
         evidence_required: evidence,
         next_action: next,
         resolution_gate:
-          'This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion.',
+          'This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance.',
         references: refs(p, ids),
       };
     });

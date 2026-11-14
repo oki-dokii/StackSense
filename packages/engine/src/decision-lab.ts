@@ -80,7 +80,7 @@ export interface FunctionalTrial {
   monthly_usd: { min: number; max: number } | null;
 }
 export interface DecisionLab {
-  analysis_version: '0.1.0';
+  analysis_version: '0.2.0';
   input_sha256: string | null;
   baseline: FinalRecommendation;
   priority_analysis: {
@@ -139,7 +139,7 @@ export function analyzeDecision(
     },
   });
   const report: DecisionLab = {
-    analysis_version: '0.1.0',
+    analysis_version: '0.2.0',
     input_sha256: null,
     baseline,
     priority_analysis: {
@@ -367,7 +367,7 @@ export function decisionMarkdown(report: DecisionLab): string {
   const lines = [
     '# Proposed architecture decision',
     '',
-    '**Status: Proposed — owner review required.**',
+    '**Status: Proposed — project acceptance required.**',
     '',
     `Engine ${r.engine_version}; catalog ${r.catalog_version}; services ${r.services_version}; analysis ${report.analysis_version}.`,
     `Input SHA-256: ${report.input_sha256 ?? 'Not recorded for invalid input'}.`,
@@ -385,7 +385,7 @@ export function decisionMarkdown(report: DecisionLab): string {
       );
     lines.push(
       '',
-      `Monthly planning band: USD ${r.estimated_monthly_cost_usd.min}–${r.estimated_monthly_cost_usd.max}.`,
+      `Monthly infrastructure/operations band (activity fees additional): USD ${r.estimated_monthly_cost_usd.min}–${r.estimated_monthly_cost_usd.max}.`,
       '',
       '## Complete alternatives',
       '',

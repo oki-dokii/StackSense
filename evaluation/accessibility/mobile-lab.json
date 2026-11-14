@@ -1,9 +1,9 @@
 {
   "activeElement": {
-    "class": "secondary",
+    "class": "",
     "id": "",
-    "tag": "button",
-    "text": "Export JSON ↓"
+    "tag": "body",
+    "text": "Skip to workspaceStackSenseWORKSPACEWorkspaceResults1MethodologyLocal & privateYOUR DECISI"
   },
   "issues": {
     "contrast": [],
@@ -17,7 +17,7 @@
   },
   "limitations": "Custom read-only snapshot, not axe or WCAG conformance. Solid-background text only; skips SVG, opacity/gradient cases, disabled and hidden text. Does not test assistive technology, focus obscuring, control borders or all accessible-name rules.",
   "path": "/results",
-  "testedTextElements": 632,
+  "testedTextElements": 626,
   "title": "Results — StackSense",
   "unmeasured": [],
   "unmeasuredTextElements": 0,

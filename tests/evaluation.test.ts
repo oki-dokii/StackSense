@@ -50,7 +50,11 @@ describe('Phase 5 author-designed unseen-style cases', () => {
         ).toContain(capability);
       if (e.driver) expect(r.stack!.backend.driven_by).toContain(e.driver);
       if (r.stack)
-        expect(r.warnings.some((w) => w.severity === 'critical')).toBe(false);
+        expect(
+          r.warnings.some((w) => w.severity === 'critical')
+            ? r.assumptions.join(' ').includes('Reduced scope of assurance')
+            : true,
+        ).toBe(true);
       else expect(r.estimate_status).toBe('not_estimated');
     },
   );

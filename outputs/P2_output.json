@@ -1,468 +1,785 @@
 {
-  "architecture_style": "other",
+  "applied_extensions": [],
+  "architecture_style": "modular_monolith",
   "assumptions": [
-    "Persistent application data is inferred from project.type=marketplace; domain data modeling remains required."
+    "All host/database/storage/log/backup configurations must use the reviewed india region, no cross-region copies, private access and retention/deletion controls. Device data and explicit external identity/OTP/payment flows are assessed separately.",
+    "PROVISIONAL RESIDENCY EXCEPTION: MSG91 OTP remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
+    "PROVISIONAL RESIDENCY EXCEPTION: Razorpay Checkout remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
+    "Persistent application data is inferred from project.type=marketplace; domain data modeling remains required.",
+    "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
+    "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
   ],
   "catalog_version": "0.4.0",
-  "control_plan": null,
-  "core_rejections": [
+  "control_plan": {
+    "deployment_controls": [
+      "TLS at all client/service/database boundaries.",
+      "Least-privilege service identities, secret rotation, encryption at rest and redacted audit logs.",
+      "Explicit regional primary/replica/storage/log/backup locations and retention; no uncontrolled cross-region replication.",
+      "Restore-test backups and test negative authorization, tenant boundaries and deletion workflows."
+    ],
+    "frameworks": [
+      {
+        "id": "dpdp",
+        "owner_actions": [
+          "Review scope and effective obligations with qualified personnel.",
+          "Implement and test controls; execute required contracts and obtain independent assessment where applicable."
+        ],
+        "source_ids": [
+          "dpdp"
+        ],
+        "technical_controls": [
+          "tls_in_transit",
+          "encryption_at_rest",
+          "least_privilege",
+          "audit_and_retention",
+          "backup_restore",
+          "data_minimization_and_deletion"
+        ],
+        "verification": "design_only_not_certified"
+      }
+    ]
+  },
+  "cost_breakdown": [
     {
-      "candidate_id": "angular",
-      "code": "PLATFORM_MISMATCH",
-      "fields": [
-        "project.platforms"
+      "basis": "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+      "category": "compute",
+      "id": "application-compute",
+      "monthly_usd": {
+        "max": 754.5,
+        "min": 104.79
+      },
+      "quantity": {
+        "max": 4015,
+        "min": 1003.75
+      },
+      "source_ids": [
+        "run-price"
       ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
+      "unit_rate_usd": {
+        "max": 0.18792,
+        "min": 0.1044
+      }
     },
     {
-      "candidate_id": "appservice",
-      "code": "REGION_EVIDENCE_GAP",
-      "fields": [
-        "infrastructure.data_residency"
+      "basis": "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+      "category": "database",
+      "id": "database-cpu",
+      "monthly_usd": {
+        "max": 120.6,
+        "min": 60.29
+      },
+      "quantity": {
+        "max": 1460,
+        "min": 1460
+      },
+      "source_ids": [
+        "sql-price"
       ],
-      "layer": "hosting",
-      "message": "No reviewed primary-compute region mapping satisfies the requested residency; no country location is inferred."
+      "unit_rate_usd": {
+        "max": 0.0826,
+        "min": 0.0413
+      }
     },
     {
-      "candidate_id": "astro",
-      "code": "PLATFORM_MISMATCH",
-      "fields": [
-        "project.platforms"
+      "basis": "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+      "category": "database",
+      "id": "database-memory",
+      "monthly_usd": {
+        "max": 81.76,
+        "min": 40.88
+      },
+      "quantity": {
+        "max": 5840,
+        "min": 5840
+      },
+      "source_ids": [
+        "sql-price"
       ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
+      "unit_rate_usd": {
+        "max": 0.014,
+        "min": 0.007
+      }
     },
     {
-      "candidate_id": "backend-none",
-      "code": "BACKEND_REQUIREMENT",
-      "fields": [
-        "project.type",
-        "requirements.auth",
-        "requirements.realtime"
+      "basis": "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+      "category": "database",
+      "id": "database-storage",
+      "monthly_usd": {
+        "max": 40,
+        "min": 5
+      },
+      "quantity": {
+        "max": 100,
+        "min": 50
+      },
+      "source_ids": [
+        "sql-price"
       ],
-      "layer": "backend",
-      "message": "A backend is required for this application/API profile."
+      "unit_rate_usd": {
+        "max": 0.4,
+        "min": 0.1
+      }
     },
     {
-      "candidate_id": "compose",
-      "code": "PLATFORM_MISMATCH",
-      "fields": [
-        "project.platforms"
+      "basis": "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+      "category": "backup",
+      "id": "backup-storage",
+      "monthly_usd": {
+        "max": 15,
+        "min": 1.5
+      },
+      "quantity": {
+        "max": 100,
+        "min": 50
+      },
+      "source_ids": [
+        "storage-price",
+        "s3-price"
       ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
+      "unit_rate_usd": {
+        "max": 0.15,
+        "min": 0.03
+      }
     },
     {
-      "candidate_id": "database-none",
-      "code": "PERSISTENCE_REQUIREMENT",
-      "fields": [
-        "project.type",
-        "requirements.auth",
-        "requirements.offline_support"
+      "basis": "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+      "category": "storage",
+      "id": "object-storage",
+      "monthly_usd": {
+        "max": 2.5,
+        "min": 0.5
+      },
+      "quantity": {
+        "max": 50,
+        "min": 25
+      },
+      "source_ids": [
+        "storage-price",
+        "s3-price"
       ],
-      "layer": "database",
-      "message": "Domain/features require a persistent application database."
+      "unit_rate_usd": {
+        "max": 0.05,
+        "min": 0.02
+      }
     },
     {
-      "candidate_id": "ec2",
-      "code": "DEPLOYMENT_MISMATCH",
-      "fields": [
-        "infrastructure.deployment_model"
+      "basis": "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+      "category": "egress",
+      "id": "network-egress",
+      "monthly_usd": {
+        "max": 120,
+        "min": 24
+      },
+      "quantity": {
+        "max": 600,
+        "min": 300
+      },
+      "source_ids": [
+        "storage-price",
+        "s3-price"
       ],
-      "layer": "hosting",
-      "message": "Hosting variant does not match the requested deployment model."
+      "unit_rate_usd": {
+        "max": 0.2,
+        "min": 0.08
+      }
     },
     {
-      "candidate_id": "flutter",
-      "code": "SEO_RENDERING_GAP",
-      "fields": [
-        "requirements.seo_critical",
-        "project.platforms"
+      "basis": "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+      "category": "observability",
+      "id": "telemetry-operations",
+      "monthly_usd": {
+        "max": 60,
+        "min": 5
+      },
+      "quantity": {
+        "max": 1,
+        "min": 1
+      },
+      "source_ids": [
+        "storage-price"
       ],
-      "layer": "frontend",
-      "message": "This variant lacks a reviewed crawlable web-rendering configuration."
+      "unit_rate_usd": {
+        "max": 60,
+        "min": 5
+      }
     },
     {
-      "candidate_id": "frontend-none",
-      "code": "PLATFORM_MISMATCH",
-      "fields": [
-        "project.platforms"
+      "basis": "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+      "category": "ci_cd",
+      "id": "hosted-ci",
+      "monthly_usd": {
+        "max": 30,
+        "min": 0
+      },
+      "quantity": {
+        "max": 1,
+        "min": 1
+      },
+      "source_ids": [
+        "ci"
       ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
+      "unit_rate_usd": {
+        "max": 30,
+        "min": 0
+      }
     },
     {
-      "candidate_id": "html",
-      "code": "PLATFORM_MISMATCH",
-      "fields": [
-        "project.platforms"
+      "basis": "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
+      "category": "auth",
+      "id": "otp-delivery",
+      "monthly_usd": {
+        "max": 1800,
+        "min": 0
+      },
+      "quantity": {
+        "max": 60000,
+        "min": 0
+      },
+      "source_ids": [
+        "msg91"
       ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
+      "unit_rate_usd": {
+        "max": 0.03,
+        "min": 0.002
+      }
     },
     {
-      "candidate_id": "local",
-      "code": "DEPLOYMENT_MISMATCH",
-      "fields": [
-        "infrastructure.deployment_model"
+      "basis": "Illustrative 2–3% platform-fee scenario from the domestic pricing starting point; not a merchant quote. GST, premium methods, payouts and FX are excluded; no INR/USD conversion is inferred.",
+      "category": "payments",
+      "id": "payment-variable",
+      "monthly_usd": {
+        "max": 900,
+        "min": 0
+      },
+      "quantity": {
+        "max": 30000,
+        "min": 0
+      },
+      "source_ids": [
+        "razorpay-pricing"
       ],
-      "layer": "hosting",
-      "message": "Hosting variant does not match the requested deployment model."
+      "unit_rate_usd": {
+        "max": 0.03,
+        "min": 0.02
+      }
     },
     {
-      "candidate_id": "next",
-      "code": "PLATFORM_MISMATCH",
-      "fields": [
-        "project.platforms"
+      "basis": "No separate fixed per-transaction fee modeled for standard domestic checkout; other merchant/product/settlement fees require a quote and are excluded, not assumed universally free.",
+      "category": "payments",
+      "id": "payment-fixed",
+      "monthly_usd": {
+        "max": 0,
+        "min": 0
+      },
+      "quantity": {
+        "max": 600,
+        "min": 0
+      },
+      "source_ids": [
+        "razorpay-pricing"
       ],
-      "layer": "frontend",
-      "message": "This reviewed frontend variant does not cover every client target."
-    },
-    {
-      "candidate_id": "next-native|aspnet|mysql|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|aspnet|mysql|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
-    },
-    {
-      "candidate_id": "next-native|aspnet|mysql|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|aspnet|sqlite|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|aspnet|sqlite|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|aspnet|sqlite|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|aspnet|sqlserver|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|aspnet|sqlserver|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|aspnet|sqlserver|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
-    },
-    {
-      "candidate_id": "next-native|django|maria|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|django|maria|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|django|maria|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
-    },
-    {
-      "candidate_id": "next-native|django|mysql|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|django|mysql|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Managed database has no reviewed primary-region mapping for requested residency."
-    },
-    {
-      "candidate_id": "next-native|django|mysql|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|django|sqlite|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|django|sqlite|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "next-native|django|sqlite|ecs",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
+      "unit_rate_usd": {
+        "max": 0,
+        "min": 0
+      }
     }
   ],
-  "cost_breakdown": [],
-  "cost_groups": [],
-  "cost_sensitivity": [],
-  "data_flows": [],
+  "cost_groups": [
+    {
+      "category": "infrastructure_and_operations",
+      "line_ids": [
+        "application-compute",
+        "database-cpu",
+        "database-memory",
+        "database-storage",
+        "backup-storage",
+        "object-storage",
+        "network-egress",
+        "telemetry-operations",
+        "hosted-ci"
+      ],
+      "max": 1224.36,
+      "min": 241.96
+    },
+    {
+      "category": "payment_and_message_activity",
+      "line_ids": [
+        "otp-delivery",
+        "payment-variable",
+        "payment-fixed"
+      ],
+      "max": 2700,
+      "min": 0
+    }
+  ],
+  "cost_sensitivity": [
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 17.36111111111111,
+      "cost_category": "infrastructure_and_operations",
+      "field": "extensions.expected_requests_per_second",
+      "samples": [
+        {
+          "max": 1224.36,
+          "min": 241.96,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 8.680555555555555
+        },
+        {
+          "max": 1224.36,
+          "min": 241.96,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 34.72222222222222
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 300,
+      "cost_category": "infrastructure_and_operations",
+      "field": "extensions.monthly_egress_gb",
+      "samples": [
+        {
+          "max": 1164.36,
+          "min": 229.96,
+          "status": "estimated",
+          "upper_delta_usd": -60,
+          "value": 150
+        },
+        {
+          "max": 1344.36,
+          "min": 265.96,
+          "status": "estimated",
+          "upper_delta_usd": 120,
+          "value": 600
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 1,
+      "cost_category": "infrastructure_and_operations",
+      "field": "extensions.retention_months",
+      "samples": [
+        {
+          "max": 1224.36,
+          "min": 241.96,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 1
+        },
+        {
+          "max": 1239.36,
+          "min": 243.46,
+          "status": "estimated",
+          "upper_delta_usd": 15,
+          "value": 2
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 60000,
+      "cost_category": "payment_and_message_activity",
+      "field": "extensions.monthly_otp_count",
+      "samples": [
+        {
+          "max": 1800,
+          "min": 60,
+          "status": "estimated",
+          "upper_delta_usd": -900,
+          "value": 30000
+        },
+        {
+          "max": 4500,
+          "min": 240,
+          "status": "estimated",
+          "upper_delta_usd": 1800,
+          "value": 120000
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 600,
+      "cost_category": "payment_and_message_activity",
+      "field": "extensions.monthly_payment_transactions",
+      "samples": [
+        {
+          "max": 2250,
+          "min": 300,
+          "status": "estimated",
+          "upper_delta_usd": -450,
+          "value": 300
+        },
+        {
+          "max": 3600,
+          "min": 1200,
+          "status": "estimated",
+          "upper_delta_usd": 900,
+          "value": 1200
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 50,
+      "cost_category": "payment_and_message_activity",
+      "field": "extensions.average_payment_value_usd",
+      "samples": [
+        {
+          "max": 2250,
+          "min": 0,
+          "status": "estimated",
+          "upper_delta_usd": -450,
+          "value": 25
+        },
+        {
+          "max": 3600,
+          "min": 0,
+          "status": "estimated",
+          "upper_delta_usd": 900,
+          "value": 100
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    }
+  ],
+  "data_flows": [
+    {
+      "component": "primary-compute",
+      "location": "asia-south1",
+      "scope": "Application processing; configure region, private access, logging and replicas explicitly.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "primary-database",
+      "location": "asia-south1",
+      "scope": "Application/auth/search/outbox data and backups; verify retention, restore and deletion.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "keycloak",
+      "location": "asia-south1",
+      "scope": "Separate realm/schema and restricted database credentials are required; pin supported driver/database versions. Email delivery needs a separately reviewed SMTP integration if enabled.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "msg91",
+      "location": "External service geography not established",
+      "scope": "Regional API/Indian company status is not proof all data stays in India; DLT rules, contracts, fees and delivery need verification.",
+      "verification": "external_scope_review"
+    },
+    {
+      "component": "ws",
+      "location": "asia-south1",
+      "scope": "Node sidecar with browser/native WebSocket clients; authentication, reconnect/backpressure and fan-out are custom integration work.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "pg-search",
+      "location": "asia-south1",
+      "scope": "Indexing, tokenization and language/ranking quality must be tested; not a replacement for advanced search workloads.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "gcs",
+      "location": "asia-south1",
+      "scope": "Choose the same reviewed region, private access, signed URLs and in-region lifecycle/backup policy; do not use a default multi-region bucket.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "razorpay",
+      "location": "External service geography not established",
+      "scope": "Merchant onboarding, product eligibility, signed webhooks, idempotency, refunds/payouts and PCI scope require implementation. India-only end-to-end payment flows are not established by the vendor name.",
+      "verification": "external_scope_review"
+    },
+    {
+      "component": "outbox",
+      "location": "asia-south1",
+      "scope": "Outbox rows share the database bill. Worker retries must be idempotent; tune polling, retry/dead-letter policy and retention.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "otel",
+      "location": "asia-south1",
+      "scope": "Redact sensitive values, use host-region retention/routing, and provision a durable regional log backend. No personal data in tracing baggage.",
+      "verification": "configuration_required"
+    },
+    {
+      "component": "actions",
+      "location": "Build environment: source/synthetic fixtures only",
+      "scope": "Never export production data/secrets/personal data to build logs.",
+      "verification": "source_only_no_production_data"
+    }
+  ],
+  "database_region": "asia-south1",
   "decision_trace": {
-    "complete_candidates": 0,
+    "complete_candidates": 21,
     "core_candidates": 21,
-    "rejected": [
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|django|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|fastapi|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|fastify|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|django|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|django|pg|ecs|ap-south-1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|fastapi|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|fastapi|pg|ecs|ap-south-1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|fastify|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|fastify|pg|ecs|ap-south-1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|aspnet|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|go-http|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|laravel|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|spring|pg|cloudrun|asia-south1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|aspnet|pg|ecs|ap-south-1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|go-http|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|go-http|pg|ecs|ap-south-1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|laravel|pg|ase-india|centralindia"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|laravel|pg|ecs|ap-south-1"
-      },
-      {
-        "codes": [
-          "EXTERNAL_RESIDENCY_UNVERIFIED"
-        ],
-        "plan_id": "modular_monolith|next-native|spring|pg|ase-india|centralindia"
-      }
-    ],
-    "score": null,
-    "selected_plan_id": null
+    "rejected": [],
+    "score": 69,
+    "selected_plan_id": "modular_monolith|next-native|django|pg|cloudrun|asia-south1"
   },
-  "engine_version": "0.6.0",
-  "estimate_status": "not_estimated",
+  "engine_version": "0.8.0",
+  "estimate_status": "estimated",
+  "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
     "assumptions": [
-      "No estimate: 0–0 is a required serialization placeholder, not a zero-cost deployment."
+      "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+      "Peak concurrency supplied: 800; not equated directly with requests/second.",
+      "RPS absent: assumed 50 requests/user/day averaged across the day (17.361 RPS); peak capacity still uses the concurrency hypothesis.",
+      "Data volume 50 GB supplied; egress 300 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+      "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 5.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+      "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+      "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+      "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 60000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
+      "Payment assumptions: 0–600 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+      "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+      "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+      "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
+      "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+      "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+      "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+      "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+      "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+      "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+      "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+      "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+      "Illustrative 2–3% platform-fee scenario from the domestic pricing starting point; not a merchant quote. GST, premium methods, payouts and FX are excluded; no INR/USD conversion is inferred.",
+      "No separate fixed per-transaction fee modeled for standard domestic checkout; other merchant/product/settlement fees require a quote and are excluded, not assumed universally free."
     ],
-    "max": 0,
-    "min": 0
+    "max": 1224.36,
+    "min": 241.96
   },
   "integration_reviews": [],
-  "plan_comparison": [],
-  "review_actions": [
+  "plan_comparison": [
     {
-      "affected_components": [
-        "complete deployment"
+      "architecture_style": "modular_monolith",
+      "budget_fit": "over_budget",
+      "core": {
+        "backend": "Django",
+        "database": "PostgreSQL",
+        "frontend": "Next.js + React Native",
+        "hosting": "Google Cloud Run"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 800; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (17.361 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 50 GB supplied; egress 300 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 5.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 60000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
+        "Payment assumptions: 0–600 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+        "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+        "Illustrative 2–3% platform-fee scenario from the domestic pricing starting point; not a merchant quote. GST, premium methods, payouts and FX are excluded; no INR/USD conversion is inferred.",
+        "No separate fixed per-transaction fee modeled for standard domestic checkout; other merchant/product/settlement fees require a quote and are excluded, not assumed universally free."
       ],
-      "code": "COMPLETE_PLAN_COVERAGE_GAP",
-      "evidence_required": [
-        "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+      "database_region": "asia-south1",
+      "monthly_usd": {
+        "max": 1224.36,
+        "min": 241.96
+      },
+      "operated_components": 4.5,
+      "plan_id": "modular_monolith|next-native|django|pg|cloudrun|asia-south1",
+      "primary_region": "asia-south1",
+      "retained_constraints": [
+        "platforms=android,web",
+        "cloud_preference=any",
+        "deployment_model=managed_cloud",
+        "data_residency=india",
+        "compliance=dpdp",
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "fields": [
-        "infrastructure",
-        "requirements",
-        "compliance"
+      "score": 69,
+      "score_delta": 0,
+      "selected": true,
+      "supporting_services": [
+        "GitHub Actions",
+        "Google Cloud Storage regional bucket",
+        "Keycloak",
+        "MSG91 OTP",
+        "OpenTelemetry Collector + structured logs",
+        "PostgreSQL transactional outbox + worker",
+        "PostgreSQL full-text search",
+        "Razorpay Checkout",
+        "ws"
       ],
-      "id": "COMPLETE_PLAN_COVERAGE_GAP:infrastructure|requirements|compliance",
-      "kind": "evidence_gap",
-      "next_action": "Review the rejected constraints against the scoped catalog; add reviewed coverage and rerun the unchanged input.",
-      "references": [],
-      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+      "tied_on_score": false,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_EXCEEDED",
+        "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "LATENCY_TARGET_UNVERIFIED"
+      ]
     },
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "over_budget",
+      "core": {
+        "backend": "FastAPI",
+        "database": "PostgreSQL",
+        "frontend": "Next.js + React Native",
+        "hosting": "Google Cloud Run"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 800; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (17.361 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 50 GB supplied; egress 300 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 5.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 60000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
+        "Payment assumptions: 0–600 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+        "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+        "Illustrative 2–3% platform-fee scenario from the domestic pricing starting point; not a merchant quote. GST, premium methods, payouts and FX are excluded; no INR/USD conversion is inferred.",
+        "No separate fixed per-transaction fee modeled for standard domestic checkout; other merchant/product/settlement fees require a quote and are excluded, not assumed universally free."
+      ],
+      "database_region": "asia-south1",
+      "monthly_usd": {
+        "max": 1224.36,
+        "min": 241.96
+      },
+      "operated_components": 4.5,
+      "plan_id": "modular_monolith|next-native|fastapi|pg|cloudrun|asia-south1",
+      "primary_region": "asia-south1",
+      "retained_constraints": [
+        "platforms=android,web",
+        "cloud_preference=any",
+        "deployment_model=managed_cloud",
+        "data_residency=india",
+        "compliance=dpdp",
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
+      ],
+      "score": 69,
+      "score_delta": 0,
+      "selected": false,
+      "supporting_services": [
+        "GitHub Actions",
+        "Google Cloud Storage regional bucket",
+        "Keycloak",
+        "MSG91 OTP",
+        "OpenTelemetry Collector + structured logs",
+        "PostgreSQL transactional outbox + worker",
+        "PostgreSQL full-text search",
+        "Razorpay Checkout",
+        "ws"
+      ],
+      "tied_on_score": true,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_EXCEEDED",
+        "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "LATENCY_TARGET_UNVERIFIED"
+      ]
+    },
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "over_budget",
+      "core": {
+        "backend": "Fastify",
+        "database": "PostgreSQL",
+        "frontend": "Next.js + React Native",
+        "hosting": "Google Cloud Run"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 800; not equated directly with requests/second.",
+        "RPS absent: assumed 50 requests/user/day averaged across the day (17.361 RPS); peak capacity still uses the concurrency hypothesis.",
+        "Data volume 50 GB supplied; egress 300 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 5.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 60000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
+        "Payment assumptions: 0–600 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+        "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+        "Illustrative 2–3% platform-fee scenario from the domestic pricing starting point; not a merchant quote. GST, premium methods, payouts and FX are excluded; no INR/USD conversion is inferred.",
+        "No separate fixed per-transaction fee modeled for standard domestic checkout; other merchant/product/settlement fees require a quote and are excluded, not assumed universally free."
+      ],
+      "database_region": "asia-south1",
+      "monthly_usd": {
+        "max": 1224.36,
+        "min": 241.96
+      },
+      "operated_components": 4.5,
+      "plan_id": "modular_monolith|next-native|fastify|pg|cloudrun|asia-south1",
+      "primary_region": "asia-south1",
+      "retained_constraints": [
+        "platforms=android,web",
+        "cloud_preference=any",
+        "deployment_model=managed_cloud",
+        "data_residency=india",
+        "compliance=dpdp",
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
+      ],
+      "score": 69,
+      "score_delta": 0,
+      "selected": false,
+      "supporting_services": [
+        "GitHub Actions",
+        "Google Cloud Storage regional bucket",
+        "Keycloak",
+        "MSG91 OTP",
+        "OpenTelemetry Collector + structured logs",
+        "PostgreSQL transactional outbox + worker",
+        "PostgreSQL full-text search",
+        "Razorpay Checkout",
+        "ws"
+      ],
+      "tied_on_score": true,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_EXCEEDED",
+        "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "LATENCY_TARGET_UNVERIFIED"
+      ]
+    }
+  ],
+  "primary_region": "asia-south1",
+  "review_actions": [
     {
       "affected_components": [
         "phone delivery",
@@ -490,7 +807,7 @@
           "url": "https://msg91.com/privacy-policy"
         }
       ],
-      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+      "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     },
     {
       "affected_components": [
@@ -512,6 +829,13 @@
       "next_action": "Request the scoped vendor data-flow and configuration evidence. Review a regional alternative without changing the original residency requirement.",
       "references": [
         {
+          "checked_on": "2026-11-14",
+          "id": "razorpay-checkout",
+          "scope": "Checkout, server order/payment verification and webhook integration; merchant onboarding and country/product eligibility must be verified.",
+          "title": "Razorpay Standard Checkout integration",
+          "url": "https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/"
+        },
+        {
           "checked_on": "2026-11-13",
           "id": "razorpay-privacy",
           "scope": "Candidate regional payment provider privacy terms; not sufficient to approve every merchant, payment product or international data flow. Not selected by this release.",
@@ -519,34 +843,447 @@
           "url": "https://razorpay.com/privacy-policy/"
         }
       ],
-      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+      "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.6.0",
+  "rules_version": "0.8.0",
   "scenario_id": "P2",
-  "services_version": "0.6.0",
-  "stack": null,
-  "status": "infeasible",
-  "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",
+  "score_breakdown": [
+    {
+      "contribution": 4,
+      "criterion": "cost",
+      "driven_by": [
+        "budget.monthly_infra_usd",
+        "priorities.cost"
+      ],
+      "fit": 1,
+      "reason": "USD 241.96–1224.36/month versus budget 150: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "weight": 4
+    },
+    {
+      "contribution": 20,
+      "criterion": "time_to_market",
+      "driven_by": [
+        "team.languages",
+        "team.experience",
+        "timeline.mvp_weeks",
+        "priorities.time_to_market"
+      ],
+      "fit": 4,
+      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 3.00/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+      "weight": 5
+    },
+    {
+      "contribution": 12,
+      "criterion": "scalability",
+      "driven_by": [
+        "scale.users_at_launch",
+        "scale.users_12_months",
+        "scale.peak_concurrent_users",
+        "scale.workload",
+        "priorities.scalability"
+      ],
+      "fit": 4,
+      "reason": "Static delivery avoids application writes; embedded-writer and growth triggers are ordinal review heuristics, not published capacity limits.",
+      "weight": 3
+    },
+    {
+      "contribution": 9,
+      "criterion": "performance",
+      "driven_by": [
+        "scale.workload",
+        "scale.peak_concurrent_users",
+        "priorities.performance"
+      ],
+      "fit": 3,
+      "reason": "No latency SLA or measured framework throughput is credited; embedded-write concurrency is a review heuristic. Low-memory clients require measurement, not an assumed framework benchmark.",
+      "weight": 3
+    },
+    {
+      "contribution": 15,
+      "criterion": "maintainability",
+      "driven_by": [
+        "team.languages",
+        "team.has_devops",
+        "team.size",
+        "infrastructure.existing_systems",
+        "priorities.maintainability"
+      ],
+      "fit": 5,
+      "reason": "Operational burden 1/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+      "weight": 3
+    },
+    {
+      "contribution": 9,
+      "criterion": "security",
+      "driven_by": [
+        "priorities.security"
+      ],
+      "fit": 3,
+      "reason": "Baseline configured controls: 3; explicit reviewed tenant isolation: 4. No certification/audit credit is assigned.",
+      "weight": 3
+    }
+  ],
+  "services_version": "0.8.0",
+  "stack": {
+    "backend": {
+      "alternatives": [
+        {
+          "choice": "FastAPI",
+          "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
+        }
+      ],
+      "choice": "Django",
+      "driven_by": [
+        "project.type",
+        "team.languages",
+        "timeline.mvp_weeks",
+        "requirements.auth",
+        "requirements.realtime"
+      ],
+      "id": "django",
+      "justification": "Provides a python application runtime for the marketplace profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "layer": "backend",
+      "source_ids": [
+        "django"
+      ],
+      "tradeoffs": [
+        "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
+      ]
+    },
+    "database": {
+      "alternatives": [
+        {
+          "choice": "None",
+          "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+        }
+      ],
+      "choice": "PostgreSQL",
+      "driven_by": [
+        "project.type",
+        "requirements.auth",
+        "requirements.offline_support",
+        "infrastructure.existing_systems"
+      ],
+      "id": "pg",
+      "justification": "relational persistence via Cloud SQL for PostgreSQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "layer": "database",
+      "source_ids": [
+        "cloudsql-pg",
+        "pg"
+      ],
+      "tradeoffs": [
+        "Data model, backup policy, licensing and release/driver compatibility need explicit review."
+      ]
+    },
+    "frontend": {
+      "alternatives": [
+        {
+          "choice": "Angular",
+          "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+        }
+      ],
+      "choice": "Next.js + React Native",
+      "driven_by": [
+        "project.platforms",
+        "project.type",
+        "requirements.seo_critical",
+        "team.languages"
+      ],
+      "id": "next-native",
+      "justification": "Covers requested targets android, web with ssr rendering. Team languages: javascript, python, typescript. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "layer": "frontend",
+      "source_ids": [
+        "next",
+        "rn"
+      ],
+      "tradeoffs": [
+        "Client accessibility, security and device behavior still require implementation and testing."
+      ]
+    },
+    "hosting": {
+      "alternatives": [
+        {
+          "choice": "Amazon ECS / Fargate",
+          "why_not": "Best compatible complete plan using this option scored 62, below 69; other layers may also differ."
+        }
+      ],
+      "choice": "Google Cloud Run",
+      "driven_by": [
+        "infrastructure.cloud_preference",
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency",
+        "team.has_devops"
+      ],
+      "id": "cloudrun",
+      "justification": "Matches managed_cloud with provider gcp; reviewed primary compute region asia-south1. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "layer": "hosting",
+      "source_ids": [
+        "run",
+        "run-regions",
+        "run-ws"
+      ],
+      "tradeoffs": [
+        "No workload pricing/SLA is inferred; region, storage, backups, identity and networking require deployment review.",
+        "WebSocket clients must handle request timeouts/reconnection and cross-instance state."
+      ]
+    },
+    "supporting": [
+      {
+        "alternatives": [
+          {
+            "choice": "Jenkins",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "ci"
+        ],
+        "choice": "GitHub Actions",
+        "driven_by": [
+          "infrastructure.deployment_model"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Build/test/deploy with pinned dependencies, synthetic fixtures and controlled secrets; production data does not enter the build service.",
+        "layer": "ci_cd",
+        "placement": "build",
+        "service_id": "actions",
+        "source_ids": [
+          "ci"
+        ],
+        "tradeoffs": [
+          "Source and synthetic fixtures only; production data, secrets and personal data must never be sent to external build logs. Usage above included minutes is billed."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Amazon S3",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "storage"
+        ],
+        "choice": "Google Cloud Storage regional bucket",
+        "driven_by": [
+          "requirements.file_media_storage"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Private uploads use explicit regional storage, signed access and malware/content validation; preserve upload retries and retention policy. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "storage",
+        "placement": "host",
+        "service_id": "gcs",
+        "source_ids": [
+          "gcs"
+        ],
+        "tradeoffs": [
+          "Choose the same reviewed region, private access, signed URLs and in-region lifecycle/backup policy; do not use a default multi-region bucket."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Microsoft Entra ID",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "auth"
+        ],
+        "choice": "Keycloak",
+        "driven_by": [
+          "requirements.auth"
+        ],
+        "incremental_compute_units": 1,
+        "justification": "Authentication method phone_otp uses a separate Keycloak realm/schema and least-privilege database identity. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "auth",
+        "placement": "host",
+        "service_id": "keycloak",
+        "source_ids": [
+          "keycloak-db",
+          "keycloak-admin"
+        ],
+        "tradeoffs": [
+          "Separate realm/schema and restricted database credentials are required; pin supported driver/database versions. Email delivery needs a separately reviewed SMTP integration if enabled."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Twilio Verify",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "phone_otp"
+        ],
+        "choice": "MSG91 OTP",
+        "driven_by": [
+          "requirements.auth"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Phone delivery uses a provider OTP API; integrate a custom Keycloak authentication SPI rather than mislabeling TOTP as SMS.",
+        "layer": "auth",
+        "placement": "external",
+        "service_id": "msg91",
+        "source_ids": [
+          "msg91",
+          "msg91-privacy"
+        ],
+        "tradeoffs": [
+          "Regional API/Indian company status is not proof all data stays in India; DLT rules, contracts, fees and delivery need verification."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Prometheus with application instrumentation",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "observability"
+        ],
+        "choice": "OpenTelemetry Collector + structured logs",
+        "driven_by": [
+          "requirements.availability"
+        ],
+        "incremental_compute_units": 0.25,
+        "justification": "Collect redacted metrics/logs/traces with regional retention; on cloud use a configured host-provider regional log bucket, locally use provisioned persistent storage. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "observability",
+        "placement": "host",
+        "service_id": "otel",
+        "source_ids": [
+          "telemetry",
+          "gcp-logs",
+          "aws-logs"
+        ],
+        "tradeoffs": [
+          "Redact sensitive values, use host-region retention/routing, and provision a durable regional log backend. No personal data in tracing baggage."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "RabbitMQ",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "queue"
+        ],
+        "choice": "PostgreSQL transactional outbox + worker",
+        "driven_by": [
+          "requirements.offline_support",
+          "requirements.payments",
+          "requirements.realtime"
+        ],
+        "incremental_compute_units": 0.25,
+        "justification": "Application and outbox writes commit atomically; a separately budgeted worker retries idempotently and records dead letters.",
+        "layer": "queue",
+        "placement": "database",
+        "service_id": "outbox",
+        "source_ids": [
+          "pg-tx"
+        ],
+        "tradeoffs": [
+          "Outbox rows share the database bill. Worker retries must be idempotent; tune polling, retry/dead-letter policy and retention."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Meilisearch",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "search"
+        ],
+        "choice": "PostgreSQL full-text search",
+        "driven_by": [
+          "requirements.full_text_search"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Use reviewed database-native search before adding another operated search cluster.",
+        "layer": "search",
+        "placement": "database",
+        "service_id": "pg-search",
+        "source_ids": [
+          "pg-fts"
+        ],
+        "tradeoffs": [
+          "Indexing, tokenization and language/ranking quality must be tested; not a replacement for advanced search workloads."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Stripe Checkout",
+            "why_not": "India payment/UPI integration is proposed through Razorpay; Stripe merchant eligibility and data-flow scope require separate review."
+          }
+        ],
+        "capabilities": [
+          "payments"
+        ],
+        "choice": "Razorpay Checkout",
+        "driven_by": [
+          "requirements.payments"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Hosted checkout keeps raw payment credentials outside the application; verify webhook signatures, idempotency and merchant scope.",
+        "layer": "payments",
+        "placement": "external",
+        "service_id": "razorpay",
+        "source_ids": [
+          "razorpay-checkout",
+          "razorpay-privacy",
+          "razorpay-pricing"
+        ],
+        "tradeoffs": [
+          "Merchant onboarding, product eligibility, signed webhooks, idempotency, refunds/payouts and PCI scope require implementation. India-only end-to-end payment flows are not established by the vendor name."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Socket.IO",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "realtime"
+        ],
+        "choice": "ws",
+        "driven_by": [
+          "requirements.realtime"
+        ],
+        "incremental_compute_units": 1,
+        "justification": "WebSocket transport provides live updates; enforce authorization, reconnects, shared state and backpressure. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "realtime",
+        "placement": "host",
+        "service_id": "ws",
+        "source_ids": [
+          "ws"
+        ],
+        "tradeoffs": [
+          "Node sidecar with browser/native WebSocket clients; authentication, reconnect/backpressure and fan-out are custom integration work."
+        ]
+      }
+    ]
+  },
+  "status": "ok_with_warnings",
+  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 21 complete compatible plans; month-12 infrastructure planning band USD 241.96–1224.36/month.",
   "validation_errors": [],
   "warnings": [
-    {
-      "code": "COMPLETE_PLAN_COVERAGE_GAP",
-      "fields": [
-        "infrastructure",
-        "requirements",
-        "compliance"
-      ],
-      "message": "Resolve the listed service/contract/model evidence gaps or explicitly revise requirements; no constraint was silently relaxed.",
-      "severity": "critical"
-    },
     {
       "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
       "fields": [
         "infrastructure.data_residency",
         "requirements.auth"
       ],
-      "message": "MSG91 OTP does not have reviewed end-to-end india data-flow evidence; provider location/API endpoint is not sufficient.",
+      "message": "MSG91 OTP is proposed provisionally: end-to-end india data residency is NOT established. Verify tenant/merchant eligibility, processing, logs, backups, delivery partners and contracts before production. This warning is an explicit exception to verified residency, not approval.",
       "severity": "critical"
     },
     {
@@ -555,8 +1292,50 @@
         "infrastructure.data_residency",
         "requirements.payments"
       ],
-      "message": "Stripe Checkout does not have reviewed end-to-end india data-flow evidence; provider location/API endpoint is not sufficient.",
+      "message": "Razorpay Checkout is proposed provisionally: end-to-end india data residency is NOT established. Verify tenant/merchant eligibility, processing, logs, backups, delivery partners and contracts before production. This warning is an explicit exception to verified residency, not approval.",
       "severity": "critical"
+    },
+    {
+      "code": "AVAILABILITY_TARGET_UNVERIFIED",
+      "fields": [
+        "requirements.availability"
+      ],
+      "message": "99.9% is a target, not a product guarantee. The cost model provisions redundancy assumptions; service terms, failover and workload behavior still require verification.",
+      "severity": "warning"
+    },
+    {
+      "code": "BUDGET_EXCEEDED",
+      "fields": [
+        "budget.monthly_infra_usd"
+      ],
+      "message": "Infrastructure estimate USD 241.96–1224.36/month exceeds the USD 150 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
+      "severity": "warning"
+    },
+    {
+      "code": "COMPLIANCE_IMPLEMENTATION_REVIEW",
+      "fields": [
+        "compliance"
+      ],
+      "message": "The output proposes technical control designs only. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit. Implement controls and obtain scope-specific review.",
+      "severity": "warning"
+    },
+    {
+      "code": "LATENCY_TARGET_UNVERIFIED",
+      "fields": [
+        "requirements.p95_latency_ms"
+      ],
+      "message": "No measured evidence establishes the 500 ms p95 target; load-test the complete client/network/data path.",
+      "severity": "warning"
+    },
+    {
+      "code": "PRICE_AND_CAPACITY_ASSUMPTIONS",
+      "fields": [
+        "scale",
+        "budget.monthly_infra_usd",
+        "requirements"
+      ],
+      "message": "Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase.",
+      "severity": "warning"
     }
   ]
 }

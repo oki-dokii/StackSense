@@ -1,7 +1,7 @@
 {
   "checked_on": "2026-11-14",
   "command": "npm audit --json",
-  "package_lock_sha256": "093ca6a776060eb38c0c6ca57661a5e426c0a0ab5cf3db73b34abc8392f2a973",
+  "package_lock_sha256": "77951c2241b24c19c27baf6fcc73dff8a95eb774d0ff6738f4c1ec9d0ab85502",
   "registry_reported_vulnerabilities": {
     "info": 0,
     "low": 0,

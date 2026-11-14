@@ -33,5 +33,6 @@
       "sha256": "cbaf7c3f8f93f0c48cdeb3f0e1049979c4deb915c5143717acbd3d6b589d44a3"
     }
   ],
-  "scope_limit": "Focused local QA, not a complete screen-reader, accessibility or cross-browser certification. Fifteen standard overview captures and four Phase 6 feature captures are retained from the unchanged 0.6.0 recommendation checkpoint; these three Phase 7 captures show the new UI."
+  "scope_limit": "Focused local QA, not a complete screen-reader, accessibility or cross-browser certification. Fifteen standard overview captures and four Phase 6 feature captures are retained from the unchanged 0.6.0 recommendation checkpoint; these three Phase 7 captures show the new UI.",
+  "historical": true
 }

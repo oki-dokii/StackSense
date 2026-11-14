@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const cases = [
+  'provisional-p2',
   'desktop-workspace',
   'methodology',
   'import-error',

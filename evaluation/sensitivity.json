@@ -1,5 +1,6 @@
 [
   {
+    "cost_category": "infrastructure_and_operations",
     "field": "expected_requests_per_second",
     "high_cost": {
       "max": 2486.11,
@@ -17,6 +18,7 @@
     ]
   },
   {
+    "cost_category": "infrastructure_and_operations",
     "field": "monthly_egress_gb",
     "high_cost": {
       "max": 4510.29,
@@ -34,6 +36,7 @@
     ]
   },
   {
+    "cost_category": "infrastructure_and_operations",
     "field": "retention_months",
     "high_cost": {
       "max": 579.69,
@@ -51,15 +54,16 @@
     ]
   },
   {
+    "cost_category": "payment_and_message_activity",
     "field": "monthly_otp_count",
     "high_cost": {
-      "max": 920.44,
-      "min": 165.7
+      "max": 300,
+      "min": 20
     },
     "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
     "low_cost": {
-      "max": 623.44,
-      "min": 145.9
+      "max": 3,
+      "min": 0.2
     },
     "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
     "values": [
@@ -68,15 +72,16 @@
     ]
   },
   {
+    "cost_category": "payment_and_message_activity",
     "field": "monthly_payment_transactions",
     "high_cost": {
-      "max": 25538.13,
-      "min": 10137.12
+      "max": 25000,
+      "min": 10000
     },
     "high_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
     "low_cost": {
-      "max": 788.13,
-      "min": 237.12
+      "max": 250,
+      "min": 100
     },
     "low_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
     "values": [
@@ -85,15 +90,16 @@
     ]
   },
   {
+    "cost_category": "payment_and_message_activity",
     "field": "average_payment_value_usd",
     "high_cost": {
-      "max": 988.13,
-      "min": 337.12
+      "max": 450,
+      "min": 200
     },
     "high_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
     "low_cost": {
-      "max": 628.13,
-      "min": 157.12
+      "max": 90,
+      "min": 20
     },
     "low_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
     "values": [

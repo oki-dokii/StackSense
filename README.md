@@ -1,400 +1,276 @@
 # StackSense
 
-A local, deterministic technology stack recommendation engine for the Synergy ’26 challenge. Turn a project brief into a compatible, costed architecture with source-backed explanations—or a specific explanation of why the reviewed catalog cannot satisfy it.
+StackSense turns a software-project brief into an explained technology stack: frontend, backend, database, hosting and supporting services, with cost assumptions, alternatives and warnings. A deterministic local engine powers the CLI, API and browser workspace. It requires no account, API key or runtime LLM.
 
-StackSense evaluates the frontend, backend, database, hosting and supporting services together. Hard constraints filter candidates before explainable ranking. The same engine powers the CLI, loopback API and browser workspace; it makes no runtime LLM or external recommendation calls.
+[Report](output/pdf/Report_SohamBanerjee.pdf) · [Submission ZIP](deliverables/StackSense26_SohamBanerjee.zip) · [Public outputs](outputs/README.md) · [Design documentation](docs/README.md)
 
-**Latest work: Phase 11** improves keyboard route/section focus, validation-summary focus, JSON editor focus restoration and text contrast. Six React DOM tests and seven scoped browser snapshots cover the changes, including 320-pixel layouts. [Accessibility QA, evidence and limits](docs/PHASE_11.md).
+## Quick start
 
-## Contents
-
-- [What you can do](#what-you-can-do)
-- [Run](#run)
-- [Local workspace and API](#local-workspace-and-api)
-- [Decision Lab](#decision-lab)
-- [Complete recommendations](#complete-recommendations)
-- [Provisional core planning](#provisional-core-planning)
-- [Validation report](#validation-report)
-- [Development and checks](#development-and-checks)
-- [Current architecture and layout](#current-architecture-and-layout)
-- [How a recommendation is made](#how-a-recommendation-is-made)
-- [Reference workload and measurement](#reference-workload-and-measurement)
-- [Evidence freshness and change review](#evidence-freshness-and-change-review)
-- [Troubleshooting](#troubleshooting)
-- [Planning and research](#planning-and-research)
-- [Submission and credits](#submission-and-credits)
-
-## What you can do
-
-| Capability | Result |
-|---|---|
-| Guided brief or JSON import | Validated inputs with explicit defaults and field-level errors |
-| Single or batch evaluation | Complete recommendation or catalog/evidence-relative blockers |
-| Source and control review | References, assumptions, integration tasks and evidence gaps |
-| Cost exploration | Itemized USD bands, functional cost groups and usage sensitivity |
-| Alternative plans | Complete plans with visible scores, costs and operational differences |
-| Decision Lab | Actual priority reruns, full catalog tradeoffs and bounded functional experiments |
-| Decision export | Exact JSON plus a Proposed ADR and evidence passport |
-| Reference measurements | Reproducible local HTTP recipe with raw samples and acceptance checks |
-
-A stack recommendation is a decision aid. It does not certify compliance, guarantee a provider quote or validate a production SLA.
-
-**Application 0.7.0 adds the Decision Lab:** actual priority reruns, the full catalog tradeoff front, bounded functional experiments, and proposed ADR/evidence exports. The original recommendation engine and outputs remain 0.6.0; four public evidence blockers remain explicit. [Phase 7 implementation](docs/PHASE_7.md) · [Research and next features](docs/PHASE_7_RESEARCH.md). Owner review and online submission remain pending.
-
-[Download the submission ZIP](https://github.com/oki-dokii/StackSense/blob/main/deliverables/StackSense26_SohamBanerjee.zip) · [Read the report](https://github.com/oki-dokii/StackSense/blob/main/output/pdf/Report_SohamBanerjee.pdf) · [Owner checklist](docs/SUBMISSION.md)
-
-
-A [post-release repository comparison](docs/REPOSITORY_COMPARISON.md) identifies the remaining coverage and cost-calibration priorities; [backlog and acceptance gates](docs/IMPROVEMENT_BACKLOG.md). Three additional evidence-provenance checks now run in CI. Phase 6 implements the first improvements; remaining evidence/calibration tasks are tracked explicitly.
-
-## Run
-
-Prerequisites: **Node.js 22.17.0 or newer within Node 22, or Node 24 LTS**, and npm. Tested here with Node 22.17.1, npm 10.9.2, macOS arm64. GitHub CI exercises macOS, Ubuntu and Windows on Node 22/24; local setup timings are measured separately on macOS. `.nvmrc` records the tested runtime; exact dependencies are pinned in `package-lock.json`.
+Use **Node.js 22.17+ within Node 22, or Node 24**, and npm. Exact dependencies are pinned in `package-lock.json`; `.nvmrc` records the tested runtime.
 
 ```sh
+git clone https://github.com/oki-dokii/StackSense.git
+cd StackSense
 npm ci
 npm run build
 npm start
-# Open http://127.0.0.1:3000
 ```
 
-Run CLI evaluations independently:
+Open **http://127.0.0.1:3000**. Load a public sample, enter a guided brief or import JSON, then select **Recommend stack**. Drafts stay in memory. Editing inputs makes results stale and disables export until rerun. The server binds to IPv4 loopback and serves both the UI and API.
+
+Optional port: `STACKSENSE_PORT=3001 npm start` on macOS/Linux; PowerShell: `$env:STACKSENSE_PORT=3001; npm start`. For development, run `npm run dev:api` and `npm run dev:web` in separate terminals and open the printed Vite URL.
+
+## LLM-off switch
+
+**Use `--no-llm` to run with all LLM features disabled.** The flag is accepted as a no-op because StackSense makes no LLM calls in any mode. The same input produces the same stack with or without it.
 
 ```sh
-npm run recommend -- --input fixtures/public/P1.json --pretty
-npm run recommend:batch -- --input fixtures/public/scenarios.json --output-dir reports --pretty
-npm run validate -- --input fixtures/public/P1.json --pretty
-npm run validate:batch -- --input fixtures/public/scenarios.json --output-dir validation-reports --pretty
-npm run plan:core -- --input fixtures/public/P1.json --pretty
-npm run plan:core:batch -- --input fixtures/public/scenarios.json --output-dir core-plans --pretty
+npm run --silent recommend -- --input fixtures/public/P2.json --no-llm --pretty
+npm run --silent recommend:batch -- --input fixtures/public/scenarios.json --no-llm --output-dir reports --pretty
 ```
 
-Export a single report, or explicitly replace an existing report:
+The UI and API use the same deterministic engine and have no LLM configuration or paid-key dependency.
+
+## Recommendation behavior
+
+| Status | Meaning |
+|---|---|
+| `ok` | A stack is selected without non-informational warnings |
+| `ok_with_warnings` | A stack is selected with explicit risks, assumptions or critical provisional exceptions |
+| `infeasible` | No usable catalog design remains, for example an air-gap requiring an external payment/OTP service or a contradictory region policy |
+| `invalid_input` | Field errors prevent evaluation; stack is null |
+
+**A stack with critical warnings is provisional, not a production approval.** Known external vendors can be proposed when their end-to-end residency or contract scope is unverified. Those cases retain the requested compute/database region and explicitly disclose the external boundary that is not established. The output includes critical warnings, reduced-assurance assumptions and review tasks. It never presents an Indian vendor name, a regional host or a compliance badge as proof of end-to-end compliance.
+
+Actual deployment/provider incompatibilities, unavailable catalog integrations, air-gap conflicts and contradictory region policies remain blocking. Budget and timeline are soft constraints: an over-budget proposal is reported plainly rather than silently dropping features.
+
+### Public scenarios
+
+Generated by engine/rules/services **0.8.0**, core catalog **0.4.0**. Inputs are the unchanged supplied fixtures; no official expected stacks were supplied.
+
+| Input | Result | Selected core and main qualification |
+|---|---|---|
+| P1 DevFolio | `ok` | Astro / no backend / no database / Cloudflare Pages; static limits apply |
+| P2 FixIt Now | `ok_with_warnings` | Next.js + React Native / Django / PostgreSQL / Cloud Run; MSG91 and Razorpay require critical external-residency review |
+| P3 BoardRoom | `ok_with_warnings` | Angular / Fastify / PostgreSQL / Cloud Run; capacity, latency, availability and pricing remain planning assumptions |
+| P4 QuickCredit | `ok_with_warnings` | Next.js + React Native / Fastify / PostgreSQL / ECS Fargate Mumbai; external flows and lending/KYC/ledger/disbursal scope require critical review |
+| P5 PeopleDesk | `ok_with_warnings` | React / ASP.NET Core / PostgreSQL / Azure ASE Central India; direct existing Entra federation, critical tenant-geography review, separate SQL Server reuse review |
+| P6 KhetSurvey | `ok_with_warnings` | React Native / Django / PostgreSQL / Cloud Run; offline persistence/sync and critically qualified MSG91 phone delivery |
+
+The public batch exits **0** and exports all six reports: one `ok`, five `ok_with_warnings`. Critical warnings must still be reviewed. The explicit [air-gap conflict fixture](fixtures/airgap-conflict.json) demonstrates a genuine `infeasible` result and exit 3.
+
+### Costs and budget fit
+
+The headline `estimated_monthly_cost_usd` is **infrastructure and operations**, identified by `estimated_cost_scope`. Payment and SMS activity scenarios are additional: they appear in `cost_groups` and `cost_breakdown` but are excluded from the headline and infrastructure-budget scoring. Missing transaction/SMS volumes are disclosed assumptions, not known spending or free service. Activity scenarios have their own labeled sensitivity metrics.
+
+| Input | Month-12 infrastructure USD/month |
+|---|---:|
+| P1 | 0–0, static bundle within stated limits |
+| P2 | 241.96–1,224.36 |
+| P3 | 513.51–2,679.49 |
+| P4 | 1,028.89–3,882.82 |
+| P5 | 686.87–858.06 |
+| P6 | 81.42–508.55 |
+
+These are order-of-magnitude bands, not provider quotes or measured production capacity. The model no longer counts peak WebSocket capacity twice. It still exposes duty-cycle, sizing and rate uncertainty. P2 and P5 exceed their stated budgets even at the lower bound. License entitlements, merchant-specific extras, taxes, labor, domain registration and procurement require separate review. Supply documented usage extensions to replace assumed usage volumes; narrower estimates require better workload and tariff evidence, not arbitrary clipping to the budget.
+
+For a null-stack result, `estimate_status: not_estimated` makes the required 0–0 serialization a placeholder rather than a free architecture.
+
+## CLI
+
+Build once, then run:
 
 ```sh
-npm run validate -- --input fixtures/minimal.json --output validation-reports/minimal.json --pretty
-npm run validate -- --input fixtures/minimal.json --output validation-reports/minimal.json --force
+npm run --silent recommend -- --input fixtures/public/P1.json --pretty
+npm run --silent recommend:batch -- --input fixtures/public/scenarios.json --output-dir reports --pretty
+npm run --silent validate -- --input fixtures/public/P1.json --pretty
+npm run --silent plan:core -- --input fixtures/public/P1.json --pretty
+npm run --silent analyze -- --input fixtures/public/P3.json --format json
+npm run --silent analyze -- --input fixtures/public/P5.json --format adr
 ```
 
-When piping stdout into another program, suppress npm's own command banner:
+`validate` checks structure/defaults and emits a validation report. `plan:core` is a separate provisional core-only planning mode; it does not claim complete service/control approval. `recommend` emits the challenge output. `analyze` exports Decision Lab JSON or a Proposed ADR. Use `--help` for flags. `--force` explicitly replaces existing report files; by default they are refused. The CLI will not overwrite its input through direct or symlink aliases.
 
-```sh
-npm run --silent validate -- --input fixtures/minimal.json
-```
+| Exit | Meaning |
+|---|---|
+| 0 | Valid/core plan/selected recommendation, including provisional critically warned stacks |
+| 1 | Usage, filesystem or internal failure |
+| 2 | Invalid input; takes precedence in a mixed batch |
+| 3 | Infeasible/blocked plan; all batch reports are still exported |
 
-After building, `node /absolute/path/to/StackSense/dist/apps/cli/src/main.js --input /absolute/path/to/scenario.json` also works from another directory. Keep the complete repository, including `schemas/`, alongside `dist/`.
+Input limit: 2 MiB; batch size: 1–100; nesting limit: 32. Atomic writes are per file, not a transaction across an entire batch. After building, the compiled CLI also runs from another working directory with absolute paths; retain the repository's schemas/catalog alongside `dist`.
 
-## Local workspace and API
-
-After building, `npm start` serves both UI and API at **http://127.0.0.1:3000**. Optional `STACKSENSE_PORT` changes the port. Open the workspace, complete a guided brief or import JSON, then evaluate. It supports one scenario or batches of 1–100, all four statuses, source-backed explanations, blocker/integration checklists, complete-plan comparison, cost categories/sensitivity and exact JSON exports. Editing inputs marks results stale and disables export until rerun. Drafts stay in memory; reloading discards them.
-
-For development, run `npm run dev:api` and `npm run dev:web` in separate terminals, then open http://127.0.0.1:5173. No external recommendation requests or account/API keys are needed. See [API contract](docs/API_CLI.md), [Phase 4](docs/PHASE_4.md) and [actual screenshot](docs/evidence/phase4-report-desktop.jpg).
-
-### API examples
-
-The built server serves the UI and API on the same origin. These commands use a supplied fixture without changing it:
+## API
 
 ```sh
 curl -sS http://127.0.0.1:3000/api/health
 curl -sS http://127.0.0.1:3000/api/recommend \
-  -H 'Content-Type: application/json' --data-binary @fixtures/public/P3.json
+  -H 'Content-Type: application/json' --data-binary @fixtures/public/P2.json
 curl -sS http://127.0.0.1:3000/api/recommend/batch \
   -H 'Content-Type: application/json' --data-binary @fixtures/public/scenarios.json
 curl -sS http://127.0.0.1:3000/api/analyze \
   -H 'Content-Type: application/json' --data-binary @fixtures/public/P3.json
 ```
 
-An HTTP success response can contain an infeasible decision: inspect the report status. The API binds to loopback, validates host/origin and bounds payloads. Browser requests from unrelated origins are rejected. It is a local workspace, with no authentication or multi-user persistence. CLI process exit codes are described below; they are separate from HTTP status codes.
+Inspect the report status and warnings as well as the HTTP status. The local API validates host/origin, body size and JSON containers. It has no account or multi-user persistence. See [API and CLI contracts](docs/API_CLI.md).
+
+## Architecture
+
+```mermaid
+flowchart LR
+  Brief[Scenario JSON] --> CLI[CLI]
+  Brief --> Web[React workspace]
+  Web --> API[Loopback Fastify API]
+  CLI --> Contracts[Schema validation and normalization]
+  API --> Contracts
+  Contracts --> Search[Compatible whole-plan search]
+  Catalog[Versioned local catalog and evidence] --> Search
+  Search --> Services[Supporting services and control review]
+  Services --> Cost[Infrastructure and activity cost scenarios]
+  Cost --> Rank[Preference ranking and stable tie-breaks]
+  Rank --> Output[Explained JSON or explicit failure]
+```
+
+```mermaid
+flowchart TD
+  Constraint[Required feature or constraint] --> Known{Known compatible integration?}
+  Known -->|No| Block[Blocking coverage or compatibility failure]
+  Known -->|Yes| Conflict{Actual deployment or region conflict?}
+  Conflict -->|Yes| Block
+  Conflict -->|No| Evidence{External scope fully established?}
+  Evidence -->|No| Warn[Provisional stack with critical exception]
+  Evidence -->|Yes or configuration task| Candidate[Candidate design]
+  Warn --> Review[Explicit assumptions and pre-production review]
+  Candidate --> Rank[Rank complete candidate designs]
+  Review --> Rank
+```
 
 ```mermaid
 sequenceDiagram
   actor User
-  participant UI as React workspace
-  participant API as Loopback API
+  participant UI as Workspace
+  participant API as Local API
   participant Engine as Shared engine
-  participant Catalog as Reviewed local catalog
-  User->>UI: Enter brief or import JSON
-  UI->>API: POST /api/recommend
-  API->>Engine: Validate and evaluate
-  Engine->>Catalog: Read compatibility, controls and rates
-  Catalog-->>Engine: Versioned evidence and assumptions
-  Engine-->>API: Recommendation or explicit blockers
-  API-->>UI: Canonical JSON report
-  UI-->>User: Explanations, tasks and export
-  User->>UI: Edit brief
-  UI-->>User: Mark result stale; require rerun
+  User->>UI: Enter or import brief
+  UI->>API: Evaluate
+  API->>Engine: Validate and recommend
+  Engine-->>UI: Stack, costs, critical exceptions and review tasks
+  UI-->>User: Explained result and exact JSON export
+  User->>UI: Edit input
+  UI-->>User: Mark result stale and disable export
 ```
 
 ## Decision Lab
 
-Evaluate a brief, then choose **Analyze this decision**. Inspect preference stability and every completed catalog plan, or review bounded changed-project experiments for a blocked brief. Export analysis JSON and a **Proposed** ADR. Inspecting alternatives never changes the original recommendation; editing inputs invalidates exports.
-
-```sh
-npm run --silent analyze -- --input fixtures/public/P3.json --format json
-npm run --silent analyze -- --input fixtures/public/P6.json --format adr
-```
-
-The original result still controls CLI exit status (P6 exits 3). The analysis endpoint is `POST /api/analyze`, one scenario per request. [Methods, protected fields and limits](docs/PHASE_7.md).
+Select **Analyze this decision** after evaluation. The lab reruns one priority at a time, exposes every completed catalog candidate and its declared cost/operations/score tradeoff front, and exports JSON plus a **Proposed** ADR. Inspecting alternatives does not change the original recommendation.
 
 ```mermaid
 flowchart TD
-  Brief[Unchanged original brief] --> Baseline[Canonical baseline recommendation]
-  Baseline --> Usable{Usable plan?}
-  Usable -->|Yes| Sweep[25 actual baseline and priority runs]
-  Usable -->|Yes| Front[All complete catalog candidates]
-  Front --> Pareto[Cost upper bound, operated units, original score]
-  Usable -->|No| Trials[Eligible one or two functional edits on copies]
-  Trials --> Guard[Keep compliance and infrastructure constraints]
-  Guard --> Rerun[Run engine for every experiment]
-  Sweep --> Export[Analysis JSON and Proposed ADR]
-  Pareto --> Export
-  Rerun --> Export
-  Baseline --> Export
+  Original[Original recommendation] --> Usable{Stack selected?}
+  Usable -->|Yes| Sweep[25 baseline and one-priority runs]
+  Sweep --> Front[Full finite-catalog tradeoff front]
+  Usable -->|No| Experiments[Bounded functional edits on copies]
+  Experiments --> Protected[Keep infrastructure and compliance unchanged]
+  Front --> Export[Analysis JSON and Proposed ADR]
+  Protected --> Export
 ```
 
-The retained-winner count is a tested-setting count, not a confidence probability. The tradeoff front is limited to the reviewed catalog and declared objectives. Functional experiments describe different projects; disabling a required feature does not resolve the original brief. Proposed ADRs require human review and acceptance.
+Retained-winner counts are counts of tested settings, not confidence probabilities. The frontier is limited to catalog candidates and authored objectives. Functional experiments describe changed projects and do not automatically waive requirements. Critical warnings remain part of each baseline; a usable stack is not proof that all constraints are verified.
 
-## Complete recommendations
-
-`recommend` and `recommend:batch` export the organiser output format with `ok`, `ok_with_warnings`, `infeasible` or `invalid_input`. The engine checks required service compatibility/control scope for every compatible core candidate, estimates complete plans and then ranks them. No runtime network, API keys or LLM is required.
-
-The actual public batch returns one `ok`, one `ok_with_warnings` and four `infeasible` reports, with exit **3**. Every item exports as `<scenario_id>_output.json`; the manifest is `recommendation_manifest.json`. Inspect the [committed outputs](outputs/README.md) and [Phase 3 evidence](docs/PHASE_3.md). A no-plan cost of 0–0 means **not estimated**. P1's static assets genuinely have a zero-cost hosting band under its stated limits; P3's USD 875.51–7785.95 band includes explicit sizing/pricing assumptions and a budget-risk warning.
-
-The service catalog has 24 profiles, 53 primary-source records and two known EOL rules, alongside the 34-entry/46-source core catalog. Sources establish reviewed building blocks; configured controls, contracts, model fit and workload targets still require project-specific verification. The output is a design, not certification or a provider quote.
-
-## Provisional core planning
-
-The current core catalog has **34 entries and 46 official-source records**, including AWS Mumbai and a separately scoped Azure Central India isolated compute/PostgreSQL profile. The engine checks platform/rendering coverage, explicit provider/deployment constraints, reviewed primary regions, database drivers and deployment compatibility, then applies a deterministic whole-plan rubric. Inspect [Phase 2](docs/PHASE_2.md) and [catalog evidence](docs/CATALOG.md) for exact coverage and limitations.
-
-Core reports use `status: core_plan | blocked | invalid_input`, `scope: core_layers_only`, four selections where unblocked, source IDs, fit contributions, alternatives, assumptions, pending requirements and a rejection trace. They contain no fabricated USD cost estimate. Files use `_core_plan.json`.
-
-**The public core batch currently returns one provisional plan and five blocked reports, with exit 3.** Core mode deliberately withholds complete control approval; unsupported regional mappings can also block. Final recommendation mode uses the complete service/control model. All reports still export. `core_plan` is not approval of complete feature, budget, SLA or compliance feasibility.
-
-## Validation report
-
-```text
-schema_version       Validation-report format version
-status               valid | invalid_input
-normalized_input     Input with recorded defaults, or null when invalid
-assumptions[]        Every applied default and normalization interpretation
-warnings[]           Preserved unknown fields and unapplied extensions
-validation_errors[]  All discoverable field-level problems
-```
-
-These reports are separate from the challenge's recommendation output schema and use `_validation.json` filenames. They must not be submitted as `P1_output.json`–`P6_output.json`.
-
-CLI exit codes: **0** valid/core plan/usable recommendation, **2** invalid input, **3** blocked/infeasible plan, **1** usage/filesystem/internal error. A mixed batch prioritizes invalid input over blocked plans. Use `--help` for options. Input limit: 2 MiB; batch: 1–100 scenarios; nesting: 32 levels. Batch processes invalid items independently, sanitizes filenames, and writes `validation_manifest.json`. It refuses existing files unless `--force` is supplied, and refuses to overwrite the input through direct or symlink-alias paths. Writes are atomic per file, not a transaction across the whole batch. Malformed containers produce one root error on stdout.
-
-No API keys, environment variables, LLM features, or runtime network services are needed. `--no-llm` is accepted as a no-op. Dependencies need network access during the initial install.
-
-## Development and checks
+## Validation and reproducibility
 
 ```sh
-npm run generate:types   # regenerate TS types after editing schemas
-npm run check           # generated type freshness, type checking, tests
+npm run check
 npm run build
-npm run dev:validate -- --input fixtures/minimal.json --pretty
-npm run evaluate         # author-designed unseen-style and sensitivity evidence
-npm run verify:release   # verify all actual output snapshots
-node --test scripts/tests/evidence-bindings.test.mjs scripts/tests/calibration.test.mjs
-node benchmarks/reference/verify.mjs evaluation/calibration/reference-run-1
+npm run evaluate
+npm run verify:release
+node --test scripts/tests/evidence-bindings.test.mjs scripts/tests/calibration.test.mjs scripts/tests/evidence-review.test.mjs
 python3 scripts/check_docs.py
 ```
 
-Optional deeper documentation contract checks require Python's `jsonschema` package; see [schema guidance](schemas/README.md). Current verification: **241 application tests**, three capture-provenance checks, five in-memory workload checks and eight [PostgreSQL recipe checks](docs/PHASE_9.md) and fourteen [evidence-review checks](docs/PHASE_10.md) pass locally with the live DB enabled, with a successful build. The SQL suite explicitly skips its live-database case when not enabled. Current local API/cached setup timings are recorded there; these do not measure recommended-workload behavior.
+The application suite contains **262 tests**, including schema/engine invariants, actual CLI/API parity, focus behavior, original public cases and 12 region/auth/payment combinations. Native provenance/workload/evidence checks supplement it. GitHub CI runs the application on Windows, Linux and macOS with Node 22/24, plus a real PostgreSQL integration job. These OS tests are not a complete browser or screen-reader accessibility matrix.
 
-| Technology | Pinned version | Role |
-|---|---|---|
-| TypeScript | 5.9.3 | Shared contract/CLI code |
-| Ajv | 8.20.0 | Standard JSON Schema validation without coercion |
-| json-schema-to-typescript | 15.0.4 | Generate types from authoritative schemas |
-| tsx | 4.23.15 | Source-mode development CLI |
-| Vitest | 5.1.0 | Contract, component and real CLI subprocess tests |
-| jsdom | 27.4.0 | React DOM focus regressions; not browser layout or assistive-technology testing |
-| Fastify / @fastify/static | 5.12.8 / 10.1.10 | Loopback API and bundled asset serving |
-| React / react-dom | 19.3.1 | In-memory responsive workspace |
-| Vite | 8.3.8 | Browser build and development proxy |
-| @types/react / @types/react-dom | 19.3.0 | Browser TypeScript definitions |
-| @types/node | 22.20.5 | Node runtime types |
+The [source-evidence audit](docs/PHASE_10.md) and [accessibility checks](docs/PHASE_11.md) record their exact scope. The custom browser audit is limited to sampled leaf text/basic labels; it is not WCAG certification. Source retrieval never approves claims or changes catalog rules automatically.
 
-## Current architecture and layout
+## Reference measurements
+
+The repository includes isolated HTTP and Fastify/PostgreSQL workload recipes. They measure local reference behavior and do not validate the recommended production stacks, cloud billing or SLA.
+
+```sh
+node benchmarks/reference/run.mjs --out tmp/calibration/http-new-run
+node benchmarks/reference/verify.mjs tmp/calibration/http-new-run
+npm ci --prefix benchmarks/postgres
+# Requires the documented PostgreSQL 18.1 test binaries on macOS/Linux:
+node benchmarks/postgres/run.mjs --out tmp/calibration/sql-new-run
+node benchmarks/postgres/verify.mjs tmp/calibration/sql-new-run
+```
+
+See [HTTP methodology](docs/PHASE_8.md) and [SQL methodology](docs/PHASE_9.md). The PostgreSQL recipe has its own pinned dependencies; application setup does not need PostgreSQL. Its installed historical patch is a reproducibility choice, not a production version recommendation.
 
 ```mermaid
 flowchart LR
-  Input[Scenario JSON] --> CLI[File / batch CLI]
-  Input --> Web[React workspace]
-  Web --> API[Loopback Fastify API]
-  API --> Parse
-  CLI --> Parse[Bounded parsing]
-  Parse --> Contracts[Ajv and authoritative schemas]
-  Contracts --> Normalize[Defaults and provenance]
-  Normalize --> Report[Canonical validation report]
-  Normalize --> Planner[Core constraints and complete-plan ranking]
-  Catalog[Sourced local catalog] --> Planner
-  Planner --> Services[Service and control compatibility]
-  Services --> Costs[Cost bands and complete-plan ranking]
-  Costs --> Output[Recommendation or explicit evidence gap]
-  Planner --> Core[Optional provisional core report]
+  Profile[Explicit workload profile] --> Generator[Bounded load generator]
+  Generator --> Recipe[Isolated reference workload]
+  Recipe --> Samples[Raw samples and environment]
+  Samples --> Verify[Recompute metrics and verify hashes]
+  Verify --> Review[Review before any cost-model calibration]
 ```
+
+## Repository guide
 
 ```text
-apps/cli/src/              Bounded file IO, safe output, CLI adapter
-apps/api/src/              Loopback HTTP API and same-origin web serving
-apps/web/src/              React guided brief, imports, results and exports
-packages/contracts/src/    Generated types, validation, normalization, canonical JSON
-packages/catalog/          Reviewed source/product/deployment catalog and integrity checks
-packages/engine/src/       Features, constraints, complete-plan search, services, costs, explanations
-schemas/                   Authoritative organiser input/output contracts
-fixtures/public/           Supplied array and six individual scenarios
-tests/                     Contract, engine, actual CLI/API and release invariant checks
-benchmarks/reference/      In-memory HTTP reference and evidence verifier
-benchmarks/postgres/       Optional Fastify/SQL recipe, isolated lockfile and scheduled load
-evaluation/                Actual outputs, cases, API timings and raw workload evidence
-output/pdf/                Verified final report
-deliverables/              Ready-to-review submission ZIP
-scripts/                   Type generation, bounded evidence review and release checks
-docs/                      Product, design, research and implementation evidence
-dist/                      Generated build; ignored by Git
+apps/cli/                 Single/batch file adapters and safe exports
+apps/api/                 Loopback API and same-origin asset serving
+apps/web/                 Guided brief, results, critical warnings and Decision Lab
+packages/contracts/       Validation, normalization and generated schema types
+packages/catalog/         Core/service profiles, sources, pricing and lifecycle rules
+packages/engine/          Compatibility, completion, controls, costs and ranking
+schemas/                  Authoritative JSON contracts
+fixtures/public/          Original six supplied scenarios
+outputs/                  Generated public recommendations
+tests/                    Application regression tests
+evaluation/               Actual outputs, measurements and scoped browser evidence
+benchmarks/               Optional isolated reference recipes
+scripts/                  Evaluation, evidence maintenance, report and packaging tools
+docs/                     Requirements, research, decisions and implementation records
+output/pdf/               Final project report
+deliverables/             Verified submission archive
 ```
 
-API/UI boundaries and remaining evidence work: [TRD](docs/TRD.md). Core selection uses local rules, hard constraints, compatible-plan search and explainable ordinal ranking. No LLM will choose the stack.
-
-## How a recommendation is made
-
-```mermaid
-flowchart TD
-  Raw[Scenario JSON] --> Valid{Schema and bounds valid?}
-  Valid -->|No| Invalid[invalid_input with field errors]
-  Valid -->|Yes| Defaults[Normalize and record defaults]
-  Defaults --> Constraints[Extract hard requirements]
-  Constraints --> Core[Enumerate compatible core combinations]
-  Core --> Complete[Attach required service and control profiles]
-  Complete --> Feasible{Any complete candidate?}
-  Feasible -->|No| Blocked[infeasible with evidence and review tasks]
-  Feasible -->|Yes| Cost[Estimate itemized monthly cost bands]
-  Cost --> Rank[Rank complete plans with explicit priorities]
-  Rank --> Result[Winner, alternatives, assumptions and warnings]
-```
-
-Hard constraints include supported deployment/provider mappings, compatibility and reviewed control/region scope. A high preference score cannot compensate for a failed hard constraint. Unknown prices, capacity proxies and external-service scope are disclosed rather than silently treated as proof. Cost sensitivity holds the selected architecture fixed; it does not promise the same selection under a different project brief.
-
-The six public fixtures are supplied inputs, not a training set or official expected answers:
-
-| Fixture | Current result | Interpretation |
-|---|---|---|
-| P1 | `ok` | Astro static assets on Cloudflare Pages; genuine zero-cost band within stated limits |
-| P2 | `infeasible` | Required phone/payment scope lacks sufficient end-to-end India evidence |
-| P3 | `ok_with_warnings` | Angular / Fastify / PostgreSQL / Cloud Run; USD 875.51–7785.95 monthly band |
-| P4 | `infeasible` | Required service/control evidence remains incomplete |
-| P5 | `infeasible` | Existing Entra tenant scope remains unresolved despite the scoped Azure India core profile |
-| P6 | `infeasible` | Required phone-login evidence remains incomplete |
-
-Inspect each [output](outputs/README.md) for its full reasons. `infeasible` is relative to this catalog and its reviewed evidence. For no-plan outputs, `estimate_status: not_estimated` and the required 0–0 serialization are not a zero-cost architecture. Scores are authored ordinal heuristics; cost bands are estimates.
-
-## Reference workload and measurement
-
-There are three distinct measurement families: [StackSense API timing](evaluation/performance.json), [Decision Lab timing](evaluation/decision-lab-results.json), and the [reference HTTP workload](evaluation/calibration/reference-run-1/summary.json). None measures a deployed recommended production stack.
-
-```sh
-# No build or API server is needed. Requires the supported Node runtime.
-# Choose a new output directory for every run.
-node benchmarks/reference/run.mjs --out tmp/calibration/my-run
-node benchmarks/reference/verify.mjs tmp/calibration/my-run
-```
-
-The runner launches its own child server on an ephemeral loopback port, validates every response and saves all measured requests as JSONL. It uses 10,000 in-memory products, an 80/20 read/search schedule, 50 warmups, concurrency 1/4/16, and a 2-second or 20,000-sample bound per stage. The profile declares p95 ≤100 ms, zero errors and at least 100 completed requests as author-defined smoke gates. A failed gate returns process exit 1 and preserves the evidence. A verifier success means integrity passed; inspect `passed` separately for metric acceptance.
-
-```mermaid
-flowchart LR
-  Profile[Bounded checked-in profile] --> Generator[Closed-loop generator]
-  Generator --> Child[Separate local Node HTTP process]
-  Child --> Data[10000 in-memory products]
-  Child --> Responses[Response bodies]
-  Responses --> Check[Validate and time full responses]
-  Check --> Raw[Raw JSONL samples]
-  Raw --> Summary[Metrics, thresholds and hashes]
-  Source[Source hashes and host metadata] --> Summary
-  Summary --> Verify[Independent evidence verifier]
-  Raw --> Verify
-  Verify --> Review[Human review before future model changes]
-```
-
-The committed run completed **56,687 requests with zero errors**. Its p95 values were **0.225 / 0.403 / 2.445 ms** at concurrency 1/4/16. The last two stages hit the sample cap early; exact elapsed times are retained. These are short same-host, closed-loop observations, with no database, auth, TLS, external network or cloud deployment. They do not determine monthly cost, sustained capacity or SLA. See [Phase 8 methodology, limits and next calibration gate](docs/PHASE_8.md).
-
-## Evidence freshness and change review
-
-```mermaid
-flowchart LR
-  Sources[Official product and price sources] --> Review[Review date, scope and assumptions]
-  Review --> Catalog[Versioned local catalog and rules]
-  Catalog --> Test[Contracts and scenario regression tests]
-  Test --> Outputs[Reproducible recommendation outputs]
-  Outputs --> Lab[Decision analysis and input digest]
-  Outputs --> Release[Reviewed report and source archive]
-  Lab --> Release
-  Measurements[Scoped raw measurements] --> Human[Human calibration review]
-  Human -. future approved mapping .-> Catalog
-```
-
-Run an offline audit against an explicit date, inspect source consumers and public-report mentions, or compare an edited catalog copy before changing rules:
-
-```sh
-node scripts/evidence.mjs audit --as-of 2026-11-14 --out tmp/evidence/audit-1
-node scripts/evidence.mjs compare --base packages/catalog/data --candidate tmp/catalog-candidate --as-of 2026-11-14 --out tmp/evidence/proposal-1
-node scripts/evidence/verify.mjs
-```
-
-The candidate directory must contain copied `catalog.json` and `services.json` files. [Phase 10](docs/PHASE_10.md) includes copy commands, optional URL capture/comparison, reminder policy and exit codes. Pricing review reminders use 14 days; region/control/lifecycle use 30 days; other capabilities use 90 days, with the shortest applicable interval winning. These are author-defined reminders, not evidence expiry dates.
-
-The [committed audit](evaluation/evidence-review/current/report.md) covers **99 sources** with no due/future dates as of its declared 14 November 2026 date. Five guidance sources have no structured catalog consumer and are explicitly distinguished from unused sources. A [synthetic tariff proposal](evaluation/evidence-review/synthetic-tariff-proposal/report.json) demonstrates before/after tracing; it is not an observed price update. Four real HTTP observations of two lifecycle URLs retain headers and byte hashes only; their identical representations remain unreviewed. There is no apply command or automatic date reset.
-
-Network research does not automatically change selection rules. The reviewed report is the Phase 7 report; Phase 8–11 measurements and maintenance records are documented separately and included in the source archive. No independent expert acceptance or online submission is implied by a passing build.
-
-### Database-backed reference recipe
-
-The optional PostgreSQL recipe uses isolated dependencies and a disposable native database cluster. It requires a non-root macOS/Linux user and PostgreSQL 18.1 binaries. It does not connect to an existing database. Application setup above does not require PostgreSQL.
-
-```sh
-npm ci --prefix benchmarks/postgres
-# postgres/initdb must be on PATH, or set STACKSENSE_PG_BIN to their directory.
-node benchmarks/postgres/run.mjs --out tmp/calibration/postgres-my-run
-node benchmarks/postgres/verify.mjs tmp/calibration/postgres-my-run
-node --test benchmarks/postgres/tests.mjs
-```
-
-The recipe offers 100 and 300 requests/second independently of response completion, repeats each rate three times, and records every dropped slot. It validates point reads, indexed searches and committed inserts. The committed run issued all **3,600 scheduled requests**, with **zero errors/drops**, **2.817–4.659 ms p95** scheduled-to-completion latency, and **390 committed inserts including warmup**, verified by a fresh connection. This short local run does not measure cloud resources or billing. [Method, diagram, CI coverage, version caveats and remaining gate](docs/PHASE_9.md).
-
-## Accessibility QA
-
-Navigation now moves focus to the destination heading or input section and updates the page title. Invalid results prioritize the error summary. The JSON editor restores focus when closed, and muted text is darker. Focus outlines remain visible; charts and wide tables retain keyboard-scrollable regions.
-
-```sh
-npx vitest run tests/web-accessibility.test.ts
-node scripts/accessibility/verify.mjs
-```
-
-[Phase 11](docs/PHASE_11.md) records six component tests and seven actual browser snapshots at desktop/320-pixel widths. Its custom solid-background leaf-text audit recorded no findings in the saved views. This is limited QA, not WCAG certification or screen-reader testing; the remaining checks are listed there.
+Start with [PRD](docs/PRD.md), [SRS](docs/SRS.md), [TRD](docs/TRD.md), [decision engine](docs/DECISION_ENGINE.md), [workflows](docs/WORKFLOWS.md), [research review](docs/RESEARCH_REVIEW.md) and [engine walkthrough](docs/ENGINE_WALKTHROUGH.md).
 
 ## Troubleshooting
 
-| Symptom | Action |
+| Problem | Action |
 |---|---|
-| `dist` entry point missing | Run `npm run build` before `npm start` or compiled CLI commands |
-| Unsupported Node or install/build errors | Use `.nvmrc` or supported Node 24, then `npm ci`; do not replace the lockfile casually |
-| Port 3000 already in use | Stop the existing process or run `STACKSENSE_PORT=3001 npm start` on macOS/Linux; PowerShell: `$env:STACKSENSE_PORT=3001; npm start` |
-| Browser origin rejected | Open the loopback workspace directly; use the Vite proxy for development |
-| Result export disabled | Rerun evaluation after editing input |
-| Public batch exits 3 | Expected: four public inputs currently have explicit infeasibility results; inspect exported reports |
-| Existing output refused | Choose a new destination; CLI report commands also support explicit `--force` |
-| Benchmark gate fails | Inspect `summary.json` checks and raw samples; rerun into a new directory and compare the recorded host/profile |
-| Benchmark verifier rejects changed sources | Preserve historical evidence with its source revision; create a fresh run for changed workload code |
-| Python schema check lacks `jsonschema` | Follow [schema tooling guidance](schemas/README.md); core Node build does not require Python |
+| Missing `dist` entry point | Run `npm run build` |
+| Install/build fails | Check Node version and run `npm ci` with the committed lockfile |
+| Port already used | Stop the prior server or set `STACKSENSE_PORT` |
+| Origin rejected | Open the same-origin loopback workspace; use Vite's development proxy |
+| Export disabled | Rerun after editing or apply/cancel pending JSON edits |
+| CLI exits 3 | Inspect its genuine deployment/coverage conflict; public fixtures now exit 0 |
+| Source/visual evidence check fails | Regenerate and review affected evidence after an intentional code/catalog change |
+| Python schema checks need `jsonschema` | Follow [schema guidance](schemas/README.md); Python is not required to run the application |
 
-## Planning and research
+## Credits
 
-Start with [plan.md](plan.md), the [phase tracker](docs/PHASES.md), and [documentation index](docs/README.md). Product/design contracts: [PRD](docs/PRD.md), [SRS](docs/SRS.md), [UI/UX](docs/UI_UX.md), [workflows](docs/WORKFLOWS.md). Research: [annotated review](docs/RESEARCH_REVIEW.md), [sources](docs/research/sources.json), [decisions](docs/DECISIONS.md).
+| Library, dataset or API | Use |
+|---|---|
+| Node.js / npm / TypeScript 5.9.3 / tsx 4.23.15 | Runtime, locked dependency installation, compilation and source-mode development |
+| Ajv 8.20.0 / json-schema-to-typescript 15.0.4 | JSON Schema validation and generated TypeScript contracts |
+| Fastify 5.12.8 / @fastify/static 10.1.10 | Loopback HTTP API and bundled web assets |
+| React / react-dom 19.3.1 / Vite 8.3.8 | Browser workspace and production build |
+| Vitest 5.1.0 / jsdom 27.4.0 | Engine/adapter/component tests; jsdom is not a layout or assistive-technology test |
+| @types/node / @types/react / @types/react-dom | Runtime and UI type declarations; exact versions are in the lockfile |
+| pg 8.23.1 / PostgreSQL | Optional isolated database workload and SQL integration tests |
+| Python / ReportLab / pypdf / Poppler | Report authoring, extraction, rendering and archive verification |
+| GitHub Actions checkout/setup-node | Pinned CI actions for OS/Node and PostgreSQL checks |
+| Supplied problem statement and public scenario JSON | Challenge requirements and evaluation inputs; no expected-stack labels were supplied |
+| Official vendor documentation and public pricing APIs | Reviewed knowledge-base facts and reference rates, listed in [source registers](docs/REFERENCES.md); recommendation execution does not call vendors |
+| OpenAI Codex; Sites and PDF skills | Development/research/documentation assistance, recorded in [AI assistance](docs/AI_ASSISTANCE.md). No runtime LLM stack selection |
 
-## Submission and credits
+Transitive dependencies and integrity hashes are recorded in the application and optional benchmark lockfiles. Research papers and other third-party materials are attributed in the source registers and report; their experiments were not reproduced unless explicitly documented.
 
-The report, 20 genuine public/evaluation outputs, screenshot evidence, local setup/API measurements and submission ZIP are prepared. Owner review, Drive access verification and Unstop submission remain required. Broader regional/vendor evidence, deployed-workload cost calibration and independent expert validation remain limitations. See [submission checklist](docs/SUBMISSION.md). Deadline in the supplied brief: **15 November 2026, 23:59 IST**; do not modify the submitted Drive folder afterward.
+## Submission
 
-Requirements come from user-supplied `StackSense_Problem_Statement.pdf` v1.0; public fixtures from `stacksense_public_scenarios.json`. No official expected stacks were provided. All installed third-party tools are listed above and locked in `package-lock.json`; source links/research and AI assistance are recorded in [references](docs/REFERENCES.md) and [AI assistance](docs/AI_ASSISTANCE.md). Participant review/ownership remains required by the challenge.
+The ZIP contains source, six generated public outputs, the project report and a SHA-256 manifest. [Submission instructions](docs/SUBMISSION.md) describe the organiser's required folder/link format. The deadline in the supplied brief is **15 November 2026, 23:59 IST**; the submitted folder must not change afterward.

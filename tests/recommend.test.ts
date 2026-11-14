@@ -40,11 +40,11 @@ describe('complete recommendation contracts', () => {
       s,
       [
         'ok',
-        'infeasible',
         'ok_with_warnings',
-        'infeasible',
-        'infeasible',
-        'infeasible',
+        'ok_with_warnings',
+        'ok_with_warnings',
+        'ok_with_warnings',
+        'ok_with_warnings',
       ][i],
     ]),
   )('evaluates supplied %s through generic rules', (_, s, status) => {
@@ -188,9 +188,9 @@ describe('required services and data boundaries', () => {
       r.stack!.supporting!.find((x) => x.service_id === 'msg91')!.justification,
     ).toContain('custom Keycloak');
   });
-  it('blocks India OTP when vendor end-to-end residency is not reviewed', () => {
+  it('flags provisional India OTP when vendor residency is unverified', () => {
     const r = recommend(full(1));
-    expect(r.stack).toBeNull();
+    expect(r.stack).not.toBeNull();
     expect(codes(r)).toContain('EXTERNAL_RESIDENCY_UNVERIFIED');
   });
   it('blocks social identity under an air gap', () => {
@@ -217,7 +217,11 @@ describe('required services and data boundaries', () => {
     };
     raw.requirements = { auth: 'enterprise_sso' };
     const r = recommend(raw);
-    expect(r.status).toBe('infeasible');
+    expect(r.status).toBe('ok_with_warnings');
+    expect(
+      r.warnings.find((w) => w.code === 'EXISTING_IDENTITY_SCOPE_UNVERIFIED')
+        ?.severity,
+    ).toBe('critical');
     expect(codes(r)).toContain('EXISTING_IDENTITY_SCOPE_UNVERIFIED');
   });
   it('requires executed BAA evidence for HIPAA cloud services', () => {
@@ -225,7 +229,10 @@ describe('required services and data boundaries', () => {
     raw.requirements = { auth: 'email_password' };
     raw.compliance = ['hipaa'];
     const r = recommend(raw);
-    expect(r.status).toBe('infeasible');
+    expect(r.status).toBe('ok_with_warnings');
+    expect(
+      r.warnings.find((w) => w.code === 'BAA_EVIDENCE_REQUIRED')?.severity,
+    ).toBe('critical');
     expect(codes(r)).toContain('BAA_EVIDENCE_REQUIRED');
   });
   it('records GDPR/ISO control designs without claiming certification', () => {
@@ -294,10 +301,9 @@ describe('cost envelopes and warnings', () => {
   it('totals priced resources in integer cents with outward line rounding', () => {
     const r = recommend(full(2));
     for (const bound of ['min', 'max'] as const) {
-      const cents = r.cost_breakdown.reduce(
-        (sum, x) => sum + Math.round(x.monthly_usd[bound] * 100),
-        0,
-      );
+      const cents = r.cost_breakdown
+        .filter((x) => x.category !== 'payments' && x.id !== 'otp-delivery')
+        .reduce((sum, x) => sum + Math.round(x.monthly_usd[bound] * 100), 0);
       expect(Math.round(r.estimated_monthly_cost_usd[bound] * 100)).toBe(cents);
     }
     expect(r.estimated_monthly_cost_usd.min).toBeGreaterThan(0);

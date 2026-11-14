@@ -1,6 +1,6 @@
 {
-  "version": "0.6.0",
-  "reviewed_on": "2026-11-13",
+  "version": "0.8.0",
+  "reviewed_on": "2026-11-14",
   "sources": [
     {
       "id": "keycloak-db",
@@ -372,6 +372,20 @@
       "url": "https://prices.azure.com/api/retail/prices",
       "checked_on": "2026-11-13",
       "scope": "Checked exact primary Linux I1 v2 consumption meter in centralindia: USD 0.395/instance-hour. Snapshot in docs/research/azure-ase-price.json; no customer discount/tax or capacity guarantee."
+    },
+    {
+      "id": "razorpay-checkout",
+      "title": "Razorpay Standard Checkout integration",
+      "url": "https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/",
+      "checked_on": "2026-11-14",
+      "scope": "Checkout, server order/payment verification and webhook integration; merchant onboarding and country/product eligibility must be verified."
+    },
+    {
+      "id": "razorpay-pricing",
+      "title": "Razorpay pricing",
+      "url": "https://razorpay.com/pricing/",
+      "checked_on": "2026-11-14",
+      "scope": "Published domestic pricing starting point; payment mix, GST, payouts and merchant terms require an exact quote. No USD conversion assumed."
     }
   ],
   "services": [
@@ -898,6 +912,47 @@
         "Configure the account in the selected compute region, private access, signed upload URLs and local redundancy; disable geo-redundancy and global copy rules.",
         "Validate retention, malware scanning, request operations and recovery separately; LRS alone is not a disaster-recovery guarantee."
       ]
+    },
+    {
+      "id": "razorpay",
+      "layer": "payments",
+      "choice": "Razorpay Checkout",
+      "capability": "payments",
+      "placement": "external",
+      "source_ids": [
+        "razorpay-checkout",
+        "razorpay-privacy",
+        "razorpay-pricing"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Stripe Checkout",
+      "why_not": "India payment/UPI integration is proposed through Razorpay; Stripe merchant eligibility and data-flow scope require separate review.",
+      "tradeoffs": [
+        "Merchant onboarding, product eligibility, signed webhooks, idempotency, refunds/payouts and PCI scope require implementation. India-only end-to-end payment flows are not established by the vendor name."
+      ]
+    },
+    {
+      "id": "entra",
+      "layer": "auth",
+      "choice": "Microsoft Entra ID (tenant OIDC/SAML integration)",
+      "capability": "auth",
+      "placement": "external",
+      "source_ids": [
+        "entra-oidc",
+        "entra-residency"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Keycloak identity broker",
+      "why_not": "A separate operated identity broker is unnecessary when the application can federate directly with the existing Entra tenant.",
+      "tradeoffs": [
+        "Register the application in the existing tenant, validate issuer/audience/signatures, map groups/roles and verify license and conditional-access requirements. Tenant identity geography is separate from application hosting. Existing license entitlement is not assumed."
+      ]
     }
   ],
   "frameworks": [
@@ -1158,6 +1213,22 @@
         "azure-ase-retail"
       ],
       "basis": "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
+    },
+    "razorpay_fraction": {
+      "min": 0.02,
+      "max": 0.03,
+      "source_ids": [
+        "razorpay-pricing"
+      ],
+      "basis": "Illustrative 2\u20133% platform-fee scenario from the domestic pricing starting point; not a merchant quote. GST, premium methods, payouts and FX are excluded; no INR/USD conversion is inferred."
+    },
+    "razorpay_fixed": {
+      "min": 0,
+      "max": 0,
+      "source_ids": [
+        "razorpay-pricing"
+      ],
+      "basis": "No separate fixed per-transaction fee modeled for standard domestic checkout; other merchant/product/settlement fees require a quote and are excluded, not assumed universally free."
     }
   },
   "lifecycle": [

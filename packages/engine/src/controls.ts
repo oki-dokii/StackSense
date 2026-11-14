@@ -50,11 +50,13 @@ export function controlPlan(
       ) ||
         support.components.some((item) => item.placement === 'external'))
     )
-      block(
-        'BAA_EVIDENCE_REQUIRED',
-        'HIPAA cloud/external services need eligible-service scope and executed BAA evidence; no such agreement is assumed by this catalog.',
-        ['compliance', 'infrastructure.deployment_model'],
-      );
+      result.warnings.push({
+        code: 'BAA_EVIDENCE_REQUIRED',
+        severity: 'critical',
+        message:
+          'Provisional design only: HIPAA cloud/external services require eligible-service scope and an executed BAA before handling health data. Neither is assumed or approved by this recommendation.',
+        fields: ['compliance', 'infrastructure.deployment_model'],
+      });
     if (label === 'hipaa' && s.requirements.auth === 'none')
       block(
         'HEALTH_IDENTITY_SCOPE_REQUIRED',

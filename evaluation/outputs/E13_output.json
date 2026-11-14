@@ -469,8 +469,9 @@
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.6.0",
+  "engine_version": "0.8.0",
   "estimate_status": "not_estimated",
+  "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
     "assumptions": [
       "No estimate: 0–0 is a required serialization placeholder, not a zero-cost deployment."
@@ -498,7 +499,7 @@
       "kind": "evidence_gap",
       "next_action": "Review the rejected constraints against the scoped catalog; add reviewed coverage and rerun the unchanged input.",
       "references": [],
-      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+      "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     },
     {
       "affected_components": [
@@ -515,12 +516,12 @@
       "kind": "evidence_gap",
       "next_action": "Review the rejected constraints against the scoped catalog; add reviewed coverage and rerun the unchanged input.",
       "references": [],
-      "resolution_gate": "This checklist does not approve a design. Add scoped reviewed evidence/rules and rerun; missing evidence cannot be cleared by a free-text assertion."
+      "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.6.0",
+  "rules_version": "0.8.0",
   "scenario_id": "E13",
-  "services_version": "0.6.0",
+  "services_version": "0.8.0",
   "stack": null,
   "status": "infeasible",
   "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",

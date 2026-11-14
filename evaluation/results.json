@@ -1,5 +1,5 @@
 {
-  "case_set_sha256": "3d17707b1c1214a25ad9441ee1a88344ec341e9a2e54d09ed1347c8fb8a2e3ed",
+  "case_set_sha256": "8e63aeb5cfac709166f7d4f295e77146e5625059775773759de48589f91f5303",
   "engine_version": "0.6.0",
   "records": [
     {
@@ -21,8 +21,8 @@
     {
       "category": "Contradictions",
       "cost": {
-        "max": 47771.68,
-        "min": 6749.36
+        "max": 20472.54,
+        "min": 2957.81
       },
       "id": "E03",
       "selected_plan_id": "modular_monolith|flutter|aspnet|pg|cloudrun|unspecified",
@@ -49,20 +49,26 @@
     },
     {
       "category": "Regulatory constraints",
-      "cost": null,
+      "cost": {
+        "max": 620.44,
+        "min": 145.7
+      },
       "id": "E05",
-      "selected_plan_id": null,
-      "status": "infeasible",
+      "selected_plan_id": "modular_monolith|angular|aspnet|mysql|cloudrun|unspecified",
+      "status": "ok_with_warnings",
       "warnings": [
         "BAA_EVIDENCE_REQUIRED",
-        "COMPLETE_PLAN_COVERAGE_GAP"
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "BUDGET_RANGE_RISK",
+        "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "PRICE_AND_CAPACITY_ASSUMPTIONS"
       ]
     },
     {
       "category": "Existing systems",
       "cost": {
-        "max": 620.44,
-        "min": 145.7
+        "max": 510.69,
+        "min": 134.27
       },
       "id": "E06",
       "selected_plan_id": "modular_monolith|react|aspnet|mysql|cloudrun|unspecified",

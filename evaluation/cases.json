@@ -176,7 +176,7 @@
       "scenario_id": "E05"
     },
     "expect": {
-      "status": "infeasible",
+      "status": "ok_with_warnings",
       "warnings": [
         "BAA_EVIDENCE_REQUIRED"
       ]
@@ -231,7 +231,7 @@
         "EXISTING_SYSTEM_REVIEW"
       ],
       "services": [
-        "keycloak"
+        "entra"
       ]
     }
   },

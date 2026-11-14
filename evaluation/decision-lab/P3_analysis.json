@@ -1,6 +1,6 @@
 {
-  "adr_markdown": "# Proposed architecture decision\n\n**Status: Proposed — owner review required.**\n\nEngine 0.6.0; catalog 0.4.0; services 0.6.0; analysis 0.1.0.\nInput SHA-256: c8964c0fb813d6e0be335803dffe6ec33754d77ca3121e5933e2aa41daf61f09.\n\n## Original result\n\nmodular\\_monolith recommendation selected from 168 complete compatible plans; month\\-12 infrastructure planning band USD 875\\.51–7785\\.95/month\\.\nResult: ok_with_warnings.\n\n- frontend: Angular — Covers requested targets web with spa rendering\\. Team languages: go, typescript\\. Selected after supporting\\-service compatibility, data\\-flow/control checks and whole\\-plan cost scoring\\.\n- backend: Fastify — Provides a node application runtime for the realtime\\_collab profile\\. Language familiarity and delivery complexity were compared across compatible whole plans\\. Selected after supporting\\-service compatibility, data\\-flow/control checks and whole\\-plan cost scoring\\.\n- database: PostgreSQL — relational persistence via Cloud SQL for PostgreSQL\\.  Database drivers and host deployment were checked as a combination\\. Selected after supporting\\-service compatibility, data\\-flow/control checks and whole\\-plan cost scoring\\.\n- hosting: Google Cloud Run — Matches managed\\_cloud with provider gcp; no country/region assurance was requested or inferred\\. Required runtimes and separate database deployment were checked\\. Selected after supporting\\-service compatibility, data\\-flow/control checks and whole\\-plan cost scoring\\.\n\nMonthly planning band: USD 875.51–7785.95.\n\n## Complete alternatives\n\n- modular\\_monolith\\|angular\\|fastify\\|pg\\|cloudrun\\|unspecified; score 85; USD 875.51–7785.95; selected.\n- modular\\_monolith\\|angular\\|go\\-http\\|pg\\|cloudrun\\|unspecified; score 85; USD 875.51–7785.95; alternative.\n- modular\\_monolith\\|react\\|fastify\\|pg\\|cloudrun\\|unspecified; score 85; USD 875.51–7785.95; alternative.\n\n## Preference stability\n\nOriginal winner retained in 25/25 tested settings; 1 observed winners. Counts are not confidence probabilities.\n\n## Cost assumptions\n\n- Horizon: expected month\\-12 footprint; 730 hours/month\\. No tax, development/on\\-call labor, domain registration or new on\\-prem hardware procurement is included\\.\n- Peak concurrency supplied: 5000; not equated directly with requests/second\\.\n- RPS absent: assumed 50 requests/user/day averaged across the day \\(28\\.935 RPS\\); peak capacity still uses the concurrency hypothesis\\.\n- Data volume 200 GB supplied; egress 500 GB/month assumed at 0\\.01 GB per year\\-12 user, minimum 1 GB; backup retention 1 months assumed\\.\n- Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation\\. 31\\.5 vCPU/2\\-GiB\\-equivalent units include frontend/backend, auth, workers, inference and telemetry once\\. These are sizing assumptions requiring load tests, not capacity guarantees\\.\n- Billed duty 0\\.25–1; run polling workers with allocated CPU/minimum instances\\. Higher availability adds at least two application allocations and in\\-region database copies, but does not guarantee an SLA\\. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes\\.\n- Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in\\-region; no SLA is guaranteed\\. Auth/search/outbox share logical database capacity and are not billed as duplicate databases\\.\n- Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year\\-12 users and missing ticket assumes USD 50\\. Percentage/fixed rates are declared envelopes, not verified merchant pricing\\. Payout, FX, tax, refunds and chargebacks require separate quotes\\.\n- 1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region\\-specific quote\\.\n- Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary\\.\n- Assumed per\\-transaction USD fee envelope, not a tariff quote\\.\n- Authored backup\\-storage envelope with retained copy quantity; no cross\\-region copy assumed\\.\n- Authored hosted build\\-minute allowance, assuming included quota at the lower bound\\. Paid runners/minutes/artifacts require a repository\\-specific quote and spending cap\\.\n- Authored internet\\-egress envelope; actual destination, free quota and routes vary\\.\n- Authored logs/metrics/request\\-operations allowance; redact data and set regional retention/quotas\\.\n- Authored regional persistent\\-storage envelope, including replica copies explicitly in quantity\\.\n- Authored standard\\-storage envelope; requests/lifecycle operations have a separate allowance\\.\n- Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate\\.\n- Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes\\.\n\n## Blockers, validation and owner actions\n\n- warning: 99\\.9% is a target, not a product guarantee\\. The cost model provisions redundancy assumptions; service terms, failover and workload behavior still require verification\\.\n- warning: Upper estimate USD 7785\\.95/month exceeds USD 1500; stated usage/price assumptions determine whether it fits\\.\n- warning: The output proposes technical control designs only\\. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit\\. Implement controls and obtain scope\\-specific review\\.\n- warning: Social provider selection and privacy/transfer terms need explicit review; Keycloak is only the local broker\\.\n- warning: No measured evidence establishes the 100 ms p95 target; load\\-test the complete client/network/data path\\.\n- warning: Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity\\. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase\\.\n\n## Evidence register\n\n- core:angular: [Angular deployment](https://angular.dev/tools/cli/deployment); checked 2026\\-11\\-13; Web asset deployment\n- core:cloudsql\\-pg: [Cloud SQL PostgreSQL locations](https://cloud.google.com/sql/docs/postgres/locations); checked 2026\\-11\\-13; Primary PostgreSQL instance locations: Mumbai, Belgium, Iowa; backup locations need separate review\n- core:fastify: [Fastify database guide](https://fastify.dev/docs/latest/Guides/Database/); checked 2026\\-11\\-13; Node backend and documented database plugins\n- core:pg: [PostgreSQL introduction](https://www.postgresql.org/docs/current/intro-whatis.html); checked 2026\\-11\\-13; Relational engine, transactional integrity\n- core:run: [Cloud Run overview](https://cloud.google.com/run/docs/overview/what-is-cloud-run); checked 2026\\-11\\-13; Managed HTTP container services, not durable database disks\n- core:run\\-regions: [Cloud Run locations](https://cloud.google.com/run/docs/locations); checked 2026\\-11\\-13; Primary compute service locations: Mumbai, Belgium, Iowa; not complete application data flows\n- core:run\\-ws: [Cloud Run WebSockets](https://cloud.google.com/run/docs/triggering/websockets); checked 2026\\-11\\-13; Connection request timeouts and reconnection requirements\n- services:aws\\-logs: [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html); checked 2026\\-11\\-13; Regional logging configuration required\\.\n- services:ci: [GitHub Actions](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions); checked 2026\\-11\\-13; Build only source/synthetic tests; no production data exports\\.\n- services:gcp\\-logs: [Regional Cloud Logging](https://cloud.google.com/logging/docs/regionalized-logs); checked 2026\\-11\\-13; Regional log buckets and routing configuration\\.\n- services:gcs: [Cloud Storage locations](https://cloud.google.com/storage/docs/locations); checked 2026\\-11\\-13; Regional bucket configuration, not default multi\\-region residency\\.\n- services:keycloak\\-admin: [Keycloak administration](https://www.keycloak.org/docs/latest/server_admin/index.html); checked 2026\\-11\\-13; Self\\-hosted identity, federation and broker configuration; not built\\-in SMS OTP\\.\n- services:keycloak\\-db: [Keycloak database support](https://www.keycloak.org/server/db); checked 2026\\-11\\-13; Relational database support; pin compatible versions\\.\n- services:pg\\-rls: [PostgreSQL row security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html); checked 2026\\-11\\-13; Policies/forced RLS with owner/BYPASSRLS caveats\\.\n- services:pg\\-tx: [PostgreSQL transactions](https://www.postgresql.org/docs/current/tutorial-transactions.html); checked 2026\\-11\\-13; Atomic application/outbox writes; outbox/worker protocol remains custom\\.\n- services:run\\-price: [Cloud Run pricing](https://cloud.google.com/run/pricing); checked 2026\\-11\\-13; Reference request\\-billed active CPU $0\\.000024/vCPU\\-s and memory $0\\.0000025/GiB\\-s; region/edition/billing may differ\\.\n- services:s3\\-price: [S3 pricing](https://aws.amazon.com/s3/pricing/); checked 2026\\-11\\-13; Storage, requests and egress vary; cross\\-provider estimate below is a planning envelope\\.\n- services:sql\\-price: [Cloud SQL pricing](https://cloud.google.com/sql/pricing); checked 2026\\-11\\-13; Reference CPU $0\\.0413/vCPU\\-hour and memory $0\\.007/GiB\\-hour; HA replicas billed; not an India\\-specific quote\\.\n- services:storage\\-price: [Cloud Storage pricing](https://cloud.google.com/storage/pricing); checked 2026\\-11\\-13; Storage, operations and network are distinct charges\\.\n- services:stripe: [Stripe Checkout](https://docs.stripe.com/payments/checkout); checked 2026\\-11\\-13; Hosted checkout; merchant eligibility and integration required\\.\n- services:stripe\\-dpa: [Stripe DPA](https://stripe.com/legal/dpa); checked 2026\\-11\\-13; Processor contract and transfer\\-review starting point, not executed agreement\\.\n- services:stripe\\-pricing: [Stripe pricing](https://stripe.com/pricing); checked 2026\\-11\\-13; Country/payment\\-specific pricing; model fees below are explicitly assumed envelopes, not this page quoted as USD tariff\\.\n- services:telemetry: [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/); checked 2026\\-11\\-13; Collection/redaction/export; backend retention must be configured\\.\n- services:ws: [ws](https://github.com/websockets/ws); checked 2026\\-11\\-13; Node WebSocket server; auth, retries, shared state and deployment required\\.\n- services:yjs: [Yjs](https://docs.yjs.dev/); checked 2026\\-11\\-13; CRDT model separate from transport/persistence\\.\n\n## Limits and acceptance\n\n- Exploratory analysis only. The original recommendation and original requirements are unchanged.\n- Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.\n- The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.\n- Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.\n- Compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.\n- No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.\n- The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.\n\nAcceptance, independent review, vendor eligibility, implementation and deployment remain owner tasks. No acceptance is recorded.\n",
-  "analysis_version": "0.1.0",
+  "adr_markdown": "# Proposed architecture decision\n\n**Status: Proposed — project acceptance required.**\n\nEngine 0.8.0; catalog 0.4.0; services 0.8.0; analysis 0.2.0.\nInput SHA-256: c8964c0fb813d6e0be335803dffe6ec33754d77ca3121e5933e2aa41daf61f09.\n\n## Original result\n\nmodular\\_monolith recommendation selected from 168 complete compatible plans; month\\-12 infrastructure planning band USD 513\\.51–2679\\.49/month\\.\nResult: ok_with_warnings.\n\n- frontend: Angular — Covers requested targets web with spa rendering\\. Team languages: go, typescript\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- backend: Fastify — Provides a node application runtime for the realtime\\_collab profile\\. Language familiarity and delivery complexity were compared across compatible whole plans\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- database: PostgreSQL — relational persistence via Cloud SQL for PostgreSQL\\.  Database drivers and host deployment were checked as a combination\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- hosting: Google Cloud Run — Matches managed\\_cloud with provider gcp; no country/region assurance was requested or inferred\\. Required runtimes and separate database deployment were checked\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n\nMonthly infrastructure/operations band (activity fees additional): USD 513.51–2679.49.\n\n## Complete alternatives\n\n- modular\\_monolith\\|angular\\|fastify\\|pg\\|cloudrun\\|unspecified; score 85; USD 513.51–2679.49; selected.\n- modular\\_monolith\\|angular\\|go\\-http\\|pg\\|cloudrun\\|unspecified; score 85; USD 513.51–2679.49; alternative.\n- modular\\_monolith\\|react\\|fastify\\|pg\\|cloudrun\\|unspecified; score 85; USD 513.51–2679.49; alternative.\n\n## Preference stability\n\nOriginal winner retained in 25/25 tested settings; 1 observed winners. Counts are not confidence probabilities.\n\n## Cost assumptions\n\n- Horizon: expected month\\-12 footprint; 730 hours/month\\. No tax, development/on\\-call labor, domain registration or new on\\-prem hardware procurement is included\\.\n- Peak concurrency supplied: 5000; not equated directly with requests/second\\.\n- RPS absent: assumed 50 requests/user/day averaged across the day \\(28\\.935 RPS\\); peak capacity still uses the concurrency hypothesis\\.\n- Data volume 200 GB supplied; egress 500 GB/month assumed at 0\\.01 GB per year\\-12 user, minimum 1 GB; backup retention 1 months assumed\\.\n- Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak\\-concurrency replica floor, not charged again as per\\-connection sidecars\\. 12\\.5 vCPU/2\\-GiB\\-equivalent units include frontend/backend, auth, workers, inference and telemetry once\\. These are sizing assumptions requiring load tests, not capacity guarantees\\.\n- Billed duty 0\\.25–1; run polling workers with allocated CPU/minimum instances\\. Higher availability adds at least two application allocations and in\\-region database copies, but does not guarantee an SLA\\. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes\\.\n- Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in\\-region; no SLA is guaranteed\\. Auth/search/outbox share logical database capacity and are not billed as duplicate databases\\.\n- Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year\\-12 users and missing ticket assumes USD 50\\. Percentage/fixed rates are declared envelopes, not verified merchant pricing\\. Payout, FX, tax, refunds and chargebacks require separate quotes\\.\n- Headline estimate and budget fit cover infrastructure/operations only\\. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure\\.\n- 1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region\\-specific quote\\.\n- Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary\\.\n- Assumed per\\-transaction USD fee envelope, not a tariff quote\\.\n- Authored backup\\-storage envelope with retained copy quantity; no cross\\-region copy assumed\\.\n- Authored hosted build\\-minute allowance, assuming included quota at the lower bound\\. Paid runners/minutes/artifacts require a repository\\-specific quote and spending cap\\.\n- Authored internet\\-egress envelope; actual destination, free quota and routes vary\\.\n- Authored logs/metrics/request\\-operations allowance; redact data and set regional retention/quotas\\.\n- Authored regional persistent\\-storage envelope, including replica copies explicitly in quantity\\.\n- Authored standard\\-storage envelope; requests/lifecycle operations have a separate allowance\\.\n- Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate\\.\n- Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes\\.\n\n## Blockers, validation and owner actions\n\n- warning: 99\\.9% is a target, not a product guarantee\\. The cost model provisions redundancy assumptions; service terms, failover and workload behavior still require verification\\.\n- warning: Upper estimate USD 2679\\.49/month exceeds USD 1500; stated usage/price assumptions determine whether it fits\\.\n- warning: The output proposes technical control designs only\\. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit\\. Implement controls and obtain scope\\-specific review\\.\n- warning: Social provider selection and privacy/transfer terms need explicit review; Keycloak is only the local broker\\.\n- warning: No measured evidence establishes the 100 ms p95 target; load\\-test the complete client/network/data path\\.\n- warning: Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity\\. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase\\.\n\n## Evidence register\n\n- core:angular: [Angular deployment](https://angular.dev/tools/cli/deployment); checked 2026\\-11\\-13; Web asset deployment\n- core:cloudsql\\-pg: [Cloud SQL PostgreSQL locations](https://cloud.google.com/sql/docs/postgres/locations); checked 2026\\-11\\-13; Primary PostgreSQL instance locations: Mumbai, Belgium, Iowa; backup locations need separate review\n- core:fastify: [Fastify database guide](https://fastify.dev/docs/latest/Guides/Database/); checked 2026\\-11\\-13; Node backend and documented database plugins\n- core:pg: [PostgreSQL introduction](https://www.postgresql.org/docs/current/intro-whatis.html); checked 2026\\-11\\-13; Relational engine, transactional integrity\n- core:run: [Cloud Run overview](https://cloud.google.com/run/docs/overview/what-is-cloud-run); checked 2026\\-11\\-13; Managed HTTP container services, not durable database disks\n- core:run\\-regions: [Cloud Run locations](https://cloud.google.com/run/docs/locations); checked 2026\\-11\\-13; Primary compute service locations: Mumbai, Belgium, Iowa; not complete application data flows\n- core:run\\-ws: [Cloud Run WebSockets](https://cloud.google.com/run/docs/triggering/websockets); checked 2026\\-11\\-13; Connection request timeouts and reconnection requirements\n- services:aws\\-logs: [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html); checked 2026\\-11\\-13; Regional logging configuration required\\.\n- services:ci: [GitHub Actions](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions); checked 2026\\-11\\-13; Build only source/synthetic tests; no production data exports\\.\n- services:gcp\\-logs: [Regional Cloud Logging](https://cloud.google.com/logging/docs/regionalized-logs); checked 2026\\-11\\-13; Regional log buckets and routing configuration\\.\n- services:gcs: [Cloud Storage locations](https://cloud.google.com/storage/docs/locations); checked 2026\\-11\\-13; Regional bucket configuration, not default multi\\-region residency\\.\n- services:keycloak\\-admin: [Keycloak administration](https://www.keycloak.org/docs/latest/server_admin/index.html); checked 2026\\-11\\-13; Self\\-hosted identity, federation and broker configuration; not built\\-in SMS OTP\\.\n- services:keycloak\\-db: [Keycloak database support](https://www.keycloak.org/server/db); checked 2026\\-11\\-13; Relational database support; pin compatible versions\\.\n- services:pg\\-rls: [PostgreSQL row security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html); checked 2026\\-11\\-13; Policies/forced RLS with owner/BYPASSRLS caveats\\.\n- services:pg\\-tx: [PostgreSQL transactions](https://www.postgresql.org/docs/current/tutorial-transactions.html); checked 2026\\-11\\-13; Atomic application/outbox writes; outbox/worker protocol remains custom\\.\n- services:run\\-price: [Cloud Run pricing](https://cloud.google.com/run/pricing); checked 2026\\-11\\-13; Reference request\\-billed active CPU $0\\.000024/vCPU\\-s and memory $0\\.0000025/GiB\\-s; region/edition/billing may differ\\.\n- services:s3\\-price: [S3 pricing](https://aws.amazon.com/s3/pricing/); checked 2026\\-11\\-13; Storage, requests and egress vary; cross\\-provider estimate below is a planning envelope\\.\n- services:sql\\-price: [Cloud SQL pricing](https://cloud.google.com/sql/pricing); checked 2026\\-11\\-13; Reference CPU $0\\.0413/vCPU\\-hour and memory $0\\.007/GiB\\-hour; HA replicas billed; not an India\\-specific quote\\.\n- services:storage\\-price: [Cloud Storage pricing](https://cloud.google.com/storage/pricing); checked 2026\\-11\\-13; Storage, operations and network are distinct charges\\.\n- services:stripe: [Stripe Checkout](https://docs.stripe.com/payments/checkout); checked 2026\\-11\\-13; Hosted checkout; merchant eligibility and integration required\\.\n- services:stripe\\-dpa: [Stripe DPA](https://stripe.com/legal/dpa); checked 2026\\-11\\-13; Processor contract and transfer\\-review starting point, not executed agreement\\.\n- services:stripe\\-pricing: [Stripe pricing](https://stripe.com/pricing); checked 2026\\-11\\-13; Country/payment\\-specific pricing; model fees below are explicitly assumed envelopes, not this page quoted as USD tariff\\.\n- services:telemetry: [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/); checked 2026\\-11\\-13; Collection/redaction/export; backend retention must be configured\\.\n- services:ws: [ws](https://github.com/websockets/ws); checked 2026\\-11\\-13; Node WebSocket server; auth, retries, shared state and deployment required\\.\n- services:yjs: [Yjs](https://docs.yjs.dev/); checked 2026\\-11\\-13; CRDT model separate from transport/persistence\\.\n\n## Limits and acceptance\n\n- Exploratory analysis only. The original recommendation and original requirements are unchanged.\n- Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.\n- The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.\n- Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.\n- Compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.\n- No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.\n- The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.\n\nAcceptance, independent review, vendor eligibility, implementation and deployment remain owner tasks. No acceptance is recorded.\n",
+  "analysis_version": "0.2.0",
   "baseline": {
     "applied_extensions": [],
     "architecture_style": "modular_monolith",
@@ -46,12 +46,12 @@
         "category": "compute",
         "id": "application-compute",
         "monthly_usd": {
-          "max": 4321.23,
-          "min": 600.16
+          "max": 1714.77,
+          "min": 238.16
         },
         "quantity": {
-          "max": 22995,
-          "min": 5748.75
+          "max": 9125,
+          "min": 2281.25
         },
         "source_ids": [
           "run-price"
@@ -279,8 +279,8 @@
           "telemetry-operations",
           "hosted-ci"
         ],
-        "max": 5285.95,
-        "min": 875.51
+        "max": 2679.49,
+        "min": 513.51
       },
       {
         "category": "payment_and_message_activity",
@@ -296,18 +296,19 @@
       {
         "baseline_origin": "assumed",
         "baseline_value": 28.935185185185187,
+        "cost_category": "infrastructure_and_operations",
         "field": "extensions.expected_requests_per_second",
         "samples": [
           {
-            "max": 7785.95,
-            "min": 875.51,
+            "max": 2679.49,
+            "min": 513.51,
             "status": "estimated",
             "upper_delta_usd": 0,
             "value": 14.467592592592593
           },
           {
-            "max": 7785.95,
-            "min": 875.51,
+            "max": 2679.49,
+            "min": 513.51,
             "status": "estimated",
             "upper_delta_usd": 0,
             "value": 57.870370370370374
@@ -318,18 +319,19 @@
       {
         "baseline_origin": "assumed",
         "baseline_value": 500,
+        "cost_category": "infrastructure_and_operations",
         "field": "extensions.monthly_egress_gb",
         "samples": [
           {
-            "max": 7685.95,
-            "min": 855.51,
+            "max": 2579.49,
+            "min": 493.51,
             "status": "estimated",
             "upper_delta_usd": -100,
             "value": 250
           },
           {
-            "max": 7985.95,
-            "min": 915.51,
+            "max": 2879.49,
+            "min": 553.51,
             "status": "estimated",
             "upper_delta_usd": 200,
             "value": 1000
@@ -340,18 +342,19 @@
       {
         "baseline_origin": "assumed",
         "baseline_value": 1,
+        "cost_category": "infrastructure_and_operations",
         "field": "extensions.retention_months",
         "samples": [
           {
-            "max": 7785.95,
-            "min": 875.51,
+            "max": 2679.49,
+            "min": 513.51,
             "status": "estimated",
             "upper_delta_usd": 0,
             "value": 1
           },
           {
-            "max": 7845.95,
-            "min": 881.51,
+            "max": 2739.49,
+            "min": 519.51,
             "status": "estimated",
             "upper_delta_usd": 60,
             "value": 2
@@ -362,18 +365,19 @@
       {
         "baseline_origin": "assumed",
         "baseline_value": 1000,
+        "cost_category": "payment_and_message_activity",
         "field": "extensions.monthly_payment_transactions",
         "samples": [
           {
-            "max": 6535.95,
-            "min": 1375.51,
+            "max": 1250,
+            "min": 500,
             "status": "estimated",
             "upper_delta_usd": -1250,
             "value": 500
           },
           {
-            "max": 10285.95,
-            "min": 2875.51,
+            "max": 5000,
+            "min": 2000,
             "status": "estimated",
             "upper_delta_usd": 2500,
             "value": 2000
@@ -384,18 +388,19 @@
       {
         "baseline_origin": "assumed",
         "baseline_value": 50,
+        "cost_category": "payment_and_message_activity",
         "field": "extensions.average_payment_value_usd",
         "samples": [
           {
-            "max": 6785.95,
-            "min": 875.51,
+            "max": 1500,
+            "min": 0,
             "status": "estimated",
             "upper_delta_usd": -1000,
             "value": 25
           },
           {
-            "max": 9785.95,
-            "min": 875.51,
+            "max": 4500,
+            "min": 0,
             "status": "estimated",
             "upper_delta_usd": 2000,
             "value": 100
@@ -595,18 +600,20 @@
       "score": 85,
       "selected_plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified"
     },
-    "engine_version": "0.6.0",
+    "engine_version": "0.8.0",
     "estimate_status": "estimated",
+    "estimated_cost_scope": "infrastructure_and_operations",
     "estimated_monthly_cost_usd": {
       "assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 5000; not equated directly with requests/second.",
         "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
         "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 31.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
         "Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
         "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary.",
         "Assumed per-transaction USD fee envelope, not a tariff quote.",
@@ -619,8 +626,8 @@
         "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
         "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
       ],
-      "max": 7785.95,
-      "min": 875.51
+      "max": 2679.49,
+      "min": 513.51
     },
     "integration_reviews": [],
     "plan_comparison": [
@@ -638,10 +645,11 @@
           "Peak concurrency supplied: 5000; not equated directly with requests/second.",
           "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
           "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-          "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 31.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+          "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
           "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
           "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
           "Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+          "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
           "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
           "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary.",
           "Assumed per-transaction USD fee envelope, not a tariff quote.",
@@ -656,8 +664,8 @@
         ],
         "database_region": null,
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified",
@@ -668,7 +676,7 @@
           "deployment_model=managed_cloud",
           "data_residency=none",
           "compliance=gdpr",
-          "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+          "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
         ],
         "score": 85,
         "score_delta": 0,
@@ -706,10 +714,11 @@
           "Peak concurrency supplied: 5000; not equated directly with requests/second.",
           "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
           "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-          "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 31.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+          "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
           "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
           "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
           "Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+          "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
           "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
           "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary.",
           "Assumed per-transaction USD fee envelope, not a tariff quote.",
@@ -724,8 +733,8 @@
         ],
         "database_region": null,
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "plan_id": "modular_monolith|angular|go-http|pg|cloudrun|unspecified",
@@ -736,7 +745,7 @@
           "deployment_model=managed_cloud",
           "data_residency=none",
           "compliance=gdpr",
-          "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+          "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
         ],
         "score": 85,
         "score_delta": 0,
@@ -774,10 +783,11 @@
           "Peak concurrency supplied: 5000; not equated directly with requests/second.",
           "RPS absent: assumed 50 requests/user/day averaged across the day (28.935 RPS); peak capacity still uses the concurrency hypothesis.",
           "Data volume 200 GB supplied; egress 500 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-          "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket sidecars assume 250 connections/allocation. 31.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+          "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
           "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
           "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
           "Payment assumptions: 0–1000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+          "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
           "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
           "Assumed fee fraction, not quoted pricing; merchant country, card mix and extras vary.",
           "Assumed per-transaction USD fee envelope, not a tariff quote.",
@@ -792,8 +802,8 @@
         ],
         "database_region": null,
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "plan_id": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
@@ -804,7 +814,7 @@
           "deployment_model=managed_cloud",
           "data_residency=none",
           "compliance=gdpr",
-          "All original enabled features passed supporting-service and control checks; no requirement was relaxed."
+          "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
         ],
         "score": 85,
         "score_delta": 0,
@@ -831,7 +841,7 @@
     ],
     "primary_region": null,
     "review_actions": [],
-    "rules_version": "0.6.0",
+    "rules_version": "0.8.0",
     "scenario_id": "P3",
     "score_breakdown": [
       {
@@ -842,7 +852,7 @@
           "priorities.cost"
         ],
         "fit": 3,
-        "reason": "USD 875.51–7785.95/month versus budget 1500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+        "reason": "USD 513.51–2679.49/month versus budget 1500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
         "weight": 2
       },
       {
@@ -909,7 +919,7 @@
         "weight": 3
       }
     ],
-    "services_version": "0.6.0",
+    "services_version": "0.8.0",
     "stack": {
       "backend": {
         "alternatives": [
@@ -927,7 +937,7 @@
           "requirements.realtime"
         ],
         "id": "fastify",
-        "justification": "Provides a node application runtime for the realtime_collab profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+        "justification": "Provides a node application runtime for the realtime_collab profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
         "layer": "backend",
         "source_ids": [
           "fastify"
@@ -951,7 +961,7 @@
           "infrastructure.existing_systems"
         ],
         "id": "pg",
-        "justification": "relational persistence via Cloud SQL for PostgreSQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+        "justification": "relational persistence via Cloud SQL for PostgreSQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
         "layer": "database",
         "source_ids": [
           "cloudsql-pg",
@@ -976,7 +986,7 @@
           "team.languages"
         ],
         "id": "angular",
-        "justification": "Covers requested targets web with spa rendering. Team languages: go, typescript. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+        "justification": "Covers requested targets web with spa rendering. Team languages: go, typescript. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
         "layer": "frontend",
         "source_ids": [
           "angular"
@@ -988,8 +998,8 @@
       "hosting": {
         "alternatives": [
           {
-            "choice": "Amazon ECS / Fargate",
-            "why_not": "Best compatible complete plan using this option scored 81, below 85; other layers may also differ."
+            "choice": "Azure App Service",
+            "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
           }
         ],
         "choice": "Google Cloud Run",
@@ -1000,7 +1010,7 @@
           "team.has_devops"
         ],
         "id": "cloudrun",
-        "justification": "Matches managed_cloud with provider gcp; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility, data-flow/control checks and whole-plan cost scoring.",
+        "justification": "Matches managed_cloud with provider gcp; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
         "layer": "hosting",
         "source_ids": [
           "run",
@@ -1233,7 +1243,7 @@
       ]
     },
     "status": "ok_with_warnings",
-    "summary": "modular_monolith recommendation selected from 168 complete compatible plans; month-12 infrastructure planning band USD 875.51–7785.95/month.",
+    "summary": "modular_monolith recommendation selected from 168 complete compatible plans; month-12 infrastructure planning band USD 513.51–2679.49/month.",
     "validation_errors": [],
     "warnings": [
       {
@@ -1249,7 +1259,7 @@
         "fields": [
           "budget.monthly_infra_usd"
         ],
-        "message": "Upper estimate USD 7785.95/month exceeds USD 1500; stated usage/price assumptions determine whether it fits.",
+        "message": "Upper estimate USD 2679.49/month exceeds USD 1500; stated usage/price assumptions determine whether it fits.",
         "severity": "warning"
       },
       {
@@ -1513,8 +1523,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 85,
@@ -1536,8 +1546,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 85,
@@ -1559,8 +1569,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 85,
@@ -1582,8 +1592,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 85,
@@ -1605,8 +1615,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 85,
@@ -1628,8 +1638,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 85,
@@ -1651,8 +1661,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 85,
@@ -1674,8 +1684,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 85,
@@ -1697,8 +1707,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 85,
@@ -1720,8 +1730,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 85,
@@ -1743,8 +1753,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 85,
@@ -1766,12 +1776,288 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 85,
         "plan_id": "modular_monolith|sveltekit|go-http|pg|cloudrun|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Angular",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|angular|fastify|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "PostgreSQL",
+          "frontend": "Angular",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|angular|go-http|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|react|fastify|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "PostgreSQL",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|react|go-http|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Vue",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|vue|fastify|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "PostgreSQL",
+          "frontend": "Vue",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|vue|go-http|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|next-native|fastify|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|next-native|go-http|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|next|fastify|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "PostgreSQL",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|next|go-http|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|sveltekit|fastify|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "PostgreSQL",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 85,
+        "plan_id": "modular_monolith|sveltekit|go-http|pg|appservice|unspecified"
       },
       {
         "core": {
@@ -1789,8 +2075,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 81,
@@ -1812,8 +2098,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 81,
@@ -1835,8 +2121,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 81,
@@ -1858,8 +2144,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 81,
@@ -1881,8 +2167,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 81,
@@ -1904,8 +2190,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 81,
@@ -1927,8 +2213,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 81,
@@ -1950,8 +2236,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 81,
@@ -1973,8 +2259,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 81,
@@ -1996,8 +2282,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 81,
@@ -2019,8 +2305,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 81,
@@ -2042,288 +2328,12 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 81,
         "plan_id": "modular_monolith|sveltekit|go-http|pg|ecs|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Angular",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|angular|fastify|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Go net/http",
-          "database": "PostgreSQL",
-          "frontend": "Angular",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|angular|go-http|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "React / Vite",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|react|fastify|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Go net/http",
-          "database": "PostgreSQL",
-          "frontend": "React / Vite",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|react|go-http|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Vue",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|vue|fastify|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Go net/http",
-          "database": "PostgreSQL",
-          "frontend": "Vue",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|vue|go-http|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|next-native|fastify|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Go net/http",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|next-native|go-http|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Next.js",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|next|fastify|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Go net/http",
-          "database": "PostgreSQL",
-          "frontend": "Next.js",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|next|go-http|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "SvelteKit",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|sveltekit|fastify|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Go net/http",
-          "database": "PostgreSQL",
-          "frontend": "SvelteKit",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 5,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 4
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 81,
-        "plan_id": "modular_monolith|sveltekit|go-http|pg|appservice|unspecified"
       },
       {
         "core": {
@@ -2341,8 +2351,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2364,8 +2374,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2387,8 +2397,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2410,8 +2420,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2433,8 +2443,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2456,8 +2466,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2479,8 +2489,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2502,8 +2512,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2525,8 +2535,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2548,8 +2558,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2571,8 +2581,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2594,8 +2604,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2617,8 +2627,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2640,8 +2650,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2663,8 +2673,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7785.95,
-          "min": 875.51
+          "max": 2679.49,
+          "min": 513.51
         },
         "operated_components": 3.5,
         "original_priority_score": 78,
@@ -2686,8 +2696,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2709,8 +2719,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2732,8 +2742,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2755,8 +2765,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2778,8 +2788,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2801,8 +2811,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2824,8 +2834,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2847,8 +2857,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2870,8 +2880,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2893,8 +2903,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2916,8 +2926,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2939,8 +2949,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2962,8 +2972,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -2985,8 +2995,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
@@ -3008,12 +3018,702 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 7923.13,
-          "min": 894.57
+          "max": 2816.68,
+          "min": 532.56
         },
         "operated_components": 4.5,
         "original_priority_score": 78,
         "plan_id": "modular_monolith|sveltekit|spring|pg|cloudrun|unspecified"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "Angular",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
+          "frontend": "Angular",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|angular|django|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "Angular",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|angular|fastapi|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "PostgreSQL",
+          "frontend": "Angular",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|angular|laravel|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "PostgreSQL",
+          "frontend": "Angular",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|angular|spring|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|react|aspnet|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|react|django|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|react|fastapi|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "PostgreSQL",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|react|laravel|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "PostgreSQL",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|react|spring|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "Vue",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|vue|aspnet|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
+          "frontend": "Vue",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|vue|django|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "Vue",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|vue|fastapi|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "PostgreSQL",
+          "frontend": "Vue",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|vue|laravel|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "PostgreSQL",
+          "frontend": "Vue",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3702.22,
+          "min": 959.72
+        },
+        "operated_components": 3.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|vue|spring|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|next-native|aspnet|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|next-native|django|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|next-native|fastapi|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|next-native|laravel|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|next-native|spring|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|next|aspnet|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|next|django|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|next|fastapi|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "PostgreSQL",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|next|laravel|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "PostgreSQL",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|next|spring|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|sveltekit|aspnet|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Django",
+          "database": "PostgreSQL",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|sveltekit|django|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "FastAPI",
+          "database": "PostgreSQL",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|sveltekit|fastapi|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "PostgreSQL",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|sveltekit|laravel|pg|appservice|unspecified"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "PostgreSQL",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service"
+        },
+        "fit": {
+          "cost": 3,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 4,
+          "security": 4,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 3921.22,
+          "min": 1014.47
+        },
+        "operated_components": 4.5,
+        "original_priority_score": 78,
+        "plan_id": "modular_monolith|sveltekit|spring|pg|appservice|unspecified"
       },
       {
         "core": {
@@ -3031,8 +3731,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 75,
@@ -3054,8 +3754,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 75,
@@ -3077,8 +3777,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 75,
@@ -3100,8 +3800,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 75,
@@ -3123,8 +3823,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 75,
@@ -3146,8 +3846,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 75,
@@ -3169,8 +3869,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 75,
@@ -3192,8 +3892,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 75,
@@ -3215,8 +3915,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 75,
@@ -3238,8 +3938,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 75,
@@ -3261,8 +3961,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 75,
@@ -3284,8 +3984,8 @@
           "time_to_market": 4
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 75,
@@ -3307,8 +4007,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3330,8 +4030,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3353,8 +4053,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3376,8 +4076,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3399,8 +4099,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3422,8 +4122,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3445,8 +4145,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3468,8 +4168,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3491,8 +4191,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3514,8 +4214,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3537,8 +4237,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3560,8 +4260,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3583,8 +4283,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3606,8 +4306,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3629,8 +4329,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5835.27,
-          "min": 1435.61
+          "max": 1965.74,
+          "min": 750.85
         },
         "operated_components": 3.5,
         "original_priority_score": 74,
@@ -3652,8 +4352,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3675,8 +4375,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3698,8 +4398,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3721,8 +4421,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3744,8 +4444,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3767,8 +4467,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3790,8 +4490,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3813,8 +4513,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3836,8 +4536,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3859,8 +4559,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3882,8 +4582,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3905,8 +4605,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3928,8 +4628,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3951,8 +4651,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
@@ -3974,702 +4674,12 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 5907.36,
-          "min": 1471.65
+          "max": 2037.82,
+          "min": 786.89
         },
         "operated_components": 4.5,
         "original_priority_score": 74,
         "plan_id": "modular_monolith|sveltekit|spring|pg|ecs|unspecified"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "Angular",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "Angular",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|angular|django|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "Angular",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|angular|fastapi|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Laravel",
-          "database": "PostgreSQL",
-          "frontend": "Angular",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|angular|laravel|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Spring Boot",
-          "database": "PostgreSQL",
-          "frontend": "Angular",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|angular|spring|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "React / Vite",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|react|aspnet|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "React / Vite",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|react|django|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "React / Vite",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|react|fastapi|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Laravel",
-          "database": "PostgreSQL",
-          "frontend": "React / Vite",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|react|laravel|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Spring Boot",
-          "database": "PostgreSQL",
-          "frontend": "React / Vite",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|react|spring|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "Vue",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|vue|aspnet|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "Vue",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|vue|django|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "Vue",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|vue|fastapi|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Laravel",
-          "database": "PostgreSQL",
-          "frontend": "Vue",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|vue|laravel|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Spring Boot",
-          "database": "PostgreSQL",
-          "frontend": "Vue",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10363.22,
-          "min": 1999.97
-        },
-        "operated_components": 3.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|vue|spring|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|next-native|aspnet|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|next-native|django|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|next-native|fastapi|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Laravel",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|next-native|laravel|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Spring Boot",
-          "database": "PostgreSQL",
-          "frontend": "Next.js + React Native",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|next-native|spring|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "Next.js",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|next|aspnet|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "Next.js",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|next|django|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "Next.js",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|next|fastapi|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Laravel",
-          "database": "PostgreSQL",
-          "frontend": "Next.js",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|next|laravel|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Spring Boot",
-          "database": "PostgreSQL",
-          "frontend": "Next.js",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|next|spring|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "SvelteKit",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|sveltekit|aspnet|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Django",
-          "database": "PostgreSQL",
-          "frontend": "SvelteKit",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|sveltekit|django|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "SvelteKit",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|sveltekit|fastapi|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Laravel",
-          "database": "PostgreSQL",
-          "frontend": "SvelteKit",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|sveltekit|laravel|pg|appservice|unspecified"
-      },
-      {
-        "core": {
-          "backend": "Spring Boot",
-          "database": "PostgreSQL",
-          "frontend": "SvelteKit",
-          "hosting": "Azure App Service"
-        },
-        "fit": {
-          "cost": 1,
-          "maintainability": 4,
-          "performance": 3,
-          "scalability": 4,
-          "security": 4,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 10582.22,
-          "min": 2054.72
-        },
-        "operated_components": 4.5,
-        "original_priority_score": 74,
-        "plan_id": "modular_monolith|sveltekit|spring|pg|appservice|unspecified"
       },
       {
         "core": {
@@ -4687,8 +4697,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4710,8 +4720,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4733,8 +4743,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4756,8 +4766,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4779,8 +4789,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4802,8 +4812,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4825,8 +4835,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4848,8 +4858,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4871,8 +4881,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4894,8 +4904,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4917,8 +4927,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4940,8 +4950,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4963,8 +4973,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -4986,8 +4996,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -5009,8 +5019,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8078.32,
-          "min": 4888.95
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 3.5,
         "original_priority_score": 68,
@@ -5032,8 +5042,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5055,8 +5065,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5078,8 +5088,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5101,8 +5111,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5124,8 +5134,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5147,8 +5157,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5170,8 +5180,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5193,8 +5203,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5216,8 +5226,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5239,8 +5249,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5262,8 +5272,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5285,8 +5295,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5308,8 +5318,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5331,8 +5341,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
@@ -5354,8 +5364,8 @@
           "time_to_market": 3
         },
         "monthly_usd": {
-          "max": 8366.67,
-          "min": 5177.3
+          "max": 3848.22,
+          "min": 3158.85
         },
         "operated_components": 4.5,
         "original_priority_score": 68,
