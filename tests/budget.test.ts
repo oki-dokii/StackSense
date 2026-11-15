@@ -60,13 +60,20 @@ describe('cost scope and explicit budget proposals', () => {
               w.severity === 'critical',
           ),
         ).toBe(true);
-        for (const w of r.warnings.filter((w) => w.severity === 'critical'))
-          expect(o.warnings.some((v) => v.code === w.code)).toBe(true);
+        // A different managed/self-hosted vendor can change vendor-specific review codes; unchanged external delivery/payment scopes must remain qualified.
+        for (const code of [
+          'EXTERNAL_RESIDENCY_UNVERIFIED',
+          'EXISTING_IDENTITY_SCOPE_UNVERIFIED',
+        ])
+          if (r.warnings.some((w) => w.code === code))
+            expect(o.warnings.some((w) => w.code === code)).toBe(true);
       }
     },
   );
   it('charges continuous Cloud Run support for the full month, not request duty', () => {
-    const r = recommend(publicCases[1]),
+    const input = structuredClone(publicCases[1]);
+    input.infrastructure.cloud_preference = 'gcp';
+    const r = recommend(input),
       bg = line(r, 'background-compute'),
       app = line(r, 'application-compute');
     expect(bg.quantity.min).toBe(bg.quantity.max);

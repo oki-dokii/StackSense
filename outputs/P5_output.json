@@ -6,6 +6,7 @@
     "Enterprise identity integration assumes a reachable, eligible OIDC/SAML identity provider; verify tenant scopes, licenses and network paths before provisioning.",
     "PROVISIONAL RESIDENCY EXCEPTION: Microsoft Entra ID (tenant OIDC/SAML integration) remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
     "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required.",
+    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
   ],
@@ -15,20 +16,20 @@
       "budget_fit": "over_budget",
       "core": {
         "backend": "ASP.NET Core",
-        "database": "PostgreSQL",
+        "database": "SQL Server",
         "frontend": "Angular",
         "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
       },
       "monthly_infrastructure_usd": {
-        "max": 858.06,
-        "min": 686.87
+        "max": 739.7,
+        "min": 603.7
       },
-      "plan_id": "modular_monolith|angular|aspnet|pg|ase-india|centralindia"
+      "plan_id": "modular_monolith|angular|aspnet|sqlserver|ase-india|centralindia"
     },
     "notes": [
-      "Infrastructure uncertainty: database-cpu contributes USD 60.31 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
-      "Infrastructure uncertainty: database-memory contributes USD 40.88 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Infrastructure uncertainty: existing-database-operations contributes USD 80 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
       "Infrastructure uncertainty: hosted-ci contributes USD 30 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Infrastructure uncertainty: telemetry-operations contributes USD 15 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
       "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions."
     ],
     "options": [
@@ -38,26 +39,25 @@
           "Enterprise identity integration assumes a reachable, eligible OIDC/SAML identity provider; verify tenant scopes, licenses and network paths before provisioning.",
           "PROVISIONAL RESIDENCY EXCEPTION: Microsoft Entra ID (tenant OIDC/SAML integration) remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
           "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required.",
+          "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
           "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
           "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
           "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
           "Peak concurrency supplied: 300; not equated directly with requests/second.",
-          "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+          "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
           "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
           "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 1.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
           "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
           "Azure ASE: 1 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-          "Managed database: 1 vCPU/4 GiB reference primary and 0 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+          "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
           "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
           "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
           "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+          "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
           "Authored internet-egress envelope; actual destination, free quota and routes vary.",
           "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-          "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
           "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
           "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-          "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-          "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
           "Original feature flags, platforms, scale, languages, provider preference, residency and compliance requests remain unchanged. All vendor/contract exceptions and capacity hypotheses still require review."
         ],
         "budget_fit": "over_budget",
@@ -71,20 +71,20 @@
         ],
         "core": {
           "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
+          "database": "SQL Server",
           "frontend": "React / Vite",
           "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
         },
         "id": "explicit_budget_tradeoff",
         "monthly_infrastructure_usd": {
-          "max": 460.53,
-          "min": 346.93
+          "max": 451.35,
+          "min": 315.35
         },
         "monthly_total_usd": {
-          "max": 460.53,
-          "min": 346.93
+          "max": 451.35,
+          "min": 315.35
         },
-        "plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "primary_region": "centralindia",
         "requires_acceptance": true,
         "supporting_services": [
@@ -94,6 +94,15 @@
           "OpenTelemetry Collector + structured logs"
         ],
         "warnings": [
+          {
+            "code": "EXISTING_DATABASE_SCOPE_UNVERIFIED",
+            "fields": [
+              "infrastructure.existing_systems",
+              "infrastructure.data_residency"
+            ],
+            "message": "Reuse the existing SQL Server provisionally. Its physical geography, reachable private network, capacity, backups, edition/license entitlement and restore compatibility are not established; no India location, free license or migration is assumed.",
+            "severity": "critical"
+          },
           {
             "code": "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
             "fields": [
@@ -108,7 +117,7 @@
             "fields": [
               "budget.monthly_infra_usd"
             ],
-            "message": "Infrastructure estimate USD 346.93–460.53/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
+            "message": "Infrastructure estimate USD 315.35–451.35/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
             "severity": "warning"
           },
           {
@@ -166,7 +175,7 @@
     ],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.4.0",
+  "catalog_version": "0.5.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -218,63 +227,23 @@
       }
     },
     {
-      "basis": "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+      "basis": "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
       "category": "database",
-      "id": "database-cpu",
+      "id": "existing-database-operations",
       "monthly_usd": {
-        "max": 120.6,
-        "min": 60.29
-      },
-      "quantity": {
-        "max": 1460,
-        "min": 1460
-      },
-      "source_ids": [
-        "sql-price"
-      ],
-      "unit_rate_usd": {
-        "max": 0.0826,
-        "min": 0.0413
-      }
-    },
-    {
-      "basis": "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-      "category": "database",
-      "id": "database-memory",
-      "monthly_usd": {
-        "max": 81.76,
-        "min": 40.88
-      },
-      "quantity": {
-        "max": 5840,
-        "min": 5840
-      },
-      "source_ids": [
-        "sql-price"
-      ],
-      "unit_rate_usd": {
-        "max": 0.014,
-        "min": 0.007
-      }
-    },
-    {
-      "basis": "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
-      "category": "database",
-      "id": "database-storage",
-      "monthly_usd": {
-        "max": 16,
-        "min": 2
-      },
-      "quantity": {
-        "max": 40,
+        "max": 100,
         "min": 20
       },
+      "quantity": {
+        "max": 1,
+        "min": 1
+      },
       "source_ids": [
-        "sql-price"
+        "sql2019-lifecycle"
       ],
       "unit_rate_usd": {
-        "max": 0.4,
-        "min": 0.1
+        "max": 100,
+        "min": 20
       }
     },
     {
@@ -386,17 +355,15 @@
       "category": "infrastructure_and_operations",
       "line_ids": [
         "application-compute",
-        "database-cpu",
-        "database-memory",
-        "database-storage",
+        "existing-database-operations",
         "backup-storage",
         "object-storage",
         "network-egress",
         "telemetry-operations",
         "hosted-ci"
       ],
-      "max": 858.06,
-      "min": 686.87
+      "max": 739.7,
+      "min": 603.7
     },
     {
       "category": "payment_and_message_activity",
@@ -408,23 +375,46 @@
   "cost_sensitivity": [
     {
       "baseline_origin": "assumed",
-      "baseline_value": 0.8680555555555556,
+      "baseline_value": 0.1736111111111111,
       "cost_category": "infrastructure_and_operations",
       "field": "extensions.expected_requests_per_second",
       "samples": [
         {
-          "max": 858.06,
-          "min": 686.87,
+          "max": 739.7,
+          "min": 603.7,
           "status": "estimated",
           "upper_delta_usd": 0,
-          "value": 0.4340277777777778
+          "value": 0.08680555555555555
         },
         {
-          "max": 858.06,
-          "min": 686.87,
+          "max": 739.7,
+          "min": 603.7,
           "status": "estimated",
           "upper_delta_usd": 0,
-          "value": 1.7361111111111112
+          "value": 0.3472222222222222
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 0.2,
+      "cost_category": "infrastructure_and_operations",
+      "field": "extensions.daily_active_user_fraction",
+      "samples": [
+        {
+          "max": 739.7,
+          "min": 603.7,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 0.1
+        },
+        {
+          "max": 739.7,
+          "min": 603.7,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 0.4
         }
       ],
       "scope": "selected_plan_fixed_no_reranking"
@@ -436,15 +426,15 @@
       "field": "extensions.monthly_egress_gb",
       "samples": [
         {
-          "max": 855.06,
-          "min": 686.27,
+          "max": 736.7,
+          "min": 603.1,
           "status": "estimated",
           "upper_delta_usd": -3,
           "value": 7.5
         },
         {
-          "max": 864.06,
-          "min": 688.07,
+          "max": 745.7,
+          "min": 604.9,
           "status": "estimated",
           "upper_delta_usd": 6,
           "value": 30
@@ -459,15 +449,15 @@
       "field": "extensions.retention_months",
       "samples": [
         {
-          "max": 858.06,
-          "min": 686.87,
+          "max": 739.7,
+          "min": 603.7,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 1
         },
         {
-          "max": 864.06,
-          "min": 687.47,
+          "max": 745.7,
+          "min": 604.3,
           "status": "estimated",
           "upper_delta_usd": 6,
           "value": 2
@@ -485,7 +475,7 @@
     },
     {
       "component": "primary-database",
-      "location": "centralindia",
+      "location": "Existing database geography unverified",
       "scope": "Application/auth/search/outbox data and backups; verify retention, restore and deletion.",
       "verification": "configuration_required"
     },
@@ -514,13 +504,13 @@
       "verification": "source_only_no_production_data"
     }
   ],
-  "database_region": "centralindia",
+  "database_region": null,
   "decision_trace": {
-    "complete_candidates": 49,
-    "core_candidates": 49,
+    "complete_candidates": 105,
+    "core_candidates": 105,
     "rejected": [],
-    "score": 61,
-    "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia"
+    "score": 66,
+    "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia"
   },
   "engine_version": "0.8.0",
   "estimate_status": "estimated",
@@ -529,50 +519,46 @@
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency supplied: 300; not equated directly with requests/second.",
-      "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+      "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
       "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
       "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-      "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+      "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
       "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
       "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+      "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
       "Authored internet-egress envelope; actual destination, free quota and routes vary.",
       "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-      "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
       "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-      "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-      "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-      "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+      "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
     ],
-    "max": 858.06,
-    "min": 686.87
+    "max": 739.7,
+    "min": 603.7
   },
   "estimated_total_monthly_cost_usd": {
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency supplied: 300; not equated directly with requests/second.",
-      "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+      "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
       "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
       "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-      "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+      "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
       "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
       "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+      "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
       "Authored internet-egress envelope; actual destination, free quota and routes vary.",
       "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-      "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
       "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
       "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-      "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-      "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
       "Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded."
     ],
-    "max": 858.06,
-    "min": 686.87
+    "max": 739.7,
+    "min": 603.7
   },
   "integration_reviews": [
     {
@@ -670,37 +656,35 @@
       "budget_fit": "over_budget",
       "core": {
         "backend": "ASP.NET Core",
-        "database": "PostgreSQL",
+        "database": "SQL Server",
         "frontend": "React / Vite",
         "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 300; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
         "Authored internet-egress envelope; actual destination, free quota and routes vary.",
         "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
       ],
-      "database_region": "centralindia",
+      "database_region": null,
       "monthly_usd": {
-        "max": 858.06,
-        "min": 686.87
+        "max": 739.7,
+        "min": 603.7
       },
       "operated_components": 1.25,
-      "plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+      "plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
       "primary_region": "centralindia",
       "retained_constraints": [
         "platforms=web",
@@ -710,7 +694,7 @@
         "compliance=iso27001",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 61,
+      "score": 66,
       "score_delta": 0,
       "selected": true,
       "supporting_services": [
@@ -724,6 +708,7 @@
         "AVAILABILITY_TARGET_UNVERIFIED",
         "BUDGET_EXCEEDED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "EXISTING_DATABASE_SCOPE_UNVERIFIED",
         "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
         "EXISTING_SYSTEM_REVIEW",
         "LATENCY_TARGET_UNVERIFIED"
@@ -733,38 +718,36 @@
       "architecture_style": "modular_monolith",
       "budget_fit": "over_budget",
       "core": {
-        "backend": "Fastify",
-        "database": "PostgreSQL",
+        "backend": "Express",
+        "database": "SQL Server",
         "frontend": "React / Vite",
         "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 300; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
         "Authored internet-egress envelope; actual destination, free quota and routes vary.",
         "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
       ],
-      "database_region": "centralindia",
+      "database_region": null,
       "monthly_usd": {
-        "max": 858.06,
-        "min": 686.87
+        "max": 739.7,
+        "min": 603.7
       },
       "operated_components": 1.25,
-      "plan_id": "modular_monolith|react|fastify|pg|ase-india|centralindia",
+      "plan_id": "modular_monolith|react|express|sqlserver|ase-india|centralindia",
       "primary_region": "centralindia",
       "retained_constraints": [
         "platforms=web",
@@ -774,7 +757,7 @@
         "compliance=iso27001",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 61,
+      "score": 66,
       "score_delta": 0,
       "selected": false,
       "supporting_services": [
@@ -788,6 +771,7 @@
         "AVAILABILITY_TARGET_UNVERIFIED",
         "BUDGET_EXCEEDED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "EXISTING_DATABASE_SCOPE_UNVERIFIED",
         "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
         "EXISTING_SYSTEM_REVIEW",
         "LATENCY_TARGET_UNVERIFIED"
@@ -797,38 +781,36 @@
       "architecture_style": "modular_monolith",
       "budget_fit": "over_budget",
       "core": {
-        "backend": "ASP.NET Core",
-        "database": "PostgreSQL",
-        "frontend": "Vue",
+        "backend": "NestJS",
+        "database": "SQL Server",
+        "frontend": "React / Vite",
         "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 300; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
         "Authored internet-egress envelope; actual destination, free quota and routes vary.",
         "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
       ],
-      "database_region": "centralindia",
+      "database_region": null,
       "monthly_usd": {
-        "max": 858.06,
-        "min": 686.87
+        "max": 739.7,
+        "min": 603.7
       },
       "operated_components": 1.25,
-      "plan_id": "modular_monolith|vue|aspnet|pg|ase-india|centralindia",
+      "plan_id": "modular_monolith|react|nestjs|sqlserver|ase-india|centralindia",
       "primary_region": "centralindia",
       "retained_constraints": [
         "platforms=web",
@@ -838,7 +820,7 @@
         "compliance=iso27001",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 61,
+      "score": 66,
       "score_delta": 0,
       "selected": false,
       "supporting_services": [
@@ -852,6 +834,7 @@
         "AVAILABILITY_TARGET_UNVERIFIED",
         "BUDGET_EXCEEDED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "EXISTING_DATABASE_SCOPE_UNVERIFIED",
         "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
         "EXISTING_SYSTEM_REVIEW",
         "LATENCY_TARGET_UNVERIFIED"
@@ -860,6 +843,24 @@
   ],
   "primary_region": "centralindia",
   "review_actions": [
+    {
+      "affected_components": [
+        "complete deployment"
+      ],
+      "code": "EXISTING_DATABASE_SCOPE_UNVERIFIED",
+      "evidence_required": [
+        "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+      ],
+      "fields": [
+        "infrastructure.existing_systems",
+        "infrastructure.data_residency"
+      ],
+      "id": "EXISTING_DATABASE_SCOPE_UNVERIFIED:infrastructure.existing_systems|infrastructure.data_residency:0",
+      "kind": "evidence_gap",
+      "next_action": "Review the scoped catalog evidence, workload and configuration; resolve the condition and rerun the unchanged input.",
+      "references": [],
+      "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
+    },
     {
       "affected_components": [
         "existing identity provider",
@@ -874,7 +875,7 @@
         "infrastructure.data_residency",
         "requirements.auth"
       ],
-      "id": "EXISTING_IDENTITY_SCOPE_UNVERIFIED:infrastructure.data_residency|requirements.auth",
+      "id": "EXISTING_IDENTITY_SCOPE_UNVERIFIED:infrastructure.data_residency|requirements.auth:1",
       "kind": "evidence_gap",
       "next_action": "Ask the tenant owner for the identity boundary and connectivity details. Microsoft 365 content geography does not establish Entra identity residency.",
       "references": [
@@ -907,7 +908,7 @@
         "priorities.cost"
       ],
       "fit": 0,
-      "reason": "USD 686.87–858.06/month versus budget 300: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "reason": "USD 603.7–739.7/month versus budget 300: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
       "weight": 3
     },
     {
@@ -920,7 +921,7 @@
         "priorities.time_to_market"
       ],
       "fit": 4,
-      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 2.75/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 2.75/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics; supported server-language depth 1 gives ecosystem reuse bonus 0.",
       "weight": 5
     },
     {
@@ -950,7 +951,7 @@
       "weight": 2
     },
     {
-      "contribution": 20,
+      "contribution": 25,
       "criterion": "maintainability",
       "driven_by": [
         "team.languages",
@@ -959,8 +960,8 @@
         "infrastructure.existing_systems",
         "priorities.maintainability"
       ],
-      "fit": 4,
-      "reason": "Operational burden 2/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+      "fit": 5,
+      "reason": "Operational burden 2/5+; existing SQL Server integration receives a reuse preference. Server ecosystem reuse bonus 0; fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
       "weight": 5
     },
     {
@@ -979,7 +980,7 @@
     "backend": {
       "alternatives": [
         {
-          "choice": "Fastify",
+          "choice": "Express",
           "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
         }
       ],
@@ -1004,24 +1005,22 @@
     "database": {
       "alternatives": [
         {
-          "choice": "None",
-          "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+          "choice": "PostgreSQL",
+          "why_not": "Best compatible complete plan using this option scored 61, below 66; other layers may also differ."
         }
       ],
-      "choice": "PostgreSQL",
+      "choice": "SQL Server",
       "driven_by": [
         "project.type",
         "requirements.auth",
         "requirements.offline_support",
         "infrastructure.existing_systems"
       ],
-      "id": "pg",
-      "justification": "relational persistence via Azure Database for PostgreSQL Flexible Server (Central India, local/zone backups).  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "id": "sqlserver",
+      "justification": "relational persistence via Existing on-premises SQL Server; private application integration, not an assumed migration.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "database",
       "source_ids": [
-        "azure-pg-backup",
-        "azure-pg-regions",
-        "pg"
+        "sqlserver"
       ],
       "tradeoffs": [
         "Data model, backup policy, licensing and release/driver compatibility need explicit review."
@@ -1189,9 +1188,18 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 49 complete compatible plans; month-12 infrastructure planning band USD 686.87–858.06/month.",
+  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 105 complete compatible plans; month-12 infrastructure planning band USD 603.7–739.7/month.",
   "validation_errors": [],
   "warnings": [
+    {
+      "code": "EXISTING_DATABASE_SCOPE_UNVERIFIED",
+      "fields": [
+        "infrastructure.existing_systems",
+        "infrastructure.data_residency"
+      ],
+      "message": "Reuse the existing SQL Server provisionally. Its physical geography, reachable private network, capacity, backups, edition/license entitlement and restore compatibility are not established; no India location, free license or migration is assumed.",
+      "severity": "critical"
+    },
     {
       "code": "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
       "fields": [
@@ -1214,7 +1222,7 @@
       "fields": [
         "budget.monthly_infra_usd"
       ],
-      "message": "Infrastructure estimate USD 686.87–858.06/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
+      "message": "Infrastructure estimate USD 603.7–739.7/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
       "severity": "warning"
     },
     {

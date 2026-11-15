@@ -3,7 +3,8 @@ export type Runtime =
   'none' | 'node' | 'python' | 'jvm' | 'dotnet' | 'go' | 'php';
 export type Deployment =
   'managed_cloud' | 'self_hosted_cloud_vm' | 'on_premise' | 'air_gapped';
-export type Provider = 'none' | 'aws' | 'gcp' | 'azure' | 'cloudflare';
+export type Provider =
+  'none' | 'aws' | 'gcp' | 'azure' | 'cloudflare' | 'vercel' | 'fly';
 export interface Source {
   id: string;
   title: string;
@@ -49,6 +50,9 @@ export interface Entry {
   managed_databases?: ManagedDatabase[];
   regions?: Region[];
   fixed_region?: string;
+  default_residency?: Region['residency'];
+  upstream_database_id?: string;
+  service_bundle?: 'supabase_pro' | 'neon_launch';
 }
 export interface Catalog {
   version: string;

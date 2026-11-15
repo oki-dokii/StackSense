@@ -19,11 +19,16 @@
       "stack_present": true,
       "critical_warnings": [
         "EXTERNAL_RESIDENCY_UNVERIFIED",
-        "EXTERNAL_RESIDENCY_UNVERIFIED"
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "MANAGED_BOUNDARY_RESIDENCY_REVIEW",
+        "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "infrastructure_usd": {
-        "min": 367.76,
-        "max": 1193.62
+        "min": 266.03,
+        "max": 531.08
       },
       "llm_off_exact_match": true,
       "identifier_and_order_invariance": true
@@ -32,10 +37,12 @@
       "scenario_id": "P3",
       "status": "ok_with_warnings",
       "stack_present": true,
-      "critical_warnings": [],
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
       "infrastructure_usd": {
-        "min": 639.32,
-        "max": 2648.75
+        "min": 366.9,
+        "max": 614.06
       },
       "llm_off_exact_match": true,
       "identifier_and_order_invariance": true
@@ -61,11 +68,12 @@
       "status": "ok_with_warnings",
       "stack_present": true,
       "critical_warnings": [
+        "EXISTING_DATABASE_SCOPE_UNVERIFIED",
         "EXISTING_IDENTITY_SCOPE_UNVERIFIED"
       ],
       "infrastructure_usd": {
-        "min": 686.87,
-        "max": 858.06
+        "min": 603.7,
+        "max": 739.7
       },
       "llm_off_exact_match": true,
       "identifier_and_order_invariance": true
@@ -75,18 +83,22 @@
       "status": "ok_with_warnings",
       "stack_present": true,
       "critical_warnings": [
-        "EXTERNAL_RESIDENCY_UNVERIFIED"
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "MANAGED_BOUNDARY_RESIDENCY_REVIEW",
+        "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "infrastructure_usd": {
-        "min": 187.9,
-        "max": 552.07
+        "min": 77.75,
+        "max": 114.89
       },
       "llm_off_exact_match": true,
       "identifier_and_order_invariance": true
     }
   ],
   "history": {
-    "available_commits": 17,
+    "available_commits": 18,
     "earliest_author_date": "2026-11-13T01:45:56+05:30",
     "earliest_committer_date": "2026-11-13T01:45:56+05:30",
     "commits_with_author_or_committer_date_before_release": 0,

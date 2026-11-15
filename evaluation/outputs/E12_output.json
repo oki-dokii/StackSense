@@ -2,6 +2,7 @@
   "architecture_style": "other",
   "assumptions": [
     "Persistent application data is inferred from project.type=web_app; domain data modeling remains required.",
+    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "compliance was absent; defaulted to [].",
     "infrastructure.data_residency was absent; defaulted to \"none\".",
     "infrastructure.existing_systems was absent; defaulted to [].",
@@ -39,7 +40,7 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.4.0",
+  "catalog_version": "0.5.0",
   "control_plan": null,
   "core_rejections": [
     {
@@ -128,6 +129,15 @@
       "message": "cloud_preference=none prohibits this public-cloud variant."
     },
     {
+      "candidate_id": "fly",
+      "code": "CLOUD_FORBIDDEN",
+      "fields": [
+        "infrastructure.cloud_preference"
+      ],
+      "layer": "hosting",
+      "message": "cloud_preference=none prohibits this public-cloud variant."
+    },
+    {
       "candidate_id": "frontend-none",
       "code": "PLATFORM_MISMATCH",
       "fields": [
@@ -180,6 +190,15 @@
       ],
       "layer": "frontend",
       "message": "This reviewed frontend variant does not cover every client target."
+    },
+    {
+      "candidate_id": "vercel",
+      "code": "CLOUD_FORBIDDEN",
+      "fields": [
+        "infrastructure.cloud_preference"
+      ],
+      "layer": "hosting",
+      "message": "cloud_preference=none prohibits this public-cloud variant."
     }
   ],
   "cost_breakdown": [],
@@ -229,7 +248,7 @@
         "requirements",
         "compliance"
       ],
-      "id": "CORE_CATALOG_COVERAGE_GAP:infrastructure|requirements|compliance",
+      "id": "CORE_CATALOG_COVERAGE_GAP:infrastructure|requirements|compliance:0",
       "kind": "evidence_gap",
       "next_action": "Inspect core_rejections. Review exact provider/runtime/database regional variants and driver compatibility; do not substitute a different cloud or region.",
       "references": [],

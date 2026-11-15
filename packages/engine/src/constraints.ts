@@ -140,11 +140,53 @@ export function compatiblePlan(
   style: Style,
   scenario: NormalizedScenario,
 ): { plan: CorePlan | null; reason: string } {
-  if (!backend.databases!.includes(database.id))
+  if (
+    !backend.databases!.includes(database.upstream_database_id ?? database.id)
+  )
     return {
       plan: null,
       reason:
         'No reviewed backend/driver compatibility edge for this database.',
+    };
+  if (database.service_bundle && scenario.compliance.includes('hipaa'))
+    return {
+      plan: null,
+      reason:
+        'Reviewed entry is a low-cost tier without the required HIPAA contractual/service scope; choose an eligible contracted tier.',
+    };
+  if (
+    database.service_bundle === 'supabase_pro' &&
+    scenario.requirements.auth === 'enterprise_sso'
+  )
+    return {
+      plan: null,
+      reason:
+        'This Supabase Pro profile does not review enterprise identity integration or its additional charges.',
+    };
+  if (
+    hosting.id === 'vercel' &&
+    (scenario.requirements.ml_features !== 'none' ||
+      scenario.infrastructure.existing_systems.some((x) =>
+        /sql\s+server/i.test(x),
+      ) ||
+      (scenario.requirements.realtime &&
+        /collaborat|whiteboard|crdt|shared\s+canvas/i.test(
+          scenario.project.description,
+        )))
+  )
+    return {
+      plan: null,
+      reason:
+        'Bounded Vercel functions profile does not cover resident inference, existing private SQL connectivity or persistent collaborative WebSocket servers.',
+    };
+  if (
+    database.service_bundle === 'supabase_pro' &&
+    typeof scenario.extensions?.retention_months === 'number'
+  )
+    return {
+      plan: null,
+      reason:
+        'Explicit month-based database retention exceeds this Pro seven-day included-backup profile; use another reviewed plan.',
     };
   const runtimes = [backend.runtime!, frontend.runtime!];
   if (runtimes.some((runtime) => !hosting.runtimes!.includes(runtime)))
@@ -157,7 +199,10 @@ export function compatiblePlan(
       plan: null,
       reason: 'No reviewed web asset delivery on this host.',
     };
-  const residency = scenario.infrastructure.data_residency;
+  const residency =
+    scenario.infrastructure.data_residency === 'none'
+      ? (hosting.default_residency ?? 'none')
+      : scenario.infrastructure.data_residency;
   const region =
     residency === 'none'
       ? (hosting.fixed_region ?? null)
@@ -165,8 +210,20 @@ export function compatiblePlan(
           ?.region ?? null);
   let databaseDeployment = 'None';
   let databaseRegion: string | null = null;
+  const existingDatabase =
+    scenario.infrastructure.deployment_model !== 'air_gapped' &&
+    database.id === 'sqlserver' &&
+    scenario.infrastructure.existing_systems.some((system) =>
+      /\bsql\s+server\b/i.test(system),
+    );
   if (database.model !== 'none') {
     if (
+      existingDatabase &&
+      !['air_gapped'].includes(scenario.infrastructure.deployment_model)
+    ) {
+      databaseDeployment =
+        'Existing on-premises SQL Server; private application integration, not an assumed migration';
+    } else if (
       hosting.deployments!.includes('managed_cloud') &&
       scenario.infrastructure.deployment_model === 'managed_cloud'
     ) {
@@ -224,6 +281,7 @@ export function compatiblePlan(
       primary_region: region,
       database_deployment: databaseDeployment,
       database_region: databaseRegion,
+      database_existing: existingDatabase,
     },
     reason: '',
   };

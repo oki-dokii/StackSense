@@ -207,7 +207,9 @@
               "aws",
               "gcp",
               "azure",
-              "cloudflare"
+              "cloudflare",
+              "vercel",
+              "fly"
             ]
           },
           "deployments": {
@@ -343,6 +345,23 @@
           "fixed_region": {
             "type": "string",
             "minLength": 1
+          },
+          "upstream_database_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "service_bundle": {
+            "enum": [
+              "supabase_pro",
+              "neon_launch"
+            ]
+          },
+          "default_residency": {
+            "enum": [
+              "us",
+              "eu",
+              "india"
+            ]
           }
         },
         "allOf": [

@@ -3,7 +3,7 @@
     "class": "table-scroll",
     "id": "",
     "tag": "div",
-    "text": "$0$3,921.22Monthly cost upper estimate →8568Original-priority score →Angular / Fastify: $2"
+    "text": "$0$3,921.22Monthly cost upper estimate →8968Original-priority score →Angular / Express: $6"
   },
   "issues": {
     "contrast": [],
@@ -17,7 +17,7 @@
   },
   "limitations": "Custom read-only snapshot, not axe or WCAG conformance. Solid-background text only; skips SVG, opacity/gradient cases, disabled and hidden text. Does not test assistive technology, focus obscuring, control borders or all accessible-name rules.",
   "path": "/results",
-  "testedTextElements": 694,
+  "testedTextElements": 689,
   "title": "Results — StackSense",
   "unmeasured": [],
   "unmeasuredTextElements": 0,

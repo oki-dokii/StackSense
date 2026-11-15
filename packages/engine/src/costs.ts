@@ -8,6 +8,8 @@ import {
   type SupportResult,
 } from './complete-types.js';
 export { CostModelLimitError } from './complete-types.js';
+import { traffic } from './traffic.js';
+import { managedCost } from './managed-costs.js';
 const H = 730;
 export function priceLine(
   id: string,
@@ -68,10 +70,7 @@ export function estimateCost(
   const users = s.scale.users_12_months;
   const peak =
     s.scale.peak_concurrent_users ?? Math.max(1, Math.ceil(users * 0.02));
-  const requests =
-    typeof ext.expected_requests_per_second === 'number'
-      ? ext.expected_requests_per_second
-      : (users * 50) / 86400;
+  const { rps: requests, fraction, active } = traffic(s);
   const totalData = s.scale.data_volume_gb_12_months ?? 10;
   const egress =
     typeof ext.monthly_egress_gb === 'number'
@@ -102,7 +101,7 @@ export function estimateCost(
   assumptions.push(
     typeof ext.expected_requests_per_second === 'number'
       ? `Expected RPS supplied: ${requests}.`
-      : `RPS absent: assumed 50 requests/user/day averaged across the day (${requests.toFixed(3)} RPS); peak capacity still uses the concurrency hypothesis.`,
+      : `RPS absent: authored daily-active fraction ${fraction} of registered month-12 users, floored at supplied peak concurrency (${active} active/day); 50 requests/active user/day gives ${requests.toFixed(3)} average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.`,
   );
   assumptions.push(
     `Data volume ${totalData} GB ${s.scale.data_volume_gb_12_months === undefined ? 'assumed because absent' : 'supplied'}; egress ${egress} GB/month ${typeof ext.monthly_egress_gb === 'number' ? 'supplied' : 'assumed at 0.01 GB per year-12 user, minimum 1 GB'}; backup retention ${retention} months ${typeof ext.retention_months === 'number' ? 'supplied' : 'assumed'}.`,
@@ -124,6 +123,15 @@ export function estimateCost(
     );
     assumptions.push(
       'Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.',
+    );
+  } else if (['vercel', 'fly'].includes(plan.hosting.id)) {
+    managedCost(
+      plan,
+      s,
+      support,
+      { requests, peak, totalData, egress, retention },
+      lines,
+      assumptions,
     );
   } else {
     const replicas = Math.max(
@@ -248,7 +256,25 @@ export function estimateCost(
           },
         ),
       );
-    if (
+    if (plan.database_existing) {
+      lines.push(
+        priceLine(
+          'existing-database-operations',
+          'database',
+          { min: 1, max: 1 },
+          {
+            min: 20,
+            max: 100,
+            source_ids: ['sql2019-lifecycle'],
+            basis:
+              'Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.',
+          },
+        ),
+      );
+      assumptions.push(
+        'Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.',
+      );
+    } else if (
       plan.database.model !== 'none' &&
       s.infrastructure.deployment_model === 'managed_cloud'
     ) {

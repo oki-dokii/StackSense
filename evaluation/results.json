@@ -21,13 +21,14 @@
     {
       "category": "Contradictions",
       "cost": {
-        "max": 20476.09,
-        "min": 3088.39
+        "max": 4067.03,
+        "min": 1628.64
       },
       "id": "E03",
-      "selected_plan_id": "modular_monolith|flutter|aspnet|pg|cloudrun|unspecified",
+      "selected_plan_id": "modular_monolith|flutter|aspnet|neon-pg|fly|iad",
       "status": "ok_with_warnings",
       "warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW",
         "AVAILABILITY_TARGET_UNVERIFIED",
         "BUDGET_EXCEEDED",
         "PRICE_AND_CAPACITY_ASSUMPTIONS",
@@ -67,15 +68,15 @@
     {
       "category": "Existing systems",
       "cost": {
-        "max": 587.33,
-        "min": 189.22
+        "max": 90.77,
+        "min": 45.74
       },
       "id": "E06",
-      "selected_plan_id": "modular_monolith|react|aspnet|mysql|cloudrun|unspecified",
+      "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|fly|iad",
       "status": "ok_with_warnings",
       "warnings": [
+        "EXISTING_DATABASE_SCOPE_UNVERIFIED",
         "AVAILABILITY_TARGET_UNVERIFIED",
-        "BUDGET_RANGE_RISK",
         "EXISTING_SYSTEM_REVIEW",
         "PRICE_AND_CAPACITY_ASSUMPTIONS"
       ]
@@ -87,7 +88,7 @@
         "min": 74.65
       },
       "id": "E07",
-      "selected_plan_id": "modular_monolith|angular|fastapi|mysql|local|unspecified",
+      "selected_plan_id": "modular_monolith|angular|express|mysql|local|unspecified",
       "status": "ok_with_warnings",
       "warnings": [
         "AVAILABILITY_TARGET_UNVERIFIED",
@@ -98,30 +99,30 @@
     {
       "category": "Skill mismatch",
       "cost": {
-        "max": 587.33,
-        "min": 189.22
+        "max": 65.25,
+        "min": 50
       },
       "id": "E08",
-      "selected_plan_id": "modular_monolith|angular|go-http|mysql|cloudrun|unspecified",
+      "selected_plan_id": "modular_monolith|angular|go-http|supabase-pg|vercel|iad1",
       "status": "ok_with_warnings",
       "warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW",
         "AVAILABILITY_TARGET_UNVERIFIED",
-        "BUDGET_RANGE_RISK",
         "PRICE_AND_CAPACITY_ASSUMPTIONS"
       ]
     },
     {
       "category": "Deprecated technology",
       "cost": {
-        "max": 587.33,
-        "min": 189.22
+        "max": 65.25,
+        "min": 50
       },
       "id": "E09",
-      "selected_plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
+      "selected_plan_id": "modular_monolith|react|django|supabase-pg|vercel|iad1",
       "status": "ok_with_warnings",
       "warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW",
         "AVAILABILITY_TARGET_UNVERIFIED",
-        "BUDGET_RANGE_RISK",
         "EXISTING_SYSTEM_REVIEW",
         "EXISTING_TECH_EOL",
         "EXISTING_TECH_EOL",
@@ -135,7 +136,7 @@
         "min": 214.64
       },
       "id": "E10",
-      "selected_plan_id": "modular_monolith|angular|fastapi|pg|ecs|ap-south-1",
+      "selected_plan_id": "modular_monolith|angular|express|pg|ecs|ap-south-1",
       "status": "ok_with_warnings",
       "warnings": [
         "AVAILABILITY_TARGET_UNVERIFIED",
@@ -146,15 +147,15 @@
     {
       "category": "Offline native writes",
       "cost": {
-        "max": 691.9,
-        "min": 247.14
+        "max": 66.25,
+        "min": 50.5
       },
       "id": "E11",
-      "selected_plan_id": "modular_monolith|react-native|django|pg|cloudrun|unspecified",
+      "selected_plan_id": "modular_monolith|react-native|django|supabase-pg|vercel|iad1",
       "status": "ok_with_warnings",
       "warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW",
         "AVAILABILITY_TARGET_UNVERIFIED",
-        "BUDGET_RANGE_RISK",
         "PRICE_AND_CAPACITY_ASSUMPTIONS"
       ]
     },
@@ -182,15 +183,15 @@
     {
       "category": "Unknown extension",
       "cost": {
-        "max": 587.33,
-        "min": 189.22
+        "max": 65.25,
+        "min": 50
       },
       "id": "E14",
-      "selected_plan_id": "modular_monolith|angular|aspnet|mysql|cloudrun|unspecified",
+      "selected_plan_id": "modular_monolith|angular|django|supabase-pg|vercel|iad1",
       "status": "ok_with_warnings",
       "warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW",
         "AVAILABILITY_TARGET_UNVERIFIED",
-        "BUDGET_RANGE_RISK",
         "PRICE_AND_CAPACITY_ASSUMPTIONS",
         "UNKNOWN_INPUT"
       ]

@@ -35,3 +35,11 @@ Payment transaction fees cannot be accurately modeled without volume/value. Stat
 ## Evidence and tests
 
 Store source/date in pricing records and source IDs in result extensions. Check nonnegative finite bounds, min ≤ max, no duplicated bundle costs, regional consistency, correct unit conversion, free-tier crossing, zero budget, unknown usage, and budget boundary warnings. Revalidate prices before submission; no exact provider prices are asserted in this planning pack.
+
+## Paid managed variants and traffic assumptions (15 November)
+
+Registered/month-12 population is no longer equated to daily activity. Absent explicit RPS, the authored default daily-active fraction is 0.2, floored at supplied peak concurrency, with 50 requests/active user/day. `daily_active_user_fraction` accepts 0–1; explicit RPS overrides it and leaves the fraction unapplied. These are scenario assumptions, not empirical usage research. MAU/SMS/payment defaults still use the full population.
+
+Vercel Pro uses every team member as a paid deploying seat at USD 20; one USD 20 team usage credit offsets compute/invocations/build/CDN meters once. Current on-demand transfer/request/origin prices have no unverified legacy included Pro allowance. Authored 10–30 ms CPU and 100–300 ms wall time per request at 1 GiB require measurement. Minute-scale bounded Cron drains are charged separately in usage; direct signed uploads avoid function payload limits. Supabase Pro charges one project, hourly compute minus one credit, storage/MAU/realtime/egress overages and separate file backup. Neon Launch uses CU-hour, storage/history and backup-export allowances. Fly uses always-on shared-CPU Machines and an explicit regional price allowance; no India mapping.
+
+The primary ranks known backend language, then upper-bound budget fit within that tier, then weighted fit and stable ties. It does not replace a JVM-only team with an unfamiliar functions runtime solely to fit budget. Optional changed-requirement proposals remain separate. No finite catalog can promise a budget fit: P2/P5/P6 gaps remain visible in the generated outputs.

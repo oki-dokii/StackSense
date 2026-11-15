@@ -6,32 +6,39 @@
   "input_fixture": "fixtures/public/scenarios.json",
   "input_sha256": "6a4aa08bd2fddfaf6a6498188867848d721c5cb6822164b27a783ae8ead76d57",
   "browser_export_sha256": {
-    "p2jsonPath": "a3151a477307696188127cd263a0aaf5115c3ce59279ff3c5971ec2648c5a768",
-    "p3jsonPath": "2bcaf5009e969b04d38defcfa11710492f82a271094c8100f70cb0a386924b20",
-    "p3adrPath": "adfa871941b94d5623af77e624e18b853ea248aa358082c85f97982120cdffdb"
+    "p2jsonPath": "b17f65c430aa47f88235db539172a74fd3da6e0abde2f37f578ee9bd6a3015e8",
+    "p3jsonPath": "5d2bd6ca43e7b21974bfaf414cea8c8174b0bf4dda18387210d523dca3416626",
+    "p3adrPath": "86ab5e6be51c987ae33e919e5a53ab98ed6eb35d9c830e6d98ac1700307b71d6"
   },
   "checks": [
-    "Current P2 JSON and P3 analysis JSON/ADR downloaded from the budget build and compared to engine artifacts",
-    "All 15 overviews recaptured after observing their current engine summaries",
-    "Current desktop and mobile budget snapshots show no recorded custom-audit failures or overflow",
-    "The unchanged validation route retains the prior invalid-result focus snapshot; existing React DOM focus regression tests passed. This snapshot was not freshly reproduced during this browser pass."
+    "Final P2 JSON and P3 analysis JSON/ADR downloaded through UI; canonical JSON and exact ADR matched current engine artifacts",
+    "All 15 overviews recaptured after observing current engine summaries",
+    "Custom desktop/mobile DOM audits have no recorded findings or document overflow; 320px chart moved horizontally by 40px after ArrowRight",
+    "Air-gap phone/payment conflict remained infeasible; bounded functional experiments found a two-edit changed project, never applied",
+    "Validation error link navigated to section-budget; automatic validation-summary focus retains the explicitly historical snapshot and React DOM regression evidence"
   ],
   "captures": [
     {
       "file": "docs/evidence/current/tradeoffs.png",
-      "sha256": "d43418bed1dbdcb8d7e8b369d7334ae648f5cddc55d740efbae752cadc42edb1"
+      "sha256": "d32b72beca7f31830488bf8b903faadba86de1d1f239eb538147f0ad4e179d02"
     },
     {
       "file": "docs/evidence/current/P2-stack.png",
-      "sha256": "8e098f269be5ac7241902c01d49a2285e196fa523270f94bf9aa0fc3285a2e0d"
+      "sha256": "1f8a7e8bf890e917887f37dbddcb881fc08839f0afdf2daef82ae473d3e29208"
+    },
+    {
+      "file": "docs/evidence/current/P5-stack.png",
+      "sha256": "4645d92f81477fa44a9bcd9ea01dd6593deab3c511d7f6ec6cba84f3a525f969"
     },
     {
       "file": "docs/evidence/current/stress-lab.png",
-      "sha256": "7735d322e284b7c71955878523592692bc842e08a00fc8a0bd748da5c6e399b2"
+      "sha256": "cae0e4c0248678cd8995361cf810eb365c5bd430250b6b016037e5daf23771f3"
     },
     {
       "file": "docs/evidence/current/budget-options.jpg",
-      "sha256": "802a30d85ba982950b3b0fba4ed321939ea60a90bd0328ee530109a6f8381404"
+      "sha256": "de872b9233cd3fde03492466918125649a1d92de8512f2b1ac655c789ab295f8"
     }
-  ]
+  ],
+  "stress_input_fixture": "fixtures/airgap-conflict.json",
+  "stress_input_sha256": "d6ffa005cf922af16d54c372ce33cde1ad965cac0dcbd6f280276be03e449306"
 }

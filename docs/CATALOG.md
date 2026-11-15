@@ -1,47 +1,11 @@
-# Executable core catalog
+# Catalog scope
 
-Data: [catalog.json](../packages/catalog/data/catalog.json). Structure: [catalog schema](../schemas/catalog.schema.json). Validation/loading: [catalog module](../packages/catalog/src/index.ts). Phase evidence: [Phase 2](PHASE_2.md).
+Current core catalog **0.5.0**: 41 entries, 63 scoped source records. There are 12 frontend, 10 backend, 9 database and 10 host entries (including explicit None and deployment variants). Service policy records and literature are separate; these are not unique-vendor counts. Exact records live in `packages/catalog/data/`.
 
-## Review scope
+New bounded variants: NestJS/TypeORM and Express reviewed driver edges; Supabase Pro and Neon Launch PostgreSQL lineage; Vercel regional functions and Fly regional Machines. Managed PostgreSQL variants share reviewed PostgreSQL driver/search/RLS semantics but cannot be silently self-hosted as a managed product. Each host/database regional edge is checked separately; `bom1` application compute is not an AWS database-region string.
 
-The catalog records 34 product/profile entries and 46 official documentation sources checked on 13 November 2026. Sources establish product-family, deployment or integration facts within their `scope`; they do not establish workload prices, performance guarantees or legal compliance. The separate literature register remains in `docs/research/sources.json`.
+Supabase supports a specific Mumbai project mapping. Fly and Neon have only reviewed US/EU mappings here. Vercel Pro is modeled with paid deploying seats, one team usage credit, and current on-demand CPU/memory/invocation/CDN/transfer/build meters. No legacy free Pro transfer allowances or commercial Hobby allowance is assumed. Supabase allowances and compute credit are applied once; file backup and SMS are additional.
 
-Entry status `active` means the reviewed product family is selectable within this dated catalog. It is not a guarantee that all historical releases remain supported. The final deployment still needs exact supported versions, driver compatibility, licenses and EOL review. `None` entries encode intentional layer omission rather than a maintained product.
+Known limits: no Vercel persistent Yjs/ML/private existing SQL profile; no Supabase Pro HIPAA or explicit month-based DB retention profile; no Neon file-storage bundle. Plan capacity, contractual availability, logs/control-plane/CDN/subprocessor residency remain critically qualified. Full source review is not a compliance certification or workload benchmark.
 
-## Coverage
-
-- Frontend: API-only None; HTML/CSS, Astro, Next.js, React/Vite, Vue, SvelteKit, Angular, React Native, Next.js+React Native, Flutter, Jetpack Compose. Static/client/server variants are deliberately limited to the configurations modeled.
-- Backend: None, Fastify, Django, FastAPI, Spring Boot, ASP.NET Core, Go HTTP, Laravel.
-- Database: None, PostgreSQL, MySQL, MariaDB, SQLite, SQL Server, MongoDB Community.
-- Hosting: Cloudflare Pages; ECS/Fargate; Azure App Service; separate Central India App Service Environment v3; Cloud Run; EC2 VM; local VM/NGINX.
-
-These counts do not claim the final FAQ breadth target is complete. DB driver compatibility is an explicit whitelist, not “all frameworks support every database.” Managed database products are separate references: e.g. Cloud SQL, RDS, Azure PostgreSQL or SQL Managed Instance. Self-hosted variants require an appropriate persistent volume. Primary-region mappings exist only where individually reviewed; absent evidence does not pass a residency predicate.
-
-## Facts vs judgment
-
-`source_ids`, supported platform/runtime/deployment fields, managed products and region records are factual catalog claims with source scope. `complexity`, `operations` and `cost_class` are **authored ordinal heuristics** for comparing engineering burden. They are not provider prices or cited benchmark scores. Scale 0 means no independently operated resource for that entry where relevant; it does not promise zero billing. Exact rubrics/formulas live in [scoring.ts](../packages/engine/src/scoring.ts) and must be reviewed by the participant.
-
-Sources are linked, not scraped into runtime requests. All catalog loading is local. Additions must have unique IDs, source references and compatible database edges; semantic checks run before planning. Corrupt catalog data is an internal error, not invalid user input. Test retired/unknown status and boundary/counterexample behavior for any new entry.
-
-## Updating evidence
-
-1. Locate the specific official product/deployment/region/driver source.
-2. Record a source ID, HTTPS URL, checked date and narrow scope.
-3. Add/revise a product or deployment profile with matching references.
-4. Mark unknown facts as absent; do not promote assumptions into hard eligibility.
-5. Add positive, negative and changed-input tests.
-6. Bump catalog/rules versions when selections can change and rerun the documented corpus.
-
-Supporting services, control designs and cost bands are implemented in the complete recommendation engine. Scope details and remaining external/tenant evidence are recorded in [Phase 6](PHASE_6.md). Do not repurpose the primary-region fields as whole-application residency certification.
-
-
-## Phase 3 supporting-service evidence
-
-[services.json](../packages/catalog/data/services.json) adds 23 service profiles, 43 dated primary-source records, non-exhaustive framework design records and explicit pricing assumptions. Its [schema](../schemas/services.schema.json) and runtime integrity checks are separate from the 33-entry core catalog. [Phase 3](PHASE_3.md) explains compatibility, data flows, current blockers and design-only control scope.
-
-
-## Release 0.5.0 scope update
-
-The 33-entry core catalog is now version 0.3.0 with 43 source records: AWS Fargate and RDS PostgreSQL primary mapping in ap-south-1 is reviewed. Other AWS database variants do not inherit it. Service policies 0.5.0 have 23 profiles/45 sources and two sourced known lifecycle patterns (Python 2 and AngularJS). Region evidence never establishes external OTP/payment or existing-tenant scope. See [Phase 5](PHASE_5.md).
-
-The `ase-india` profile has a reviewed `fixed_region` so its Central India SKU/price is never represented as an unspecified geography. Its PostgreSQL backup/replication scope is separate from identity and external services. Other App Service variants do not inherit this evidence.
+See [cost model](COST_MODEL.md), [acceptability rubric](ARCHITECTURAL_ACCEPTABILITY.md), [input map](INPUT_DECISION_MAP.md) and [phase history](PHASES.md). Firebase, Render, Netlify, Workers/D1 and other absent products remain research candidates until runtime, service, geography and price edges are reviewed; omission is not technical impossibility.

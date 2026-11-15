@@ -17,7 +17,7 @@
   },
   "limitations": "Custom read-only snapshot, not axe or WCAG conformance. Solid-background text only; skips SVG, opacity/gradient cases, disabled and hidden text. Does not test assistive technology, focus obscuring, control borders or all accessible-name rules.",
   "path": "/",
-  "testedTextElements": 158,
+  "testedTextElements": 160,
   "title": "Workspace — StackSense",
   "unmeasured": [],
   "unmeasuredTextElements": 0,

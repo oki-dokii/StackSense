@@ -5,6 +5,7 @@
     "Email is an account identifier; external verification/reset mail is not enabled until an SMTP provider and its data scope/cost are reviewed. Administrative recovery is assumed initially.",
     "Existing local hardware, compatible operating system, persistent volumes and offline artifact/plugin mirrors are assumed; procurement and labor are outside infrastructure operating estimates.",
     "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required.",
+    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
     "compliance was absent; defaulted to [].",
     "infrastructure.data_residency was absent; defaulted to \"none\".",
@@ -59,7 +60,7 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.4.0",
+  "catalog_version": "0.5.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -153,7 +154,7 @@
   "cost_sensitivity": [
     {
       "baseline_origin": "assumed",
-      "baseline_value": 0.05787037037037037,
+      "baseline_value": 0.011574074074074073,
       "cost_category": "infrastructure_and_operations",
       "field": "extensions.expected_requests_per_second",
       "samples": [
@@ -162,14 +163,37 @@
           "min": 74.65,
           "status": "estimated",
           "upper_delta_usd": 0,
-          "value": 0.028935185185185185
+          "value": 0.005787037037037037
         },
         {
           "max": 369.75,
           "min": 74.65,
           "status": "estimated",
           "upper_delta_usd": 0,
-          "value": 0.11574074074074074
+          "value": 0.023148148148148147
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 0.2,
+      "cost_category": "infrastructure_and_operations",
+      "field": "extensions.daily_active_user_fraction",
+      "samples": [
+        {
+          "max": 369.75,
+          "min": 74.65,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 0.1
+        },
+        {
+          "max": 369.75,
+          "min": 74.65,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 0.4
         }
       ],
       "scope": "selected_plan_fixed_no_reranking"
@@ -255,8 +279,8 @@
   ],
   "database_region": null,
   "decision_trace": {
-    "complete_candidates": 147,
-    "core_candidates": 189,
+    "complete_candidates": 189,
+    "core_candidates": 259,
     "rejected": [
       {
         "codes": [
@@ -269,6 +293,18 @@
           "SERVICE_DATABASE_MISMATCH"
         ],
         "plan_id": "modular_monolith|angular|django|sqlite|local|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|angular|express|mongo|local|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|angular|express|sqlite|local|unspecified"
       },
       {
         "codes": [
@@ -298,6 +334,12 @@
         "codes": [
           "SERVICE_DATABASE_MISMATCH"
         ],
+        "plan_id": "modular_monolith|angular|nestjs|sqlite|local|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
         "plan_id": "modular_monolith|flutter|aspnet|sqlite|local|unspecified"
       },
       {
@@ -305,6 +347,18 @@
           "SERVICE_DATABASE_MISMATCH"
         ],
         "plan_id": "modular_monolith|flutter|django|sqlite|local|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|flutter|express|mongo|local|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|flutter|express|sqlite|local|unspecified"
       },
       {
         "codes": [
@@ -334,6 +388,12 @@
         "codes": [
           "SERVICE_DATABASE_MISMATCH"
         ],
+        "plan_id": "modular_monolith|flutter|nestjs|sqlite|local|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
         "plan_id": "modular_monolith|react|aspnet|sqlite|local|unspecified"
       },
       {
@@ -341,46 +401,10 @@
           "SERVICE_DATABASE_MISMATCH"
         ],
         "plan_id": "modular_monolith|react|django|sqlite|local|unspecified"
-      },
-      {
-        "codes": [
-          "SERVICE_DATABASE_MISMATCH"
-        ],
-        "plan_id": "modular_monolith|react|fastapi|sqlite|local|unspecified"
-      },
-      {
-        "codes": [
-          "SERVICE_DATABASE_MISMATCH"
-        ],
-        "plan_id": "modular_monolith|react|fastify|mongo|local|unspecified"
-      },
-      {
-        "codes": [
-          "SERVICE_DATABASE_MISMATCH"
-        ],
-        "plan_id": "modular_monolith|react|go-http|sqlite|local|unspecified"
-      },
-      {
-        "codes": [
-          "SERVICE_DATABASE_MISMATCH"
-        ],
-        "plan_id": "modular_monolith|react|laravel|sqlite|local|unspecified"
-      },
-      {
-        "codes": [
-          "SERVICE_DATABASE_MISMATCH"
-        ],
-        "plan_id": "modular_monolith|vue|aspnet|sqlite|local|unspecified"
-      },
-      {
-        "codes": [
-          "SERVICE_DATABASE_MISMATCH"
-        ],
-        "plan_id": "modular_monolith|vue|django|sqlite|local|unspecified"
       }
     ],
     "score": 48,
-    "selected_plan_id": "modular_monolith|angular|fastapi|mysql|local|unspecified"
+    "selected_plan_id": "modular_monolith|angular|express|mysql|local|unspecified"
   },
   "engine_version": "0.8.0",
   "estimate_status": "estimated",
@@ -389,7 +413,7 @@
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
-      "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
+      "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (20 active/day); 50 requests/active user/day gives 0.012 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
       "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 4.75 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
@@ -407,7 +431,7 @@
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
-      "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
+      "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (20 active/day); 50 requests/active user/day gives 0.012 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
       "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 4.75 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
@@ -428,7 +452,7 @@
       "architecture_style": "modular_monolith",
       "budget_fit": "within_upper",
       "core": {
-        "backend": "FastAPI",
+        "backend": "Express",
         "database": "MySQL",
         "frontend": "Angular",
         "hosting": "Self-hosted VM + NGINX"
@@ -436,7 +460,7 @@
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (20 active/day); 50 requests/active user/day gives 0.012 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 4.75 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
@@ -453,7 +477,7 @@
         "min": 74.65
       },
       "operated_components": 3.75,
-      "plan_id": "modular_monolith|angular|fastapi|mysql|local|unspecified",
+      "plan_id": "modular_monolith|angular|express|mysql|local|unspecified",
       "primary_region": null,
       "retained_constraints": [
         "platforms=web",
@@ -481,7 +505,7 @@
       "architecture_style": "modular_monolith",
       "budget_fit": "within_upper",
       "core": {
-        "backend": "FastAPI",
+        "backend": "Express",
         "database": "PostgreSQL",
         "frontend": "Angular",
         "hosting": "Self-hosted VM + NGINX"
@@ -489,7 +513,7 @@
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (20 active/day); 50 requests/active user/day gives 0.012 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 4.75 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
@@ -506,7 +530,7 @@
         "min": 74.65
       },
       "operated_components": 3.75,
-      "plan_id": "modular_monolith|angular|fastapi|pg|local|unspecified",
+      "plan_id": "modular_monolith|angular|express|pg|local|unspecified",
       "primary_region": null,
       "retained_constraints": [
         "platforms=web",
@@ -534,15 +558,15 @@
       "architecture_style": "modular_monolith",
       "budget_fit": "within_upper",
       "core": {
-        "backend": "Fastify",
-        "database": "MySQL",
+        "backend": "Express",
+        "database": "SQL Server",
         "frontend": "Angular",
         "hosting": "Self-hosted VM + NGINX"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency absent: assumed 2% of month-12 users (2); this is a usage hypothesis, not measured traffic.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (0.058 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (20 active/day); 50 requests/active user/day gives 0.012 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 10 GB assumed because absent; egress 1 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 4.75 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
@@ -559,7 +583,7 @@
         "min": 74.65
       },
       "operated_components": 3.75,
-      "plan_id": "modular_monolith|angular|fastify|mysql|local|unspecified",
+      "plan_id": "modular_monolith|angular|express|sqlserver|local|unspecified",
       "primary_region": null,
       "retained_constraints": [
         "platforms=web",
@@ -610,7 +634,7 @@
         "priorities.time_to_market"
       ],
       "fit": 2,
-      "reason": "Language familiarity 1.00/5 and implementation-complexity rubric 3.00/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+      "reason": "Language familiarity 1.00/5 and implementation-complexity rubric 3.00/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics; supported server-language depth 0 gives ecosystem reuse bonus 0.",
       "weight": 3
     },
     {
@@ -648,7 +672,7 @@
         "priorities.maintainability"
       ],
       "fit": 0,
-      "reason": "Operational burden 5/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+      "reason": "Operational burden 5/5+; no existing-system reuse bonus. Server ecosystem reuse bonus 0; fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
       "weight": 3
     },
     {
@@ -667,11 +691,11 @@
     "backend": {
       "alternatives": [
         {
-          "choice": "Fastify",
+          "choice": "FastAPI",
           "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
         }
       ],
-      "choice": "FastAPI",
+      "choice": "Express",
       "driven_by": [
         "project.type",
         "team.languages",
@@ -679,11 +703,11 @@
         "requirements.auth",
         "requirements.realtime"
       ],
-      "id": "fastapi",
-      "justification": "Provides a python application runtime for the internal_tool profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "id": "express",
+      "justification": "Provides a node application runtime for the internal_tool profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "backend",
       "source_ids": [
-        "fastapi"
+        "express-db"
       ],
       "tradeoffs": [
         "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
@@ -846,7 +870,7 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "modular_monolith recommendation selected from 147 complete compatible plans; month-12 infrastructure planning band USD 74.65–369.75/month.",
+  "summary": "modular_monolith recommendation selected from 189 complete compatible plans; month-12 infrastructure planning band USD 74.65–369.75/month.",
   "validation_errors": [],
   "warnings": [
     {

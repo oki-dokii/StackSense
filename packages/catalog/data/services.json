@@ -1,6 +1,6 @@
 {
   "version": "0.8.0",
-  "reviewed_on": "2026-11-14",
+  "reviewed_on": "2026-11-15",
   "sources": [
     {
       "id": "keycloak-db",
@@ -400,6 +400,160 @@
       "url": "https://aws.amazon.com/lightsail/pricing/",
       "checked_on": "2026-11-15",
       "scope": "Included transfer is halved in Mumbai; inbound and outbound count toward allowances. Snapshot USD 0.05/GB-month and block disk USD 0.10/GB-month. No taxes, support or production capacity claim."
+    },
+    {
+      "id": "supabase-regions",
+      "title": "Supabase specific project regions",
+      "url": "https://supabase.com/docs/guides/platform/regions",
+      "scope": "Pin specific Mumbai, Frankfurt or US East project region; APAC general region is not India.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "supabase-price",
+      "title": "Supabase Pro pricing",
+      "url": "https://supabase.com/pricing",
+      "scope": "Single Pro project bundle and usage allowances; not a HIPAA-eligible contracted plan.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "neon-regions",
+      "title": "Neon regions",
+      "url": "https://neon.com/docs/introduction/regions",
+      "scope": "US/EU reviewed; no India region is mapped.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "neon-price",
+      "title": "Neon Launch pricing",
+      "url": "https://neon.com/pricing",
+      "scope": "Usage-based CU-hour and storage, not a flat USD 15 quote.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "fly-regions",
+      "title": "Fly.io regions",
+      "url": "https://docs.fly.io/reference/regions",
+      "scope": "Ashburn and Frankfurt only in this profile; current list does not establish India.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "fly-docker",
+      "title": "Fly Dockerfile deployment",
+      "url": "https://docs.fly.io/languages-and-frameworks/dockerfile",
+      "scope": "Container application deployment, regional routing and persistent process configuration.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "fly-price",
+      "title": "Fly resource pricing",
+      "url": "https://docs.fly.io/about/pricing",
+      "scope": "Shared CPU is not dedicated CPU capacity; regional prices vary.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-regions",
+      "title": "Vercel regions",
+      "url": "https://vercel.com/docs/regions",
+      "scope": "Pin regional functions; global CDN/control plane scope remains unverified.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-pro",
+      "title": "Vercel Pro plan",
+      "url": "https://vercel.com/docs/plans/pro-plan",
+      "scope": "One seat and USD 20 usage credit per team; extra deploying seats USD 20.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-django",
+      "title": "Vercel Django deployment",
+      "url": "https://vercel.com/docs/frameworks/full-stack/django",
+      "scope": "Django function adapter, not an always-on worker.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-go",
+      "title": "Vercel Go runtime",
+      "url": "https://vercel.com/docs/functions/runtimes/go",
+      "scope": "HTTP handler deployment; adapter work and duration limits apply.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-ws",
+      "title": "Vercel WebSocket limitation",
+      "url": "https://vercel.com/kb/guide/do-vercel-serverless-functions-support-websocket-connections",
+      "scope": "Functions cannot act as persistent WebSocket servers; use external realtime.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "supabase-compute",
+      "title": "Supabase compute pricing",
+      "url": "https://supabase.com/docs/guides/platform/manage-your-usage/compute",
+      "scope": "Hourly instance billing and one USD 10 compute credit per organization.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "supabase-sms-hook",
+      "title": "Supabase Send SMS hook",
+      "url": "https://supabase.com/docs/guides/auth/auth-hooks/send-sms-hook",
+      "scope": "Custom hook can call a regional provider; MSG91 adapter must be implemented and verified.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "supabase-realtime",
+      "title": "Supabase Broadcast",
+      "url": "https://supabase.com/docs/guides/realtime/broadcast",
+      "scope": "Private channels and application persistence, not a Yjs server.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "supabase-storage",
+      "title": "Supabase uploads",
+      "url": "https://supabase.com/docs/guides/storage/uploads/standard-uploads",
+      "scope": "Direct signed upload path avoids sending media through function body limits; resumable uploads for larger files.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-fluid",
+      "title": "Vercel Fluid compute pricing",
+      "url": "https://vercel.com/docs/functions/usage-and-pricing",
+      "scope": "Region-specific active CPU/provisioned memory and function invocations.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-bom-price",
+      "title": "Vercel Mumbai on-demand pricing",
+      "url": "https://vercel.com/docs/pricing/regional-pricing/bom1",
+      "scope": "Explicit on-demand delivery model; includes separate transfer and edge request meters.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-cron",
+      "title": "Vercel Cron pricing and limits",
+      "url": "https://vercel.com/docs/schedules/cron-jobs/usage-and-pricing",
+      "scope": "Scheduled bounded function invocations; duration/concurrency and retries must be implemented.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-build",
+      "title": "Vercel build pricing",
+      "url": "https://vercel.com/docs/builds/managing-builds",
+      "scope": "Standard concurrent builds billed USD .014/minute; explicitly budgeted allowance.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-logs",
+      "title": "Vercel runtime logs",
+      "url": "https://vercel.com/docs/observability/runtime-logs",
+      "scope": "Native logs are not an unlimited regional archive; redact and review routing/retention.",
+      "checked_on": "2026-11-15"
+    },
+    {
+      "id": "vercel-network",
+      "title": "Vercel CDN pricing",
+      "url": "https://vercel.com/docs/manage-cdn-usage",
+      "checked_on": "2026-11-15",
+      "scope": "Current on-demand Pro transfer/origin/CDN request meters; no legacy included allowances assumed. Flat Rate CDN opt-in is not modeled."
     }
   ],
   "services": [
@@ -966,6 +1120,130 @@
       "why_not": "A separate operated identity broker is unnecessary when the application can federate directly with the existing Entra tenant.",
       "tradeoffs": [
         "Register the application in the existing tenant, validate issuer/audience/signatures, map groups/roles and verify license and conditional-access requirements. Tenant identity geography is separate from application hosting. Existing license entitlement is not assumed."
+      ]
+    },
+    {
+      "id": "supabase-auth",
+      "layer": "auth",
+      "choice": "Supabase Auth + application JWT verification",
+      "capability": "auth",
+      "placement": "external",
+      "source_ids": [
+        "supabase-price",
+        "supabase-sms-hook"
+      ],
+      "compute_units": 0,
+      "database_ids": [
+        "pg"
+      ],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Microsoft Entra ID",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "One paid regional project; email/social/phone only in this profile. Phone delivery requires a custom signed Send SMS hook to MSG91. Password recovery email requires a reviewed SMTP provider; not included automatically."
+      ]
+    },
+    {
+      "id": "supabase-storage",
+      "layer": "storage",
+      "choice": "Supabase regional Storage + signed direct uploads",
+      "capability": "storage",
+      "placement": "external",
+      "source_ids": [
+        "supabase-storage",
+        "supabase-price"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Amazon S3",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Private regional project bucket, RLS, signed direct uploads, malware validation and resumable retries. Project database backups do not back up stored file contents; external file backup allowance is charged separately."
+      ]
+    },
+    {
+      "id": "supabase-realtime",
+      "layer": "realtime",
+      "choice": "Supabase Realtime private channels + persisted messages",
+      "capability": "realtime",
+      "placement": "external",
+      "source_ids": [
+        "supabase-realtime",
+        "supabase-price"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Socket.IO",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Authorize private channels; persist chat in PostgreSQL, then broadcast notifications. Not a CRDT/Yjs host. Reconnect, message/connection quotas and retention need load tests."
+      ]
+    },
+    {
+      "id": "vercel-outbox",
+      "layer": "queue",
+      "choice": "PostgreSQL transactional outbox + bounded Vercel Cron drain",
+      "capability": "queue",
+      "placement": "database",
+      "source_ids": [
+        "pg-tx",
+        "vercel-cron"
+      ],
+      "compute_units": 0,
+      "database_ids": [
+        "pg"
+      ],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "RabbitMQ",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Commit data/outbox atomically; authenticated scheduled function drains bounded batches with locks, idempotency and dead letters. Not a continuously running worker; minute-scale scheduling and duration limits apply."
+      ]
+    },
+    {
+      "id": "vercel-telemetry",
+      "layer": "observability",
+      "choice": "Application instrumentation + Vercel runtime logs",
+      "capability": "observability",
+      "placement": "host",
+      "source_ids": [
+        "telemetry",
+        "vercel-logs"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Prometheus with application instrumentation",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Redact sensitive data and review runtime log geography/retention; separate regional archive allowance is charged. No resident Collector is assumed."
+      ]
+    },
+    {
+      "id": "vercel-build",
+      "layer": "ci_cd",
+      "choice": "Vercel native build/deploy",
+      "capability": "ci",
+      "placement": "build",
+      "source_ids": [
+        "vercel-build",
+        "vercel-pro"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [],
+      "alternative": "Jenkins",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Source/synthetic fixtures only. Authored 100\u2013500 standard concurrent build minutes per month are metered before applying the single team usage credit."
       ]
     }
   ],

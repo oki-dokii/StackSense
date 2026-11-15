@@ -1826,5 +1826,2011 @@
       "persistent": false,
       "reason": "Reviewed client/server/service capabilities should cover this brief."
     }
+  },
+  {
+    "id": "S31",
+    "title": "Markdown journal variation 1",
+    "scenario": {
+      "scenario_id": "S31",
+      "project": {
+        "name": "Markdown journal variation 1",
+        "type": "content_site",
+        "platforms": [
+          "web"
+        ],
+        "description": "Markdown articles and documentation."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "javascript",
+          "html",
+          "css"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "none",
+        "deployment_model": "on_premise",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "seo_critical": true,
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "none",
+      "backend_language": [
+        "javascript"
+      ],
+      "persistent": false,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S32",
+    "title": "Markdown journal variation 2",
+    "scenario": {
+      "scenario_id": "S32",
+      "project": {
+        "name": "Markdown journal variation 2",
+        "type": "content_site",
+        "platforms": [
+          "web"
+        ],
+        "description": "Markdown articles and documentation."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "seo_critical": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "javascript"
+      ],
+      "persistent": false,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S33",
+    "title": "Solo appointment tool variation 1",
+    "scenario": {
+      "scenario_id": "S33",
+      "project": {
+        "name": "Solo appointment tool variation 1",
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ],
+        "description": "Appointment records and daily schedules."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "python",
+          "javascript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "python",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S34",
+    "title": "Solo appointment tool variation 2",
+    "scenario": {
+      "scenario_id": "S34",
+      "project": {
+        "name": "Solo appointment tool variation 2",
+        "type": "web_app",
+        "platforms": [
+          "web"
+        ],
+        "description": "Appointment records and daily schedules."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "python",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S35",
+    "title": "Air-gapped SaaS with public social login",
+    "scenario": {
+      "scenario_id": "S35",
+      "project": {
+        "name": "Small tenant billing dashboard variation 1",
+        "type": "saas_b2b",
+        "platforms": [
+          "web"
+        ],
+        "description": "Tenant-isolated business records."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "php",
+          "javascript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "none",
+        "deployment_model": "air_gapped",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "social",
+        "multi_tenant": true,
+        "availability": "99.99",
+        "payments": true
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": false,
+      "provider": "none",
+      "backend_language": [
+        "php",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer.",
+      "blocker_codes": [
+        "AIR_GAP_EXTERNAL_REQUIREMENT",
+        "RESTRICTED_PUBLIC_IDENTITY",
+        "RESTRICTED_EXTERNAL_SERVICE"
+      ]
+    }
+  },
+  {
+    "id": "S36",
+    "title": "Small tenant billing dashboard variation 2",
+    "scenario": {
+      "scenario_id": "S36",
+      "project": {
+        "name": "Small tenant billing dashboard variation 2",
+        "type": "saas_b2b",
+        "platforms": [
+          "web"
+        ],
+        "description": "Tenant-isolated business records."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "multi_tenant": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "php",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S37",
+    "title": "India small shop variation 1",
+    "scenario": {
+      "scenario_id": "S37",
+      "project": {
+        "name": "India small shop variation 1",
+        "type": "ecommerce",
+        "platforms": [
+          "web"
+        ],
+        "description": "Product catalog and hosted checkout."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "php",
+          "javascript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "india"
+      },
+      "requirements": {
+        "auth": "phone_otp",
+        "payments": true,
+        "seo_critical": true,
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "php",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S38",
+    "title": "India small shop variation 2",
+    "scenario": {
+      "scenario_id": "S38",
+      "project": {
+        "name": "India small shop variation 2",
+        "type": "ecommerce",
+        "platforms": [
+          "web"
+        ],
+        "description": "Product catalog and hosted checkout."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "auth": "phone_otp",
+        "payments": true,
+        "seo_critical": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "php",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S39",
+    "title": "EU local services variation 1",
+    "scenario": {
+      "scenario_id": "S39",
+      "project": {
+        "name": "EU local services variation 1",
+        "type": "marketplace",
+        "platforms": [
+          "web",
+          "android"
+        ],
+        "description": "Booking marketplace and hosted checkout."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "typescript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "eu"
+      },
+      "requirements": {
+        "auth": "phone_otp",
+        "payments": true,
+        "seo_critical": true,
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S40",
+    "title": "EU local services variation 2",
+    "scenario": {
+      "scenario_id": "S40",
+      "project": {
+        "name": "EU local services variation 2",
+        "type": "marketplace",
+        "platforms": [
+          "web",
+          "android"
+        ],
+        "description": "Booking marketplace and hosted checkout."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "auth": "phone_otp",
+        "payments": true,
+        "seo_critical": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S41",
+    "title": "Small community feed variation 1",
+    "scenario": {
+      "scenario_id": "S41",
+      "project": {
+        "name": "Small community feed variation 1",
+        "type": "social",
+        "platforms": [
+          "web"
+        ],
+        "description": "Posts and image sharing."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "javascript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "social",
+        "file_media_storage": true,
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S42",
+    "title": "Small community feed variation 2",
+    "scenario": {
+      "scenario_id": "S42",
+      "project": {
+        "name": "Small community feed variation 2",
+        "type": "social",
+        "platforms": [
+          "web"
+        ],
+        "description": "Posts and image sharing."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "auth": "social",
+        "file_media_storage": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S43",
+    "title": "Small shared editor variation 1",
+    "scenario": {
+      "scenario_id": "S43",
+      "project": {
+        "name": "Small shared editor variation 1",
+        "type": "realtime_collab",
+        "platforms": [
+          "web"
+        ],
+        "description": "Collaborative editing with live cursors."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "typescript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "realtime": true,
+        "multi_tenant": true,
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S44",
+    "title": "Small shared editor variation 2",
+    "scenario": {
+      "scenario_id": "S44",
+      "project": {
+        "name": "Small shared editor variation 2",
+        "type": "realtime_collab",
+        "platforms": [
+          "web"
+        ],
+        "description": "Collaborative editing with live cursors."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "realtime": true,
+        "multi_tenant": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S45",
+    "title": "India collections variation 1",
+    "scenario": {
+      "scenario_id": "S45",
+      "project": {
+        "name": "India collections variation 1",
+        "type": "fintech",
+        "platforms": [
+          "web",
+          "android"
+        ],
+        "description": "Double-entry ledger for installment collections."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "kotlin",
+          "java",
+          "typescript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "deployment_model": "managed_cloud",
+        "data_residency": "india"
+      },
+      "requirements": {
+        "auth": "phone_otp",
+        "payments": true,
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "compliance": [
+        "rbi_localisation"
+      ],
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "aws",
+      "backend_language": [
+        "java",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S46",
+    "title": "RBI localisation versus US region conflict",
+    "scenario": {
+      "scenario_id": "S46",
+      "project": {
+        "name": "India collections variation 2",
+        "type": "fintech",
+        "platforms": [
+          "web",
+          "android"
+        ],
+        "description": "Double-entry ledger for installment collections."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "auth": "phone_otp",
+        "payments": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "compliance": [
+        "rbi_localisation"
+      ],
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": false,
+      "provider": "gcp",
+      "backend_language": [
+        "java",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer.",
+      "blocker_codes": [
+        "RBI_REGION_CONFLICT"
+      ]
+    }
+  },
+  {
+    "id": "S47",
+    "title": "Clinic appointments variation 1",
+    "scenario": {
+      "scenario_id": "S47",
+      "project": {
+        "name": "Clinic appointments variation 1",
+        "type": "healthtech",
+        "platforms": [
+          "web"
+        ],
+        "description": "Clinical appointment and document records."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "python",
+          "javascript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "file_media_storage": true,
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "compliance": [
+        "hipaa"
+      ],
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "python",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S48",
+    "title": "US HIPAA health records",
+    "scenario": {
+      "scenario_id": "S48",
+      "project": {
+        "name": "Clinic appointments variation 2",
+        "type": "healthtech",
+        "platforms": [
+          "web"
+        ],
+        "description": "Clinical appointment and document records."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "file_media_storage": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "compliance": [
+        "hipaa"
+      ],
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "python",
+        "javascript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer.",
+      "critical_code": "BAA_EVIDENCE_REQUIRED"
+    }
+  },
+  {
+    "id": "S49",
+    "title": "Search-only analytics API variation 1",
+    "scenario": {
+      "scenario_id": "S49",
+      "project": {
+        "name": "Search-only analytics API variation 1",
+        "type": "data_analytics",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Index and search incident reports."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "python"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "full_text_search": true,
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "python"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S50",
+    "title": "Search-only analytics API variation 2",
+    "scenario": {
+      "scenario_id": "S50",
+      "project": {
+        "name": "Search-only analytics API variation 2",
+        "type": "data_analytics",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Index and search incident reports."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "full_text_search": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "python"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S51",
+    "title": "Device telemetry gateway variation 1",
+    "scenario": {
+      "scenario_id": "S51",
+      "project": {
+        "name": "Device telemetry gateway variation 1",
+        "type": "iot",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Ingest and retain sensor readings over HTTP."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "go"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "aws",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "aws",
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S52",
+    "title": "Device telemetry gateway variation 2",
+    "scenario": {
+      "scenario_id": "S52",
+      "project": {
+        "name": "Device telemetry gateway variation 2",
+        "type": "iot",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Ingest and retain sensor readings over HTTP."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S53",
+    "title": "Python inference endpoint variation 1",
+    "scenario": {
+      "scenario_id": "S53",
+      "project": {
+        "name": "Python inference endpoint variation 1",
+        "type": "ai_ml_product",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "CPU ONNX model inference; no training."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "python"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "ml_features": "inference_api",
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "python"
+      ],
+      "persistent": false,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S54",
+    "title": "Python inference endpoint variation 2",
+    "scenario": {
+      "scenario_id": "S54",
+      "project": {
+        "name": "Python inference endpoint variation 2",
+        "type": "ai_ml_product",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "CPU ONNX model inference; no training."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "ml_features": "inference_api",
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "python"
+      ],
+      "persistent": false,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S55",
+    "title": "Air-gapped inventory variation 1",
+    "scenario": {
+      "scenario_id": "S55",
+      "project": {
+        "name": "Air-gapped inventory variation 1",
+        "type": "internal_tool",
+        "platforms": [
+          "web"
+        ],
+        "description": "Inventory on existing isolated hardware."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "csharp",
+          "typescript"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "none",
+        "deployment_model": "air_gapped",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "none",
+      "backend_language": [
+        "csharp",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S56",
+    "title": "Air-gapped inventory variation 2",
+    "scenario": {
+      "scenario_id": "S56",
+      "project": {
+        "name": "Air-gapped inventory variation 2",
+        "type": "internal_tool",
+        "platforms": [
+          "web"
+        ],
+        "description": "Inventory on existing isolated hardware."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "csharp",
+        "typescript"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S57",
+    "title": "Huge game scale with zero budget",
+    "scenario": {
+      "scenario_id": "S57",
+      "project": {
+        "name": "Turn-based game variation 1",
+        "type": "gaming",
+        "platforms": [
+          "android",
+          "ios"
+        ],
+        "description": "Turn-based game state over WebSocket."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 20000000,
+        "peak_concurrent_users": 100000
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "dart",
+          "go"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 0
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "realtime": true,
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer.",
+      "budget_exceeded": true
+    }
+  },
+  {
+    "id": "S58",
+    "title": "Turn-based game variation 2",
+    "scenario": {
+      "scenario_id": "S58",
+      "project": {
+        "name": "Turn-based game variation 2",
+        "type": "gaming",
+        "platforms": [
+          "android",
+          "ios"
+        ],
+        "description": "Turn-based game state over WebSocket."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "auth": "email_password",
+        "realtime": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S59",
+    "title": "Beginner API with 99.99 availability",
+    "scenario": {
+      "scenario_id": "S59",
+      "project": {
+        "name": "Search service variation 1",
+        "type": "api_platform",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Persistent searchable API records."
+      },
+      "scale": {
+        "users_at_launch": 50,
+        "users_12_months": 500,
+        "peak_concurrent_users": 50
+      },
+      "team": {
+        "size": 2,
+        "experience": "beginner",
+        "languages": [
+          "go"
+        ],
+        "has_devops": false
+      },
+      "budget": {
+        "monthly_infra_usd": 100
+      },
+      "timeline": {
+        "mvp_weeks": 6
+      },
+      "infrastructure": {
+        "cloud_preference": "any",
+        "deployment_model": "managed_cloud",
+        "data_residency": "none"
+      },
+      "requirements": {
+        "full_text_search": true,
+        "availability": "99.99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "daily_active_user_fraction": 0.1,
+        "monthly_egress_gb": 5
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": null,
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
+  },
+  {
+    "id": "S60",
+    "title": "Search service variation 2",
+    "scenario": {
+      "scenario_id": "S60",
+      "project": {
+        "name": "Search service variation 2",
+        "type": "api_platform",
+        "platforms": [
+          "api_only"
+        ],
+        "description": "Persistent searchable API records."
+      },
+      "scale": {
+        "users_at_launch": 300,
+        "users_12_months": 12000,
+        "peak_concurrent_users": 600
+      },
+      "team": {
+        "size": 4,
+        "experience": "senior",
+        "languages": [
+          "go",
+          "typescript"
+        ],
+        "has_devops": true
+      },
+      "budget": {
+        "monthly_infra_usd": 1000
+      },
+      "timeline": {
+        "mvp_weeks": 4
+      },
+      "infrastructure": {
+        "cloud_preference": "gcp",
+        "deployment_model": "managed_cloud",
+        "data_residency": "us"
+      },
+      "requirements": {
+        "full_text_search": true,
+        "availability": "99"
+      },
+      "priorities": {
+        "cost": 5,
+        "time_to_market": 5,
+        "maintainability": 4,
+        "scalability": 2,
+        "performance": 2,
+        "security": 3
+      },
+      "extensions": {
+        "expected_requests_per_second": 10,
+        "monthly_egress_gb": 80
+      }
+    },
+    "expect": {
+      "usable": true,
+      "provider": "gcp",
+      "backend_language": [
+        "go"
+      ],
+      "persistent": true,
+      "reason": "Authored varied brief, not an organiser expected answer."
+    }
   }
 ]

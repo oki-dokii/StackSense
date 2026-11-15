@@ -1,69 +1,69 @@
 {
   "analysis_version": "0.2.0",
   "app_version": "0.8.0",
-  "checked_on": "2026-11-14",
+  "checked_on": "2026-11-15",
   "engine_version": "0.8.0",
   "input_sha256": "6a4aa08bd2fddfaf6a6498188867848d721c5cb6822164b27a783ae8ead76d57",
   "measurement_scope": "Loopback HTTP through consumed JSON; parity validated separately after timing. Three measured runs per case after one warm-up; excludes browser rendering and performance of recommended architectures.",
   "measurements": [
     {
-      "max_ms": 12.468,
+      "max_ms": 12.506,
       "samples_ms": [
-        12.468,
-        11.924,
-        10.644
+        12.489,
+        12.506,
+        11.256
       ],
       "scenario_id": "P1"
     },
     {
-      "max_ms": 28.684,
+      "max_ms": 40.708,
       "samples_ms": [
-        27.397,
-        28.684,
-        27.153
+        40.377,
+        40.708,
+        36.159
       ],
       "scenario_id": "P2"
     },
     {
-      "max_ms": 136.61,
+      "max_ms": 232.879,
       "samples_ms": [
-        132.112,
-        136.61,
-        134.25
+        232.879,
+        231.918,
+        232.059
       ],
       "scenario_id": "P3"
     },
     {
-      "max_ms": 23.4,
+      "max_ms": 27.292,
       "samples_ms": [
-        23.169,
-        23.344,
-        23.4
+        27.279,
+        27.292,
+        27.157
       ],
       "scenario_id": "P4"
     },
     {
-      "max_ms": 33.154,
+      "max_ms": 55.581,
       "samples_ms": [
-        31.809,
-        31.437,
-        33.154
+        54.439,
+        55.581,
+        54.718
       ],
       "scenario_id": "P5"
     },
     {
-      "max_ms": 53.734,
+      "max_ms": 85.289,
       "samples_ms": [
-        53.734,
-        49.717,
-        51.392
+        82.731,
+        85.289,
+        84.814
       ],
       "scenario_id": "P6"
     }
   ],
   "records": [
     {
-      "complete_candidates": 10,
+      "complete_candidates": 14,
       "engine_evaluations": 25,
       "frontier_plans": 1,
       "functional_variants": 0,
@@ -74,9 +74,9 @@
       "tested_priority_settings": 25
     },
     {
-      "complete_candidates": 21,
+      "complete_candidates": 33,
       "engine_evaluations": 25,
-      "frontier_plans": 6,
+      "frontier_plans": 5,
       "functional_variants": 0,
       "original_status": "ok_with_warnings",
       "retained_winner_settings": 25,
@@ -85,7 +85,7 @@
       "tested_priority_settings": 25
     },
     {
-      "complete_candidates": 168,
+      "complete_candidates": 270,
       "engine_evaluations": 25,
       "frontier_plans": 12,
       "functional_variants": 0,
@@ -96,9 +96,9 @@
       "tested_priority_settings": 25
     },
     {
-      "complete_candidates": 14,
+      "complete_candidates": 18,
       "engine_evaluations": 25,
-      "frontier_plans": 4,
+      "frontier_plans": 2,
       "functional_variants": 0,
       "original_status": "ok_with_warnings",
       "retained_winner_settings": 25,
@@ -107,9 +107,9 @@
       "tested_priority_settings": 25
     },
     {
-      "complete_candidates": 49,
+      "complete_candidates": 105,
       "engine_evaluations": 25,
-      "frontier_plans": 4,
+      "frontier_plans": 6,
       "functional_variants": 0,
       "original_status": "ok_with_warnings",
       "retained_winner_settings": 25,
@@ -118,9 +118,9 @@
       "tested_priority_settings": 25
     },
     {
-      "complete_candidates": 84,
+      "complete_candidates": 132,
       "engine_evaluations": 25,
-      "frontier_plans": 6,
+      "frontier_plans": 5,
       "functional_variants": 0,
       "original_status": "ok_with_warnings",
       "retained_winner_settings": 25,

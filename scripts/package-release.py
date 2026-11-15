@@ -64,7 +64,7 @@ the stated deadline.
  records=[]
  for file in sorted(destination.rglob('*')):
   if file.is_file() and file.name!='manifest.json':records.append({'path':file.relative_to(destination).as_posix(),'bytes':file.stat().st_size,'sha256':hashlib.sha256(file.read_bytes()).hexdigest()})
- metadata={'app_version':'0.8.0','engine_version':'0.8.0','catalog_version':'0.4.0','services_version':'0.8.0','created_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'runtime_source_sha256':digest(files),'source_file_count':len(files),'source_exclusions':sorted(EXCLUDE),'status':'Generated submission artifacts; source/output/report integrity verified','files':records}
+ metadata={'app_version':'0.8.0','engine_version':'0.8.0','catalog_version':'0.5.0','services_version':'0.8.0','created_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'runtime_source_sha256':digest(files),'source_file_count':len(files),'source_exclusions':sorted(EXCLUDE),'status':'Generated submission artifacts; source/output/report integrity verified','files':records}
  setup=ROOT/'evaluation/setup.json'
  if setup.exists():
   verified=json.loads(setup.read_text());

@@ -47,6 +47,7 @@ export interface CorePlan {
   primary_region: string | null;
   database_deployment: string;
   database_region: string | null;
+  database_existing?: boolean;
 }
 export interface ScorePart {
   criterion: Criterion;

@@ -4,6 +4,8 @@
   "assumptions": [
     "Email is an account identifier; external verification/reset mail is not enabled until an SMTP provider and its data scope/cost are reviewed. Administrative recovery is assumed initially.",
     "Persistent application data is inferred from project.type=web_app; domain data modeling remains required.",
+    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
+    "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
     "compliance was absent; defaulted to [].",
     "infrastructure was absent; initialized the optional group before applying field defaults.",
@@ -38,148 +40,27 @@
       "budget_fit": "over_budget",
       "core": {
         "backend": "ASP.NET Core",
-        "database": "PostgreSQL",
+        "database": "Neon Launch PostgreSQL",
         "frontend": "Flutter",
-        "hosting": "Amazon ECS / Fargate"
+        "hosting": "Fly.io regional Machines"
       },
       "monthly_infrastructure_usd": {
-        "max": 13916,
-        "min": 4719.75
+        "max": 4067.03,
+        "min": 1628.64
       },
-      "plan_id": "modular_monolith|flutter|aspnet|pg|ecs|unspecified"
+      "plan_id": "modular_monolith|flutter|aspnet|neon-pg|fly|iad"
     },
     "notes": [
-      "Infrastructure uncertainty: application-compute contributes USD 11812.86 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
-      "Infrastructure uncertainty: network-egress contributes USD 3200 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
-      "Infrastructure uncertainty: telemetry-operations contributes USD 1995 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
-      "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions."
+      "Infrastructure uncertainty: telemetry-headroom contributes USD 1995 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Infrastructure uncertainty: neon-compute contributes USD 212.8 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Infrastructure uncertainty: network-egress contributes USD 200 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions.",
+      "The bounded availability/self-managed experiment found no cheaper usable proposal. No feature, region, provider, team or compliance field was silently changed."
     ],
-    "options": [
-      {
-        "assumptions": [
-          "Email is an account identifier; external verification/reset mail is not enabled until an SMTP provider and its data scope/cost are reviewed. Administrative recovery is assumed initially.",
-          "Persistent application data is inferred from project.type=web_app; domain data modeling remains required.",
-          "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
-          "scale.data_volume_gb_12_months was absent; remains unknown (not zero).",
-          "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
-          "Peak concurrency supplied: 50000; not equated directly with requests/second.",
-          "RPS absent: assumed 50 requests/user/day averaged across the day (578.704 RPS); peak capacity still uses the concurrency hypothesis.",
-          "Data volume 10 GB assumed because absent; egress 10000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-          "Lightsail: 54 full-month Linux IPv4 4-GiB/2-vCPU/80-GB-SSD bundles at USD 24 each. Reference service allocations are packed into these bundles; reserve 20 GB OS space on the database host and add block disk above 60 GB application data. Database and identity are self-operated. Burstable CPU baselines, memory, inter-node routing, recovery and the requested throughput/latency are NOT validated by this cash-cost estimate.",
-          "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 106.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
-          "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-          "Self-hosted database CPU/disk shares the provisioned host allocation; no second managed database bill is added. Capacity and license review still required.",
-          "Transfer model reserves half one bundle's quota for inbound/other traffic: 2000 GB outbound allowance remains (Mumbai quota is halved). Additional VMs' quotas are not pooled. External S3 delivery, cross-region/private network routes or inbound above this reservation can create extra charges; verify actual routing and tariffs.",
-          "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
-          "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
-          "Authored internet-egress envelope; actual destination, free quota and routes vary.",
-          "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-          "Linux IPv4 general-purpose 4 GiB/2 vCPU/80 GB SSD bundle, full month USD 24. No promotion or reserved discount; burstable performance requires measurement.",
-          "Published snapshot storage USD 0.05/GB-month. Application-consistent database backups require explicit recovery tests.",
-          "Original feature flags, platforms, scale, languages, provider preference, residency and compliance requests remain unchanged. All vendor/contract exceptions and capacity hypotheses still require review."
-        ],
-        "budget_fit": "over_budget",
-        "changes": [
-          {
-            "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate.",
-            "field": "infrastructure.deployment_model",
-            "from": "managed_cloud",
-            "to": "self_hosted_cloud_vm"
-          },
-          {
-            "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval.",
-            "field": "requirements.availability",
-            "from": "99.99",
-            "to": "99"
-          }
-        ],
-        "core": {
-          "backend": "FastAPI",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Amazon Lightsail Linux VM"
-        },
-        "id": "explicit_budget_tradeoff",
-        "monthly_infrastructure_usd": {
-          "max": 6927,
-          "min": 1941.5
-        },
-        "monthly_total_usd": {
-          "max": 6927,
-          "min": 1941.5
-        },
-        "plan_id": "modular_monolith|flutter|fastapi|pg|lightsail|unspecified",
-        "primary_region": null,
-        "requires_acceptance": true,
-        "supporting_services": [
-          "GitHub Actions",
-          "Keycloak",
-          "OpenTelemetry Collector + structured logs",
-          "PostgreSQL forced row-level security",
-          "ws"
-        ],
-        "warnings": [
-          {
-            "code": "BUDGET_EXCEEDED",
-            "fields": [
-              "budget.monthly_infra_usd"
-            ],
-            "message": "Infrastructure estimate USD 1941.5–6927/month exceeds the USD 0 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
-            "severity": "warning"
-          },
-          {
-            "code": "OPERATIONS_SKILL_GAP",
-            "fields": [
-              "team.size",
-              "team.has_devops",
-              "infrastructure.deployment_model"
-            ],
-            "message": "Requested self-operated infrastructure needs patching, backups and on-call capacity absent from the stated DevOps capability.",
-            "severity": "warning"
-          },
-          {
-            "code": "PRICE_AND_CAPACITY_ASSUMPTIONS",
-            "fields": [
-              "scale",
-              "budget.monthly_infra_usd",
-              "requirements"
-            ],
-            "message": "Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase.",
-            "severity": "warning"
-          },
-          {
-            "code": "TIMELINE_RISK",
-            "fields": [
-              "timeline.mvp_weeks",
-              "project.platforms",
-              "requirements"
-            ],
-            "message": "The short MVP window conflicts with multiple client/service integrations; no features have been silently removed.",
-            "severity": "warning"
-          },
-          {
-            "code": "FREE_TIER_OR_DEPLOYMENT_LIMITS",
-            "fields": [
-              "requirements.availability"
-            ],
-            "message": "Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name.",
-            "severity": "info"
-          },
-          {
-            "code": "BUDGET_REQUIREMENT_CHANGE",
-            "fields": [
-              "infrastructure.deployment_model",
-              "requirements.availability"
-            ],
-            "message": "Optional changed-requirement proposal only. Original recommendation is unchanged. Accept each listed edit explicitly and rerun; reduced availability/self-management is not an equivalent deployment or production approval.",
-            "severity": "critical"
-          }
-        ]
-      }
-    ],
+    "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.4.0",
+  "catalog_version": "0.5.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -191,153 +72,131 @@
   },
   "cost_breakdown": [
     {
-      "basis": "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
+      "basis": "Always-on shared-cpu-2x/2GiB reference Machines USD 13.39 per 30 days in US; 730-hour month. Frankfurt upper adds an authored 50% regional allowance, not an exact quote. Shared CPU is not dedicated CPU.",
       "category": "compute",
       "id": "application-compute",
       "monthly_usd": {
-        "max": 13718.16,
-        "min": 1905.3
+        "max": 1398.39,
+        "min": 1398.3
       },
       "quantity": {
-        "max": 73000,
-        "min": 18250
+        "max": 75190,
+        "min": 75190
       },
       "source_ids": [
-        "run-price"
+        "fly-price"
       ],
       "unit_rate_usd": {
-        "max": 0.18792,
-        "min": 0.1044
+        "max": 0.018597222222222223,
+        "min": 0.018597222222222223
       }
     },
     {
-      "basis": "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied.",
-      "category": "compute",
-      "id": "background-compute",
-      "monthly_usd": {
-        "max": 312.21,
-        "min": 173.44
-      },
-      "quantity": {
-        "max": 2190,
-        "min": 2190
-      },
-      "source_ids": [
-        "run-price"
-      ],
-      "unit_rate_usd": {
-        "max": 0.14256,
-        "min": 0.0792
-      }
-    },
-    {
-      "basis": "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
-      "category": "database",
-      "id": "database-cpu",
-      "monthly_usd": {
-        "max": 241.2,
-        "min": 120.59
-      },
-      "quantity": {
-        "max": 2920,
-        "min": 2920
-      },
-      "source_ids": [
-        "sql-price"
-      ],
-      "unit_rate_usd": {
-        "max": 0.0826,
-        "min": 0.0413
-      }
-    },
-    {
-      "basis": "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-      "category": "database",
-      "id": "database-memory",
-      "monthly_usd": {
-        "max": 163.52,
-        "min": 81.76
-      },
-      "quantity": {
-        "max": 11680,
-        "min": 11680
-      },
-      "source_ids": [
-        "sql-price"
-      ],
-      "unit_rate_usd": {
-        "max": 0.014,
-        "min": 0.007
-      }
-    },
-    {
-      "basis": "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
-      "category": "database",
-      "id": "database-storage",
-      "monthly_usd": {
-        "max": 8,
-        "min": 2
-      },
-      "quantity": {
-        "max": 20,
-        "min": 20
-      },
-      "source_ids": [
-        "sql-price"
-      ],
-      "unit_rate_usd": {
-        "max": 0.4,
-        "min": 0.1
-      }
-    },
-    {
-      "basis": "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
-      "category": "backup",
-      "id": "backup-storage",
-      "monthly_usd": {
-        "max": 3,
-        "min": 0.3
-      },
-      "quantity": {
-        "max": 20,
-        "min": 10
-      },
-      "source_ids": [
-        "storage-price",
-        "s3-price"
-      ],
-      "unit_rate_usd": {
-        "max": 0.15,
-        "min": 0.03
-      }
-    },
-    {
-      "basis": "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+      "basis": "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote.",
       "category": "egress",
       "id": "network-egress",
       "monthly_usd": {
-        "max": 4000,
-        "min": 800
+        "max": 400,
+        "min": 200
       },
       "quantity": {
         "max": 20000,
         "min": 10000
       },
       "source_ids": [
-        "storage-price",
-        "s3-price"
+        "fly-price"
       ],
       "unit_rate_usd": {
-        "max": 0.2,
-        "min": 0.08
+        "max": 0.02,
+        "min": 0.02
       }
     },
     {
-      "basis": "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+      "basis": "Launch .106/CU-hour; full-month .25-CU lower and >=1-CU upper. No auto-suspend discount assumed for long-lived connections; sizing is authored.",
+      "category": "database",
+      "id": "neon-compute",
+      "monthly_usd": {
+        "max": 232.14,
+        "min": 19.34
+      },
+      "quantity": {
+        "max": 2190,
+        "min": 182.5
+      },
+      "source_ids": [
+        "neon-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.106,
+        "min": 0.106
+      }
+    },
+    {
+      "basis": "Launch database storage; no free database-tier allowance assumed.",
+      "category": "database",
+      "id": "neon-storage",
+      "monthly_usd": {
+        "max": 3.5,
+        "min": 3.5
+      },
+      "quantity": {
+        "max": 10,
+        "min": 10
+      },
+      "source_ids": [
+        "neon-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.35,
+        "min": 0.35
+      }
+    },
+    {
+      "basis": "Authored 25–100% dataset WAL history/month, billed separately from database storage. Default history one day; backup exports/restore testing still required.",
+      "category": "backup",
+      "id": "neon-history",
+      "monthly_usd": {
+        "max": 2,
+        "min": 2
+      },
+      "quantity": {
+        "max": 10,
+        "min": 10
+      },
+      "source_ids": [
+        "neon-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.2,
+        "min": 0.2
+      }
+    },
+    {
+      "basis": "Authored external backup allowance USD .05/GB-month; configure regional exports and review job/transfer/storage charges.",
+      "category": "backup",
+      "id": "backup-export-storage",
+      "monthly_usd": {
+        "max": 1,
+        "min": 0.5
+      },
+      "quantity": {
+        "max": 20,
+        "min": 10
+      },
+      "source_ids": [
+        "neon-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.05,
+        "min": 0.05
+      }
+    },
+    {
+      "basis": "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
       "category": "observability",
       "id": "telemetry-operations",
       "monthly_usd": {
-        "max": 2000,
+        "max": 5,
         "min": 5
       },
       "quantity": {
@@ -345,11 +204,31 @@
         "min": 1
       },
       "source_ids": [
-        "storage-price"
+        "vercel-logs"
       ],
       "unit_rate_usd": {
-        "max": 2000,
+        "max": 5,
         "min": 5
+      }
+    },
+    {
+      "basis": "Authored extra operations/retention headroom, not unlimited native log storage.",
+      "category": "observability",
+      "id": "telemetry-headroom",
+      "monthly_usd": {
+        "max": 1995,
+        "min": 0
+      },
+      "quantity": {
+        "max": 1995,
+        "min": 0
+      },
+      "source_ids": [
+        "vercel-logs"
+      ],
+      "unit_rate_usd": {
+        "max": 1,
+        "min": 1
       }
     },
     {
@@ -378,17 +257,17 @@
       "category": "infrastructure_and_operations",
       "line_ids": [
         "application-compute",
-        "background-compute",
-        "database-cpu",
-        "database-memory",
-        "database-storage",
-        "backup-storage",
         "network-egress",
+        "neon-compute",
+        "neon-storage",
+        "neon-history",
+        "backup-export-storage",
         "telemetry-operations",
+        "telemetry-headroom",
         "hosted-ci"
       ],
-      "max": 20476.09,
-      "min": 3088.39
+      "max": 4067.03,
+      "min": 1628.64
     },
     {
       "category": "payment_and_message_activity",
@@ -400,23 +279,46 @@
   "cost_sensitivity": [
     {
       "baseline_origin": "assumed",
-      "baseline_value": 578.7037037037037,
+      "baseline_value": 115.74074074074075,
       "cost_category": "infrastructure_and_operations",
       "field": "extensions.expected_requests_per_second",
       "samples": [
         {
-          "max": 20476.09,
-          "min": 3088.39,
+          "max": 3989.65,
+          "min": 1628.64,
           "status": "estimated",
-          "upper_delta_usd": 0,
-          "value": 289.35185185185185
+          "upper_delta_usd": -77.38,
+          "value": 57.870370370370374
         },
         {
-          "max": 20476.09,
-          "min": 3088.39,
+          "max": 4221.79,
+          "min": 1628.64,
           "status": "estimated",
-          "upper_delta_usd": 0,
-          "value": 1157.4074074074074
+          "upper_delta_usd": 154.76,
+          "value": 231.4814814814815
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 0.2,
+      "cost_category": "infrastructure_and_operations",
+      "field": "extensions.daily_active_user_fraction",
+      "samples": [
+        {
+          "max": 3989.65,
+          "min": 1628.64,
+          "status": "estimated",
+          "upper_delta_usd": -77.38,
+          "value": 0.1
+        },
+        {
+          "max": 4221.79,
+          "min": 1628.64,
+          "status": "estimated",
+          "upper_delta_usd": 154.76,
+          "value": 0.4
         }
       ],
       "scope": "selected_plan_fixed_no_reranking"
@@ -428,17 +330,17 @@
       "field": "extensions.monthly_egress_gb",
       "samples": [
         {
-          "max": 18476.09,
-          "min": 2688.39,
+          "max": 3867.03,
+          "min": 1528.64,
           "status": "estimated",
-          "upper_delta_usd": -2000,
+          "upper_delta_usd": -200,
           "value": 5000
         },
         {
-          "max": 24476.09,
-          "min": 3888.39,
+          "max": 4467.03,
+          "min": 1828.64,
           "status": "estimated",
-          "upper_delta_usd": 4000,
+          "upper_delta_usd": 400,
           "value": 20000
         }
       ],
@@ -451,17 +353,17 @@
       "field": "extensions.retention_months",
       "samples": [
         {
-          "max": 20476.09,
-          "min": 3088.39,
+          "max": 4067.03,
+          "min": 1628.64,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 1
         },
         {
-          "max": 20479.09,
-          "min": 3088.69,
+          "max": 4068.03,
+          "min": 1629.14,
           "status": "estimated",
-          "upper_delta_usd": 3,
+          "upper_delta_usd": 1,
           "value": 2
         }
       ],
@@ -471,37 +373,37 @@
   "data_flows": [
     {
       "component": "primary-compute",
-      "location": "Choose deployment location before provisioning",
+      "location": "iad",
       "scope": "Application processing; configure region, private access, logging and replicas explicitly.",
       "verification": "configuration_required"
     },
     {
       "component": "primary-database",
-      "location": "Choose database location before provisioning",
+      "location": "aws-us-east-1",
       "scope": "Application/auth/search/outbox data and backups; verify retention, restore and deletion.",
       "verification": "configuration_required"
     },
     {
       "component": "keycloak",
-      "location": "Selected deployment region (must be chosen before provisioning)",
+      "location": "iad",
       "scope": "Separate realm/schema and restricted database credentials are required; pin supported driver/database versions. Email delivery needs a separately reviewed SMTP integration if enabled.",
       "verification": "configuration_required"
     },
     {
       "component": "ws",
-      "location": "Selected deployment region (must be chosen before provisioning)",
+      "location": "iad",
       "scope": "Node sidecar with browser/native WebSocket clients; authentication, reconnect/backpressure and fan-out are custom integration work.",
       "verification": "configuration_required"
     },
     {
       "component": "rls",
-      "location": "Selected deployment region (must be chosen before provisioning)",
+      "location": "iad",
       "scope": "Application role must not own tables or have BYPASSRLS; FORCE ROW LEVEL SECURITY, tenant checks and negative authorization tests are mandatory.",
       "verification": "configuration_required"
     },
     {
       "component": "otel",
-      "location": "Selected deployment region (must be chosen before provisioning)",
+      "location": "iad",
       "scope": "Redact sensitive values, use host-region retention/routing, and provision a durable regional log backend. No personal data in tracing baggage.",
       "verification": "configuration_required"
     },
@@ -512,10 +414,10 @@
       "verification": "source_only_no_production_data"
     }
   ],
-  "database_region": null,
+  "database_region": "aws-us-east-1",
   "decision_trace": {
-    "complete_candidates": 56,
-    "core_candidates": 92,
+    "complete_candidates": 120,
+    "core_candidates": 168,
     "rejected": [
       {
         "codes": [
@@ -534,6 +436,18 @@
           "SERVICE_DATABASE_MISMATCH"
         ],
         "plan_id": "modular_monolith|flutter|django|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|flutter|express|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|flutter|express|sqlserver|appservice|unspecified"
       },
       {
         "codes": [
@@ -575,6 +489,18 @@
         "codes": [
           "SERVICE_DATABASE_MISMATCH"
         ],
+        "plan_id": "modular_monolith|flutter|nestjs|mysql|cloudrun|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
+        "plan_id": "modular_monolith|flutter|nestjs|sqlserver|appservice|unspecified"
+      },
+      {
+        "codes": [
+          "SERVICE_DATABASE_MISMATCH"
+        ],
         "plan_id": "modular_monolith|flutter|spring|mysql|cloudrun|unspecified"
       },
       {
@@ -605,41 +531,17 @@
         "codes": [
           "SERVICE_DATABASE_MISMATCH"
         ],
-        "plan_id": "modular_monolith|next-native|fastapi|mysql|cloudrun|unspecified"
+        "plan_id": "modular_monolith|next-native|express|mysql|cloudrun|unspecified"
       },
       {
         "codes": [
           "SERVICE_DATABASE_MISMATCH"
         ],
-        "plan_id": "modular_monolith|next-native|fastify|mysql|cloudrun|unspecified"
-      },
-      {
-        "codes": [
-          "SERVICE_DATABASE_MISMATCH"
-        ],
-        "plan_id": "modular_monolith|next-native|go-http|mysql|cloudrun|unspecified"
-      },
-      {
-        "codes": [
-          "SERVICE_DATABASE_MISMATCH"
-        ],
-        "plan_id": "modular_monolith|next-native|go-http|sqlserver|appservice|unspecified"
-      },
-      {
-        "codes": [
-          "SERVICE_DATABASE_MISMATCH"
-        ],
-        "plan_id": "modular_monolith|next-native|laravel|mysql|cloudrun|unspecified"
-      },
-      {
-        "codes": [
-          "SERVICE_DATABASE_MISMATCH"
-        ],
-        "plan_id": "modular_monolith|next-native|laravel|sqlserver|appservice|unspecified"
+        "plan_id": "modular_monolith|next-native|express|sqlserver|appservice|unspecified"
       }
     ],
     "score": 48,
-    "selected_plan_id": "modular_monolith|flutter|aspnet|pg|cloudrun|unspecified"
+    "selected_plan_id": "modular_monolith|flutter|aspnet|neon-pg|fly|iad"
   },
   "engine_version": "0.8.0",
   "estimate_status": "estimated",
@@ -648,50 +550,46 @@
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency supplied: 50000; not equated directly with requests/second.",
-      "RPS absent: assumed 50 requests/user/day averaged across the day (578.704 RPS); peak capacity still uses the concurrency hypothesis.",
+      "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (200000 active/day); 50 requests/active user/day gives 115.741 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 10 GB assumed because absent; egress 10000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-      "Cloud Run billing separates 100 request-driven allocations from 3 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
-      "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 102.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
-      "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-      "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+      "Fly: 103 always-on shared-CPU/2GiB reference Machines, no first-month/free-credit assumption. Reference sizing 50 RPS or 500 realtime/1000 other peak users per allocation is authored and unvalidated. No India region mapping; no guarantee of p95/HA. Select a dedicated class after CPU testing if necessary.",
+      "Neon Launch: US/EU only; paid compute/storage/history modeled without a flat USD 15 assertion or a free Auth/Storage bundle. Explicit backup exports remain implementation work. No SLA, HIPAA agreement or capacity validation is inferred.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
-      "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
-      "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+      "Always-on shared-cpu-2x/2GiB reference Machines USD 13.39 per 30 days in US; 730-hour month. Frankfurt upper adds an authored 50% regional allowance, not an exact quote. Shared CPU is not dedicated CPU.",
+      "Authored 25–100% dataset WAL history/month, billed separately from database storage. Default history one day; backup exports/restore testing still required.",
+      "Authored external backup allowance USD .05/GB-month; configure regional exports and review job/transfer/storage charges.",
+      "Authored extra operations/retention headroom, not unlimited native log storage.",
       "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
-      "Authored internet-egress envelope; actual destination, free quota and routes vary.",
-      "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-      "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
-      "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-      "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
-      "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
+      "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
+      "Launch .106/CU-hour; full-month .25-CU lower and >=1-CU upper. No auto-suspend discount assumed for long-lived connections; sizing is authored.",
+      "Launch database storage; no free database-tier allowance assumed.",
+      "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote."
     ],
-    "max": 20476.09,
-    "min": 3088.39
+    "max": 4067.03,
+    "min": 1628.64
   },
   "estimated_total_monthly_cost_usd": {
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency supplied: 50000; not equated directly with requests/second.",
-      "RPS absent: assumed 50 requests/user/day averaged across the day (578.704 RPS); peak capacity still uses the concurrency hypothesis.",
+      "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (200000 active/day); 50 requests/active user/day gives 115.741 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 10 GB assumed because absent; egress 10000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-      "Cloud Run billing separates 100 request-driven allocations from 3 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
-      "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 102.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
-      "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-      "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+      "Fly: 103 always-on shared-CPU/2GiB reference Machines, no first-month/free-credit assumption. Reference sizing 50 RPS or 500 realtime/1000 other peak users per allocation is authored and unvalidated. No India region mapping; no guarantee of p95/HA. Select a dedicated class after CPU testing if necessary.",
+      "Neon Launch: US/EU only; paid compute/storage/history modeled without a flat USD 15 assertion or a free Auth/Storage bundle. Explicit backup exports remain implementation work. No SLA, HIPAA agreement or capacity validation is inferred.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
-      "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
-      "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+      "Always-on shared-cpu-2x/2GiB reference Machines USD 13.39 per 30 days in US; 730-hour month. Frankfurt upper adds an authored 50% regional allowance, not an exact quote. Shared CPU is not dedicated CPU.",
+      "Authored 25–100% dataset WAL history/month, billed separately from database storage. Default history one day; backup exports/restore testing still required.",
+      "Authored external backup allowance USD .05/GB-month; configure regional exports and review job/transfer/storage charges.",
+      "Authored extra operations/retention headroom, not unlimited native log storage.",
       "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
-      "Authored internet-egress envelope; actual destination, free quota and routes vary.",
-      "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-      "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
-      "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-      "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
-      "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied.",
+      "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
+      "Launch .106/CU-hour; full-month .25-CU lower and >=1-CU upper. No auto-suspend discount assumed for long-lived connections; sizing is authored.",
+      "Launch database storage; no free database-tier allowance assumed.",
+      "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote.",
       "Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded."
     ],
-    "max": 20476.09,
-    "min": 3088.39
+    "max": 4067.03,
+    "min": 1628.64
   },
   "integration_reviews": [],
   "plan_comparison": [
@@ -700,38 +598,36 @@
       "budget_fit": "over_budget",
       "core": {
         "backend": "ASP.NET Core",
-        "database": "PostgreSQL",
+        "database": "Neon Launch PostgreSQL",
         "frontend": "Flutter",
-        "hosting": "Google Cloud Run"
+        "hosting": "Fly.io regional Machines"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 50000; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (578.704 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (200000 active/day); 50 requests/active user/day gives 115.741 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 10 GB assumed because absent; egress 10000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Cloud Run billing separates 100 request-driven allocations from 3 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
-        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 102.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
-        "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-        "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Fly: 103 always-on shared-CPU/2GiB reference Machines, no first-month/free-credit assumption. Reference sizing 50 RPS or 500 realtime/1000 other peak users per allocation is authored and unvalidated. No India region mapping; no guarantee of p95/HA. Select a dedicated class after CPU testing if necessary.",
+        "Neon Launch: US/EU only; paid compute/storage/history modeled without a flat USD 15 assertion or a free Auth/Storage bundle. Explicit backup exports remain implementation work. No SLA, HIPAA agreement or capacity validation is inferred.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
-        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
-        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Always-on shared-cpu-2x/2GiB reference Machines USD 13.39 per 30 days in US; 730-hour month. Frankfurt upper adds an authored 50% regional allowance, not an exact quote. Shared CPU is not dedicated CPU.",
+        "Authored 25–100% dataset WAL history/month, billed separately from database storage. Default history one day; backup exports/restore testing still required.",
+        "Authored external backup allowance USD .05/GB-month; configure regional exports and review job/transfer/storage charges.",
+        "Authored extra operations/retention headroom, not unlimited native log storage.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
-        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
-        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
-        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
-        "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
+        "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
+        "Launch .106/CU-hour; full-month .25-CU lower and >=1-CU upper. No auto-suspend discount assumed for long-lived connections; sizing is authored.",
+        "Launch database storage; no free database-tier allowance assumed.",
+        "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote."
       ],
-      "database_region": null,
+      "database_region": "aws-us-east-1",
       "monthly_usd": {
-        "max": 20476.09,
-        "min": 3088.39
+        "max": 4067.03,
+        "min": 1628.64
       },
       "operated_components": 3.25,
-      "plan_id": "modular_monolith|flutter|aspnet|pg|cloudrun|unspecified",
-      "primary_region": null,
+      "plan_id": "modular_monolith|flutter|aspnet|neon-pg|fly|iad",
+      "primary_region": "iad",
       "retained_constraints": [
         "platforms=android,ios,web",
         "cloud_preference=any",
@@ -754,6 +650,7 @@
       "warning_codes": [
         "AVAILABILITY_TARGET_UNVERIFIED",
         "BUDGET_EXCEEDED",
+        "MANAGED_TIER_CAPACITY_REVIEW",
         "TIMELINE_RISK"
       ]
     },
@@ -762,38 +659,36 @@
       "budget_fit": "over_budget",
       "core": {
         "backend": "Django",
-        "database": "PostgreSQL",
+        "database": "Neon Launch PostgreSQL",
         "frontend": "Flutter",
-        "hosting": "Google Cloud Run"
+        "hosting": "Fly.io regional Machines"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 50000; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (578.704 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (200000 active/day); 50 requests/active user/day gives 115.741 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 10 GB assumed because absent; egress 10000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Cloud Run billing separates 100 request-driven allocations from 3 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
-        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 102.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
-        "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-        "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Fly: 103 always-on shared-CPU/2GiB reference Machines, no first-month/free-credit assumption. Reference sizing 50 RPS or 500 realtime/1000 other peak users per allocation is authored and unvalidated. No India region mapping; no guarantee of p95/HA. Select a dedicated class after CPU testing if necessary.",
+        "Neon Launch: US/EU only; paid compute/storage/history modeled without a flat USD 15 assertion or a free Auth/Storage bundle. Explicit backup exports remain implementation work. No SLA, HIPAA agreement or capacity validation is inferred.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
-        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
-        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Always-on shared-cpu-2x/2GiB reference Machines USD 13.39 per 30 days in US; 730-hour month. Frankfurt upper adds an authored 50% regional allowance, not an exact quote. Shared CPU is not dedicated CPU.",
+        "Authored 25–100% dataset WAL history/month, billed separately from database storage. Default history one day; backup exports/restore testing still required.",
+        "Authored external backup allowance USD .05/GB-month; configure regional exports and review job/transfer/storage charges.",
+        "Authored extra operations/retention headroom, not unlimited native log storage.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
-        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
-        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
-        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
-        "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
+        "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
+        "Launch .106/CU-hour; full-month .25-CU lower and >=1-CU upper. No auto-suspend discount assumed for long-lived connections; sizing is authored.",
+        "Launch database storage; no free database-tier allowance assumed.",
+        "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote."
       ],
-      "database_region": null,
+      "database_region": "aws-us-east-1",
       "monthly_usd": {
-        "max": 20476.09,
-        "min": 3088.39
+        "max": 4067.03,
+        "min": 1628.64
       },
       "operated_components": 3.25,
-      "plan_id": "modular_monolith|flutter|django|pg|cloudrun|unspecified",
-      "primary_region": null,
+      "plan_id": "modular_monolith|flutter|django|neon-pg|fly|iad",
+      "primary_region": "iad",
       "retained_constraints": [
         "platforms=android,ios,web",
         "cloud_preference=any",
@@ -816,6 +711,7 @@
       "warning_codes": [
         "AVAILABILITY_TARGET_UNVERIFIED",
         "BUDGET_EXCEEDED",
+        "MANAGED_TIER_CAPACITY_REVIEW",
         "TIMELINE_RISK"
       ]
     },
@@ -823,39 +719,37 @@
       "architecture_style": "modular_monolith",
       "budget_fit": "over_budget",
       "core": {
-        "backend": "FastAPI",
-        "database": "PostgreSQL",
+        "backend": "Express",
+        "database": "Neon Launch PostgreSQL",
         "frontend": "Flutter",
-        "hosting": "Google Cloud Run"
+        "hosting": "Fly.io regional Machines"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 50000; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (578.704 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (200000 active/day); 50 requests/active user/day gives 115.741 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 10 GB assumed because absent; egress 10000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Cloud Run billing separates 100 request-driven allocations from 3 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
-        "Compute provisioning hypothesis: 50 RPS or 500 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 102.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
-        "Billed duty 0.25–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-        "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Fly: 103 always-on shared-CPU/2GiB reference Machines, no first-month/free-credit assumption. Reference sizing 50 RPS or 500 realtime/1000 other peak users per allocation is authored and unvalidated. No India region mapping; no guarantee of p95/HA. Select a dedicated class after CPU testing if necessary.",
+        "Neon Launch: US/EU only; paid compute/storage/history modeled without a flat USD 15 assertion or a free Auth/Storage bundle. Explicit backup exports remain implementation work. No SLA, HIPAA agreement or capacity validation is inferred.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
-        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
-        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Always-on shared-cpu-2x/2GiB reference Machines USD 13.39 per 30 days in US; 730-hour month. Frankfurt upper adds an authored 50% regional allowance, not an exact quote. Shared CPU is not dedicated CPU.",
+        "Authored 25–100% dataset WAL history/month, billed separately from database storage. Default history one day; backup exports/restore testing still required.",
+        "Authored external backup allowance USD .05/GB-month; configure regional exports and review job/transfer/storage charges.",
+        "Authored extra operations/retention headroom, not unlimited native log storage.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
-        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
-        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
-        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
-        "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB × USD 0.000002/GiB-second) × 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
+        "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
+        "Launch .106/CU-hour; full-month .25-CU lower and >=1-CU upper. No auto-suspend discount assumed for long-lived connections; sizing is authored.",
+        "Launch database storage; no free database-tier allowance assumed.",
+        "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote."
       ],
-      "database_region": null,
+      "database_region": "aws-us-east-1",
       "monthly_usd": {
-        "max": 20476.09,
-        "min": 3088.39
+        "max": 4067.03,
+        "min": 1628.64
       },
       "operated_components": 3.25,
-      "plan_id": "modular_monolith|flutter|fastapi|pg|cloudrun|unspecified",
-      "primary_region": null,
+      "plan_id": "modular_monolith|flutter|express|neon-pg|fly|iad",
+      "primary_region": "iad",
       "retained_constraints": [
         "platforms=android,ios,web",
         "cloud_preference=any",
@@ -878,12 +772,32 @@
       "warning_codes": [
         "AVAILABILITY_TARGET_UNVERIFIED",
         "BUDGET_EXCEEDED",
+        "MANAGED_TIER_CAPACITY_REVIEW",
         "TIMELINE_RISK"
       ]
     }
   ],
-  "primary_region": null,
-  "review_actions": [],
+  "primary_region": "iad",
+  "review_actions": [
+    {
+      "affected_components": [
+        "complete deployment"
+      ],
+      "code": "MANAGED_TIER_CAPACITY_REVIEW",
+      "evidence_required": [
+        "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+      ],
+      "fields": [
+        "scale.peak_concurrent_users",
+        "requirements.availability"
+      ],
+      "id": "MANAGED_TIER_CAPACITY_REVIEW:scale.peak_concurrent_users|requirements.availability:0",
+      "kind": "evidence_gap",
+      "next_action": "Review the scoped catalog evidence, workload and configuration; resolve the condition and rerun the unchanged input.",
+      "references": [],
+      "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
+    }
+  ],
   "rules_version": "0.8.0",
   "scenario_id": "E03",
   "score_breakdown": [
@@ -895,7 +809,7 @@
         "priorities.cost"
       ],
       "fit": 0,
-      "reason": "USD 3088.39–20476.09/month versus budget 0: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "reason": "USD 1628.64–4067.03/month versus budget 0: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
       "weight": 3
     },
     {
@@ -908,7 +822,7 @@
         "priorities.time_to_market"
       ],
       "fit": 2,
-      "reason": "Language familiarity 1.00/5 and implementation-complexity rubric 2.75/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+      "reason": "Language familiarity 1.00/5 and implementation-complexity rubric 2.75/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics; supported server-language depth 0 gives ecosystem reuse bonus 0.",
       "weight": 3
     },
     {
@@ -948,7 +862,7 @@
         "priorities.maintainability"
       ],
       "fit": 3,
-      "reason": "Operational burden 1/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+      "reason": "Operational burden 1/5+; no existing-system reuse bonus. Server ecosystem reuse bonus 0; fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
       "weight": 3
     },
     {
@@ -992,22 +906,23 @@
     "database": {
       "alternatives": [
         {
-          "choice": "None",
-          "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+          "choice": "Supabase Pro PostgreSQL",
+          "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
         }
       ],
-      "choice": "PostgreSQL",
+      "choice": "Neon Launch PostgreSQL",
       "driven_by": [
         "project.type",
         "requirements.auth",
         "requirements.offline_support",
         "infrastructure.existing_systems"
       ],
-      "id": "pg",
-      "justification": "relational persistence via Cloud SQL for PostgreSQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "id": "neon-pg",
+      "justification": "relational persistence via Neon Launch regional PostgreSQL.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "database",
       "source_ids": [
-        "cloudsql-pg",
+        "neon-price",
+        "neon-regions",
         "pg"
       ],
       "tradeoffs": [
@@ -1042,28 +957,28 @@
     "hosting": {
       "alternatives": [
         {
-          "choice": "Azure App Service",
+          "choice": "Vercel Pro regional functions",
           "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
         }
       ],
-      "choice": "Google Cloud Run",
+      "choice": "Fly.io regional Machines",
       "driven_by": [
         "infrastructure.cloud_preference",
         "infrastructure.deployment_model",
         "infrastructure.data_residency",
         "team.has_devops"
       ],
-      "id": "cloudrun",
-      "justification": "Matches managed_cloud with provider gcp; no country/region assurance was requested or inferred. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "id": "fly",
+      "justification": "Matches managed_cloud with provider fly; reviewed primary compute region iad. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "hosting",
       "source_ids": [
-        "run",
-        "run-regions",
-        "run-ws"
+        "fly-docker",
+        "fly-price",
+        "fly-regions"
       ],
       "tradeoffs": [
-        "No workload pricing/SLA is inferred; region, storage, backups, identity and networking require deployment review.",
-        "WebSocket clients must handle request timeouts/reconnection and cross-instance state."
+        "Application and separately managed database use explicit regions. All control-plane, CDN, log, identity and network boundaries require separate residency review.",
+        "No SLA, latency or workload capacity is guaranteed; connection pooling and provider limits must be validated."
       ]
     },
     "supporting": [
@@ -1203,9 +1118,18 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "modular_monolith recommendation selected from 56 complete compatible plans; month-12 infrastructure planning band USD 3088.39–20476.09/month.",
+  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 120 complete compatible plans; month-12 infrastructure planning band USD 1628.64–4067.03/month.",
   "validation_errors": [],
   "warnings": [
+    {
+      "code": "MANAGED_TIER_CAPACITY_REVIEW",
+      "fields": [
+        "scale.peak_concurrent_users",
+        "requirements.availability"
+      ],
+      "message": "This paid managed tier is a planning proposal, not validated capacity or an availability SLA. Validate pool limits, concurrent clients, CPU/memory, backup restore and the requested p95/availability before deployment; no automatic HA replicas are assumed.",
+      "severity": "critical"
+    },
     {
       "code": "AVAILABILITY_TARGET_UNVERIFIED",
       "fields": [
@@ -1219,7 +1143,7 @@
       "fields": [
         "budget.monthly_infra_usd"
       ],
-      "message": "Infrastructure estimate USD 3088.39–20476.09/month exceeds the USD 0 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
+      "message": "Infrastructure estimate USD 1628.64–4067.03/month exceeds the USD 0 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
       "severity": "warning"
     },
     {

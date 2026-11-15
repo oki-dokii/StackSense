@@ -29,6 +29,13 @@ export function rankPlan(
     (entry) => entry.languages.length > 0,
   );
   const skill = mean(clientServer.map(familiar));
+  const serverDepth = backend.languages.filter((language) =>
+    scenario.team.languages.includes(language),
+  ).length;
+  const ecosystemReuse =
+    serverDepth >= 2 && ['senior', 'mixed'].includes(scenario.team.experience)
+      ? 1
+      : 0;
   const complexity = mean(products.map((entry) => entry.complexity));
   const operations =
     hosting.operations +
@@ -63,7 +70,8 @@ export function rankPlan(
         (skill + 6 - complexity) / 2 -
           (scenario.timeline.mvp_weeks <= 4 && complexity > 3 ? 1 : 0) -
           (scenario.team.experience === 'beginner' && complexity > 3 ? 1 : 0) -
-          (features.markdown && frontend.id === 'html' ? 1 : 0),
+          (features.markdown && frontend.id === 'html' ? 1 : 0) +
+          ecosystemReuse,
       ),
       driven_by: [
         'team.languages',
@@ -71,7 +79,7 @@ export function rankPlan(
         'timeline.mvp_weeks',
         ...(features.markdown ? ['project.description'] : []),
       ],
-      reason: `Language familiarity ${skill.toFixed(2)}/5 and implementation-complexity rubric ${complexity.toFixed(2)}/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.`,
+      reason: `Language familiarity ${skill.toFixed(2)}/5 and implementation-complexity rubric ${complexity.toFixed(2)}/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics; supported server-language depth ${serverDepth} gives ecosystem reuse bonus ${ecosystemReuse}.`,
     },
     scalability: {
       fit:
@@ -119,7 +127,8 @@ export function rankPlan(
           (existingSql && database.id === 'sqlserver' ? 2 : 0)) /
           2 -
           (scenario.team.has_devops ? 0 : operations >= 4 ? 1 : 0) -
-          (scenario.team.size <= 2 && operations >= 4 ? 1 : 0),
+          (scenario.team.size <= 2 && operations >= 4 ? 1 : 0) +
+          ecosystemReuse,
       ),
       driven_by: [
         'team.languages',
@@ -127,7 +136,7 @@ export function rankPlan(
         'team.size',
         'infrastructure.existing_systems',
       ],
-      reason: `Operational burden ${operations}/5+; ${existingSql && database.id === 'sqlserver' ? 'existing SQL Server integration receives a reuse preference' : 'no existing-system reuse bonus'}. Fewer self-operated systems are favored without DevOps.`,
+      reason: `Operational burden ${operations}/5+; ${existingSql && database.id === 'sqlserver' ? 'existing SQL Server integration receives a reuse preference' : 'no existing-system reuse bonus'}. Server ecosystem reuse bonus ${ecosystemReuse}; fewer self-operated systems are favored without DevOps.`,
     },
     security: {
       fit: 3,

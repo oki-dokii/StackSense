@@ -30,6 +30,42 @@ export function controlPlan(
   };
   const block = (code: string, message: string, fields: string[]) =>
     result.blockers.push({ code, severity: 'critical', message, fields });
+  if (plan.database.service_bundle) {
+    result.warnings.push({
+      code: 'MANAGED_TIER_CAPACITY_REVIEW',
+      severity: 'critical',
+      message:
+        'This paid managed tier is a planning proposal, not validated capacity or an availability SLA. Validate pool limits, concurrent clients, CPU/memory, backup restore and the requested p95/availability before deployment; no automatic HA replicas are assumed.',
+      fields: [
+        'scale.peak_concurrent_users',
+        'requirements.availability',
+      ].filter(
+        (path) =>
+          path !== 'scale.peak_concurrent_users' ||
+          s.scale.peak_concurrent_users !== undefined,
+      ),
+    });
+    if (s.infrastructure.data_residency !== 'none')
+      result.warnings.push({
+        code: 'MANAGED_BOUNDARY_RESIDENCY_REVIEW',
+        severity: 'critical',
+        message:
+          'Only regional application/project placement is reviewed. Supabase/Neon and hosting CDN, control plane, logs, support, backups and network processing do not have verified end-to-end residency; resolve this explicit provisional boundary before production.',
+        fields: ['infrastructure.data_residency'],
+      });
+  }
+  if (plan.database_existing) {
+    result.warnings.push({
+      code: 'EXISTING_DATABASE_SCOPE_UNVERIFIED',
+      severity: 'critical',
+      message:
+        'Reuse the existing SQL Server provisionally. Its physical geography, reachable private network, capacity, backups, edition/license entitlement and restore compatibility are not established; no India location, free license or migration is assumed.',
+      fields: [
+        'infrastructure.existing_systems',
+        'infrastructure.data_residency',
+      ],
+    });
+  }
   for (const label of s.compliance) {
     const framework = p.frameworks.find(
       (item) => item.id === frameworkIds[label],

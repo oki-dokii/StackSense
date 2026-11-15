@@ -116,7 +116,9 @@ describe('complete recommendation contracts', () => {
     );
   });
   it('keeps every compatible complete candidate available before ranking', () => {
-    const r = recommend(full(2));
+    const constrained = full(2);
+    constrained.infrastructure.cloud_preference = 'gcp';
+    const r = recommend(constrained);
     expect(r.decision_trace.complete_candidates).toBeGreaterThan(5);
     expect(r.decision_trace.core_candidates).toBeGreaterThan(
       r.decision_trace.complete_candidates,
@@ -156,6 +158,7 @@ describe('required services and data boundaries', () => {
       multi_tenant: true,
       offline_support: true,
     };
+    raw.infrastructure = { ...raw.infrastructure, cloud_preference: 'gcp' };
     const r = recommend(raw);
     expect(r.stack!.database.choice).toBe('PostgreSQL');
     expect(services(r)).toEqual(
@@ -165,6 +168,7 @@ describe('required services and data boundaries', () => {
   it('includes durable collaboration and native search services when requested', () => {
     const raw = full(2);
     raw.requirements.full_text_search = true;
+    raw.infrastructure = { ...raw.infrastructure, cloud_preference: 'gcp' };
     const r = recommend(raw);
     expect(services(r)).toEqual(
       expect.arrayContaining([
@@ -181,6 +185,7 @@ describe('required services and data boundaries', () => {
     const raw = minimal();
     raw.requirements = { auth: 'phone_otp' };
     raw.extensions = { monthly_otp_count: 1000 };
+    raw.infrastructure = { ...raw.infrastructure, cloud_preference: 'gcp' };
     const r = recommend(raw);
     expect(services(r)).toEqual(expect.arrayContaining(['msg91', 'keycloak']));
     expect(line(r, 'otp-delivery').quantity).toEqual({ min: 1000, max: 1000 });
@@ -251,6 +256,7 @@ describe('required services and data boundaries', () => {
   it('derives India residency only from an explicit RBI requirement', () => {
     const raw = minimal();
     raw.compliance = ['rbi_localisation'];
+    raw.infrastructure = { ...raw.infrastructure, cloud_preference: 'gcp' };
     const r = recommend(raw);
     expect(r.primary_region).toBe('asia-south1');
     expect(
@@ -258,11 +264,12 @@ describe('required services and data boundaries', () => {
         x.includes('effective payment-data residency is India'),
       ),
     ).toBe(true);
-    expect(raw.infrastructure).toBeUndefined();
+    expect(raw.infrastructure).toEqual({ cloud_preference: 'gcp' });
   });
   it('does not approve contradictory RBI and EU region policy', () => {
     const raw = minimal();
     raw.compliance = ['rbi_localisation'];
+    raw.infrastructure = { ...raw.infrastructure, cloud_preference: 'gcp' };
     raw.infrastructure = { data_residency: 'eu' };
     const r = recommend(raw);
     expect(r.status).toBe('infeasible');
@@ -394,6 +401,7 @@ describe('cost envelopes and warnings', () => {
   it('uses full requested backup retention rather than silently capping it', () => {
     const raw = minimal();
     raw.extensions = { retention_months: 24 };
+    raw.infrastructure = { ...raw.infrastructure, cloud_preference: 'gcp' };
     const r = recommend(raw);
     expect(line(r, 'backup-storage').quantity.min).toBe(240);
   });

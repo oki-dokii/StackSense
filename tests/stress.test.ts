@@ -24,7 +24,11 @@ describe('varied project briefs: 15 concrete project types', () => {
         expect(r.status).toBe('infeasible');
         expect(r.stack).toBeNull();
         expect(
-          r.warnings.some((w) => w.code === 'ML_DEPLOYMENT_COVERAGE_GAP'),
+          r.warnings.some((w) =>
+            (c.expect.blocker_codes ?? ['ML_DEPLOYMENT_COVERAGE_GAP']).includes(
+              w.code,
+            ),
+          ),
         ).toBe(true);
         return;
       }
@@ -45,6 +49,13 @@ describe('varied project briefs: 15 concrete project types', () => {
         expect(
           entry(backend!).languages.some((l) =>
             c.scenario.team.languages.includes(l),
+          ),
+        ).toBe(true);
+      if (c.expect.critical_code)
+        expect(
+          r.warnings.some(
+            (w) =>
+              w.code === c.expect.critical_code && w.severity === 'critical',
           ),
         ).toBe(true);
       expect(['static', 'modular_monolith']).toContain(r.architecture_style);

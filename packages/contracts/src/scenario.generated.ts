@@ -104,6 +104,10 @@ export interface Scenario {
      * Optional average gross payment value in USD for variable fee estimates.
      */
     average_payment_value_usd?: number;
+    /**
+     * Authored default 0.2 of registered month-12 users active daily when RPS is absent; explicit RPS takes precedence. Not a measured traffic claim.
+     */
+    daily_active_user_fraction?: number;
     [k: string]: unknown;
   };
   [k: string]: unknown;

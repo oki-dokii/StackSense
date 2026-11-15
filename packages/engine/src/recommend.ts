@@ -263,8 +263,16 @@ export function recommend(
       (target) =>
         !s.project.platforms.some((requested) => requested === target),
     ).length;
+  const knownServer = (c: CompleteCandidate) =>
+    Number(
+      c.plan.backend.runtime === 'none' ||
+        c.plan.backend.languages.some((l) => s.team.languages.includes(l)),
+    );
   candidates.sort(
     (a, b) =>
+      knownServer(b) - knownServer(a) ||
+      Number(b.cost.max <= s.budget.monthly_infra_usd) -
+        Number(a.cost.max <= s.budget.monthly_infra_usd) ||
       b.score - a.score ||
       a.cost.max - b.cost.max ||
       a.ranked.operated_components - b.ranked.operated_components ||
@@ -293,6 +301,7 @@ export function recommend(
   base.services_version = policies.version;
   if (typeof s.scenario_id === 'string') base.scenario_id = s.scenario_id;
   base.assumptions = [
+    'Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.',
     ...validation.assumptions,
     ...f.assumptions,
     ...extraAssumptions,
@@ -378,6 +387,9 @@ export function recommend(
   stack.supporting = support.components;
   const applied = new Set([
     'expected_requests_per_second',
+    ...(typeof s.extensions?.expected_requests_per_second !== 'number'
+      ? ['daily_active_user_fraction']
+      : []),
     'monthly_egress_gb',
     'retention_months',
     ...(s.requirements.auth === 'phone_otp' ? ['monthly_otp_count'] : []),
@@ -486,10 +498,11 @@ export function recommend(
       : [
           {
             component: 'primary-database',
-            location:
-              plan.database_region ??
-              plan.primary_region ??
-              'Choose database location before provisioning',
+            location: plan.database_existing
+              ? 'Existing database geography unverified'
+              : (plan.database_region ??
+                plan.primary_region ??
+                'Choose database location before provisioning'),
             scope:
               'Application/auth/search/outbox data and backups; verify retention, restore and deletion.',
             verification: 'configuration_required' as const,

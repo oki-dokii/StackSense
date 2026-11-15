@@ -1,16 +1,16 @@
 {
   "file": "output/pdf/Report_SohamBanerjee.pdf",
-  "pages": 25,
+  "pages": 24,
   "main_pages": 15,
-  "appendix_pages": 10,
+  "appendix_pages": 9,
   "page_size": "A4",
   "body_font_pt": 11,
   "table_reference_font_pt": 10,
-  "source_records": 157,
+  "source_records": 193,
   "screenshots": 16,
   "engine_version": "0.8.0",
   "application_version": "0.8.0",
   "owner_metadata_confirmed": true,
-  "visual_review": "All 25 rendered A4 pages inspected in seven contact sheets. No clipped text, overlap or unintended spill; 15 main pages and 10 appendix pages.",
-  "sha256": "5469da4fe72c61b417bdd3fcd08868cf647919e8295ab660443322ac564f205f"
+  "visual_review": "All 24 rendered A4 pages inspected in six contact sheets; corrected cover rerendered and inspected separately, remaining page text verified unchanged. No clipped text, overlap or unintended spill; 15 main pages and 9 appendix pages.",
+  "sha256": "ff217f5c1c998bec2bbb8ad61539709bb148ab7e33ab5c692df10d924d27809e"
 }

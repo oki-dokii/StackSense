@@ -20,15 +20,15 @@
     },
     {
       "path": "evaluation/evidence-review/current/report.json",
-      "sha256": "15f8e670a92c96220e99b8ad882ad36c2a6f7a4b6f6ffb76d28c62d0b9e60ff2"
+      "sha256": "3d02c4e62c94f5745927533842747ac83e6a22fb3b2f4af2c3c92bb50508d666"
     },
     {
       "path": "evaluation/evidence-review/current/report.md",
-      "sha256": "c4deaad00c7684ac76aafae35bb0f6acfc453b6e65e1b82f60cb56c8d1285c53"
+      "sha256": "4f6ac22f70162f061bb14f26be803e44bffe044f4298b9b1cd68b938dbd6877f"
     },
     {
       "path": "evaluation/evidence-review/observations-1/report.json",
-      "sha256": "4a66207f93809e94288b4fac77e9e021fed0999fcecdbe5d9b669bc1dab194b5"
+      "sha256": "b6f73097733e6896f0d72ebc63c8104025f42e0cde179358f189879556c3719c"
     },
     {
       "path": "evaluation/evidence-review/observations-1/report.md",
@@ -36,7 +36,7 @@
     },
     {
       "path": "evaluation/evidence-review/observations-2/report.json",
-      "sha256": "c431565dcc6d599ad52ef9030b2d914fd3ec30fdd80ae77f81afc5697993ffd1"
+      "sha256": "20db0cfdaaf9c2688c2d8d20533ce15671dfabccfedcc2c8804fa52bde800d85"
     },
     {
       "path": "evaluation/evidence-review/observations-2/report.md",
@@ -44,7 +44,7 @@
     },
     {
       "path": "evaluation/evidence-review/representation-comparison/report.json",
-      "sha256": "db4b3d6c66b1815bebfc66110dfe834a3656c1f246212cec7ac6da72e1aa543a"
+      "sha256": "182d508fa9b5fd57d2cea0ff40943c4728df3e7f69d602415a5fa85777b1c913"
     },
     {
       "path": "evaluation/evidence-review/representation-comparison/report.md",
@@ -52,7 +52,7 @@
     },
     {
       "path": "evaluation/evidence-review/synthetic-tariff-proposal/report.json",
-      "sha256": "265b77ea468e2e9f3cf21837c1479d81c588922972339f0d3bb6e1b4d0efa71a"
+      "sha256": "b794ceef946f40145adf89362287e1772e768001834671262929ebc079c1a5cb"
     },
     {
       "path": "evaluation/evidence-review/synthetic-tariff-proposal/report.md",

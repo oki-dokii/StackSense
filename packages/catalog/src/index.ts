@@ -56,6 +56,22 @@ export function assertCatalog(value: unknown): asserts value is Catalog {
     }
   }
   for (const entry of catalog.entries) {
+    if (entry.upstream_database_id) {
+      const parent = entries.get(entry.upstream_database_id);
+      if (
+        entry.layer !== 'database' ||
+        parent?.layer !== 'database' ||
+        parent.upstream_database_id ||
+        parent.model !== entry.model ||
+        entry.self_hosted
+      )
+        throw new Error(`Invalid managed database lineage: ${entry.id}`);
+    }
+    if (
+      entry.default_residency &&
+      !entry.regions?.some((r) => r.residency === entry.default_residency)
+    )
+      throw new Error(`Unreviewed default region: ${entry.id}`);
     checkSources(entry.source_ids);
     checkRegions(entry.regions ?? []);
     if (

@@ -1,5 +1,8 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdtemp, rm } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+import os from 'node:os';
+import path from 'node:path';
 import { recommend } from '../dist/packages/engine/src/index.js';
 import {
   serialize,
@@ -12,11 +15,48 @@ const catalog = await read('packages/catalog/data/catalog.json');
 const byId = new Map(catalog.entries.map((e) => [e.id, e]));
 const hash = (data) =>
   createHash('sha256').update(serialize(data)).digest('hex');
-const records = cases.map((c) => {
+const temporary = await mkdtemp(path.join(os.tmpdir(), 'stacksense-stress-'));
+let cli;
+try {
+  const inputFile = path.join(temporary, 'inputs.json');
+  await writeFile(inputFile, JSON.stringify(cases.map((c) => c.scenario)));
+  const run = spawnSync(
+    process.execPath,
+    [
+      'dist/apps/cli/src/main.js',
+      '--recommend',
+      '--batch',
+      '--no-llm',
+      '--input',
+      inputFile,
+    ],
+    { encoding: 'utf8', maxBuffer: 100 * 1024 * 1024 },
+  );
+  if (run.error || ![0, 3].includes(run.status))
+    throw Error(`Stress CLI failed: ${run.error ?? run.stderr}`);
+  cli = JSON.parse(run.stdout);
+} finally {
+  await rm(temporary, { recursive: true, force: true });
+}
+const records = cases.map((c, index) => {
   const r = recommend(c.scenario),
     ids = r.decision_trace.selected_plan_id?.split('|');
   const checks = {
     valid_output: validateOutput(r).length === 0,
+    deterministic_repeat: serialize(r) === serialize(recommend(c.scenario)),
+    no_llm_cli_parity: serialize(r) === serialize(cli[index]),
+    expected_critical_warning:
+      !c.expect.critical_code ||
+      r.warnings.some(
+        (w) => w.code === c.expect.critical_code && w.severity === 'critical',
+      ),
+    expected_blocker:
+      c.expect.usable ||
+      r.warnings.some((w) =>
+        (c.expect.blocker_codes ?? ['ML_DEPLOYMENT_COVERAGE_GAP']).includes(
+          w.code,
+        ),
+      ),
     expected_usability: Boolean(r.stack) === c.expect.usable,
     provider:
       !ids ||

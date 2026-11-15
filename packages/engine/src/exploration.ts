@@ -47,6 +47,7 @@ export function costGroups(lines: CostLine[]): CostGroup[] {
     };
   });
 }
+import { traffic } from './traffic.js';
 export function costSensitivity(
   candidate: CompleteCandidate,
   s: NormalizedScenario,
@@ -56,7 +57,15 @@ export function costSensitivity(
   const ext = s.extensions ?? {};
   const users = s.scale.users_12_months;
   const inputs: [string, number][] = [
-    ['expected_requests_per_second', (users * 50) / 86400],
+    ['expected_requests_per_second', traffic(s).rps],
+    ...(typeof ext.expected_requests_per_second !== 'number'
+      ? [
+          ['daily_active_user_fraction', traffic(s).fraction] as [
+            string,
+            number,
+          ],
+        ]
+      : []),
     ['monthly_egress_gb', Math.max(1, users * 0.01)],
     ['retention_months', 1],
     ...(s.requirements.auth === 'phone_otp'
@@ -79,7 +88,9 @@ export function costSensitivity(
           : field.endsWith('_count') || field === 'monthly_payment_transactions'
             ? Math.floor(baseline / 2)
             : baseline / 2,
-        baseline * 2,
+        field === 'daily_active_user_fraction'
+          ? Math.min(1, baseline * 2)
+          : baseline * 2,
       ]),
     ];
     const category: CostGroup['category'] = [

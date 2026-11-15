@@ -1,14 +1,14 @@
 {
   "schema_version": "0.1.0",
   "status": "unreviewed_observations",
-  "registry_sha256": "a14f38efb97233ee60a4bac01dc867590047f15213496e4b6c076e4a5afb4ec7",
+  "registry_sha256": "57007ace1ae3f7aa87c2829d76a8535395c85c59b86ef697ff3bb2870db27d9c",
   "snapshots": [
     {
       "key": "services:python2-eol",
       "url": "https://www.python.org/doc/sunset-python-2/",
-      "observed_at": "2026-11-14T21:11:11.891Z",
+      "observed_at": "2026-11-15T05:44:03.913Z",
       "status": 200,
-      "response_sha256": "1cde34e39c3fd81771ae87d7c97afc325a0ec32c274f9fd6e8868760a7cc526a",
+      "response_sha256": "cacb1c61600e7ee127b7cdae738c13c53e98d9db8e9bc5c3d2e2d6cf6fc964f3",
       "bytes": 38209,
       "content_type": "text/html",
       "etag": null,
@@ -19,7 +19,7 @@
     {
       "key": "services:angularjs-eol",
       "url": "https://docs.angularjs.org/misc/version-support-status",
-      "observed_at": "2026-11-14T21:11:12.427Z",
+      "observed_at": "2026-11-15T05:44:04.262Z",
       "status": 200,
       "response_sha256": "30fc90bbe5602650c1f2a81d6daa2c78d427d8310da066495ee3db3e7f7cbd88",
       "bytes": 11890,

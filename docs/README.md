@@ -72,3 +72,5 @@ Post-release: [repository comparison](REPOSITORY_COMPARISON.md) and [improvement
 - [Phase 11: keyboard focus, contrast and browser QA](PHASE_11.md)
 
 Current release: [Recommendation policy and cost scope](RECOMMENDATION_POLICY.md) · [Engine walkthrough](ENGINE_WALKTHROUGH.md). Historical phase records describe their corresponding revisions.
+
+Current review entry points: [input-to-decision map](INPUT_DECISION_MAP.md), [architectural acceptability](ARCHITECTURAL_ACCEPTABILITY.md), [engine walkthrough](ENGINE_WALKTHROUGH.md), [bounded catalog](CATALOG.md), [extended guide](USER_GUIDE.md).

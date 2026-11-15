@@ -64,7 +64,7 @@ try {
   await app.close();
 }
 const record = {
-  checked_on: '2026-11-14',
+  checked_on: '2026-11-15',
   analysis_version: analyzeDecision(inputs[0]).analysis_version,
   app_version: JSON.parse(
     await readFile(new URL('../package.json', import.meta.url), 'utf8'),

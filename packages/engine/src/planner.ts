@@ -67,7 +67,9 @@ export function searchCorePlans(
       if (
         partial.backend &&
         partial.database &&
-        !partial.backend.databases!.includes(partial.database.id)
+        !partial.backend.databases!.includes(
+          partial.database.upstream_database_id ?? partial.database.id,
+        )
       )
         continue;
       visit(depth + 1);

@@ -1,85 +1,85 @@
 {
   "engine_version": "0.8.0",
-  "catalog_version": "0.4.0",
+  "catalog_version": "0.5.0",
   "services_version": "0.8.0",
-  "capture": "Actual current UI: 15 result overviews at 900x520; three 1280x720 feature views and one 360x800 mobile sensitivity view. Each overview waits for the rendered engine summary.",
+  "capture": "Actual final UI overviews at 900x520, each observed against current engine summary; feature views at 1280x720 and mobile sensitivity at 360x800. JPEG browser captures converted losslessly to PNG pixels for existing report paths.",
   "input_sha256": "f443c1ed6ed5ad1e91732fd7b2e72a0b4cda3afaca020c8848c88c89c6c810f2",
   "images": [
     {
       "file": "E01.png",
-      "sha256": "3287d8688e51f630e4c6b2cc302db8a193d77bd133456216ac1bebbf4977c8cf"
+      "sha256": "c0a2d65bf624d4e9701a0388c0b5fa98433278be970cf8c76c0d93c24e612d82"
     },
     {
       "file": "E02.png",
-      "sha256": "708d5dfd9a065340b7799fc7eaf17bca7dd3302b83c1539a5c123c305e765e68"
+      "sha256": "9a9c272e64a53857228de79f065dbdd57e4f66c31753196a76e24389370fe7aa"
     },
     {
       "file": "E03.png",
-      "sha256": "a83d4888da16a7b64bdeb242e84abe9746242356211deb2138eb07f00f35ee2d"
+      "sha256": "60845165e28939f077beee201d7d0ae4cc5d3796fe57f5afaeea2f31a7b6cb1e"
     },
     {
       "file": "E04.png",
-      "sha256": "fe377b8bbe3206cc5acf360a98551e854f2421ae94bf3b3affc9469504293eae"
+      "sha256": "5ca6a5a56010a35a5b827f4d05575bfe2639cc8b4f3d07a8826008c4ec6d0ada"
     },
     {
       "file": "E05.png",
-      "sha256": "47293c30e86295033d2da0cb4cc06a2eed57eee8e06acaefbc1b8e99c5fbc42f"
+      "sha256": "fd3e6145207393d969f8da0b2c3f959ae3554e23197491591747e8979be01190"
     },
     {
       "file": "E06.png",
-      "sha256": "9715cf935e507e440105322db6986ff7bb3d9bb782b2ab692cec36e035355be8"
+      "sha256": "9b6f8117cb9c6dedf670a31f496a49727f9153e97a550b9fd5c75f85f58c69f3"
     },
     {
       "file": "E07.png",
-      "sha256": "c9bff05ab2a87be85ff55babd9cf89cbfe0fcb37141bd1a1e486fc266e4036cc"
+      "sha256": "c473ab73f17a2b38d39150e02f7597b51ba4dda37aebda32e73b370b0dcfc53c"
     },
     {
       "file": "E08.png",
-      "sha256": "cc970b89e343c2c142b98e319be66c35ca23ecb5c0a333b8b64649d218fe66b3"
+      "sha256": "1c37802c471c945b58058e7257db992777c486e2a0291b8e1543737800d94b37"
     },
     {
       "file": "E09.png",
-      "sha256": "b8c39cd1de69c502a0893422bd63ef1228fa8232b15946da0ae2feed03eb82fe"
+      "sha256": "243a8f4dc48aa5f7092d7f56d8cbe1296a9304171648ab1c7461eb9eeab43abb"
     },
     {
       "file": "P1.png",
-      "sha256": "26de6d12b35a924c83f0f20311fb58dc29a822baeaa8458f5a623d1e2f6d10cb"
+      "sha256": "d124976dbcb77ebf26c615dc66dda95bcddbaa83366bbefcaac951be342d578e"
     },
     {
       "file": "P2.png",
-      "sha256": "fc8be1513c6a1f14cdfdbfea47bef947f5775369a96463d8cbef8a5ddcb27cbf"
+      "sha256": "3b93e1733ba861618b7ac4e98ddefa0570b44e149c5e9f017190c8ee6fb6a341"
     },
     {
       "file": "P3.png",
-      "sha256": "932e0018fef462563598fec97ceaa19b5aea726ef9e25a07387f27615dc06f6b"
+      "sha256": "439ca86b3fca7413b0b64161c149aaeaf8b033f89bf0d2d44678356f1ad8759a"
     },
     {
       "file": "P4.png",
-      "sha256": "18b5b3ec0943ddb512da1cc28454ee2e18035ef3748db226f514de79f3e28641"
+      "sha256": "ec57fa9d83e86b375589a7c0cf4e07c3e06e0a5c70bb881dcecf298512ecff57"
     },
     {
       "file": "P5.png",
-      "sha256": "ea16d6488beb88b2e89534b83f3b28b5630bc303605ca8b0a5f01b3f1624374b"
+      "sha256": "4194ce691745270bb0ee12af6f1daffc6101508e5505f2a8228d9eaefb058f38"
     },
     {
       "file": "P6.png",
-      "sha256": "344ffe2e19db0c06e468300284f5d3713645a1b8e73429ace3fc90b0d6506f83"
+      "sha256": "562b897283ac23eef3a06c1bc31dc37e911dc392835e1230f27607edc169b2d8"
     },
     {
       "file": "alternatives.png",
-      "sha256": "8e36bb91c8ed79f63946611ca4299d8bf5b57a1c32654bf570aa233d37418be1"
+      "sha256": "29cadf18688eef787c90eca5beeebabe456d74e275c41ad6350fef06c747bbee"
     },
     {
       "file": "mobile-sensitivity.png",
-      "sha256": "ce3d3bf5dc785a884752d4f8a13910a72893689278815ab4c63ff7ac6384463e"
+      "sha256": "1347d1fae87a35902b8bc115790e13edaadd9d273a3b59b1aecae18deed96edc"
     },
     {
       "file": "review-actions.png",
-      "sha256": "49a8572bedf5ea9d47bf8154d81ee289e4e426bcca0f7f6f6abfc3dd75e04ccf"
+      "sha256": "d6f317095741fa5feb17b79f4150a33e17776e7d5a55738512e7d4d2afb37a12"
     },
     {
       "file": "sensitivity.png",
-      "sha256": "8271b1a41de767e5740fded24c4c83aa2de17a21c0eebe6cd70c10f8cc73f19c"
+      "sha256": "adda85769dc1b0c9938d761aaa5af1900bf7a77898617d86f2ea569630846c32"
     }
   ],
   "directory": "docs/evidence/current"

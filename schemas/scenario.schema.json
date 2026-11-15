@@ -378,6 +378,12 @@
           "type": "number",
           "minimum": 0,
           "description": "Optional average gross payment value in USD for variable fee estimates."
+        },
+        "daily_active_user_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Authored default 0.2 of registered month-12 users active daily when RPS is absent; explicit RPS takes precedence. Not a measured traffic claim."
         }
       },
       "additionalProperties": true

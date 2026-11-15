@@ -3,6 +3,7 @@
   "architecture_style": "static",
   "assumptions": [
     "Interpreted project.description phrase \"Markdown\" as markdown; this bounded hint does not infer legal or regional requirements.",
+    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
   ],
   "budget_planning": {
@@ -27,7 +28,7 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.4.0",
+  "catalog_version": "0.5.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -98,8 +99,8 @@
   ],
   "database_region": null,
   "decision_trace": {
-    "complete_candidates": 10,
-    "core_candidates": 10,
+    "complete_candidates": 14,
+    "core_candidates": 14,
     "rejected": [],
     "score": 86,
     "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified"
@@ -111,7 +112,7 @@
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency supplied: 50; not equated directly with requests/second.",
-      "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+      "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (600 active/day); 50 requests/active user/day gives 0.347 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
       "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -124,7 +125,7 @@
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency supplied: 50; not equated directly with requests/second.",
-      "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+      "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (600 active/day); 50 requests/active user/day gives 0.347 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
       "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -148,7 +149,7 @@
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 50; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (600 active/day); 50 requests/active user/day gives 0.347 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -194,7 +195,7 @@
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 50; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (600 active/day); 50 requests/active user/day gives 0.347 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -235,30 +236,28 @@
         "backend": "None",
         "database": "None",
         "frontend": "Astro",
-        "hosting": "Google Cloud Run"
+        "hosting": "Fly.io regional Machines"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 50; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (600 active/day); 50 requests/active user/day gives 0.347 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Cloud Run billing separates 1 request-driven allocations from 0 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
-        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 1 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
-        "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Fly: 1 always-on shared-CPU/2GiB reference Machines, no first-month/free-credit assumption. Reference sizing 50 RPS or 500 realtime/1000 other peak users per allocation is authored and unvalidated. No India region mapping; no guarantee of p95/HA. Select a dedicated class after CPU testing if necessary.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
-        "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
-        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
-        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
-        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas."
+        "Always-on shared-cpu-2x/2GiB reference Machines USD 13.39 per 30 days in US; 730-hour month. Frankfurt upper adds an authored 50% regional allowance, not an exact quote. Shared CPU is not dedicated CPU.",
+        "Authored extra operations/retention headroom, not unlimited native log storage.",
+        "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
+        "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote."
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 144.75,
-        "min": 19.13
+        "max": 34.78,
+        "min": 19.17
       },
       "operated_components": 0,
-      "plan_id": "static|astro|backend-none|database-none|cloudrun|unspecified",
-      "primary_region": null,
+      "plan_id": "static|astro|backend-none|database-none|fly|iad",
+      "primary_region": "iad",
       "retained_constraints": [
         "platforms=web",
         "cloud_preference=any",
@@ -307,7 +306,7 @@
         "priorities.time_to_market"
       ],
       "fit": 5,
-      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 1.25/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 1.25/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics; supported server-language depth 0 gives ecosystem reuse bonus 0.",
       "weight": 4
     },
     {
@@ -347,7 +346,7 @@
         "priorities.maintainability"
       ],
       "fit": 5,
-      "reason": "Operational burden 0/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+      "reason": "Operational burden 0/5+; no existing-system reuse bonus. Server ecosystem reuse bonus 0; fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
       "weight": 3
     },
     {
@@ -441,7 +440,7 @@
     "hosting": {
       "alternatives": [
         {
-          "choice": "Google Cloud Run",
+          "choice": "Fly.io regional Machines",
           "why_not": "Best compatible complete plan using this option scored 61, below 86; other layers may also differ."
         }
       ],
@@ -518,7 +517,7 @@
     ]
   },
   "status": "ok",
-  "summary": "static recommendation selected from 10 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
+  "summary": "static recommendation selected from 14 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
   "validation_errors": [],
   "warnings": [
     {

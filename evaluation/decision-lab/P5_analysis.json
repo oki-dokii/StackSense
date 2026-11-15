@@ -1,5 +1,5 @@
 {
-  "adr_markdown": "# Proposed architecture decision\n\n**Status: Proposed — project acceptance required.**\n\nEngine 0.8.0; catalog 0.4.0; services 0.8.0; analysis 0.2.0.\nInput SHA-256: 2410b17ffe7b48b1a53e3383a668a754f31eef28e8d327a3eef71a5d327d284a.\n\n## Original result\n\nPROVISIONAL STACK — unresolved critical constraints require review before production\\. modular\\_monolith recommendation selected from 49 complete compatible plans; month\\-12 infrastructure planning band USD 686\\.87–858\\.06/month\\.\nResult: ok_with_warnings.\n\n- frontend: React / Vite — Covers requested targets web with spa rendering\\. Team languages: csharp, javascript, sql\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- backend: ASP\\.NET Core — Provides a dotnet application runtime for the internal\\_tool profile\\. Language familiarity and delivery complexity were compared across compatible whole plans\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- database: PostgreSQL — relational persistence via Azure Database for PostgreSQL Flexible Server \\(Central India, local/zone backups\\)\\.  Database drivers and host deployment were checked as a combination\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- hosting: Azure App Service Environment v3 \\(Central India, Linux Iv2\\) — Matches managed\\_cloud with provider azure; reviewed primary compute region centralindia\\. Required runtimes and separate database deployment were checked\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n\nMonthly infrastructure/operations band (activity fees additional): USD 686.87–858.06.\n\n## Complete alternatives\n\n- modular\\_monolith\\|react\\|aspnet\\|pg\\|ase\\-india\\|centralindia; score 61; USD 686.87–858.06; selected.\n- modular\\_monolith\\|react\\|fastify\\|pg\\|ase\\-india\\|centralindia; score 61; USD 686.87–858.06; alternative.\n- modular\\_monolith\\|vue\\|aspnet\\|pg\\|ase\\-india\\|centralindia; score 61; USD 686.87–858.06; alternative.\n\n## Preference stability\n\nOriginal winner retained in 25/25 tested settings; 1 observed winners. Counts are not confidence probabilities.\n\n## Cost assumptions\n\n- Horizon: expected month\\-12 footprint; 730 hours/month\\. No tax, development/on\\-call labor, domain registration or new on\\-prem hardware procurement is included\\.\n- Peak concurrency supplied: 300; not equated directly with requests/second\\.\n- RPS absent: assumed 50 requests/user/day averaged across the day \\(0\\.868 RPS\\); peak capacity still uses the concurrency hypothesis\\.\n- Data volume 20 GB supplied; egress 15 GB/month assumed at 0\\.01 GB per year\\-12 user, minimum 1 GB; backup retention 1 months assumed\\.\n- Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak\\-concurrency replica floor, not charged again as per\\-connection sidecars\\. 2\\.25 vCPU/2\\-GiB\\-equivalent units include frontend/backend, auth, workers, inference and telemetry once\\. These are sizing assumptions requiring load tests, not capacity guarantees\\.\n- Billed duty 1–1; run polling workers with allocated CPU/minimum instances\\. Higher availability adds at least two application allocations and in\\-region database copies, but does not guarantee an SLA\\. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes\\.\n- Azure ASE: 2 whole Linux I1 v2 instances \\(2 vCPU each\\), rounding the reference CPU footprint up and retaining the availability replica floor\\. Published consumption meter is region/SKU\\-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote\\. Configure in\\-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross\\-region copies assumed\\.\n- Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in\\-region; no SLA is guaranteed\\. Auth/search/outbox share logical database capacity and are not billed as duplicate databases\\.\n- Headline estimate and budget fit cover infrastructure/operations only\\. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure\\.\n- Authored backup\\-storage envelope with retained copy quantity; no cross\\-region copy assumed\\.\n- Authored hosted build\\-minute allowance, assuming included quota at the lower bound\\. Paid runners/minutes/artifacts require a repository\\-specific quote and spending cap\\.\n- Authored internet\\-egress envelope; actual destination, free quota and routes vary\\.\n- Authored logs/metrics/request\\-operations allowance; redact data and set regional retention/quotas\\.\n- Authored regional persistent\\-storage envelope, including replica copies explicitly in quantity\\.\n- Authored standard\\-storage envelope; requests/lifecycle operations have a separate allowance\\.\n- Central India primary Linux I1 v2 consumption meter at USD 0\\.395/instance\\-hour, reviewed 13 November 2026\\. Whole 2\\-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review\\.\n- Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate\\.\n- Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes\\.\n\n## Blockers, validation and owner actions\n\n- critical: Microsoft Entra ID \\(tenant OIDC/SAML integration\\) is proposed provisionally: end\\-to\\-end india data residency is NOT established\\. Verify tenant/merchant eligibility, processing, logs, backups, delivery partners and contracts before production\\. This warning is an explicit exception to verified residency, not approval\\.\n- warning: 99\\.9% is a target, not a product guarantee\\. The cost model provisions redundancy assumptions; service terms, failover and workload behavior still require verification\\.\n- warning: Infrastructure estimate USD 686\\.87–858\\.06/month exceeds the USD 300 budget at the lower bound; this is an explicitly over\\-budget plan, with no requirement silently relaxed\\.\n- warning: The output proposes technical control designs only\\. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit\\. Implement controls and obtain scope\\-specific review\\.\n- warning: Legacy reuse requires version/EOL, license, network, schema and identity integration checks; no migration or connectivity is assumed verified\\.\n- warning: No measured evidence establishes the 800 ms p95 target; load\\-test the complete client/network/data path\\.\n- warning: Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity\\. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase\\.\n- infrastructure\\.data\\_residency, requirements\\.auth: Ask the tenant owner for the identity boundary and connectivity details\\. Microsoft 365 content geography does not establish Entra identity residency\\.\n\n## Evidence register\n\n- core:aspnet: [EF Core providers](https://learn.microsoft.com/en-us/ef/core/providers/); checked 2026\\-11\\-13; Database\\-specific providers, with independent compatibility/version requirements\n- core:azure\\-ase: [App Service Environment v3 region and data boundary](https://learn.microsoft.com/en-us/azure/app-service/environment/overview); checked 2026\\-11\\-13; Central India supported; app content/settings/secrets retained within deployment region\\. Separate services/identity not covered\\.\n- core:azure\\-pg\\-backup: [Azure PostgreSQL backup and restore](https://learn.microsoft.com/en-us/azure/postgresql/backup-restore/concepts-backup-restore); checked 2026\\-11\\-13; Use in\\-region local/zone backup storage; disable geo\\-redundancy and cross\\-region read replicas for this profile\\.\n- core:azure\\-pg\\-regions: [Azure PostgreSQL Flexible Server overview](https://learn.microsoft.com/en-us/azure/postgresql/overview); checked 2026\\-11\\-13; Central India Intel compute and in\\-region HA support\\. Exact SKU availability/quota and deployment configuration still need review\\.\n- core:pg: [PostgreSQL introduction](https://www.postgresql.org/docs/current/intro-whatis.html); checked 2026\\-11\\-13; Relational engine, transactional integrity\n- core:react: [React from scratch](https://react.dev/learn/build-a-react-app-from-scratch); checked 2026\\-11\\-13; Client web apps; SSR requires additional framework work\n- services:aws\\-logs: [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html); checked 2026\\-11\\-13; Regional logging configuration required\\.\n- services:azure\\-ase\\-retail: [Azure App Service Central India retail pricing API](https://prices.azure.com/api/retail/prices); checked 2026\\-11\\-13; Checked exact primary Linux I1 v2 consumption meter in centralindia: USD 0\\.395/instance\\-hour\\. Snapshot in docs/research/azure\\-ase\\-price\\.json; no customer discount/tax or capacity guarantee\\.\n- services:azure\\-storage\\-boundary: [Azure Storage redundancy](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy); checked 2026\\-11\\-13; LRS retains replicas within primary region; do not enable geo\\-redundancy or cross\\-region copies for this scoped profile\\.\n- services:azure\\-storage\\-region: [Azure Storage regional routing](https://learn.microsoft.com/en-us/azure/storage/common/network-routing-preference); checked 2026\\-11\\-13; Central India Storage regional endpoint support; account SKU/network configuration and quota must be verified before provisioning\\.\n- services:ci: [GitHub Actions](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions); checked 2026\\-11\\-13; Build only source/synthetic tests; no production data exports\\.\n- services:entra\\-oidc: [Microsoft identity platform OIDC](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc); checked 2026\\-11\\-13; Tenant\\-scoped OIDC discovery and token protocols; configure issuer/audience, keys, claims and consent; no residency/contract assurance\\.\n- services:entra\\-residency: [Microsoft Entra data residency](https://learn.microsoft.com/en-us/entra/fundamentals/data-residency); checked 2026\\-11\\-13; Tenant geography and identity storage are distinct from application regions and Microsoft 365 content residency\\. No India\\-only tenant assurance inferred\\.\n- services:gcp\\-logs: [Regional Cloud Logging](https://cloud.google.com/logging/docs/regionalized-logs); checked 2026\\-11\\-13; Regional log buckets and routing configuration\\.\n- services:s3\\-price: [S3 pricing](https://aws.amazon.com/s3/pricing/); checked 2026\\-11\\-13; Storage, requests and egress vary; cross\\-provider estimate below is a planning envelope\\.\n- services:sql\\-price: [Cloud SQL pricing](https://cloud.google.com/sql/pricing); checked 2026\\-11\\-13; Reference CPU $0\\.0413/vCPU\\-hour and memory $0\\.007/GiB\\-hour; HA replicas billed; not an India\\-specific quote\\.\n- services:storage\\-price: [Cloud Storage pricing](https://cloud.google.com/storage/pricing); checked 2026\\-11\\-13; Storage, operations and network are distinct charges\\.\n- services:telemetry: [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/); checked 2026\\-11\\-13; Collection/redaction/export; backend retention must be configured\\.\n\n## Limits and acceptance\n\n- Exploratory analysis only. The original recommendation and original requirements are unchanged.\n- Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.\n- The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.\n- Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.\n- Within Decision Lab functional experiments, compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.\n- No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.\n- engine_evaluations counts top-level scenario trials; the baseline recommendation may additionally evaluate one separately labeled budget proposal. Budget proposals are outside the functional-experiment sweep and never change the baseline brief.\n- The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.\n\nAcceptance, independent review, vendor eligibility, implementation and deployment remain owner tasks. No acceptance is recorded.\n",
+  "adr_markdown": "# Proposed architecture decision\n\n**Status: Proposed — project acceptance required.**\n\nEngine 0.8.0; catalog 0.5.0; services 0.8.0; analysis 0.2.0.\nInput SHA-256: 2410b17ffe7b48b1a53e3383a668a754f31eef28e8d327a3eef71a5d327d284a.\n\n## Original result\n\nPROVISIONAL STACK — unresolved critical constraints require review before production\\. modular\\_monolith recommendation selected from 105 complete compatible plans; month\\-12 infrastructure planning band USD 603\\.7–739\\.7/month\\.\nResult: ok_with_warnings.\n\n- frontend: React / Vite — Covers requested targets web with spa rendering\\. Team languages: csharp, javascript, sql\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- backend: ASP\\.NET Core — Provides a dotnet application runtime for the internal\\_tool profile\\. Language familiarity and delivery complexity were compared across compatible whole plans\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- database: SQL Server — relational persistence via Existing on\\-premises SQL Server; private application integration, not an assumed migration\\.  Database drivers and host deployment were checked as a combination\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- hosting: Azure App Service Environment v3 \\(Central India, Linux Iv2\\) — Matches managed\\_cloud with provider azure; reviewed primary compute region centralindia\\. Required runtimes and separate database deployment were checked\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n\nMonthly infrastructure/operations band (activity fees additional): USD 603.7–739.7.\n\n## Complete alternatives\n\n- modular\\_monolith\\|react\\|aspnet\\|sqlserver\\|ase\\-india\\|centralindia; score 66; USD 603.7–739.7; selected.\n- modular\\_monolith\\|react\\|express\\|sqlserver\\|ase\\-india\\|centralindia; score 66; USD 603.7–739.7; alternative.\n- modular\\_monolith\\|react\\|nestjs\\|sqlserver\\|ase\\-india\\|centralindia; score 66; USD 603.7–739.7; alternative.\n\n## Preference stability\n\nOriginal winner retained in 25/25 tested settings; 1 observed winners. Counts are not confidence probabilities.\n\n## Cost assumptions\n\n- Horizon: expected month\\-12 footprint; 730 hours/month\\. No tax, development/on\\-call labor, domain registration or new on\\-prem hardware procurement is included\\.\n- Peak concurrency supplied: 300; not equated directly with requests/second\\.\n- RPS absent: authored daily\\-active fraction 0\\.2 of registered month\\-12 users, floored at supplied peak concurrency \\(300 active/day\\); 50 requests/active user/day gives 0\\.174 average RPS\\. Neither fraction nor request rate is measured; explicit RPS overrides both\\. Peak capacity is separate\\.\n- Data volume 20 GB supplied; egress 15 GB/month assumed at 0\\.01 GB per year\\-12 user, minimum 1 GB; backup retention 1 months assumed\\.\n- Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak\\-concurrency replica floor, not charged again as per\\-connection sidecars\\. 2\\.25 vCPU/2\\-GiB\\-equivalent units include frontend/backend, auth, workers, inference and telemetry once\\. These are sizing assumptions requiring load tests, not capacity guarantees\\.\n- Billed duty 1–1; run polling workers with allocated CPU/minimum instances\\. Higher availability adds at least two application allocations and in\\-region database copies, but does not guarantee an SLA\\. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes\\.\n- Azure ASE: 2 whole Linux I1 v2 instances \\(2 vCPU each\\), rounding the reference CPU footprint up and retaining the availability replica floor\\. Published consumption meter is region/SKU\\-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote\\. Configure in\\-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross\\-region copies assumed\\.\n- Existing SQL Server is retained behind private connectivity\\. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed\\.\n- Headline estimate and budget fit cover infrastructure/operations only\\. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure\\.\n- Authored backup\\-storage envelope with retained copy quantity; no cross\\-region copy assumed\\.\n- Authored hosted build\\-minute allowance, assuming included quota at the lower bound\\. Paid runners/minutes/artifacts require a repository\\-specific quote and spending cap\\.\n- Authored incremental operations/private\\-integration allowance on an existing SQL Server\\. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased\\.\n- Authored internet\\-egress envelope; actual destination, free quota and routes vary\\.\n- Authored logs/metrics/request\\-operations allowance; redact data and set regional retention/quotas\\.\n- Authored standard\\-storage envelope; requests/lifecycle operations have a separate allowance\\.\n- Central India primary Linux I1 v2 consumption meter at USD 0\\.395/instance\\-hour, reviewed 13 November 2026\\. Whole 2\\-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review\\.\n\n## Blockers, validation and owner actions\n\n- critical: Reuse the existing SQL Server provisionally\\. Its physical geography, reachable private network, capacity, backups, edition/license entitlement and restore compatibility are not established; no India location, free license or migration is assumed\\.\n- critical: Microsoft Entra ID \\(tenant OIDC/SAML integration\\) is proposed provisionally: end\\-to\\-end india data residency is NOT established\\. Verify tenant/merchant eligibility, processing, logs, backups, delivery partners and contracts before production\\. This warning is an explicit exception to verified residency, not approval\\.\n- warning: 99\\.9% is a target, not a product guarantee\\. The cost model provisions redundancy assumptions; service terms, failover and workload behavior still require verification\\.\n- warning: Infrastructure estimate USD 603\\.7–739\\.7/month exceeds the USD 300 budget at the lower bound; this is an explicitly over\\-budget plan, with no requirement silently relaxed\\.\n- warning: The output proposes technical control designs only\\. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit\\. Implement controls and obtain scope\\-specific review\\.\n- warning: Legacy reuse requires version/EOL, license, network, schema and identity integration checks; no migration or connectivity is assumed verified\\.\n- warning: No measured evidence establishes the 800 ms p95 target; load\\-test the complete client/network/data path\\.\n- warning: Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity\\. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase\\.\n- infrastructure\\.existing\\_systems, infrastructure\\.data\\_residency: Review the scoped catalog evidence, workload and configuration; resolve the condition and rerun the unchanged input\\.\n- infrastructure\\.data\\_residency, requirements\\.auth: Ask the tenant owner for the identity boundary and connectivity details\\. Microsoft 365 content geography does not establish Entra identity residency\\.\n\n## Evidence register\n\n- core:aspnet: [EF Core providers](https://learn.microsoft.com/en-us/ef/core/providers/); checked 2026\\-11\\-13; Database\\-specific providers, with independent compatibility/version requirements\n- core:azure\\-ase: [App Service Environment v3 region and data boundary](https://learn.microsoft.com/en-us/azure/app-service/environment/overview); checked 2026\\-11\\-13; Central India supported; app content/settings/secrets retained within deployment region\\. Separate services/identity not covered\\.\n- core:react: [React from scratch](https://react.dev/learn/build-a-react-app-from-scratch); checked 2026\\-11\\-13; Client web apps; SSR requires additional framework work\n- core:sqlserver: [SQL Server Linux](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-overview); checked 2026\\-11\\-13; Server installation on Linux/VM/container; release compatibility still required\n- services:aws\\-logs: [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html); checked 2026\\-11\\-13; Regional logging configuration required\\.\n- services:azure\\-ase\\-retail: [Azure App Service Central India retail pricing API](https://prices.azure.com/api/retail/prices); checked 2026\\-11\\-13; Checked exact primary Linux I1 v2 consumption meter in centralindia: USD 0\\.395/instance\\-hour\\. Snapshot in docs/research/azure\\-ase\\-price\\.json; no customer discount/tax or capacity guarantee\\.\n- services:azure\\-storage\\-boundary: [Azure Storage redundancy](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy); checked 2026\\-11\\-13; LRS retains replicas within primary region; do not enable geo\\-redundancy or cross\\-region copies for this scoped profile\\.\n- services:azure\\-storage\\-region: [Azure Storage regional routing](https://learn.microsoft.com/en-us/azure/storage/common/network-routing-preference); checked 2026\\-11\\-13; Central India Storage regional endpoint support; account SKU/network configuration and quota must be verified before provisioning\\.\n- services:ci: [GitHub Actions](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions); checked 2026\\-11\\-13; Build only source/synthetic tests; no production data exports\\.\n- services:entra\\-oidc: [Microsoft identity platform OIDC](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc); checked 2026\\-11\\-13; Tenant\\-scoped OIDC discovery and token protocols; configure issuer/audience, keys, claims and consent; no residency/contract assurance\\.\n- services:entra\\-residency: [Microsoft Entra data residency](https://learn.microsoft.com/en-us/entra/fundamentals/data-residency); checked 2026\\-11\\-13; Tenant geography and identity storage are distinct from application regions and Microsoft 365 content residency\\. No India\\-only tenant assurance inferred\\.\n- services:gcp\\-logs: [Regional Cloud Logging](https://cloud.google.com/logging/docs/regionalized-logs); checked 2026\\-11\\-13; Regional log buckets and routing configuration\\.\n- services:s3\\-price: [S3 pricing](https://aws.amazon.com/s3/pricing/); checked 2026\\-11\\-13; Storage, requests and egress vary; cross\\-provider estimate below is a planning envelope\\.\n- services:sql2019\\-lifecycle: [SQL Server 2019 lifecycle](https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2019); checked 2026\\-11\\-13; Extended support ends January 2030; no edition, patch, license or installed network/capacity entitlement established\\.\n- services:storage\\-price: [Cloud Storage pricing](https://cloud.google.com/storage/pricing); checked 2026\\-11\\-13; Storage, operations and network are distinct charges\\.\n- services:telemetry: [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/); checked 2026\\-11\\-13; Collection/redaction/export; backend retention must be configured\\.\n\n## Limits and acceptance\n\n- Exploratory analysis only. The original recommendation and original requirements are unchanged.\n- Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.\n- The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.\n- Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.\n- Within Decision Lab functional experiments, compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.\n- No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.\n- engine_evaluations counts top-level scenario trials; the baseline recommendation may additionally evaluate one separately labeled budget proposal. Budget proposals are outside the functional-experiment sweep and never change the baseline brief.\n- The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.\n\nAcceptance, independent review, vendor eligibility, implementation and deployment remain owner tasks. No acceptance is recorded.\n",
   "analysis_version": "0.2.0",
   "baseline": {
     "applied_extensions": [],
@@ -9,6 +9,7 @@
       "Enterprise identity integration assumes a reachable, eligible OIDC/SAML identity provider; verify tenant scopes, licenses and network paths before provisioning.",
       "PROVISIONAL RESIDENCY EXCEPTION: Microsoft Entra ID (tenant OIDC/SAML integration) remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
       "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required.",
+      "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
       "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
       "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
     ],
@@ -18,20 +19,20 @@
         "budget_fit": "over_budget",
         "core": {
           "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
+          "database": "SQL Server",
           "frontend": "Angular",
           "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
         },
         "monthly_infrastructure_usd": {
-          "max": 858.06,
-          "min": 686.87
+          "max": 739.7,
+          "min": 603.7
         },
-        "plan_id": "modular_monolith|angular|aspnet|pg|ase-india|centralindia"
+        "plan_id": "modular_monolith|angular|aspnet|sqlserver|ase-india|centralindia"
       },
       "notes": [
-        "Infrastructure uncertainty: database-cpu contributes USD 60.31 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
-        "Infrastructure uncertainty: database-memory contributes USD 40.88 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+        "Infrastructure uncertainty: existing-database-operations contributes USD 80 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
         "Infrastructure uncertainty: hosted-ci contributes USD 30 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+        "Infrastructure uncertainty: telemetry-operations contributes USD 15 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
         "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions."
       ],
       "options": [
@@ -41,26 +42,25 @@
             "Enterprise identity integration assumes a reachable, eligible OIDC/SAML identity provider; verify tenant scopes, licenses and network paths before provisioning.",
             "PROVISIONAL RESIDENCY EXCEPTION: Microsoft Entra ID (tenant OIDC/SAML integration) remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
             "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required.",
+            "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
             "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
             "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
             "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
             "Peak concurrency supplied: 300; not equated directly with requests/second.",
-            "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+            "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
             "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
             "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 1.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
             "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
             "Azure ASE: 1 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-            "Managed database: 1 vCPU/4 GiB reference primary and 0 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+            "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
             "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
             "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
             "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+            "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
             "Authored internet-egress envelope; actual destination, free quota and routes vary.",
             "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-            "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
             "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
             "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-            "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-            "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
             "Original feature flags, platforms, scale, languages, provider preference, residency and compliance requests remain unchanged. All vendor/contract exceptions and capacity hypotheses still require review."
           ],
           "budget_fit": "over_budget",
@@ -74,20 +74,20 @@
           ],
           "core": {
             "backend": "ASP.NET Core",
-            "database": "PostgreSQL",
+            "database": "SQL Server",
             "frontend": "React / Vite",
             "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
           },
           "id": "explicit_budget_tradeoff",
           "monthly_infrastructure_usd": {
-            "max": 460.53,
-            "min": 346.93
+            "max": 451.35,
+            "min": 315.35
           },
           "monthly_total_usd": {
-            "max": 460.53,
-            "min": 346.93
+            "max": 451.35,
+            "min": 315.35
           },
-          "plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+          "plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
           "primary_region": "centralindia",
           "requires_acceptance": true,
           "supporting_services": [
@@ -97,6 +97,15 @@
             "OpenTelemetry Collector + structured logs"
           ],
           "warnings": [
+            {
+              "code": "EXISTING_DATABASE_SCOPE_UNVERIFIED",
+              "fields": [
+                "infrastructure.existing_systems",
+                "infrastructure.data_residency"
+              ],
+              "message": "Reuse the existing SQL Server provisionally. Its physical geography, reachable private network, capacity, backups, edition/license entitlement and restore compatibility are not established; no India location, free license or migration is assumed.",
+              "severity": "critical"
+            },
             {
               "code": "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
               "fields": [
@@ -111,7 +120,7 @@
               "fields": [
                 "budget.monthly_infra_usd"
               ],
-              "message": "Infrastructure estimate USD 346.93–460.53/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
+              "message": "Infrastructure estimate USD 315.35–451.35/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
               "severity": "warning"
             },
             {
@@ -169,7 +178,7 @@
       ],
       "scope": "optional_proposals_original_result_unchanged"
     },
-    "catalog_version": "0.4.0",
+    "catalog_version": "0.5.0",
     "control_plan": {
       "deployment_controls": [
         "TLS at all client/service/database boundaries.",
@@ -221,63 +230,23 @@
         }
       },
       {
-        "basis": "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+        "basis": "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
         "category": "database",
-        "id": "database-cpu",
+        "id": "existing-database-operations",
         "monthly_usd": {
-          "max": 120.6,
-          "min": 60.29
-        },
-        "quantity": {
-          "max": 1460,
-          "min": 1460
-        },
-        "source_ids": [
-          "sql-price"
-        ],
-        "unit_rate_usd": {
-          "max": 0.0826,
-          "min": 0.0413
-        }
-      },
-      {
-        "basis": "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "category": "database",
-        "id": "database-memory",
-        "monthly_usd": {
-          "max": 81.76,
-          "min": 40.88
-        },
-        "quantity": {
-          "max": 5840,
-          "min": 5840
-        },
-        "source_ids": [
-          "sql-price"
-        ],
-        "unit_rate_usd": {
-          "max": 0.014,
-          "min": 0.007
-        }
-      },
-      {
-        "basis": "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
-        "category": "database",
-        "id": "database-storage",
-        "monthly_usd": {
-          "max": 16,
-          "min": 2
-        },
-        "quantity": {
-          "max": 40,
+          "max": 100,
           "min": 20
         },
+        "quantity": {
+          "max": 1,
+          "min": 1
+        },
         "source_ids": [
-          "sql-price"
+          "sql2019-lifecycle"
         ],
         "unit_rate_usd": {
-          "max": 0.4,
-          "min": 0.1
+          "max": 100,
+          "min": 20
         }
       },
       {
@@ -389,17 +358,15 @@
         "category": "infrastructure_and_operations",
         "line_ids": [
           "application-compute",
-          "database-cpu",
-          "database-memory",
-          "database-storage",
+          "existing-database-operations",
           "backup-storage",
           "object-storage",
           "network-egress",
           "telemetry-operations",
           "hosted-ci"
         ],
-        "max": 858.06,
-        "min": 686.87
+        "max": 739.7,
+        "min": 603.7
       },
       {
         "category": "payment_and_message_activity",
@@ -411,23 +378,46 @@
     "cost_sensitivity": [
       {
         "baseline_origin": "assumed",
-        "baseline_value": 0.8680555555555556,
+        "baseline_value": 0.1736111111111111,
         "cost_category": "infrastructure_and_operations",
         "field": "extensions.expected_requests_per_second",
         "samples": [
           {
-            "max": 858.06,
-            "min": 686.87,
+            "max": 739.7,
+            "min": 603.7,
             "status": "estimated",
             "upper_delta_usd": 0,
-            "value": 0.4340277777777778
+            "value": 0.08680555555555555
           },
           {
-            "max": 858.06,
-            "min": 686.87,
+            "max": 739.7,
+            "min": 603.7,
             "status": "estimated",
             "upper_delta_usd": 0,
-            "value": 1.7361111111111112
+            "value": 0.3472222222222222
+          }
+        ],
+        "scope": "selected_plan_fixed_no_reranking"
+      },
+      {
+        "baseline_origin": "assumed",
+        "baseline_value": 0.2,
+        "cost_category": "infrastructure_and_operations",
+        "field": "extensions.daily_active_user_fraction",
+        "samples": [
+          {
+            "max": 739.7,
+            "min": 603.7,
+            "status": "estimated",
+            "upper_delta_usd": 0,
+            "value": 0.1
+          },
+          {
+            "max": 739.7,
+            "min": 603.7,
+            "status": "estimated",
+            "upper_delta_usd": 0,
+            "value": 0.4
           }
         ],
         "scope": "selected_plan_fixed_no_reranking"
@@ -439,15 +429,15 @@
         "field": "extensions.monthly_egress_gb",
         "samples": [
           {
-            "max": 855.06,
-            "min": 686.27,
+            "max": 736.7,
+            "min": 603.1,
             "status": "estimated",
             "upper_delta_usd": -3,
             "value": 7.5
           },
           {
-            "max": 864.06,
-            "min": 688.07,
+            "max": 745.7,
+            "min": 604.9,
             "status": "estimated",
             "upper_delta_usd": 6,
             "value": 30
@@ -462,15 +452,15 @@
         "field": "extensions.retention_months",
         "samples": [
           {
-            "max": 858.06,
-            "min": 686.87,
+            "max": 739.7,
+            "min": 603.7,
             "status": "estimated",
             "upper_delta_usd": 0,
             "value": 1
           },
           {
-            "max": 864.06,
-            "min": 687.47,
+            "max": 745.7,
+            "min": 604.3,
             "status": "estimated",
             "upper_delta_usd": 6,
             "value": 2
@@ -488,7 +478,7 @@
       },
       {
         "component": "primary-database",
-        "location": "centralindia",
+        "location": "Existing database geography unverified",
         "scope": "Application/auth/search/outbox data and backups; verify retention, restore and deletion.",
         "verification": "configuration_required"
       },
@@ -517,13 +507,13 @@
         "verification": "source_only_no_production_data"
       }
     ],
-    "database_region": "centralindia",
+    "database_region": null,
     "decision_trace": {
-      "complete_candidates": 49,
-      "core_candidates": 49,
+      "complete_candidates": 105,
+      "core_candidates": 105,
       "rejected": [],
-      "score": 61,
-      "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia"
+      "score": 66,
+      "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia"
     },
     "engine_version": "0.8.0",
     "estimate_status": "estimated",
@@ -532,50 +522,46 @@
       "assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 300; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
         "Authored internet-egress envelope; actual destination, free quota and routes vary.",
         "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
       ],
-      "max": 858.06,
-      "min": 686.87
+      "max": 739.7,
+      "min": 603.7
     },
     "estimated_total_monthly_cost_usd": {
       "assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 300; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
         "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-        "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
         "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
         "Authored internet-egress envelope; actual destination, free quota and routes vary.",
         "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
         "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
         "Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded."
       ],
-      "max": 858.06,
-      "min": 686.87
+      "max": 739.7,
+      "min": 603.7
     },
     "integration_reviews": [
       {
@@ -673,37 +659,35 @@
         "budget_fit": "over_budget",
         "core": {
           "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
+          "database": "SQL Server",
           "frontend": "React / Vite",
           "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
         },
         "cost_assumptions": [
           "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
           "Peak concurrency supplied: 300; not equated directly with requests/second.",
-          "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+          "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
           "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
           "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
           "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
           "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-          "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+          "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
           "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
           "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
           "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+          "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
           "Authored internet-egress envelope; actual destination, free quota and routes vary.",
           "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-          "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
           "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-          "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-          "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-          "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+          "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
         ],
-        "database_region": "centralindia",
+        "database_region": null,
         "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
+          "max": 739.7,
+          "min": 603.7
         },
         "operated_components": 1.25,
-        "plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "primary_region": "centralindia",
         "retained_constraints": [
           "platforms=web",
@@ -713,7 +697,7 @@
           "compliance=iso27001",
           "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
         ],
-        "score": 61,
+        "score": 66,
         "score_delta": 0,
         "selected": true,
         "supporting_services": [
@@ -727,6 +711,7 @@
           "AVAILABILITY_TARGET_UNVERIFIED",
           "BUDGET_EXCEEDED",
           "COMPLIANCE_IMPLEMENTATION_REVIEW",
+          "EXISTING_DATABASE_SCOPE_UNVERIFIED",
           "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
           "EXISTING_SYSTEM_REVIEW",
           "LATENCY_TARGET_UNVERIFIED"
@@ -736,38 +721,36 @@
         "architecture_style": "modular_monolith",
         "budget_fit": "over_budget",
         "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
+          "backend": "Express",
+          "database": "SQL Server",
           "frontend": "React / Vite",
           "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
         },
         "cost_assumptions": [
           "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
           "Peak concurrency supplied: 300; not equated directly with requests/second.",
-          "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+          "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
           "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
           "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
           "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
           "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-          "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+          "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
           "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
           "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
           "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+          "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
           "Authored internet-egress envelope; actual destination, free quota and routes vary.",
           "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-          "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
           "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-          "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-          "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-          "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+          "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
         ],
-        "database_region": "centralindia",
+        "database_region": null,
         "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
+          "max": 739.7,
+          "min": 603.7
         },
         "operated_components": 1.25,
-        "plan_id": "modular_monolith|react|fastify|pg|ase-india|centralindia",
+        "plan_id": "modular_monolith|react|express|sqlserver|ase-india|centralindia",
         "primary_region": "centralindia",
         "retained_constraints": [
           "platforms=web",
@@ -777,7 +760,7 @@
           "compliance=iso27001",
           "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
         ],
-        "score": 61,
+        "score": 66,
         "score_delta": 0,
         "selected": false,
         "supporting_services": [
@@ -791,6 +774,7 @@
           "AVAILABILITY_TARGET_UNVERIFIED",
           "BUDGET_EXCEEDED",
           "COMPLIANCE_IMPLEMENTATION_REVIEW",
+          "EXISTING_DATABASE_SCOPE_UNVERIFIED",
           "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
           "EXISTING_SYSTEM_REVIEW",
           "LATENCY_TARGET_UNVERIFIED"
@@ -800,38 +784,36 @@
         "architecture_style": "modular_monolith",
         "budget_fit": "over_budget",
         "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "Vue",
+          "backend": "NestJS",
+          "database": "SQL Server",
+          "frontend": "React / Vite",
           "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
         },
         "cost_assumptions": [
           "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
           "Peak concurrency supplied: 300; not equated directly with requests/second.",
-          "RPS absent: assumed 50 requests/user/day averaged across the day (0.868 RPS); peak capacity still uses the concurrency hypothesis.",
+          "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
           "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
           "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
           "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
           "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-          "Managed database: 1 vCPU/4 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+          "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
           "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
           "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
           "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+          "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
           "Authored internet-egress envelope; actual destination, free quota and routes vary.",
           "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-          "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
           "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-          "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-          "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-          "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes."
+          "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
         ],
-        "database_region": "centralindia",
+        "database_region": null,
         "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
+          "max": 739.7,
+          "min": 603.7
         },
         "operated_components": 1.25,
-        "plan_id": "modular_monolith|vue|aspnet|pg|ase-india|centralindia",
+        "plan_id": "modular_monolith|react|nestjs|sqlserver|ase-india|centralindia",
         "primary_region": "centralindia",
         "retained_constraints": [
           "platforms=web",
@@ -841,7 +823,7 @@
           "compliance=iso27001",
           "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
         ],
-        "score": 61,
+        "score": 66,
         "score_delta": 0,
         "selected": false,
         "supporting_services": [
@@ -855,6 +837,7 @@
           "AVAILABILITY_TARGET_UNVERIFIED",
           "BUDGET_EXCEEDED",
           "COMPLIANCE_IMPLEMENTATION_REVIEW",
+          "EXISTING_DATABASE_SCOPE_UNVERIFIED",
           "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
           "EXISTING_SYSTEM_REVIEW",
           "LATENCY_TARGET_UNVERIFIED"
@@ -863,6 +846,24 @@
     ],
     "primary_region": "centralindia",
     "review_actions": [
+      {
+        "affected_components": [
+          "complete deployment"
+        ],
+        "code": "EXISTING_DATABASE_SCOPE_UNVERIFIED",
+        "evidence_required": [
+          "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+        ],
+        "fields": [
+          "infrastructure.existing_systems",
+          "infrastructure.data_residency"
+        ],
+        "id": "EXISTING_DATABASE_SCOPE_UNVERIFIED:infrastructure.existing_systems|infrastructure.data_residency:0",
+        "kind": "evidence_gap",
+        "next_action": "Review the scoped catalog evidence, workload and configuration; resolve the condition and rerun the unchanged input.",
+        "references": [],
+        "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
+      },
       {
         "affected_components": [
           "existing identity provider",
@@ -877,7 +878,7 @@
           "infrastructure.data_residency",
           "requirements.auth"
         ],
-        "id": "EXISTING_IDENTITY_SCOPE_UNVERIFIED:infrastructure.data_residency|requirements.auth",
+        "id": "EXISTING_IDENTITY_SCOPE_UNVERIFIED:infrastructure.data_residency|requirements.auth:1",
         "kind": "evidence_gap",
         "next_action": "Ask the tenant owner for the identity boundary and connectivity details. Microsoft 365 content geography does not establish Entra identity residency.",
         "references": [
@@ -910,7 +911,7 @@
           "priorities.cost"
         ],
         "fit": 0,
-        "reason": "USD 686.87–858.06/month versus budget 300: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+        "reason": "USD 603.7–739.7/month versus budget 300: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
         "weight": 3
       },
       {
@@ -923,7 +924,7 @@
           "priorities.time_to_market"
         ],
         "fit": 4,
-        "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 2.75/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+        "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 2.75/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics; supported server-language depth 1 gives ecosystem reuse bonus 0.",
         "weight": 5
       },
       {
@@ -953,7 +954,7 @@
         "weight": 2
       },
       {
-        "contribution": 20,
+        "contribution": 25,
         "criterion": "maintainability",
         "driven_by": [
           "team.languages",
@@ -962,8 +963,8 @@
           "infrastructure.existing_systems",
           "priorities.maintainability"
         ],
-        "fit": 4,
-        "reason": "Operational burden 2/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+        "fit": 5,
+        "reason": "Operational burden 2/5+; existing SQL Server integration receives a reuse preference. Server ecosystem reuse bonus 0; fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
         "weight": 5
       },
       {
@@ -982,7 +983,7 @@
       "backend": {
         "alternatives": [
           {
-            "choice": "Fastify",
+            "choice": "Express",
             "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
           }
         ],
@@ -1007,24 +1008,22 @@
       "database": {
         "alternatives": [
           {
-            "choice": "None",
-            "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+            "choice": "PostgreSQL",
+            "why_not": "Best compatible complete plan using this option scored 61, below 66; other layers may also differ."
           }
         ],
-        "choice": "PostgreSQL",
+        "choice": "SQL Server",
         "driven_by": [
           "project.type",
           "requirements.auth",
           "requirements.offline_support",
           "infrastructure.existing_systems"
         ],
-        "id": "pg",
-        "justification": "relational persistence via Azure Database for PostgreSQL Flexible Server (Central India, local/zone backups).  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+        "id": "sqlserver",
+        "justification": "relational persistence via Existing on-premises SQL Server; private application integration, not an assumed migration.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
         "layer": "database",
         "source_ids": [
-          "azure-pg-backup",
-          "azure-pg-regions",
-          "pg"
+          "sqlserver"
         ],
         "tradeoffs": [
           "Data model, backup policy, licensing and release/driver compatibility need explicit review."
@@ -1192,9 +1191,18 @@
       ]
     },
     "status": "ok_with_warnings",
-    "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 49 complete compatible plans; month-12 infrastructure planning band USD 686.87–858.06/month.",
+    "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 105 complete compatible plans; month-12 infrastructure planning band USD 603.7–739.7/month.",
     "validation_errors": [],
     "warnings": [
+      {
+        "code": "EXISTING_DATABASE_SCOPE_UNVERIFIED",
+        "fields": [
+          "infrastructure.existing_systems",
+          "infrastructure.data_residency"
+        ],
+        "message": "Reuse the existing SQL Server provisionally. Its physical geography, reachable private network, capacity, backups, edition/license entitlement and restore compatibility are not established; no India location, free license or migration is assumed.",
+        "severity": "critical"
+      },
       {
         "code": "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
         "fields": [
@@ -1217,7 +1225,7 @@
         "fields": [
           "budget.monthly_infra_usd"
         ],
-        "message": "Infrastructure estimate USD 686.87–858.06/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
+        "message": "Infrastructure estimate USD 603.7–739.7/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
         "severity": "warning"
       },
       {
@@ -1274,31 +1282,17 @@
     },
     {
       "checked_on": "2026-11-13",
-      "id": "core:azure-pg-backup",
-      "scope": "Use in-region local/zone backup storage; disable geo-redundancy and cross-region read replicas for this profile.",
-      "title": "Azure PostgreSQL backup and restore",
-      "url": "https://learn.microsoft.com/en-us/azure/postgresql/backup-restore/concepts-backup-restore"
-    },
-    {
-      "checked_on": "2026-11-13",
-      "id": "core:azure-pg-regions",
-      "scope": "Central India Intel compute and in-region HA support. Exact SKU availability/quota and deployment configuration still need review.",
-      "title": "Azure PostgreSQL Flexible Server overview",
-      "url": "https://learn.microsoft.com/en-us/azure/postgresql/overview"
-    },
-    {
-      "checked_on": "2026-11-13",
-      "id": "core:pg",
-      "scope": "Relational engine, transactional integrity",
-      "title": "PostgreSQL introduction",
-      "url": "https://www.postgresql.org/docs/current/intro-whatis.html"
-    },
-    {
-      "checked_on": "2026-11-13",
       "id": "core:react",
       "scope": "Client web apps; SSR requires additional framework work",
       "title": "React from scratch",
       "url": "https://react.dev/learn/build-a-react-app-from-scratch"
+    },
+    {
+      "checked_on": "2026-11-13",
+      "id": "core:sqlserver",
+      "scope": "Server installation on Linux/VM/container; release compatibility still required",
+      "title": "SQL Server Linux",
+      "url": "https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-overview"
     },
     {
       "checked_on": "2026-11-13",
@@ -1365,10 +1359,10 @@
     },
     {
       "checked_on": "2026-11-13",
-      "id": "services:sql-price",
-      "scope": "Reference CPU $0.0413/vCPU-hour and memory $0.007/GiB-hour; HA replicas billed; not an India-specific quote.",
-      "title": "Cloud SQL pricing",
-      "url": "https://cloud.google.com/sql/pricing"
+      "id": "services:sql2019-lifecycle",
+      "scope": "Extended support ends January 2030; no edition, patch, license or installed network/capacity entitlement established.",
+      "title": "SQL Server 2019 lifecycle",
+      "url": "https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2019"
     },
     {
       "checked_on": "2026-11-13",
@@ -1419,6 +1413,351 @@
       {
         "core": {
           "backend": "ASP.NET Core",
+          "database": "SQL Server",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "SQL Server",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|react|express|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "NestJS",
+          "database": "SQL Server",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|react|nestjs|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "SQL Server",
+          "frontend": "Vue",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|vue|aspnet|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "SQL Server",
+          "frontend": "Vue",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|vue|express|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "NestJS",
+          "database": "SQL Server",
+          "frontend": "Vue",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|vue|nestjs|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "SQL Server",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|next|aspnet|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "SQL Server",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|next|express|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "NestJS",
+          "database": "SQL Server",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|next|nestjs|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "SQL Server",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|sveltekit|aspnet|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "SQL Server",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|sveltekit|express|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "NestJS",
+          "database": "SQL Server",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|sveltekit|nestjs|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "SQL Server",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|next-native|aspnet|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "SQL Server",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|next-native|express|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "NestJS",
+          "database": "SQL Server",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 66,
+        "plan_id": "modular_monolith|next-native|nestjs|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
           "database": "PostgreSQL",
           "frontend": "React / Vite",
           "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
@@ -1438,6 +1777,29 @@
         "operated_components": 1.25,
         "original_priority_score": 61,
         "plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "PostgreSQL",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|react|express|pg|ase-india|centralindia"
       },
       {
         "core": {
@@ -1464,6 +1826,29 @@
       },
       {
         "core": {
+          "backend": "NestJS",
+          "database": "PostgreSQL",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|react|nestjs|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
           "frontend": "Vue",
@@ -1484,6 +1869,29 @@
         "operated_components": 1.25,
         "original_priority_score": 61,
         "plan_id": "modular_monolith|vue|aspnet|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "PostgreSQL",
+          "frontend": "Vue",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|vue|express|pg|ase-india|centralindia"
       },
       {
         "core": {
@@ -1510,6 +1918,29 @@
       },
       {
         "core": {
+          "backend": "NestJS",
+          "database": "PostgreSQL",
+          "frontend": "Vue",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|vue|nestjs|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
           "frontend": "Next.js",
@@ -1530,6 +1961,29 @@
         "operated_components": 2.25,
         "original_priority_score": 61,
         "plan_id": "modular_monolith|next|aspnet|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "PostgreSQL",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|next|express|pg|ase-india|centralindia"
       },
       {
         "core": {
@@ -1556,6 +2010,29 @@
       },
       {
         "core": {
+          "backend": "NestJS",
+          "database": "PostgreSQL",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|next|nestjs|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
           "frontend": "SvelteKit",
@@ -1576,6 +2053,29 @@
         "operated_components": 2.25,
         "original_priority_score": 61,
         "plan_id": "modular_monolith|sveltekit|aspnet|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "PostgreSQL",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|sveltekit|express|pg|ase-india|centralindia"
       },
       {
         "core": {
@@ -1602,6 +2102,29 @@
       },
       {
         "core": {
+          "backend": "NestJS",
+          "database": "PostgreSQL",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|sveltekit|nestjs|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
           "frontend": "Next.js + React Native",
@@ -1622,6 +2145,29 @@
         "operated_components": 2.25,
         "original_priority_score": 61,
         "plan_id": "modular_monolith|next-native|aspnet|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|next-native|express|pg|ase-india|centralindia"
       },
       {
         "core": {
@@ -1648,6 +2194,167 @@
       },
       {
         "core": {
+          "backend": "NestJS",
+          "database": "PostgreSQL",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 61,
+        "plan_id": "modular_monolith|next-native|nestjs|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "SQL Server",
+          "frontend": "Angular",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|angular|aspnet|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "SQL Server",
+          "frontend": "Angular",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|angular|express|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "NestJS",
+          "database": "SQL Server",
+          "frontend": "Angular",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|angular|nestjs|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "SQL Server",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|flutter|aspnet|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "SQL Server",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|flutter|express|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "NestJS",
+          "database": "SQL Server",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|flutter|nestjs|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
           "backend": "ASP.NET Core",
           "database": "PostgreSQL",
           "frontend": "Angular",
@@ -1671,6 +2378,29 @@
       },
       {
         "core": {
+          "backend": "Express",
+          "database": "PostgreSQL",
+          "frontend": "Angular",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|angular|express|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
           "backend": "Fastify",
           "database": "PostgreSQL",
           "frontend": "Angular",
@@ -1691,6 +2421,466 @@
         "operated_components": 1.25,
         "original_priority_score": 51,
         "plan_id": "modular_monolith|angular|fastify|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "NestJS",
+          "database": "PostgreSQL",
+          "frontend": "Angular",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|angular|nestjs|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "ASP.NET Core",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|flutter|aspnet|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Express",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|flutter|express|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Fastify",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|flutter|fastify|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "NestJS",
+          "database": "PostgreSQL",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 858.06,
+          "min": 686.87
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 51,
+        "plan_id": "modular_monolith|flutter|nestjs|pg|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "SQL Server",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|react|go-http|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "SQL Server",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|react|laravel|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "SQL Server",
+          "frontend": "React / Vite",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|react|spring|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "SQL Server",
+          "frontend": "Vue",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|vue|go-http|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "SQL Server",
+          "frontend": "Vue",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|vue|laravel|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "SQL Server",
+          "frontend": "Vue",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|vue|spring|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "SQL Server",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|next|go-http|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "SQL Server",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|next|laravel|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "SQL Server",
+          "frontend": "Next.js",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|next|spring|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "SQL Server",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|sveltekit|go-http|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "SQL Server",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|sveltekit|laravel|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "SQL Server",
+          "frontend": "SvelteKit",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|sveltekit|spring|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "SQL Server",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|next-native|go-http|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "SQL Server",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|next-native|laravel|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "SQL Server",
+          "frontend": "Next.js + React Native",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 4,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 3
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 2.25,
+        "original_priority_score": 56,
+        "plan_id": "modular_monolith|next-native|spring|sqlserver|ase-india|centralindia"
       },
       {
         "core": {
@@ -1921,52 +3111,6 @@
         "operated_components": 1.25,
         "original_priority_score": 51,
         "plan_id": "modular_monolith|vue|spring|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 3,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
-        },
-        "operated_components": 1.25,
-        "original_priority_score": 51,
-        "plan_id": "modular_monolith|flutter|aspnet|pg|ase-india|centralindia"
-      },
-      {
-        "core": {
-          "backend": "Fastify",
-          "database": "PostgreSQL",
-          "frontend": "Flutter",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "fit": {
-          "cost": 0,
-          "maintainability": 3,
-          "performance": 3,
-          "scalability": 3,
-          "security": 3,
-          "time_to_market": 3
-        },
-        "monthly_usd": {
-          "max": 858.06,
-          "min": 686.87
-        },
-        "operated_components": 1.25,
-        "original_priority_score": 51,
-        "plan_id": "modular_monolith|flutter|fastify|pg|ase-india|centralindia"
       },
       {
         "core": {
@@ -2315,6 +3459,144 @@
       },
       {
         "core": {
+          "backend": "Go net/http",
+          "database": "SQL Server",
+          "frontend": "Angular",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 46,
+        "plan_id": "modular_monolith|angular|go-http|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "SQL Server",
+          "frontend": "Angular",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 46,
+        "plan_id": "modular_monolith|angular|laravel|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "SQL Server",
+          "frontend": "Angular",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 46,
+        "plan_id": "modular_monolith|angular|spring|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Go net/http",
+          "database": "SQL Server",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 46,
+        "plan_id": "modular_monolith|flutter|go-http|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Laravel",
+          "database": "SQL Server",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 46,
+        "plan_id": "modular_monolith|flutter|laravel|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "Spring Boot",
+          "database": "SQL Server",
+          "frontend": "Flutter",
+          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 3,
+          "performance": 3,
+          "scalability": 3,
+          "security": 3,
+          "time_to_market": 2
+        },
+        "monthly_usd": {
+          "max": 739.7,
+          "min": 603.7
+        },
+        "operated_components": 1.25,
+        "original_priority_score": 46,
+        "plan_id": "modular_monolith|flutter|spring|sqlserver|ase-india|centralindia"
+      },
+      {
+        "core": {
           "backend": "Django",
           "database": "PostgreSQL",
           "frontend": "Angular",
@@ -2545,10 +3827,12 @@
       }
     ],
     "frontier_plan_ids": [
-      "modular_monolith|react|aspnet|pg|ase-india|centralindia",
-      "modular_monolith|react|fastify|pg|ase-india|centralindia",
-      "modular_monolith|vue|aspnet|pg|ase-india|centralindia",
-      "modular_monolith|vue|fastify|pg|ase-india|centralindia"
+      "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
+      "modular_monolith|react|express|sqlserver|ase-india|centralindia",
+      "modular_monolith|react|nestjs|sqlserver|ase-india|centralindia",
+      "modular_monolith|vue|aspnet|sqlserver|ase-india|centralindia",
+      "modular_monolith|vue|express|sqlserver|ase-india|centralindia",
+      "modular_monolith|vue|nestjs|sqlserver|ase-india|centralindia"
     ],
     "retained_winner_settings": 25,
     "status": "evaluated",
@@ -2559,7 +3843,7 @@
         "criterion": "cost",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 3,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 1
       },
       {
@@ -2567,7 +3851,7 @@
         "criterion": "cost",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 3,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 2
       },
       {
@@ -2575,7 +3859,7 @@
         "criterion": "cost",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 3,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 4
       },
       {
@@ -2583,7 +3867,7 @@
         "criterion": "cost",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 3,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 5
       },
       {
@@ -2591,7 +3875,7 @@
         "criterion": "time_to_market",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 5,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 1
       },
       {
@@ -2599,7 +3883,7 @@
         "criterion": "time_to_market",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 5,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 2
       },
       {
@@ -2607,7 +3891,7 @@
         "criterion": "time_to_market",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 5,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 3
       },
       {
@@ -2615,7 +3899,7 @@
         "criterion": "time_to_market",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 5,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 4
       },
       {
@@ -2623,7 +3907,7 @@
         "criterion": "scalability",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 1,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 2
       },
       {
@@ -2631,7 +3915,7 @@
         "criterion": "scalability",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 1,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 3
       },
       {
@@ -2639,7 +3923,7 @@
         "criterion": "scalability",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 1,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 4
       },
       {
@@ -2647,7 +3931,7 @@
         "criterion": "scalability",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 1,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 5
       },
       {
@@ -2655,7 +3939,7 @@
         "criterion": "performance",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 2,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 1
       },
       {
@@ -2663,7 +3947,7 @@
         "criterion": "performance",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 2,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 3
       },
       {
@@ -2671,7 +3955,7 @@
         "criterion": "performance",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 2,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 4
       },
       {
@@ -2679,7 +3963,7 @@
         "criterion": "performance",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 2,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 5
       },
       {
@@ -2687,7 +3971,7 @@
         "criterion": "maintainability",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 5,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 1
       },
       {
@@ -2695,7 +3979,7 @@
         "criterion": "maintainability",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 5,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 2
       },
       {
@@ -2703,7 +3987,7 @@
         "criterion": "maintainability",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 5,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 3
       },
       {
@@ -2711,7 +3995,7 @@
         "criterion": "maintainability",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 5,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 4
       },
       {
@@ -2719,7 +4003,7 @@
         "criterion": "security",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 4,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 1
       },
       {
@@ -2727,7 +4011,7 @@
         "criterion": "security",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 4,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 2
       },
       {
@@ -2735,7 +4019,7 @@
         "criterion": "security",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 4,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 3
       },
       {
@@ -2743,7 +4027,7 @@
         "criterion": "security",
         "displayed_equal_score_alternatives": 2,
         "original_weight": 4,
-        "selected_plan_id": "modular_monolith|react|aspnet|pg|ase-india|centralindia",
+        "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
         "trial_weight": 5
       }
     ]

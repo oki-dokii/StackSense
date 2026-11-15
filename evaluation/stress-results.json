@@ -1,21 +1,23 @@
 {
   "scope": "Author-designed functional stress evaluation; not organiser hidden tests, independent quality grading or production sizing validation.",
   "engine_version": "0.8.0",
-  "case_set_sha256": "c1fe1d5460dd9f77e7354958dce74e736baab1915d665e4c1e9ae1d1286b6ebd",
-  "catalog_sha256": "8144ebe3b2f925cab4488996d4494d27ab41c3e23b0dd21614afa4f792e7ce95",
+  "case_set_sha256": "f1609988caeff4cdd81d50f62e64fe6209a668efd0b444d53760b8b0332ec123",
+  "catalog_sha256": "ee0974b7ba4bb6de1960d01f72a35fb35e7390c1f86446091ea6b13aefaf04bb",
   "counts": {
-    "scenarios": 30,
+    "scenarios": 60,
     "concrete_types": 15,
-    "usable": 29,
-    "infeasible": 1,
+    "usable": 57,
+    "infeasible": 3,
     "failed_checks": [],
-    "over_budget_at_lower_bound": 15,
-    "bands_over_5x": 0,
+    "over_budget_at_lower_bound": 12,
+    "bands_over_5x": 2,
     "selected_providers": {
-      "aws": 7,
+      "aws": 9,
       "azure": 4,
-      "gcp": 14,
-      "none": 4
+      "fly": 4,
+      "gcp": 20,
+      "none": 6,
+      "vercel": 14
     }
   },
   "records": [
@@ -37,6 +39,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -63,6 +69,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -77,18 +87,24 @@
       "project_type": "web_app",
       "input_sha256": "cfebcab47baff6faea71ff649bbb58d527e8861754faf68813527aa018aec38a",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|react|django|supabase-pg|vercel|iad1",
+      "provider": "vercel",
       "infrastructure_usd": {
-        "min": 247.76,
-        "max": 695
+        "min": 70,
+        "max": 85.25
       },
-      "band_ratio": 2.81,
+      "band_ratio": 1.22,
       "budget_usd": 60,
       "over_budget_at_lower_bound": true,
-      "critical_warnings": [],
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -103,7 +119,7 @@
       "project_type": "web_app",
       "input_sha256": "d10b80da72c706506cd1b0154bdc4c0db9f2ef1d63b4a91ec9fcd6a8ae8608ec",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|angular|fastify|pg|ecs|unspecified",
+      "plan_id": "modular_monolith|angular|express|pg|ecs|unspecified",
       "provider": "aws",
       "infrastructure_usd": {
         "min": 251.4,
@@ -115,6 +131,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -129,18 +149,24 @@
       "project_type": "saas_b2b",
       "input_sha256": "e24d303834d9c30856bc520b009ea0629f9928e11f1eb8e428baacc5b967c2f1",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+      "provider": "vercel",
       "infrastructure_usd": {
-        "min": 247.76,
-        "max": 695
+        "min": 70,
+        "max": 85.25
       },
-      "band_ratio": 2.81,
+      "band_ratio": 1.22,
       "budget_usd": 100,
-      "over_budget_at_lower_bound": true,
-      "critical_warnings": [],
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -167,6 +193,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -181,21 +211,28 @@
       "project_type": "ecommerce",
       "input_sha256": "46bf5603bd51395fd1c75a0dfaa80ec96ad0a883346fcd37f3dcb03108cce56d",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|next|fastify|pg|cloudrun|asia-south1",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|next|express|supabase-pg|vercel|bom1",
+      "provider": "vercel",
       "infrastructure_usd": {
-        "min": 259.19,
-        "max": 804.74
+        "min": 70,
+        "max": 85.25
       },
-      "band_ratio": 3.1,
+      "band_ratio": 1.22,
       "budget_usd": 150,
-      "over_budget_at_lower_bound": true,
+      "over_budget_at_lower_bound": false,
       "critical_warnings": [
         "EXTERNAL_RESIDENCY_UNVERIFIED",
-        "EXTERNAL_RESIDENCY_UNVERIFIED"
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "MANAGED_BOUNDARY_RESIDENCY_REVIEW",
+        "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -224,6 +261,10 @@
       ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -238,21 +279,28 @@
       "project_type": "marketplace",
       "input_sha256": "15575f7ae83a1a11257e519ee28d32f30c708bd4cde87afe0a671f35fa7e5741",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|next-native|fastify|pg|cloudrun|europe-west1",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|next-native|express|supabase-pg|vercel|fra1",
+      "provider": "vercel",
       "infrastructure_usd": {
-        "min": 259.19,
-        "max": 804.74
+        "min": 70,
+        "max": 85.25
       },
-      "band_ratio": 3.1,
+      "band_ratio": 1.22,
       "budget_usd": 180,
-      "over_budget_at_lower_bound": true,
+      "over_budget_at_lower_bound": false,
       "critical_warnings": [
         "EXTERNAL_RESIDENCY_UNVERIFIED",
-        "EXTERNAL_RESIDENCY_UNVERIFIED"
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "MANAGED_BOUNDARY_RESIDENCY_REVIEW",
+        "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -279,6 +327,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -293,18 +345,24 @@
       "project_type": "social",
       "input_sha256": "ef4d95dafa1f4d1d916457d85b2d75c7d8aec73ab23aa84d55db6a13690e99f9",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+      "provider": "vercel",
       "infrastructure_usd": {
-        "min": 247.86,
-        "max": 695.5
+        "min": 70.5,
+        "max": 86.25
       },
-      "band_ratio": 2.81,
+      "band_ratio": 1.22,
       "budget_usd": 80,
-      "over_budget_at_lower_bound": true,
-      "critical_warnings": [],
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -331,6 +389,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -345,18 +407,24 @@
       "project_type": "realtime_collab",
       "input_sha256": "06a66303ba01d897adca0b23abf920e7e1b30d4cb629dec261e7f434cab05dc3",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|angular|fastify|pg|cloudrun|unspecified",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|angular|express|supabase-pg|fly|iad",
+      "provider": "fly",
       "infrastructure_usd": {
-        "min": 320.81,
-        "max": 853.94
+        "min": 84.5,
+        "max": 129.96
       },
-      "band_ratio": 2.66,
+      "band_ratio": 1.54,
       "budget_usd": 200,
-      "over_budget_at_lower_bound": true,
-      "critical_warnings": [],
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -383,6 +451,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -397,7 +469,7 @@
       "project_type": "fintech",
       "input_sha256": "fd52523d73d1772d2058c83f9b233ee4331ae0c19d3ed598a4b86cf7e48e605d",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|flutter|fastify|pg|ecs|ap-south-1",
+      "plan_id": "modular_monolith|flutter|express|pg|ecs|ap-south-1",
       "provider": "aws",
       "infrastructure_usd": {
         "min": 260.41,
@@ -413,6 +485,10 @@
       ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -439,6 +515,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -467,6 +547,10 @@
       ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -493,6 +577,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -507,18 +595,24 @@
       "project_type": "data_analytics",
       "input_sha256": "d12bb3d32326ae3f77db714d151ae7597c37c968ff347339ae2fa635f13bdcb5",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|frontend-none|fastapi|mysql|cloudrun|unspecified",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|frontend-none|fastapi|supabase-pg|vercel|iad1",
+      "provider": "vercel",
       "infrastructure_usd": {
-        "min": 189.94,
-        "max": 590.93
+        "min": 70,
+        "max": 85.25
       },
-      "band_ratio": 3.11,
+      "band_ratio": 1.22,
       "budget_usd": 100,
-      "over_budget_at_lower_bound": true,
-      "critical_warnings": [],
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -545,6 +639,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -571,6 +669,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -597,6 +699,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -623,6 +729,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -652,6 +762,10 @@
       ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -666,7 +780,7 @@
       "project_type": "internal_tool",
       "input_sha256": "ef5d42a5bc089b026fd6018cb0b3a2fdfe362a3fcf857057f7f0d6ef31711e8c",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|angular|fastify|mysql|local|unspecified",
+      "plan_id": "modular_monolith|angular|express|mysql|local|unspecified",
       "provider": "none",
       "infrastructure_usd": {
         "min": 74.65,
@@ -678,6 +792,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -692,18 +810,24 @@
       "project_type": "internal_tool",
       "input_sha256": "0eed1d7a96d84ad67d91f51d12857c807b405d3dc492d5241c03def7a4e241ed",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|react|express|supabase-pg|fly|iad",
+      "provider": "fly",
       "infrastructure_usd": {
-        "min": 247.76,
-        "max": 695
+        "min": 70.92,
+        "max": 116.38
       },
-      "band_ratio": 2.81,
+      "band_ratio": 1.64,
       "budget_usd": 50,
       "over_budget_at_lower_bound": true,
-      "critical_warnings": [],
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -718,18 +842,24 @@
       "project_type": "gaming",
       "input_sha256": "a537c0314602a715cbb529f91f4295fe26f6b4982631c21ec044ea425d7613fa",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|flutter|go-http|mysql|cloudrun|unspecified",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|flutter|go-http|supabase-pg|vercel|iad1",
+      "provider": "vercel",
       "infrastructure_usd": {
-        "min": 320.81,
-        "max": 853.94
+        "min": 70,
+        "max": 85.25
       },
-      "band_ratio": 2.66,
+      "band_ratio": 1.22,
       "budget_usd": 300,
-      "over_budget_at_lower_bound": true,
-      "critical_warnings": [],
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -756,6 +886,10 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -770,18 +904,24 @@
       "project_type": "api_platform",
       "input_sha256": "a0ad62d48e51d7365805cb381b8eb21b69bc2d36fb3d73f8946231c730fc9c8d",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|frontend-none|go-http|mysql|cloudrun|unspecified",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|frontend-none|go-http|supabase-pg|vercel|iad1",
+      "provider": "vercel",
       "infrastructure_usd": {
-        "min": 189.94,
-        "max": 590.93
+        "min": 70,
+        "max": 85.25
       },
-      "band_ratio": 3.11,
+      "band_ratio": 1.22,
       "budget_usd": 120,
-      "over_budget_at_lower_bound": true,
-      "critical_warnings": [],
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,
@@ -808,6 +948,960 @@
       "critical_warnings": [],
       "checks": {
         "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S31",
+      "title": "Markdown journal variation 1",
+      "project_type": "content_site",
+      "input_sha256": "c67b93c90a5f9f6bcf9c07346eea67b5ea655e538daf7dd6526d034d32ea6077",
+      "status": "ok_with_warnings",
+      "plan_id": "static|astro|backend-none|database-none|local|unspecified",
+      "provider": "none",
+      "infrastructure_usd": {
+        "min": 34.5,
+        "max": 169
+      },
+      "band_ratio": 4.9,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S32",
+      "title": "Markdown journal variation 2",
+      "project_type": "content_site",
+      "input_sha256": "3c381ea013fe2940bfc34486b117b17056ec505eec0844237af5574419050c29",
+      "status": "ok",
+      "plan_id": "static|astro|backend-none|database-none|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 23.13,
+        "max": 168.75
+      },
+      "band_ratio": 7.3,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S33",
+      "title": "Solo appointment tool variation 1",
+      "project_type": "web_app",
+      "input_sha256": "8a30176e1c2180deb612d10895380abf0fd4f32e29b1a2d59229e76d8346f44e",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|django|supabase-pg|vercel|iad1",
+      "provider": "vercel",
+      "infrastructure_usd": {
+        "min": 70,
+        "max": 85.25
+      },
+      "band_ratio": 1.22,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S34",
+      "title": "Solo appointment tool variation 2",
+      "project_type": "web_app",
+      "input_sha256": "7f5ad3fdd4eef8ea6d09aa820a98eab7a5007453c770f04e4ef4831331bb3ce1",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 190.34,
+        "max": 512.07
+      },
+      "band_ratio": 2.69,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S35",
+      "title": "Air-gapped SaaS with public social login",
+      "project_type": "saas_b2b",
+      "input_sha256": "fabf0a2bde8078515a8f3a93d3dd00f7314e91d3ddda986a90b1952aa865fd82",
+      "status": "infeasible",
+      "plan_id": null,
+      "provider": null,
+      "infrastructure_usd": {
+        "min": 0,
+        "max": 0
+      },
+      "band_ratio": null,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "COMPLETE_PLAN_COVERAGE_GAP",
+        "RESTRICTED_EXTERNAL_SERVICE",
+        "RESTRICTED_PUBLIC_IDENTITY",
+        "SERVICE_DATABASE_MISMATCH",
+        "SERVICE_DATABASE_MISMATCH",
+        "SERVICE_DATABASE_MISMATCH"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S36",
+      "title": "Small tenant billing dashboard variation 2",
+      "project_type": "saas_b2b",
+      "input_sha256": "de2cf90d0e053d72528fc93ee10039b3b63c88bdd39b0625321feee0d5a5e94d",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 190.34,
+        "max": 512.07
+      },
+      "band_ratio": 2.69,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S37",
+      "title": "India small shop variation 1",
+      "project_type": "ecommerce",
+      "input_sha256": "c4342e48db7ba2303767f399968c126058b33780e19ee16850c91a5d8f5d753c",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|next|express|supabase-pg|vercel|bom1",
+      "provider": "vercel",
+      "infrastructure_usd": {
+        "min": 70,
+        "max": 85.25
+      },
+      "band_ratio": 1.22,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "MANAGED_BOUNDARY_RESIDENCY_REVIEW",
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S38",
+      "title": "India small shop variation 2",
+      "project_type": "ecommerce",
+      "input_sha256": "62c4f17b22df3b6bfac17b2bd9800c1801d620dc5753891ceea25a4407628c5a",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|next|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 201.77,
+        "max": 621.82
+      },
+      "band_ratio": 3.08,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S39",
+      "title": "EU local services variation 1",
+      "project_type": "marketplace",
+      "input_sha256": "13496cee5fed210671426674df675deaa086cd178eccb9f77fd47e59696c7c8d",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|next-native|express|supabase-pg|vercel|fra1",
+      "provider": "vercel",
+      "infrastructure_usd": {
+        "min": 70,
+        "max": 85.25
+      },
+      "band_ratio": 1.22,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "MANAGED_BOUNDARY_RESIDENCY_REVIEW",
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S40",
+      "title": "EU local services variation 2",
+      "project_type": "marketplace",
+      "input_sha256": "f9e2fd39f08da31410d2638bd6e04ffb1329ffc735394fa07bde0f7767724ed6",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|next-native|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 201.77,
+        "max": 621.82
+      },
+      "band_ratio": 3.08,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S41",
+      "title": "Small community feed variation 1",
+      "project_type": "social",
+      "input_sha256": "1c9b36ba81a88ace940c7a2210d08f89289a172aea5d881a14c38ea12c458bd1",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+      "provider": "vercel",
+      "infrastructure_usd": {
+        "min": 70.5,
+        "max": 86.25
+      },
+      "band_ratio": 1.22,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S42",
+      "title": "Small community feed variation 2",
+      "project_type": "social",
+      "input_sha256": "e46da1adbb7fec68466910becf0c57c8f6343b23315de8e5aa71c82550754fbc",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 190.44,
+        "max": 512.57
+      },
+      "band_ratio": 2.69,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "IDENTITY_RESIDENCY_UNVERIFIED"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S43",
+      "title": "Small shared editor variation 1",
+      "project_type": "realtime_collab",
+      "input_sha256": "b8bd5d5a823d9d9b84809dd5b9a35f024a4c0b5c0f27cc84ca5190ca1f65713a",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|express|supabase-pg|fly|iad",
+      "provider": "fly",
+      "infrastructure_usd": {
+        "min": 84.4,
+        "max": 129.76
+      },
+      "band_ratio": 1.54,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S44",
+      "title": "Small shared editor variation 2",
+      "project_type": "realtime_collab",
+      "input_sha256": "115af0efb8eb260134ee7019d132a55988fa6a0ca5b5c5e7b14f3d350f3f28cf",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 274.82,
+        "max": 780.76
+      },
+      "band_ratio": 2.84,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S45",
+      "title": "India collections variation 1",
+      "project_type": "fintech",
+      "input_sha256": "f7a1a1f86681b39dca89d4a91eb42005c3656999710ba1f990638ae972d59c7c",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|next-native|express|pg|ecs|ap-south-1",
+      "provider": "aws",
+      "infrastructure_usd": {
+        "min": 296.05,
+        "max": 689.73
+      },
+      "band_ratio": 2.33,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "FINTECH_PAYMENT_SCOPE_REVIEW"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S46",
+      "title": "RBI localisation versus US region conflict",
+      "project_type": "fintech",
+      "input_sha256": "8d546f2f9469942ee115b597b39cc8e21fa3424f970f63649a6d4cdac4c31d55",
+      "status": "infeasible",
+      "plan_id": null,
+      "provider": null,
+      "infrastructure_usd": {
+        "min": 0,
+        "max": 0
+      },
+      "band_ratio": null,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "COMPLETE_PLAN_COVERAGE_GAP",
+        "RBI_REGION_CONFLICT"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S47",
+      "title": "Clinic appointments variation 1",
+      "project_type": "healthtech",
+      "input_sha256": "79cc4bfc9b7802d7fbcaca06e2d19597b855dd2130907bc1610d5d166b422287",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react|django|mysql|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 247.46,
+        "max": 693.5
+      },
+      "band_ratio": 2.8,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [
+        "BAA_EVIDENCE_REQUIRED"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S48",
+      "title": "US HIPAA health records",
+      "project_type": "healthtech",
+      "input_sha256": "951f54ba10f879b5a576482c625b945a9db1d34352427b02dba6983568b8ae0d",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 190.44,
+        "max": 512.57
+      },
+      "band_ratio": 2.69,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "BAA_EVIDENCE_REQUIRED"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S49",
+      "title": "Search-only analytics API variation 1",
+      "project_type": "data_analytics",
+      "input_sha256": "27e532f4a466c25c6ddc0618f69c23b58157a3b13df74d44e062a0b340ad705a",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|fastapi|supabase-pg|vercel|iad1",
+      "provider": "vercel",
+      "infrastructure_usd": {
+        "min": 70,
+        "max": 85.25
+      },
+      "band_ratio": 1.22,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S50",
+      "title": "Search-only analytics API variation 2",
+      "project_type": "data_analytics",
+      "input_sha256": "2d203fcf62ac195c4f47190b905eb2bfa00244fed92ac7142f79e011c146afe7",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 132.52,
+        "max": 408
+      },
+      "band_ratio": 3.08,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S51",
+      "title": "Device telemetry gateway variation 1",
+      "project_type": "iot",
+      "input_sha256": "1ce2613b73110265baeb2502ee33cbdf0c7bb892cef67500649b1874525aab2d",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|go-http|pg|ecs|unspecified",
+      "provider": "aws",
+      "infrastructure_usd": {
+        "min": 214.96,
+        "max": 527.55
+      },
+      "band_ratio": 2.45,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S52",
+      "title": "Device telemetry gateway variation 2",
+      "project_type": "iot",
+      "input_sha256": "6097141ed20af1efa73e4bccda850cd17d5fa2f3c4d9e54e24978efd1dc63302",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 132.52,
+        "max": 408
+      },
+      "band_ratio": 3.08,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S53",
+      "title": "Python inference endpoint variation 1",
+      "project_type": "ai_ml_product",
+      "input_sha256": "882acaf8cccc013845a0ef4b633ef1434de5a6ee29ac8f54069a0cd8af679872",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|django|database-none|cloudrun|unspecified",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 144.19,
+        "max": 482.64
+      },
+      "band_ratio": 3.35,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S54",
+      "title": "Python inference endpoint variation 2",
+      "project_type": "ai_ml_product",
+      "input_sha256": "e2bfb29ec033f640deede44160169ce5c82860f243510b3600ec618cfbd23641",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|express|database-none|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 138.76,
+        "max": 406.89
+      },
+      "band_ratio": 2.93,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S55",
+      "title": "Air-gapped inventory variation 1",
+      "project_type": "internal_tool",
+      "input_sha256": "98d9f844e9b681d421b8d641cb88a5b890a7a6c0e24d09e7950b6e4929a279ba",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|express|mysql|local|unspecified",
+      "provider": "none",
+      "infrastructure_usd": {
+        "min": 74.65,
+        "max": 369.75
+      },
+      "band_ratio": 4.95,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S56",
+      "title": "Air-gapped inventory variation 2",
+      "project_type": "internal_tool",
+      "input_sha256": "2156ddbf17fe3aa08e6d55ecaee8bc83bdba00566a3c4538d6e220cf3ec26f56",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|angular|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 190.34,
+        "max": 512.07
+      },
+      "band_ratio": 2.69,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S57",
+      "title": "Huge game scale with zero budget",
+      "project_type": "gaming",
+      "input_sha256": "54d1860c390d0519f75ad69bd05caf6870eba30c4bbb357897401f05a469c28b",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|flutter|go-http|neon-pg|fly|iad",
+      "provider": "fly",
+      "infrastructure_usd": {
+        "min": 2786.32,
+        "max": 44649.86
+      },
+      "band_ratio": 16.02,
+      "budget_usd": 0,
+      "over_budget_at_lower_bound": true,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S58",
+      "title": "Turn-based game variation 2",
+      "project_type": "gaming",
+      "input_sha256": "3c17399d033f8ddd6e045795fa177cc79326d3a9753386ca5030a84072fc4e5d",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|react-native|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 274.82,
+        "max": 780.76
+      },
+      "band_ratio": 2.84,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S59",
+      "title": "Beginner API with 99.99 availability",
+      "project_type": "api_platform",
+      "input_sha256": "111d7558ca952432164d67f691e5d0d77ce2faf802e439f5087d00105a8f9317",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|go-http|supabase-pg|vercel|iad1",
+      "provider": "vercel",
+      "infrastructure_usd": {
+        "min": 70,
+        "max": 85.25
+      },
+      "band_ratio": 1.22,
+      "budget_usd": 100,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
+        "expected_usability": true,
+        "provider": true,
+        "known_backend_language": true,
+        "persistence": true,
+        "api_only_omits_ui": true,
+        "budget_warning": true
+      }
+    },
+    {
+      "id": "S60",
+      "title": "Search service variation 2",
+      "project_type": "api_platform",
+      "input_sha256": "447b5ff831a2ef0af8354c6c8699327a819813ee588bc73936f56e1c0da213e6",
+      "status": "ok_with_warnings",
+      "plan_id": "modular_monolith|frontend-none|express|pg|cloudrun|us-central1",
+      "provider": "gcp",
+      "infrastructure_usd": {
+        "min": 132.52,
+        "max": 408
+      },
+      "band_ratio": 3.08,
+      "budget_usd": 1000,
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [],
+      "checks": {
+        "valid_output": true,
+        "deterministic_repeat": true,
+        "no_llm_cli_parity": true,
+        "expected_critical_warning": true,
+        "expected_blocker": true,
         "expected_usability": true,
         "provider": true,
         "known_backend_language": true,

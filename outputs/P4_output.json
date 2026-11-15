@@ -8,6 +8,7 @@
     "PROVISIONAL RESIDENCY EXCEPTION: MSG91 OTP remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
     "PROVISIONAL RESIDENCY EXCEPTION: Razorpay Checkout remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
     "Persistent application data is inferred from project.type=fintech; domain data modeling remains required.",
+    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
     "The inference model can be exported to ONNX and fits a CPU/2 GiB reference allocation; prediction parity, CPU/RAM and throughput need validation."
@@ -37,7 +38,7 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.4.0",
+  "catalog_version": "0.5.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -421,7 +422,7 @@
   "cost_sensitivity": [
     {
       "baseline_origin": "assumed",
-      "baseline_value": 173.61111111111111,
+      "baseline_value": 34.72222222222222,
       "cost_category": "infrastructure_and_operations",
       "field": "extensions.expected_requests_per_second",
       "samples": [
@@ -430,14 +431,37 @@
           "min": 1028.89,
           "status": "estimated",
           "upper_delta_usd": 0,
-          "value": 86.80555555555556
+          "value": 17.36111111111111
         },
         {
           "max": 3882.82,
           "min": 1028.89,
           "status": "estimated",
           "upper_delta_usd": 0,
-          "value": 347.22222222222223
+          "value": 69.44444444444444
+        }
+      ],
+      "scope": "selected_plan_fixed_no_reranking"
+    },
+    {
+      "baseline_origin": "assumed",
+      "baseline_value": 0.2,
+      "cost_category": "infrastructure_and_operations",
+      "field": "extensions.daily_active_user_fraction",
+      "samples": [
+        {
+          "max": 3882.82,
+          "min": 1028.89,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 0.1
+        },
+        {
+          "max": 3882.82,
+          "min": 1028.89,
+          "status": "estimated",
+          "upper_delta_usd": 0,
+          "value": 0.4
         }
       ],
       "scope": "selected_plan_fixed_no_reranking"
@@ -622,11 +646,11 @@
   ],
   "database_region": "ap-south-1",
   "decision_trace": {
-    "complete_candidates": 14,
-    "core_candidates": 14,
+    "complete_candidates": 18,
+    "core_candidates": 18,
     "rejected": [],
-    "score": 78,
-    "selected_plan_id": "modular_monolith|next-native|fastify|pg|ecs|ap-south-1"
+    "score": 85,
+    "selected_plan_id": "modular_monolith|next-native|spring|pg|ecs|ap-south-1"
   },
   "engine_version": "0.8.0",
   "estimate_status": "estimated",
@@ -635,7 +659,7 @@
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency supplied: 10000; not equated directly with requests/second.",
-      "RPS absent: assumed 50 requests/user/day averaged across the day (173.611 RPS); peak capacity still uses the concurrency hypothesis.",
+      "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (60000 active/day); 50 requests/active user/day gives 34.722 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 500 GB supplied; egress 3000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
       "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 13.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
@@ -664,7 +688,7 @@
     "assumptions": [
       "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
       "Peak concurrency supplied: 10000; not equated directly with requests/second.",
-      "RPS absent: assumed 50 requests/user/day averaged across the day (173.611 RPS); peak capacity still uses the concurrency hypothesis.",
+      "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (60000 active/day); 50 requests/active user/day gives 34.722 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 500 GB supplied; egress 3000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
       "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 13.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
@@ -696,78 +720,6 @@
       "architecture_style": "modular_monolith",
       "budget_fit": "within_upper",
       "core": {
-        "backend": "Fastify",
-        "database": "PostgreSQL",
-        "frontend": "Next.js + React Native",
-        "hosting": "Amazon ECS / Fargate"
-      },
-      "cost_assumptions": [
-        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
-        "Peak concurrency supplied: 10000; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (173.611 RPS); peak capacity still uses the concurrency hypothesis.",
-        "Data volume 500 GB supplied; egress 3000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 13.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
-        "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-        "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
-        "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 600000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
-        "Payment assumptions: 0–6000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
-        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
-        "1 vCPU and 2 GiB US East Linux x86 example, 1–2x regional planning allowance; load balancer/network charged separately.",
-        "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
-        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
-        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
-        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
-        "Authored load-balancer/NAT/request allowance; subnet/routing/SKU quote required.",
-        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
-        "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
-        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
-        "Illustrative 2–3% platform-fee scenario from the domestic pricing starting point; not a merchant quote. GST, premium methods, payouts and FX are excluded; no INR/USD conversion is inferred.",
-        "No separate fixed per-transaction fee modeled for standard domestic checkout; other merchant/product/settlement fees require a quote and are excluded, not assumed universally free."
-      ],
-      "database_region": "ap-south-1",
-      "monthly_usd": {
-        "max": 3882.82,
-        "min": 1028.89
-      },
-      "operated_components": 4.5,
-      "plan_id": "modular_monolith|next-native|fastify|pg|ecs|ap-south-1",
-      "primary_region": "ap-south-1",
-      "retained_constraints": [
-        "platforms=android,ios,web",
-        "cloud_preference=aws",
-        "deployment_model=managed_cloud",
-        "data_residency=india",
-        "compliance=dpdp,iso27001,pci_dss,rbi_localisation",
-        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
-      ],
-      "score": 78,
-      "score_delta": 0,
-      "selected": true,
-      "supporting_services": [
-        "GitHub Actions",
-        "Keycloak",
-        "MSG91 OTP",
-        "ONNX Runtime CPU inference",
-        "OpenTelemetry Collector + structured logs",
-        "PostgreSQL transactional outbox + worker",
-        "Razorpay Checkout",
-        "Amazon S3 regional bucket"
-      ],
-      "tied_on_score": false,
-      "warning_codes": [
-        "AVAILABILITY_TARGET_UNVERIFIED",
-        "COMPLIANCE_IMPLEMENTATION_REVIEW",
-        "EXTERNAL_RESIDENCY_UNVERIFIED",
-        "FINTECH_PAYMENT_SCOPE_REVIEW",
-        "LATENCY_TARGET_UNVERIFIED"
-      ]
-    },
-    {
-      "architecture_style": "modular_monolith",
-      "budget_fit": "within_upper",
-      "core": {
         "backend": "Spring Boot",
         "database": "PostgreSQL",
         "frontend": "Next.js + React Native",
@@ -776,7 +728,7 @@
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 10000; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (173.611 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (60000 active/day); 50 requests/active user/day gives 34.722 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 500 GB supplied; egress 3000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 13.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
@@ -814,9 +766,9 @@
         "compliance=dpdp,iso27001,pci_dss,rbi_localisation",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 78,
+      "score": 85,
       "score_delta": 0,
-      "selected": false,
+      "selected": true,
       "supporting_services": [
         "GitHub Actions",
         "Keycloak",
@@ -827,7 +779,7 @@
         "Razorpay Checkout",
         "Amazon S3 regional bucket"
       ],
-      "tied_on_score": true,
+      "tied_on_score": false,
       "warning_codes": [
         "AVAILABILITY_TARGET_UNVERIFIED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
@@ -840,7 +792,7 @@
       "architecture_style": "modular_monolith",
       "budget_fit": "within_upper",
       "core": {
-        "backend": "Fastify",
+        "backend": "Spring Boot",
         "database": "PostgreSQL",
         "frontend": "Flutter",
         "hosting": "Amazon ECS / Fargate"
@@ -848,7 +800,7 @@
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 10000; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (173.611 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (60000 active/day); 50 requests/active user/day gives 34.722 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 500 GB supplied; egress 3000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 12.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
@@ -876,7 +828,7 @@
         "min": 992.85
       },
       "operated_components": 3.5,
-      "plan_id": "modular_monolith|flutter|fastify|pg|ecs|ap-south-1",
+      "plan_id": "modular_monolith|flutter|spring|pg|ecs|ap-south-1",
       "primary_region": "ap-south-1",
       "retained_constraints": [
         "platforms=android,ios,web",
@@ -886,7 +838,79 @@
         "compliance=dpdp,iso27001,pci_dss,rbi_localisation",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 71,
+      "score": 78,
+      "score_delta": -7,
+      "selected": false,
+      "supporting_services": [
+        "GitHub Actions",
+        "Keycloak",
+        "MSG91 OTP",
+        "ONNX Runtime CPU inference",
+        "OpenTelemetry Collector + structured logs",
+        "PostgreSQL transactional outbox + worker",
+        "Razorpay Checkout",
+        "Amazon S3 regional bucket"
+      ],
+      "tied_on_score": false,
+      "warning_codes": [
+        "AVAILABILITY_TARGET_UNVERIFIED",
+        "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "FINTECH_PAYMENT_SCOPE_REVIEW",
+        "LATENCY_TARGET_UNVERIFIED"
+      ]
+    },
+    {
+      "architecture_style": "modular_monolith",
+      "budget_fit": "within_upper",
+      "core": {
+        "backend": "Express",
+        "database": "PostgreSQL",
+        "frontend": "Next.js + React Native",
+        "hosting": "Amazon ECS / Fargate"
+      },
+      "cost_assumptions": [
+        "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
+        "Peak concurrency supplied: 10000; not equated directly with requests/second.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (60000 active/day); 50 requests/active user/day gives 34.722 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
+        "Data volume 500 GB supplied; egress 3000 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 13.5 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
+        "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+        "Managed database: 2 vCPU/8 GiB reference primary and 1 failover copies in-region; no SLA is guaranteed. Auth/search/outbox share logical database capacity and are not billed as duplicate databases.",
+        "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 600000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
+        "Payment assumptions: 0–6000 transactions/month, average USD 50; missing count assumes up to 2% of year-12 users and missing ticket assumes USD 50. Percentage/fixed rates are declared envelopes, not verified merchant pricing. Payout, FX, tax, refunds and chargebacks require separate quotes.",
+        "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
+        "1 vCPU and 2 GiB US East Linux x86 example, 1–2x regional planning allowance; load balancer/network charged separately.",
+        "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
+        "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
+        "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
+        "Authored internet-egress envelope; actual destination, free quota and routes vary.",
+        "Authored load-balancer/NAT/request allowance; subnet/routing/SKU quote required.",
+        "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
+        "Authored regional persistent-storage envelope, including replica copies explicitly in quantity.",
+        "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
+        "Cloud SQL memory reference; a declared proxy for other managed providers, not their quoted rate.",
+        "Cloud SQL reference CPU with up to 2x geography/SKU allowance; other providers use this declared proxy pending exact quotes.",
+        "Illustrative 2–3% platform-fee scenario from the domestic pricing starting point; not a merchant quote. GST, premium methods, payouts and FX are excluded; no INR/USD conversion is inferred.",
+        "No separate fixed per-transaction fee modeled for standard domestic checkout; other merchant/product/settlement fees require a quote and are excluded, not assumed universally free."
+      ],
+      "database_region": "ap-south-1",
+      "monthly_usd": {
+        "max": 3882.82,
+        "min": 1028.89
+      },
+      "operated_components": 4.5,
+      "plan_id": "modular_monolith|next-native|express|pg|ecs|ap-south-1",
+      "primary_region": "ap-south-1",
+      "retained_constraints": [
+        "platforms=android,ios,web",
+        "cloud_preference=aws",
+        "deployment_model=managed_cloud",
+        "data_residency=india",
+        "compliance=dpdp,iso27001,pci_dss,rbi_localisation",
+        "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
+      ],
+      "score": 78,
       "score_delta": -7,
       "selected": false,
       "supporting_services": [
@@ -926,7 +950,7 @@
         "infrastructure.data_residency",
         "requirements.auth"
       ],
-      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.auth",
+      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.auth:0",
       "kind": "evidence_gap",
       "next_action": "Request the scoped vendor data-flow and configuration evidence. Review a regional alternative without changing the original residency requirement.",
       "references": [
@@ -955,7 +979,7 @@
         "infrastructure.data_residency",
         "requirements.payments"
       ],
-      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.payments",
+      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.payments:1",
       "kind": "evidence_gap",
       "next_action": "Request the scoped vendor data-flow and configuration evidence. Review a regional alternative without changing the original residency requirement.",
       "references": [
@@ -990,7 +1014,7 @@
         "requirements.payments",
         "compliance"
       ],
-      "id": "FINTECH_PAYMENT_SCOPE_REVIEW:project.type|requirements.payments|compliance",
+      "id": "FINTECH_PAYMENT_SCOPE_REVIEW:project.type|requirements.payments|compliance:2",
       "kind": "evidence_gap",
       "next_action": "Obtain the missing control/contract evidence and verify implementation; a vendor badge does not approve the application.",
       "references": [],
@@ -1012,7 +1036,7 @@
       "weight": 2
     },
     {
-      "contribution": 12,
+      "contribution": 15,
       "criterion": "time_to_market",
       "driven_by": [
         "team.languages",
@@ -1020,8 +1044,8 @@
         "timeline.mvp_weeks",
         "priorities.time_to_market"
       ],
-      "fit": 4,
-      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 3.25/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+      "fit": 5,
+      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 3.75/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics; supported server-language depth 2 gives ecosystem reuse bonus 1.",
       "weight": 3
     },
     {
@@ -1051,7 +1075,7 @@
       "weight": 3
     },
     {
-      "contribution": 16,
+      "contribution": 20,
       "criterion": "maintainability",
       "driven_by": [
         "team.languages",
@@ -1060,8 +1084,8 @@
         "infrastructure.existing_systems",
         "priorities.maintainability"
       ],
-      "fit": 4,
-      "reason": "Operational burden 2/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+      "fit": 5,
+      "reason": "Operational burden 2/5+; no existing-system reuse bonus. Server ecosystem reuse bonus 1; fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
       "weight": 4
     },
     {
@@ -1080,11 +1104,11 @@
     "backend": {
       "alternatives": [
         {
-          "choice": "Spring Boot",
-          "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
+          "choice": "Express",
+          "why_not": "Best compatible complete plan using this option scored 78, below 85; other layers may also differ."
         }
       ],
-      "choice": "Fastify",
+      "choice": "Spring Boot",
       "driven_by": [
         "project.type",
         "team.languages",
@@ -1092,11 +1116,11 @@
         "requirements.auth",
         "requirements.realtime"
       ],
-      "id": "fastify",
-      "justification": "Provides a node application runtime for the fintech profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "id": "spring",
+      "justification": "Provides a jvm application runtime for the fintech profile. Language familiarity and delivery complexity were compared across compatible whole plans. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "backend",
       "source_ids": [
-        "fastify"
+        "spring"
       ],
       "tradeoffs": [
         "Business features, authentication and compatible database drivers must be configured; the framework alone is not the application."
@@ -1134,7 +1158,7 @@
       "alternatives": [
         {
           "choice": "Flutter",
-          "why_not": "Best compatible complete plan using this option scored 71, below 78; other layers may also differ."
+          "why_not": "Best compatible complete plan using this option scored 78, below 85; other layers may also differ."
         }
       ],
       "choice": "Next.js + React Native",
@@ -1401,7 +1425,7 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 14 complete compatible plans; month-12 infrastructure planning band USD 1028.89–3882.82/month.",
+  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 18 complete compatible plans; month-12 infrastructure planning band USD 1028.89–3882.82/month.",
   "validation_errors": [],
   "warnings": [
     {

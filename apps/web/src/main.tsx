@@ -1022,9 +1022,11 @@ export function App() {
                           <p>
                             Up to three compatible plans after service and
                             control checks. Scores are engineering preferences,
-                            not confidence probabilities. Ties use cost upper
-                            bound, operated components, fewer unrequested client
-                            targets, then stable identifier.
+                            not confidence probabilities. Supported server
+                            languages come first, then upper-bound budget fits
+                            within that tier, then weighted fit. Ties use cost
+                            upper bound, operated components, fewer unrequested
+                            client targets, then stable identifier.
                           </p>
                           {result.plan_comparison.map((plan) => (
                             <details key={plan.plan_id}>

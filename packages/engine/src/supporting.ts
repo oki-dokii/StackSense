@@ -17,6 +17,9 @@ export function selectSupporting(
     data_flows: [],
   };
   const provider = plan.hosting.provider!;
+  const databaseId = plan.database.upstream_database_id ?? plan.database.id;
+  const bundled = plan.database.service_bundle === 'supabase_pro';
+  const functions = plan.hosting.id === 'vercel';
   const restricted = ['on_premise', 'air_gapped'].includes(
     s.infrastructure.deployment_model,
   );
@@ -30,7 +33,7 @@ export function selectSupporting(
   ): void {
     if (
       profile.database_ids.length &&
-      !profile.database_ids.includes(plan.database.id)
+      !profile.database_ids.includes(databaseId)
     ) {
       fail(
         'SERVICE_DATABASE_MISMATCH',
@@ -61,10 +64,10 @@ export function selectSupporting(
     if (
       profile.placement === 'host' &&
       profile.compute_units > 0 &&
-      plan.hosting.id === 'pages'
+      ['pages', 'vercel'].includes(plan.hosting.id)
     ) {
       fail(
-        'STATIC_HOST_RUNTIME_GAP',
+        functions ? 'FUNCTION_RESIDENT_RUNTIME_GAP' : 'STATIC_HOST_RUNTIME_GAP',
         `${profile.choice} needs an application runtime absent from this static host variant.`,
         fields,
       );
@@ -141,17 +144,21 @@ export function selectSupporting(
         /entra|azure\s+ad|microsoft\s*365/i.test(system),
       );
     add(
-      get(existingEntra ? 'entra' : 'keycloak'),
+      get(existingEntra ? 'entra' : bundled ? 'supabase-auth' : 'keycloak'),
       ['requirements.auth'],
       existingEntra
         ? 'Integrate the existing Microsoft Entra tenant directly using application OIDC/SAML middleware; do not migrate passwords or add an unnecessary identity broker.'
-        : `Authentication method ${s.requirements.auth} uses a separate Keycloak realm/schema and least-privilege database identity.`,
+        : bundled
+          ? 'Use regional Supabase Auth and verify JWT/authorization in the application; configure a signed Send SMS hook for phone delivery.'
+          : `Authentication method ${s.requirements.auth} uses a separate Keycloak realm/schema and least-privilege database identity.`,
     );
     if (s.requirements.auth === 'phone_otp')
       add(
         get('msg91'),
         ['requirements.auth'],
-        'Phone delivery uses a provider OTP API; integrate a custom Keycloak authentication SPI rather than mislabeling TOTP as SMS.',
+        bundled
+          ? 'Phone delivery uses MSG91 through a custom signed Supabase Send SMS hook; implement retries, abuse limits and DLT/routing review.'
+          : 'Phone delivery uses a provider OTP API; integrate a custom Keycloak authentication SPI rather than mislabeling TOTP as SMS.',
       );
     if (s.requirements.auth === 'social') {
       if (restricted)
@@ -190,7 +197,7 @@ export function selectSupporting(
   }
   if (s.requirements.realtime)
     add(
-      get(f.collaborative ? 'yjs' : 'ws'),
+      get(f.collaborative ? 'yjs' : bundled ? 'supabase-realtime' : 'ws'),
       [
         'requirements.realtime',
         ...(f.collaborative ? ['project.description'] : []),
@@ -239,8 +246,7 @@ export function selectSupporting(
   if (s.requirements.full_text_search) {
     const profile = p.services.find(
       (item) =>
-        item.capability === 'search' &&
-        item.database_ids.includes(plan.database.id),
+        item.capability === 'search' && item.database_ids.includes(databaseId),
     );
     if (profile)
       add(
@@ -262,8 +268,9 @@ export function selectSupporting(
       'Tenant isolation uses forced RLS plus application authorization, tenant-scoped keys and negative access tests.',
     );
   if (s.requirements.file_media_storage) {
-    const id =
-      provider === 'gcp'
+    const id = bundled
+      ? 'supabase-storage'
+      : provider === 'gcp'
         ? 'gcs'
         : provider === 'aws'
           ? 's3'
@@ -324,17 +331,19 @@ export function selectSupporting(
     f.collaborative
   )
     add(
-      get('outbox'),
+      get(functions ? 'vercel-outbox' : 'outbox'),
       [
         'requirements.offline_support',
         'requirements.payments',
         'requirements.realtime',
       ],
-      'Application and outbox writes commit atomically; a separately budgeted worker retries idempotently and records dead letters.',
+      functions
+        ? 'Application and outbox writes commit atomically; an authenticated minute-scale scheduled function drains bounded batches with row locks, idempotency and dead letters. Test duration/concurrency/retry limits.'
+        : 'Application and outbox writes commit atomically; a separately budgeted worker retries idempotently and records dead letters.',
     );
   if (plan.style !== 'static')
     add(
-      get('otel'),
+      get(functions ? 'vercel-telemetry' : 'otel'),
       ['requirements.availability'],
       'Collect redacted metrics/logs/traces with regional retention; on cloud use a configured host-provider regional log bucket, locally use provisioned persistent storage.',
     );
@@ -344,7 +353,9 @@ export function selectSupporting(
         ? 'local-build'
         : restricted
           ? 'jenkins'
-          : 'actions',
+          : functions
+            ? 'vercel-build'
+            : 'actions',
     ),
     ['infrastructure.deployment_model'],
     'Build/test/deploy with pinned dependencies, synthetic fixtures and controlled secrets; production data does not enter the build service.',

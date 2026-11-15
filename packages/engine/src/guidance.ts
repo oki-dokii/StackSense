@@ -20,7 +20,7 @@ export function reviewActions(
 ): ReviewAction[] {
   return notices
     .filter((w) => w.severity === 'critical')
-    .map((w) => {
+    .map((w, index) => {
       const auth = w.fields.includes('requirements.auth');
       const payment = w.fields.includes('requirements.payments');
       let evidence: [string, ...string[]] = [
@@ -29,7 +29,7 @@ export function reviewActions(
       let components: [string, ...string[]] = ['complete deployment'];
       let ids: string[] = [];
       let next =
-        'Review the rejected constraints against the scoped catalog; add reviewed coverage and rerun the unchanged input.';
+        'Review the scoped catalog evidence, workload and configuration; resolve the condition and rerun the unchanged input.';
       if (w.code === 'EXTERNAL_RESIDENCY_UNVERIFIED') {
         components = auth
           ? ['phone delivery', 'identity broker']
@@ -52,6 +52,30 @@ export function reviewActions(
               'Eligibility, settlement, retention, subprocessors and contract scope; distinguish domestic and international transactions.',
               'Hosted checkout/tokenization, signed idempotent webhooks, reconciliation and transaction/FX/refund fees.',
             ];
+        if (w.message.includes('Supabase')) {
+          components = auth
+            ? ['Supabase regional identity', 'application JWT boundary']
+            : ['Supabase regional project service'];
+          ids = auth
+            ? ['supabase-price', 'supabase-sms-hook', 'supabase-regions']
+            : [
+                'supabase-price',
+                'supabase-regions',
+                ...(w.fields.includes('requirements.file_media_storage')
+                  ? ['supabase-storage']
+                  : ['supabase-realtime']),
+              ];
+          evidence = [
+            `Product-specific ${s.infrastructure.data_residency} storage AND processing, logs, backups, control plane, support and subprocessor evidence; project-region placement alone is insufficient.`,
+            auth
+              ? 'Review JWT claims/session policies, signed custom SMS hook and delivery partner scope; configure separately reviewed mail recovery if required.'
+              : 'Review private bucket/channel access, retention/deletion, direct upload or message fan-out, file backup and restore behavior.',
+          ];
+        } else if (!auth && !payment) {
+          evidence = [
+            `Service-specific ${s.infrastructure.data_residency} processing, stored data, logs, backups, support and subprocessor scope, plus contractual/configuration evidence.`,
+          ];
+        }
         next =
           'Request the scoped vendor data-flow and configuration evidence. Review a regional alternative without changing the original residency requirement.';
       } else if (
@@ -105,7 +129,7 @@ export function reviewActions(
         w.code.includes('RESTRICTED') ||
         w.code === 'AIR_GAP_EXTERNAL_REQUIREMENT';
       return {
-        id: `${w.code}:${w.fields.join('|')}`,
+        id: `${w.code}:${w.fields.join('|')}:${index}`,
         code: w.code,
         kind:
           w.code === 'COST_MODEL_COVERAGE_GAP'

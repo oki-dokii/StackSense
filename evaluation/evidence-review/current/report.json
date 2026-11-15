@@ -37,19 +37,19 @@
   "policy_sha256": "a93e728b7f52bcddfbc72e0914200e0441bd16b3c368a38a45f9a40dedb93132",
   "catalogs": {
     "core": {
-      "version": "0.4.0",
-      "sha256": "5fc31bc2081e1d44f738f90fb0f1c85fcc1a8c6d2dd8492baa94908b0128f418"
+      "version": "0.5.0",
+      "sha256": "10caf3c3ecc116eec40d43ad82192f4b1924f4d3b3da0ec4c759b30e7834ae14"
     },
     "services": {
       "version": "0.8.0",
-      "sha256": "47fbc5aff773b72bab3ab5944595dc490971350a491906d1da72d6b982557c9d"
+      "sha256": "366b92daf483854bf3da82221a4b75990803192253b5b397e2350164cbc25a59"
     }
   },
   "counts": {
-    "sources": 106,
+    "sources": 142,
     "review_due": 0,
     "future_review_dates": 0,
-    "no_structured_catalog_reference": 2
+    "no_structured_catalog_reference": 16
   },
   "sources": [
     {
@@ -329,9 +329,7 @@
           "owner": "ase-india"
         }
       ],
-      "public_output_mentions": [
-        "P5"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:azure-pg-regions",
@@ -360,9 +358,7 @@
           "owner": "ase-india"
         }
       ],
-      "public_output_mentions": [
-        "P5"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:azure-sql",
@@ -449,11 +445,7 @@
           "owner": "cloudrun"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P3",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:compose",
@@ -557,6 +549,32 @@
       ]
     },
     {
+      "key": "core:express-db",
+      "id": "express-db",
+      "title": "Express database integration",
+      "url": "https://expressjs.com/en/guide/database-integration/",
+      "scope": "Documented database adapters; pin driver versions.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "express-db",
+          "path": "/entries/36/source_ids",
+          "owner": "express"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
       "key": "core:fargate-regions",
       "id": "fargate-regions",
       "title": "ECS Fargate supported regions",
@@ -638,10 +656,7 @@
           "owner": "fastify"
         }
       ],
-      "public_output_mentions": [
-        "P3",
-        "P4"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:flutter",
@@ -690,6 +705,95 @@
         }
       ],
       "public_output_mentions": []
+    },
+    {
+      "key": "core:fly-docker",
+      "id": "fly-docker",
+      "title": "Fly Dockerfile deployment",
+      "url": "https://docs.fly.io/languages-and-frameworks/dockerfile",
+      "scope": "Container application deployment, regional routing and persistent process configuration.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "fly-docker",
+          "path": "/entries/40/source_ids",
+          "owner": "fly"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "core:fly-price",
+      "id": "fly-price",
+      "title": "Fly resource pricing",
+      "url": "https://docs.fly.io/about/pricing",
+      "scope": "Shared CPU is not dedicated CPU capacity; regional prices vary.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "fly-price",
+          "path": "/entries/40/source_ids",
+          "owner": "fly"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "core:fly-regions",
+      "id": "fly-regions",
+      "title": "Fly.io regions",
+      "url": "https://docs.fly.io/reference/regions",
+      "scope": "Ashburn and Frankfurt only in this profile; current list does not establish India.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "fly-regions",
+          "path": "/entries/40/source_ids",
+          "owner": "fly"
+        },
+        {
+          "id": "fly-regions",
+          "path": "/entries/40/regions/0/source_ids",
+          "owner": "fly"
+        },
+        {
+          "id": "fly-regions",
+          "path": "/entries/40/regions/1/source_ids",
+          "owner": "fly"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
     },
     {
       "key": "core:go",
@@ -941,6 +1045,94 @@
       "public_output_mentions": []
     },
     {
+      "key": "core:neon-price",
+      "id": "neon-price",
+      "title": "Neon Launch pricing",
+      "url": "https://neon.com/pricing",
+      "scope": "Usage-based CU-hour and storage, not a flat USD 15 quote.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "neon-price",
+          "path": "/entries/38/source_ids",
+          "owner": "neon-pg"
+        },
+        {
+          "id": "neon-price",
+          "path": "/entries/40/managed_databases/1/source_ids",
+          "owner": "fly"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:neon-regions",
+      "id": "neon-regions",
+      "title": "Neon regions",
+      "url": "https://neon.com/docs/introduction/regions",
+      "scope": "US/EU reviewed; no India region is mapped.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "neon-regions",
+          "path": "/entries/40/managed_databases/1/source_ids",
+          "owner": "fly"
+        },
+        {
+          "id": "neon-regions",
+          "path": "/entries/40/managed_databases/1/regions/0/source_ids",
+          "owner": "fly"
+        },
+        {
+          "id": "neon-regions",
+          "path": "/entries/40/managed_databases/1/regions/1/source_ids",
+          "owner": "fly"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:nest-db",
+      "id": "nest-db",
+      "title": "NestJS TypeORM integration",
+      "url": "https://docs.nestjs.com/data/typeorm",
+      "scope": "Reviewed PostgreSQL, MySQL, SQL Server, SQLite and MongoDB driver paths; no latency claim.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "nest-db",
+          "path": "/entries/35/source_ids",
+          "owner": "nestjs"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
       "key": "core:next",
       "id": "next",
       "title": "Next.js self-hosting",
@@ -1042,13 +1234,22 @@
           "id": "pg",
           "path": "/entries/21/source_ids",
           "owner": "pg"
+        },
+        {
+          "id": "pg",
+          "path": "/entries/37/source_ids",
+          "owner": "supabase-pg"
+        },
+        {
+          "id": "pg",
+          "path": "/entries/38/source_ids",
+          "owner": "neon-pg"
         }
       ],
       "public_output_mentions": [
         "P2",
         "P3",
         "P4",
-        "P5",
         "P6"
       ]
     },
@@ -1258,11 +1459,7 @@
           "owner": "cloudrun"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P3",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:run-regions",
@@ -1302,11 +1499,7 @@
           "owner": "cloudrun"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P3",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:run-ws",
@@ -1330,11 +1523,7 @@
           "owner": "cloudrun"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P3",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:spring",
@@ -1358,7 +1547,9 @@
           "owner": "spring"
         }
       ],
-      "public_output_mentions": []
+      "public_output_mentions": [
+        "P4"
+      ]
     },
     {
       "key": "core:sqlite",
@@ -1406,7 +1597,106 @@
           "owner": "sqlserver"
         }
       ],
-      "public_output_mentions": []
+      "public_output_mentions": [
+        "P5"
+      ]
+    },
+    {
+      "key": "core:supabase-price",
+      "id": "supabase-price",
+      "title": "Supabase Pro pricing",
+      "url": "https://supabase.com/pricing",
+      "scope": "Single Pro project bundle and usage allowances; not a HIPAA-eligible contracted plan.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "supabase-price",
+          "path": "/entries/37/source_ids",
+          "owner": "supabase-pg"
+        },
+        {
+          "id": "supabase-price",
+          "path": "/entries/39/managed_databases/0/source_ids",
+          "owner": "vercel"
+        },
+        {
+          "id": "supabase-price",
+          "path": "/entries/40/managed_databases/0/source_ids",
+          "owner": "fly"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P3",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:supabase-regions",
+      "id": "supabase-regions",
+      "title": "Supabase specific project regions",
+      "url": "https://supabase.com/docs/guides/platform/regions",
+      "scope": "Pin specific Mumbai, Frankfurt or US East project region; APAC general region is not India.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "supabase-regions",
+          "path": "/entries/39/managed_databases/0/source_ids",
+          "owner": "vercel"
+        },
+        {
+          "id": "supabase-regions",
+          "path": "/entries/39/managed_databases/0/regions/0/source_ids",
+          "owner": "vercel"
+        },
+        {
+          "id": "supabase-regions",
+          "path": "/entries/39/managed_databases/0/regions/1/source_ids",
+          "owner": "vercel"
+        },
+        {
+          "id": "supabase-regions",
+          "path": "/entries/39/managed_databases/0/regions/2/source_ids",
+          "owner": "vercel"
+        },
+        {
+          "id": "supabase-regions",
+          "path": "/entries/40/managed_databases/0/source_ids",
+          "owner": "fly"
+        },
+        {
+          "id": "supabase-regions",
+          "path": "/entries/40/managed_databases/0/regions/0/source_ids",
+          "owner": "fly"
+        },
+        {
+          "id": "supabase-regions",
+          "path": "/entries/40/managed_databases/0/regions/1/source_ids",
+          "owner": "fly"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P3",
+        "P6"
+      ]
     },
     {
       "key": "core:svelte",
@@ -1431,6 +1721,157 @@
         }
       ],
       "public_output_mentions": []
+    },
+    {
+      "key": "core:vercel-django",
+      "id": "vercel-django",
+      "title": "Vercel Django deployment",
+      "url": "https://vercel.com/docs/frameworks/full-stack/django",
+      "scope": "Django function adapter, not an always-on worker.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "vercel-django",
+          "path": "/entries/39/source_ids",
+          "owner": "vercel"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:vercel-go",
+      "id": "vercel-go",
+      "title": "Vercel Go runtime",
+      "url": "https://vercel.com/docs/functions/runtimes/go",
+      "scope": "HTTP handler deployment; adapter work and duration limits apply.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "vercel-go",
+          "path": "/entries/39/source_ids",
+          "owner": "vercel"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:vercel-pro",
+      "id": "vercel-pro",
+      "title": "Vercel Pro plan",
+      "url": "https://vercel.com/docs/plans/pro-plan",
+      "scope": "One seat and USD 20 usage credit per team; extra deploying seats USD 20.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "vercel-pro",
+          "path": "/entries/39/source_ids",
+          "owner": "vercel"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:vercel-regions",
+      "id": "vercel-regions",
+      "title": "Vercel regions",
+      "url": "https://vercel.com/docs/regions",
+      "scope": "Pin regional functions; global CDN/control plane scope remains unverified.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "vercel-regions",
+          "path": "/entries/39/source_ids",
+          "owner": "vercel"
+        },
+        {
+          "id": "vercel-regions",
+          "path": "/entries/39/regions/0/source_ids",
+          "owner": "vercel"
+        },
+        {
+          "id": "vercel-regions",
+          "path": "/entries/39/regions/1/source_ids",
+          "owner": "vercel"
+        },
+        {
+          "id": "vercel-regions",
+          "path": "/entries/39/regions/2/source_ids",
+          "owner": "vercel"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:vercel-ws",
+      "id": "vercel-ws",
+      "title": "Vercel WebSocket limitation",
+      "url": "https://vercel.com/kb/guide/do-vercel-serverless-functions-support-websocket-connections",
+      "scope": "Functions cannot act as persistent WebSocket servers; use external realtime.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "vercel-ws",
+          "path": "/entries/39/source_ids",
+          "owner": "vercel"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
     },
     {
       "key": "core:vue",
@@ -1544,11 +1985,9 @@
         }
       ],
       "public_output_mentions": [
-        "P2",
         "P3",
         "P4",
-        "P5",
-        "P6"
+        "P5"
       ]
     },
     {
@@ -1697,11 +2136,9 @@
         }
       ],
       "public_output_mentions": [
-        "P2",
         "P3",
         "P4",
-        "P5",
-        "P6"
+        "P5"
       ]
     },
     {
@@ -1916,6 +2353,66 @@
       ]
     },
     {
+      "key": "services:fly-docker",
+      "id": "fly-docker",
+      "title": "Fly Dockerfile deployment",
+      "url": "https://docs.fly.io/languages-and-frameworks/dockerfile",
+      "scope": "Container application deployment, regional routing and persistent process configuration.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:fly-price",
+      "id": "fly-price",
+      "title": "Fly resource pricing",
+      "url": "https://docs.fly.io/about/pricing",
+      "scope": "Shared CPU is not dedicated CPU capacity; regional prices vary.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:fly-regions",
+      "id": "fly-regions",
+      "title": "Fly.io regions",
+      "url": "https://docs.fly.io/reference/regions",
+      "scope": "Ashburn and Frankfurt only in this profile; current list does not establish India.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
       "key": "services:gcp-logs",
       "id": "gcp-logs",
       "title": "Regional Cloud Logging",
@@ -1938,11 +2435,9 @@
         }
       ],
       "public_output_mentions": [
-        "P2",
         "P3",
         "P4",
-        "P5",
-        "P6"
+        "P5"
       ]
     },
     {
@@ -1967,11 +2462,7 @@
           "owner": "gcs"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P3",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:gdpr",
@@ -2123,10 +2614,7 @@
         }
       ],
       "public_output_mentions": [
-        "P2",
-        "P3",
-        "P4",
-        "P6"
+        "P4"
       ]
     },
     {
@@ -2152,10 +2640,7 @@
         }
       ],
       "public_output_mentions": [
-        "P2",
-        "P3",
-        "P4",
-        "P6"
+        "P4"
       ]
     },
     {
@@ -2323,6 +2808,42 @@
       "public_output_mentions": []
     },
     {
+      "key": "services:neon-price",
+      "id": "neon-price",
+      "title": "Neon Launch pricing",
+      "url": "https://neon.com/pricing",
+      "scope": "Usage-based CU-hour and storage, not a flat USD 15 quote.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:neon-regions",
+      "id": "neon-regions",
+      "title": "Neon regions",
+      "url": "https://neon.com/docs/introduction/regions",
+      "scope": "US/EU reviewed; no India region is mapped.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": []
+    },
+    {
       "key": "services:onnx",
       "id": "onnx",
       "title": "ONNX Runtime",
@@ -2472,6 +2993,11 @@
           "id": "pg-tx",
           "path": "/services/15/source_ids",
           "owner": "outbox"
+        },
+        {
+          "id": "pg-tx",
+          "path": "/services/29/source_ids",
+          "owner": "vercel-outbox"
         }
       ],
       "public_output_mentions": [
@@ -2651,11 +3177,7 @@
           "owner": null
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P3",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:s3",
@@ -2716,11 +3238,8 @@
         }
       ],
       "public_output_mentions": [
-        "P2",
-        "P3",
         "P4",
-        "P5",
-        "P6"
+        "P5"
       ]
     },
     {
@@ -2780,11 +3299,7 @@
         }
       ],
       "public_output_mentions": [
-        "P2",
-        "P3",
-        "P4",
-        "P5",
-        "P6"
+        "P4"
       ]
     },
     {
@@ -2841,11 +3356,8 @@
         }
       ],
       "public_output_mentions": [
-        "P2",
-        "P3",
         "P4",
-        "P5",
-        "P6"
+        "P5"
       ]
     },
     {
@@ -2939,6 +3451,170 @@
       ]
     },
     {
+      "key": "services:supabase-compute",
+      "id": "supabase-compute",
+      "title": "Supabase compute pricing",
+      "url": "https://supabase.com/docs/guides/platform/manage-your-usage/compute",
+      "scope": "Hourly instance billing and one USD 10 compute credit per organization.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P3",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:supabase-price",
+      "id": "supabase-price",
+      "title": "Supabase Pro pricing",
+      "url": "https://supabase.com/pricing",
+      "scope": "Single Pro project bundle and usage allowances; not a HIPAA-eligible contracted plan.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "supabase-price",
+          "path": "/services/26/source_ids",
+          "owner": "supabase-auth"
+        },
+        {
+          "id": "supabase-price",
+          "path": "/services/27/source_ids",
+          "owner": "supabase-storage"
+        },
+        {
+          "id": "supabase-price",
+          "path": "/services/28/source_ids",
+          "owner": "supabase-realtime"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P3",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:supabase-realtime",
+      "id": "supabase-realtime",
+      "title": "Supabase Broadcast",
+      "url": "https://supabase.com/docs/guides/realtime/broadcast",
+      "scope": "Private channels and application persistence, not a Yjs server.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "supabase-realtime",
+          "path": "/services/28/source_ids",
+          "owner": "supabase-realtime"
+        }
+      ],
+      "public_output_mentions": [
+        "P2"
+      ]
+    },
+    {
+      "key": "services:supabase-regions",
+      "id": "supabase-regions",
+      "title": "Supabase specific project regions",
+      "url": "https://supabase.com/docs/guides/platform/regions",
+      "scope": "Pin specific Mumbai, Frankfurt or US East project region; APAC general region is not India.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P3",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:supabase-sms-hook",
+      "id": "supabase-sms-hook",
+      "title": "Supabase Send SMS hook",
+      "url": "https://supabase.com/docs/guides/auth/auth-hooks/send-sms-hook",
+      "scope": "Custom hook can call a regional provider; MSG91 adapter must be implemented and verified.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "supabase-sms-hook",
+          "path": "/services/26/source_ids",
+          "owner": "supabase-auth"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P3",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:supabase-storage",
+      "id": "supabase-storage",
+      "title": "Supabase uploads",
+      "url": "https://supabase.com/docs/guides/storage/uploads/standard-uploads",
+      "scope": "Direct signed upload path avoids sending media through function body limits; resumable uploads for larger files.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "supabase-storage",
+          "path": "/services/27/source_ids",
+          "owner": "supabase-storage"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P3",
+        "P6"
+      ]
+    },
+    {
       "key": "services:telemetry",
       "id": "telemetry",
       "title": "OpenTelemetry Collector",
@@ -2958,6 +3634,11 @@
           "id": "telemetry",
           "path": "/services/17/source_ids",
           "owner": "otel"
+        },
+        {
+          "id": "telemetry",
+          "path": "/services/30/source_ids",
+          "owner": "vercel-telemetry"
         }
       ],
       "public_output_mentions": [
@@ -2965,6 +3646,262 @@
         "P3",
         "P4",
         "P5",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-bom-price",
+      "id": "vercel-bom-price",
+      "title": "Vercel Mumbai on-demand pricing",
+      "url": "https://vercel.com/docs/pricing/regional-pricing/bom1",
+      "scope": "Explicit on-demand delivery model; includes separate transfer and edge request meters.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-build",
+      "id": "vercel-build",
+      "title": "Vercel build pricing",
+      "url": "https://vercel.com/docs/builds/managing-builds",
+      "scope": "Standard concurrent builds billed USD .014/minute; explicitly budgeted allowance.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "vercel-build",
+          "path": "/services/31/source_ids",
+          "owner": "vercel-build"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-cron",
+      "id": "vercel-cron",
+      "title": "Vercel Cron pricing and limits",
+      "url": "https://vercel.com/docs/schedules/cron-jobs/usage-and-pricing",
+      "scope": "Scheduled bounded function invocations; duration/concurrency and retries must be implemented.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "vercel-cron",
+          "path": "/services/29/source_ids",
+          "owner": "vercel-outbox"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-django",
+      "id": "vercel-django",
+      "title": "Vercel Django deployment",
+      "url": "https://vercel.com/docs/frameworks/full-stack/django",
+      "scope": "Django function adapter, not an always-on worker.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-fluid",
+      "id": "vercel-fluid",
+      "title": "Vercel Fluid compute pricing",
+      "url": "https://vercel.com/docs/functions/usage-and-pricing",
+      "scope": "Region-specific active CPU/provisioned memory and function invocations.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-go",
+      "id": "vercel-go",
+      "title": "Vercel Go runtime",
+      "url": "https://vercel.com/docs/functions/runtimes/go",
+      "scope": "HTTP handler deployment; adapter work and duration limits apply.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-logs",
+      "id": "vercel-logs",
+      "title": "Vercel runtime logs",
+      "url": "https://vercel.com/docs/observability/runtime-logs",
+      "scope": "Native logs are not an unlimited regional archive; redact and review routing/retention.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "vercel-logs",
+          "path": "/services/30/source_ids",
+          "owner": "vercel-telemetry"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P3",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-network",
+      "id": "vercel-network",
+      "title": "Vercel CDN pricing",
+      "url": "https://vercel.com/docs/manage-cdn-usage",
+      "checked_on": "2026-11-15",
+      "scope": "Current on-demand Pro transfer/origin/CDN request meters; no legacy included allowances assumed. Flat Rate CDN opt-in is not modeled.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-pro",
+      "id": "vercel-pro",
+      "title": "Vercel Pro plan",
+      "url": "https://vercel.com/docs/plans/pro-plan",
+      "scope": "One seat and USD 20 usage credit per team; extra deploying seats USD 20.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "vercel-pro",
+          "path": "/services/31/source_ids",
+          "owner": "vercel-build"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-regions",
+      "id": "vercel-regions",
+      "title": "Vercel regions",
+      "url": "https://vercel.com/docs/regions",
+      "scope": "Pin regional functions; global CDN/control plane scope remains unverified.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:vercel-ws",
+      "id": "vercel-ws",
+      "title": "Vercel WebSocket limitation",
+      "url": "https://vercel.com/kb/guide/do-vercel-serverless-functions-support-websocket-connections",
+      "scope": "Functions cannot act as persistent WebSocket servers; use external realtime.",
+      "checked_on": "2026-11-15",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
         "P6"
       ]
     },
@@ -3020,7 +3957,6 @@
         }
       ],
       "public_output_mentions": [
-        "P2",
         "P3"
       ]
     },

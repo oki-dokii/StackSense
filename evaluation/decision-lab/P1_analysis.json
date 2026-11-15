@@ -1,11 +1,12 @@
 {
-  "adr_markdown": "# Proposed architecture decision\n\n**Status: Proposed — project acceptance required.**\n\nEngine 0.8.0; catalog 0.4.0; services 0.8.0; analysis 0.2.0.\nInput SHA-256: e59b99293f954ec6519e26d493899ec3da1d113b94de259cd8b64ac6c3c9dbba.\n\n## Original result\n\nstatic recommendation selected from 10 complete compatible plans; month\\-12 infrastructure planning band USD 0–0/month\\.\nResult: ok.\n\n- frontend: Astro — Covers requested targets web with static rendering\\. Team languages: css, html, javascript\\. Markdown content authoring was explicitly considered\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- backend: None — Static content has no inferred dynamic server requirement; omitting the backend avoids an unnecessary operated application\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- database: None — No server persistence need was inferred; a database is omitted from this core plan\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- hosting: Cloudflare Pages — Matches managed\\_cloud with provider cloudflare; no country/region assurance was requested or inferred\\. Required runtimes and separate database deployment were checked\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n\nMonthly infrastructure/operations band (activity fees additional): USD 0–0.\n\n## Complete alternatives\n\n- static\\|astro\\|backend\\-none\\|database\\-none\\|pages\\|unspecified; score 86; USD 0–0; selected.\n- static\\|html\\|backend\\-none\\|database\\-none\\|pages\\|unspecified; score 82; USD 0–0; alternative.\n- static\\|astro\\|backend\\-none\\|database\\-none\\|cloudrun\\|unspecified; score 61; USD 19.13–144.75; alternative.\n\n## Preference stability\n\nOriginal winner retained in 25/25 tested settings; 1 observed winners. Counts are not confidence probabilities.\n\n## Cost assumptions\n\n- Horizon: expected month\\-12 footprint; 730 hours/month\\. No tax, development/on\\-call labor, domain registration or new on\\-prem hardware procurement is included\\.\n- Peak concurrency supplied: 50; not equated directly with requests/second\\.\n- RPS absent: assumed 50 requests/user/day averaged across the day \\(1\\.736 RPS\\); peak capacity still uses the concurrency hypothesis\\.\n- Data volume 1 GB supplied; egress 30 GB/month assumed at 0\\.01 GB per year\\-12 user, minimum 1 GB; backup retention 1 months assumed\\.\n- Static hosting/CDN is one bundled resource\\. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed\\.\n- Headline estimate and budget fit cover infrastructure/operations only\\. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure\\.\n- Static assets only; no Functions or paid add\\-ons\\. Build/file limits apply\\.\n\n## Blockers, validation and owner actions\n\n- info: Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name\\.\n\n## Evidence register\n\n- core:astro: [Astro deployment](https://docs.astro.build/en/guides/deploy/); checked 2026\\-11\\-13; Static build/deployment\n- core:astro\\-markdown: [Astro Markdown](https://docs.astro.build/en/guides/markdown-content/); checked 2026\\-11\\-13; Built\\-in Markdown content authoring; no performance or price claim\n- core:html: [HTML content](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content); checked 2026\\-11\\-13; Static HTML content delivery\n- core:pages: [Cloudflare Pages](https://developers.cloudflare.com/pages/); checked 2026\\-11\\-13; Static web asset hosting; no country\\-residency assurance\n- services:git: [Git documentation](https://git-scm.com/docs/git); checked 2026\\-11\\-13; Local source versioning; build scripts run locally without hosted CI billing\\.\n- services:pages\\-price: [Cloudflare Pages pricing](https://developers.cloudflare.com/pages/functions/pricing/); checked 2026\\-11\\-13; Static requests free; build/file limits remain relevant\\.\n\n## Limits and acceptance\n\n- Exploratory analysis only. The original recommendation and original requirements are unchanged.\n- Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.\n- The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.\n- Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.\n- Within Decision Lab functional experiments, compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.\n- No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.\n- engine_evaluations counts top-level scenario trials; the baseline recommendation may additionally evaluate one separately labeled budget proposal. Budget proposals are outside the functional-experiment sweep and never change the baseline brief.\n- The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.\n\nAcceptance, independent review, vendor eligibility, implementation and deployment remain owner tasks. No acceptance is recorded.\n",
+  "adr_markdown": "# Proposed architecture decision\n\n**Status: Proposed — project acceptance required.**\n\nEngine 0.8.0; catalog 0.5.0; services 0.8.0; analysis 0.2.0.\nInput SHA-256: e59b99293f954ec6519e26d493899ec3da1d113b94de259cd8b64ac6c3c9dbba.\n\n## Original result\n\nstatic recommendation selected from 14 complete compatible plans; month\\-12 infrastructure planning band USD 0–0/month\\.\nResult: ok.\n\n- frontend: Astro — Covers requested targets web with static rendering\\. Team languages: css, html, javascript\\. Markdown content authoring was explicitly considered\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- backend: None — Static content has no inferred dynamic server requirement; omitting the backend avoids an unnecessary operated application\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- database: None — No server persistence need was inferred; a database is omitted from this core plan\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n- hosting: Cloudflare Pages — Matches managed\\_cloud with provider cloudflare; no country/region assurance was requested or inferred\\. Required runtimes and separate database deployment were checked\\. Selected after supporting\\-service compatibility and whole\\-plan infrastructure cost scoring\\. Explicit critical warnings identify provisional data\\-flow/control exceptions\\.\n\nMonthly infrastructure/operations band (activity fees additional): USD 0–0.\n\n## Complete alternatives\n\n- static\\|astro\\|backend\\-none\\|database\\-none\\|pages\\|unspecified; score 86; USD 0–0; selected.\n- static\\|html\\|backend\\-none\\|database\\-none\\|pages\\|unspecified; score 82; USD 0–0; alternative.\n- static\\|astro\\|backend\\-none\\|database\\-none\\|fly\\|iad; score 61; USD 19.17–34.78; alternative.\n\n## Preference stability\n\nOriginal winner retained in 25/25 tested settings; 1 observed winners. Counts are not confidence probabilities.\n\n## Cost assumptions\n\n- Horizon: expected month\\-12 footprint; 730 hours/month\\. No tax, development/on\\-call labor, domain registration or new on\\-prem hardware procurement is included\\.\n- Peak concurrency supplied: 50; not equated directly with requests/second\\.\n- RPS absent: authored daily\\-active fraction 0\\.2 of registered month\\-12 users, floored at supplied peak concurrency \\(600 active/day\\); 50 requests/active user/day gives 0\\.347 average RPS\\. Neither fraction nor request rate is measured; explicit RPS overrides both\\. Peak capacity is separate\\.\n- Data volume 1 GB supplied; egress 30 GB/month assumed at 0\\.01 GB per year\\-12 user, minimum 1 GB; backup retention 1 months assumed\\.\n- Static hosting/CDN is one bundled resource\\. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed\\.\n- Headline estimate and budget fit cover infrastructure/operations only\\. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure\\.\n- Static assets only; no Functions or paid add\\-ons\\. Build/file limits apply\\.\n\n## Blockers, validation and owner actions\n\n- info: Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name\\.\n\n## Evidence register\n\n- core:astro: [Astro deployment](https://docs.astro.build/en/guides/deploy/); checked 2026\\-11\\-13; Static build/deployment\n- core:astro\\-markdown: [Astro Markdown](https://docs.astro.build/en/guides/markdown-content/); checked 2026\\-11\\-13; Built\\-in Markdown content authoring; no performance or price claim\n- core:html: [HTML content](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content); checked 2026\\-11\\-13; Static HTML content delivery\n- core:pages: [Cloudflare Pages](https://developers.cloudflare.com/pages/); checked 2026\\-11\\-13; Static web asset hosting; no country\\-residency assurance\n- services:git: [Git documentation](https://git-scm.com/docs/git); checked 2026\\-11\\-13; Local source versioning; build scripts run locally without hosted CI billing\\.\n- services:pages\\-price: [Cloudflare Pages pricing](https://developers.cloudflare.com/pages/functions/pricing/); checked 2026\\-11\\-13; Static requests free; build/file limits remain relevant\\.\n\n## Limits and acceptance\n\n- Exploratory analysis only. The original recommendation and original requirements are unchanged.\n- Priority stability counts a finite one-at-a-time sweep; it is not a probability, confidence score or exhaustive sensitivity analysis.\n- The tradeoff front covers all complete candidates in this finite reviewed catalog, minimizing cost upper bound and operated components while maximizing the ORIGINAL-priority heuristic score. It does not establish real-world optimality or measured architecture quality.\n- Functional experiments try eligible single/pair edits only: phone login to email/password, payments off, offline support off, full-text search off, or unsupported ML off. They are changed projects, never solutions satisfying the original brief.\n- Within Decision Lab functional experiments, compliance, infrastructure/residency/provider, tenant isolation, availability, budget, team and timeline are never relaxed. A usable hypothetical result is not legal, security or production approval.\n- No user assertion authenticates vendor/tenant evidence. Missing contracts, capacity calibration and independent review remain unresolved.\n- engine_evaluations counts top-level scenario trials; the baseline recommendation may additionally evaluate one separately labeled budget proposal. Budget proposals are outside the functional-experiment sweep and never change the baseline brief.\n- The generated ADR is Proposed; no stakeholder acceptance, implementation or deployment is inferred.\n\nAcceptance, independent review, vendor eligibility, implementation and deployment remain owner tasks. No acceptance is recorded.\n",
   "analysis_version": "0.2.0",
   "baseline": {
     "applied_extensions": [],
     "architecture_style": "static",
     "assumptions": [
       "Interpreted project.description phrase \"Markdown\" as markdown; this bounded hint does not infer legal or regional requirements.",
+      "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
       "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
     ],
     "budget_planning": {
@@ -30,7 +31,7 @@
       "options": [],
       "scope": "optional_proposals_original_result_unchanged"
     },
-    "catalog_version": "0.4.0",
+    "catalog_version": "0.5.0",
     "control_plan": {
       "deployment_controls": [
         "TLS at all client/service/database boundaries.",
@@ -101,8 +102,8 @@
     ],
     "database_region": null,
     "decision_trace": {
-      "complete_candidates": 10,
-      "core_candidates": 10,
+      "complete_candidates": 14,
+      "core_candidates": 14,
       "rejected": [],
       "score": 86,
       "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified"
@@ -114,7 +115,7 @@
       "assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 50; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (600 active/day); 50 requests/active user/day gives 0.347 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -127,7 +128,7 @@
       "assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 50; not equated directly with requests/second.",
-        "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+        "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (600 active/day); 50 requests/active user/day gives 0.347 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
         "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -151,7 +152,7 @@
         "cost_assumptions": [
           "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
           "Peak concurrency supplied: 50; not equated directly with requests/second.",
-          "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+          "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (600 active/day); 50 requests/active user/day gives 0.347 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
           "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
           "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
           "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -197,7 +198,7 @@
         "cost_assumptions": [
           "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
           "Peak concurrency supplied: 50; not equated directly with requests/second.",
-          "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+          "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (600 active/day); 50 requests/active user/day gives 0.347 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
           "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
           "Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.",
           "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -238,30 +239,28 @@
           "backend": "None",
           "database": "None",
           "frontend": "Astro",
-          "hosting": "Google Cloud Run"
+          "hosting": "Fly.io regional Machines"
         },
         "cost_assumptions": [
           "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
           "Peak concurrency supplied: 50; not equated directly with requests/second.",
-          "RPS absent: assumed 50 requests/user/day averaged across the day (1.736 RPS); peak capacity still uses the concurrency hypothesis.",
+          "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (600 active/day); 50 requests/active user/day gives 0.347 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
           "Data volume 1 GB supplied; egress 30 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-          "Cloud Run billing separates 1 request-driven allocations from 0 always-on reference allocations (support footprint rounded up). Identity/background workers/inference/telemetry use instance-based CPU with minimum instances and are charged for the full month; they do not inherit a request-only duty discount. Service packing, startup, concurrency and exact regional billing require validation.",
-          "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 1 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
-          "Billed duty 0.15–0.8; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
+          "Fly: 1 always-on shared-CPU/2GiB reference Machines, no first-month/free-credit assumption. Reference sizing 50 RPS or 500 realtime/1000 other peak users per allocation is authored and unvalidated. No India region mapping; no guarantee of p95/HA. Select a dedicated class after CPU testing if necessary.",
           "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
-          "1 vCPU and 2 GiB active reference rate; upper adds 80% region/SKU/variance allowance; not a current region-specific quote.",
-          "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
-          "Authored internet-egress envelope; actual destination, free quota and routes vary.",
-          "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas."
+          "Always-on shared-cpu-2x/2GiB reference Machines USD 13.39 per 30 days in US; 730-hour month. Frankfurt upper adds an authored 50% regional allowance, not an exact quote. Shared CPU is not dedicated CPU.",
+          "Authored extra operations/retention headroom, not unlimited native log storage.",
+          "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
+          "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote."
         ],
         "database_region": null,
         "monthly_usd": {
-          "max": 144.75,
-          "min": 19.13
+          "max": 34.78,
+          "min": 19.17
         },
         "operated_components": 0,
-        "plan_id": "static|astro|backend-none|database-none|cloudrun|unspecified",
-        "primary_region": null,
+        "plan_id": "static|astro|backend-none|database-none|fly|iad",
+        "primary_region": "iad",
         "retained_constraints": [
           "platforms=web",
           "cloud_preference=any",
@@ -310,7 +309,7 @@
           "priorities.time_to_market"
         ],
         "fit": 5,
-        "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 1.25/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics.",
+        "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 1.25/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics; supported server-language depth 0 gives ecosystem reuse bonus 0.",
         "weight": 4
       },
       {
@@ -350,7 +349,7 @@
           "priorities.maintainability"
         ],
         "fit": 5,
-        "reason": "Operational burden 0/5+; no existing-system reuse bonus. Fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+        "reason": "Operational burden 0/5+; no existing-system reuse bonus. Server ecosystem reuse bonus 0; fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
         "weight": 3
       },
       {
@@ -444,7 +443,7 @@
       "hosting": {
         "alternatives": [
           {
-            "choice": "Google Cloud Run",
+            "choice": "Fly.io regional Machines",
             "why_not": "Best compatible complete plan using this option scored 61, below 86; other layers may also differ."
           }
         ],
@@ -521,7 +520,7 @@
       ]
     },
     "status": "ok",
-    "summary": "static recommendation selected from 10 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
+    "summary": "static recommendation selected from 14 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
     "validation_errors": [],
     "warnings": [
       {
@@ -661,6 +660,52 @@
           "backend": "None",
           "database": "None",
           "frontend": "Astro",
+          "hosting": "Fly.io regional Machines"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 5
+        },
+        "monthly_usd": {
+          "max": 34.78,
+          "min": 19.17
+        },
+        "operated_components": 0,
+        "original_priority_score": 61,
+        "plan_id": "static|astro|backend-none|database-none|fly|iad"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "Astro",
+          "hosting": "Vercel Pro regional functions"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 5
+        },
+        "monthly_usd": {
+          "max": 58.28,
+          "min": 25
+        },
+        "operated_components": 0,
+        "original_priority_score": 61,
+        "plan_id": "static|astro|backend-none|database-none|vercel|iad1"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "Astro",
           "hosting": "Google Cloud Run"
         },
         "fit": {
@@ -747,6 +792,52 @@
         "operated_components": 0,
         "original_priority_score": 58,
         "plan_id": "static|astro|backend-none|database-none|ase-india|centralindia"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "HTML / CSS",
+          "hosting": "Fly.io regional Machines"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 34.78,
+          "min": 19.17
+        },
+        "operated_components": 0,
+        "original_priority_score": 57,
+        "plan_id": "static|html|backend-none|database-none|fly|iad"
+      },
+      {
+        "core": {
+          "backend": "None",
+          "database": "None",
+          "frontend": "HTML / CSS",
+          "hosting": "Vercel Pro regional functions"
+        },
+        "fit": {
+          "cost": 0,
+          "maintainability": 5,
+          "performance": 5,
+          "scalability": 5,
+          "security": 3,
+          "time_to_market": 4
+        },
+        "monthly_usd": {
+          "max": 58.28,
+          "min": 25
+        },
+        "operated_components": 0,
+        "original_priority_score": 57,
+        "plan_id": "static|html|backend-none|database-none|vercel|iad1"
       },
       {
         "core": {

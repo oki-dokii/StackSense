@@ -3,15 +3,15 @@
     "cost_category": "infrastructure_and_operations",
     "field": "expected_requests_per_second",
     "high_cost": {
-      "max": 2562.74,
-      "min": 394.99
+      "max": 360.4,
+      "min": 315.11
     },
-    "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "high_plan": "modular_monolith|react|express|supabase-pg|fly|iad",
     "low_cost": {
-      "max": 587.33,
-      "min": 189.22
+      "max": 65.47,
+      "min": 50
     },
-    "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "low_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
     "values": [
       1,
       1000
@@ -21,15 +21,15 @@
     "cost_category": "infrastructure_and_operations",
     "field": "monthly_egress_gb",
     "high_cost": {
-      "max": 4586.93,
-      "min": 989.14
+      "max": 574.61,
+      "min": 271.06
     },
-    "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "high_plan": "modular_monolith|react|express|neon-pg|fly|iad",
     "low_cost": {
-      "max": 587.33,
-      "min": 189.22
+      "max": 65.25,
+      "min": 50
     },
-    "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "low_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
     "values": [
       1,
       10000
@@ -39,15 +39,15 @@
     "cost_category": "infrastructure_and_operations",
     "field": "retention_months",
     "high_cost": {
-      "max": 656.33,
-      "min": 196.12
+      "max": 197.65,
+      "min": 82.58
     },
-    "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "high_plan": "modular_monolith|react|express|neon-pg|fly|iad",
     "low_cost": {
-      "max": 587.33,
-      "min": 189.22
+      "max": 174.65,
+      "min": 71.08
     },
-    "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "low_plan": "modular_monolith|react|express|neon-pg|fly|iad",
     "values": [
       1,
       24
@@ -60,12 +60,12 @@
       "max": 300,
       "min": 20
     },
-    "high_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "high_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
     "low_cost": {
       "max": 3,
       "min": 0.2
     },
-    "low_plan": "modular_monolith|react|fastify|mysql|cloudrun|unspecified",
+    "low_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
     "values": [
       100,
       10000
@@ -78,12 +78,12 @@
       "max": 25000,
       "min": 10000
     },
-    "high_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
+    "high_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
     "low_cost": {
       "max": 250,
       "min": 100
     },
-    "low_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
+    "low_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
     "values": [
       100,
       10000
@@ -96,12 +96,12 @@
       "max": 450,
       "min": 200
     },
-    "high_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
+    "high_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
     "low_cost": {
       "max": 90,
       "min": 20
     },
-    "low_plan": "modular_monolith|react|fastify|pg|cloudrun|unspecified",
+    "low_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
     "values": [
       10,
       100
