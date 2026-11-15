@@ -13,3 +13,9 @@ The frontend no longer leaves a stale import error above successful results afte
 Lifecycle retrieval observations are retained observations of unchanged URLs, rebound only after checking each observed source URL against the extended registry. They are not new fetches of the new GDPR reference or semantic/legal approval.
 
 Drive uploads/sharing and Unstop submission were explicitly excluded by the user's latest instruction. No online submission is claimed.
+
+## Navigation follow-up
+
+Route changes previously scrolled the old document before React committed the destination. Sidebar and field links then used zero-delay timers, exposing the workspace hero before jumping to the requested section. One navigation state now carries the route and optional section/field target. A layout effect positions and focuses the committed destination before paint. Browser history restoration is managed while the app is mounted, redundant history entries are avoided, and a stable scrollbar gutter prevents width changes between long and short views.
+
+Two regressions failed against the old implementation and pass after the fix: scrolling observes the destination heading, and section navigation never performs an intermediate top-of-page scroll. The suite now has 407 tests. Real-browser checks cover deep-page navigation, direct Budget placement, browser Back, unchanged main-column position and all nine scoped DOM audits, including 320px layouts. Twelve sampled DOM observations per transition are recorded in evaluation/navigation-samples.json; this is not an exhaustive paint-frame/video audit. Static report captures remain the verified 0.9.1 views from commit 648cddd; the new direct-section screenshot is navigation-budget.jpg.

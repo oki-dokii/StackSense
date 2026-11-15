@@ -87,6 +87,24 @@ describe('workspace focus behavior', () => {
     expect(document.activeElement?.id).toBe('section-budget');
     expect(document.title).toBe('Workspace — StackSense');
   });
+  it('scrolls only after the requested page has committed', async () => {
+    const headingsAtScroll: string[] = [];
+    vi.mocked(window.scrollTo).mockImplementation(() => {
+      headingsAtScroll.push(document.querySelector('main h1')?.textContent ?? '');
+    });
+    await click(button('Methodology'));
+    expect(headingsAtScroll).toEqual(['Decisions you can inspect.']);
+    headingsAtScroll.length = 0;
+    await click(button('Workspace'));
+    expect(headingsAtScroll).toEqual(['Choose your stack.Know the trade-offs.']);
+  });
+  it('opens a workspace section without first scrolling to the landing area', async () => {
+    await click(button('Methodology'));
+    vi.mocked(window.scrollTo).mockClear();
+    await click(button('04Budget'));
+    expect(window.scrollTo).not.toHaveBeenCalled();
+    expect(document.activeElement?.id).toBe('section-budget');
+  });
   it('opens the JSON editor with focus and returns focus when cancelled', async () => {
     const trigger = button('↥ Import / edit JSON');
     await click(trigger);

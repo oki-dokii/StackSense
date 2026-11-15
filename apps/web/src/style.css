@@ -16,6 +16,9 @@
   --muted: #696673;
   --border: #e4e2eb;
 }
+html {
+  scrollbar-gutter: stable;
+}
 * {
   box-sizing: border-box;
 }

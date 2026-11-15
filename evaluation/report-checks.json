@@ -11,6 +11,6 @@
   "engine_version": "0.9.1",
   "application_version": "0.9.1",
   "owner_metadata_confirmed": true,
-  "visual_review": "All 25 final A4 pages inspected in seven rendered contact sheets after correcting screenshot render lag. Six public selectors, summary bands and nine edge captures match their cases; the complete P3 tradeoff chart is visible. No clipped text, overlaps or unintended spill; 15 main pages and 10 appendix pages.",
-  "sha256": "0558c341179a0ff677e3eb5ae4d32d356f2b1544c88fb4e3837009e916ab6e8c"
+  "visual_review": "All 25 pages rendered after navigation follow-up. Updated pages 1 and 12 visually inspected at full size; the other 23 pages are pixel-identical to the previously reviewed final report. No clipping, overlap or spill; 15 main and 10 appendix pages.",
+  "sha256": "6178ddf2bf9937de3566b6c6d5c54cd69beb08d71c59491db0fc9a348923580e"
 }

@@ -11,5 +11,5 @@
     "mobile-budget"
   ],
   "retained_case": null,
-  "scope": "All nine DOM snapshots refreshed on release 0.9.1, including detailed JSON parse error, automatic invalid summary focus and budget-link recovery. Mobile chart moved 40px on ArrowRight after scrolling animation settled. Custom audit only, not full accessibility conformance."
+  "scope": "All nine DOM snapshots refreshed after the navigation fix. Destination focus/scroll happen in a layout effect before paint; direct Budget placement and browser Back checked in real browser DOM samples. Mobile chart moved 40px on ArrowRight. Custom audit only, not full accessibility conformance. Static reference screenshots are retained from commit 648cddd; current navigation proof is docs/evidence/current/navigation-budget.jpg."
 }

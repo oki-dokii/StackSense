@@ -1,0 +1,188 @@
+{
+  "app_version": "0.9.1",
+  "method": "Twelve post-click read-only DOM samples at 25ms intervals (plus browser/tool overhead), from deep Usage section to Methodology and back directly to Budget; not a frame-by-frame video or exhaustive paint audit.",
+  "to_about_samples": [
+    {
+      "active": "section-extensions",
+      "budgetTop": -1831.2734375,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 3780.5
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    }
+  ],
+  "to_budget_samples": [
+    {
+      "active": "",
+      "heading": "Decisions you can inspect.",
+      "mainX": 218,
+      "path": "/about",
+      "scrollY": 0
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    },
+    {
+      "active": "section-budget",
+      "budgetTop": 100.2265625,
+      "heading": "Choose your stack.Know the trade-offs.",
+      "mainX": 218,
+      "path": "/",
+      "scrollY": 1849
+    }
+  ]
+}

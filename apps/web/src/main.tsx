@@ -1,6 +1,6 @@
 import { BudgetPlanning } from './budget-planning.js';
 import { DecisionLabPanel } from './decision-lab';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import type { FinalRecommendation } from '../../../packages/engine/src/complete-types.js';
 import type { Component } from '../../../packages/contracts/src/recommendation.generated.js';
@@ -129,6 +129,7 @@ const titles: Record<string, string> = {
   'requirements.availability': 'Availability target',
   'project.name': 'Project name',
 };
+type NavigationTarget = { kind: 'section' | 'field'; key: string };
 export function App() {
   const [method, setMethod] = useState<Method>();
   const [samples, setSamples] = useState<Draft[]>([]);
@@ -136,7 +137,11 @@ export function App() {
   const [items, setItems] = useState<unknown[]>([starter()]);
   const [active, setActive] = useState(0);
   const [sample, setSample] = useState('0');
-  const [route, setRoute] = useState(location.pathname);
+  const [navigation, setNavigation] = useState<{
+    path: string;
+    target?: NavigationTarget;
+  }>(() => ({ path: location.pathname }));
+  const route = navigation.path;
   const [importOpen, setImportOpen] = useState(false);
   const [text, setText] = useState('');
   const [pendingImport, setPendingImport] = useState(false);
@@ -153,7 +158,7 @@ export function App() {
   const errorRef = useRef<HTMLDivElement>(null);
   const resultRef = useRef<HTMLHeadingElement>(null);
   const importButtonRef = useRef<HTMLButtonElement>(null);
-  const previousRoute = useRef(route);
+  const previousNavigation = useRef(navigation);
   const previousImport = useRef(false);
   const stale = Boolean(run && (run.revision !== revision || pendingImport));
   const raw = items[active];
@@ -188,9 +193,17 @@ export function App() {
     return () => controller.abort();
   }, []);
   useEffect(() => {
-    const handler = () => { setRoute(location.pathname); setMessage(''); };
+    const previousRestoration = history.scrollRestoration;
+    history.scrollRestoration = 'manual';
+    const handler = () => {
+      setNavigation({ path: location.pathname });
+      setMessage('');
+    };
     addEventListener('popstate', handler);
-    return () => removeEventListener('popstate', handler);
+    return () => {
+      removeEventListener('popstate', handler);
+      history.scrollRestoration = previousRestoration;
+    };
   }, []);
   useEffect(() => {
     const handler = (event: BeforeUnloadEvent) => {
@@ -205,35 +218,48 @@ export function App() {
   useEffect(() => {
     if (message) errorRef.current?.focus();
   }, [message]);
-  useEffect(() => {
+  // Commit the destination DOM before positioning it, and finish before paint.
+  // Scrolling in the click handler exposes the old page; timers expose the hero
+  // before a sidebar/field destination. One layout step handles both cases.
+  useLayoutEffect(() => {
     document.title = `${route === '/about' ? 'Methodology' : route === '/results' ? 'Results' : 'Workspace'} — StackSense`;
-    if (previousRoute.current !== route) {
-      const heading =
-        (route === '/results'
-          ? document.getElementById('validation-errors')
-          : null) ?? document.querySelector<HTMLElement>('main h1');
-      if (heading) {
-        heading.tabIndex = -1;
-        heading.focus({ preventScroll: true });
+    if (previousNavigation.current !== navigation) {
+      const target = navigation.target;
+      if (target) {
+        const id = target.key === '?' ? 'project.name' : target.key;
+        const element = target.kind === 'section'
+          ? document.getElementById(`section-${id}`)
+          : document.getElementById(id) ??
+            document.getElementById(id.split('.')[0]) ??
+            document.getElementById(`section-${id.split('.')[0]}`);
+        element?.scrollIntoView({
+          block: target.kind === 'section' ? 'start' : 'center',
+          behavior: 'instant',
+        });
+        element?.focus({ preventScroll: true });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        const heading =
+          (route === '/results'
+            ? document.getElementById('validation-errors')
+            : null) ?? document.querySelector<HTMLElement>('main h1');
+        if (heading) {
+          heading.tabIndex = -1;
+          heading.focus({ preventScroll: true });
+        }
       }
     }
-    previousRoute.current = route;
-  }, [route]);
+    previousNavigation.current = navigation;
+  }, [navigation, route]);
   useEffect(() => {
     if (importOpen) document.getElementById('json-editor')?.focus();
     else if (previousImport.current) importButtonRef.current?.focus();
     previousImport.current = importOpen;
   }, [importOpen]);
-  function jumpToSection(key: string) {
-    const section = document.getElementById(`section-${key}`);
-    section?.scrollIntoView({ block: 'start' });
-    section?.focus({ preventScroll: true });
-  }
-  function navigate(path: string) {
+  function navigate(path: string, target?: NavigationTarget) {
     setMessage('');
-    history.pushState({}, '', path);
-    setRoute(path);
-    window.scrollTo({ top: 0 });
+    if (location.pathname !== path) history.pushState({}, '', path);
+    setNavigation({ path, target });
   }
   function edit(path: string, value: unknown) {
     if (!draft) return;
@@ -312,11 +338,6 @@ export function App() {
       setRun({ results, revision: captured, inputs: structuredClone(items) });
       setSelected(0);
       navigate('/results');
-      setTimeout(() => {
-        if (results[0]?.status === 'invalid_input')
-          document.getElementById('validation-errors')?.focus();
-        else resultRef.current?.focus();
-      }, 0);
     } catch (error) {
       setMessage(
         (error as Error).name === 'AbortError'
@@ -329,16 +350,7 @@ export function App() {
     }
   }
   function focusField(path: string) {
-    navigate('/');
-    setTimeout(() => {
-      const id = path === '?' ? 'project.name' : path;
-      const control =
-        document.getElementById(id) ??
-        document.getElementById(id.split('.')[0]) ??
-        document.getElementById(`section-${id.split('.')[0]}`);
-      control?.scrollIntoView({ block: 'center' });
-      control?.focus();
-    }, 0);
+    navigate('/', { kind: 'field', key: path });
   }
   function field(path: string, node: Schema, required = false): ReactNode {
     if (
@@ -612,8 +624,7 @@ export function App() {
               <button
                 key={key}
                 onClick={() => {
-                  navigate('/');
-                  setTimeout(() => jumpToSection(key), 0);
+                  navigate('/', { kind: 'section', key });
                 }}
               >
                 <span>{String(index + 1).padStart(2, '0')}</span>

@@ -1,0 +1,191 @@
+{
+  "app_version": "0.9.1",
+  "scope": "Scoped real-browser navigation and custom DOM checks; not exhaustive frame/video or accessibility-conformance testing.",
+  "chart": {
+    "scrollLeft": 40,
+    "scrollWidth": 600,
+    "width": 244
+  },
+  "audits": [
+    {
+      "case": "methodology",
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "active": {
+        "class": "",
+        "id": "",
+        "tag": "h1",
+        "text": "Decisions you can inspect."
+      }
+    },
+    {
+      "case": "desktop-workspace",
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "active": {
+        "class": "",
+        "id": "",
+        "tag": "h1",
+        "text": "Choose your stack.Know the trade-offs."
+      }
+    },
+    {
+      "case": "import-error",
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "active": {
+        "class": "alert critical",
+        "id": "",
+        "tag": "div",
+        "text": "Invalid JSON at line 1, column 2. Use double-quoted keys and strings, commas between value"
+      }
+    },
+    {
+      "case": "invalid-result",
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "active": {
+        "class": "panel",
+        "id": "validation-errors",
+        "tag": "section",
+        "text": "Fields to reviewbudgetmust have required property 'budget'projectmust have required proper"
+      }
+    },
+    {
+      "case": "provisional-p2",
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "active": {
+        "class": "",
+        "id": "",
+        "tag": "h1",
+        "text": "Your architecture, explained."
+      }
+    },
+    {
+      "case": "desktop-lab",
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "active": {
+        "class": "",
+        "id": "",
+        "tag": "body",
+        "text": "Skip to workspaceStackSenseWORKSPACEWorkspaceResults15MethodologyLocal & privateYOUR DECIS"
+      }
+    },
+    {
+      "case": "mobile-workspace",
+      "viewport": {
+        "documentWidth": 320,
+        "height": 740,
+        "width": 320
+      },
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "active": {
+        "class": "",
+        "id": "",
+        "tag": "h1",
+        "text": "Choose your stack.Know the trade-offs."
+      }
+    },
+    {
+      "case": "mobile-lab",
+      "viewport": {
+        "documentWidth": 320,
+        "height": 740,
+        "width": 320
+      },
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "active": {
+        "class": "table-scroll",
+        "id": "",
+        "tag": "div",
+        "text": "$0$3,921.22Monthly cost upper estimate →8968Original-priority score →Angular / Express: $5"
+      }
+    },
+    {
+      "case": "mobile-budget",
+      "viewport": {
+        "documentWidth": 320,
+        "height": 740,
+        "width": 320
+      },
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "active": {
+        "class": "main",
+        "id": "main",
+        "tag": "main",
+        "text": "Evaluation completed.DECISION REPORTYour architecture, explained.← Edit inputsScenario res"
+      }
+    }
+  ]
+}

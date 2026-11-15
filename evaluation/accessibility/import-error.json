@@ -3,7 +3,7 @@
     "class": "alert critical",
     "id": "",
     "tag": "div",
-    "text": "Invalid JSON at line 2, column 33. Remove the trailing comma before the closing bracket or"
+    "text": "Invalid JSON at line 1, column 2. Use double-quoted keys and strings, commas between value"
   },
   "issues": {
     "contrast": [],

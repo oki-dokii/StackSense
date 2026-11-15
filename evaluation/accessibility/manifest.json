@@ -20,7 +20,7 @@
   "files": [
     {
       "path": "apps/web/src/main.tsx",
-      "sha256": "f7dec68bcb8fd2914bf2251de6bc2fdea5debec544ffaee6234a9dd63bd587f5"
+      "sha256": "ac227fd11ed4e84a2bcb217505e1d8a5609b20a2ca56e0bd255b7d946ded9ffb"
     },
     {
       "path": "apps/web/src/budget-planning.tsx",
@@ -28,7 +28,7 @@
     },
     {
       "path": "apps/web/src/style.css",
-      "sha256": "614e8bdb644980286dc29c24b16752517a94813ec3c6e7c0e735a6e13a5c5b74"
+      "sha256": "c1c1bdc35c144b1870a76d4f59c1735ebf45508d9cf3f1d9ad73926bd736466c"
     },
     {
       "path": "apps/web/src/decision-lab.tsx",
@@ -52,7 +52,7 @@
     },
     {
       "path": "tests/web-accessibility.test.ts",
-      "sha256": "fb3f57b274a1cb732d9b902e9d56c3f3dea7c60e7e31b30f14b24ba79c8bccdc"
+      "sha256": "eb13ebb6672670c85442adc55e4cf4c91ab2480ae474e8ea7c27b68a100b2a15"
     },
     {
       "path": "evaluation/accessibility/provisional-p2.json",
@@ -60,7 +60,7 @@
     },
     {
       "path": "evaluation/accessibility/desktop-workspace.json",
-      "sha256": "0edd9a8c30d299632f449cd49504f9abb337e16bc26e0326fa918d4338fea7e8"
+      "sha256": "cabb34f2457980852a47c2c83c88b8c011422442925dc052f0a95c63c1cd764e"
     },
     {
       "path": "evaluation/accessibility/methodology.json",
@@ -68,7 +68,7 @@
     },
     {
       "path": "evaluation/accessibility/import-error.json",
-      "sha256": "e6c0ff97b807ac9aa623902cfeec5e6d6c99dbabd9de75750cbdb7e9ad1f700d"
+      "sha256": "a9ed8794196ba09145ec014f5de95eacce3a5e57c4abe674c603b7b3913f20d0"
     },
     {
       "path": "evaluation/accessibility/invalid-result.json",
@@ -76,7 +76,7 @@
     },
     {
       "path": "evaluation/accessibility/desktop-lab.json",
-      "sha256": "66873769a85a047c5ecb011399b9c1b650b5a6952bf728caa79cc9bcf4387080"
+      "sha256": "fe417ab29b8dea1b72cda3858a34f792e7637a3c1a5db20de548d10f933e5a78"
     },
     {
       "path": "evaluation/accessibility/mobile-workspace.json",
