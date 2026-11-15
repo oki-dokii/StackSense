@@ -44,11 +44,11 @@
     },
     {
       "path": "package.json",
-      "sha256": "24c670eb6d1f38f9bc5d37f25003bf0037a702879b3b78f9f884cc41c9ad407f"
+      "sha256": "daaf956565018d0d767d553bf499e604aa658f16dffaf9141ac163058cee0159"
     },
     {
       "path": "package-lock.json",
-      "sha256": "77951c2241b24c19c27baf6fcc73dff8a95eb774d0ff6738f4c1ec9d0ab85502"
+      "sha256": "e37fb5d66a11a4e214e15b4c3f8d9a3fcc9b2ad0a639d68a02d8a71413537b56"
     },
     {
       "path": "tests/web-accessibility.test.ts",
@@ -56,59 +56,59 @@
     },
     {
       "path": "evaluation/accessibility/provisional-p2.json",
-      "sha256": "ad2d5052c64fae905aa2800c24fcb6115a494a260dfec9ca3fac7135e525964d"
+      "sha256": "1a21b79ead4e41a2a3ca62fd131534bf80ccf9ae7bcbb242dd1c374b5bf92b25"
     },
     {
       "path": "evaluation/accessibility/desktop-workspace.json",
-      "sha256": "d47e86fba75f608089ce7d2459caa4bfc0bc43585772bccce0783e556bbc6301"
+      "sha256": "0edd9a8c30d299632f449cd49504f9abb337e16bc26e0326fa918d4338fea7e8"
     },
     {
       "path": "evaluation/accessibility/methodology.json",
-      "sha256": "316efa103040deedb7c2c5c0dd2d4e7f84024184b611b18565b8bd028c977e6b"
+      "sha256": "a056f63a042c2ed5fab99691a0540801d470aee0aaf5b67ac3635aa510498d31"
     },
     {
       "path": "evaluation/accessibility/import-error.json",
-      "sha256": "57d9a1470a5de5fda8f0bba90c2bce6817ed6e54b3402c233bf18cac2b43647b"
+      "sha256": "d778e9d08931f2219d1306941620b6f7a2ea3febb12bf141bd04a965d569272d"
     },
     {
       "path": "evaluation/accessibility/invalid-result.json",
-      "sha256": "76d61754d48da6c149e4d87e4bc7f4e10ac0c73b557f6e1b26c6d899ecc5d56f"
+      "sha256": "707e28d894e7d3d9fc435ca91180cbb3c5ae63ba91e8e193c96fc1b716e982d8"
     },
     {
       "path": "evaluation/accessibility/desktop-lab.json",
-      "sha256": "eaf4d2b0385fea96da0cd8ca5709092dffffd1dd413c525e82fff3517d0ef64d"
+      "sha256": "e95c28cca64cd387ddac92f360e6e75f09503e7d297ee38ef75272273b4e07d0"
     },
     {
       "path": "evaluation/accessibility/mobile-workspace.json",
-      "sha256": "ca46dd4cc8cad08ba4bcd72f3b5f7c944bf1e2d5c9adee0d5d54025e5f653bd6"
+      "sha256": "a81481e91a247f8accf4effca1c95473519652504bab2f849e37183bf37152dd"
     },
     {
       "path": "evaluation/accessibility/mobile-budget.json",
-      "sha256": "84a8e28b706d63a003ae381396d05bafd0b6effb598306e49ceb7f86d2e3ecf3"
+      "sha256": "a77b6a111533a65840955c2f29b61d6d7d7da37fd425aeb5f8bcb7be4180da34"
     },
     {
       "path": "evaluation/accessibility/mobile-lab.json",
-      "sha256": "da45b73abdacbe48a71562d5808fd5f60d0204340afb56a846e28bcdd13d7ffe"
+      "sha256": "a9469adf64edb4f5c925b0115a0cbff530f57bee8aabd448e070591597f21042"
     },
     {
       "path": "docs/evidence/phase11/workspace.png",
-      "sha256": "48b03e9c43730f24fb20bb51e1d6d87adce7bf453f7acb597b8093dd9b740023"
+      "sha256": "51995e82912b683e126f4a29cac1d69f579079014d4537bc9299bb8688d6a27c"
     },
     {
       "path": "docs/evidence/phase11/import-error.png",
-      "sha256": "16b670c123609b99a6d30822b0d91fb16770a6991d815c9c5ac0e44ffcd0ae3f"
+      "sha256": "7cca469843b08765a930d1841ed1475a8d8bbcf20a329c568a8a16f847826fe4"
     },
     {
       "path": "docs/evidence/phase11/validation-focus.png",
-      "sha256": "940b2c1e36d087583f0402a4568c7ef2894c449263fe69cb07fc972f471af205"
+      "sha256": "b7e004d2e3840a596017bd5be6e37e364a03345dbb0f3811cc4deebc53ec86fb"
     },
     {
       "path": "docs/evidence/phase11/desktop-lab.png",
-      "sha256": "d32b72beca7f31830488bf8b903faadba86de1d1f239eb538147f0ad4e179d02"
+      "sha256": "08003c9a3cb9d2a155057b572fd31b27bc131999f43e238b444cfaab4148475f"
     },
     {
       "path": "docs/evidence/phase11/mobile-chart.png",
-      "sha256": "9fb2a71e4f7755bf1f2c03125f663a2b5a913ead8dcd137ed03167a17edea52b"
+      "sha256": "c60ceff916a6c6136da81941a187cc6125f3fe76dac3881661048b486bb05631"
     }
   ]
 }

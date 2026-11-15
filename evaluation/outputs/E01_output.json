@@ -8,7 +8,7 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "control_plan": null,
   "cost_breakdown": [],
   "cost_groups": [],
@@ -21,7 +21,7 @@
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "estimate_status": "not_estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -41,8 +41,8 @@
   "integration_reviews": [],
   "plan_comparison": [],
   "review_actions": [],
-  "rules_version": "0.8.0",
-  "services_version": "0.8.0",
+  "rules_version": "0.9.0",
+  "services_version": "0.9.0",
   "stack": null,
   "status": "invalid_input",
   "summary": "Input is invalid; no recommendation or cost estimate was produced.",

@@ -40,11 +40,20 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "control_plan": null,
   "core_rejections": [
     {
       "candidate_id": "appservice",
+      "code": "CLOUD_FORBIDDEN",
+      "fields": [
+        "infrastructure.cloud_preference"
+      ],
+      "layer": "hosting",
+      "message": "cloud_preference=none prohibits this public-cloud variant."
+    },
+    {
+      "candidate_id": "appservice-india",
       "code": "CLOUD_FORBIDDEN",
       "fields": [
         "infrastructure.cloud_preference"
@@ -109,6 +118,15 @@
       ],
       "layer": "database",
       "message": "Domain/features require a persistent application database."
+    },
+    {
+      "candidate_id": "do-app",
+      "code": "CLOUD_FORBIDDEN",
+      "fields": [
+        "infrastructure.cloud_preference"
+      ],
+      "layer": "hosting",
+      "message": "cloud_preference=none prohibits this public-cloud variant."
     },
     {
       "candidate_id": "ec2",
@@ -212,7 +230,7 @@
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "estimate_status": "not_estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -255,9 +273,9 @@
       "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.8.0",
+  "rules_version": "0.9.0",
   "scenario_id": "E12",
-  "services_version": "0.8.0",
+  "services_version": "0.9.0",
   "stack": null,
   "status": "infeasible",
   "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",

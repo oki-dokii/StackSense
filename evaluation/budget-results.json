@@ -77,8 +77,8 @@
     {
       "id": "S03",
       "primary_infrastructure": {
-        "min": 70,
-        "max": 85.25
+        "min": 50,
+        "max": 50.25
       },
       "options": []
     },
@@ -124,49 +124,24 @@
     {
       "id": "S05",
       "primary_infrastructure": {
-        "min": 70,
-        "max": 85.25
+        "min": 50,
+        "max": 50.25
       },
       "options": []
     },
     {
       "id": "S06",
       "primary_infrastructure": {
-        "min": 287.2,
-        "max": 979.11
+        "min": 161.83,
+        "max": 319.92
       },
-      "options": [
-        {
-          "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified",
-          "infrastructure": {
-            "min": 180.86,
-            "max": 654.93
-          },
-          "total": {
-            "min": 180.86,
-            "max": 654.93
-          },
-          "budget_fit": "within_upper",
-          "changes": [
-            {
-              "field": "requirements.availability",
-              "from": "99.9",
-              "to": "99",
-              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
-            }
-          ],
-          "requires_acceptance": true,
-          "critical_conditions": [
-            "BUDGET_REQUIREMENT_CHANGE"
-          ]
-        }
-      ]
+      "options": []
     },
     {
       "id": "S07",
       "primary_infrastructure": {
-        "min": 70,
-        "max": 85.25
+        "min": 60,
+        "max": 60.25
       },
       "options": []
     },
@@ -213,8 +188,8 @@
     {
       "id": "S09",
       "primary_infrastructure": {
-        "min": 70,
-        "max": 85.25
+        "min": 60,
+        "max": 60.25
       },
       "options": []
     },
@@ -254,8 +229,8 @@
     {
       "id": "S11",
       "primary_infrastructure": {
-        "min": 70.5,
-        "max": 86.25
+        "min": 50,
+        "max": 50.25
       },
       "options": []
     },
@@ -278,8 +253,8 @@
     {
       "id": "S14",
       "primary_infrastructure": {
-        "min": 974.32,
-        "max": 1132.41
+        "min": 188.11,
+        "max": 346.2
       },
       "options": []
     },
@@ -361,82 +336,26 @@
     {
       "id": "S18",
       "primary_infrastructure": {
-        "min": 247.76,
-        "max": 695
+        "min": 50,
+        "max": 50.25
       },
-      "options": [
-        {
-          "plan_id": "modular_monolith|compose|spring|pg|lightsail|ap-south-1",
-          "infrastructure": {
-            "min": 77.5,
-            "max": 123
-          },
-          "total": {
-            "min": 77.5,
-            "max": 123
-          },
-          "budget_fit": "within_upper",
-          "changes": [
-            {
-              "field": "infrastructure.deployment_model",
-              "from": "managed_cloud",
-              "to": "self_hosted_cloud_vm",
-              "consequence": "Operate Linux, TLS, database backups/recovery, identity, security updates and capacity yourself; additional operating labor and new expertise are excluded from the cash estimate."
-            },
-            {
-              "field": "requirements.availability",
-              "from": "99.9",
-              "to": "99",
-              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
-            }
-          ],
-          "requires_acceptance": true,
-          "critical_conditions": [
-            "BUDGET_REQUIREMENT_CHANGE"
-          ]
-        }
-      ]
+      "options": []
     },
     {
       "id": "S19",
       "primary_infrastructure": {
-        "min": 70,
-        "max": 85.25
+        "min": 50,
+        "max": 50.25
       },
       "options": []
     },
     {
       "id": "S20",
       "primary_infrastructure": {
-        "min": 287.2,
-        "max": 979.11
+        "min": 161.83,
+        "max": 319.92
       },
-      "options": [
-        {
-          "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified",
-          "infrastructure": {
-            "min": 180.86,
-            "max": 654.93
-          },
-          "total": {
-            "min": 180.86,
-            "max": 654.93
-          },
-          "budget_fit": "within_upper",
-          "changes": [
-            {
-              "field": "requirements.availability",
-              "from": "99.9",
-              "to": "99",
-              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
-            }
-          ],
-          "requires_acceptance": true,
-          "critical_conditions": [
-            "BUDGET_REQUIREMENT_CHANGE"
-          ]
-        }
-      ]
+      "options": []
     },
     {
       "id": "S21",
@@ -584,16 +503,16 @@
     {
       "id": "S26",
       "primary_infrastructure": {
-        "min": 70.92,
-        "max": 116.38
+        "min": 50,
+        "max": 50.25
       },
       "options": []
     },
     {
       "id": "S27",
       "primary_infrastructure": {
-        "min": 70,
-        "max": 85.25
+        "min": 50,
+        "max": 50.25
       },
       "options": []
     },
@@ -639,43 +558,18 @@
     {
       "id": "S29",
       "primary_infrastructure": {
-        "min": 70,
-        "max": 85.25
+        "min": 50,
+        "max": 50.25
       },
       "options": []
     },
     {
       "id": "S30",
       "primary_infrastructure": {
-        "min": 129.28,
-        "max": 549.75
+        "min": 45.52,
+        "max": 96.42
       },
-      "options": [
-        {
-          "plan_id": "modular_monolith|frontend-none|django|database-none|appservice|unspecified",
-          "infrastructure": {
-            "min": 74.53,
-            "max": 330.75
-          },
-          "total": {
-            "min": 74.53,
-            "max": 330.75
-          },
-          "budget_fit": "range_risk",
-          "changes": [
-            {
-              "field": "requirements.availability",
-              "from": "99.9",
-              "to": "99",
-              "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval."
-            }
-          ],
-          "requires_acceptance": true,
-          "critical_conditions": [
-            "BUDGET_REQUIREMENT_CHANGE"
-          ]
-        }
-      ]
+      "options": []
     },
     {
       "id": "S31",
@@ -721,8 +615,8 @@
     {
       "id": "S33",
       "primary_infrastructure": {
-        "min": 70,
-        "max": 85.25
+        "min": 64,
+        "max": 64.25
       },
       "options": []
     },
@@ -782,8 +676,8 @@
     {
       "id": "S41",
       "primary_infrastructure": {
-        "min": 70.5,
-        "max": 86.25
+        "min": 64,
+        "max": 64.25
       },
       "options": []
     },
@@ -934,8 +828,8 @@
     {
       "id": "S49",
       "primary_infrastructure": {
-        "min": 70,
-        "max": 85.25
+        "min": 64,
+        "max": 64.25
       },
       "options": []
     },
@@ -1079,8 +973,8 @@
     {
       "id": "S57",
       "primary_infrastructure": {
-        "min": 2786.32,
-        "max": 44649.86
+        "min": 3258.53,
+        "max": 43496.2
       },
       "options": [
         {
@@ -1126,8 +1020,8 @@
     {
       "id": "S59",
       "primary_infrastructure": {
-        "min": 70,
-        "max": 85.25
+        "min": 64,
+        "max": 64.25
       },
       "options": []
     },
@@ -1142,9 +1036,9 @@
   ],
   "counts": {
     "scenarios": 60,
-    "proposals": 24,
-    "proposal_upper_fits": 11,
-    "proposal_range_risk": 9,
+    "proposals": 20,
+    "proposal_upper_fits": 8,
+    "proposal_range_risk": 8,
     "proposal_still_over": 4
   }
 }

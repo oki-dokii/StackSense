@@ -15,30 +15,28 @@
   "budget_planning": {
     "budget_usd": 100,
     "cheapest_same_scope": {
-      "budget_fit": "range_risk",
+      "budget_fit": "within_upper",
       "core": {
-        "backend": "Django",
+        "backend": "ASP.NET Core",
         "database": "Supabase Pro PostgreSQL",
         "frontend": "Jetpack Compose",
-        "hosting": "Vercel Pro regional functions"
+        "hosting": "DigitalOcean App Platform regional containers"
       },
       "monthly_infrastructure_usd": {
-        "max": 114.89,
-        "min": 77.75
+        "max": 62.02,
+        "min": 55.25
       },
-      "plan_id": "modular_monolith|compose|django|supabase-pg|vercel|bom1"
+      "plan_id": "modular_monolith|compose|aspnet|supabase-pg|do-app|blr"
     },
     "notes": [
-      "Infrastructure uncertainty: telemetry-headroom contributes USD 15 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
-      "Infrastructure uncertainty: vercel-net-usage contributes USD 8.39 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
-      "Infrastructure uncertainty: file-backup-allowance contributes USD 7.5 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
-      "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions.",
-      "The bounded availability/self-managed experiment found no cheaper usable proposal. No feature, region, provider, team or compliance field was silently changed."
+      "Infrastructure uncertainty: supabase-database-storage contributes USD 6.25 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Infrastructure uncertainty: network-egress contributes USD 0.52 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions."
     ],
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -70,48 +68,123 @@
   },
   "cost_breakdown": [
     {
-      "basis": "USD 20 platform fee includes one deploying seat; every team member assumed a deploying seat. Exactly one USD 20 team usage credit is applied below.",
-      "category": "hosting",
-      "id": "vercel-platform-seats",
+      "basis": "One-GiB shared-CPU application/SSR containers. USD10 fixed SKU, one instance per component, no horizontal scaling. Reference 50 RPS/1000 peak users is unvalidated; database/realtime are external.",
+      "category": "compute",
+      "id": "do-application-containers",
       "monthly_usd": {
-        "max": 40,
-        "min": 40
+        "max": 10,
+        "min": 10
       },
       "quantity": {
-        "max": 2,
-        "min": 2
+        "max": 1,
+        "min": 1
       },
       "source_ids": [
-        "vercel-pro"
+        "do-app-price"
       ],
       "unit_rate_usd": {
-        "max": 20,
-        "min": 20
+        "max": 10,
+        "min": 10
       }
     },
     {
-      "basis": "Authored 10–30 ms active CPU/request, 100–300 ms wall/request at 1 GiB; additive memory is conservative under concurrency. Includes invocations, bounded Cron, on-demand CDN/transfer/origin and 100–500 standard concurrent build minutes; deduct single USD 20 team credit once. Regional tariff references are attached in assumptions.",
+      "basis": "Always-on one-GiB fixed worker containers; packed transactional outbox and telemetry reference footprint charged once. Memory/startup/batch headroom and restart recovery require validation.",
       "category": "compute",
-      "id": "vercel-net-usage",
+      "id": "do-background-containers",
       "monthly_usd": {
-        "max": 8.39,
+        "max": 10,
+        "min": 10
+      },
+      "quantity": {
+        "max": 1,
+        "min": 1
+      },
+      "source_ids": [
+        "do-app-price"
+      ],
+      "unit_rate_usd": {
+        "max": 10,
+        "min": 10
+      }
+    },
+    {
+      "basis": "One Spaces subscription bundles regional redacted logs and file backup storage; 250 GiB storage and 1024 GiB outbound included once. Not an extra Supabase database backup or unlimited log index.",
+      "category": "backup",
+      "id": "do-regional-archive",
+      "monthly_usd": {
+        "max": 5,
+        "min": 5
+      },
+      "quantity": {
+        "max": 1,
+        "min": 1
+      },
+      "source_ids": [
+        "do-spaces-price"
+      ],
+      "unit_rate_usd": {
+        "max": 5,
+        "min": 5
+      }
+    },
+    {
+      "basis": "Stored archive bytes above the single 250-GiB allowance; includes authored 1–4 KiB redacted log events per API request plus retained file snapshots.",
+      "category": "backup",
+      "id": "do-archive-storage-overage",
+      "monthly_usd": {
+        "max": 0,
         "min": 0
       },
       "quantity": {
-        "max": 8.38816,
+        "max": 0,
         "min": 0
       },
       "source_ids": [
-        "vercel-fluid",
-        "vercel-bom-price",
-        "vercel-build",
-        "vercel-cron",
-        "vercel-pro",
-        "vercel-network"
+        "do-spaces-price"
       ],
       "unit_rate_usd": {
-        "max": 1,
-        "min": 1
+        "max": 0.02,
+        "min": 0.02
+      }
+    },
+    {
+      "basis": "One full archive restore/download per month at upper bound; 1024-GiB Spaces outbound allowance once. Additional restore cycles need an explicit quote.",
+      "category": "egress",
+      "id": "do-archive-restore-egress",
+      "monthly_usd": {
+        "max": 0,
+        "min": 0
+      },
+      "quantity": {
+        "max": 0,
+        "min": 0
+      },
+      "source_ids": [
+        "do-spaces-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.01,
+        "min": 0.01
+      }
+    },
+    {
+      "basis": "App Platform team transfer allowances pooled once, decimal GB converted to GiB. Conservatively charges full app traffic plus archive uploads here; source Supabase backup download is separately charged there. No Spaces/Droplet allowance is mixed into app transfer.",
+      "category": "egress",
+      "id": "network-egress",
+      "monthly_usd": {
+        "max": 0.52,
+        "min": 0
+      },
+      "quantity": {
+        "max": 25.806236267089844,
+        "min": 0
+      },
+      "source_ids": [
+        "do-app-price"
+      ],
+      "unit_rate_usd": {
+        "max": 0.02,
+        "min": 0.02
       }
     },
     {
@@ -215,66 +288,6 @@
       }
     },
     {
-      "basis": "Authored separately stored file backup allowance at USD .05/GB-month; provider/database backup does not protect object bytes. Destination geography, transfer and restore implementation require review.",
-      "category": "backup",
-      "id": "file-backup-allowance",
-      "monthly_usd": {
-        "max": 10,
-        "min": 2.5
-      },
-      "quantity": {
-        "max": 200,
-        "min": 50
-      },
-      "source_ids": [
-        "supabase-storage"
-      ],
-      "unit_rate_usd": {
-        "max": 0.05,
-        "min": 0.05
-      }
-    },
-    {
-      "basis": "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
-      "category": "observability",
-      "id": "telemetry-operations",
-      "monthly_usd": {
-        "max": 5,
-        "min": 5
-      },
-      "quantity": {
-        "max": 1,
-        "min": 1
-      },
-      "source_ids": [
-        "vercel-logs"
-      ],
-      "unit_rate_usd": {
-        "max": 5,
-        "min": 5
-      }
-    },
-    {
-      "basis": "Authored extra operations/retention headroom, not unlimited native log storage.",
-      "category": "observability",
-      "id": "telemetry-headroom",
-      "monthly_usd": {
-        "max": 15,
-        "min": 0
-      },
-      "quantity": {
-        "max": 15,
-        "min": 0
-      },
-      "source_ids": [
-        "vercel-logs"
-      ],
-      "unit_rate_usd": {
-        "max": 1,
-        "min": 1
-      }
-    },
-    {
       "basis": "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
       "category": "auth",
       "id": "otp-delivery",
@@ -299,19 +312,20 @@
     {
       "category": "infrastructure_and_operations",
       "line_ids": [
-        "vercel-platform-seats",
-        "vercel-net-usage",
+        "do-application-containers",
+        "do-background-containers",
+        "do-regional-archive",
+        "do-archive-storage-overage",
+        "do-archive-restore-egress",
+        "network-egress",
         "supabase-pro-project",
         "supabase-database-storage",
         "supabase-mau",
         "supabase-egress",
-        "supabase-object-storage",
-        "file-backup-allowance",
-        "telemetry-operations",
-        "telemetry-headroom"
+        "supabase-object-storage"
       ],
-      "max": 114.89,
-      "min": 77.75
+      "max": 62.02,
+      "min": 55.25
     },
     {
       "category": "payment_and_message_activity",
@@ -330,17 +344,17 @@
       "field": "extensions.expected_requests_per_second",
       "samples": [
         {
-          "max": 113.41,
-          "min": 77.75,
+          "max": 62,
+          "min": 55.25,
           "status": "estimated",
-          "upper_delta_usd": -1.48,
+          "upper_delta_usd": -0.02,
           "value": 0.11574074074074074
         },
         {
-          "max": 117.85,
-          "min": 77.75,
+          "max": 62.07,
+          "min": 55.25,
           "status": "estimated",
-          "upper_delta_usd": 2.96,
+          "upper_delta_usd": 0.05,
           "value": 0.46296296296296297
         }
       ],
@@ -353,17 +367,17 @@
       "field": "extensions.daily_active_user_fraction",
       "samples": [
         {
-          "max": 113.41,
-          "min": 77.75,
+          "max": 62,
+          "min": 55.25,
           "status": "estimated",
-          "upper_delta_usd": -1.48,
+          "upper_delta_usd": -0.02,
           "value": 0.1
         },
         {
-          "max": 117.85,
-          "min": 77.75,
+          "max": 62.07,
+          "min": 55.25,
           "status": "estimated",
-          "upper_delta_usd": 2.96,
+          "upper_delta_usd": 0.05,
           "value": 0.4
         }
       ],
@@ -376,17 +390,17 @@
       "field": "extensions.monthly_egress_gb",
       "samples": [
         {
-          "max": 106.5,
-          "min": 77.75,
+          "max": 61.65,
+          "min": 55.25,
           "status": "estimated",
-          "upper_delta_usd": -8.39,
+          "upper_delta_usd": -0.37,
           "value": 10
         },
         {
-          "max": 132.89,
-          "min": 79.42,
+          "max": 65.47,
+          "min": 55.25,
           "status": "estimated",
-          "upper_delta_usd": 18,
+          "upper_delta_usd": 3.45,
           "value": 40
         }
       ],
@@ -399,17 +413,17 @@
       "field": "extensions.retention_months",
       "samples": [
         {
-          "max": 114.89,
-          "min": 77.75,
+          "max": 62.02,
+          "min": 55.25,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 1
         },
         {
-          "max": 124.89,
-          "min": 80.25,
+          "max": 85.44,
+          "min": 55.25,
           "status": "estimated",
-          "upper_delta_usd": 10,
+          "upper_delta_usd": 23.42,
           "value": 2
         }
       ],
@@ -442,7 +456,7 @@
   "data_flows": [
     {
       "component": "primary-compute",
-      "location": "bom1",
+      "location": "blr",
       "scope": "Application processing; configure region, private access, logging and replicas explicitly.",
       "verification": "configuration_required"
     },
@@ -477,19 +491,19 @@
       "verification": "external_scope_review"
     },
     {
-      "component": "vercel-outbox",
-      "location": "bom1",
-      "scope": "Commit data/outbox atomically; authenticated scheduled function drains bounded batches with locks, idempotency and dead letters. Not a continuously running worker; minute-scale scheduling and duration limits apply.",
+      "component": "outbox",
+      "location": "blr",
+      "scope": "Outbox rows share the database bill. Worker retries must be idempotent; tune polling, retry/dead-letter policy and retention.",
       "verification": "configuration_required"
     },
     {
-      "component": "vercel-telemetry",
-      "location": "bom1",
-      "scope": "Redact sensitive data and review runtime log geography/retention; separate regional archive allowance is charged. No resident Collector is assumed.",
+      "component": "do-archive",
+      "location": "Application blr; explicitly configure Spaces blr1 regional archive (end-to-end scope unverified)",
+      "scope": "A budgeted 1GiB background container packs outbox and telemetry reference processes. Upload redacted batches directly to the selected regional Spaces bucket via reviewed S3-compatible SDK/exporter; configure retries, retention, restore and alerts. Ephemeral worker disk is temporary only. Connection/memory limits and exporter behavior require validation.",
       "verification": "configuration_required"
     },
     {
-      "component": "vercel-build",
+      "component": "do-build",
       "location": "Build environment: source/synthetic fixtures only",
       "scope": "Never export production data/secrets/personal data to build logs.",
       "verification": "source_only_no_production_data"
@@ -497,13 +511,13 @@
   ],
   "database_region": "ap-south-1",
   "decision_trace": {
-    "complete_candidates": 132,
-    "core_candidates": 132,
+    "complete_candidates": 204,
+    "core_candidates": 204,
     "rejected": [],
-    "score": 77,
-    "selected_plan_id": "modular_monolith|react-native|django|supabase-pg|vercel|bom1"
+    "score": 87,
+    "selected_plan_id": "modular_monolith|react-native|django|supabase-pg|do-app|blr"
   },
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -512,8 +526,8 @@
       "Peak concurrency supplied: 200; not equated directly with requests/second.",
       "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (400 active/day); 50 requests/active user/day gives 0.231 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-      "Vercel Pro: regional Node/Python/Go function adapters; 10–30 ms CPU and 100–300 ms wall time are authored hypotheses, not measurements. All team members are paid deploying seats. No Hobby commercial/free allowance. On-demand CDN profile uses no unverified Pro transfer/request allowance; current docs refer to opt-in Flat Rate CDN, which is not modeled. Mumbai rates USD .20/GB, 2.20/M CDN requests, .25/GB origin are conservatively reused as a non-India planning proxy. CPU/memory rates use bom1/fra1/iad1 exactly. Function invocations USD .60/M have no Pro free-million deduction. Source IDs: vercel-pro, vercel-fluid, vercel-bom-price, vercel-build, vercel-cron. Cache/ISR/image transformations are not enabled; quote them separately if added.",
-      "Cron drains are minute-scale bounded batches, not resident workers; 43,200 monthly invocations plus 20–100 ms CPU/100–1000 ms wall time each are included. Direct signed media upload avoids function payload limits. Pool database connections and load-test cold starts, timeouts, batch sizes and concurrency.",
+      "App Platform reference profile: 1 application/SSR and 1 background one-GiB shared-CPU containers, USD10/application container and USD10/background container monthly. Fixed USD10 SKU is never scaled horizontally; if multiple instances are required use the USD12 SKU. A 99/99.9 target proposes single managed component instances relying on provider recovery, not application HA; higher targets add at least two instances. The component SLA does not establish complete-app availability, database failover or measured capacity. Shared CPU, memory, connection limits and failover require load/restore tests before production.",
+      "App Platform builds/tests run in the native build stage within published build limits; no separately paid hosted CI or private container registry is enabled. Regional app, Supabase and Spaces are separate configured boundaries. Redacted logs are exported in batches with retries to the region-pinned S3-compatible Spaces bucket; ephemeral disk is only a bounded temporary buffer, never the durable archive. Authored 1–4 KiB/request log payload and one monthly full restore are scenarios, not measured retention/volume. Archive is a single USD5 Spaces subscription; DB seven-day backups remain the Supabase tier policy.",
       "Supabase Pro is one specific regional project, not a self-hosted PostgreSQL alias. Micro/Medium connection pools and CPU/RAM require validation; limit application pools and prefer transaction pooling. Default DB backups are daily/seven days (provider assumption overriding generic one-month backup assumption for DB only); no explicit month-retention extension is accepted by this profile. Object backup is separately charged. No HIPAA Pro eligibility or contractual SLA is claimed.",
       "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 4000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -521,16 +535,17 @@
       "250 GB uncached allowance once; no additional cached allowance assumed. Includes database-to-application plus direct client traffic within authored envelope; actual routing must be measured.",
       "8 GB included once; application data distribution between DB/files unknown, database uses 50–100% total data.",
       "All month-12 users conservatively treated as monthly active auth users; 100k included once.",
+      "Always-on one-GiB fixed worker containers; packed transactional outbox and telemetry reference footprint charged once. Memory/startup/batch headroom and restart recovery require validation.",
+      "App Platform team transfer allowances pooled once, decimal GB converted to GiB. Conservatively charges full app traffic plus archive uploads here; source Supabase backup download is separately charged there. No Spaces/Droplet allowance is mixed into app transfer.",
       "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
-      "Authored 10–30 ms active CPU/request, 100–300 ms wall/request at 1 GiB; additive memory is conservative under concurrency. Includes invocations, bounded Cron, on-demand CDN/transfer/origin and 100–500 standard concurrent build minutes; deduct single USD 20 team credit once. Regional tariff references are attached in assumptions.",
-      "Authored extra operations/retention headroom, not unlimited native log storage.",
-      "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
-      "Authored separately stored file backup allowance at USD .05/GB-month; provider/database backup does not protect object bytes. Destination geography, transfer and restore implementation require review.",
+      "One Spaces subscription bundles regional redacted logs and file backup storage; 250 GiB storage and 1024 GiB outbound included once. Not an extra Supabase database backup or unlimited log index.",
       "One USD 25 Pro organization/project; charge 730 hours of Micro (.01344/h), or Medium (.0822/h) when peak >=1000, minus one USD 10 compute credit. Tier threshold is an unvalidated capacity hypothesis.",
-      "USD 20 platform fee includes one deploying seat; every team member assumed a deploying seat. Exactly one USD 20 team usage credit is applied below."
+      "One full archive restore/download per month at upper bound; 1024-GiB Spaces outbound allowance once. Additional restore cycles need an explicit quote.",
+      "One-GiB shared-CPU application/SSR containers. USD10 fixed SKU, one instance per component, no horizontal scaling. Reference 50 RPS/1000 peak users is unvalidated; database/realtime are external.",
+      "Stored archive bytes above the single 250-GiB allowance; includes authored 1–4 KiB redacted log events per API request plus retained file snapshots."
     ],
-    "max": 114.89,
-    "min": 77.75
+    "max": 62.02,
+    "min": 55.25
   },
   "estimated_total_monthly_cost_usd": {
     "assumptions": [
@@ -538,8 +553,8 @@
       "Peak concurrency supplied: 200; not equated directly with requests/second.",
       "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (400 active/day); 50 requests/active user/day gives 0.231 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-      "Vercel Pro: regional Node/Python/Go function adapters; 10–30 ms CPU and 100–300 ms wall time are authored hypotheses, not measurements. All team members are paid deploying seats. No Hobby commercial/free allowance. On-demand CDN profile uses no unverified Pro transfer/request allowance; current docs refer to opt-in Flat Rate CDN, which is not modeled. Mumbai rates USD .20/GB, 2.20/M CDN requests, .25/GB origin are conservatively reused as a non-India planning proxy. CPU/memory rates use bom1/fra1/iad1 exactly. Function invocations USD .60/M have no Pro free-million deduction. Source IDs: vercel-pro, vercel-fluid, vercel-bom-price, vercel-build, vercel-cron. Cache/ISR/image transformations are not enabled; quote them separately if added.",
-      "Cron drains are minute-scale bounded batches, not resident workers; 43,200 monthly invocations plus 20–100 ms CPU/100–1000 ms wall time each are included. Direct signed media upload avoids function payload limits. Pool database connections and load-test cold starts, timeouts, batch sizes and concurrency.",
+      "App Platform reference profile: 1 application/SSR and 1 background one-GiB shared-CPU containers, USD10/application container and USD10/background container monthly. Fixed USD10 SKU is never scaled horizontally; if multiple instances are required use the USD12 SKU. A 99/99.9 target proposes single managed component instances relying on provider recovery, not application HA; higher targets add at least two instances. The component SLA does not establish complete-app availability, database failover or measured capacity. Shared CPU, memory, connection limits and failover require load/restore tests before production.",
+      "App Platform builds/tests run in the native build stage within published build limits; no separately paid hosted CI or private container registry is enabled. Regional app, Supabase and Spaces are separate configured boundaries. Redacted logs are exported in batches with retries to the region-pinned S3-compatible Spaces bucket; ephemeral disk is only a bounded temporary buffer, never the durable archive. Authored 1–4 KiB/request log payload and one monthly full restore are scenarios, not measured retention/volume. Archive is a single USD5 Spaces subscription; DB seven-day backups remain the Supabase tier policy.",
       "Supabase Pro is one specific regional project, not a self-hosted PostgreSQL alias. Micro/Medium connection pools and CPU/RAM require validation; limit application pools and prefer transaction pooling. Default DB backups are daily/seven days (provider assumption overriding generic one-month backup assumption for DB only); no explicit month-retention extension is accepted by this profile. Object backup is separately charged. No HIPAA Pro eligibility or contractual SLA is claimed.",
       "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 4000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -547,36 +562,37 @@
       "250 GB uncached allowance once; no additional cached allowance assumed. Includes database-to-application plus direct client traffic within authored envelope; actual routing must be measured.",
       "8 GB included once; application data distribution between DB/files unknown, database uses 50–100% total data.",
       "All month-12 users conservatively treated as monthly active auth users; 100k included once.",
+      "Always-on one-GiB fixed worker containers; packed transactional outbox and telemetry reference footprint charged once. Memory/startup/batch headroom and restart recovery require validation.",
+      "App Platform team transfer allowances pooled once, decimal GB converted to GiB. Conservatively charges full app traffic plus archive uploads here; source Supabase backup download is separately charged there. No Spaces/Droplet allowance is mixed into app transfer.",
       "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
-      "Authored 10–30 ms active CPU/request, 100–300 ms wall/request at 1 GiB; additive memory is conservative under concurrency. Includes invocations, bounded Cron, on-demand CDN/transfer/origin and 100–500 standard concurrent build minutes; deduct single USD 20 team credit once. Regional tariff references are attached in assumptions.",
-      "Authored extra operations/retention headroom, not unlimited native log storage.",
-      "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
-      "Authored separately stored file backup allowance at USD .05/GB-month; provider/database backup does not protect object bytes. Destination geography, transfer and restore implementation require review.",
+      "One Spaces subscription bundles regional redacted logs and file backup storage; 250 GiB storage and 1024 GiB outbound included once. Not an extra Supabase database backup or unlimited log index.",
       "One USD 25 Pro organization/project; charge 730 hours of Micro (.01344/h), or Medium (.0822/h) when peak >=1000, minus one USD 10 compute credit. Tier threshold is an unvalidated capacity hypothesis.",
-      "USD 20 platform fee includes one deploying seat; every team member assumed a deploying seat. Exactly one USD 20 team usage credit is applied below.",
+      "One full archive restore/download per month at upper bound; 1024-GiB Spaces outbound allowance once. Additional restore cycles need an explicit quote.",
+      "One-GiB shared-CPU application/SSR containers. USD10 fixed SKU, one instance per component, no horizontal scaling. Reference 50 RPS/1000 peak users is unvalidated; database/realtime are external.",
+      "Stored archive bytes above the single 250-GiB allowance; includes authored 1–4 KiB redacted log events per API request plus retained file snapshots.",
       "Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded."
     ],
-    "max": 234.89,
-    "min": 77.75
+    "max": 182.02,
+    "min": 55.25
   },
   "integration_reviews": [],
   "plan_comparison": [
     {
       "architecture_style": "modular_monolith",
-      "budget_fit": "range_risk",
+      "budget_fit": "within_upper",
       "core": {
         "backend": "Django",
         "database": "Supabase Pro PostgreSQL",
         "frontend": "React Native",
-        "hosting": "Vercel Pro regional functions"
+        "hosting": "DigitalOcean App Platform regional containers"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 200; not equated directly with requests/second.",
         "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (400 active/day); 50 requests/active user/day gives 0.231 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Vercel Pro: regional Node/Python/Go function adapters; 10–30 ms CPU and 100–300 ms wall time are authored hypotheses, not measurements. All team members are paid deploying seats. No Hobby commercial/free allowance. On-demand CDN profile uses no unverified Pro transfer/request allowance; current docs refer to opt-in Flat Rate CDN, which is not modeled. Mumbai rates USD .20/GB, 2.20/M CDN requests, .25/GB origin are conservatively reused as a non-India planning proxy. CPU/memory rates use bom1/fra1/iad1 exactly. Function invocations USD .60/M have no Pro free-million deduction. Source IDs: vercel-pro, vercel-fluid, vercel-bom-price, vercel-build, vercel-cron. Cache/ISR/image transformations are not enabled; quote them separately if added.",
-        "Cron drains are minute-scale bounded batches, not resident workers; 43,200 monthly invocations plus 20–100 ms CPU/100–1000 ms wall time each are included. Direct signed media upload avoids function payload limits. Pool database connections and load-test cold starts, timeouts, batch sizes and concurrency.",
+        "App Platform reference profile: 1 application/SSR and 1 background one-GiB shared-CPU containers, USD10/application container and USD10/background container monthly. Fixed USD10 SKU is never scaled horizontally; if multiple instances are required use the USD12 SKU. A 99/99.9 target proposes single managed component instances relying on provider recovery, not application HA; higher targets add at least two instances. The component SLA does not establish complete-app availability, database failover or measured capacity. Shared CPU, memory, connection limits and failover require load/restore tests before production.",
+        "App Platform builds/tests run in the native build stage within published build limits; no separately paid hosted CI or private container registry is enabled. Regional app, Supabase and Spaces are separate configured boundaries. Redacted logs are exported in batches with retries to the region-pinned S3-compatible Spaces bucket; ephemeral disk is only a bounded temporary buffer, never the durable archive. Authored 1–4 KiB/request log payload and one monthly full restore are scenarios, not measured retention/volume. Archive is a single USD5 Spaces subscription; DB seven-day backups remain the Supabase tier policy.",
         "Supabase Pro is one specific regional project, not a self-hosted PostgreSQL alias. Micro/Medium connection pools and CPU/RAM require validation; limit application pools and prefer transaction pooling. Default DB backups are daily/seven days (provider assumption overriding generic one-month backup assumption for DB only); no explicit month-retention extension is accepted by this profile. Object backup is separately charged. No HIPAA Pro eligibility or contractual SLA is claimed.",
         "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 4000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -584,22 +600,23 @@
         "250 GB uncached allowance once; no additional cached allowance assumed. Includes database-to-application plus direct client traffic within authored envelope; actual routing must be measured.",
         "8 GB included once; application data distribution between DB/files unknown, database uses 50–100% total data.",
         "All month-12 users conservatively treated as monthly active auth users; 100k included once.",
+        "Always-on one-GiB fixed worker containers; packed transactional outbox and telemetry reference footprint charged once. Memory/startup/batch headroom and restart recovery require validation.",
+        "App Platform team transfer allowances pooled once, decimal GB converted to GiB. Conservatively charges full app traffic plus archive uploads here; source Supabase backup download is separately charged there. No Spaces/Droplet allowance is mixed into app transfer.",
         "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
-        "Authored 10–30 ms active CPU/request, 100–300 ms wall/request at 1 GiB; additive memory is conservative under concurrency. Includes invocations, bounded Cron, on-demand CDN/transfer/origin and 100–500 standard concurrent build minutes; deduct single USD 20 team credit once. Regional tariff references are attached in assumptions.",
-        "Authored extra operations/retention headroom, not unlimited native log storage.",
-        "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
-        "Authored separately stored file backup allowance at USD .05/GB-month; provider/database backup does not protect object bytes. Destination geography, transfer and restore implementation require review.",
+        "One Spaces subscription bundles regional redacted logs and file backup storage; 250 GiB storage and 1024 GiB outbound included once. Not an extra Supabase database backup or unlimited log index.",
         "One USD 25 Pro organization/project; charge 730 hours of Micro (.01344/h), or Medium (.0822/h) when peak >=1000, minus one USD 10 compute credit. Tier threshold is an unvalidated capacity hypothesis.",
-        "USD 20 platform fee includes one deploying seat; every team member assumed a deploying seat. Exactly one USD 20 team usage credit is applied below."
+        "One full archive restore/download per month at upper bound; 1024-GiB Spaces outbound allowance once. Additional restore cycles need an explicit quote.",
+        "One-GiB shared-CPU application/SSR containers. USD10 fixed SKU, one instance per component, no horizontal scaling. Reference 50 RPS/1000 peak users is unvalidated; database/realtime are external.",
+        "Stored archive bytes above the single 250-GiB allowance; includes authored 1–4 KiB redacted log events per API request plus retained file snapshots."
       ],
       "database_region": "ap-south-1",
       "monthly_usd": {
-        "max": 114.89,
-        "min": 77.75
+        "max": 62.02,
+        "min": 55.25
       },
-      "operated_components": 1,
-      "plan_id": "modular_monolith|react-native|django|supabase-pg|vercel|bom1",
-      "primary_region": "bom1",
+      "operated_components": 1.5,
+      "plan_id": "modular_monolith|react-native|django|supabase-pg|do-app|blr",
+      "primary_region": "blr",
       "retained_constraints": [
         "platforms=android",
         "cloud_preference=any",
@@ -608,21 +625,21 @@
         "compliance=dpdp",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 77,
+      "score": 87,
       "score_delta": 0,
       "selected": true,
       "supporting_services": [
+        "OpenTelemetry + regional Spaces log/file archive",
+        "App Platform native build/test/deploy",
         "Expo SQLite + application sync queue",
         "MSG91 OTP",
+        "PostgreSQL transactional outbox + worker",
         "Supabase Auth + application JWT verification",
-        "Supabase regional Storage + signed direct uploads",
-        "Vercel native build/deploy",
-        "PostgreSQL transactional outbox + bounded Vercel Cron drain",
-        "Application instrumentation + Vercel runtime logs"
+        "Supabase regional Storage + signed direct uploads"
       ],
       "tied_on_score": false,
       "warning_codes": [
-        "BUDGET_RANGE_RISK",
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
         "EXTERNAL_RESIDENCY_UNVERIFIED",
         "FREE_TIER_OR_DEPLOYMENT_LIMITS",
@@ -632,20 +649,20 @@
     },
     {
       "architecture_style": "modular_monolith",
-      "budget_fit": "range_risk",
+      "budget_fit": "within_upper",
       "core": {
         "backend": "Express",
         "database": "Supabase Pro PostgreSQL",
         "frontend": "React Native",
-        "hosting": "Vercel Pro regional functions"
+        "hosting": "DigitalOcean App Platform regional containers"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 200; not equated directly with requests/second.",
         "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (400 active/day); 50 requests/active user/day gives 0.231 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Vercel Pro: regional Node/Python/Go function adapters; 10–30 ms CPU and 100–300 ms wall time are authored hypotheses, not measurements. All team members are paid deploying seats. No Hobby commercial/free allowance. On-demand CDN profile uses no unverified Pro transfer/request allowance; current docs refer to opt-in Flat Rate CDN, which is not modeled. Mumbai rates USD .20/GB, 2.20/M CDN requests, .25/GB origin are conservatively reused as a non-India planning proxy. CPU/memory rates use bom1/fra1/iad1 exactly. Function invocations USD .60/M have no Pro free-million deduction. Source IDs: vercel-pro, vercel-fluid, vercel-bom-price, vercel-build, vercel-cron. Cache/ISR/image transformations are not enabled; quote them separately if added.",
-        "Cron drains are minute-scale bounded batches, not resident workers; 43,200 monthly invocations plus 20–100 ms CPU/100–1000 ms wall time each are included. Direct signed media upload avoids function payload limits. Pool database connections and load-test cold starts, timeouts, batch sizes and concurrency.",
+        "App Platform reference profile: 1 application/SSR and 1 background one-GiB shared-CPU containers, USD10/application container and USD10/background container monthly. Fixed USD10 SKU is never scaled horizontally; if multiple instances are required use the USD12 SKU. A 99/99.9 target proposes single managed component instances relying on provider recovery, not application HA; higher targets add at least two instances. The component SLA does not establish complete-app availability, database failover or measured capacity. Shared CPU, memory, connection limits and failover require load/restore tests before production.",
+        "App Platform builds/tests run in the native build stage within published build limits; no separately paid hosted CI or private container registry is enabled. Regional app, Supabase and Spaces are separate configured boundaries. Redacted logs are exported in batches with retries to the region-pinned S3-compatible Spaces bucket; ephemeral disk is only a bounded temporary buffer, never the durable archive. Authored 1–4 KiB/request log payload and one monthly full restore are scenarios, not measured retention/volume. Archive is a single USD5 Spaces subscription; DB seven-day backups remain the Supabase tier policy.",
         "Supabase Pro is one specific regional project, not a self-hosted PostgreSQL alias. Micro/Medium connection pools and CPU/RAM require validation; limit application pools and prefer transaction pooling. Default DB backups are daily/seven days (provider assumption overriding generic one-month backup assumption for DB only); no explicit month-retention extension is accepted by this profile. Object backup is separately charged. No HIPAA Pro eligibility or contractual SLA is claimed.",
         "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 4000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -653,22 +670,23 @@
         "250 GB uncached allowance once; no additional cached allowance assumed. Includes database-to-application plus direct client traffic within authored envelope; actual routing must be measured.",
         "8 GB included once; application data distribution between DB/files unknown, database uses 50–100% total data.",
         "All month-12 users conservatively treated as monthly active auth users; 100k included once.",
+        "Always-on one-GiB fixed worker containers; packed transactional outbox and telemetry reference footprint charged once. Memory/startup/batch headroom and restart recovery require validation.",
+        "App Platform team transfer allowances pooled once, decimal GB converted to GiB. Conservatively charges full app traffic plus archive uploads here; source Supabase backup download is separately charged there. No Spaces/Droplet allowance is mixed into app transfer.",
         "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
-        "Authored 10–30 ms active CPU/request, 100–300 ms wall/request at 1 GiB; additive memory is conservative under concurrency. Includes invocations, bounded Cron, on-demand CDN/transfer/origin and 100–500 standard concurrent build minutes; deduct single USD 20 team credit once. Regional tariff references are attached in assumptions.",
-        "Authored extra operations/retention headroom, not unlimited native log storage.",
-        "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
-        "Authored separately stored file backup allowance at USD .05/GB-month; provider/database backup does not protect object bytes. Destination geography, transfer and restore implementation require review.",
+        "One Spaces subscription bundles regional redacted logs and file backup storage; 250 GiB storage and 1024 GiB outbound included once. Not an extra Supabase database backup or unlimited log index.",
         "One USD 25 Pro organization/project; charge 730 hours of Micro (.01344/h), or Medium (.0822/h) when peak >=1000, minus one USD 10 compute credit. Tier threshold is an unvalidated capacity hypothesis.",
-        "USD 20 platform fee includes one deploying seat; every team member assumed a deploying seat. Exactly one USD 20 team usage credit is applied below."
+        "One full archive restore/download per month at upper bound; 1024-GiB Spaces outbound allowance once. Additional restore cycles need an explicit quote.",
+        "One-GiB shared-CPU application/SSR containers. USD10 fixed SKU, one instance per component, no horizontal scaling. Reference 50 RPS/1000 peak users is unvalidated; database/realtime are external.",
+        "Stored archive bytes above the single 250-GiB allowance; includes authored 1–4 KiB redacted log events per API request plus retained file snapshots."
       ],
       "database_region": "ap-south-1",
       "monthly_usd": {
-        "max": 114.89,
-        "min": 77.75
+        "max": 62.02,
+        "min": 55.25
       },
-      "operated_components": 1,
-      "plan_id": "modular_monolith|react-native|express|supabase-pg|vercel|bom1",
-      "primary_region": "bom1",
+      "operated_components": 1.5,
+      "plan_id": "modular_monolith|react-native|express|supabase-pg|do-app|blr",
+      "primary_region": "blr",
       "retained_constraints": [
         "platforms=android",
         "cloud_preference=any",
@@ -677,21 +695,21 @@
         "compliance=dpdp",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 77,
+      "score": 87,
       "score_delta": 0,
       "selected": false,
       "supporting_services": [
+        "OpenTelemetry + regional Spaces log/file archive",
+        "App Platform native build/test/deploy",
         "Expo SQLite + application sync queue",
         "MSG91 OTP",
+        "PostgreSQL transactional outbox + worker",
         "Supabase Auth + application JWT verification",
-        "Supabase regional Storage + signed direct uploads",
-        "Vercel native build/deploy",
-        "PostgreSQL transactional outbox + bounded Vercel Cron drain",
-        "Application instrumentation + Vercel runtime logs"
+        "Supabase regional Storage + signed direct uploads"
       ],
       "tied_on_score": true,
       "warning_codes": [
-        "BUDGET_RANGE_RISK",
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
         "EXTERNAL_RESIDENCY_UNVERIFIED",
         "FREE_TIER_OR_DEPLOYMENT_LIMITS",
@@ -701,20 +719,20 @@
     },
     {
       "architecture_style": "modular_monolith",
-      "budget_fit": "range_risk",
+      "budget_fit": "within_upper",
       "core": {
         "backend": "FastAPI",
         "database": "Supabase Pro PostgreSQL",
         "frontend": "React Native",
-        "hosting": "Vercel Pro regional functions"
+        "hosting": "DigitalOcean App Platform regional containers"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 200; not equated directly with requests/second.",
         "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (400 active/day); 50 requests/active user/day gives 0.231 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 100 GB supplied; egress 20 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-        "Vercel Pro: regional Node/Python/Go function adapters; 10–30 ms CPU and 100–300 ms wall time are authored hypotheses, not measurements. All team members are paid deploying seats. No Hobby commercial/free allowance. On-demand CDN profile uses no unverified Pro transfer/request allowance; current docs refer to opt-in Flat Rate CDN, which is not modeled. Mumbai rates USD .20/GB, 2.20/M CDN requests, .25/GB origin are conservatively reused as a non-India planning proxy. CPU/memory rates use bom1/fra1/iad1 exactly. Function invocations USD .60/M have no Pro free-million deduction. Source IDs: vercel-pro, vercel-fluid, vercel-bom-price, vercel-build, vercel-cron. Cache/ISR/image transformations are not enabled; quote them separately if added.",
-        "Cron drains are minute-scale bounded batches, not resident workers; 43,200 monthly invocations plus 20–100 ms CPU/100–1000 ms wall time each are included. Direct signed media upload avoids function payload limits. Pool database connections and load-test cold starts, timeouts, batch sizes and concurrency.",
+        "App Platform reference profile: 1 application/SSR and 1 background one-GiB shared-CPU containers, USD10/application container and USD10/background container monthly. Fixed USD10 SKU is never scaled horizontally; if multiple instances are required use the USD12 SKU. A 99/99.9 target proposes single managed component instances relying on provider recovery, not application HA; higher targets add at least two instances. The component SLA does not establish complete-app availability, database failover or measured capacity. Shared CPU, memory, connection limits and failover require load/restore tests before production.",
+        "App Platform builds/tests run in the native build stage within published build limits; no separately paid hosted CI or private container registry is enabled. Regional app, Supabase and Spaces are separate configured boundaries. Redacted logs are exported in batches with retries to the region-pinned S3-compatible Spaces bucket; ephemeral disk is only a bounded temporary buffer, never the durable archive. Authored 1–4 KiB/request log payload and one monthly full restore are scenarios, not measured retention/volume. Archive is a single USD5 Spaces subscription; DB seven-day backups remain the Supabase tier policy.",
         "Supabase Pro is one specific regional project, not a self-hosted PostgreSQL alias. Micro/Medium connection pools and CPU/RAM require validation; limit application pools and prefer transaction pooling. Default DB backups are daily/seven days (provider assumption overriding generic one-month backup assumption for DB only); no explicit month-retention extension is accepted by this profile. Object backup is separately charged. No HIPAA Pro eligibility or contractual SLA is claimed.",
         "OTP volume unknown, assumed range 0 to twice the year-12 users: upper 4000 messages/month. SMS rate is an explicit unquoted planning envelope; DLT, taxes and country routing may add fees.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
@@ -722,22 +740,23 @@
         "250 GB uncached allowance once; no additional cached allowance assumed. Includes database-to-application plus direct client traffic within authored envelope; actual routing must be measured.",
         "8 GB included once; application data distribution between DB/files unknown, database uses 50–100% total data.",
         "All month-12 users conservatively treated as monthly active auth users; 100k included once.",
+        "Always-on one-GiB fixed worker containers; packed transactional outbox and telemetry reference footprint charged once. Memory/startup/batch headroom and restart recovery require validation.",
+        "App Platform team transfer allowances pooled once, decimal GB converted to GiB. Conservatively charges full app traffic plus archive uploads here; source Supabase backup download is separately charged there. No Spaces/Droplet allowance is mixed into app transfer.",
         "Assumed USD/SMS planning envelope only; verify country, tax, DLT and provider quote. No currency conversion or MSG91 tariff is claimed.",
-        "Authored 10–30 ms active CPU/request, 100–300 ms wall/request at 1 GiB; additive memory is conservative under concurrency. Includes invocations, bounded Cron, on-demand CDN/transfer/origin and 100–500 standard concurrent build minutes; deduct single USD 20 team credit once. Regional tariff references are attached in assumptions.",
-        "Authored extra operations/retention headroom, not unlimited native log storage.",
-        "Authored minimum USD 5/month regional logs/metrics archive allowance, separate from included runtime logs.",
-        "Authored separately stored file backup allowance at USD .05/GB-month; provider/database backup does not protect object bytes. Destination geography, transfer and restore implementation require review.",
+        "One Spaces subscription bundles regional redacted logs and file backup storage; 250 GiB storage and 1024 GiB outbound included once. Not an extra Supabase database backup or unlimited log index.",
         "One USD 25 Pro organization/project; charge 730 hours of Micro (.01344/h), or Medium (.0822/h) when peak >=1000, minus one USD 10 compute credit. Tier threshold is an unvalidated capacity hypothesis.",
-        "USD 20 platform fee includes one deploying seat; every team member assumed a deploying seat. Exactly one USD 20 team usage credit is applied below."
+        "One full archive restore/download per month at upper bound; 1024-GiB Spaces outbound allowance once. Additional restore cycles need an explicit quote.",
+        "One-GiB shared-CPU application/SSR containers. USD10 fixed SKU, one instance per component, no horizontal scaling. Reference 50 RPS/1000 peak users is unvalidated; database/realtime are external.",
+        "Stored archive bytes above the single 250-GiB allowance; includes authored 1–4 KiB redacted log events per API request plus retained file snapshots."
       ],
       "database_region": "ap-south-1",
       "monthly_usd": {
-        "max": 114.89,
-        "min": 77.75
+        "max": 62.02,
+        "min": 55.25
       },
-      "operated_components": 1,
-      "plan_id": "modular_monolith|react-native|fastapi|supabase-pg|vercel|bom1",
-      "primary_region": "bom1",
+      "operated_components": 1.5,
+      "plan_id": "modular_monolith|react-native|fastapi|supabase-pg|do-app|blr",
+      "primary_region": "blr",
       "retained_constraints": [
         "platforms=android",
         "cloud_preference=any",
@@ -746,21 +765,21 @@
         "compliance=dpdp",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 77,
+      "score": 87,
       "score_delta": 0,
       "selected": false,
       "supporting_services": [
+        "OpenTelemetry + regional Spaces log/file archive",
+        "App Platform native build/test/deploy",
         "Expo SQLite + application sync queue",
         "MSG91 OTP",
+        "PostgreSQL transactional outbox + worker",
         "Supabase Auth + application JWT verification",
-        "Supabase regional Storage + signed direct uploads",
-        "Vercel native build/deploy",
-        "PostgreSQL transactional outbox + bounded Vercel Cron drain",
-        "Application instrumentation + Vercel runtime logs"
+        "Supabase regional Storage + signed direct uploads"
       ],
       "tied_on_score": true,
       "warning_codes": [
-        "BUDGET_RANGE_RISK",
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
         "EXTERNAL_RESIDENCY_UNVERIFIED",
         "FREE_TIER_OR_DEPLOYMENT_LIMITS",
@@ -769,8 +788,58 @@
       ]
     }
   ],
-  "primary_region": "bom1",
+  "primary_region": "blr",
   "review_actions": [
+    {
+      "affected_components": [
+        "background worker",
+        "regional log/file archive"
+      ],
+      "code": "ARCHIVE_INTEGRATION_UNVERIFIED",
+      "evidence_required": [
+        "Pinned alpha exporter or reviewed S3 SDK with TLS, least-privilege bucket credentials and explicit blr1/fra1/nyc3 endpoint; no global CDN for the private archive.",
+        "Synthetic export/restore drill covering retries, duplicate IDs, partial uploads, worker restart, disk/memory backpressure and retention/deletion.",
+        "Measured log bytes, object version churn, backup download/restore counts, shared-worker peak memory and end-to-end delivery alerts; reconcile both provider transfer meters."
+      ],
+      "fields": [
+        "requirements.availability",
+        "requirements.file_media_storage"
+      ],
+      "id": "ARCHIVE_INTEGRATION_UNVERIFIED:requirements.availability|requirements.file_media_storage:0",
+      "kind": "evidence_gap",
+      "next_action": "Implement the regional archive boundary and run the synthetic failure/restore drill. The estimate is not proof that the archive exists or survives failures.",
+      "references": [
+        {
+          "checked_on": "2026-11-15",
+          "id": "do-spaces-regions",
+          "scope": "Regional bucket selected separately from app; BLR1, FRA1 and NYC3 reviewed.",
+          "title": "Spaces regional availability",
+          "url": "https://docs.digitalocean.com/products/spaces/details/availability/"
+        },
+        {
+          "checked_on": "2026-11-15",
+          "id": "do-spaces-price",
+          "scope": "USD5 subscription, 250GiB stored/1024GiB outbound included once; .02/GiB storage, .01/GiB transfer overages.",
+          "title": "Spaces storage pricing",
+          "url": "https://docs.digitalocean.com/products/spaces/details/pricing/"
+        },
+        {
+          "checked_on": "2026-11-15",
+          "id": "otel-s3-export",
+          "scope": "S3-compatible endpoint configuration is implementation work; verify exporter support/version, redaction, batch failure/retry and regional bucket access.",
+          "title": "OpenTelemetry S3 exporter",
+          "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/awss3exporter"
+        },
+        {
+          "checked_on": "2026-11-15",
+          "id": "do-app-runtime",
+          "scope": "Linux AMD64 web and worker containers, separate resources; ephemeral filesystem is not durable storage.",
+          "title": "App Platform containers",
+          "url": "https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-container-images/"
+        }
+      ],
+      "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
+    },
     {
       "affected_components": [
         "phone delivery",
@@ -786,7 +855,7 @@
         "infrastructure.data_residency",
         "requirements.auth"
       ],
-      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.auth:0",
+      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.auth:1",
       "kind": "evidence_gap",
       "next_action": "Request the scoped vendor data-flow and configuration evidence. Review a regional alternative without changing the original residency requirement.",
       "references": [
@@ -814,7 +883,7 @@
         "infrastructure.data_residency",
         "requirements.auth"
       ],
-      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.auth:1",
+      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.auth:2",
       "kind": "evidence_gap",
       "next_action": "Request the scoped vendor data-flow and configuration evidence. Review a regional alternative without changing the original residency requirement.",
       "references": [
@@ -855,7 +924,7 @@
         "infrastructure.data_residency",
         "requirements.file_media_storage"
       ],
-      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.file_media_storage:2",
+      "id": "EXTERNAL_RESIDENCY_UNVERIFIED:infrastructure.data_residency|requirements.file_media_storage:3",
       "kind": "evidence_gap",
       "next_action": "Request the scoped vendor data-flow and configuration evidence. Review a regional alternative without changing the original residency requirement.",
       "references": [
@@ -894,7 +963,7 @@
       "fields": [
         "infrastructure.data_residency"
       ],
-      "id": "MANAGED_BOUNDARY_RESIDENCY_REVIEW:infrastructure.data_residency:3",
+      "id": "MANAGED_BOUNDARY_RESIDENCY_REVIEW:infrastructure.data_residency:4",
       "kind": "evidence_gap",
       "next_action": "Review the scoped catalog evidence, workload and configuration; resolve the condition and rerun the unchanged input.",
       "references": [],
@@ -912,25 +981,25 @@
         "scale.peak_concurrent_users",
         "requirements.availability"
       ],
-      "id": "MANAGED_TIER_CAPACITY_REVIEW:scale.peak_concurrent_users|requirements.availability:4",
+      "id": "MANAGED_TIER_CAPACITY_REVIEW:scale.peak_concurrent_users|requirements.availability:5",
       "kind": "evidence_gap",
       "next_action": "Review the scoped catalog evidence, workload and configuration; resolve the condition and rerun the unchanged input.",
       "references": [],
       "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.8.0",
+  "rules_version": "0.9.0",
   "scenario_id": "P6",
   "score_breakdown": [
     {
-      "contribution": 15,
+      "contribution": 25,
       "criterion": "cost",
       "driven_by": [
         "budget.monthly_infra_usd",
         "priorities.cost"
       ],
-      "fit": 3,
-      "reason": "USD 77.75–114.89/month versus budget 100: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "fit": 5,
+      "reason": "USD 55.25–62.02/month versus budget 100: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
       "weight": 5
     },
     {
@@ -997,7 +1066,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.8.0",
+  "services_version": "0.9.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -1028,7 +1097,7 @@
       "alternatives": [
         {
           "choice": "PostgreSQL",
-          "why_not": "Best compatible complete plan using this option scored 67, below 77; other layers may also differ."
+          "why_not": "Best compatible complete plan using this option scored 67, below 87; other layers may also differ."
         }
       ],
       "choice": "Supabase Pro PostgreSQL",
@@ -1078,26 +1147,26 @@
     "hosting": {
       "alternatives": [
         {
-          "choice": "Google Cloud Run",
-          "why_not": "Best compatible complete plan using this option scored 67, below 77; other layers may also differ."
+          "choice": "Vercel Pro regional functions",
+          "why_not": "Best compatible complete plan using this option scored 77, below 87; other layers may also differ."
         }
       ],
-      "choice": "Vercel Pro regional functions",
+      "choice": "DigitalOcean App Platform regional containers",
       "driven_by": [
         "infrastructure.cloud_preference",
         "infrastructure.deployment_model",
         "infrastructure.data_residency",
         "team.has_devops"
       ],
-      "id": "vercel",
-      "justification": "Matches managed_cloud with provider vercel; reviewed primary compute region bom1. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "id": "do-app",
+      "justification": "Matches managed_cloud with provider digitalocean; reviewed primary compute region blr. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "hosting",
       "source_ids": [
-        "vercel-django",
-        "vercel-go",
-        "vercel-pro",
-        "vercel-regions",
-        "vercel-ws"
+        "do-app-price",
+        "do-app-regions",
+        "do-app-runtime",
+        "do-app-sla",
+        "do-region-country"
       ],
       "tradeoffs": [
         "Application and separately managed database use explicit regions. All control-plane, CDN, log, identity and network boundaries require separate residency review.",
@@ -1105,6 +1174,63 @@
       ]
     },
     "supporting": [
+      {
+        "alternatives": [
+          {
+            "choice": "Prometheus with application instrumentation",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "observability"
+        ],
+        "choice": "OpenTelemetry + regional Spaces log/file archive",
+        "driven_by": [
+          "requirements.availability"
+        ],
+        "incremental_compute_units": 0.25,
+        "justification": "Collect redacted metrics/logs/traces with regional retention; on cloud use a configured host-provider regional log bucket, locally use provisioned persistent storage. Deploy in the same reviewed compute/data region; explicit configuration is required.",
+        "layer": "observability",
+        "placement": "host",
+        "service_id": "do-archive",
+        "source_ids": [
+          "telemetry",
+          "otel-s3-export",
+          "do-spaces-regions",
+          "do-spaces-price",
+          "do-region-country"
+        ],
+        "tradeoffs": [
+          "A budgeted 1GiB background container packs outbox and telemetry reference processes. Upload redacted batches directly to the selected regional Spaces bucket via reviewed S3-compatible SDK/exporter; configure retries, retention, restore and alerts. Ephemeral worker disk is temporary only. Connection/memory limits and exporter behavior require validation."
+        ]
+      },
+      {
+        "alternatives": [
+          {
+            "choice": "Jenkins",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "ci"
+        ],
+        "choice": "App Platform native build/test/deploy",
+        "driven_by": [
+          "infrastructure.deployment_model"
+        ],
+        "incremental_compute_units": 0,
+        "justification": "Build/test/deploy with pinned dependencies, synthetic fixtures and controlled secrets; production data does not enter the build service.",
+        "layer": "ci_cd",
+        "placement": "build",
+        "service_id": "do-build",
+        "source_ids": [
+          "do-app-build",
+          "do-app-price"
+        ],
+        "tradeoffs": [
+          "Run pinned build and synthetic test commands in native build stage within provider time/resource limits; no separately hosted runner tariff is assumed. Production data/secrets never enter build logs. Paid external runners/registries are not enabled."
+        ]
+      },
       {
         "alternatives": [
           {
@@ -1163,6 +1289,34 @@
       {
         "alternatives": [
           {
+            "choice": "RabbitMQ",
+            "why_not": "More custom integration/operation than this reviewed option."
+          }
+        ],
+        "capabilities": [
+          "queue"
+        ],
+        "choice": "PostgreSQL transactional outbox + worker",
+        "driven_by": [
+          "requirements.offline_support",
+          "requirements.payments",
+          "requirements.realtime"
+        ],
+        "incremental_compute_units": 0.25,
+        "justification": "Application and outbox writes commit atomically; a separately budgeted worker retries idempotently and records dead letters.",
+        "layer": "queue",
+        "placement": "database",
+        "service_id": "outbox",
+        "source_ids": [
+          "pg-tx"
+        ],
+        "tradeoffs": [
+          "Outbox rows share the database bill. Worker retries must be idempotent; tune polling, retry/dead-letter policy and retention."
+        ]
+      },
+      {
+        "alternatives": [
+          {
             "choice": "Microsoft Entra ID",
             "why_not": "More custom integration/operation than this reviewed option."
           }
@@ -1213,96 +1367,22 @@
         "tradeoffs": [
           "Private regional project bucket, RLS, signed direct uploads, malware validation and resumable retries. Project database backups do not back up stored file contents; external file backup allowance is charged separately."
         ]
-      },
-      {
-        "alternatives": [
-          {
-            "choice": "Jenkins",
-            "why_not": "More custom integration/operation than this reviewed option."
-          }
-        ],
-        "capabilities": [
-          "ci"
-        ],
-        "choice": "Vercel native build/deploy",
-        "driven_by": [
-          "infrastructure.deployment_model"
-        ],
-        "incremental_compute_units": 0,
-        "justification": "Build/test/deploy with pinned dependencies, synthetic fixtures and controlled secrets; production data does not enter the build service.",
-        "layer": "ci_cd",
-        "placement": "build",
-        "service_id": "vercel-build",
-        "source_ids": [
-          "vercel-build",
-          "vercel-pro"
-        ],
-        "tradeoffs": [
-          "Source/synthetic fixtures only. Authored 100–500 standard concurrent build minutes per month are metered before applying the single team usage credit."
-        ]
-      },
-      {
-        "alternatives": [
-          {
-            "choice": "RabbitMQ",
-            "why_not": "More custom integration/operation than this reviewed option."
-          }
-        ],
-        "capabilities": [
-          "queue"
-        ],
-        "choice": "PostgreSQL transactional outbox + bounded Vercel Cron drain",
-        "driven_by": [
-          "requirements.offline_support",
-          "requirements.payments",
-          "requirements.realtime"
-        ],
-        "incremental_compute_units": 0,
-        "justification": "Application and outbox writes commit atomically; an authenticated minute-scale scheduled function drains bounded batches with row locks, idempotency and dead letters. Test duration/concurrency/retry limits.",
-        "layer": "queue",
-        "placement": "database",
-        "service_id": "vercel-outbox",
-        "source_ids": [
-          "pg-tx",
-          "vercel-cron"
-        ],
-        "tradeoffs": [
-          "Commit data/outbox atomically; authenticated scheduled function drains bounded batches with locks, idempotency and dead letters. Not a continuously running worker; minute-scale scheduling and duration limits apply."
-        ]
-      },
-      {
-        "alternatives": [
-          {
-            "choice": "Prometheus with application instrumentation",
-            "why_not": "More custom integration/operation than this reviewed option."
-          }
-        ],
-        "capabilities": [
-          "observability"
-        ],
-        "choice": "Application instrumentation + Vercel runtime logs",
-        "driven_by": [
-          "requirements.availability"
-        ],
-        "incremental_compute_units": 0,
-        "justification": "Collect redacted metrics/logs/traces with regional retention; on cloud use a configured host-provider regional log bucket, locally use provisioned persistent storage. Deploy in the same reviewed compute/data region; explicit configuration is required.",
-        "layer": "observability",
-        "placement": "host",
-        "service_id": "vercel-telemetry",
-        "source_ids": [
-          "telemetry",
-          "vercel-logs"
-        ],
-        "tradeoffs": [
-          "Redact sensitive data and review runtime log geography/retention; separate regional archive allowance is charged. No resident Collector is assumed."
-        ]
       }
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 132 complete compatible plans; month-12 infrastructure planning band USD 77.75–114.89/month.",
+  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 204 complete compatible plans; month-12 infrastructure planning band USD 55.25–62.02/month.",
   "validation_errors": [],
   "warnings": [
+    {
+      "code": "ARCHIVE_INTEGRATION_UNVERIFIED",
+      "fields": [
+        "requirements.availability",
+        "requirements.file_media_storage"
+      ],
+      "message": "The proposed regional log/file archive requires an implemented, pinned and tested S3-compatible exporter/SDK, IAM, retry/backpressure, deletion retention and restore workflow. The reviewed OpenTelemetry S3 exporter is alpha; no durable local worker disk, indexed log search, archive delivery or successful restore is assumed verified. Shared one-GiB container capacity and end-to-end availability remain unmeasured.",
+      "severity": "critical"
+    },
     {
       "code": "EXTERNAL_RESIDENCY_UNVERIFIED",
       "fields": [
@@ -1346,14 +1426,6 @@
       ],
       "message": "This paid managed tier is a planning proposal, not validated capacity or an availability SLA. Validate pool limits, concurrent clients, CPU/memory, backup restore and the requested p95/availability before deployment; no automatic HA replicas are assumed.",
       "severity": "critical"
-    },
-    {
-      "code": "BUDGET_RANGE_RISK",
-      "fields": [
-        "budget.monthly_infra_usd"
-      ],
-      "message": "Upper estimate USD 114.89/month exceeds USD 100; stated usage/price assumptions determine whether it fits.",
-      "severity": "warning"
     },
     {
       "code": "COMPLIANCE_IMPLEMENTATION_REVIEW",

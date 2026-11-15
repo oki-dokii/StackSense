@@ -34,7 +34,7 @@ test('strict calendar dates reject rollover dates and timestamps', () => {
 test('audit covers every source, records consumers and leaves catalogs unchanged', () => {
   const before = canonical(bundle);
   const result = audit(bundle, '2026-11-15', policy);
-  assert.equal(result.counts.sources, 142);
+  assert.equal(result.counts.sources, 166);
   assert.equal(result.counts.review_due, 0);
   assert.equal(
     result.sources.find((s) => s.key === 'services:run-price').cadence_days,
@@ -239,7 +239,7 @@ test('real CLI writes deterministic audit and refuses to overwrite earlier evide
     const result = JSON.parse(
       await readFile(path.join(temp, 'result/report.json')),
     );
-    assert.equal(result.counts.sources, 142);
+    assert.equal(result.counts.sources, 166);
     assert.equal(
       spawnSync(process.execPath, command, { cwd: root, encoding: 'utf8' })
         .status,

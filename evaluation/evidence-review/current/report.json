@@ -37,19 +37,19 @@
   "policy_sha256": "a93e728b7f52bcddfbc72e0914200e0441bd16b3c368a38a45f9a40dedb93132",
   "catalogs": {
     "core": {
-      "version": "0.5.0",
-      "sha256": "10caf3c3ecc116eec40d43ad82192f4b1924f4d3b3da0ec4c759b30e7834ae14"
+      "version": "0.6.0",
+      "sha256": "8eec5526f2f3eb0d8bead5e930673c7c035fdd459c695e081c51d0f7e1b1e277"
     },
     "services": {
-      "version": "0.8.0",
-      "sha256": "366b92daf483854bf3da82221a4b75990803192253b5b397e2350164cbc25a59"
+      "version": "0.9.0",
+      "sha256": "14a4c1eec6e802dc182e842b82483c02027db432631d7438f54558fe86325d7e"
     }
   },
   "counts": {
-    "sources": 142,
+    "sources": 166,
     "review_due": 0,
     "future_review_dates": 0,
-    "no_structured_catalog_reference": 16
+    "no_structured_catalog_reference": 25
   },
   "sources": [
     {
@@ -247,6 +247,64 @@
       ]
     },
     {
+      "key": "core:azure-app-network",
+      "id": "azure-app-network",
+      "title": "App Service VNet integration",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+      "checked_on": "2026-11-15",
+      "scope": "Basic dedicated compute supports regional VNet integration and approved site-to-site VPN/ExpressRoute paths. It does not establish existing private connectivity.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-app-network",
+          "path": "/entries/41/source_ids",
+          "owner": "appservice-india"
+        },
+        {
+          "id": "azure-app-network",
+          "path": "/entries/41/regions/0/source_ids",
+          "owner": "appservice-india"
+        }
+      ],
+      "public_output_mentions": [
+        "P5"
+      ]
+    },
+    {
+      "key": "core:azure-app-scope",
+      "id": "azure-app-scope",
+      "title": "App Service security and deployment scope",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-security",
+      "checked_on": "2026-11-15",
+      "scope": "Regional application deployment is not end-to-end India residency proof; standard service metadata/control-plane scope remains critically qualified.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-app-scope",
+          "path": "/entries/41/source_ids",
+          "owner": "appservice-india"
+        }
+      ],
+      "public_output_mentions": [
+        "P5"
+      ]
+    },
+    {
       "key": "core:azure-ase",
       "id": "azure-ase",
       "title": "App Service Environment v3 region and data boundary",
@@ -272,6 +330,36 @@
           "id": "azure-ase",
           "path": "/entries/33/regions/0/source_ids",
           "owner": "ase-india"
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "core:azure-b1-india-price",
+      "id": "azure-b1-india-price",
+      "title": "Azure Retail Prices API: Central India B1 Linux",
+      "url": "https://prices.azure.com/api/retail/prices",
+      "checked_on": "2026-11-15",
+      "scope": "Public consumption record retained in evaluation/azure-b1-price.json: Azure App Service Basic Plan - Linux, B1, Central India, USD .018/hour; no ASE tariff applied.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-b1-india-price",
+          "path": "/entries/41/source_ids",
+          "owner": "appservice-india"
+        },
+        {
+          "id": "azure-b1-india-price",
+          "path": "/entries/41/regions/0/source_ids",
+          "owner": "appservice-india"
         }
       ],
       "public_output_mentions": [
@@ -327,6 +415,16 @@
           "id": "azure-pg-backup",
           "path": "/entries/33/managed_databases/0/regions/0/source_ids",
           "owner": "ase-india"
+        },
+        {
+          "id": "azure-pg-backup",
+          "path": "/entries/41/managed_databases/0/source_ids",
+          "owner": "appservice-india"
+        },
+        {
+          "id": "azure-pg-backup",
+          "path": "/entries/41/managed_databases/0/regions/0/source_ids",
+          "owner": "appservice-india"
         }
       ],
       "public_output_mentions": []
@@ -356,6 +454,16 @@
           "id": "azure-pg-regions",
           "path": "/entries/33/managed_databases/0/regions/0/source_ids",
           "owner": "ase-india"
+        },
+        {
+          "id": "azure-pg-regions",
+          "path": "/entries/41/managed_databases/0/source_ids",
+          "owner": "appservice-india"
+        },
+        {
+          "id": "azure-pg-regions",
+          "path": "/entries/41/managed_databases/0/regions/0/source_ids",
+          "owner": "appservice-india"
         }
       ],
       "public_output_mentions": []
@@ -493,6 +601,236 @@
           "owner": "django"
         }
       ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:do-app-build",
+      "id": "do-app-build",
+      "title": "App Platform build commands and limits",
+      "url": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/",
+      "checked_on": "2026-11-15",
+      "scope": "Native test/build commands within platform limits; source/synthetic inputs only.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:do-app-price",
+      "id": "do-app-price",
+      "title": "App Platform container pricing",
+      "url": "https://docs.digitalocean.com/products/app-platform/details/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "Paid shared-CPU 1GiB fixed USD10/100GiB transfer, manually scalable 1GiB USD12/150GiB; pooled team transfer and .02/GiB overage. Fixed plans cannot horizontally scale.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "do-app-price",
+          "path": "/entries/42/source_ids",
+          "owner": "do-app"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:do-app-regions",
+      "id": "do-app-regions",
+      "title": "App Platform regional availability",
+      "url": "https://docs.digitalocean.com/products/app-platform/details/availability/",
+      "checked_on": "2026-11-15",
+      "scope": "Dynamic BLR, FRA and NYC reviewed. Static CDN placement does not inherit dynamic region.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "do-app-regions",
+          "path": "/entries/42/source_ids",
+          "owner": "do-app"
+        },
+        {
+          "id": "do-app-regions",
+          "path": "/entries/42/regions/0/source_ids",
+          "owner": "do-app"
+        },
+        {
+          "id": "do-app-regions",
+          "path": "/entries/42/regions/1/source_ids",
+          "owner": "do-app"
+        },
+        {
+          "id": "do-app-regions",
+          "path": "/entries/42/regions/2/source_ids",
+          "owner": "do-app"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:do-app-runtime",
+      "id": "do-app-runtime",
+      "title": "App Platform containers",
+      "url": "https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-container-images/",
+      "checked_on": "2026-11-15",
+      "scope": "Linux AMD64 web and worker containers, separate resources; ephemeral filesystem is not durable storage.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "do-app-runtime",
+          "path": "/entries/42/source_ids",
+          "owner": "do-app"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:do-app-sla",
+      "id": "do-app-sla",
+      "title": "App Platform component SLA",
+      "url": "https://www.digitalocean.com/sla/app-platform",
+      "checked_on": "2026-11-15",
+      "scope": "Component service agreement is not an application/SQL/Supabase availability guarantee.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "do-app-sla",
+          "path": "/entries/42/source_ids",
+          "owner": "do-app"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:do-region-country",
+      "id": "do-region-country",
+      "title": "DigitalOcean datacenter geography",
+      "url": "https://docs.digitalocean.com/platform/regional-availability/",
+      "checked_on": "2026-11-15",
+      "scope": "BLR1 Bangalore India, FRA1 Frankfurt Germany, NYC3 New York US. App regions and Spaces regions are configured separately; global CDN is not pinned by this mapping.",
+      "categories": [
+        "capability",
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "do-region-country",
+          "path": "/entries/42/source_ids",
+          "owner": "do-app"
+        },
+        {
+          "id": "do-region-country",
+          "path": "/entries/42/regions/0/source_ids",
+          "owner": "do-app"
+        },
+        {
+          "id": "do-region-country",
+          "path": "/entries/42/regions/1/source_ids",
+          "owner": "do-app"
+        },
+        {
+          "id": "do-region-country",
+          "path": "/entries/42/regions/2/source_ids",
+          "owner": "do-app"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:do-spaces-price",
+      "id": "do-spaces-price",
+      "title": "Spaces storage pricing",
+      "url": "https://docs.digitalocean.com/products/spaces/details/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "USD5 subscription, 250GiB stored/1024GiB outbound included once; .02/GiB storage, .01/GiB transfer overages.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "core:do-spaces-regions",
+      "id": "do-spaces-regions",
+      "title": "Spaces regional availability",
+      "url": "https://docs.digitalocean.com/products/spaces/details/availability/",
+      "checked_on": "2026-11-15",
+      "scope": "Regional bucket selected separately from app; BLR1, FRA1 and NYC3 reviewed.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
       "public_output_mentions": [
         "P2",
         "P6"
@@ -1189,6 +1527,27 @@
       "public_output_mentions": []
     },
     {
+      "key": "core:otel-s3-export",
+      "id": "otel-s3-export",
+      "title": "OpenTelemetry S3 exporter",
+      "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/awss3exporter",
+      "checked_on": "2026-11-15",
+      "scope": "S3-compatible endpoint configuration is implementation work; verify exporter support/version, redaction, batch failure/retry and regional bucket access.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
       "key": "core:pages",
       "id": "pages",
       "title": "Cloudflare Pages",
@@ -1632,6 +1991,11 @@
           "id": "supabase-price",
           "path": "/entries/40/managed_databases/0/source_ids",
           "owner": "fly"
+        },
+        {
+          "id": "supabase-price",
+          "path": "/entries/42/managed_databases/0/source_ids",
+          "owner": "do-app"
         }
       ],
       "public_output_mentions": [
@@ -1690,6 +2054,26 @@
           "id": "supabase-regions",
           "path": "/entries/40/managed_databases/0/regions/1/source_ids",
           "owner": "fly"
+        },
+        {
+          "id": "supabase-regions",
+          "path": "/entries/42/managed_databases/0/source_ids",
+          "owner": "do-app"
+        },
+        {
+          "id": "supabase-regions",
+          "path": "/entries/42/managed_databases/0/regions/0/source_ids",
+          "owner": "do-app"
+        },
+        {
+          "id": "supabase-regions",
+          "path": "/entries/42/managed_databases/0/regions/1/source_ids",
+          "owner": "do-app"
+        },
+        {
+          "id": "supabase-regions",
+          "path": "/entries/42/managed_databases/0/regions/2/source_ids",
+          "owner": "do-app"
         }
       ],
       "public_output_mentions": [
@@ -1744,10 +2128,7 @@
           "owner": "vercel"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:vercel-go",
@@ -1771,10 +2152,7 @@
           "owner": "vercel"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:vercel-pro",
@@ -1798,10 +2176,7 @@
           "owner": "vercel"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:vercel-regions",
@@ -1841,10 +2216,7 @@
           "owner": "vercel"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:vercel-ws",
@@ -1868,10 +2240,7 @@
           "owner": "vercel"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "core:vue",
@@ -1991,6 +2360,46 @@
       ]
     },
     {
+      "key": "services:azure-app-network",
+      "id": "azure-app-network",
+      "title": "App Service VNet integration",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+      "checked_on": "2026-11-15",
+      "scope": "Basic dedicated compute supports regional VNet integration and approved site-to-site VPN/ExpressRoute paths. It does not establish existing private connectivity.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P5"
+      ]
+    },
+    {
+      "key": "services:azure-app-scope",
+      "id": "azure-app-scope",
+      "title": "App Service security and deployment scope",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-security",
+      "checked_on": "2026-11-15",
+      "scope": "Regional application deployment is not end-to-end India residency proof; standard service metadata/control-plane scope remains critically qualified.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P5"
+      ]
+    },
+    {
       "key": "services:azure-ase-retail",
       "id": "azure-ase-retail",
       "title": "Azure App Service Central India retail pricing API",
@@ -2009,6 +2418,30 @@
         {
           "id": "azure-ase-retail",
           "path": "/pricing/ase_i1v2_hour/source_ids",
+          "owner": null
+        }
+      ],
+      "public_output_mentions": []
+    },
+    {
+      "key": "services:azure-b1-india-price",
+      "id": "azure-b1-india-price",
+      "title": "Azure Retail Prices API: Central India B1 Linux",
+      "url": "https://prices.azure.com/api/retail/prices",
+      "checked_on": "2026-11-15",
+      "scope": "Public consumption record retained in evaluation/azure-b1-price.json: Azure App Service Basic Plan - Linux, B1, Central India, USD .018/hour; no ASE tariff applied.",
+      "categories": [
+        "pricing"
+      ],
+      "cadence_days": 14,
+      "age_days": 0,
+      "review_due_on": "2026-11-29",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "azure-b1-india-price",
+          "path": "/pricing/azure_b1_india_hour/source_ids",
           "owner": null
         }
       ],
@@ -2164,6 +2597,204 @@
         }
       ],
       "public_output_mentions": []
+    },
+    {
+      "key": "services:do-app-build",
+      "id": "do-app-build",
+      "title": "App Platform build commands and limits",
+      "url": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/",
+      "checked_on": "2026-11-15",
+      "scope": "Native test/build commands within platform limits; source/synthetic inputs only.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "do-app-build",
+          "path": "/services/33/source_ids",
+          "owner": "do-build"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:do-app-price",
+      "id": "do-app-price",
+      "title": "App Platform container pricing",
+      "url": "https://docs.digitalocean.com/products/app-platform/details/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "Paid shared-CPU 1GiB fixed USD10/100GiB transfer, manually scalable 1GiB USD12/150GiB; pooled team transfer and .02/GiB overage. Fixed plans cannot horizontally scale.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "do-app-price",
+          "path": "/services/33/source_ids",
+          "owner": "do-build"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:do-app-regions",
+      "id": "do-app-regions",
+      "title": "App Platform regional availability",
+      "url": "https://docs.digitalocean.com/products/app-platform/details/availability/",
+      "checked_on": "2026-11-15",
+      "scope": "Dynamic BLR, FRA and NYC reviewed. Static CDN placement does not inherit dynamic region.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:do-app-runtime",
+      "id": "do-app-runtime",
+      "title": "App Platform containers",
+      "url": "https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-container-images/",
+      "checked_on": "2026-11-15",
+      "scope": "Linux AMD64 web and worker containers, separate resources; ephemeral filesystem is not durable storage.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:do-app-sla",
+      "id": "do-app-sla",
+      "title": "App Platform component SLA",
+      "url": "https://www.digitalocean.com/sla/app-platform",
+      "checked_on": "2026-11-15",
+      "scope": "Component service agreement is not an application/SQL/Supabase availability guarantee.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": true,
+      "catalog_references": [],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:do-region-country",
+      "id": "do-region-country",
+      "title": "DigitalOcean datacenter geography",
+      "url": "https://docs.digitalocean.com/platform/regional-availability/",
+      "checked_on": "2026-11-15",
+      "scope": "BLR1 Bangalore India, FRA1 Frankfurt Germany, NYC3 New York US. App regions and Spaces regions are configured separately; global CDN is not pinned by this mapping.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "do-region-country",
+          "path": "/services/32/source_ids",
+          "owner": "do-archive"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:do-spaces-price",
+      "id": "do-spaces-price",
+      "title": "Spaces storage pricing",
+      "url": "https://docs.digitalocean.com/products/spaces/details/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "USD5 subscription, 250GiB stored/1024GiB outbound included once; .02/GiB storage, .01/GiB transfer overages.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "do-spaces-price",
+          "path": "/services/32/source_ids",
+          "owner": "do-archive"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
+    },
+    {
+      "key": "services:do-spaces-regions",
+      "id": "do-spaces-regions",
+      "title": "Spaces regional availability",
+      "url": "https://docs.digitalocean.com/products/spaces/details/availability/",
+      "checked_on": "2026-11-15",
+      "scope": "Regional bucket selected separately from app; BLR1, FRA1 and NYC3 reviewed.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "do-spaces-regions",
+          "path": "/services/32/source_ids",
+          "owner": "do-archive"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
+      ]
     },
     {
       "key": "services:dpdp",
@@ -2867,6 +3498,33 @@
       ],
       "public_output_mentions": [
         "P4"
+      ]
+    },
+    {
+      "key": "services:otel-s3-export",
+      "id": "otel-s3-export",
+      "title": "OpenTelemetry S3 exporter",
+      "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/awss3exporter",
+      "checked_on": "2026-11-15",
+      "scope": "S3-compatible endpoint configuration is implementation work; verify exporter support/version, redaction, batch failure/retry and regional bucket access.",
+      "categories": [
+        "capability"
+      ],
+      "cadence_days": 90,
+      "age_days": 0,
+      "review_due_on": "2027-02-13",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "otel-s3-export",
+          "path": "/services/32/source_ids",
+          "owner": "do-archive"
+        }
+      ],
+      "public_output_mentions": [
+        "P2",
+        "P6"
       ]
     },
     {
@@ -3639,6 +4297,11 @@
           "id": "telemetry",
           "path": "/services/30/source_ids",
           "owner": "vercel-telemetry"
+        },
+        {
+          "id": "telemetry",
+          "path": "/services/32/source_ids",
+          "owner": "do-archive"
         }
       ],
       "public_output_mentions": [
@@ -3665,10 +4328,7 @@
       "status": "within_review_window",
       "no_structured_catalog_reference": true,
       "catalog_references": [],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:vercel-build",
@@ -3692,10 +4352,7 @@
           "owner": "vercel-build"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:vercel-cron",
@@ -3719,10 +4376,7 @@
           "owner": "vercel-outbox"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:vercel-django",
@@ -3740,10 +4394,7 @@
       "status": "within_review_window",
       "no_structured_catalog_reference": true,
       "catalog_references": [],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:vercel-fluid",
@@ -3761,10 +4412,7 @@
       "status": "within_review_window",
       "no_structured_catalog_reference": true,
       "catalog_references": [],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:vercel-go",
@@ -3782,10 +4430,7 @@
       "status": "within_review_window",
       "no_structured_catalog_reference": true,
       "catalog_references": [],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:vercel-logs",
@@ -3810,9 +4455,7 @@
         }
       ],
       "public_output_mentions": [
-        "P2",
-        "P3",
-        "P6"
+        "P3"
       ]
     },
     {
@@ -3831,10 +4474,7 @@
       "status": "within_review_window",
       "no_structured_catalog_reference": true,
       "catalog_references": [],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:vercel-pro",
@@ -3858,10 +4498,7 @@
           "owner": "vercel-build"
         }
       ],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:vercel-regions",
@@ -3879,10 +4516,7 @@
       "status": "within_review_window",
       "no_structured_catalog_reference": true,
       "catalog_references": [],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:vercel-ws",
@@ -3900,10 +4534,7 @@
       "status": "within_review_window",
       "no_structured_catalog_reference": true,
       "catalog_references": [],
-      "public_output_mentions": [
-        "P2",
-        "P6"
-      ]
+      "public_output_mentions": []
     },
     {
       "key": "services:workbox",

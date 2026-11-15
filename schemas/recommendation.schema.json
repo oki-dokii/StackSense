@@ -1158,7 +1158,7 @@
       "if": {
         "properties": {
           "engine_version": {
-            "const": "0.8.0"
+            "const": "0.9.0"
           }
         },
         "required": [

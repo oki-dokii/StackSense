@@ -10,11 +10,11 @@ An explained technology stack, grounded in project constraints.
 
 Soham BanerjeeIIIT-BangaloreSoham.Banerjee@iiitb.ac.ingithub.com/oki-dokii/StackSense15 November 2026
 
-Application and recommendation engine/rules/services 0.8.0; Decision Lab analysis 0.2.0; core catalog 0.5.0. Deterministic local execution, with explicit provisional exceptions and itemized cost scope.
+Application and recommendation engine/rules/services 0.9.0; Decision Lab analysis 0.2.0; core catalog 0.6.0. Deterministic local execution, with explicit provisional exceptions and itemized cost scope.
 
 1. Abstract
 
-StackSense converts a structured software-project brief into a deterministic, explained architecture. A local TypeScript engine validates inputs, filters compatible core stacks, checks required supporting services and data flows, estimates month-12 cost bands, and ranks complete designs. A CLI, Fastify API and React workspace share the same engine. The release includes 41 core entries, 32 service profiles, source records, actual JSON outputs and browser evidence. All six supplied scenarios receive stacks; five carry critical capacity or external-boundary exceptions rather than unsupported compliance claims. The evaluation includes 377 automated tests, sixty varied project briefs across fifteen concrete types, fourteen edge cases, twelve region/auth/payment combinations, sensitivity experiments and measured local setup/API timings. The system makes no runtime LLM calls and requires no paid key. Costs, performance targets and framework controls are disclosed assumptions and implementation tasks, not provider quotes, benchmarks of suggested stacks, or certification.
+StackSense converts a structured software-project brief into a deterministic, explained architecture. A local TypeScript engine validates inputs, filters compatible core stacks, checks required supporting services and data flows, estimates month-12 cost bands, and ranks complete designs. A CLI, Fastify API and React workspace share the same engine. The release includes 43 core entries, 34 service profiles, source records, actual JSON outputs and browser evidence. All six supplied scenarios receive stacks; five carry critical capacity, integration or external-boundary exceptions rather than unsupported compliance claims. The evaluation includes 392 automated tests, sixty varied project briefs across fifteen concrete types, fourteen edge cases, twelve region/auth/payment combinations, sensitivity experiments and measured local setup/API timings. The system makes no runtime LLM calls and requires no paid key. Costs, performance targets and framework controls are disclosed assumptions and implementation tasks, not provider quotes, benchmarks of suggested stacks, or certification.
 
 2. Problem understanding
 
@@ -64,7 +64,7 @@ Legacy primary_user_region and vendor_lock_in_tolerance values are accepted from
 
 5. Knowledge base and decision logic
 
-The core catalog has 41 entries and 63 dated primary-source records; service policies add 32 profiles, 79 source records and two known lifecycle rules. Records describe product family, runtime, client coverage, driver edges, deployment/provider mappings, regions, complexity/operating burden, trade-offs and source scope. Active status is required; maintained product families still need supported versions pinned during a real build.
+The core catalog has 43 entries and 75 dated primary-source records; service policies add 34 profiles, 91 source records and two known lifecycle rules. Records describe product family, runtime, client coverage, driver edges, deployment/provider mappings, regions, complexity/operating burden, trade-offs and source scope. Active status is required; maintained product families still need supported versions pinned during a real build.
 
 Evaluate complete plans before ranking
 
@@ -84,7 +84,7 @@ Service profiles cover identity, SMS OTP, realtime collaboration, local offline 
 
 Scope and residency are checked separately
 
-GCP reviewed mappings include Mumbai, Belgium and Iowa. The release adds AWS Fargate and RDS PostgreSQL primary mapping in Mumbai using Fargate/region/RDS documentation [core:fargate-regions, core:aws-regions, core:rds-regions]. This does not approve external identity, SMS or payment handling. Central India now has a separate App Service Environment v3 Linux Isolated v2 profile, PostgreSQL Flexible Server with in-region backups, and private Blob LRS. This evidence is not applied to shared App Service or other regions. Entra tenant flows are assessed separately.
+Primary mappings cover reviewed GCP/AWS regions and separate Azure India variants. Central India Basic B1 Linux is priced from the official USD0.018/hour meter retained in evaluation/azure-b1-price.json; its VNet/private SQL design and standard-service metadata geography remain critically unverified. It does not inherit ASE assurance. DigitalOcean dynamic Bangalore and Spaces BLR1 are separately mapped; global CDN/control-plane scope is unverified. Native build/test, paid containers, continuous worker and regional archive are priced within reviewed limits. No cloud resource was purchased or deployed.
 
 Known external integrations with unverified residency are proposed with critical exceptions and explicit reduced-assurance assumptions. Real deployment or region conflicts still reject a plan. Framework designs require configuration, retention/deletion, access/restore tests and qualified review. HIPAA cloud/external services need eligible scope and executed BAA evidence. Explicit RBI localisation derives India only when the label requests it; contradictory regions reject. Known Python 2 and AngularJS support endings warn on existing systems without mislabeling Python 3 or maintained Angular.
 
@@ -96,7 +96,7 @@ Lightsail adds published full-month Linux IPv4 bundles, SSD/transfer allowances,
 
 Paid managed variants add Supabase Pro/Neon Launch and Vercel/Fly. Fly/Neon have no reviewed India mapping. Pro is not an eligible HIPAA tier; Vercel Functions cannot host persistent Yjs or resident inference here. Daily activity defaults to an authored 20% of population, floored at supplied peak concurrency; explicit RPS overrides it. These assumptions require validation.
 
-Budget planning exposes the lowest same-brief catalog upper estimate and one optional changed-requirement proposal. P2 can propose USD 104-193.50 infrastructure with self-management and a 99% target; only its lower bound fits USD 150. Changes require explicit acceptance. Original stacks, feature flags, region/provider and critical conditions remain intact. No-plan 0-0 values remain non-estimates.
+Budget planning exposes a same-brief catalog floor and optional changed-requirement proposals only when cheaper. P5 and P6 now have upper infrastructure estimates within their original budgets. P2 remains USD5.98 above budget at the upper bound. Supplying a hypothetical 9M billed realtime messages yields USD89.09-133.48, but that quantity is not known for the public brief and is never inserted automatically. Existing requirements and critical conditions remain intact.
 
 
 ---
@@ -104,7 +104,7 @@ Budget planning exposes the lowest same-brief catalog upper estimate and one opt
 
 6. Sample recommendations: P1
 
-P1 / DevFolio - actual local release UI, engine 0.8.0. The complete output is outputs/P1_output.json.
+P1 / DevFolio - actual local release UI, engine 0.9.0. The complete output is outputs/P1_output.json.
 
 Inputs: a solo beginner, JavaScript/HTML/CSS, two weeks, Markdown portfolio/blog, web-only SEO, no dynamic features, 3,000 year-one users and USD 0 infrastructure budget.
 
@@ -128,7 +128,7 @@ Selected: Angular, Express, Supabase Pro PostgreSQL and Fly Machines. Yjs + ws c
 
 Alternatives and limits: React/Vite and Go HTTP are reviewed alternatives. Go remains a complete viable candidate for this TypeScript/Go team; no framework receives a measured latency bonus. Other cloud variants remain visible in the full catalog frontier. This is not proof Angular is best. Application auth, document persistence, cross-instance coordination and conflict UX must still be built.
 
-Costs: infrastructure USD 366.90-614.06/month. Compute contributes USD 162.90-162.92; peak WebSocket capacity is counted once. Additional assumed payment activity is USD 0.00-2,500.00, excluded from the headline. The infrastructure upper bound is inside USD 1,500 under the stated hypotheses; managed tier capacity and availability remain critically unverified. Remaining resource lines and assumptions are exposed in JSON; SLA, latency, identity terms and GDPR controls require review.
+Costs: infrastructure USD 291.90-501.56/month. Compute contributes USD 162.90-162.92; peak WebSocket capacity is counted once. Additional assumed payment activity is USD 0.00-2,500.00, excluded from the headline. The infrastructure upper bound is inside USD 1,500 under the stated hypotheses; managed tier capacity and availability remain critically unverified. Remaining resource lines and assumptions are exposed in JSON; SLA, latency, identity terms and GDPR controls require review.
 
 
 ---
@@ -136,7 +136,7 @@ Costs: infrastructure USD 366.90-614.06/month. Compute contributes USD 162.90-16
 
 6. Public scenarios: P2 and P4
 
-P2 / FixIt Now - provisional Next.js + React Native, Django, Supabase Pro PostgreSQL and Vercel Mumbai functions. MSG91 and Razorpay are selected with critical India data-flow review conditions. Infrastructure USD 266.03-531.08/month exceeds USD 150 at the lower bound; no feature or residency claim is silently treated as satisfied.
+P2 / FixIt Now - provisional Next.js + React Native, Django, Supabase Pro PostgreSQL and App Platform Bangalore containers. MSG91 and Razorpay are selected with critical India data-flow review conditions. Infrastructure USD 89.09-155.98/month straddles USD 150 with a USD 5.98 upper-bound gap; no feature or residency claim is silently treated as satisfied.
 
 P4 / QuickCredit - ECS/Fargate and PostgreSQL in Mumbai, with Spring Boot and web/Android clients; senior Java/Kotlin ecosystem familiarity affects delivery/maintenance. MSG91/Razorpay external flows remain critically qualified. Checkout does not itself implement lending authorization, KYC, double-entry ledger, disbursal or mandates; these are explicitly scoped implementation and eligibility conditions.
 
@@ -146,9 +146,9 @@ P4 / QuickCredit - ECS/Fargate and PostgreSQL in Mumbai, with Spring Boot and we
 
 6. Public scenarios: P5 and P6
 
-P5 / PeopleDesk - React, ASP.NET Core, existing SQL Server and Azure ASE Central India, with direct OIDC/SAML integration to the existing Entra tenant. Tenant geography is critically unverified; existing SQL Server geography, private connectivity, capacity and licenses remain critically unverified; no migration or free entitlement is inferred. Infrastructure USD 603.70-739.70/month is explicitly above the USD 300 budget.
+P5 / PeopleDesk - React, ASP.NET Core, existing SQL Server and Azure Basic B1 Linux Central India, with direct OIDC/SAML integration to the existing Entra tenant. Tenant geography is critically unverified; existing SQL Server geography, private connectivity, capacity and licenses remain critically unverified; no migration or free entitlement is inferred. Infrastructure USD 66.42-202.42/month is within the USD 300 planning budget; standard-service metadata and private connectivity remain critical conditions.
 
-P6 / KhetSurvey - React Native, Django, Supabase Pro PostgreSQL and Vercel Mumbai functions, with device-local persistence, an outbox, idempotent retry/conflict handling and resumable media. MSG91 phone delivery has a critical India boundary condition. Infrastructure USD 77.75-114.89/month excludes SMS activity; target-device memory still needs measurement.
+P6 / KhetSurvey - React Native, Django, Supabase Pro PostgreSQL and App Platform Bangalore containers, with device-local persistence, an outbox, idempotent retry/conflict handling and resumable media. MSG91 phone delivery has a critical India boundary condition. Infrastructure USD 55.25-62.02/month excludes SMS activity; target-device memory still needs measurement.
 
 
 ---
@@ -166,33 +166,33 @@ Additional cases test reviewed AWS India, offline native writes, cloud-none/mana
 
 8. Validation and measurements
 
-377 application tests pass across fourteen files, plus 22 native tooling tests. Types, production builds and twenty recommendation/six Decision Lab artifacts are checked against current code. Sixty authored briefs cover fifteen types: 57 stacks, three expected blockers (training, air-gap/SaaS, RBI/US). Every case is repeated and compared with actual CLI --no-llm output. Lower-bound budget overruns on the unchanged original thirty fall from 15 to 7; the expanded sixty retain 12 overruns and two bands wider than 5x. Metamorphic checks cover identifiers, input order, known languages, provider/region constraints and local OTP/payment-cost effects. These are functional invariants, not organiser hidden tests, independent architecture grading or production benchmarks.
+392 application tests pass across fifteen files, plus 22 native tooling tests. Types, production builds and twenty recommendation/six Decision Lab artifacts are checked against current code. Sixty authored briefs cover fifteen types: 57 stacks, three expected blockers (training, air-gap/SaaS, RBI/US). Every case is repeated and compared with actual CLI --no-llm output. Lower-bound budget overruns on the unchanged original thirty fall from 15 to 4; the expanded sixty retain 9 overruns and two bands wider than 5x. Metamorphic checks cover identifiers, input order, known languages, provider/region constraints and local OTP/payment-cost effects. These are functional invariants, not organiser hidden tests, independent architecture grading or production benchmarks.
 
 Observed local API timings
 
-Measured on Apple M2, 8 GB RAM, macOS arm64, Node v22.17.1, npm 10.9.2. Cold Node/API startup to health: 225.185 ms. Each case had one warm-up and twenty real loopback HTTP POSTs through consumed JSON. Browser rendering, recommended workload performance and cloud provisioning are excluded.
+Measured on Apple M2, 8 GB RAM, macOS arm64, Node v22.17.1, npm 10.9.2. Cold Node/API startup to health: 238.536 ms. Each case had one warm-up and twenty real loopback HTTP POSTs through consumed JSON. Browser rendering, recommended workload performance and cloud provisioning are excluded.
 
 Clean setup rehearsal
 
-A source ZIP was extracted to a fresh directory. Cached offline npm ci, all checks, build, evaluation and output verification completed in 27.944 seconds. Runtime/test source digest is recorded and checked during final packaging. The populated dependency cache avoids a new network download; online installation speed and Windows/Linux execution are not claimed. The CI matrix covers macOS, Ubuntu and Windows on Node 22/24; remote run results are separate from this local measurement.
+A source ZIP was extracted to a fresh directory. Cached offline npm ci, all checks, build, evaluation and output verification completed in 26.635 seconds. Runtime/test source digest is recorded and checked during final packaging. The populated dependency cache avoids a new network download; online installation speed and Windows/Linux execution are not claimed. The CI matrix covers macOS, Ubuntu and Windows on Node 22/24; remote run results are separate from this local measurement.
 
-Browser evidence covers batch outputs, export parity and desktop/narrow budget layouts. The unchanged validation focus snapshot is retained from the prior pass and backed by React DOM tests; it was not freshly reproduced. This is not a full accessibility or browser conformance audit. Official product/source alignment is reviewed; no paper experiment was reproduced.
+Browser evidence covers batch outputs, export parity and desktop/narrow budget layouts. All nine custom DOM snapshots were refreshed, including automatic validation-summary focus and budget-link recovery on a fresh invalid scenario. This is not a full accessibility or browser conformance audit. Official product/source alignment is reviewed; no paper experiment was reproduced.
 
 
 ---
 
 
-Decision Lab: application 0.8.0
+Decision Lab: application 0.9.0
 
-Actual P3 Decision Lab view. All 270 completed catalog plans are plotted; 12 identifiers are nondominated under the three declared model objectives. Inspecting an alternative never changes the original recommendation.
+Actual P3 Decision Lab view. All 324 completed catalog plans are plotted; 12 identifiers are nondominated under the three declared model objectives. Inspecting an alternative never changes the original recommendation.
 
 The separate analysis endpoint runs the original recommendation plus 24 one-priority-at-a-time changes. P3 retains its winner in 25/25 settings while equal-score alternatives remain. This count is not a confidence probability, unique superiority or global sensitivity analysis; interactions are not exhaustively explored.
 
 The tradeoff front minimizes monthly cost upper bound and operated component units while maximizing the ORIGINAL-priority weighted score. It uses every completed candidate, not just the top three. All metrics retain their heuristic/planning scope. A lower upper cost can still have a higher lower cost, so inspect both bounds and assumptions.
 
-All public briefs support priority/tradeoff analysis. Decision Lab functional trials preserve protected infrastructure/compliance fields; separately labeled budget proposals may explicitly lower availability or move to self-managed VMs. Nothing is automatically applied. P5 remains over budget, and tenant evidence is not invented. Evaluation counts refer to top-level scenario trials, excluding the baseline budget rerun.
+All public briefs support priority/tradeoff analysis. Decision Lab functional trials preserve protected infrastructure/compliance fields; separately labeled budget proposals may explicitly lower availability or move to self-managed VMs. Nothing is automatically applied. P5 fits its planning budget while private SQL/metadata/tenant evidence remains unverified. Evaluation counts refer to top-level scenario trials, excluding the baseline budget rerun.
 
-Proposed ADR Markdown and exact JSON exports include the original result, input digest, versions, alternatives, scoped references and implementation review tasks. Browser exports match API/engine artifacts; stale exports are blocked after edits. The exported baseline exactly matches the current 0.8.0 recommendation; critical warnings are preserved. Counterfactual, Pareto evaluation, sensitivity and ADR sources are N01-N04 in Appendix B; their experiments were not reproduced.
+Proposed ADR Markdown and exact JSON exports include the original result, input digest, versions, alternatives, scoped references and implementation review tasks. Browser exports match API/engine artifacts; stale exports are blocked after edits. The exported baseline exactly matches the current 0.9.0 recommendation; critical warnings are preserved. Counterfactual, Pareto evaluation, sensitivity and ADR sources are N01-N04 in Appendix B; their experiments were not reproduced.
 
 
 ---
@@ -200,7 +200,7 @@ Proposed ADR Markdown and exact JSON exports include the original result, input 
 
 9. Limitations and future work
 
-Five public scenarios contain critical capacity or external-boundary exceptions. The engine does not equate a regional app host, an Indian vendor or a compliance badge with complete identity/payment data-flow assurance. Broader Azure variants and existing-tenant boundaries need deeper review; Central India isolated compute/database/storage is now separately scoped. Provisional proposals increase architecture coverage while leaving these unresolved conditions explicit.
+Five public scenarios contain critical capacity or external-boundary exceptions. The engine does not equate a regional app host, an Indian vendor or a compliance badge with complete identity/payment data-flow assurance. Basic and isolated Azure profiles are separately scoped; existing-tenant/network and metadata boundaries still require project-specific evidence. Provisional proposals increase architecture coverage while leaving these unresolved conditions explicit.
 
 The catalog is finite and product-family based. Framework/API/driver versions, regional quotas, contract eligibility, data retention and all application controls need deployment review. Training/RAG, broader search/storage options, comprehensive lifecycle coverage, private network integration and general prose understanding remain limited.
 
@@ -408,11 +408,11 @@ core:vercel-go - Vercel Go runtime. vercel.com (2026-11-15).
 
 core:vercel-ws - Vercel WebSocket limitation. vercel.com (2026-11-15).
 
-svc:keycloak-db - Keycloak database support. keycloak.org (2026-11-13).
+core:azure-b1-india-price - Azure Retail Prices API: Central India B1 Linux. prices.azure.com (2026-11-15).
 
-svc:keycloak-admin - Keycloak administration. keycloak.org (2026-11-13).
+core:azure-app-network - App Service VNet integration. learn.microsoft.com (2026-11-15).
 
-svc:stripe - Stripe Checkout. docs.stripe.com (2026-11-13).
+core:azure-app-scope - App Service security and deployment scope. learn.microsoft.com (2026-11-15).
 
 
 ---
@@ -421,6 +421,30 @@ svc:stripe - Stripe Checkout. docs.stripe.com (2026-11-13).
 Appendix B. Source ledger 3
 
 Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
+
+core:do-app-regions - App Platform regional availability. docs.digitalocean.com (2026-11-15).
+
+core:do-app-price - App Platform container pricing. docs.digitalocean.com (2026-11-15).
+
+core:do-app-runtime - App Platform containers. docs.digitalocean.com (2026-11-15).
+
+core:do-app-build - App Platform build commands and limits. docs.digitalocean.com (2026-11-15).
+
+core:do-app-sla - App Platform component SLA. digitalocean.com (2026-11-15).
+
+core:do-spaces-price - Spaces storage pricing. docs.digitalocean.com (2026-11-15).
+
+core:do-spaces-regions - Spaces regional availability. docs.digitalocean.com (2026-11-15).
+
+core:otel-s3-export - OpenTelemetry S3 exporter. github.com (2026-11-15).
+
+core:do-region-country - DigitalOcean datacenter geography. docs.digitalocean.com (2026-11-15).
+
+svc:keycloak-db - Keycloak database support. keycloak.org (2026-11-13).
+
+svc:keycloak-admin - Keycloak administration. keycloak.org (2026-11-13).
+
+svc:stripe - Stripe Checkout. docs.stripe.com (2026-11-13).
 
 svc:stripe-dpa - Stripe DPA. stripe.com (2026-11-13).
 
@@ -464,6 +488,14 @@ svc:ci - GitHub Actions. docs.github.com (2026-11-13).
 
 svc:jenkins - Jenkins installation. jenkins.io (2026-11-13).
 
+
+---
+
+
+Appendix B. Source ledger 4
+
+Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
+
 svc:pages-price - Cloudflare Pages pricing. developers.cloudflare.com (2026-11-13).
 
 svc:run-price - Cloud Run pricing. cloud.google.com (2026-11-15).
@@ -487,14 +519,6 @@ svc:dpdp - MeitY DPDP Rules 2025. meity.gov.in (2026-11-13).
 svc:hipaa - HHS cloud/ePHI guidance. hhs.gov (2026-11-13).
 
 svc:pci - PCI DSS. pcisecuritystandards.org (2026-11-13).
-
-
----
-
-
-Appendix B. Source ledger 4
-
-Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
 
 svc:rbi - RBI payment-data storage FAQ. rbi.org.in (2026-11-13).
 
@@ -538,6 +562,14 @@ svc:lightsail-bundles - Lightsail Linux IPv4 instance bundles. docs.aws.amazon.c
 
 svc:lightsail-pricing - Lightsail transfer, disk and snapshots. aws.amazon.com (2026-11-15).
 
+
+---
+
+
+Appendix B. Source ledger 5
+
+Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
+
 svc:supabase-regions - Supabase specific project regions. supabase.com (2026-11-15).
 
 svc:supabase-price - Supabase Pro pricing. supabase.com (2026-11-15).
@@ -562,14 +594,6 @@ svc:vercel-go - Vercel Go runtime. vercel.com (2026-11-15).
 
 svc:vercel-ws - Vercel WebSocket limitation. vercel.com (2026-11-15).
 
-
----
-
-
-Appendix B. Source ledger 5
-
-Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
-
 svc:supabase-compute - Supabase compute pricing. supabase.com (2026-11-15).
 
 svc:supabase-sms-hook - Supabase Send SMS hook. supabase.com (2026-11-15).
@@ -589,6 +613,38 @@ svc:vercel-build - Vercel build pricing. vercel.com (2026-11-15).
 svc:vercel-logs - Vercel runtime logs. vercel.com (2026-11-15).
 
 svc:vercel-network - Vercel CDN pricing. vercel.com (2026-11-15).
+
+svc:azure-b1-india-price - Azure Retail Prices API: Central India B1 Linux. prices.azure.com (2026-11-15).
+
+svc:azure-app-network - App Service VNet integration. learn.microsoft.com (2026-11-15).
+
+svc:azure-app-scope - App Service security and deployment scope. learn.microsoft.com (2026-11-15).
+
+svc:do-app-regions - App Platform regional availability. docs.digitalocean.com (2026-11-15).
+
+svc:do-app-price - App Platform container pricing. docs.digitalocean.com (2026-11-15).
+
+svc:do-app-runtime - App Platform containers. docs.digitalocean.com (2026-11-15).
+
+svc:do-app-build - App Platform build commands and limits. docs.digitalocean.com (2026-11-15).
+
+svc:do-app-sla - App Platform component SLA. digitalocean.com (2026-11-15).
+
+svc:do-spaces-price - Spaces storage pricing. docs.digitalocean.com (2026-11-15).
+
+svc:do-spaces-regions - Spaces regional availability. docs.digitalocean.com (2026-11-15).
+
+svc:otel-s3-export - OpenTelemetry S3 exporter. github.com (2026-11-15).
+
+
+---
+
+
+Appendix B. Source ledger 6
+
+Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
+
+svc:do-region-country - DigitalOcean datacenter geography. docs.digitalocean.com (2026-11-15).
 
 R01 - Knowledge-based recommender systems: overview and research directions. frontiersin.org (2024).
 
@@ -636,14 +692,6 @@ P07 - Microservices architecture style. learn.microsoft.com (2026-11-13).
 
 P08 - AWS Well-Architected Framework. docs.aws.amazon.com (2026-11-13).
 
-
----
-
-
-Appendix B. Source ledger 6
-
-Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
-
 P09 - AWS Services by Region. aws.amazon.com (2026-11-13).
 
 P10 - Shared Responsibility Model. aws.amazon.com (2026-11-13).
@@ -661,6 +709,14 @@ P15 - Technology Radar. thoughtworks.com (2026-11-13).
 tool:node - Node.js release information. nodejs.org (2026-11-13).
 
 tool:npm - npm CLI documentation. docs.npmjs.com (2026-11-13).
+
+
+---
+
+
+Appendix B. Source ledger 7
+
+Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
 
 tool:types - DefinitelyTyped type definitions. github.com (2026-11-13).
 
@@ -683,6 +739,8 @@ tool:jstt - json-schema-to-typescript. github.com (2026-11-13).
 tool:static - Fastify static assets plugin. github.com (2026-11-13).
 
 tool:reportlab - ReportLab PDF toolkit. reportlab.com (2026-11-13).
+
+tool:pillow - Pillow image conversion. pillow.readthedocs.io (2026-11-15).
 
 tool:pypdf - pypdf documentation. pypdf.readthedocs.io (2026-11-13).
 

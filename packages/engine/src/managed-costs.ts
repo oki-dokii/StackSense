@@ -2,6 +2,7 @@ import type { NormalizedScenario } from '../../contracts/src/index.js';
 import type { CorePlan } from './types.js';
 import type { CostLine, SupportResult } from './complete-types.js';
 import { priceLine } from './costs.js';
+import { appPlatformCost } from './do-costs.js';
 
 /** Bounded paid tiers. Quantities and workload hypotheses are explicit; no free-tier or SLA claims. */
 export function managedCost(
@@ -37,6 +38,8 @@ export function managedCost(
     );
   const { requests, peak, totalData, egress, retention } = q;
   const functions = plan.hosting.id === 'vercel';
+  const digitalOcean = plan.hosting.id === 'do-app';
+  let backup = { min: 0, max: 0 };
   if (functions) {
     const months = requests * 86400 * 30;
     // Scheduled drain is charged as invocations plus bounded CPU/wall-time batches.
@@ -97,6 +100,8 @@ export function managedCost(
     assumptions.push(
       'Cron drains are minute-scale bounded batches, not resident workers; 43,200 monthly invocations plus 20–100 ms CPU/100–1000 ms wall time each are included. Direct signed media upload avoids function payload limits. Pool database connections and load-test cold starts, timeouts, batch sizes and concurrency.',
     );
+  } else if (digitalOcean) {
+    backup = appPlatformCost(plan, s, support, q, lines, assumptions);
   } else {
     const replicas = Math.max(
       s.requirements.availability === '99' ? 1 : 2,
@@ -153,20 +158,21 @@ export function managedCost(
       'supabase-price',
       '8 GB included once; application data distribution between DB/files unknown, database uses 50–100% total data.',
     );
-    add(
-      'supabase-mau',
-      'auth',
-      Math.max(0, s.scale.users_12_months - 100000),
-      Math.max(0, s.scale.users_12_months - 100000),
-      0.00325,
-      'supabase-price',
-      'All month-12 users conservatively treated as monthly active auth users; 100k included once.',
-    );
+    if (s.requirements.auth !== 'none')
+      add(
+        'supabase-mau',
+        'auth',
+        Math.max(0, s.scale.users_12_months - 100000),
+        Math.max(0, s.scale.users_12_months - 100000),
+        0.00325,
+        'supabase-price',
+        'All month-12 users conservatively treated as monthly active auth users; 100k included once.',
+      );
     add(
       'supabase-egress',
       'egress',
-      Math.max(0, egress - 250),
-      Math.max(0, egress * 2 - 250),
+      Math.max(0, egress + backup.min - 250),
+      Math.max(0, egress * 2 + backup.max - 250),
       0.09,
       'supabase-price',
       '250 GB uncached allowance once; no additional cached allowance assumed. Includes database-to-application plus direct client traffic within authored envelope; actual routing must be measured.',
@@ -181,17 +187,18 @@ export function managedCost(
         'supabase-price',
         '100 GB file storage included once, then USD .0213/GB.',
       );
-      add(
-        'file-backup-allowance',
-        'backup',
-        Math.max(10, totalData * 0.5) * retention,
-        Math.max(10, totalData) * retention * 2,
-        0.05,
-        'supabase-storage',
-        'Authored separately stored file backup allowance at USD .05/GB-month; provider/database backup does not protect object bytes. Destination geography, transfer and restore implementation require review.',
-      );
+      if (!digitalOcean)
+        add(
+          'file-backup-allowance',
+          'backup',
+          Math.max(10, totalData * 0.5) * retention,
+          Math.max(10, totalData) * retention * 2,
+          0.05,
+          'supabase-storage',
+          'Authored separately stored file backup allowance at USD .05/GB-month; provider/database backup does not protect object bytes. Destination geography, transfer and restore implementation require review.',
+        );
     }
-    if (s.requirements.realtime) {
+    if (support.components.some((c) => c.service_id === 'supabase-realtime')) {
       add(
         'supabase-realtime-connections',
         'realtime',
@@ -201,14 +208,25 @@ export function managedCost(
         'supabase-price',
         '500 included peak connections; USD 10 per additional 1000-connection package.',
       );
+      const suppliedMessages =
+        typeof s.extensions?.monthly_realtime_messages === 'number'
+          ? s.extensions.monthly_realtime_messages
+          : null;
       add(
         'supabase-realtime-messages',
         'realtime',
-        Math.ceil(Math.max(0, requests * 86400 * 30 - 5e6) / 1e6),
-        Math.ceil(Math.max(0, requests * 86400 * 30 * 2 - 5e6) / 1e6),
+        Math.ceil(
+          Math.max(0, (suppliedMessages ?? requests * 86400 * 30) - 5e6) / 1e6,
+        ),
+        Math.ceil(
+          Math.max(0, (suppliedMessages ?? requests * 86400 * 30 * 2) - 5e6) /
+            1e6,
+        ),
         2.5,
         'supabase-price',
-        'Authored 1–2 realtime messages per API request, 5M included then USD 2.50/M. Broadcast fan-out may cost more; measure it.',
+        suppliedMessages === null
+          ? 'Authored 1–2 vendor-billed realtime messages per API request, 5M included then USD 2.50 per started million. Only used for actual Supabase Realtime, never for self-hosted Yjs/ws. Broadcast fan-out may cost more; supply monthly_realtime_messages after measurement.'
+          : `Supplied ${suppliedMessages} monthly vendor-billed realtime messages including fan-out; first 5M included, then USD2.50 per started million. This quantity is supplied, not independently measured.`,
       );
     }
     assumptions.push(
@@ -255,6 +273,7 @@ export function managedCost(
       'Neon Launch: US/EU only; paid compute/storage/history modeled without a flat USD 15 assertion or a free Auth/Storage bundle. Explicit backup exports remain implementation work. No SLA, HIPAA agreement or capacity validation is inferred.',
     );
   }
+  if (digitalOcean) return; // worker and regional archive already charged; no duplicate logs allowance
   add(
     'telemetry-operations',
     'observability',

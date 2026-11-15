@@ -1,6 +1,6 @@
 # Submission readiness and owner checklist
 
-Application and recommendation engine release 0.8.0 is packaged locally and published in the repository. The organiser's final submission is a Drive folder/link; a GitHub URL alone does not replace it.
+Application and recommendation engine release 0.9.0 is packaged locally and published in the repository. The organiser's final submission is a Drive folder/link; a GitHub URL alone does not replace it.
 
 ## Prepared package
 
@@ -21,7 +21,7 @@ Download [the ZIP](https://github.com/oki-dokii/StackSense/blob/main/deliverable
 - [x] Core/supporting explanations, cost assumptions, all four statuses and no-plan Not estimated behavior.
 - [x] No name/ID selection branches, runtime LLM selection or paid-key requirement.
 - [x] Exact runtime/dependencies locked; local run/export commands and architecture documented.
-- [x] 326 passing application tests plus native provenance/evidence tests, output freshness verification, measured local API/clean cached setup with limits.
+- [x] 392 passing application tests plus native provenance/evidence tests, output freshness verification, measured local API/clean cached setup with limits.
 - [x] Six final-version public JSON files generated and schema checked; all six contain stacks; four include critical provisional conditions.
 - [x] Genuine screenshots for six public cases and all nine edge categories; P1/P3 deep dives.
 - [x] PDF follows numbered sections, 15 main A4 pages plus 10 appendix pages, 10–11 pt body/table text; rendered and inspected.

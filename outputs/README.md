@@ -1,6 +1,6 @@
 # Generated public recommendations
 
-These six reports are generated from the unchanged supplied public fixtures by engine/rules/services 0.8.0. They are actual evaluations, not hand-authored expected answers.
+These six reports are generated from the unchanged supplied public fixtures by engine/rules/services 0.9.0. They are actual evaluations, not hand-authored expected answers.
 
 ```sh
 npm ci

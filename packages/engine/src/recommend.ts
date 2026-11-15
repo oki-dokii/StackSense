@@ -43,9 +43,9 @@ export function invalidRecommendation(
   catalogVersion = defaultCatalog.version,
 ): FinalRecommendation {
   return {
-    engine_version: '0.8.0',
+    engine_version: '0.9.0',
     catalog_version: catalogVersion,
-    rules_version: '0.8.0',
+    rules_version: '0.9.0',
     services_version: defaultPolicies.version,
     status: 'invalid_input',
     summary:
@@ -389,6 +389,9 @@ export function recommend(
     'expected_requests_per_second',
     ...(typeof s.extensions?.expected_requests_per_second !== 'number'
       ? ['daily_active_user_fraction']
+      : []),
+    ...(support.components.some((c) => c.service_id === 'supabase-realtime')
+      ? ['monthly_realtime_messages']
       : []),
     'monthly_egress_gb',
     'retention_months',

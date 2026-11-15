@@ -60,7 +60,7 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -416,8 +416,8 @@
   ],
   "database_region": "aws-us-east-1",
   "decision_trace": {
-    "complete_candidates": 120,
-    "core_candidates": 168,
+    "complete_candidates": 156,
+    "core_candidates": 204,
     "rejected": [
       {
         "codes": [
@@ -543,7 +543,7 @@
     "score": 48,
     "selected_plan_id": "modular_monolith|flutter|aspnet|neon-pg|fly|iad"
   },
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -798,7 +798,7 @@
       "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.8.0",
+  "rules_version": "0.9.0",
   "scenario_id": "E03",
   "score_breakdown": [
     {
@@ -876,7 +876,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.8.0",
+  "services_version": "0.9.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -957,7 +957,7 @@
     "hosting": {
       "alternatives": [
         {
-          "choice": "Vercel Pro regional functions",
+          "choice": "DigitalOcean App Platform regional containers",
           "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
         }
       ],
@@ -1118,7 +1118,7 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 120 complete compatible plans; month-12 infrastructure planning band USD 1628.64–4067.03/month.",
+  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 156 complete compatible plans; month-12 infrastructure planning band USD 1628.64–4067.03/month.",
   "validation_errors": [],
   "warnings": [
     {

@@ -91,6 +91,42 @@ export function reviewActions(
         next =
           'Ask the tenant owner for the identity boundary and connectivity details. Microsoft 365 content geography does not establish Entra identity residency.';
       } else if (
+        w.code === 'AZURE_STANDARD_SCOPE_UNVERIFIED' ||
+        w.code === 'EXISTING_DATABASE_SCOPE_UNVERIFIED'
+      ) {
+        components = [
+          'regional App Service',
+          'existing SQL Server private integration',
+        ];
+        ids = [
+          'azure-app-network',
+          'azure-app-scope',
+          'azure-b1-india-price',
+          'sql2019-lifecycle',
+        ];
+        evidence = [
+          'B1 Central India SKU/quota and tenant-specific metadata/control-plane/log/backup geography; do not apply ASE assurances to Basic.',
+          'Approved VNet/subnet/private DNS, existing site-to-site VPN or ExpressRoute, on-premises firewall/TLS/identity and SQL edition/license/spare-capacity evidence.',
+          'Connection failure, recovery, SQL transaction/pool latency and restore tests; itemized network/operations quote beyond the disclosed allowance.',
+        ];
+        next =
+          'Validate the actual tenant/network path and tariff scope, configure region-pinned storage/logging, then run the integration and failover tests before accepting the qualified deployment.';
+      } else if (w.code === 'ARCHIVE_INTEGRATION_UNVERIFIED') {
+        components = ['background worker', 'regional log/file archive'];
+        ids = [
+          'do-spaces-regions',
+          'do-spaces-price',
+          'otel-s3-export',
+          'do-app-runtime',
+        ];
+        evidence = [
+          'Pinned alpha exporter or reviewed S3 SDK with TLS, least-privilege bucket credentials and explicit blr1/fra1/nyc3 endpoint; no global CDN for the private archive.',
+          'Synthetic export/restore drill covering retries, duplicate IDs, partial uploads, worker restart, disk/memory backpressure and retention/deletion.',
+          'Measured log bytes, object version churn, backup download/restore counts, shared-worker peak memory and end-to-end delivery alerts; reconcile both provider transfer meters.',
+        ];
+        next =
+          'Implement the regional archive boundary and run the synthetic failure/restore drill. The estimate is not proof that the archive exists or survives failures.';
+      } else if (
         w.code.includes('RESTRICTED') ||
         w.code === 'AIR_GAP_EXTERNAL_REQUIREMENT'
       ) {

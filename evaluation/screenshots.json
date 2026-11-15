@@ -1,8 +1,8 @@
 {
-  "engine_version": "0.8.0",
-  "catalog_version": "0.5.0",
-  "services_version": "0.8.0",
-  "capture": "Actual final UI overviews at 900x520, each observed against current engine summary; feature views at 1280x720 and mobile sensitivity at 360x800. JPEG browser captures converted losslessly to PNG pixels for existing report paths.",
+  "engine_version": "0.9.0",
+  "catalog_version": "0.6.0",
+  "services_version": "0.9.0",
+  "capture": "Actual release 0.9.0 UI: unchanged 15-item input batch, 900x520 overviews checked against engine summaries; feature views and scoped mobile checks. Browser JPEG pixels converted to PNG without retouching.",
   "input_sha256": "f443c1ed6ed5ad1e91732fd7b2e72a0b4cda3afaca020c8848c88c89c6c810f2",
   "images": [
     {
@@ -15,19 +15,19 @@
     },
     {
       "file": "E03.png",
-      "sha256": "60845165e28939f077beee201d7d0ae4cc5d3796fe57f5afaeea2f31a7b6cb1e"
+      "sha256": "ef7bdae3e9c47d0fdfbdff777acb91f40d20aa2b544c7e4101981dc9358e78af"
     },
     {
       "file": "E04.png",
-      "sha256": "5ca6a5a56010a35a5b827f4d05575bfe2639cc8b4f3d07a8826008c4ec6d0ada"
+      "sha256": "1aaa1c457b163c22f1bce7c39ed46161835da7c9cb9e70130f63c6ec1a7e5be3"
     },
     {
       "file": "E05.png",
-      "sha256": "fd3e6145207393d969f8da0b2c3f959ae3554e23197491591747e8979be01190"
+      "sha256": "08c561b926583ae9e42625f936bd3dfc2d3e4a23475851c8e3689079e6cffce1"
     },
     {
       "file": "E06.png",
-      "sha256": "9b6f8117cb9c6dedf670a31f496a49727f9153e97a550b9fd5c75f85f58c69f3"
+      "sha256": "77696c788aabbca40387039c371ffa8c35847770099738f478a02945028fae66"
     },
     {
       "file": "E07.png",
@@ -35,23 +35,23 @@
     },
     {
       "file": "E08.png",
-      "sha256": "1c37802c471c945b58058e7257db992777c486e2a0291b8e1543737800d94b37"
+      "sha256": "1b8e6dccdb25da4af1936c587e9592fe7bfcf6f99af48af4396147d68e88cca0"
     },
     {
       "file": "E09.png",
-      "sha256": "243a8f4dc48aa5f7092d7f56d8cbe1296a9304171648ab1c7461eb9eeab43abb"
+      "sha256": "75d574466bdcdd27bc93ee69db418887022d707f22314711495970acce022ab7"
     },
     {
       "file": "P1.png",
-      "sha256": "d124976dbcb77ebf26c615dc66dda95bcddbaa83366bbefcaac951be342d578e"
+      "sha256": "d198b6e76bafbc8642c23bdac8f2c0790469e09c3021dd0102dd5a0901996d18"
     },
     {
       "file": "P2.png",
-      "sha256": "3b93e1733ba861618b7ac4e98ddefa0570b44e149c5e9f017190c8ee6fb6a341"
+      "sha256": "16cb2ed1e34208f808479624846fa4dfcd8712eada08098af3203291bbfe236f"
     },
     {
       "file": "P3.png",
-      "sha256": "439ca86b3fca7413b0b64161c149aaeaf8b033f89bf0d2d44678356f1ad8759a"
+      "sha256": "1d14b3c895c0922d2b19a58a44364bafce111a8f5e3e18b3cb48ae0ff5593c64"
     },
     {
       "file": "P4.png",
@@ -59,27 +59,27 @@
     },
     {
       "file": "P5.png",
-      "sha256": "4194ce691745270bb0ee12af6f1daffc6101508e5505f2a8228d9eaefb058f38"
+      "sha256": "24902b4a61aa8abf97d8c6f8bf1e5355d34ff2700d093247fd4d2d2f31fa162f"
     },
     {
       "file": "P6.png",
-      "sha256": "562b897283ac23eef3a06c1bc31dc37e911dc392835e1230f27607edc169b2d8"
+      "sha256": "01ca8081065b42e94da9cd5089f76998f4e56868db1d591d5f81845877f6d842"
     },
     {
       "file": "alternatives.png",
-      "sha256": "29cadf18688eef787c90eca5beeebabe456d74e275c41ad6350fef06c747bbee"
+      "sha256": "ea5866f428251120325494387ef51b5eb9f1249b3e4f734b7ba688780a8b21ec"
     },
     {
       "file": "mobile-sensitivity.png",
-      "sha256": "1347d1fae87a35902b8bc115790e13edaadd9d273a3b59b1aecae18deed96edc"
+      "sha256": "bc320de887ae2bca8e927675b6e7afbdce0fdababeb8a09687a787092f19c389"
     },
     {
       "file": "review-actions.png",
-      "sha256": "d6f317095741fa5feb17b79f4150a33e17776e7d5a55738512e7d4d2afb37a12"
+      "sha256": "0d6c16913cb87073298a87ff0de3a1d3d20b2ea7b24c27eb0116231233511b38"
     },
     {
       "file": "sensitivity.png",
-      "sha256": "adda85769dc1b0c9938d761aaa5af1900bf7a77898617d86f2ea569630846c32"
+      "sha256": "0a7af1a7daff92fd0eb00561e58a5a3547d266b1f5f7f1733e39d2356ed745b2"
     }
   ],
   "directory": "docs/evidence/current"

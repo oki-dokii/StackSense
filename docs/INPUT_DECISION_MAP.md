@@ -21,7 +21,7 @@ One-page review map. Standard names are unchanged from the brief. Every selected
 | `file_media_storage`, `payments`, `ml_features` | Storage/upload/backup, checkout + webhook/outbox, bounded inference; reject unsupported training | Lending/KYC/disbursal and GPU/RAG remain separate scope |
 | `availability`, `p95_latency_ms` | Resilience/capacity qualification and explicit load-test tasks | Provider tier is not an SLA or 100-ms benchmark |
 | Six `priorities.*` | Weight 0–5 fit rubrics after language/budget tiers | Stable cost/operations/unused-target/ID ties |
-| Usage extensions | Explicit RPS, egress, retention, SMS/payment volume change corresponding line items | Activity fees additional to headline infrastructure |
+| Usage extensions | Explicit RPS, egress, retention, metered realtime fan-out, SMS/payment volume change corresponding line items | Activity fees additional to headline infrastructure |
 | `daily_active_user_fraction` | If RPS absent: default authored 0.2 × population, floored at supplied peak; 50 requests/active user/day | Range 0–1; explicit RPS overrides; neither default is measured |
 | Unsupported/unknown extensions | Preserve and warn without interpreting | No silent influence on stack choice |
 

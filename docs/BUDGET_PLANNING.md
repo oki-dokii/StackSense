@@ -20,7 +20,7 @@ Phone-vs-email login changes the displayed combined total even if infrastructure
 
 Only deployment and availability may change: a managed-cloud request with `any`/AWS preference can be rerun as a self-managed cloud VM, and a higher availability target can be explicitly lowered to 99%. All original feature flags, platforms, scale, provider preference, residency, compliance, team and priorities remain intact. The complete engine evaluates the changed copy; no original input/result is overwritten. Apply the recorded field edits manually only if accepted, then rerun to reproduce the proposal. There is no automatic Apply or deployment action.
 
-Azure requests retain Azure. Air-gap/external-service conflicts and unsupported ML remain genuine coverage failures. P5 stays over budget; this update does not invent a cheap India Azure SKU. A 99% self-managed proposal does not provide the original resilience or eliminate compliance/vendor conditions. Operating labor, patching, TLS, capacity, database recovery and burst-CPU suitability require explicit review.
+Azure requests retain Azure. Air-gap/external-service conflicts and unsupported ML remain genuine coverage failures. A separate sourced B1 India profile now brings P5 into its planning budget; its standard-service metadata and private connectivity are explicitly unverified. A 99% self-managed proposal does not provide the original resilience or eliminate compliance/vendor conditions. Operating labor, patching, TLS, capacity, database recovery and burst-CPU suitability require explicit review.
 
 ## Reviewed fixed-price VM model
 
@@ -30,20 +30,18 @@ Transfer accounting reserves half one bundle's allowance for inbound/other traff
 
 Primary sources reviewed: [Cloud Run billing modes](https://docs.cloud.google.com/run/docs/configuring/billing-settings), [Cloud Run pricing](https://cloud.google.com/run/pricing), [Lightsail bundles](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-bundles.html), [regional endpoints](https://docs.aws.amazon.com/general/latest/gr/lightsail.html), [transfer/disk/snapshot pricing](https://aws.amazon.com/lightsail/pricing/), [instance sizing and burst capacity](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-right-size-instance.html). No competitor implementation was used.
 
-## Public cost results
+## Current public cost results (0.9.0)
 
-All values below are infrastructure only. Optional proposals change requirements and need explicit acceptance; payment/SMS activity remains additional and visible.
+Infrastructure only; unresolved source/capacity/contract conditions remain critical.
 
 | Case | Original requested deployment | Optional proposal | Proposal infrastructure fit |
 |---|---:|---:|---|
 | P1 | $0.00–$0.00 | no cheaper proposal | — |
-| P2 | $367.76–$1,193.62 | $104.00–$193.50 | range_risk |
-| P3 | $639.32–$2,648.75 | $247.40–$390.40 | within_upper |
+| P2 | $89.09–$155.98 | no cheaper proposal | — |
+| P3 | $291.90–$501.56 | no cheaper proposal | — |
 | P4 | $1,028.89–$3,882.82 | no cheaper proposal | — |
-| P5 | $686.87–$858.06 | $346.93–$460.53 | over_budget |
-| P6 | $187.90–$552.07 | $87.00–$141.00 | range_risk |
-
-Across 30 stress inputs, 26 received a cheaper optional proposal: 15 with an upper infrastructure bound within budget, 8 with only the lower bound within budget, and 3 still over budget. These are changed-requirement proposals, not original-brief successes.
+| P5 | $66.42–$202.42 | no cheaper proposal | — |
+| P6 | $55.25–$62.02 | no cheaper proposal | — |
 
 ## Reproduce and limits
 
@@ -54,4 +52,4 @@ node scripts/evaluate-budget.mjs --check
 npx vitest run tests/budget.test.ts
 ```
 
-18 new regressions bring the application suite to 326 tests across thirteen files. [Current budget records](../evaluation/budget-results.json) and [before-change public bands](../evaluation/budget-baseline.json) preserve the comparison. The release verifier recomputes the budget and stress reports. Browser evidence includes fresh public/edge overviews, P2 JSON and P3 analysis/ADR export parity, plus scoped desktop/narrow cost checks. The unchanged invalid-result focus snapshot is retained from the earlier pass; it was not freshly reproduced in this browser pass. The checks do not establish full accessibility conformance.
+The 0.9.0 suite adds paid-tier and qualified-budget regressions; current test results and CI supersede the earlier 326-test count. [Current budget records](../evaluation/budget-results.json) and [before-change public bands](../evaluation/budget-baseline.json) preserve the comparison. The release verifier recomputes the budget and stress reports. Browser evidence includes fresh public/edge overviews, P2 JSON and P3 analysis/ADR export parity, plus scoped desktop/narrow cost checks. All nine custom DOM snapshots are fresh, including automatic invalid-summary focus and error-link recovery. The checks do not establish full accessibility conformance.

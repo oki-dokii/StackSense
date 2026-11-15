@@ -308,7 +308,7 @@ describe('complete recommendation CLI', () => {
       const report = JSON.parse(
         await readFile(join(path, `P${i}_output.json`), 'utf8'),
       );
-      expect(report.engine_version).toBe('0.8.0');
+      expect(report.engine_version).toBe('0.9.0');
       expect(report).toHaveProperty('estimated_monthly_cost_usd');
     }
     expect(

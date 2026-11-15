@@ -1,3 +1,7 @@
+# Current gap ledger
+
+See [release 0.9.0 gap closure](REMAINING_GAPS.md) for current implementation and evidence status. The assessment below is historical; its old four-infeasible outcome is superseded by current generated outputs.
+
 # Prioritized improvements after the repository comparison
 
 Assessment: 13 November 2026 IST. [Comparison evidence and limits](REPOSITORY_COMPARISON.md). This queue now includes partial/delivered Phase 6 work; the status column distinguishes implementation from missing project evidence. Effort is an engineering planning estimate; evidence availability can dominate it.

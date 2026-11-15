@@ -54,6 +54,25 @@ export function controlPlan(
         fields: ['infrastructure.data_residency'],
       });
   }
+  if (plan.hosting.id === 'do-app')
+    result.warnings.push({
+      code: 'ARCHIVE_INTEGRATION_UNVERIFIED',
+      severity: 'critical',
+      message:
+        'The proposed regional log/file archive requires an implemented, pinned and tested S3-compatible exporter/SDK, IAM, retry/backpressure, deletion retention and restore workflow. The reviewed OpenTelemetry S3 exporter is alpha; no durable local worker disk, indexed log search, archive delivery or successful restore is assumed verified. Shared one-GiB container capacity and end-to-end availability remain unmeasured.',
+      fields: ['requirements.availability', 'requirements.file_media_storage'],
+    });
+  if (plan.hosting.id === 'appservice-india')
+    result.warnings.push({
+      code: 'AZURE_STANDARD_SCOPE_UNVERIFIED',
+      severity: 'critical',
+      message:
+        'Central India B1 application placement is reviewed, but standard App Service metadata, control plane, logs, backups and support processing do not inherit ASE in-region assurance. Existing SQL private routes, tenant scope, network/edition charges and capacity remain unverified. Resolve this explicit provisional residency/network exception before production.',
+      fields: [
+        'infrastructure.data_residency',
+        'infrastructure.existing_systems',
+      ],
+    });
   if (plan.database_existing) {
     result.warnings.push({
       code: 'EXISTING_DATABASE_SCOPE_UNVERIFIED',

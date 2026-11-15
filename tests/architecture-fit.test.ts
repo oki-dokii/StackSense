@@ -183,7 +183,11 @@ describe('bounded managed alternatives and honest budget ranking', () => {
     expect(r.status).toBe('blocked');
   });
   it('prices seats, one project credit, file backups, telemetry and unquoted delivery separately', () => {
-    const r = recommend(scenarios[5]);
+    const catalog = {
+      ...defaultCatalog,
+      entries: defaultCatalog.entries.filter((e) => e.id !== 'do-app'),
+    };
+    const r = recommend(scenarios[5], { catalog });
     expect(ids(r)[4]).toBe('vercel');
     const line = (id: string) => r.cost_breakdown.find((l) => l.id === id)!;
     expect(line('vercel-platform-seats').monthly_usd).toEqual({

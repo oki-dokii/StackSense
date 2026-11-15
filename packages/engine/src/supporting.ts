@@ -112,14 +112,16 @@ export function selectSupporting(
     result.data_flows.push({
       component: profile.id,
       location:
-        profile.placement === 'external'
-          ? 'External service geography not established'
-          : profile.placement === 'device'
-            ? 'User device local storage'
-            : profile.placement === 'build'
-              ? 'Build environment: source/synthetic fixtures only'
-              : (plan.primary_region ??
-                'Selected deployment region (must be chosen before provisioning)'),
+        profile.id === 'do-archive'
+          ? `Application ${plan.primary_region}; explicitly configure Spaces ${plan.primary_region === 'blr' ? 'blr1' : plan.primary_region === 'fra' ? 'fra1' : 'nyc3'} regional archive (end-to-end scope unverified)`
+          : profile.placement === 'external'
+            ? 'External service geography not established'
+            : profile.placement === 'device'
+              ? 'User device local storage'
+              : profile.placement === 'build'
+                ? 'Build environment: source/synthetic fixtures only'
+                : (plan.primary_region ??
+                  'Selected deployment region (must be chosen before provisioning)'),
       scope:
         profile.placement === 'build'
           ? 'Never export production data/secrets/personal data to build logs.'
@@ -132,6 +134,12 @@ export function selectSupporting(
             : 'configuration_required',
     });
   }
+  if (provider === 'digitalocean' && f.collaborative)
+    fail(
+      'APP_PLATFORM_PROFILE_GAP',
+      'This bounded paid profile has no reviewed Yjs memory/replication sizing; use another complete candidate.',
+      ['requirements.realtime', 'project.type'],
+    );
   const get = (id: string) => {
     const profile = p.services.find((item) => item.id === id);
     if (!profile) throw new Error(`Missing required service profile ${id}`);
@@ -343,7 +351,13 @@ export function selectSupporting(
     );
   if (plan.style !== 'static')
     add(
-      get(functions ? 'vercel-telemetry' : 'otel'),
+      get(
+        functions
+          ? 'vercel-telemetry'
+          : provider === 'digitalocean'
+            ? 'do-archive'
+            : 'otel',
+      ),
       ['requirements.availability'],
       'Collect redacted metrics/logs/traces with regional retention; on cloud use a configured host-provider regional log bucket, locally use provisioned persistent storage.',
     );
@@ -355,7 +369,9 @@ export function selectSupporting(
           ? 'jenkins'
           : functions
             ? 'vercel-build'
-            : 'actions',
+            : provider === 'digitalocean'
+              ? 'do-build'
+              : 'actions',
     ),
     ['infrastructure.deployment_model'],
     'Build/test/deploy with pinned dependencies, synthetic fixtures and controlled secrets; production data does not enter the build service.',

@@ -1,6 +1,6 @@
 # Evidence review
 
-As of 2026-11-15: 142 sources; 0 due; 0 future review dates.
+As of 2026-11-15: 166 sources; 0 due; 0 future review dates.
 
 | Source | Last review | Due | Status | Categories | Output mentions |
 |---|---|---|---|---|---|
@@ -10,7 +10,10 @@ As of 2026-11-15: 142 sources; 0 due; 0 future review dates.
 | core:astro | 2026-11-13 | 2027-02-11 | within_review_window | capability | P1 |
 | core:astro-markdown | 2026-11-13 | 2027-02-11 | within_review_window | capability | P1 |
 | core:aws-regions | 2026-11-14 | 2026-12-14 | within_review_window | region_or_controls | P4 |
-| core:azure-ase | 2026-11-13 | 2026-12-13 | within_review_window | capability, region_or_controls | P5 |
+| core:azure-app-network | 2026-11-15 | 2026-12-15 | within_review_window | capability, region_or_controls | P5 |
+| core:azure-app-scope | 2026-11-15 | 2027-02-13 | within_review_window | capability | P5 |
+| core:azure-ase | 2026-11-13 | 2026-12-13 | within_review_window | capability, region_or_controls |  |
+| core:azure-b1-india-price | 2026-11-15 | 2026-12-15 | within_review_window | capability, region_or_controls | P5 |
 | core:azure-pg | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls |  |
 | core:azure-pg-backup | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls |  |
 | core:azure-pg-regions | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls |  |
@@ -19,6 +22,14 @@ As of 2026-11-15: 142 sources; 0 due; 0 future review dates.
 | core:cloudsql-pg | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls |  |
 | core:compose | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | core:django | 2026-11-13 | 2027-02-11 | within_review_window | capability | P2, P6 |
+| core:do-app-build | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| core:do-app-price | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| core:do-app-regions | 2026-11-15 | 2026-12-15 | within_review_window | capability, region_or_controls | P2, P6 |
+| core:do-app-runtime | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| core:do-app-sla | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| core:do-region-country | 2026-11-15 | 2026-12-15 | within_review_window | capability, region_or_controls | P2, P6 |
+| core:do-spaces-price | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| core:do-spaces-regions | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
 | core:ec2 | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | core:ecs | 2026-11-13 | 2027-02-11 | within_review_window | capability | P4 |
 | core:express-db | 2026-11-15 | 2027-02-13 | within_review_window | capability | P3 |
@@ -44,6 +55,7 @@ As of 2026-11-15: 142 sources; 0 due; 0 future review dates.
 | core:nest-db | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
 | core:next | 2026-11-13 | 2027-02-11 | within_review_window | capability | P2, P4 |
 | core:nginx | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
+| core:otel-s3-export | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
 | core:pages | 2026-11-13 | 2027-02-11 | within_review_window | capability | P1 |
 | core:pg | 2026-11-13 | 2027-02-11 | within_review_window | capability | P2, P3, P4, P6 |
 | core:rds-maria | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls |  |
@@ -61,22 +73,33 @@ As of 2026-11-15: 142 sources; 0 due; 0 future review dates.
 | core:supabase-price | 2026-11-15 | 2026-12-15 | within_review_window | capability, region_or_controls | P2, P3, P6 |
 | core:supabase-regions | 2026-11-15 | 2026-12-15 | within_review_window | region_or_controls | P2, P3, P6 |
 | core:svelte | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
-| core:vercel-django | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| core:vercel-go | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| core:vercel-pro | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| core:vercel-regions | 2026-11-15 | 2026-12-15 | within_review_window | capability, region_or_controls | P2, P6 |
-| core:vercel-ws | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| core:vercel-django | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| core:vercel-go | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| core:vercel-pro | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| core:vercel-regions | 2026-11-15 | 2026-12-15 | within_review_window | capability, region_or_controls |  |
+| core:vercel-ws | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
 | core:vue | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | services:android-offline | 2026-11-13 | 2027-02-11 | within_review_window | capability | P6 |
 | services:angularjs-eol | 2026-11-13 | 2026-12-13 | within_review_window | lifecycle |  |
 | services:aws-logs | 2026-11-13 | 2027-02-11 | within_review_window | capability | P3, P4, P5 |
-| services:azure-ase-retail | 2026-11-13 | 2026-11-27 | within_review_window | pricing | P5 |
+| services:azure-app-network | 2026-11-15 | 2027-02-13 | within_review_window | capability | P5 |
+| services:azure-app-scope | 2026-11-15 | 2027-02-13 | within_review_window | capability | P5 |
+| services:azure-ase-retail | 2026-11-13 | 2026-11-27 | within_review_window | pricing |  |
+| services:azure-b1-india-price | 2026-11-15 | 2026-11-29 | within_review_window | pricing | P5 |
 | services:azure-price | 2026-11-13 | 2026-11-27 | within_review_window | pricing |  |
 | services:azure-storage-boundary | 2026-11-13 | 2027-02-11 | within_review_window | capability | P5 |
 | services:azure-storage-region | 2026-11-13 | 2027-02-11 | within_review_window | capability | P5 |
 | services:azure-vnet-integration | 2026-11-13 | 2026-12-13 | within_review_window | capability, region_or_controls | P5 |
 | services:ci | 2026-11-13 | 2027-02-11 | within_review_window | capability | P3, P4, P5 |
 | services:dexie | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
+| services:do-app-build | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| services:do-app-price | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| services:do-app-regions | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| services:do-app-runtime | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| services:do-app-sla | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| services:do-region-country | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| services:do-spaces-price | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| services:do-spaces-regions | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
 | services:dpdp | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls | P2, P4, P6 |
 | services:drift | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | services:ec2-price | 2026-11-13 | 2026-11-27 | within_review_window | pricing |  |
@@ -105,6 +128,7 @@ As of 2026-11-15: 142 sources; 0 due; 0 future review dates.
 | services:neon-price | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
 | services:neon-regions | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
 | services:onnx | 2026-11-13 | 2027-02-11 | within_review_window | capability | P4 |
+| services:otel-s3-export | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
 | services:pages-price | 2026-11-13 | 2027-02-11 | within_review_window | capability | P1 |
 | services:pci | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls | P4 |
 | services:pg-fts | 2026-11-13 | 2027-02-11 | within_review_window | capability | P2 |
@@ -132,17 +156,17 @@ As of 2026-11-15: 142 sources; 0 due; 0 future review dates.
 | services:supabase-sms-hook | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P3, P6 |
 | services:supabase-storage | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P3, P6 |
 | services:telemetry | 2026-11-13 | 2027-02-11 | within_review_window | capability | P2, P3, P4, P5, P6 |
-| services:vercel-bom-price | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| services:vercel-build | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| services:vercel-cron | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| services:vercel-django | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| services:vercel-fluid | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| services:vercel-go | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| services:vercel-logs | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P3, P6 |
-| services:vercel-network | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| services:vercel-pro | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| services:vercel-regions | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
-| services:vercel-ws | 2026-11-15 | 2027-02-13 | within_review_window | capability | P2, P6 |
+| services:vercel-bom-price | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| services:vercel-build | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| services:vercel-cron | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| services:vercel-django | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| services:vercel-fluid | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| services:vercel-go | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| services:vercel-logs | 2026-11-15 | 2027-02-13 | within_review_window | capability | P3 |
+| services:vercel-network | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| services:vercel-pro | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| services:vercel-regions | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
+| services:vercel-ws | 2026-11-15 | 2027-02-13 | within_review_window | capability |  |
 | services:workbox | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | services:ws | 2026-11-13 | 2027-02-11 | within_review_window | capability | P3 |
 | services:yjs | 2026-11-13 | 2027-02-11 | within_review_window | capability | P3 |

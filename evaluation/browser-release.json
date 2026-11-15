@@ -1,34 +1,43 @@
 {
   "checked_on": "2026-11-15",
-  "app_version": "0.8.0",
-  "engine_version": "0.8.0",
+  "app_version": "0.9.0",
+  "engine_version": "0.9.0",
   "analysis_version": "0.2.0",
   "input_fixture": "fixtures/public/scenarios.json",
   "input_sha256": "6a4aa08bd2fddfaf6a6498188867848d721c5cb6822164b27a783ae8ead76d57",
   "browser_export_sha256": {
-    "p2jsonPath": "b17f65c430aa47f88235db539172a74fd3da6e0abde2f37f578ee9bd6a3015e8",
-    "p3jsonPath": "5d2bd6ca43e7b21974bfaf414cea8c8174b0bf4dda18387210d523dca3416626",
-    "p3adrPath": "86ab5e6be51c987ae33e919e5a53ab98ed6eb35d9c830e6d98ac1700307b71d6"
+    "p2jsonPath": "5134bf2dded8f7a5ac2438fe48f487c53a256c343d23e09a60a3f38aa8996338",
+    "p3jsonPath": "808fae7baadb842cde2e4118d205ebf5207b24c5b679090aed4e16773e55a178",
+    "p3adrPath": "94a409bfcde65827af2e76c061e5974f8bd4cb942243480ff2ec9bef09f743cf"
   },
   "checks": [
-    "Final P2 JSON and P3 analysis JSON/ADR downloaded through UI; canonical JSON and exact ADR matched current engine artifacts",
-    "All 15 overviews recaptured after observing current engine summaries",
-    "Custom desktop/mobile DOM audits have no recorded findings or document overflow; 320px chart moved horizontally by 40px after ArrowRight",
-    "Air-gap phone/payment conflict remained infeasible; bounded functional experiments found a two-edit changed project, never applied",
-    "Validation error link navigated to section-budget; automatic validation-summary focus retains the explicitly historical snapshot and React DOM regression evidence"
+    "All fifteen unchanged public/edge overviews recaptured against current engine summaries",
+    "Actual P2 JSON and P3 analysis JSON/ADR match final engine artifacts",
+    "All nine custom DOM audits refreshed; automatic validation focus and budget-link recovery observed on a fresh single invalid scenario",
+    "320px chart scrolled 40px on ArrowRight; no recorded audit issues or document overflow",
+    "Air-gap original remains infeasible; bounded functional variants are explicitly changed projects",
+    "Separate P2 example supplies 9M billed messages and preserves features/quality; USD89.09–133.48 is a supplied-volume hypothesis, not measured public-scenario spend"
   ],
   "captures": [
     {
       "file": "docs/evidence/current/tradeoffs.png",
-      "sha256": "d32b72beca7f31830488bf8b903faadba86de1d1f239eb538147f0ad4e179d02"
+      "sha256": "08003c9a3cb9d2a155057b572fd31b27bc131999f43e238b444cfaab4148475f"
     },
     {
       "file": "docs/evidence/current/P2-stack.png",
-      "sha256": "1f8a7e8bf890e917887f37dbddcb881fc08839f0afdf2daef82ae473d3e29208"
+      "sha256": "853ecd48d5f3dda4e2b344186d37407d9f8949d9d946940b7bb1991dadc244bd"
     },
     {
       "file": "docs/evidence/current/P5-stack.png",
-      "sha256": "4645d92f81477fa44a9bcd9ea01dd6593deab3c511d7f6ec6cba84f3a525f969"
+      "sha256": "4075c37f004acbba056f1179a7c249cc526543d52bb82fea107fe181bc11809c"
+    },
+    {
+      "file": "docs/evidence/current/P6-budget.png",
+      "sha256": "9a42b3791e10961d66f5cdcd618366e05c96e1cd1ba809c69936e8579e99d809"
+    },
+    {
+      "file": "docs/evidence/current/P2-usage-example.png",
+      "sha256": "34630fbfc74906897663230a38fe69af5f8f1e0286aebc9cc4f60278331fa617"
     },
     {
       "file": "docs/evidence/current/stress-lab.png",
@@ -36,9 +45,23 @@
     },
     {
       "file": "docs/evidence/current/budget-options.jpg",
-      "sha256": "de872b9233cd3fde03492466918125649a1d92de8512f2b1ac655c789ab295f8"
+      "sha256": "92b4513553384792eeff06367fe6325270455d03af19c3d747272838411b213c"
     }
   ],
   "stress_input_fixture": "fixtures/airgap-conflict.json",
-  "stress_input_sha256": "d6ffa005cf922af16d54c372ce33cde1ad965cac0dcbd6f280276be03e449306"
+  "stress_input_sha256": "d6ffa005cf922af16d54c372ce33cde1ad965cac0dcbd6f280276be03e449306",
+  "usage_example": {
+    "source_fixture": "fixtures/public/P2.json",
+    "overrides": {
+      "scenario_id": "P2_USAGE_EXAMPLE",
+      "extensions": {
+        "monthly_realtime_messages": 9000000
+      }
+    },
+    "scope": "hypothetical_supplied_volume_not_measured",
+    "infrastructure_usd": {
+      "min": 89.09,
+      "max": 133.48
+    }
+  }
 }

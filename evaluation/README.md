@@ -1,3 +1,7 @@
+# Current evaluation record
+
+Release 0.9.0: 392 application tests, 22 native tooling tests, 60 authored stress briefs with repeat/CLI --no-llm parity, and nine fresh scoped browser audit snapshots. Current outputs, analysis, source observations, report/package hashes and cached setup rehearsal are regenerated and verified. Older version notes below describe historical checkpoints. See [remaining evidence gates](../docs/REMAINING_GAPS.md).
+
 # Release evaluation evidence
 
 These are author-designed unseen-style cases, not organiser hidden cases or independent expert review. `cases.json` records inputs and explicit invariants; tests exercise them without scenario-ID branching in the engine.

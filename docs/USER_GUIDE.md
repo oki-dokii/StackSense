@@ -9,3 +9,5 @@ The headline covers infrastructure and operations; SMS/payment scenarios are add
 Decision Lab explores priority sensitivity, finite tradeoffs and bounded functional changes. It preserves protected infrastructure/compliance inputs in functional trials. Counts are finite authored experiments, not probabilities or measured independent quality. Download JSON and ADR after analysis. Changed input makes old results stale and disables export.
 
 See [CLI/API](API_CLI.md), [input map](INPUT_DECISION_MAP.md), [engine walkthrough](ENGINE_WALKTHROUGH.md), [cost model](COST_MODEL.md), [phase history](PHASES.md), and [AI assistance](AI_ASSISTANCE.md).
+
+For metered managed realtime, optional `monthly_realtime_messages` is the billed sender/recipient count including fan-out. It applies only to actual Supabase Realtime, not self-hosted Yjs/ws. Supplying a hypothetical quantity narrows a scenario estimate; it is not a measurement or permission to rewrite the public brief.

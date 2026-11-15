@@ -60,7 +60,7 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -406,7 +406,7 @@
     "score": 48,
     "selected_plan_id": "modular_monolith|angular|express|mysql|local|unspecified"
   },
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -610,7 +610,7 @@
   ],
   "primary_region": null,
   "review_actions": [],
-  "rules_version": "0.8.0",
+  "rules_version": "0.9.0",
   "scenario_id": "E07",
   "score_breakdown": [
     {
@@ -686,7 +686,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.8.0",
+  "services_version": "0.9.0",
   "stack": {
     "backend": {
       "alternatives": [

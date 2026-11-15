@@ -67,6 +67,16 @@ export function costSensitivity(
         ]
       : []),
     ['monthly_egress_gb', Math.max(1, users * 0.01)],
+    ...(candidate.support.components.some(
+      (c) => c.service_id === 'supabase-realtime',
+    )
+      ? [
+          [
+            'monthly_realtime_messages',
+            Math.ceil(traffic(s).rps * 86400 * 30 * 2),
+          ] as [string, number],
+        ]
+      : []),
     ['retention_months', 1],
     ...(s.requirements.auth === 'phone_otp'
       ? [['monthly_otp_count', users * 2] as [string, number]]
@@ -85,7 +95,9 @@ export function costSensitivity(
       ...new Set([
         field === 'retention_months'
           ? Math.max(1, Math.floor(baseline / 2))
-          : field.endsWith('_count') || field === 'monthly_payment_transactions'
+          : field.endsWith('_count') ||
+              field === 'monthly_payment_transactions' ||
+              field === 'monthly_realtime_messages'
             ? Math.floor(baseline / 2)
             : baseline / 2,
         field === 'daily_active_user_fraction'

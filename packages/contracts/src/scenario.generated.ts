@@ -108,6 +108,10 @@ export interface Scenario {
      * Authored default 0.2 of registered month-12 users active daily when RPS is absent; explicit RPS takes precedence. Not a measured traffic claim.
      */
     daily_active_user_fraction?: number;
+    /**
+     * Optional monthly vendor-billed realtime messages, including sender/recipient fan-out; not all HTTP requests. Applied only when the selected design uses metered Supabase Realtime.
+     */
+    monthly_realtime_messages?: number;
     [k: string]: unknown;
   };
   [k: string]: unknown;

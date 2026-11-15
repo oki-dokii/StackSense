@@ -127,11 +127,11 @@ export function createServer(
     });
   });
   const versions = {
-    engine_version: '0.8.0',
+    engine_version: '0.9.0',
     catalog_version: defaultCatalog.version,
-    rules_version: '0.8.0',
+    rules_version: '0.9.0',
     services_version: defaultPolicies.version,
-    app_version: '0.8.0',
+    app_version: '0.9.0',
   };
   app.get('/api/health', async () => ({ status: 'ok', ...versions }));
   app.get(

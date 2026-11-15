@@ -1,6 +1,6 @@
 {
   "case_set_sha256": "8e63aeb5cfac709166f7d4f295e77146e5625059775773759de48589f91f5303",
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "records": [
     {
       "category": "Missing fields",
@@ -51,16 +51,16 @@
     {
       "category": "Regulatory constraints",
       "cost": {
-        "max": 691.4,
-        "min": 247.04
+        "max": 316.32,
+        "min": 161.11
       },
       "id": "E05",
-      "selected_plan_id": "modular_monolith|angular|aspnet|mysql|cloudrun|unspecified",
+      "selected_plan_id": "modular_monolith|angular|aspnet|pg|appservice-india|centralindia",
       "status": "ok_with_warnings",
       "warnings": [
+        "AZURE_STANDARD_SCOPE_UNVERIFIED",
         "BAA_EVIDENCE_REQUIRED",
         "AVAILABILITY_TARGET_UNVERIFIED",
-        "BUDGET_RANGE_RISK",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
         "PRICE_AND_CAPACITY_ASSUMPTIONS"
       ]
@@ -99,13 +99,14 @@
     {
       "category": "Skill mismatch",
       "cost": {
-        "max": 65.25,
+        "max": 50.25,
         "min": 50
       },
       "id": "E08",
-      "selected_plan_id": "modular_monolith|angular|go-http|supabase-pg|vercel|iad1",
+      "selected_plan_id": "modular_monolith|angular|go-http|supabase-pg|do-app|nyc",
       "status": "ok_with_warnings",
       "warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW",
         "AVAILABILITY_TARGET_UNVERIFIED",
         "PRICE_AND_CAPACITY_ASSUMPTIONS"
@@ -114,13 +115,14 @@
     {
       "category": "Deprecated technology",
       "cost": {
-        "max": 65.25,
+        "max": 50.25,
         "min": 50
       },
       "id": "E09",
-      "selected_plan_id": "modular_monolith|react|django|supabase-pg|vercel|iad1",
+      "selected_plan_id": "modular_monolith|react|django|supabase-pg|do-app|nyc",
       "status": "ok_with_warnings",
       "warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW",
         "AVAILABILITY_TARGET_UNVERIFIED",
         "EXISTING_SYSTEM_REVIEW",
@@ -147,13 +149,14 @@
     {
       "category": "Offline native writes",
       "cost": {
-        "max": 66.25,
-        "min": 50.5
+        "max": 50.25,
+        "min": 50
       },
       "id": "E11",
-      "selected_plan_id": "modular_monolith|react-native|django|supabase-pg|vercel|iad1",
+      "selected_plan_id": "modular_monolith|react-native|django|supabase-pg|do-app|nyc",
       "status": "ok_with_warnings",
       "warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW",
         "AVAILABILITY_TARGET_UNVERIFIED",
         "PRICE_AND_CAPACITY_ASSUMPTIONS"
@@ -183,13 +186,14 @@
     {
       "category": "Unknown extension",
       "cost": {
-        "max": 65.25,
+        "max": 50.25,
         "min": 50
       },
       "id": "E14",
-      "selected_plan_id": "modular_monolith|angular|django|supabase-pg|vercel|iad1",
+      "selected_plan_id": "modular_monolith|angular|aspnet|supabase-pg|do-app|nyc",
       "status": "ok_with_warnings",
       "warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW",
         "AVAILABILITY_TARGET_UNVERIFIED",
         "PRICE_AND_CAPACITY_ASSUMPTIONS",

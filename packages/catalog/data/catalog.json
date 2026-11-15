@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "0.6.0",
   "reviewed_on": "2026-11-15",
   "sources": [
     {
@@ -442,6 +442,90 @@
       "url": "https://vercel.com/kb/guide/do-vercel-serverless-functions-support-websocket-connections",
       "scope": "Functions cannot act as persistent WebSocket servers; use external realtime.",
       "checked_on": "2026-11-15"
+    },
+    {
+      "id": "azure-b1-india-price",
+      "title": "Azure Retail Prices API: Central India B1 Linux",
+      "url": "https://prices.azure.com/api/retail/prices",
+      "checked_on": "2026-11-15",
+      "scope": "Public consumption record retained in evaluation/azure-b1-price.json: Azure App Service Basic Plan - Linux, B1, Central India, USD .018/hour; no ASE tariff applied."
+    },
+    {
+      "id": "azure-app-network",
+      "title": "App Service VNet integration",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+      "checked_on": "2026-11-15",
+      "scope": "Basic dedicated compute supports regional VNet integration and approved site-to-site VPN/ExpressRoute paths. It does not establish existing private connectivity."
+    },
+    {
+      "id": "azure-app-scope",
+      "title": "App Service security and deployment scope",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-security",
+      "checked_on": "2026-11-15",
+      "scope": "Regional application deployment is not end-to-end India residency proof; standard service metadata/control-plane scope remains critically qualified."
+    },
+    {
+      "id": "do-app-regions",
+      "title": "App Platform regional availability",
+      "url": "https://docs.digitalocean.com/products/app-platform/details/availability/",
+      "checked_on": "2026-11-15",
+      "scope": "Dynamic BLR, FRA and NYC reviewed. Static CDN placement does not inherit dynamic region."
+    },
+    {
+      "id": "do-app-price",
+      "title": "App Platform container pricing",
+      "url": "https://docs.digitalocean.com/products/app-platform/details/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "Paid shared-CPU 1GiB fixed USD10/100GiB transfer, manually scalable 1GiB USD12/150GiB; pooled team transfer and .02/GiB overage. Fixed plans cannot horizontally scale."
+    },
+    {
+      "id": "do-app-runtime",
+      "title": "App Platform containers",
+      "url": "https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-container-images/",
+      "checked_on": "2026-11-15",
+      "scope": "Linux AMD64 web and worker containers, separate resources; ephemeral filesystem is not durable storage."
+    },
+    {
+      "id": "do-app-build",
+      "title": "App Platform build commands and limits",
+      "url": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/",
+      "checked_on": "2026-11-15",
+      "scope": "Native test/build commands within platform limits; source/synthetic inputs only."
+    },
+    {
+      "id": "do-app-sla",
+      "title": "App Platform component SLA",
+      "url": "https://www.digitalocean.com/sla/app-platform",
+      "checked_on": "2026-11-15",
+      "scope": "Component service agreement is not an application/SQL/Supabase availability guarantee."
+    },
+    {
+      "id": "do-spaces-price",
+      "title": "Spaces storage pricing",
+      "url": "https://docs.digitalocean.com/products/spaces/details/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "USD5 subscription, 250GiB stored/1024GiB outbound included once; .02/GiB storage, .01/GiB transfer overages."
+    },
+    {
+      "id": "do-spaces-regions",
+      "title": "Spaces regional availability",
+      "url": "https://docs.digitalocean.com/products/spaces/details/availability/",
+      "checked_on": "2026-11-15",
+      "scope": "Regional bucket selected separately from app; BLR1, FRA1 and NYC3 reviewed."
+    },
+    {
+      "id": "otel-s3-export",
+      "title": "OpenTelemetry S3 exporter",
+      "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/awss3exporter",
+      "checked_on": "2026-11-15",
+      "scope": "S3-compatible endpoint configuration is implementation work; verify exporter support/version, redaction, batch failure/retry and regional bucket access."
+    },
+    {
+      "id": "do-region-country",
+      "title": "DigitalOcean datacenter geography",
+      "url": "https://docs.digitalocean.com/platform/regional-availability/",
+      "checked_on": "2026-11-15",
+      "scope": "BLR1 Bangalore India, FRA1 Frankfurt Germany, NYC3 New York US. App regions and Spaces regions are configured separately; global CDN is not pinned by this mapping."
     }
   ],
   "entries": [
@@ -2002,6 +2086,175 @@
               "region": "aws-us-east-1",
               "source_ids": [
                 "neon-regions"
+              ]
+            }
+          ]
+        }
+      ],
+      "default_residency": "us"
+    },
+    {
+      "id": "appservice-india",
+      "name": "Azure App Service Basic B1 Linux (Central India)",
+      "layer": "hosting",
+      "status": "active",
+      "source_ids": [
+        "azure-b1-india-price",
+        "azure-app-network",
+        "azure-app-scope"
+      ],
+      "review_scope": "Separate regional B1 Linux profile, approved VNet/private SQL integration design. Shared-service metadata/control-plane residency is NOT verified; critical qualification retained.",
+      "languages": [],
+      "complexity": 2,
+      "operations": 1,
+      "cost_class": 1,
+      "strengths": [
+        "Managed application/container runtime; database is a separately provisioned managed service."
+      ],
+      "tradeoffs": [
+        "Isolated v2 is materially more expensive than shared App Service; no dedicated physical host deployment is assumed.",
+        "No Entra geography, SQL Server migration/reuse, application SLA or legal certification follows from the regional compute profile."
+      ],
+      "provider": "azure",
+      "deployments": [
+        "managed_cloud"
+      ],
+      "runtimes": [
+        "none",
+        "node",
+        "python",
+        "jvm",
+        "dotnet",
+        "go",
+        "php"
+      ],
+      "static_assets": true,
+      "persistent_volume": false,
+      "regions": [
+        {
+          "residency": "india",
+          "region": "centralindia",
+          "source_ids": [
+            "azure-b1-india-price",
+            "azure-app-network"
+          ]
+        }
+      ],
+      "managed_databases": [
+        {
+          "database_id": "pg",
+          "choice": "Azure Database for PostgreSQL Flexible Server (Central India, local/zone backups)",
+          "source_ids": [
+            "azure-pg-regions",
+            "azure-pg-backup"
+          ],
+          "regions": [
+            {
+              "residency": "india",
+              "region": "centralindia",
+              "source_ids": [
+                "azure-pg-regions",
+                "azure-pg-backup"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_region": "centralindia"
+    },
+    {
+      "id": "do-app",
+      "name": "DigitalOcean App Platform regional containers",
+      "layer": "hosting",
+      "status": "active",
+      "source_ids": [
+        "do-app-regions",
+        "do-app-price",
+        "do-app-runtime",
+        "do-app-sla",
+        "do-region-country"
+      ],
+      "review_scope": "Bounded paid 1GiB non-collaborative application/SSR and worker profile with regional Supabase; shared CPU capacity and all external boundaries critically qualified.",
+      "languages": [],
+      "complexity": 2,
+      "operations": 1,
+      "cost_class": 1,
+      "strengths": [
+        "Managed application/container runtime; database is a separately provisioned managed service."
+      ],
+      "tradeoffs": [
+        "Application and separately managed database use explicit regions. All control-plane, CDN, log, identity and network boundaries require separate residency review.",
+        "No SLA, latency or workload capacity is guaranteed; connection pooling and provider limits must be validated."
+      ],
+      "provider": "digitalocean",
+      "deployments": [
+        "managed_cloud"
+      ],
+      "runtimes": [
+        "none",
+        "node",
+        "python",
+        "go",
+        "jvm",
+        "dotnet",
+        "php"
+      ],
+      "static_assets": true,
+      "persistent_volume": false,
+      "regions": [
+        {
+          "residency": "india",
+          "region": "blr",
+          "source_ids": [
+            "do-app-regions",
+            "do-region-country"
+          ]
+        },
+        {
+          "residency": "eu",
+          "region": "fra",
+          "source_ids": [
+            "do-app-regions",
+            "do-region-country"
+          ]
+        },
+        {
+          "residency": "us",
+          "region": "nyc",
+          "source_ids": [
+            "do-app-regions",
+            "do-region-country"
+          ]
+        }
+      ],
+      "managed_databases": [
+        {
+          "database_id": "supabase-pg",
+          "choice": "Supabase Pro, one regional PostgreSQL project",
+          "source_ids": [
+            "supabase-price",
+            "supabase-regions"
+          ],
+          "regions": [
+            {
+              "residency": "india",
+              "region": "ap-south-1",
+              "source_ids": [
+                "supabase-regions"
+              ]
+            },
+            {
+              "residency": "eu",
+              "region": "eu-central-1",
+              "source_ids": [
+                "supabase-regions"
+              ]
+            },
+            {
+              "residency": "us",
+              "region": "us-east-1",
+              "source_ids": [
+                "supabase-regions"
               ]
             }
           ]

@@ -1,5 +1,5 @@
 {
-  "version": "0.8.0",
+  "version": "0.9.0",
   "reviewed_on": "2026-11-15",
   "sources": [
     {
@@ -554,6 +554,90 @@
       "url": "https://vercel.com/docs/manage-cdn-usage",
       "checked_on": "2026-11-15",
       "scope": "Current on-demand Pro transfer/origin/CDN request meters; no legacy included allowances assumed. Flat Rate CDN opt-in is not modeled."
+    },
+    {
+      "id": "azure-b1-india-price",
+      "title": "Azure Retail Prices API: Central India B1 Linux",
+      "url": "https://prices.azure.com/api/retail/prices",
+      "checked_on": "2026-11-15",
+      "scope": "Public consumption record retained in evaluation/azure-b1-price.json: Azure App Service Basic Plan - Linux, B1, Central India, USD .018/hour; no ASE tariff applied."
+    },
+    {
+      "id": "azure-app-network",
+      "title": "App Service VNet integration",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration",
+      "checked_on": "2026-11-15",
+      "scope": "Basic dedicated compute supports regional VNet integration and approved site-to-site VPN/ExpressRoute paths. It does not establish existing private connectivity."
+    },
+    {
+      "id": "azure-app-scope",
+      "title": "App Service security and deployment scope",
+      "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-security",
+      "checked_on": "2026-11-15",
+      "scope": "Regional application deployment is not end-to-end India residency proof; standard service metadata/control-plane scope remains critically qualified."
+    },
+    {
+      "id": "do-app-regions",
+      "title": "App Platform regional availability",
+      "url": "https://docs.digitalocean.com/products/app-platform/details/availability/",
+      "checked_on": "2026-11-15",
+      "scope": "Dynamic BLR, FRA and NYC reviewed. Static CDN placement does not inherit dynamic region."
+    },
+    {
+      "id": "do-app-price",
+      "title": "App Platform container pricing",
+      "url": "https://docs.digitalocean.com/products/app-platform/details/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "Paid shared-CPU 1GiB fixed USD10/100GiB transfer, manually scalable 1GiB USD12/150GiB; pooled team transfer and .02/GiB overage. Fixed plans cannot horizontally scale."
+    },
+    {
+      "id": "do-app-runtime",
+      "title": "App Platform containers",
+      "url": "https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-container-images/",
+      "checked_on": "2026-11-15",
+      "scope": "Linux AMD64 web and worker containers, separate resources; ephemeral filesystem is not durable storage."
+    },
+    {
+      "id": "do-app-build",
+      "title": "App Platform build commands and limits",
+      "url": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/",
+      "checked_on": "2026-11-15",
+      "scope": "Native test/build commands within platform limits; source/synthetic inputs only."
+    },
+    {
+      "id": "do-app-sla",
+      "title": "App Platform component SLA",
+      "url": "https://www.digitalocean.com/sla/app-platform",
+      "checked_on": "2026-11-15",
+      "scope": "Component service agreement is not an application/SQL/Supabase availability guarantee."
+    },
+    {
+      "id": "do-spaces-price",
+      "title": "Spaces storage pricing",
+      "url": "https://docs.digitalocean.com/products/spaces/details/pricing/",
+      "checked_on": "2026-11-15",
+      "scope": "USD5 subscription, 250GiB stored/1024GiB outbound included once; .02/GiB storage, .01/GiB transfer overages."
+    },
+    {
+      "id": "do-spaces-regions",
+      "title": "Spaces regional availability",
+      "url": "https://docs.digitalocean.com/products/spaces/details/availability/",
+      "checked_on": "2026-11-15",
+      "scope": "Regional bucket selected separately from app; BLR1, FRA1 and NYC3 reviewed."
+    },
+    {
+      "id": "otel-s3-export",
+      "title": "OpenTelemetry S3 exporter",
+      "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/awss3exporter",
+      "checked_on": "2026-11-15",
+      "scope": "S3-compatible endpoint configuration is implementation work; verify exporter support/version, redaction, batch failure/retry and regional bucket access."
+    },
+    {
+      "id": "do-region-country",
+      "title": "DigitalOcean datacenter geography",
+      "url": "https://docs.digitalocean.com/platform/regional-availability/",
+      "checked_on": "2026-11-15",
+      "scope": "BLR1 Bangalore India, FRA1 Frankfurt Germany, NYC3 New York US. App regions and Spaces regions are configured separately; global CDN is not pinned by this mapping."
     }
   ],
   "services": [
@@ -1245,6 +1329,53 @@
       "tradeoffs": [
         "Source/synthetic fixtures only. Authored 100\u2013500 standard concurrent build minutes per month are metered before applying the single team usage credit."
       ]
+    },
+    {
+      "id": "do-archive",
+      "layer": "observability",
+      "choice": "OpenTelemetry + regional Spaces log/file archive",
+      "capability": "observability",
+      "placement": "host",
+      "source_ids": [
+        "telemetry",
+        "otel-s3-export",
+        "do-spaces-regions",
+        "do-spaces-price",
+        "do-region-country"
+      ],
+      "compute_units": 0.25,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [
+        "digitalocean"
+      ],
+      "alternative": "Prometheus with application instrumentation",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "A budgeted 1GiB background container packs outbox and telemetry reference processes. Upload redacted batches directly to the selected regional Spaces bucket via reviewed S3-compatible SDK/exporter; configure retries, retention, restore and alerts. Ephemeral worker disk is temporary only. Connection/memory limits and exporter behavior require validation."
+      ]
+    },
+    {
+      "id": "do-build",
+      "layer": "ci_cd",
+      "choice": "App Platform native build/test/deploy",
+      "capability": "ci",
+      "placement": "build",
+      "source_ids": [
+        "do-app-build",
+        "do-app-price"
+      ],
+      "compute_units": 0,
+      "database_ids": [],
+      "frontend_ids": [],
+      "providers": [
+        "digitalocean"
+      ],
+      "alternative": "Jenkins",
+      "why_not": "More custom integration/operation than this reviewed option.",
+      "tradeoffs": [
+        "Run pinned build and synthetic test commands in native build stage within provider time/resource limits; no separately hosted runner tariff is assumed. Production data/secrets never enter build logs. Paid external runners/registries are not enabled."
+      ]
     }
   ],
   "frameworks": [
@@ -1553,6 +1684,14 @@
         "run-price"
       ],
       "basis": "Iowa on-demand instance-based reference: (USD 0.000018/vCPU-second + 2 GiB \u00d7 USD 0.000002/GiB-second) \u00d7 3600 = USD 0.0792/hour. Upper is an authored 80% geography/SKU allowance, not a regional quote; no free tier or commitment discount applied."
+    },
+    "azure_b1_india_hour": {
+      "min": 0.018,
+      "max": 0.018,
+      "source_ids": [
+        "azure-b1-india-price"
+      ],
+      "basis": "Observed official Central India consumption meter B1 Linux USD .018/hour; 1 vCPU/1.75GiB per instance, full-month use. See retained API record."
     }
   },
   "lifecycle": [

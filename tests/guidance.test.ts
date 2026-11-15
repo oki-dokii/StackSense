@@ -115,7 +115,14 @@ describe('scoped Azure coverage', () => {
       data_residency: 'india',
     };
     input.requirements = { file_media_storage: true };
-    const result = recommend(input);
+    const result = recommend(input, {
+      catalog: {
+        ...defaultCatalog,
+        entries: defaultCatalog.entries.filter(
+          (e) => e.id !== 'appservice-india',
+        ),
+      },
+    });
     expect(result.stack!.hosting.id).toBe('ase-india');
     expect(result.primary_region).toBe('centralindia');
     expect(result.database_region).toBe('centralindia');

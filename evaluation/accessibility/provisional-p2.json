@@ -2,8 +2,8 @@
   "activeElement": {
     "class": "",
     "id": "",
-    "tag": "summary",
-    "text": "What changes the cost?"
+    "tag": "h1",
+    "text": "Your architecture, explained."
   },
   "issues": {
     "contrast": [],
@@ -17,7 +17,7 @@
   },
   "limitations": "Custom read-only snapshot, not axe or WCAG conformance. Solid-background text only; skips SVG, opacity/gradient cases, disabled and hidden text. Does not test assistive technology, focus obscuring, control borders or all accessible-name rules.",
   "path": "/results",
-  "testedTextElements": 681,
+  "testedTextElements": 661,
   "title": "Results — StackSense",
   "unmeasured": [],
   "unmeasuredTextElements": 0,

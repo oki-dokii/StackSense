@@ -188,6 +188,21 @@ export function compatiblePlan(
       reason:
         'Explicit month-based database retention exceeds this Pro seven-day included-backup profile; use another reviewed plan.',
     };
+  if (
+    hosting.id === 'do-app' &&
+    (database.service_bundle !== 'supabase_pro' ||
+      scenario.requirements.ml_features !== 'none' ||
+      (scenario.requirements.realtime &&
+        (scenario.project.type === 'realtime_collab' ||
+          /whiteboard|collaborative\s+editing|live\s+cursors/i.test(
+            scenario.project.description,
+          ))))
+  )
+    return {
+      plan: null,
+      reason:
+        'Bounded App Platform profile requires Supabase persistence and does not review resident ML or collaborative Yjs sizing.',
+    };
   const runtimes = [backend.runtime!, frontend.runtime!];
   if (runtimes.some((runtime) => !hosting.runtimes!.includes(runtime)))
     return {

@@ -4,7 +4,14 @@ export type Runtime =
 export type Deployment =
   'managed_cloud' | 'self_hosted_cloud_vm' | 'on_premise' | 'air_gapped';
 export type Provider =
-  'none' | 'aws' | 'gcp' | 'azure' | 'cloudflare' | 'vercel' | 'fly';
+  | 'none'
+  | 'aws'
+  | 'gcp'
+  | 'azure'
+  | 'cloudflare'
+  | 'vercel'
+  | 'fly'
+  | 'digitalocean';
 export interface Source {
   id: string;
   title: string;

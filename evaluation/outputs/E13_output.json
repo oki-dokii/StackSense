@@ -41,11 +41,21 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "control_plan": null,
   "core_rejections": [
     {
       "candidate_id": "angular|aspnet|mysql|appservice",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|aspnet|mysql|appservice-india",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
         "infrastructure.deployment_model",
@@ -63,6 +73,16 @@
       ],
       "layer": "plan",
       "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|aspnet|mysql|do-app",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Bounded App Platform profile requires Supabase persistence and does not review resident ML or collaborative Yjs sizing."
     },
     {
       "candidate_id": "angular|aspnet|mysql|ecs",
@@ -115,6 +135,16 @@
       "message": "No reviewed separately managed database product for this host/provider."
     },
     {
+      "candidate_id": "angular|aspnet|neon-pg|appservice-india",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
       "candidate_id": "angular|aspnet|neon-pg|ase-india",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
@@ -133,6 +163,16 @@
       ],
       "layer": "plan",
       "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|aspnet|neon-pg|do-app",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Bounded App Platform profile requires Supabase persistence and does not review resident ML or collaborative Yjs sizing."
     },
     {
       "candidate_id": "angular|aspnet|neon-pg|ecs",
@@ -163,6 +203,16 @@
       ],
       "layer": "plan",
       "message": "Bounded Vercel functions profile does not cover resident inference, existing private SQL connectivity or persistent collaborative WebSocket servers."
+    },
+    {
+      "candidate_id": "angular|aspnet|pg|do-app",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Bounded App Platform profile requires Supabase persistence and does not review resident ML or collaborative Yjs sizing."
     },
     {
       "candidate_id": "angular|aspnet|pg|fly",
@@ -205,6 +255,16 @@
       "message": "No reviewed separately managed database product for this host/provider."
     },
     {
+      "candidate_id": "angular|aspnet|sqlite|appservice-india",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
       "candidate_id": "angular|aspnet|sqlite|ase-india",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
@@ -223,6 +283,16 @@
       ],
       "layer": "plan",
       "message": "No reviewed separately managed database product for this host/provider."
+    },
+    {
+      "candidate_id": "angular|aspnet|sqlite|do-app",
+      "code": "COMBINATION_INCOMPATIBLE",
+      "fields": [
+        "infrastructure.deployment_model",
+        "infrastructure.data_residency"
+      ],
+      "layer": "plan",
+      "message": "Bounded App Platform profile requires Supabase persistence and does not review resident ML or collaborative Yjs sizing."
     },
     {
       "candidate_id": "angular|aspnet|sqlite|ecs",
@@ -265,77 +335,7 @@
       "message": "Bounded Vercel functions profile does not cover resident inference, existing private SQL connectivity or persistent collaborative WebSocket servers."
     },
     {
-      "candidate_id": "angular|aspnet|sqlserver|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|aspnet|sqlserver|cloudrun",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|aspnet|sqlserver|fly",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|aspnet|sqlserver|pages",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Host does not cover all backend and SSR runtimes."
-    },
-    {
-      "candidate_id": "angular|aspnet|sqlserver|vercel",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "Bounded Vercel functions profile does not cover resident inference, existing private SQL connectivity or persistent collaborative WebSocket servers."
-    },
-    {
-      "candidate_id": "angular|aspnet|supabase-pg|appservice",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|aspnet|supabase-pg|ase-india",
-      "code": "COMBINATION_INCOMPATIBLE",
-      "fields": [
-        "infrastructure.deployment_model",
-        "infrastructure.data_residency"
-      ],
-      "layer": "plan",
-      "message": "No reviewed separately managed database product for this host/provider."
-    },
-    {
-      "candidate_id": "angular|aspnet|supabase-pg|cloudrun",
+      "candidate_id": "angular|aspnet|sqlserver|appservice-india",
       "code": "COMBINATION_INCOMPATIBLE",
       "fields": [
         "infrastructure.deployment_model",
@@ -351,13 +351,19 @@
   "data_flows": [],
   "decision_trace": {
     "complete_candidates": 0,
-    "core_candidates": 546,
+    "core_candidates": 609,
     "rejected": [
       {
         "codes": [
           "ML_DEPLOYMENT_COVERAGE_GAP"
         ],
         "plan_id": "modular_monolith|angular|aspnet|neon-pg|fly|iad"
+      },
+      {
+        "codes": [
+          "ML_DEPLOYMENT_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|angular|aspnet|pg|appservice-india|centralindia"
       },
       {
         "codes": [
@@ -375,6 +381,12 @@
         "codes": [
           "ML_DEPLOYMENT_COVERAGE_GAP"
         ],
+        "plan_id": "modular_monolith|angular|django|pg|appservice-india|centralindia"
+      },
+      {
+        "codes": [
+          "ML_DEPLOYMENT_COVERAGE_GAP"
+        ],
         "plan_id": "modular_monolith|angular|django|supabase-pg|fly|iad"
       },
       {
@@ -382,6 +394,12 @@
           "ML_DEPLOYMENT_COVERAGE_GAP"
         ],
         "plan_id": "modular_monolith|angular|express|neon-pg|fly|iad"
+      },
+      {
+        "codes": [
+          "ML_DEPLOYMENT_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|angular|express|pg|appservice-india|centralindia"
       },
       {
         "codes": [
@@ -399,6 +417,12 @@
         "codes": [
           "ML_DEPLOYMENT_COVERAGE_GAP"
         ],
+        "plan_id": "modular_monolith|angular|fastapi|pg|appservice-india|centralindia"
+      },
+      {
+        "codes": [
+          "ML_DEPLOYMENT_COVERAGE_GAP"
+        ],
         "plan_id": "modular_monolith|angular|fastapi|supabase-pg|fly|iad"
       },
       {
@@ -406,6 +430,12 @@
           "ML_DEPLOYMENT_COVERAGE_GAP"
         ],
         "plan_id": "modular_monolith|angular|fastify|neon-pg|fly|iad"
+      },
+      {
+        "codes": [
+          "ML_DEPLOYMENT_COVERAGE_GAP"
+        ],
+        "plan_id": "modular_monolith|angular|fastify|pg|appservice-india|centralindia"
       },
       {
         "codes": [
@@ -423,6 +453,12 @@
         "codes": [
           "ML_DEPLOYMENT_COVERAGE_GAP"
         ],
+        "plan_id": "modular_monolith|angular|go-http|pg|appservice-india|centralindia"
+      },
+      {
+        "codes": [
+          "ML_DEPLOYMENT_COVERAGE_GAP"
+        ],
         "plan_id": "modular_monolith|angular|go-http|supabase-pg|fly|iad"
       },
       {
@@ -435,49 +471,13 @@
         "codes": [
           "ML_DEPLOYMENT_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|angular|laravel|supabase-pg|fly|iad"
-      },
-      {
-        "codes": [
-          "ML_DEPLOYMENT_COVERAGE_GAP"
-        ],
-        "plan_id": "modular_monolith|angular|nestjs|neon-pg|fly|iad"
-      },
-      {
-        "codes": [
-          "ML_DEPLOYMENT_COVERAGE_GAP"
-        ],
-        "plan_id": "modular_monolith|angular|nestjs|supabase-pg|fly|iad"
-      },
-      {
-        "codes": [
-          "ML_DEPLOYMENT_COVERAGE_GAP"
-        ],
-        "plan_id": "modular_monolith|angular|spring|neon-pg|fly|iad"
-      },
-      {
-        "codes": [
-          "ML_DEPLOYMENT_COVERAGE_GAP"
-        ],
-        "plan_id": "modular_monolith|angular|spring|supabase-pg|fly|iad"
-      },
-      {
-        "codes": [
-          "ML_DEPLOYMENT_COVERAGE_GAP"
-        ],
-        "plan_id": "modular_monolith|flutter|aspnet|neon-pg|fly|iad"
-      },
-      {
-        "codes": [
-          "ML_DEPLOYMENT_COVERAGE_GAP"
-        ],
-        "plan_id": "modular_monolith|flutter|aspnet|supabase-pg|fly|iad"
+        "plan_id": "modular_monolith|angular|laravel|pg|appservice-india|centralindia"
       }
     ],
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "estimate_status": "not_estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -534,9 +534,9 @@
       "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.8.0",
+  "rules_version": "0.9.0",
   "scenario_id": "E13",
-  "services_version": "0.8.0",
+  "services_version": "0.9.0",
   "stack": null,
   "status": "infeasible",
   "summary": "No complete recommendation satisfies the reviewed catalog and service/control evidence. This is a catalog coverage result, not proof of real-world impossibility.",

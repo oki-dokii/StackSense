@@ -1,0 +1,28 @@
+{
+  "retrieved_at": "2026-11-15T15:03:03.939Z",
+  "url": "https://prices.azure.com/api/retail/prices?%24filter=serviceName+eq+%27Azure+App+Service%27+and+armRegionName+eq+%27centralindia%27+and+priceType+eq+%27Consumption%27",
+  "items": [
+    {
+      "currencyCode": "USD",
+      "tierMinimumUnits": 0,
+      "retailPrice": 0.018,
+      "unitPrice": 0.018,
+      "armRegionName": "centralindia",
+      "location": "IN Central",
+      "effectiveStartDate": "2019-06-01T00:00:00Z",
+      "meterId": "8e970187-17eb-4601-9d1a-233ddc71051f",
+      "meterName": "B1",
+      "productId": "DZH318Z0BXW9",
+      "skuId": "DZH318Z0BXW9/0023",
+      "productName": "Azure App Service Basic Plan - Linux",
+      "skuName": "B1",
+      "serviceName": "Azure App Service",
+      "serviceId": "DZH317GT8G5N",
+      "serviceFamily": "Compute",
+      "unitOfMeasure": "1 Hour",
+      "type": "Consumption",
+      "isPrimaryMeterRegion": true,
+      "armSkuName": ""
+    }
+  ]
+}

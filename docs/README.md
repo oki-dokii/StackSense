@@ -74,3 +74,7 @@ Post-release: [repository comparison](REPOSITORY_COMPARISON.md) and [improvement
 Current release: [Recommendation policy and cost scope](RECOMMENDATION_POLICY.md) · [Engine walkthrough](ENGINE_WALKTHROUGH.md). Historical phase records describe their corresponding revisions.
 
 Current review entry points: [input-to-decision map](INPUT_DECISION_MAP.md), [architectural acceptability](ARCHITECTURAL_ACCEPTABILITY.md), [engine walkthrough](ENGINE_WALKTHROUGH.md), [bounded catalog](CATALOG.md), [extended guide](USER_GUIDE.md).
+
+Current [gap closure and external evidence gates](REMAINING_GAPS.md).
+
+Latest implementation checkpoint: [release 0.9.0](RELEASE_0_9.md).

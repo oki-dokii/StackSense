@@ -13,7 +13,7 @@ StackSense searches compatible designs; it does not ask a language model for a s
 ## Examples to understand
 
 - P1 is static: no dynamic backend or database should be added merely because the user count is large.
-- P2 needs web/Android, SEO, realtime, search, OTP and payments. The design proposes Next.js + React Native, Django, Supabase Pro PostgreSQL and Vercel regional functions, plus MSG91/Razorpay. The external India boundary is critically qualified; the USD 150 budget is not claimed to fit.
+- P2 needs web/Android, SEO, realtime, search, OTP and payments. The design proposes Next.js + React Native, Django, Supabase Pro PostgreSQL and DigitalOcean App Platform regional containers, plus MSG91/Razorpay. The external India boundary is critically qualified; the USD 150 budget is not claimed to fit.
 - P3's 5,000 peak connections do not justify billing a second parallel set of per-connection sidecars after the replica floor already accounts for them. That double count has been removed; the remaining duty and capacity assumptions still need measurement.
 - P4 favors Spring for deeper Java/Kotlin familiarity, without an invented security or latency bonus.
 - P5 reuses the existing SQL Server behind provisionally qualified private connectivity and can use application OIDC/SAML middleware with the existing Entra tenant rather than running another identity broker. Tenant geography, licensing, SQL Server reuse and connectivity remain separate integration questions.
@@ -33,3 +33,5 @@ The AI-assistance disclosure describes the actual development process. This walk
 Budget proposals are a separate bounded rerun. Inspect each field change and its consequences, apply them to a copy only if accepted, and rerun. The original selected plan, inputs and critical vendor conditions remain intact. Lowest cash cost does not prove capacity or availability.
 
 Managed profiles are bounded paid variants, not generic free-tier promises. Fly and Neon have no reviewed India mapping. Supabase Pro is excluded for HIPAA and explicit month-based backup retention. Vercel cannot supply persistent Yjs or resident inference under this profile. Daily-active traffic is an explicit authored fraction; users are not all assumed active daily. See INPUT_DECISION_MAP.md and ARCHITECTURAL_ACCEPTABILITY.md.
+
+P5 now has a separate Basic B1 Central India profile, preserving existing SQL/Entra with private connectivity and standard-service metadata geography critically unverified. It does not inherit ASE in-region assurances. App Platform prices fixed one-GiB app and packed background containers; higher replica counts switch to a manually scalable SKU. Logs and file backups share one regional Spaces archive bill. Supabase backup download and App Platform upload/egress are both charged; no per-user opaque log allowance is added to this profile.

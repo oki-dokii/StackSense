@@ -124,7 +124,7 @@ export function estimateCost(
     assumptions.push(
       'Static hosting/CDN is one bundled resource. Use local builds within current build/file limits; no Functions, paid CI overages, custom domain or dynamic database is assumed.',
     );
-  } else if (['vercel', 'fly'].includes(plan.hosting.id)) {
+  } else if (['vercel', 'fly', 'do-app'].includes(plan.hosting.id)) {
     managedCost(
       plan,
       s,
@@ -200,6 +200,18 @@ export function estimateCost(
         );
       assumptions.push(
         `Lightsail: ${bundles} full-month Linux IPv4 4-GiB/2-vCPU/80-GB-SSD bundles at USD 24 each. Reference service allocations are packed into these bundles; reserve 20 GB OS space on the database host and add block disk above 60 GB application data. Database and identity are self-operated. Burstable CPU baselines, memory, inter-node routing, recovery and the requested throughput/latency are NOT validated by this cash-cost estimate.`,
+      );
+    } else if (plan.hosting.id === 'appservice-india') {
+      const b1 = Math.max(replicas, Math.ceil((units * 2) / 1.75));
+      add(
+        'application-compute',
+        'compute',
+        b1 * H,
+        b1 * H,
+        'azure_b1_india_hour',
+      );
+      assumptions.push(
+        `Azure Basic B1 Linux: ${b1} full-month 1-vCPU/1.75-GiB instances, rounded up from the reference memory footprint; pool compatible apps/processes on the plan. Explicit VNet/subnet/DNS, site-to-site VPN or ExpressRoute and on-premises firewall approval are required. Existing SQL operations/private integration allowance remains charged; new network circuits or licenses can exceed it. Basic is not ASE and does not inherit its residency assurance or an end-to-end SLA.`,
       );
     } else if (plan.hosting.id === 'cloudrun') {
       const requestUnits =

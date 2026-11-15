@@ -59,7 +59,7 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -319,13 +319,13 @@
   ],
   "database_region": null,
   "decision_trace": {
-    "complete_candidates": 609,
-    "core_candidates": 609,
+    "complete_candidates": 714,
+    "core_candidates": 714,
     "rejected": [],
     "score": 82,
     "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|fly|iad"
   },
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -589,11 +589,14 @@
   "review_actions": [
     {
       "affected_components": [
-        "complete deployment"
+        "regional App Service",
+        "existing SQL Server private integration"
       ],
       "code": "EXISTING_DATABASE_SCOPE_UNVERIFIED",
       "evidence_required": [
-        "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+        "B1 Central India SKU/quota and tenant-specific metadata/control-plane/log/backup geography; do not apply ASE assurances to Basic.",
+        "Approved VNet/subnet/private DNS, existing site-to-site VPN or ExpressRoute, on-premises firewall/TLS/identity and SQL edition/license/spare-capacity evidence.",
+        "Connection failure, recovery, SQL transaction/pool latency and restore tests; itemized network/operations quote beyond the disclosed allowance."
       ],
       "fields": [
         "infrastructure.existing_systems",
@@ -601,12 +604,41 @@
       ],
       "id": "EXISTING_DATABASE_SCOPE_UNVERIFIED:infrastructure.existing_systems|infrastructure.data_residency:0",
       "kind": "evidence_gap",
-      "next_action": "Review the scoped catalog evidence, workload and configuration; resolve the condition and rerun the unchanged input.",
-      "references": [],
+      "next_action": "Validate the actual tenant/network path and tariff scope, configure region-pinned storage/logging, then run the integration and failover tests before accepting the qualified deployment.",
+      "references": [
+        {
+          "checked_on": "2026-11-15",
+          "id": "azure-app-network",
+          "scope": "Basic dedicated compute supports regional VNet integration and approved site-to-site VPN/ExpressRoute paths. It does not establish existing private connectivity.",
+          "title": "App Service VNet integration",
+          "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration"
+        },
+        {
+          "checked_on": "2026-11-15",
+          "id": "azure-app-scope",
+          "scope": "Regional application deployment is not end-to-end India residency proof; standard service metadata/control-plane scope remains critically qualified.",
+          "title": "App Service security and deployment scope",
+          "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-security"
+        },
+        {
+          "checked_on": "2026-11-15",
+          "id": "azure-b1-india-price",
+          "scope": "Public consumption record retained in evaluation/azure-b1-price.json: Azure App Service Basic Plan - Linux, B1, Central India, USD .018/hour; no ASE tariff applied.",
+          "title": "Azure Retail Prices API: Central India B1 Linux",
+          "url": "https://prices.azure.com/api/retail/prices"
+        },
+        {
+          "checked_on": "2026-11-13",
+          "id": "sql2019-lifecycle",
+          "scope": "Extended support ends January 2030; no edition, patch, license or installed network/capacity entitlement established.",
+          "title": "SQL Server 2019 lifecycle",
+          "url": "https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2019"
+        }
+      ],
       "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.8.0",
+  "rules_version": "0.9.0",
   "scenario_id": "E06",
   "score_breakdown": [
     {
@@ -682,7 +714,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.8.0",
+  "services_version": "0.9.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -760,7 +792,7 @@
     "hosting": {
       "alternatives": [
         {
-          "choice": "Amazon ECS / Fargate",
+          "choice": "Azure App Service Basic B1 Linux (Central India)",
           "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
         }
       ],
@@ -869,7 +901,7 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 609 complete compatible plans; month-12 infrastructure planning band USD 45.74–90.77/month.",
+  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 714 complete compatible plans; month-12 infrastructure planning band USD 45.74–90.77/month.",
   "validation_errors": [],
   "warnings": [
     {

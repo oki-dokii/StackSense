@@ -1,3 +1,5 @@
+Historical checkpoint. Current release: [0.9.0](RELEASE_0_9.md).
+
 # Release 0.8.0: usable recommendations with explicit conditions
 
 14 November 2026. Application, recommendation engine, rules and services catalog: 0.8.0; core catalog: 0.4.0; Decision Lab analysis: 0.2.0.

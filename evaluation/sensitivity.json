@@ -8,10 +8,10 @@
     },
     "high_plan": "modular_monolith|react|express|supabase-pg|fly|iad",
     "low_cost": {
-      "max": 65.47,
+      "max": 50.25,
       "min": 50
     },
-    "low_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+    "low_plan": "modular_monolith|react|express|supabase-pg|do-app|nyc",
     "values": [
       1,
       1000
@@ -26,10 +26,10 @@
     },
     "high_plan": "modular_monolith|react|express|neon-pg|fly|iad",
     "low_cost": {
-      "max": 65.25,
+      "max": 50.25,
       "min": 50
     },
-    "low_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+    "low_plan": "modular_monolith|react|express|supabase-pg|do-app|nyc",
     "values": [
       1,
       10000
@@ -60,12 +60,12 @@
       "max": 300,
       "min": 20
     },
-    "high_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+    "high_plan": "modular_monolith|react|express|supabase-pg|do-app|nyc",
     "low_cost": {
       "max": 3,
       "min": 0.2
     },
-    "low_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+    "low_plan": "modular_monolith|react|express|supabase-pg|do-app|nyc",
     "values": [
       100,
       10000
@@ -78,12 +78,12 @@
       "max": 25000,
       "min": 10000
     },
-    "high_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+    "high_plan": "modular_monolith|react|express|supabase-pg|do-app|nyc",
     "low_cost": {
       "max": 250,
       "min": 100
     },
-    "low_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+    "low_plan": "modular_monolith|react|express|supabase-pg|do-app|nyc",
     "values": [
       100,
       10000
@@ -96,12 +96,12 @@
       "max": 450,
       "min": 200
     },
-    "high_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+    "high_plan": "modular_monolith|react|express|supabase-pg|do-app|nyc",
     "low_cost": {
       "max": 90,
       "min": 20
     },
-    "low_plan": "modular_monolith|react|express|supabase-pg|vercel|iad1",
+    "low_plan": "modular_monolith|react|express|supabase-pg|do-app|nyc",
     "values": [
       10,
       100

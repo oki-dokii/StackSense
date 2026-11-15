@@ -13,18 +13,18 @@
   "budget_planning": {
     "budget_usd": 300,
     "cheapest_same_scope": {
-      "budget_fit": "over_budget",
+      "budget_fit": "within_upper",
       "core": {
         "backend": "ASP.NET Core",
         "database": "SQL Server",
         "frontend": "Angular",
-        "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        "hosting": "Azure App Service Basic B1 Linux (Central India)"
       },
       "monthly_infrastructure_usd": {
-        "max": 739.7,
-        "min": 603.7
+        "max": 202.42,
+        "min": 66.42
       },
-      "plan_id": "modular_monolith|angular|aspnet|sqlserver|ase-india|centralindia"
+      "plan_id": "modular_monolith|angular|aspnet|sqlserver|appservice-india|centralindia"
     },
     "notes": [
       "Infrastructure uncertainty: existing-database-operations contributes USD 80 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
@@ -32,150 +32,10 @@
       "Infrastructure uncertainty: telemetry-operations contributes USD 15 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
       "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions."
     ],
-    "options": [
-      {
-        "assumptions": [
-          "All host/database/storage/log/backup configurations must use the reviewed india region, no cross-region copies, private access and retention/deletion controls. Device data and explicit external identity/OTP/payment flows are assessed separately.",
-          "Enterprise identity integration assumes a reachable, eligible OIDC/SAML identity provider; verify tenant scopes, licenses and network paths before provisioning.",
-          "PROVISIONAL RESIDENCY EXCEPTION: Microsoft Entra ID (tenant OIDC/SAML integration) remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
-          "Persistent application data is inferred from project.type=internal_tool; domain data modeling remains required.",
-          "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
-          "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
-          "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
-          "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
-          "Peak concurrency supplied: 300; not equated directly with requests/second.",
-          "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
-          "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
-          "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 1.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
-          "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-          "Azure ASE: 1 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
-          "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
-          "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
-          "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
-          "Authored hosted build-minute allowance, assuming included quota at the lower bound. Paid runners/minutes/artifacts require a repository-specific quote and spending cap.",
-          "Authored incremental operations/private-integration allowance on an existing SQL Server. Existing hardware/license entitlement is unverified and excluded from this cash scenario; no new managed database is purchased.",
-          "Authored internet-egress envelope; actual destination, free quota and routes vary.",
-          "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
-          "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-          "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
-          "Original feature flags, platforms, scale, languages, provider preference, residency and compliance requests remain unchanged. All vendor/contract exceptions and capacity hypotheses still require review."
-        ],
-        "budget_fit": "over_budget",
-        "changes": [
-          {
-            "consequence": "Lower the target to 99%; this does not provide an SLA or equivalent resilience, and is not an automatic production or compliance approval.",
-            "field": "requirements.availability",
-            "from": "99.9",
-            "to": "99"
-          }
-        ],
-        "core": {
-          "backend": "ASP.NET Core",
-          "database": "SQL Server",
-          "frontend": "React / Vite",
-          "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
-        },
-        "id": "explicit_budget_tradeoff",
-        "monthly_infrastructure_usd": {
-          "max": 451.35,
-          "min": 315.35
-        },
-        "monthly_total_usd": {
-          "max": 451.35,
-          "min": 315.35
-        },
-        "plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
-        "primary_region": "centralindia",
-        "requires_acceptance": true,
-        "supporting_services": [
-          "GitHub Actions",
-          "Azure Blob Storage (same-region LRS)",
-          "Microsoft Entra ID (tenant OIDC/SAML integration)",
-          "OpenTelemetry Collector + structured logs"
-        ],
-        "warnings": [
-          {
-            "code": "EXISTING_DATABASE_SCOPE_UNVERIFIED",
-            "fields": [
-              "infrastructure.existing_systems",
-              "infrastructure.data_residency"
-            ],
-            "message": "Reuse the existing SQL Server provisionally. Its physical geography, reachable private network, capacity, backups, edition/license entitlement and restore compatibility are not established; no India location, free license or migration is assumed.",
-            "severity": "critical"
-          },
-          {
-            "code": "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
-            "fields": [
-              "infrastructure.data_residency",
-              "requirements.auth"
-            ],
-            "message": "Microsoft Entra ID (tenant OIDC/SAML integration) is proposed provisionally: end-to-end india data residency is NOT established. Verify tenant/merchant eligibility, processing, logs, backups, delivery partners and contracts before production. This warning is an explicit exception to verified residency, not approval.",
-            "severity": "critical"
-          },
-          {
-            "code": "BUDGET_EXCEEDED",
-            "fields": [
-              "budget.monthly_infra_usd"
-            ],
-            "message": "Infrastructure estimate USD 315.35–451.35/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
-            "severity": "warning"
-          },
-          {
-            "code": "COMPLIANCE_IMPLEMENTATION_REVIEW",
-            "fields": [
-              "compliance"
-            ],
-            "message": "The output proposes technical control designs only. It does not certify compliance, establish legal applicability, execute contracts, or replace an audit. Implement controls and obtain scope-specific review.",
-            "severity": "warning"
-          },
-          {
-            "code": "EXISTING_SYSTEM_REVIEW",
-            "fields": [
-              "infrastructure.existing_systems"
-            ],
-            "message": "Legacy reuse requires version/EOL, license, network, schema and identity integration checks; no migration or connectivity is assumed verified.",
-            "severity": "warning"
-          },
-          {
-            "code": "LATENCY_TARGET_UNVERIFIED",
-            "fields": [
-              "requirements.p95_latency_ms"
-            ],
-            "message": "No measured evidence establishes the 800 ms p95 target; load-test the complete client/network/data path.",
-            "severity": "warning"
-          },
-          {
-            "code": "PRICE_AND_CAPACITY_ASSUMPTIONS",
-            "fields": [
-              "scale",
-              "budget.monthly_infra_usd",
-              "requirements"
-            ],
-            "message": "Planning bands combine published reference rates and explicitly authored allowances; they are not regional provider quotes or measured workload capacity. Validate sizing, merchant/SMS eligibility, storage, requests and current tariffs before purchase.",
-            "severity": "warning"
-          },
-          {
-            "code": "FREE_TIER_OR_DEPLOYMENT_LIMITS",
-            "fields": [
-              "requirements.availability"
-            ],
-            "message": "Availability and build/usage limits must still be checked for the configured deployment; no SLA is inferred from the product name.",
-            "severity": "info"
-          },
-          {
-            "code": "BUDGET_REQUIREMENT_CHANGE",
-            "fields": [
-              "requirements.availability"
-            ],
-            "message": "Optional changed-requirement proposal only. Original recommendation is unchanged. Accept each listed edit explicitly and rerun; reduced availability/self-management is not an equivalent deployment or production approval.",
-            "severity": "critical"
-          }
-        ]
-      }
-    ],
+    "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -207,23 +67,23 @@
   },
   "cost_breakdown": [
     {
-      "basis": "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
+      "basis": "Observed official Central India consumption meter B1 Linux USD .018/hour; 1 vCPU/1.75GiB per instance, full-month use. See retained API record.",
       "category": "compute",
       "id": "application-compute",
       "monthly_usd": {
-        "max": 576.7,
-        "min": 576.7
+        "max": 39.42,
+        "min": 39.42
       },
       "quantity": {
-        "max": 1460,
-        "min": 1460
+        "max": 2190,
+        "min": 2190
       },
       "source_ids": [
-        "azure-ase-retail"
+        "azure-b1-india-price"
       ],
       "unit_rate_usd": {
-        "max": 0.395,
-        "min": 0.395
+        "max": 0.018,
+        "min": 0.018
       }
     },
     {
@@ -362,8 +222,8 @@
         "telemetry-operations",
         "hosted-ci"
       ],
-      "max": 739.7,
-      "min": 603.7
+      "max": 202.42,
+      "min": 66.42
     },
     {
       "category": "payment_and_message_activity",
@@ -380,15 +240,15 @@
       "field": "extensions.expected_requests_per_second",
       "samples": [
         {
-          "max": 739.7,
-          "min": 603.7,
+          "max": 202.42,
+          "min": 66.42,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 0.08680555555555555
         },
         {
-          "max": 739.7,
-          "min": 603.7,
+          "max": 202.42,
+          "min": 66.42,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 0.3472222222222222
@@ -403,15 +263,15 @@
       "field": "extensions.daily_active_user_fraction",
       "samples": [
         {
-          "max": 739.7,
-          "min": 603.7,
+          "max": 202.42,
+          "min": 66.42,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 0.1
         },
         {
-          "max": 739.7,
-          "min": 603.7,
+          "max": 202.42,
+          "min": 66.42,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 0.4
@@ -426,15 +286,15 @@
       "field": "extensions.monthly_egress_gb",
       "samples": [
         {
-          "max": 736.7,
-          "min": 603.1,
+          "max": 199.42,
+          "min": 65.82,
           "status": "estimated",
           "upper_delta_usd": -3,
           "value": 7.5
         },
         {
-          "max": 745.7,
-          "min": 604.9,
+          "max": 208.42,
+          "min": 67.62,
           "status": "estimated",
           "upper_delta_usd": 6,
           "value": 30
@@ -449,15 +309,15 @@
       "field": "extensions.retention_months",
       "samples": [
         {
-          "max": 739.7,
-          "min": 603.7,
+          "max": 202.42,
+          "min": 66.42,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 1
         },
         {
-          "max": 745.7,
-          "min": 604.3,
+          "max": 208.42,
+          "min": 67.02,
           "status": "estimated",
           "upper_delta_usd": 6,
           "value": 2
@@ -506,13 +366,13 @@
   ],
   "database_region": null,
   "decision_trace": {
-    "complete_candidates": 105,
-    "core_candidates": 105,
+    "complete_candidates": 210,
+    "core_candidates": 210,
     "rejected": [],
-    "score": 66,
-    "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia"
+    "score": 81,
+    "selected_plan_id": "modular_monolith|react|aspnet|sqlserver|appservice-india|centralindia"
   },
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -521,9 +381,9 @@
       "Peak concurrency supplied: 300; not equated directly with requests/second.",
       "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+      "Azure Basic B1 Linux: 3 full-month 1-vCPU/1.75-GiB instances, rounded up from the reference memory footprint; pool compatible apps/processes on the plan. Explicit VNet/subnet/DNS, site-to-site VPN or ExpressRoute and on-premises firewall approval are required. Existing SQL operations/private integration allowance remains charged; new network circuits or licenses can exceed it. Basic is not ASE and does not inherit its residency assurance or an end-to-end SLA.",
       "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-      "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
       "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
       "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
@@ -532,10 +392,10 @@
       "Authored internet-egress envelope; actual destination, free quota and routes vary.",
       "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
       "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-      "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
+      "Observed official Central India consumption meter B1 Linux USD .018/hour; 1 vCPU/1.75GiB per instance, full-month use. See retained API record."
     ],
-    "max": 739.7,
-    "min": 603.7
+    "max": 202.42,
+    "min": 66.42
   },
   "estimated_total_monthly_cost_usd": {
     "assumptions": [
@@ -543,9 +403,9 @@
       "Peak concurrency supplied: 300; not equated directly with requests/second.",
       "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
       "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+      "Azure Basic B1 Linux: 3 full-month 1-vCPU/1.75-GiB instances, rounded up from the reference memory footprint; pool compatible apps/processes on the plan. Explicit VNet/subnet/DNS, site-to-site VPN or ExpressRoute and on-premises firewall approval are required. Existing SQL operations/private integration allowance remains charged; new network circuits or licenses can exceed it. Basic is not ASE and does not inherit its residency assurance or an end-to-end SLA.",
       "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
       "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-      "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
       "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
       "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
       "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
@@ -554,11 +414,11 @@
       "Authored internet-egress envelope; actual destination, free quota and routes vary.",
       "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
       "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-      "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review.",
+      "Observed official Central India consumption meter B1 Linux USD .018/hour; 1 vCPU/1.75GiB per instance, full-month use. See retained API record.",
       "Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded."
     ],
-    "max": 739.7,
-    "min": 603.7
+    "max": 202.42,
+    "min": 66.42
   },
   "integration_reviews": [
     {
@@ -653,21 +513,21 @@
   "plan_comparison": [
     {
       "architecture_style": "modular_monolith",
-      "budget_fit": "over_budget",
+      "budget_fit": "within_upper",
       "core": {
         "backend": "ASP.NET Core",
         "database": "SQL Server",
         "frontend": "React / Vite",
-        "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        "hosting": "Azure App Service Basic B1 Linux (Central India)"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 300; not equated directly with requests/second.",
         "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Azure Basic B1 Linux: 3 full-month 1-vCPU/1.75-GiB instances, rounded up from the reference memory footprint; pool compatible apps/processes on the plan. Explicit VNet/subnet/DNS, site-to-site VPN or ExpressRoute and on-premises firewall approval are required. Existing SQL operations/private integration allowance remains charged; new network circuits or licenses can exceed it. Basic is not ASE and does not inherit its residency assurance or an end-to-end SLA.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-        "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
         "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
@@ -676,15 +536,15 @@
         "Authored internet-egress envelope; actual destination, free quota and routes vary.",
         "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
+        "Observed official Central India consumption meter B1 Linux USD .018/hour; 1 vCPU/1.75GiB per instance, full-month use. See retained API record."
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 739.7,
-        "min": 603.7
+        "max": 202.42,
+        "min": 66.42
       },
       "operated_components": 1.25,
-      "plan_id": "modular_monolith|react|aspnet|sqlserver|ase-india|centralindia",
+      "plan_id": "modular_monolith|react|aspnet|sqlserver|appservice-india|centralindia",
       "primary_region": "centralindia",
       "retained_constraints": [
         "platforms=web",
@@ -694,7 +554,7 @@
         "compliance=iso27001",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 66,
+      "score": 81,
       "score_delta": 0,
       "selected": true,
       "supporting_services": [
@@ -706,7 +566,7 @@
       "tied_on_score": false,
       "warning_codes": [
         "AVAILABILITY_TARGET_UNVERIFIED",
-        "BUDGET_EXCEEDED",
+        "AZURE_STANDARD_SCOPE_UNVERIFIED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
         "EXISTING_DATABASE_SCOPE_UNVERIFIED",
         "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
@@ -716,21 +576,21 @@
     },
     {
       "architecture_style": "modular_monolith",
-      "budget_fit": "over_budget",
+      "budget_fit": "within_upper",
       "core": {
         "backend": "Express",
         "database": "SQL Server",
         "frontend": "React / Vite",
-        "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        "hosting": "Azure App Service Basic B1 Linux (Central India)"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 300; not equated directly with requests/second.",
         "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Azure Basic B1 Linux: 3 full-month 1-vCPU/1.75-GiB instances, rounded up from the reference memory footprint; pool compatible apps/processes on the plan. Explicit VNet/subnet/DNS, site-to-site VPN or ExpressRoute and on-premises firewall approval are required. Existing SQL operations/private integration allowance remains charged; new network circuits or licenses can exceed it. Basic is not ASE and does not inherit its residency assurance or an end-to-end SLA.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-        "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
         "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
@@ -739,15 +599,15 @@
         "Authored internet-egress envelope; actual destination, free quota and routes vary.",
         "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
+        "Observed official Central India consumption meter B1 Linux USD .018/hour; 1 vCPU/1.75GiB per instance, full-month use. See retained API record."
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 739.7,
-        "min": 603.7
+        "max": 202.42,
+        "min": 66.42
       },
       "operated_components": 1.25,
-      "plan_id": "modular_monolith|react|express|sqlserver|ase-india|centralindia",
+      "plan_id": "modular_monolith|react|express|sqlserver|appservice-india|centralindia",
       "primary_region": "centralindia",
       "retained_constraints": [
         "platforms=web",
@@ -757,7 +617,7 @@
         "compliance=iso27001",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 66,
+      "score": 81,
       "score_delta": 0,
       "selected": false,
       "supporting_services": [
@@ -769,7 +629,7 @@
       "tied_on_score": true,
       "warning_codes": [
         "AVAILABILITY_TARGET_UNVERIFIED",
-        "BUDGET_EXCEEDED",
+        "AZURE_STANDARD_SCOPE_UNVERIFIED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
         "EXISTING_DATABASE_SCOPE_UNVERIFIED",
         "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
@@ -779,21 +639,21 @@
     },
     {
       "architecture_style": "modular_monolith",
-      "budget_fit": "over_budget",
+      "budget_fit": "within_upper",
       "core": {
         "backend": "NestJS",
         "database": "SQL Server",
         "frontend": "React / Vite",
-        "hosting": "Azure App Service Environment v3 (Central India, Linux Iv2)"
+        "hosting": "Azure App Service Basic B1 Linux (Central India)"
       },
       "cost_assumptions": [
         "Horizon: expected month-12 footprint; 730 hours/month. No tax, development/on-call labor, domain registration or new on-prem hardware procurement is included.",
         "Peak concurrency supplied: 300; not equated directly with requests/second.",
         "RPS absent: authored daily-active fraction 0.2 of registered month-12 users, floored at supplied peak concurrency (300 active/day); 50 requests/active user/day gives 0.174 average RPS. Neither fraction nor request rate is measured; explicit RPS overrides both. Peak capacity is separate.",
         "Data volume 20 GB supplied; egress 15 GB/month assumed at 0.01 GB per year-12 user, minimum 1 GB; backup retention 1 months assumed.",
+        "Azure Basic B1 Linux: 3 full-month 1-vCPU/1.75-GiB instances, rounded up from the reference memory footprint; pool compatible apps/processes on the plan. Explicit VNet/subnet/DNS, site-to-site VPN or ExpressRoute and on-premises firewall approval are required. Existing SQL operations/private integration allowance remains charged; new network circuits or licenses can exceed it. Basic is not ASE and does not inherit its residency assurance or an end-to-end SLA.",
         "Compute provisioning hypothesis: 50 RPS or 1000 active users per reference allocation; WebSocket capacity is included in the peak-concurrency replica floor, not charged again as per-connection sidecars. 2.25 vCPU/2-GiB-equivalent units include frontend/backend, auth, workers, inference and telemetry once. These are sizing assumptions requiring load tests, not capacity guarantees.",
         "Billed duty 1–1; run polling workers with allocated CPU/minimum instances. Higher availability adds at least two application allocations and in-region database copies, but does not guarantee an SLA. Rate bands include headroom; do not interpret reference regions/proxies as exact local provider quotes.",
-        "Azure ASE: 2 whole Linux I1 v2 instances (2 vCPU each), rounding the reference CPU footprint up and retaining the availability replica floor. Published consumption meter is region/SKU-specific; database/storage/network/operations lines remain planning proxies, not a calibrated Azure quote. Configure in-region PostgreSQL backups, Blob LRS, log retention and internal access; no dedicated physical hosts or cross-region copies assumed.",
         "Existing SQL Server is retained behind private connectivity. Hardware procurement, license/edition entitlement, private network charges beyond this allowance and geographic/capacity eligibility require review; no migration or free license is claimed.",
         "Headline estimate and budget fit cover infrastructure/operations only. Payment and SMS activity fees are separately itemized scenarios and excluded from this total; missing volumes are assumptions, not measured expenditure.",
         "Authored backup-storage envelope with retained copy quantity; no cross-region copy assumed.",
@@ -802,15 +662,15 @@
         "Authored internet-egress envelope; actual destination, free quota and routes vary.",
         "Authored logs/metrics/request-operations allowance; redact data and set regional retention/quotas.",
         "Authored standard-storage envelope; requests/lifecycle operations have a separate allowance.",
-        "Central India primary Linux I1 v2 consumption meter at USD 0.395/instance-hour, reviewed 13 November 2026. Whole 2-vCPU instances, no discounts/tax/dedicated host; autoscaling and quota require review."
+        "Observed official Central India consumption meter B1 Linux USD .018/hour; 1 vCPU/1.75GiB per instance, full-month use. See retained API record."
       ],
       "database_region": null,
       "monthly_usd": {
-        "max": 739.7,
-        "min": 603.7
+        "max": 202.42,
+        "min": 66.42
       },
       "operated_components": 1.25,
-      "plan_id": "modular_monolith|react|nestjs|sqlserver|ase-india|centralindia",
+      "plan_id": "modular_monolith|react|nestjs|sqlserver|appservice-india|centralindia",
       "primary_region": "centralindia",
       "retained_constraints": [
         "platforms=web",
@@ -820,7 +680,7 @@
         "compliance=iso27001",
         "Requested features are included. Critical warnings explicitly identify provisional external-boundary or contractual exceptions; no verified compliance or residency approval is implied."
       ],
-      "score": 66,
+      "score": 81,
       "score_delta": 0,
       "selected": false,
       "supporting_services": [
@@ -832,7 +692,7 @@
       "tied_on_score": true,
       "warning_codes": [
         "AVAILABILITY_TARGET_UNVERIFIED",
-        "BUDGET_EXCEEDED",
+        "AZURE_STANDARD_SCOPE_UNVERIFIED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
         "EXISTING_DATABASE_SCOPE_UNVERIFIED",
         "EXISTING_IDENTITY_SCOPE_UNVERIFIED",
@@ -845,20 +705,102 @@
   "review_actions": [
     {
       "affected_components": [
-        "complete deployment"
+        "regional App Service",
+        "existing SQL Server private integration"
+      ],
+      "code": "AZURE_STANDARD_SCOPE_UNVERIFIED",
+      "evidence_required": [
+        "B1 Central India SKU/quota and tenant-specific metadata/control-plane/log/backup geography; do not apply ASE assurances to Basic.",
+        "Approved VNet/subnet/private DNS, existing site-to-site VPN or ExpressRoute, on-premises firewall/TLS/identity and SQL edition/license/spare-capacity evidence.",
+        "Connection failure, recovery, SQL transaction/pool latency and restore tests; itemized network/operations quote beyond the disclosed allowance."
+      ],
+      "fields": [
+        "infrastructure.data_residency",
+        "infrastructure.existing_systems"
+      ],
+      "id": "AZURE_STANDARD_SCOPE_UNVERIFIED:infrastructure.data_residency|infrastructure.existing_systems:0",
+      "kind": "evidence_gap",
+      "next_action": "Validate the actual tenant/network path and tariff scope, configure region-pinned storage/logging, then run the integration and failover tests before accepting the qualified deployment.",
+      "references": [
+        {
+          "checked_on": "2026-11-15",
+          "id": "azure-app-network",
+          "scope": "Basic dedicated compute supports regional VNet integration and approved site-to-site VPN/ExpressRoute paths. It does not establish existing private connectivity.",
+          "title": "App Service VNet integration",
+          "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration"
+        },
+        {
+          "checked_on": "2026-11-15",
+          "id": "azure-app-scope",
+          "scope": "Regional application deployment is not end-to-end India residency proof; standard service metadata/control-plane scope remains critically qualified.",
+          "title": "App Service security and deployment scope",
+          "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-security"
+        },
+        {
+          "checked_on": "2026-11-15",
+          "id": "azure-b1-india-price",
+          "scope": "Public consumption record retained in evaluation/azure-b1-price.json: Azure App Service Basic Plan - Linux, B1, Central India, USD .018/hour; no ASE tariff applied.",
+          "title": "Azure Retail Prices API: Central India B1 Linux",
+          "url": "https://prices.azure.com/api/retail/prices"
+        },
+        {
+          "checked_on": "2026-11-13",
+          "id": "sql2019-lifecycle",
+          "scope": "Extended support ends January 2030; no edition, patch, license or installed network/capacity entitlement established.",
+          "title": "SQL Server 2019 lifecycle",
+          "url": "https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2019"
+        }
+      ],
+      "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
+    },
+    {
+      "affected_components": [
+        "regional App Service",
+        "existing SQL Server private integration"
       ],
       "code": "EXISTING_DATABASE_SCOPE_UNVERIFIED",
       "evidence_required": [
-        "Exact product/version, region, network path, stored/processed data, backups/logs and supporting primary evidence."
+        "B1 Central India SKU/quota and tenant-specific metadata/control-plane/log/backup geography; do not apply ASE assurances to Basic.",
+        "Approved VNet/subnet/private DNS, existing site-to-site VPN or ExpressRoute, on-premises firewall/TLS/identity and SQL edition/license/spare-capacity evidence.",
+        "Connection failure, recovery, SQL transaction/pool latency and restore tests; itemized network/operations quote beyond the disclosed allowance."
       ],
       "fields": [
         "infrastructure.existing_systems",
         "infrastructure.data_residency"
       ],
-      "id": "EXISTING_DATABASE_SCOPE_UNVERIFIED:infrastructure.existing_systems|infrastructure.data_residency:0",
+      "id": "EXISTING_DATABASE_SCOPE_UNVERIFIED:infrastructure.existing_systems|infrastructure.data_residency:1",
       "kind": "evidence_gap",
-      "next_action": "Review the scoped catalog evidence, workload and configuration; resolve the condition and rerun the unchanged input.",
-      "references": [],
+      "next_action": "Validate the actual tenant/network path and tariff scope, configure region-pinned storage/logging, then run the integration and failover tests before accepting the qualified deployment.",
+      "references": [
+        {
+          "checked_on": "2026-11-15",
+          "id": "azure-app-network",
+          "scope": "Basic dedicated compute supports regional VNet integration and approved site-to-site VPN/ExpressRoute paths. It does not establish existing private connectivity.",
+          "title": "App Service VNet integration",
+          "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration"
+        },
+        {
+          "checked_on": "2026-11-15",
+          "id": "azure-app-scope",
+          "scope": "Regional application deployment is not end-to-end India residency proof; standard service metadata/control-plane scope remains critically qualified.",
+          "title": "App Service security and deployment scope",
+          "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-security"
+        },
+        {
+          "checked_on": "2026-11-15",
+          "id": "azure-b1-india-price",
+          "scope": "Public consumption record retained in evaluation/azure-b1-price.json: Azure App Service Basic Plan - Linux, B1, Central India, USD .018/hour; no ASE tariff applied.",
+          "title": "Azure Retail Prices API: Central India B1 Linux",
+          "url": "https://prices.azure.com/api/retail/prices"
+        },
+        {
+          "checked_on": "2026-11-13",
+          "id": "sql2019-lifecycle",
+          "scope": "Extended support ends January 2030; no edition, patch, license or installed network/capacity entitlement established.",
+          "title": "SQL Server 2019 lifecycle",
+          "url": "https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2019"
+        }
+      ],
       "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     },
     {
@@ -875,7 +817,7 @@
         "infrastructure.data_residency",
         "requirements.auth"
       ],
-      "id": "EXISTING_IDENTITY_SCOPE_UNVERIFIED:infrastructure.data_residency|requirements.auth:1",
+      "id": "EXISTING_IDENTITY_SCOPE_UNVERIFIED:infrastructure.data_residency|requirements.auth:2",
       "kind": "evidence_gap",
       "next_action": "Ask the tenant owner for the identity boundary and connectivity details. Microsoft 365 content geography does not establish Entra identity residency.",
       "references": [
@@ -897,18 +839,18 @@
       "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.8.0",
+  "rules_version": "0.9.0",
   "scenario_id": "P5",
   "score_breakdown": [
     {
-      "contribution": 0,
+      "contribution": 15,
       "criterion": "cost",
       "driven_by": [
         "budget.monthly_infra_usd",
         "priorities.cost"
       ],
-      "fit": 0,
-      "reason": "USD 603.7–739.7/month versus budget 300: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "fit": 5,
+      "reason": "USD 66.42–202.42/month versus budget 300: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
       "weight": 3
     },
     {
@@ -921,7 +863,7 @@
         "priorities.time_to_market"
       ],
       "fit": 4,
-      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 2.75/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics; supported server-language depth 1 gives ecosystem reuse bonus 0.",
+      "reason": "Language familiarity 5.00/5 and implementation-complexity rubric 2.50/5; short delivery/beginner-complexity and manual Markdown-conversion penalties are explicit heuristics; supported server-language depth 1 gives ecosystem reuse bonus 0.",
       "weight": 5
     },
     {
@@ -961,7 +903,7 @@
         "priorities.maintainability"
       ],
       "fit": 5,
-      "reason": "Operational burden 2/5+; existing SQL Server integration receives a reuse preference. Server ecosystem reuse bonus 0; fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
+      "reason": "Operational burden 1/5+; existing SQL Server integration receives a reuse preference. Server ecosystem reuse bonus 0; fewer self-operated systems are favored without DevOps. Additional service operating penalty 0.",
       "weight": 5
     },
     {
@@ -975,7 +917,7 @@
       "weight": 4
     }
   ],
-  "services_version": "0.8.0",
+  "services_version": "0.9.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -1006,7 +948,7 @@
       "alternatives": [
         {
           "choice": "PostgreSQL",
-          "why_not": "Best compatible complete plan using this option scored 61, below 66; other layers may also differ."
+          "why_not": "Best compatible complete plan using this option scored 75, below 81; other layers may also differ."
         }
       ],
       "choice": "SQL Server",
@@ -1053,22 +995,24 @@
     "hosting": {
       "alternatives": [
         {
-          "choice": "Azure App Service",
-          "why_not": "No compatible complete plan with this different layer option survived the current reviewed constraints/edges. See candidate rejection trace; this is not proof that the product is inherently unsuitable."
+          "choice": "Azure App Service Environment v3 (Central India, Linux Iv2)",
+          "why_not": "Best compatible complete plan using this option scored 66, below 81; other layers may also differ."
         }
       ],
-      "choice": "Azure App Service Environment v3 (Central India, Linux Iv2)",
+      "choice": "Azure App Service Basic B1 Linux (Central India)",
       "driven_by": [
         "infrastructure.cloud_preference",
         "infrastructure.deployment_model",
         "infrastructure.data_residency",
         "team.has_devops"
       ],
-      "id": "ase-india",
+      "id": "appservice-india",
       "justification": "Matches managed_cloud with provider azure; reviewed primary compute region centralindia. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "hosting",
       "source_ids": [
-        "azure-ase"
+        "azure-app-network",
+        "azure-app-scope",
+        "azure-b1-india-price"
       ],
       "tradeoffs": [
         "Isolated v2 is materially more expensive than shared App Service; no dedicated physical host deployment is assumed.",
@@ -1188,9 +1132,18 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 105 complete compatible plans; month-12 infrastructure planning band USD 603.7–739.7/month.",
+  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 210 complete compatible plans; month-12 infrastructure planning band USD 66.42–202.42/month.",
   "validation_errors": [],
   "warnings": [
+    {
+      "code": "AZURE_STANDARD_SCOPE_UNVERIFIED",
+      "fields": [
+        "infrastructure.data_residency",
+        "infrastructure.existing_systems"
+      ],
+      "message": "Central India B1 application placement is reviewed, but standard App Service metadata, control plane, logs, backups and support processing do not inherit ASE in-region assurance. Existing SQL private routes, tenant scope, network/edition charges and capacity remain unverified. Resolve this explicit provisional residency/network exception before production.",
+      "severity": "critical"
+    },
     {
       "code": "EXISTING_DATABASE_SCOPE_UNVERIFIED",
       "fields": [
@@ -1215,14 +1168,6 @@
         "requirements.availability"
       ],
       "message": "99.9% is a target, not a product guarantee. The cost model provisions redundancy assumptions; service terms, failover and workload behavior still require verification.",
-      "severity": "warning"
-    },
-    {
-      "code": "BUDGET_EXCEEDED",
-      "fields": [
-        "budget.monthly_infra_usd"
-      ],
-      "message": "Infrastructure estimate USD 603.7–739.7/month exceeds the USD 300 budget at the lower bound; this is an explicitly over-budget plan, with no requirement silently relaxed.",
       "severity": "warning"
     },
     {

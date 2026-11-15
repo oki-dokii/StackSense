@@ -55,7 +55,7 @@
     "options": [],
     "scope": "optional_proposals_original_result_unchanged"
   },
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "control_plan": {
     "deployment_controls": [
       "TLS at all client/service/database boundaries.",
@@ -126,13 +126,13 @@
   ],
   "database_region": null,
   "decision_trace": {
-    "complete_candidates": 14,
-    "core_candidates": 14,
+    "complete_candidates": 16,
+    "core_candidates": 16,
     "rejected": [],
     "score": 72,
     "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified"
   },
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -308,7 +308,7 @@
   ],
   "primary_region": null,
   "review_actions": [],
-  "rules_version": "0.8.0",
+  "rules_version": "0.9.0",
   "scenario_id": "E04",
   "score_breakdown": [
     {
@@ -387,7 +387,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.8.0",
+  "services_version": "0.9.0",
   "stack": {
     "backend": {
       "alternatives": [
@@ -544,7 +544,7 @@
     ]
   },
   "status": "ok",
-  "summary": "static recommendation selected from 14 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
+  "summary": "static recommendation selected from 16 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
   "validation_errors": [],
   "warnings": [
     {

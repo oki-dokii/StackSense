@@ -1,23 +1,24 @@
 {
   "scope": "Author-designed functional stress evaluation; not organiser hidden tests, independent quality grading or production sizing validation.",
-  "engine_version": "0.8.0",
+  "engine_version": "0.9.0",
   "case_set_sha256": "f1609988caeff4cdd81d50f62e64fe6209a668efd0b444d53760b8b0332ec123",
-  "catalog_sha256": "ee0974b7ba4bb6de1960d01f72a35fb35e7390c1f86446091ea6b13aefaf04bb",
+  "catalog_sha256": "1f664f4a6b514ab8a2494b7b0d90d5f5100475c8b8e137bc6e7e53c4c2d3d73a",
   "counts": {
     "scenarios": 60,
     "concrete_types": 15,
     "usable": 57,
     "infeasible": 3,
     "failed_checks": [],
-    "over_budget_at_lower_bound": 12,
+    "over_budget_at_lower_bound": 9,
     "bands_over_5x": 2,
     "selected_providers": {
       "aws": 9,
-      "azure": 4,
-      "fly": 4,
-      "gcp": 20,
+      "azure": 5,
+      "digitalocean": 14,
+      "fly": 2,
+      "gcp": 19,
       "none": 6,
-      "vercel": 14
+      "vercel": 2
     }
   },
   "records": [
@@ -87,16 +88,17 @@
       "project_type": "web_app",
       "input_sha256": "cfebcab47baff6faea71ff649bbb58d527e8861754faf68813527aa018aec38a",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|react|django|supabase-pg|vercel|iad1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|react|django|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70,
-        "max": 85.25
+        "min": 50,
+        "max": 50.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 60,
-      "over_budget_at_lower_bound": true,
+      "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
@@ -149,16 +151,17 @@
       "project_type": "saas_b2b",
       "input_sha256": "e24d303834d9c30856bc520b009ea0629f9928e11f1eb8e428baacc5b967c2f1",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|react|express|supabase-pg|vercel|iad1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|react|express|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70,
-        "max": 85.25
+        "min": 50,
+        "max": 50.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 100,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
@@ -181,16 +184,18 @@
       "project_type": "saas_b2b",
       "input_sha256": "cb35821a01a6d35f1bf765194225aab410d4cf2a8e8a5472f957b87fa26a26c2",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified",
+      "plan_id": "modular_monolith|angular|aspnet|pg|appservice-india|centralindia",
       "provider": "azure",
       "infrastructure_usd": {
-        "min": 287.2,
-        "max": 979.11
+        "min": 161.83,
+        "max": 319.92
       },
-      "band_ratio": 3.41,
+      "band_ratio": 1.98,
       "budget_usd": 800,
       "over_budget_at_lower_bound": false,
-      "critical_warnings": [],
+      "critical_warnings": [
+        "AZURE_STANDARD_SCOPE_UNVERIFIED"
+      ],
       "checks": {
         "valid_output": true,
         "deterministic_repeat": true,
@@ -211,16 +216,17 @@
       "project_type": "ecommerce",
       "input_sha256": "46bf5603bd51395fd1c75a0dfaa80ec96ad0a883346fcd37f3dcb03108cce56d",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|next|express|supabase-pg|vercel|bom1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|next|express|supabase-pg|do-app|blr",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70,
-        "max": 85.25
+        "min": 60,
+        "max": 60.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 150,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "EXTERNAL_RESIDENCY_UNVERIFIED",
         "EXTERNAL_RESIDENCY_UNVERIFIED",
         "EXTERNAL_RESIDENCY_UNVERIFIED",
@@ -279,16 +285,17 @@
       "project_type": "marketplace",
       "input_sha256": "15575f7ae83a1a11257e519ee28d32f30c708bd4cde87afe0a671f35fa7e5741",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|next-native|express|supabase-pg|vercel|fra1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|next-native|express|supabase-pg|do-app|fra",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70,
-        "max": 85.25
+        "min": 60,
+        "max": 60.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 180,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "EXTERNAL_RESIDENCY_UNVERIFIED",
         "EXTERNAL_RESIDENCY_UNVERIFIED",
         "EXTERNAL_RESIDENCY_UNVERIFIED",
@@ -345,16 +352,17 @@
       "project_type": "social",
       "input_sha256": "ef4d95dafa1f4d1d916457d85b2d75c7d8aec73ab23aa84d55db6a13690e99f9",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|react|express|supabase-pg|vercel|iad1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|react|express|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70.5,
-        "max": 86.25
+        "min": 50,
+        "max": 50.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 80,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
@@ -439,16 +447,18 @@
       "project_type": "realtime_collab",
       "input_sha256": "f59c1af80ac43f6f93b47343b54f9c8d25bbdb77842aff333089074536446d36",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|angular|aspnet|pg|ase-india|centralindia",
+      "plan_id": "modular_monolith|angular|aspnet|pg|appservice-india|centralindia",
       "provider": "azure",
       "infrastructure_usd": {
-        "min": 974.32,
-        "max": 1132.41
+        "min": 188.11,
+        "max": 346.2
       },
-      "band_ratio": 1.16,
+      "band_ratio": 1.84,
       "budget_usd": 1200,
       "over_budget_at_lower_bound": false,
-      "critical_warnings": [],
+      "critical_warnings": [
+        "AZURE_STANDARD_SCOPE_UNVERIFIED"
+      ],
       "checks": {
         "valid_output": true,
         "deterministic_repeat": true,
@@ -565,16 +575,21 @@
       "project_type": "healthtech",
       "input_sha256": "29d8fd77be2f4e8ac2c44c4feca0445479039fa7e8e9b5e19b9749a830c9e2b2",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|compose|spring|pg|cloudrun|asia-south1",
-      "provider": "gcp",
+      "plan_id": "modular_monolith|compose|spring|supabase-pg|do-app|blr",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 247.76,
-        "max": 695
+        "min": 50,
+        "max": 50.25
       },
-      "band_ratio": 2.81,
+      "band_ratio": 1,
       "budget_usd": 250,
       "over_budget_at_lower_bound": false,
-      "critical_warnings": [],
+      "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
+        "EXTERNAL_RESIDENCY_UNVERIFIED",
+        "MANAGED_BOUNDARY_RESIDENCY_REVIEW",
+        "MANAGED_TIER_CAPACITY_REVIEW"
+      ],
       "checks": {
         "valid_output": true,
         "deterministic_repeat": true,
@@ -595,16 +610,17 @@
       "project_type": "data_analytics",
       "input_sha256": "d12bb3d32326ae3f77db714d151ae7597c37c968ff347339ae2fa635f13bdcb5",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|frontend-none|fastapi|supabase-pg|vercel|iad1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|frontend-none|fastapi|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70,
-        "max": 85.25
+        "min": 50,
+        "max": 50.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 100,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
@@ -627,16 +643,18 @@
       "project_type": "data_analytics",
       "input_sha256": "bbfc45ab436e5766bec798dd6de1aaac05982e9bf813b2f1f24aad10ef64c44c",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|angular|aspnet|pg|appservice|unspecified",
+      "plan_id": "modular_monolith|angular|aspnet|pg|appservice-india|centralindia",
       "provider": "azure",
       "infrastructure_usd": {
-        "min": 287.2,
-        "max": 979.11
+        "min": 161.83,
+        "max": 319.92
       },
-      "band_ratio": 3.41,
+      "band_ratio": 1.98,
       "budget_usd": 700,
       "over_budget_at_lower_bound": false,
-      "critical_warnings": [],
+      "critical_warnings": [
+        "AZURE_STANDARD_SCOPE_UNVERIFIED"
+      ],
       "checks": {
         "valid_output": true,
         "deterministic_repeat": true,
@@ -810,16 +828,17 @@
       "project_type": "internal_tool",
       "input_sha256": "0eed1d7a96d84ad67d91f51d12857c807b405d3dc492d5241c03def7a4e241ed",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|react|express|supabase-pg|fly|iad",
-      "provider": "fly",
+      "plan_id": "modular_monolith|react|express|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70.92,
-        "max": 116.38
+        "min": 50,
+        "max": 50.25
       },
-      "band_ratio": 1.64,
+      "band_ratio": 1,
       "budget_usd": 50,
-      "over_budget_at_lower_bound": true,
+      "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
@@ -842,16 +861,17 @@
       "project_type": "gaming",
       "input_sha256": "a537c0314602a715cbb529f91f4295fe26f6b4982631c21ec044ea425d7613fa",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|flutter|go-http|supabase-pg|vercel|iad1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|flutter|go-http|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70,
-        "max": 85.25
+        "min": 50,
+        "max": 50.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 300,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
@@ -904,16 +924,17 @@
       "project_type": "api_platform",
       "input_sha256": "a0ad62d48e51d7365805cb381b8eb21b69bc2d36fb3d73f8946231c730fc9c8d",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|frontend-none|go-http|supabase-pg|vercel|iad1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|frontend-none|go-http|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70,
-        "max": 85.25
+        "min": 50,
+        "max": 50.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 120,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
@@ -936,16 +957,18 @@
       "project_type": "api_platform",
       "input_sha256": "9be00c050a9821325048165129fa5e34329d49845c641337d516590ad2830159",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|frontend-none|django|database-none|appservice|unspecified",
+      "plan_id": "modular_monolith|frontend-none|django|database-none|appservice-india|centralindia",
       "provider": "azure",
       "infrastructure_usd": {
-        "min": 129.28,
-        "max": 549.75
+        "min": 45.52,
+        "max": 96.42
       },
-      "band_ratio": 4.25,
+      "band_ratio": 2.12,
       "budget_usd": 100,
-      "over_budget_at_lower_bound": true,
-      "critical_warnings": [],
+      "over_budget_at_lower_bound": false,
+      "critical_warnings": [
+        "AZURE_STANDARD_SCOPE_UNVERIFIED"
+      ],
       "checks": {
         "valid_output": true,
         "deterministic_repeat": true,
@@ -1026,16 +1049,17 @@
       "project_type": "web_app",
       "input_sha256": "8a30176e1c2180deb612d10895380abf0fd4f32e29b1a2d59229e76d8346f44e",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|react|django|supabase-pg|vercel|iad1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|react|django|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70,
-        "max": 85.25
+        "min": 64,
+        "max": 64.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 100,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
@@ -1293,16 +1317,17 @@
       "project_type": "social",
       "input_sha256": "1c9b36ba81a88ace940c7a2210d08f89289a172aea5d881a14c38ea12c458bd1",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|react|express|supabase-pg|vercel|iad1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|react|express|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70.5,
-        "max": 86.25
+        "min": 64,
+        "max": 64.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 100,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
@@ -1550,16 +1575,17 @@
       "project_type": "data_analytics",
       "input_sha256": "27e532f4a466c25c6ddc0618f69c23b58157a3b13df74d44e062a0b340ad705a",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|frontend-none|fastapi|supabase-pg|vercel|iad1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|frontend-none|fastapi|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70,
-        "max": 85.25
+        "min": 64,
+        "max": 64.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 100,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
@@ -1792,17 +1818,17 @@
       "project_type": "gaming",
       "input_sha256": "54d1860c390d0519f75ad69bd05caf6870eba30c4bbb357897401f05a469c28b",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|flutter|go-http|neon-pg|fly|iad",
-      "provider": "fly",
+      "plan_id": "modular_monolith|flutter|go-http|pg|appservice-india|centralindia",
+      "provider": "azure",
       "infrastructure_usd": {
-        "min": 2786.32,
-        "max": 44649.86
+        "min": 3258.53,
+        "max": 43496.2
       },
-      "band_ratio": 16.02,
+      "band_ratio": 13.35,
       "budget_usd": 0,
       "over_budget_at_lower_bound": true,
       "critical_warnings": [
-        "MANAGED_TIER_CAPACITY_REVIEW"
+        "AZURE_STANDARD_SCOPE_UNVERIFIED"
       ],
       "checks": {
         "valid_output": true,
@@ -1854,16 +1880,17 @@
       "project_type": "api_platform",
       "input_sha256": "111d7558ca952432164d67f691e5d0d77ce2faf802e439f5087d00105a8f9317",
       "status": "ok_with_warnings",
-      "plan_id": "modular_monolith|frontend-none|go-http|supabase-pg|vercel|iad1",
-      "provider": "vercel",
+      "plan_id": "modular_monolith|frontend-none|go-http|supabase-pg|do-app|nyc",
+      "provider": "digitalocean",
       "infrastructure_usd": {
-        "min": 70,
-        "max": 85.25
+        "min": 64,
+        "max": 64.25
       },
-      "band_ratio": 1.22,
+      "band_ratio": 1,
       "budget_usd": 100,
       "over_budget_at_lower_bound": false,
       "critical_warnings": [
+        "ARCHIVE_INTEGRATION_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "checks": {
