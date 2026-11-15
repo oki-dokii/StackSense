@@ -17,6 +17,7 @@ Guided form / JSON import       Scenario JSON file
            |
   Required services + controls + itemized cost model
            |
+  GDPR + no residency: reviewed EU compute + database preferred first
   Known server language -> budget tier -> weighted fit / stable ties
            |
   Explained result / JSON export / Decision Lab experiments
@@ -55,7 +56,7 @@ npm run --silent recommend:batch -- --input fixtures/public/scenarios.json --out
 
 The first command writes `result.json` in the current directory. Batch writes `reports/P1_output.json` through `P6_output.json`. Existing files are protected; add `--force` deliberately to replace them. Without an output path, JSON goes to stdout. Browser results also provide JSON download. [CLI/API reference](docs/API_CLI.md).
 
-Exit codes: **0** selected stack (warnings allowed), **2** invalid input/usage, **3** infeasible. Batch uses the most severe item status. `ok_with_warnings` can include **critical provisional residency, identity, capacity or contract exceptions**: a stack is not production approval. Real deployment/provider/air-gap conflicts still block. Overruns stay visible; complete known-language plans with upper bounds inside budget are preferred before weighted scores. [Remaining evidence gates](docs/REMAINING_GAPS.md), [costs and limits](docs/COST_MODEL.md), [public results](outputs/README.md), [60 authored stress briefs](evaluation/stress-results.json).
+Exit codes: **0** selected stack (warnings allowed), **2** invalid input/usage, **3** infeasible. Batch uses the most severe item status. `ok_with_warnings` can include **critical provisional residency, identity, capacity or contract exceptions**: a stack is not production approval. Real deployment/provider/air-gap conflicts still block. For GDPR with unspecified residency, reviewed EU compute/database placement is preferred first; other placements carry critical transfer/DPA review. Overruns stay visible; complete known-language plans with upper bounds inside budget are preferred before weighted scores. [Remaining evidence gates](docs/REMAINING_GAPS.md), [costs and limits](docs/COST_MODEL.md), [public results](outputs/README.md), [60 authored stress briefs](evaluation/stress-results.json).
 
 ## 6. LLM-off switch
 
