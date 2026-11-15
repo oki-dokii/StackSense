@@ -6,11 +6,11 @@
   "page_size": "A4",
   "body_font_pt": 11,
   "table_reference_font_pt": 10,
-  "source_records": 218,
+  "source_records": 219,
   "screenshots": 16,
-  "engine_version": "0.9.0",
-  "application_version": "0.9.0",
+  "engine_version": "0.9.1",
+  "application_version": "0.9.1",
   "owner_metadata_confirmed": true,
-  "visual_review": "All 25 rendered A4 pages inspected in seven contact sheets; corrected final source-ledger page rerendered and inspected, other page text verified unchanged. No clipped text, overlaps or unintended spill; 15 main pages and 10 appendix pages.",
-  "sha256": "e462ab118b45b0aa4b29d80ace159178e914ea206b70b4a4eee5144b2987c120"
+  "visual_review": "All 25 final A4 pages inspected in seven rendered contact sheets after correcting screenshot render lag. Six public selectors, summary bands and nine edge captures match their cases; the complete P3 tradeoff chart is visible. No clipped text, overlaps or unintended spill; 15 main pages and 10 appendix pages.",
+  "sha256": "0558c341179a0ff677e3eb5ae4d32d356f2b1544c88fb4e3837009e916ab6e8c"
 }

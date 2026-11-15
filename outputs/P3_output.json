@@ -2,9 +2,11 @@
   "applied_extensions": [],
   "architecture_style": "modular_monolith",
   "assumptions": [
+    "After any GDPR EU-placement preference, ranking preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
+    "GDPR with unspecified residency prefers reviewed EU compute and database placement among complete feasible plans before language/budget/score. Explicit residency/provider/deployment inputs are preserved; EU placement alone does not establish compliance or end-to-end EU processing.",
+    "GDPR with unspecified residency prefers reviewed EU compute and database placement among complete feasible plans before language/budget/score. Explicit residency/provider/deployment inputs are preserved; EU placement alone does not establish compliance or end-to-end EU processing.",
     "Interpreted project.description phrase \"whiteboard\" as collaboration_hint; this bounded hint does not infer legal or regional requirements.",
     "Persistent application data is inferred from project.type=realtime_collab; domain data modeling remains required.",
-    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
     "Social login brokers only necessary identity claims; choose an eligible provider, legal basis and transfer/contract arrangement before production."
@@ -20,15 +22,15 @@
         "hosting": "Fly.io regional Machines"
       },
       "monthly_infrastructure_usd": {
-        "max": 501.56,
+        "max": 583.02,
         "min": 291.9
       },
-      "plan_id": "modular_monolith|angular|aspnet|supabase-pg|fly|iad"
+      "plan_id": "modular_monolith|angular|aspnet|supabase-pg|fly|fra"
     },
     "notes": [
       "Infrastructure uncertainty: telemetry-headroom contributes USD 95 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
+      "Infrastructure uncertainty: application-compute contributes USD 81.48 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
       "Infrastructure uncertainty: supabase-egress contributes USD 45 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
-      "Infrastructure uncertainty: hosted-ci contributes USD 30 of the selected band width. Resolve quantity/rate assumptions rather than clipping the range to budget.",
       "Lowest upper estimate among complete catalog candidates under the unchanged brief; not a claim of lowest real-world price, verified performance, or clearance of critical vendor conditions."
     ],
     "options": [],
@@ -40,17 +42,20 @@
       "TLS at all client/service/database boundaries.",
       "Least-privilege service identities, secret rotation, encryption at rest and redacted audit logs.",
       "Explicit regional primary/replica/storage/log/backup locations and retention; no uncontrolled cross-region replication.",
-      "Restore-test backups and test negative authorization, tenant boundaries and deletion workflows."
+      "Restore-test backups and test negative authorization, tenant boundaries and deletion workflows.",
+      "GDPR: configure declared EU locations where available; review processor DPAs, subprocessors, remote access and all processing/backup/log flows. Non-EEA transfers require a validated Chapter V mechanism; location alone is not compliance."
     ],
     "frameworks": [
       {
         "id": "gdpr",
         "owner_actions": [
           "Review scope and effective obligations with qualified personnel.",
-          "Implement and test controls; execute required contracts and obtain independent assessment where applicable."
+          "Implement and test controls; execute required contracts and obtain independent assessment where applicable.",
+          "Execute applicable processor DPAs; map all processing/subprocessor/remote-access locations and validate a Chapter V mechanism for EU/EEA personal-data transfers. EU primary placement alone is insufficient."
         ],
         "source_ids": [
-          "gdpr"
+          "gdpr",
+          "gdpr-transfers"
         ],
         "technical_controls": [
           "tls_in_transit",
@@ -70,11 +75,11 @@
       "category": "compute",
       "id": "application-compute",
       "monthly_usd": {
-        "max": 162.92,
+        "max": 244.38,
         "min": 162.9
       },
       "quantity": {
-        "max": 8760,
+        "max": 13140,
         "min": 8760
       },
       "source_ids": [
@@ -342,7 +347,7 @@
         "telemetry-headroom",
         "hosted-ci"
       ],
-      "max": 501.56,
+      "max": 583.02,
       "min": 291.9
     },
     {
@@ -363,14 +368,14 @@
       "field": "extensions.expected_requests_per_second",
       "samples": [
         {
-          "max": 501.56,
+          "max": 583.02,
           "min": 291.9,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 2.8935185185185186
         },
         {
-          "max": 501.56,
+          "max": 583.02,
           "min": 291.9,
           "status": "estimated",
           "upper_delta_usd": 0,
@@ -386,14 +391,14 @@
       "field": "extensions.daily_active_user_fraction",
       "samples": [
         {
-          "max": 501.56,
+          "max": 583.02,
           "min": 291.9,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 0.1
         },
         {
-          "max": 501.56,
+          "max": 583.02,
           "min": 291.9,
           "status": "estimated",
           "upper_delta_usd": 0,
@@ -409,14 +414,14 @@
       "field": "extensions.monthly_egress_gb",
       "samples": [
         {
-          "max": 446.56,
+          "max": 528.02,
           "min": 264.4,
           "status": "estimated",
           "upper_delta_usd": -55,
           "value": 250
         },
         {
-          "max": 611.56,
+          "max": 693.02,
           "min": 346.9,
           "status": "estimated",
           "upper_delta_usd": 110,
@@ -432,14 +437,14 @@
       "field": "extensions.retention_months",
       "samples": [
         {
-          "max": 501.56,
+          "max": 583.02,
           "min": 291.9,
           "status": "estimated",
           "upper_delta_usd": 0,
           "value": 1
         },
         {
-          "max": 521.56,
+          "max": 603.02,
           "min": 296.9,
           "status": "estimated",
           "upper_delta_usd": 20,
@@ -498,13 +503,13 @@
   "data_flows": [
     {
       "component": "primary-compute",
-      "location": "iad",
+      "location": "fra",
       "scope": "Application processing; configure region, private access, logging and replicas explicitly.",
       "verification": "configuration_required"
     },
     {
       "component": "primary-database",
-      "location": "us-east-1",
+      "location": "eu-central-1",
       "scope": "Application/auth/search/outbox data and backups; verify retention, restore and deletion.",
       "verification": "configuration_required"
     },
@@ -516,13 +521,13 @@
     },
     {
       "component": "yjs",
-      "location": "iad",
+      "location": "fra",
       "scope": "CRDT state, authorization, document persistence, reconnects and cross-instance coordination must be implemented; live cursors alone are not the shared document.",
       "verification": "configuration_required"
     },
     {
       "component": "rls",
-      "location": "iad",
+      "location": "fra",
       "scope": "Application role must not own tables or have BYPASSRLS; FORCE ROW LEVEL SECURITY, tenant checks and negative authorization tests are mandatory.",
       "verification": "configuration_required"
     },
@@ -540,13 +545,13 @@
     },
     {
       "component": "outbox",
-      "location": "iad",
+      "location": "fra",
       "scope": "Outbox rows share the database bill. Worker retries must be idempotent; tune polling, retry/dead-letter policy and retention.",
       "verification": "configuration_required"
     },
     {
       "component": "otel",
-      "location": "iad",
+      "location": "fra",
       "scope": "Redact sensitive values, use host-region retention/routing, and provision a durable regional log backend. No personal data in tracing baggage.",
       "verification": "configuration_required"
     },
@@ -557,7 +562,7 @@
       "verification": "source_only_no_production_data"
     }
   ],
-  "database_region": "us-east-1",
+  "database_region": "eu-central-1",
   "decision_trace": {
     "complete_candidates": 324,
     "core_candidates": 609,
@@ -566,127 +571,127 @@
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|angular|express|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|angular|express|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|angular|fastify|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|angular|fastify|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|angular|go-http|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|angular|go-http|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|angular|nestjs|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|angular|nestjs|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|react|express|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|react|express|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|react|fastify|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|react|fastify|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|react|go-http|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|react|go-http|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|react|nestjs|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|react|nestjs|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|vue|express|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|vue|express|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|vue|fastify|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|vue|fastify|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|vue|go-http|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|vue|go-http|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|vue|nestjs|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|vue|nestjs|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|next-native|express|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|next-native|express|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|next-native|fastify|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|next-native|fastify|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|next-native|go-http|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|next-native|go-http|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|next-native|nestjs|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|next-native|nestjs|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|next|express|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|next|express|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|next|fastify|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|next|fastify|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|next|go-http|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|next|go-http|neon-pg|fly|fra"
       },
       {
         "codes": [
           "OBJECT_STORAGE_COVERAGE_GAP"
         ],
-        "plan_id": "modular_monolith|next|nestjs|neon-pg|fly|iad"
+        "plan_id": "modular_monolith|next|nestjs|neon-pg|fly|fra"
       }
     ],
     "score": 89,
-    "selected_plan_id": "modular_monolith|angular|express|supabase-pg|fly|iad"
+    "selected_plan_id": "modular_monolith|angular|express|supabase-pg|fly|fra"
   },
-  "engine_version": "0.9.0",
+  "engine_version": "0.9.1",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -713,7 +718,7 @@
       "One USD 25 Pro organization/project; charge 730 hours of Micro (.01344/h), or Medium (.0822/h) when peak >=1000, minus one USD 10 compute credit. Tier threshold is an unvalidated capacity hypothesis.",
       "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote."
     ],
-    "max": 501.56,
+    "max": 583.02,
     "min": 291.9
   },
   "estimated_total_monthly_cost_usd": {
@@ -741,7 +746,7 @@
       "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote.",
       "Total adds the separately itemized payment/SMS activity scenarios. Unknown volumes are assumptions, not guaranteed expenditure. Taxes, labor and merchant-specific extras remain excluded."
     ],
-    "max": 3001.56,
+    "max": 3083.02,
     "min": 291.9
   },
   "integration_reviews": [],
@@ -778,14 +783,14 @@
         "One USD 25 Pro organization/project; charge 730 hours of Micro (.01344/h), or Medium (.0822/h) when peak >=1000, minus one USD 10 compute credit. Tier threshold is an unvalidated capacity hypothesis.",
         "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote."
       ],
-      "database_region": "us-east-1",
+      "database_region": "eu-central-1",
       "monthly_usd": {
-        "max": 501.56,
+        "max": 583.02,
         "min": 291.9
       },
       "operated_components": 2.5,
-      "plan_id": "modular_monolith|angular|express|supabase-pg|fly|iad",
-      "primary_region": "iad",
+      "plan_id": "modular_monolith|angular|express|supabase-pg|fly|fra",
+      "primary_region": "fra",
       "retained_constraints": [
         "platforms=web",
         "cloud_preference=any",
@@ -811,6 +816,7 @@
       "warning_codes": [
         "AVAILABILITY_TARGET_UNVERIFIED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "GDPR_DATA_FLOW_REVIEW",
         "IDENTITY_PROVIDER_REVIEW",
         "LATENCY_TARGET_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
@@ -848,14 +854,14 @@
         "One USD 25 Pro organization/project; charge 730 hours of Micro (.01344/h), or Medium (.0822/h) when peak >=1000, minus one USD 10 compute credit. Tier threshold is an unvalidated capacity hypothesis.",
         "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote."
       ],
-      "database_region": "us-east-1",
+      "database_region": "eu-central-1",
       "monthly_usd": {
-        "max": 501.56,
+        "max": 583.02,
         "min": 291.9
       },
       "operated_components": 2.5,
-      "plan_id": "modular_monolith|angular|fastify|supabase-pg|fly|iad",
-      "primary_region": "iad",
+      "plan_id": "modular_monolith|angular|fastify|supabase-pg|fly|fra",
+      "primary_region": "fra",
       "retained_constraints": [
         "platforms=web",
         "cloud_preference=any",
@@ -881,6 +887,7 @@
       "warning_codes": [
         "AVAILABILITY_TARGET_UNVERIFIED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "GDPR_DATA_FLOW_REVIEW",
         "IDENTITY_PROVIDER_REVIEW",
         "LATENCY_TARGET_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
@@ -918,14 +925,14 @@
         "One USD 25 Pro organization/project; charge 730 hours of Micro (.01344/h), or Medium (.0822/h) when peak >=1000, minus one USD 10 compute credit. Tier threshold is an unvalidated capacity hypothesis.",
         "US/EU public outbound; cross-provider database traffic is charged separately by its service. Private inter-region traffic and dedicated addresses need deployment-specific quote."
       ],
-      "database_region": "us-east-1",
+      "database_region": "eu-central-1",
       "monthly_usd": {
-        "max": 501.56,
+        "max": 583.02,
         "min": 291.9
       },
       "operated_components": 2.5,
-      "plan_id": "modular_monolith|angular|go-http|supabase-pg|fly|iad",
-      "primary_region": "iad",
+      "plan_id": "modular_monolith|angular|go-http|supabase-pg|fly|fra",
+      "primary_region": "fra",
       "retained_constraints": [
         "platforms=web",
         "cloud_preference=any",
@@ -951,14 +958,50 @@
       "warning_codes": [
         "AVAILABILITY_TARGET_UNVERIFIED",
         "COMPLIANCE_IMPLEMENTATION_REVIEW",
+        "GDPR_DATA_FLOW_REVIEW",
         "IDENTITY_PROVIDER_REVIEW",
         "LATENCY_TARGET_UNVERIFIED",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ]
     }
   ],
-  "primary_region": "iad",
+  "primary_region": "fra",
   "review_actions": [
+    {
+      "affected_components": [
+        "compute/database geography",
+        "processor/subprocessor boundaries"
+      ],
+      "code": "GDPR_DATA_FLOW_REVIEW",
+      "evidence_required": [
+        "Configured compute/database, CDN, logs, backup, identity, support and remote-access locations; identify every EU/EEA personal-data transfer.",
+        "Executed applicable processor DPAs and a scoped Chapter V mechanism (applicable adequacy decision or SCCs/other safeguards), including transfer assessment and supplementary measures where required."
+      ],
+      "fields": [
+        "compliance",
+        "infrastructure.data_residency"
+      ],
+      "id": "GDPR_DATA_FLOW_REVIEW:compliance|infrastructure.data_residency:0",
+      "kind": "evidence_gap",
+      "next_action": "Review the complete processing chain and contracts before production; prefer reviewed EU placement without changing explicit residency or provider requirements. An EU region is not compliance certification.",
+      "references": [
+        {
+          "checked_on": "2026-11-13",
+          "id": "gdpr",
+          "scope": "Control design and processor obligations; not a comprehensive legal assessment.",
+          "title": "EU data protection obligations",
+          "url": "https://commission.europa.eu/law/law-topic/data-protection/information-business-and-organisations/obligations_en"
+        },
+        {
+          "checked_on": "2026-11-15",
+          "id": "gdpr-transfers",
+          "scope": "Chapter V transfer tools, adequacy and safeguards; EU placement preference is an authored conservative design rule, not an EU-only legal mandate or compliance approval.",
+          "title": "European Commission: rules on international data transfers",
+          "url": "https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/rules-international-data-transfers_en"
+        }
+      ],
+      "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
+    },
     {
       "affected_components": [
         "complete deployment"
@@ -971,14 +1014,14 @@
         "scale.peak_concurrent_users",
         "requirements.availability"
       ],
-      "id": "MANAGED_TIER_CAPACITY_REVIEW:scale.peak_concurrent_users|requirements.availability:0",
+      "id": "MANAGED_TIER_CAPACITY_REVIEW:scale.peak_concurrent_users|requirements.availability:1",
       "kind": "evidence_gap",
       "next_action": "Review the scoped catalog evidence, workload and configuration; resolve the condition and rerun the unchanged input.",
       "references": [],
       "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.9.0",
+  "rules_version": "0.9.1",
   "scenario_id": "P3",
   "score_breakdown": [
     {
@@ -989,7 +1032,7 @@
         "priorities.cost"
       ],
       "fit": 5,
-      "reason": "USD 291.9–501.56/month versus budget 1500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
+      "reason": "USD 291.9–583.02/month versus budget 1500: fit 5 when upper bound fits, 3 when only lower fits, 1 within twice budget, otherwise 0. All selected services are included under disclosed assumptions.",
       "weight": 2
     },
     {
@@ -1056,7 +1099,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.9.0",
+  "services_version": "0.9.1",
   "stack": {
     "backend": {
       "alternatives": [
@@ -1087,7 +1130,7 @@
       "alternatives": [
         {
           "choice": "PostgreSQL",
-          "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
+          "why_not": "Best compatible complete plan using this option scored 85, below 89; other layers may also differ."
         }
       ],
       "choice": "Supabase Pro PostgreSQL",
@@ -1095,7 +1138,8 @@
         "project.type",
         "requirements.auth",
         "requirements.offline_support",
-        "infrastructure.existing_systems"
+        "infrastructure.existing_systems",
+        "compliance"
       ],
       "id": "supabase-pg",
       "justification": "relational persistence via Supabase Pro, one regional PostgreSQL project.  Database drivers and host deployment were checked as a combination. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
@@ -1136,8 +1180,8 @@
     "hosting": {
       "alternatives": [
         {
-          "choice": "Azure App Service Basic B1 Linux (Central India)",
-          "why_not": "A compatible plan tied on score; the published cost-upper-bound/operated-component/identifier tie-break selected the primary plan, not intrinsic product superiority."
+          "choice": "Google Cloud Run",
+          "why_not": "Best compatible complete plan using this option scored 85, below 89; other layers may also differ."
         }
       ],
       "choice": "Fly.io regional Machines",
@@ -1145,10 +1189,11 @@
         "infrastructure.cloud_preference",
         "infrastructure.deployment_model",
         "infrastructure.data_residency",
-        "team.has_devops"
+        "team.has_devops",
+        "compliance"
       ],
       "id": "fly",
-      "justification": "Matches managed_cloud with provider fly; reviewed primary compute region iad. Required runtimes and separate database deployment were checked. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
+      "justification": "Matches managed_cloud with provider fly; reviewed primary compute region fra. Required runtimes and separate database deployment were checked. GDPR with unspecified residency prefers reviewed EU compute/database placement; all processing boundaries and contracts still need review. Selected after supporting-service compatibility and whole-plan infrastructure cost scoring. Explicit critical warnings identify provisional data-flow/control exceptions.",
       "layer": "hosting",
       "source_ids": [
         "fly-docker",
@@ -1382,9 +1427,18 @@
     ]
   },
   "status": "ok_with_warnings",
-  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 324 complete compatible plans; month-12 infrastructure planning band USD 291.9–501.56/month.",
+  "summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 324 complete compatible plans; month-12 infrastructure planning band USD 291.9–583.02/month.",
   "validation_errors": [],
   "warnings": [
+    {
+      "code": "GDPR_DATA_FLOW_REVIEW",
+      "fields": [
+        "compliance",
+        "infrastructure.data_residency"
+      ],
+      "message": "Reviewed EU primary compute and database placement is preferred, but does not establish GDPR compliance or end-to-end EU processing. Execute applicable processor DPAs; map CDN, identity, logs, backups, support and subprocessors. Any EU/EEA personal-data transfer needs a valid Chapter V mechanism and scope-specific review before production.",
+      "severity": "critical"
+    },
     {
       "code": "MANAGED_TIER_CAPACITY_REVIEW",
       "fields": [

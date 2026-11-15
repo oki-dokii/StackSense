@@ -26,3 +26,7 @@ One-page review map. Standard names are unchanged from the brief. Every selected
 | Unsupported/unknown extensions | Preserve and warn without interpreting | No silent influence on stack choice |
 
 Executable witnesses: `tests/architecture-fit.test.ts`, `tests/stress.test.ts`, `evaluation/sensitivity.json`. Sixty authored briefs run twice and through CLI `--no-llm`; this verifies invariants and locality, not organiser hidden accuracy.
+
+## GDPR and unspecified residency
+
+`compliance: ["gdpr"]` with `infrastructure.data_residency: "none"` prefers reviewed EU compute AND database placements among complete feasible plans. Explicit provider/deployment/residency inputs remain constraints. A non-EU or unknown fallback is critically flagged for processor DPAs, a Chapter V transfer mechanism and processing-chain review. EU primary placement also carries a critical DPA/data-flow review; no compliance certificate or end-to-end EU processing is inferred.

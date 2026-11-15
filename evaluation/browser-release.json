@@ -1,39 +1,40 @@
 {
   "checked_on": "2026-11-15",
-  "app_version": "0.9.0",
-  "engine_version": "0.9.0",
+  "app_version": "0.9.1",
+  "engine_version": "0.9.1",
   "analysis_version": "0.2.0",
   "input_fixture": "fixtures/public/scenarios.json",
   "input_sha256": "6a4aa08bd2fddfaf6a6498188867848d721c5cb6822164b27a783ae8ead76d57",
   "browser_export_sha256": {
-    "p2jsonPath": "5134bf2dded8f7a5ac2438fe48f487c53a256c343d23e09a60a3f38aa8996338",
-    "p3jsonPath": "808fae7baadb842cde2e4118d205ebf5207b24c5b679090aed4e16773e55a178",
-    "p3adrPath": "94a409bfcde65827af2e76c061e5974f8bd4cb942243480ff2ec9bef09f743cf"
+    "p2jsonPath": "0f5e9063c1813df930f09828b118e14a6cda590c7c60c145aaa0abee10f5c01f",
+    "p3jsonPath": "ab52e042b75e73a64856718583e2a2d1bbb748e6f0a2b69ab7e7f634fdcb3e88",
+    "p3adrPath": "74cd7ed940a677c5a38b3098065d3fb46765e2a17ab808948ab304562effe197",
+    "p3OutputPath": "604a383b4b5b8f4299ec92373a7b7bb7dea4e89028969fc75c639b491a1ea067"
   },
   "checks": [
-    "All fifteen unchanged public/edge overviews recaptured against current engine summaries",
-    "Actual P2 JSON and P3 analysis JSON/ADR match final engine artifacts",
+    "All fifteen unchanged public/edge overviews recaptured against final engine summaries",
+    "Actual P2/P3 recommendation JSON and P3 analysis JSON/ADR exactly match final engine artifacts",
     "All nine custom DOM audits refreshed; automatic validation focus and budget-link recovery observed on a fresh single invalid scenario",
     "320px chart scrolled 40px on ArrowRight; no recorded audit issues or document overflow",
-    "Air-gap original remains infeasible; bounded functional variants are explicitly changed projects",
-    "Separate P2 example supplies 9M billed messages and preserves features/quality; USD89.09–133.48 is a supplied-volume hypothesis, not measured public-scenario spend"
+    "Real fixture-file import, JSON code-block import, syntax error detail, edit/cancel/navigation recovery and successful batch evaluation observed",
+    "P3 displays critical GDPR data-flow review and Frankfurt primary/data placement; five non-GDPR public outputs retain decision traces, regions, infrastructure costs and warnings"
   ],
   "captures": [
     {
       "file": "docs/evidence/current/tradeoffs.png",
-      "sha256": "08003c9a3cb9d2a155057b572fd31b27bc131999f43e238b444cfaab4148475f"
+      "sha256": "c853de797762df7f4eda5e98c767e0f4be0ee88ea71660d3d0a388c7704267de"
     },
     {
       "file": "docs/evidence/current/P2-stack.png",
-      "sha256": "853ecd48d5f3dda4e2b344186d37407d9f8949d9d946940b7bb1991dadc244bd"
+      "sha256": "9e8d0da589437dbbd4a20ce84a53070037fc4d60f0fb5444f9394f9b92391b89"
     },
     {
       "file": "docs/evidence/current/P5-stack.png",
-      "sha256": "4075c37f004acbba056f1179a7c249cc526543d52bb82fea107fe181bc11809c"
+      "sha256": "9f8e463c3cc1ad343c5afe9091325570208c24d4eb9c11d8e0163378eb9f9c2d"
     },
     {
       "file": "docs/evidence/current/P6-budget.png",
-      "sha256": "9a42b3791e10961d66f5cdcd618366e05c96e1cd1ba809c69936e8579e99d809"
+      "sha256": "df46f48959760e9194d5d527a956d3776a976d31f90d3958a48d5f4e270a76e6"
     },
     {
       "file": "docs/evidence/current/P2-usage-example.png",
@@ -46,6 +47,18 @@
     {
       "file": "docs/evidence/current/budget-options.jpg",
       "sha256": "92b4513553384792eeff06367fe6325270455d03af19c3d747272838411b213c"
+    },
+    {
+      "file": "docs/evidence/current/json-syntax-error.jpg",
+      "sha256": "6b11b402c4e8e9cecb9f2d43dd5189e55009b30e821ed224ab2e4b815e4f8ea0"
+    },
+    {
+      "file": "docs/evidence/current/frontend-recovered.jpg",
+      "sha256": "691280fe5a4958d881b36442c18f926525eb9567753764c18f29045dae8d4c2d"
+    },
+    {
+      "file": "docs/evidence/current/P3-gdpr.jpg",
+      "sha256": "d162bf0e29269cddbb1628746a3573790f1291edb6faf727e591b3314b56e327"
     }
   ],
   "stress_input_fixture": "fixtures/airgap-conflict.json",
@@ -63,5 +76,23 @@
       "min": 89.09,
       "max": 133.48
     }
-  }
+  },
+  "retained_historical_captures": [
+    {
+      "file": "docs/evidence/current/P2-usage-example.png",
+      "app_version": "0.9.0",
+      "scope": "Retained, explicitly historical illustration of unchanged bounded experiment/usage example; not recaptured on 0.9.1."
+    },
+    {
+      "file": "docs/evidence/current/stress-lab.png",
+      "app_version": "0.9.0",
+      "scope": "Retained, explicitly historical illustration of unchanged bounded experiment/usage example; not recaptured on 0.9.1."
+    },
+    {
+      "file": "docs/evidence/current/budget-options.jpg",
+      "app_version": "0.9.0",
+      "scope": "Retained, explicitly historical illustration of unchanged bounded experiment/usage example; not recaptured on 0.9.1."
+    }
+  ],
+  "capture_settling": "Scenario captures read the selected value and current summary, return to scrollY=0 and wait 180ms for browser paint. Final PDF pages visually inspected after correcting a one-frame capture lag."
 }

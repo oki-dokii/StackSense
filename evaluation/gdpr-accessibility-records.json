@@ -1,0 +1,199 @@
+{
+  "app_version": "0.9.1",
+  "chart": {
+    "scrollLeft": 40,
+    "scrollWidth": 600,
+    "width": 244
+  },
+  "records": [
+    {
+      "case": "desktop-workspace",
+      "path": "/",
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "activeElement": {
+        "class": "",
+        "id": "",
+        "tag": "body",
+        "text": "Skip to workspaceStackSenseWORKSPACEWorkspaceResultsMethodologyLocal & privateYOUR DECISIO"
+      }
+    },
+    {
+      "case": "import-error",
+      "path": "/",
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "activeElement": {
+        "class": "alert critical",
+        "id": "",
+        "tag": "div",
+        "text": "Invalid JSON at line 2, column 33. Remove the trailing comma before the closing bracket or"
+      }
+    },
+    {
+      "case": "invalid-result",
+      "path": "/results",
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "activeElement": {
+        "class": "panel",
+        "id": "validation-errors",
+        "tag": "section",
+        "text": "Fields to reviewbudgetmust have required property 'budget'projectmust have required proper"
+      }
+    },
+    {
+      "case": "methodology",
+      "path": "/about",
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "activeElement": {
+        "class": "",
+        "id": "",
+        "tag": "h1",
+        "text": "Decisions you can inspect."
+      }
+    },
+    {
+      "case": "provisional-p2",
+      "path": "/results",
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "activeElement": {
+        "class": "",
+        "id": "",
+        "tag": "h1",
+        "text": "Your architecture, explained."
+      }
+    },
+    {
+      "case": "desktop-lab",
+      "path": "/results",
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "viewport": {
+        "documentWidth": 1280,
+        "height": 720,
+        "width": 1280
+      },
+      "activeElement": {
+        "class": "",
+        "id": "",
+        "tag": "body",
+        "text": "Skip to workspaceStackSenseWORKSPACEWorkspaceResults15MethodologyLocal & privateYOUR DECIS"
+      }
+    },
+    {
+      "case": "mobile-workspace",
+      "path": "/",
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "viewport": {
+        "documentWidth": 320,
+        "height": 740,
+        "width": 320
+      },
+      "activeElement": {
+        "class": "",
+        "id": "",
+        "tag": "h1",
+        "text": "Choose your stack.Know the trade-offs."
+      }
+    },
+    {
+      "case": "mobile-lab",
+      "path": "/results",
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "viewport": {
+        "documentWidth": 320,
+        "height": 740,
+        "width": 320
+      },
+      "activeElement": {
+        "class": "table-scroll",
+        "id": "",
+        "tag": "div",
+        "text": "$0$3,921.22Monthly cost upper estimate →8968Original-priority score →Angular / Express: $5"
+      }
+    },
+    {
+      "case": "mobile-budget",
+      "path": "/results",
+      "issues": {
+        "contrast": 0,
+        "duplicateIds": 0,
+        "missingDescriptions": 0,
+        "unnamedControls": 0
+      },
+      "viewport": {
+        "documentWidth": 320,
+        "height": 740,
+        "width": 320
+      },
+      "activeElement": {
+        "class": "main",
+        "id": "main",
+        "tag": "main",
+        "text": "Evaluation completed.DECISION REPORTYour architecture, explained.← Edit inputsScenario res"
+      }
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
-  "engine_version": "0.9.0",
+  "engine_version": "0.9.1",
   "catalog_version": "0.6.0",
-  "services_version": "0.9.0",
-  "capture": "Actual release 0.9.0 UI: unchanged 15-item input batch, 900x520 overviews checked against engine summaries; feature views and scoped mobile checks. Browser JPEG pixels converted to PNG without retouching.",
+  "services_version": "0.9.1",
+  "capture": "Actual release 0.9.1 UI: all fifteen unchanged public/edge overviews recaptured at 900x520 against engine summaries, with current review/alternative/sensitivity views. Browser JPEG pixels converted to PNG without retouching.",
   "input_sha256": "f443c1ed6ed5ad1e91732fd7b2e72a0b4cda3afaca020c8848c88c89c6c810f2",
   "images": [
     {
@@ -51,7 +51,7 @@
     },
     {
       "file": "P3.png",
-      "sha256": "1d14b3c895c0922d2b19a58a44364bafce111a8f5e3e18b3cb48ae0ff5593c64"
+      "sha256": "40c5967abb03cb49225d7bd2e15f12985dfcffac0c14f64d9240a2637dde8eff"
     },
     {
       "file": "P4.png",
@@ -67,20 +67,21 @@
     },
     {
       "file": "alternatives.png",
-      "sha256": "ea5866f428251120325494387ef51b5eb9f1249b3e4f734b7ba688780a8b21ec"
+      "sha256": "4acd3a850cddb6d10030d04b8bdc2eeebe4abf0022419f9e8a89014167eb66ad"
     },
     {
       "file": "mobile-sensitivity.png",
-      "sha256": "bc320de887ae2bca8e927675b6e7afbdce0fdababeb8a09687a787092f19c389"
+      "sha256": "d6b5c09fba065726719f470e927b55ad6ec6e574ce2e9a33a5c0df98c711b619"
     },
     {
       "file": "review-actions.png",
-      "sha256": "0d6c16913cb87073298a87ff0de3a1d3d20b2ea7b24c27eb0116231233511b38"
+      "sha256": "3fb14693936e0e4eadece6011d20d45ea728d7c8b4a0d280f06ad1ece0c3e953"
     },
     {
       "file": "sensitivity.png",
-      "sha256": "0a7af1a7daff92fd0eb00561e58a5a3547d266b1f5f7f1733e39d2356ed745b2"
+      "sha256": "68ebd4130368ee93c0c8b485f6e44b33dcf303ad3b788b9aaf2514fb1293f0e3"
     }
   ],
-  "directory": "docs/evidence/current"
+  "directory": "docs/evidence/current",
+  "capture_settling": "Scenario captures read the selected value and current summary, return to scrollY=0 and wait 180ms for browser paint. Final PDF pages visually inspected after correcting a one-frame capture lag."
 }

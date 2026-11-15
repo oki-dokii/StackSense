@@ -1,4 +1,4 @@
-# Gap closure record — release 0.9.0
+# Gap closure record — release 0.9.1
 
 This is the current ledger. Older phase/backlog descriptions are historical. A software change cannot establish a private contract, participant understanding, production measurement or independent review.
 
@@ -8,6 +8,8 @@ This is the current ledger. Older phase/backlog descriptions are historical. A s
 | P5 budget | Separately sourced Central India B1 Linux meter, full-month memory rounding and existing database operations allowance; original Azure/India/feature inputs retained | Actual tenant SKU/quota, private route and complete quote; standard metadata geography remains critical |
 | P6 budget | Paid regional App Platform/Supabase and regional archive, including a continuous worker and transfer allowances charged once | Shared-CPU/memory/target-device and archive/restore validation |
 | P2 budget | Same complete requirements now choose a much cheaper managed plan; lower estimate fits, upper remains slightly above USD150 | Measured traffic, backup churn and realtime fan-out; do not clip the band or remove features to manufacture fit |
+| GDPR without a residency constraint | Prefer reviewed EU compute and database placement among complete feasible plans; critical GDPR/DPA/transfer review for EU and non-EU/unknown boundaries | Executed agreements, processing-chain mapping and legal scope review; EU placement alone is insufficient |
+| JSON import UX | Clears stale errors when editing/cancelling/navigating; line/column and syntax hints; accepts a BOM or one JSON code block | Genuine malformed JSON must still be corrected; valid JSON with missing scenario fields receives separate field validation |
 | Catalog | 43 core entries including paid managed products and separately scoped Azure/DigitalOcean variants | More entries only after reviewed service/runtime/price/geography edges |
 | Hidden-style robustness | 60 briefs, expected real conflicts, language/provider/locality tests, repeat and CLI --no-llm parity | Organiser hidden tests and independent architecture labels are unavailable |
 | Cost transparency | Fixed SKU vs scalable SKU, always-on worker, single archive subscription, GB/GiB conversion, backup-source egress and both transfer boundaries | Workload measurements and actual bills; estimates exclude taxes/labor/new procurement |

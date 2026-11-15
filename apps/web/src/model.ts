@@ -47,11 +47,34 @@ export function update(value: Draft, path: string, next: unknown): Draft {
 export function parseImport(text: string): unknown[] {
   if (new TextEncoder().encode(text).length > 2 * 1024 * 1024)
     throw new Error('JSON exceeds the 2 MiB limit.');
+  // Accept common copy/paste wrappers without repairing the JSON itself.
+  let json = text.replace(/^\uFEFF/, '').trim();
+  const fence = /^```(?:json)?\s*\n([\s\S]*?)\n```$/i.exec(json);
+  if (fence) json = fence[1]!;
+  if (!json.trim()) throw new Error('Paste a JSON scenario or choose a .json file first.');
   let value: unknown;
   try {
-    value = JSON.parse(text);
-  } catch {
-    throw new Error('Invalid JSON. Check quotes, commas and brackets.');
+    value = JSON.parse(json);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : '';
+    const offset = /position (\d+)/i.exec(detail);
+    const nativeLocation = /line (\d+) column (\d+)/i.exec(detail);
+    let location = '';
+    if (offset) {
+      const before = json.slice(0, Number(offset[1]));
+      location = ` at line ${before.split('\n').length}, column ${before.length - before.lastIndexOf('\n')}`;
+    } else if (nativeLocation) {
+      location = ` at line ${nativeLocation[1]}, column ${nativeLocation[2]}`;
+    } else if (/end of JSON|unterminated/i.test(detail)) {
+      const lines = json.split('\n');
+      location = ` near line ${lines.length}, column ${lines.at(-1)!.length + 1}`;
+    }
+    const hint = /[“”]/.test(json)
+      ? 'Use straight double quotes (") for JSON keys and strings.'
+      : /,\s*[}\]]/.test(json)
+        ? 'Remove the trailing comma before the closing bracket or brace.'
+        : 'Use double-quoted keys and strings, commas between values, and matching brackets. Paste JSON only, without explanatory text.';
+    throw new Error(`Invalid JSON${location}. ${hint}`);
   }
   let nodes = 0;
   function inspect(item: unknown, depth: number) {

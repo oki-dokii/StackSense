@@ -131,7 +131,7 @@ const counts = {
 const report = {
   scope:
     'Author-designed functional stress evaluation; not organiser hidden tests, independent quality grading or production sizing validation.',
-  engine_version: '0.9.0',
+  engine_version: '0.9.1',
   case_set_sha256: hash(cases),
   catalog_sha256: hash(catalog),
   counts,

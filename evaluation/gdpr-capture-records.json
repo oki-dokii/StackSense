@@ -1,0 +1,96 @@
+{
+  "app_version": "0.9.1",
+  "method": "Selected each result, read selected value and summary, returned to page top, waited 180ms for browser paint before capture. Captures visually inspected in final PDF.",
+  "records": [
+    {
+      "id": "P1",
+      "observed_summary": "static recommendation selected from 16 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
+      "scrollY": 0,
+      "selected": "0"
+    },
+    {
+      "id": "P2",
+      "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 51 complete compatible plans; month-12 infrastructure planning band USD 89.09–155.98/month.",
+      "scrollY": 0,
+      "selected": "1"
+    },
+    {
+      "id": "P3",
+      "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 324 complete compatible plans; month-12 infrastructure planning band USD 291.9–583.02/month.",
+      "scrollY": 0,
+      "selected": "2"
+    },
+    {
+      "id": "P4",
+      "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 18 complete compatible plans; month-12 infrastructure planning band USD 1028.89–3882.82/month.",
+      "scrollY": 0,
+      "selected": "3"
+    },
+    {
+      "id": "P5",
+      "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 210 complete compatible plans; month-12 infrastructure planning band USD 66.42–202.42/month.",
+      "scrollY": 0,
+      "selected": "4"
+    },
+    {
+      "id": "P6",
+      "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 204 complete compatible plans; month-12 infrastructure planning band USD 55.25–62.02/month.",
+      "scrollY": 0,
+      "selected": "5"
+    },
+    {
+      "id": "E01",
+      "observed_summary": "Input is invalid; no recommendation or cost estimate was produced.",
+      "scrollY": 0,
+      "selected": "6"
+    },
+    {
+      "id": "E02",
+      "observed_summary": "Input is invalid; no recommendation or cost estimate was produced.",
+      "scrollY": 0,
+      "selected": "7"
+    },
+    {
+      "id": "E03",
+      "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 156 complete compatible plans; month-12 infrastructure planning band USD 1628.64–4067.03/month.",
+      "scrollY": 0,
+      "selected": "8"
+    },
+    {
+      "id": "E04",
+      "observed_summary": "static recommendation selected from 16 complete compatible plans; month-12 infrastructure planning band USD 0–0/month.",
+      "scrollY": 0,
+      "selected": "9"
+    },
+    {
+      "id": "E05",
+      "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 483 complete compatible plans; month-12 infrastructure planning band USD 161.11–316.32/month.",
+      "scrollY": 0,
+      "selected": "10"
+    },
+    {
+      "id": "E06",
+      "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 714 complete compatible plans; month-12 infrastructure planning band USD 45.74–90.77/month.",
+      "scrollY": 0,
+      "selected": "11"
+    },
+    {
+      "id": "E07",
+      "observed_summary": "modular_monolith recommendation selected from 189 complete compatible plans; month-12 infrastructure planning band USD 74.65–369.75/month.",
+      "scrollY": 0,
+      "selected": "12"
+    },
+    {
+      "id": "E08",
+      "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 714 complete compatible plans; month-12 infrastructure planning band USD 50–50.25/month.",
+      "scrollY": 0,
+      "selected": "13"
+    },
+    {
+      "id": "E09",
+      "observed_summary": "PROVISIONAL STACK — unresolved critical constraints require review before production. modular_monolith recommendation selected from 714 complete compatible plans; month-12 infrastructure planning band USD 50–50.25/month.",
+      "scrollY": 0,
+      "selected": "14"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Evidence review
 
-As of 2026-11-15: 166 sources; 0 due; 0 future review dates.
+As of 2026-11-15: 167 sources; 0 due; 0 future review dates.
 
 | Source | Last review | Due | Status | Categories | Output mentions |
 |---|---|---|---|---|---|
@@ -113,6 +113,7 @@ As of 2026-11-15: 166 sources; 0 due; 0 future review dates.
 | services:gcp-logs | 2026-11-13 | 2027-02-11 | within_review_window | capability | P3, P4, P5 |
 | services:gcs | 2026-11-13 | 2027-02-11 | within_review_window | capability |  |
 | services:gdpr | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls | P3 |
+| services:gdpr-transfers | 2026-11-15 | 2026-12-15 | within_review_window | region_or_controls | P3 |
 | services:git | 2026-11-13 | 2027-02-11 | within_review_window | capability | P1 |
 | services:hipaa | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls |  |
 | services:iso | 2026-11-13 | 2026-12-13 | within_review_window | region_or_controls | P4, P5 |

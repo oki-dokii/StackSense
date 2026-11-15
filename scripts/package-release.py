@@ -45,14 +45,14 @@ def main():
  if checks.get('sha256')!=hashlib.sha256(report.read_bytes()).hexdigest() or checks.get('visual_review','pending').startswith('pending') or checks['main_pages']>15 or checks['appendix_pages']>10:raise RuntimeError('Report QA/hash/page-budget gate failed')
  shutil.copyfile(report,destination/report.name);out=destination/'outputs';out.mkdir(exist_ok=True)
  for index in range(1,7):shutil.copyfile(ROOT/f'outputs/P{index}_output.json',out/f'P{index}_output.json')
- readme='''StackSense 0.9.0 - Soham Banerjee, IIIT-Bangalore
+ readme='''StackSense 0.9.1 - Soham Banerjee, IIIT-Bangalore
 
 Extract source/source.zip, then run npm ci, npm run build, npm start.
 Open http://127.0.0.1:3000. Requires Node 22.17+ within 22, or Node 24.
 
 LLM-off: append --no-llm to CLI commands. No runtime LLM is used.
 Public results: one ok and five ok_with_warnings, all with selected stacks.
-P2/P4/P5/P6 contain explicit critical provisional conditions. A selected stack
+P2/P3/P4/P5/P6 contain explicit critical provisional conditions. A selected stack
 is not certification or verification of an unresolved residency/contract scope.
 Headline costs cover infrastructure; payment/SMS activity scenarios are additional.
 
@@ -64,7 +64,7 @@ the stated deadline.
  records=[]
  for file in sorted(destination.rglob('*')):
   if file.is_file() and file.name!='manifest.json':records.append({'path':file.relative_to(destination).as_posix(),'bytes':file.stat().st_size,'sha256':hashlib.sha256(file.read_bytes()).hexdigest()})
- metadata={'app_version':'0.9.0','engine_version':'0.9.0','catalog_version':'0.6.0','services_version':'0.9.0','created_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'runtime_source_sha256':digest(files),'source_file_count':len(files),'source_exclusions':sorted(EXCLUDE),'status':'Generated submission artifacts; source/output/report integrity verified','files':records}
+ metadata={'app_version':'0.9.1','engine_version':'0.9.1','catalog_version':'0.6.0','services_version':'0.9.1','created_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'runtime_source_sha256':digest(files),'source_file_count':len(files),'source_exclusions':sorted(EXCLUDE),'status':'Generated submission artifacts; source/output/report integrity verified','files':records}
  setup=ROOT/'evaluation/setup.json'
  if setup.exists():
   verified=json.loads(setup.read_text());

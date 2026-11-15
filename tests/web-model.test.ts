@@ -1,6 +1,16 @@
 import { describe, it, expect } from 'vitest';
 import { parseImport, update, read, safeName } from '../apps/web/src/model.js';
 describe('browser input model', () => {
+  it('accepts a UTF-8 BOM and one JSON code fence without changing input values', () => {
+    expect(parseImport('\uFEFF{"project":{"name":"A"}}')).toEqual([{project:{name:'A'}}]);
+    expect(parseImport('```json\n[{"project":{"name":"A"}}]\n```')).toEqual([{project:{name:'A'}}]);
+  });
+  it('reports an actionable JSON syntax location and preserves strict validation', () => {
+    expect(() => parseImport('{\n  "project": {"name": "A",}\n}')).toThrow(/Invalid JSON at line 2.*trailing comma/);
+    expect(() => parseImport('{“project”: {}}')).toThrow(/straight double quotes/);
+    expect(() => parseImport('Here is the brief: {}')).toThrow(/Paste JSON only/);
+    expect(() => parseImport('')).toThrow(/Paste a JSON scenario/);
+  });
   it('preserves unknown nested extensions through guided edits', () => {
     const [draft] = parseImport(
       '{"project":{"name":"First"},"extensions":{"custom":{"preserve":true}}}',

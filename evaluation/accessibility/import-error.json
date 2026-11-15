@@ -3,7 +3,7 @@
     "class": "alert critical",
     "id": "",
     "tag": "div",
-    "text": "Invalid JSON. Check quotes, commas and brackets."
+    "text": "Invalid JSON at line 2, column 33. Remove the trailing comma before the closing bracket or"
   },
   "issues": {
     "contrast": [],
@@ -17,7 +17,7 @@
   },
   "limitations": "Custom read-only snapshot, not axe or WCAG conformance. Solid-background text only; skips SVG, opacity/gradient cases, disabled and hidden text. Does not test assistive technology, focus obscuring, control borders or all accessible-name rules.",
   "path": "/",
-  "testedTextElements": 172,
+  "testedTextElements": 170,
   "title": "Workspace — StackSense",
   "unmeasured": [],
   "unmeasuredTextElements": 0,

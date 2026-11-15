@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "status": "unreviewed_observations",
-  "registry_sha256": "ff077b236485842ad41afbf4a3b5b8d05885a6504804b20700e23ec1064ccd1b",
+  "registry_sha256": "43df23c32fc089e09d7eef59199cd93e725ac42acf605df4a369dabec7616753",
   "snapshots": [
     {
       "key": "services:python2-eol",

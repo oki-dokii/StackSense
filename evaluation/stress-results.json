@@ -1,6 +1,6 @@
 {
   "scope": "Author-designed functional stress evaluation; not organiser hidden tests, independent quality grading or production sizing validation.",
-  "engine_version": "0.9.0",
+  "engine_version": "0.9.1",
   "case_set_sha256": "f1609988caeff4cdd81d50f62e64fe6209a668efd0b444d53760b8b0332ec123",
   "catalog_sha256": "1f664f4a6b514ab8a2494b7b0d90d5f5100475c8b8e137bc6e7e53c4c2d3d73a",
   "counts": {

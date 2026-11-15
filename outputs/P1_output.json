@@ -2,8 +2,8 @@
   "applied_extensions": [],
   "architecture_style": "static",
   "assumptions": [
+    "After any GDPR EU-placement preference, ranking preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Interpreted project.description phrase \"Markdown\" as markdown; this bounded hint does not infer legal or regional requirements.",
-    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
   ],
   "budget_planning": {
@@ -105,7 +105,7 @@
     "score": 86,
     "selected_plan_id": "static|astro|backend-none|database-none|pages|unspecified"
   },
-  "engine_version": "0.9.0",
+  "engine_version": "0.9.1",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -281,7 +281,7 @@
   ],
   "primary_region": null,
   "review_actions": [],
-  "rules_version": "0.9.0",
+  "rules_version": "0.9.1",
   "scenario_id": "P1",
   "score_breakdown": [
     {
@@ -360,7 +360,7 @@
       "weight": 2
     }
   ],
-  "services_version": "0.9.0",
+  "services_version": "0.9.1",
   "stack": {
     "backend": {
       "alternatives": [

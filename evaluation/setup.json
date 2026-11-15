@@ -1,9 +1,9 @@
 {
-  "measured_at": "2026-11-15T15:23:27Z",
+  "measured_at": "2026-11-15T17:05:53Z",
   "mode": "fresh archive extraction; npm offline install using previously populated cache",
   "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
-  "runtime_source_sha256": "fe035c797ae99f6e022c1f49148502bf6587f6a0f1d767345b1428ded83bd06e",
-  "source_zip_sha256": "285941a0e195d9cd7c27ca766262bbe487b582c20772312a51afaa373dff3976",
+  "runtime_source_sha256": "56144be1e28bcdb0a94ba076ec8f6cd3aba59f1d7171c075b16a18f39dd4579e",
+  "source_zip_sha256": "c49a07ac10e7279c0c93b613c42173163890d7c7adc89a48be492c426a4cdaae",
   "steps": [
     {
       "command": [
@@ -11,7 +11,7 @@
         "ci",
         "--offline"
       ],
-      "seconds": 5.754,
+      "seconds": 6.034,
       "exit_code": 0
     },
     {
@@ -22,7 +22,7 @@
         "benchmarks/postgres",
         "--offline"
       ],
-      "seconds": 0.634,
+      "seconds": 0.704,
       "exit_code": 0
     },
     {
@@ -31,7 +31,7 @@
         "--test",
         "benchmarks/postgres/tests.mjs"
       ],
-      "seconds": 0.332,
+      "seconds": 0.342,
       "exit_code": 0
     },
     {
@@ -40,7 +40,7 @@
         "run",
         "check"
       ],
-      "seconds": 12.679,
+      "seconds": 17.553,
       "exit_code": 0
     },
     {
@@ -51,7 +51,7 @@
         "scripts/tests/calibration.test.mjs",
         "scripts/tests/evidence-review.test.mjs"
       ],
-      "seconds": 1.345,
+      "seconds": 1.643,
       "exit_code": 0
     },
     {
@@ -60,7 +60,7 @@
         "run",
         "build"
       ],
-      "seconds": 1.686,
+      "seconds": 2.1,
       "exit_code": 0
     },
     {
@@ -69,7 +69,7 @@
         "run",
         "evaluate"
       ],
-      "seconds": 0.562,
+      "seconds": 0.63,
       "exit_code": 0
     },
     {
@@ -78,10 +78,10 @@
         "run",
         "verify:release"
       ],
-      "seconds": 3.402,
+      "seconds": 4.107,
       "exit_code": 0
     }
   ],
-  "total_seconds": 26.635,
+  "total_seconds": 33.277,
   "scope_limit": "Includes extraction/install/check/build/evaluation verification; real cold API startup measured separately. No new online download or other OS is claimed."
 }

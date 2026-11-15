@@ -20,6 +20,7 @@ import type {
 } from '../../contracts/src/recommendation.generated.js';
 import type { RankedPlan } from './types.js';
 import { deriveFeatures } from './features.js';
+import { prefersEuForGdpr, hasReviewedEuLocations } from './gdpr.js';
 import { searchCorePlans } from './planner.js';
 import { selectSupporting } from './supporting.js';
 import { controlPlan, existingLifecycleWarnings } from './controls.js';
@@ -43,9 +44,9 @@ export function invalidRecommendation(
   catalogVersion = defaultCatalog.version,
 ): FinalRecommendation {
   return {
-    engine_version: '0.9.0',
+    engine_version: '0.9.1',
     catalog_version: catalogVersion,
-    rules_version: '0.9.0',
+    rules_version: '0.9.1',
     services_version: defaultPolicies.version,
     status: 'invalid_input',
     summary:
@@ -270,6 +271,9 @@ export function recommend(
     );
   candidates.sort(
     (a, b) =>
+      (prefersEuForGdpr(s)
+        ? Number(hasReviewedEuLocations(b.plan)) - Number(hasReviewedEuLocations(a.plan))
+        : 0) ||
       knownServer(b) - knownServer(a) ||
       Number(b.cost.max <= s.budget.monthly_infra_usd) -
         Number(a.cost.max <= s.budget.monthly_infra_usd) ||
@@ -301,7 +305,8 @@ export function recommend(
   base.services_version = policies.version;
   if (typeof s.scenario_id === 'string') base.scenario_id = s.scenario_id;
   base.assumptions = [
-    'Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.',
+    ...(prefersEuForGdpr(s) ? ['GDPR with unspecified residency prefers reviewed EU compute and database placement among complete feasible plans before language/budget/score. Explicit residency/provider/deployment inputs are preserved; EU placement alone does not establish compliance or end-to-end EU processing.'] : []),
+    'After any GDPR EU-placement preference, ranking preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.',
     ...validation.assumptions,
     ...f.assumptions,
     ...extraAssumptions,
@@ -551,6 +556,7 @@ export function recommend(
       'PROVISIONAL STACK — unresolved critical constraints require review before production. ' +
       base.summary;
   base.assumptions = [
+    ...(prefersEuForGdpr(s) ? ['GDPR with unspecified residency prefers reviewed EU compute and database placement among complete feasible plans before language/budget/score. Explicit residency/provider/deployment inputs are preserved; EU placement alone does not establish compliance or end-to-end EU processing.'] : []),
     ...new Set([
       ...(base.warnings.some((w) => w.severity === 'critical')
         ? [

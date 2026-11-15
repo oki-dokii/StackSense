@@ -21,7 +21,7 @@
     "score": null,
     "selected_plan_id": null
   },
-  "engine_version": "0.9.0",
+  "engine_version": "0.9.1",
   "estimate_status": "not_estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -41,8 +41,8 @@
   "integration_reviews": [],
   "plan_comparison": [],
   "review_actions": [],
-  "rules_version": "0.9.0",
-  "services_version": "0.9.0",
+  "rules_version": "0.9.1",
+  "services_version": "0.9.1",
   "stack": null,
   "status": "invalid_input",
   "summary": "Input is invalid; no recommendation or cost estimate was produced.",

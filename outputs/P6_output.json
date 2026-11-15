@@ -2,13 +2,13 @@
   "applied_extensions": [],
   "architecture_style": "modular_monolith",
   "assumptions": [
+    "After any GDPR EU-placement preference, ranking preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "All host/database/storage/log/backup configurations must use the reviewed india region, no cross-region copies, private access and retention/deletion controls. Device data and explicit external identity/OTP/payment flows are assessed separately.",
     "Interpreted project.description phrase \"low-end Android phones\" as low_memory; this bounded hint does not infer legal or regional requirements.",
     "Offline sync uses versioned records and server-side idempotency; app-specific merge/rejection UX and resumable uploads must be implemented and tested.",
     "PROVISIONAL RESIDENCY EXCEPTION: MSG91 OTP remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
     "PROVISIONAL RESIDENCY EXCEPTION: Supabase Auth + application JWT verification remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
     "PROVISIONAL RESIDENCY EXCEPTION: Supabase regional Storage + signed direct uploads remains in the proposed stack without verified end-to-end india geography. Scope of assurance excludes this external boundary; retain the requested application/database region and resolve or explicitly accept this critical risk before production.",
-    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation."
   ],
@@ -517,7 +517,7 @@
     "score": 87,
     "selected_plan_id": "modular_monolith|react-native|django|supabase-pg|do-app|blr"
   },
-  "engine_version": "0.9.0",
+  "engine_version": "0.9.1",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -988,7 +988,7 @@
       "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.9.0",
+  "rules_version": "0.9.1",
   "scenario_id": "P6",
   "score_breakdown": [
     {
@@ -1066,7 +1066,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.9.0",
+  "services_version": "0.9.1",
   "stack": {
     "backend": {
       "alternatives": [

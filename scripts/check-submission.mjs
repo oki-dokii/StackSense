@@ -70,7 +70,7 @@ const history = execFileSync('git', ['log', '--format=%H%x09%aI%x09%cI'], {
   });
 const release = Date.parse('2026-11-10T10:00:00+05:30');
 const record = {
-  engine_version: '0.9.0',
+  engine_version: '0.9.1',
   public_results: results,
   history: {
     available_commits: history.length,

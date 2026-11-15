@@ -188,7 +188,7 @@ export function App() {
     return () => controller.abort();
   }, []);
   useEffect(() => {
-    const handler = () => setRoute(location.pathname);
+    const handler = () => { setRoute(location.pathname); setMessage(''); };
     addEventListener('popstate', handler);
     return () => removeEventListener('popstate', handler);
   }, []);
@@ -230,6 +230,7 @@ export function App() {
     section?.focus({ preventScroll: true });
   }
   function navigate(path: string) {
+    setMessage('');
     history.pushState({}, '', path);
     setRoute(path);
     window.scrollTo({ top: 0 });
@@ -281,6 +282,7 @@ export function App() {
         await file.arrayBuffer(),
       );
       setText(content);
+      setMessage('');
       setPendingImport(true);
     } catch {
       setMessage('The file must contain valid UTF-8 text.');
@@ -1022,8 +1024,10 @@ export function App() {
                           <p>
                             Up to three compatible plans after service and
                             control checks. Scores are engineering preferences,
-                            not confidence probabilities. Supported server
-                            languages come first, then upper-bound budget fits
+                            not confidence probabilities. For GDPR with unspecified
+                            residency, reviewed EU compute/database placement
+                            comes first. Supported server languages follow, then
+                            upper-bound budget fits
                             within that tier, then weighted fit. Ties use cost
                             upper bound, operated components, fewer unrequested
                             client targets, then stable identifier.
@@ -1453,6 +1457,8 @@ export function App() {
                   <p>
                     One scenario or an array of 1–100. Up to 2 MiB. Applying
                     replaces the current inputs; unknown fields are preserved.
+                    Paste the JSON content, not a file path. A single JSON code
+                    block copied from chat is also accepted.
                   </p>
                   <label htmlFor="json-file">Choose a JSON file</label>
                   <input
@@ -1473,6 +1479,7 @@ export function App() {
                     disabled={running}
                     onChange={(event) => {
                       setText(event.target.value);
+                      setMessage('');
                       setPendingImport(true);
                       setDirty(true);
                     }}
@@ -1497,6 +1504,7 @@ export function App() {
                           ),
                         );
                         setPendingImport(false);
+                        setMessage('');
                       }}
                     >
                       Copy current inputs into editor
@@ -1505,6 +1513,7 @@ export function App() {
                       className="text-button"
                       onClick={() => {
                         setPendingImport(false);
+                        setMessage('');
                         setImportOpen(false);
                       }}
                     >

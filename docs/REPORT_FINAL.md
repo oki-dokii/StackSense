@@ -10,11 +10,11 @@ An explained technology stack, grounded in project constraints.
 
 Soham BanerjeeIIIT-BangaloreSoham.Banerjee@iiitb.ac.ingithub.com/oki-dokii/StackSense15 November 2026
 
-Application and recommendation engine/rules/services 0.9.0; Decision Lab analysis 0.2.0; core catalog 0.6.0. Deterministic local execution, with explicit provisional exceptions and itemized cost scope.
+Application and recommendation engine/rules/services 0.9.1; Decision Lab analysis 0.2.0; core catalog 0.6.0. Deterministic local execution, with explicit provisional exceptions and itemized cost scope.
 
 1. Abstract
 
-StackSense converts a structured software-project brief into a deterministic, explained architecture. A local TypeScript engine validates inputs, filters compatible core stacks, checks required supporting services and data flows, estimates month-12 cost bands, and ranks complete designs. A CLI, Fastify API and React workspace share the same engine. The release includes 43 core entries, 34 service profiles, source records, actual JSON outputs and browser evidence. All six supplied scenarios receive stacks; five carry critical capacity, integration or external-boundary exceptions rather than unsupported compliance claims. The evaluation includes 392 automated tests, sixty varied project briefs across fifteen concrete types, fourteen edge cases, twelve region/auth/payment combinations, sensitivity experiments and measured local setup/API timings. The system makes no runtime LLM calls and requires no paid key. Costs, performance targets and framework controls are disclosed assumptions and implementation tasks, not provider quotes, benchmarks of suggested stacks, or certification.
+StackSense converts a structured software-project brief into a deterministic, explained architecture. A local TypeScript engine validates inputs, filters compatible core stacks, checks required supporting services and data flows, estimates month-12 cost bands, and ranks complete designs. A CLI, Fastify API and React workspace share the same engine. The release includes 43 core entries, 34 service profiles, source records, actual JSON outputs and browser evidence. All six supplied scenarios receive stacks; five carry critical capacity, integration or external-boundary exceptions rather than unsupported compliance claims. The evaluation includes 405 automated tests, sixty varied project briefs across fifteen concrete types, fourteen edge cases, twelve region/auth/payment combinations, sensitivity experiments and measured local setup/API timings. The system makes no runtime LLM calls and requires no paid key. Costs, performance targets and framework controls are disclosed assumptions and implementation tasks, not provider quotes, benchmarks of suggested stacks, or certification.
 
 2. Problem understanding
 
@@ -64,7 +64,7 @@ Legacy primary_user_region and vendor_lock_in_tolerance values are accepted from
 
 5. Knowledge base and decision logic
 
-The core catalog has 43 entries and 75 dated primary-source records; service policies add 34 profiles, 91 source records and two known lifecycle rules. Records describe product family, runtime, client coverage, driver edges, deployment/provider mappings, regions, complexity/operating burden, trade-offs and source scope. Active status is required; maintained product families still need supported versions pinned during a real build.
+The core catalog has 43 entries and 75 dated primary-source records; service policies add 34 profiles, 92 source records and two known lifecycle rules. Records describe product family, runtime, client coverage, driver edges, deployment/provider mappings, regions, complexity/operating burden, trade-offs and source scope. Active status is required; maintained product families still need supported versions pinned during a real build.
 
 Evaluate complete plans before ranking
 
@@ -72,7 +72,7 @@ Evaluate complete plans before ranking
 
 Search uses smallest domains and stable IDs, without a top-K core shortlist. An assignment limit raises an internal failure; it never turns interrupted search into infeasibility. Infeasibility means no complete design in this reviewed catalog, not impossibility in the real world.
 
-A complete plan in a supported backend language takes precedence over an unfamiliar runtime when available. Within that language tier, an upper-bound infrastructure budget fit takes precedence over weighted fit. Each 0-5 fit is multiplied by its supplied 1-5 priority. Remaining ties use lower cost upper bound, fewer operated resources, fewer unrequested client targets and stable plan ID. Rubrics are transparent but uncalibrated; rounding and stable ties can select among similarly scored technologies. No scenario ID/name or runtime LLM chooses a stack.
+For GDPR with unspecified residency, reviewed EU compute/database placement takes precedence among complete feasible plans; explicit region/provider constraints remain intact. Next, a complete plan in a supported backend language takes precedence over an unfamiliar runtime when available. Within that language tier, an upper-bound infrastructure budget fit takes precedence over weighted fit. Each 0-5 fit is multiplied by its supplied 1-5 priority. Remaining ties use lower cost upper bound, fewer operated resources, fewer unrequested client targets and stable plan ID. Rubrics are transparent but uncalibrated; rounding and stable ties can select among similarly scored technologies. No scenario ID/name or runtime LLM chooses a stack.
 
 
 ---
@@ -104,7 +104,7 @@ Budget planning exposes a same-brief catalog floor and optional changed-requirem
 
 6. Sample recommendations: P1
 
-P1 / DevFolio - actual local release UI, engine 0.9.0. The complete output is outputs/P1_output.json.
+P1 / DevFolio - actual local release UI, engine 0.9.1. The complete output is outputs/P1_output.json.
 
 Inputs: a solo beginner, JavaScript/HTML/CSS, two weeks, Markdown portfolio/blog, web-only SEO, no dynamic features, 3,000 year-one users and USD 0 infrastructure budget.
 
@@ -122,13 +122,13 @@ Trade-offs: publishing is a content build, not a dynamic application. Functions,
 
 P3 / BoardRoom - actual critically qualified result; alternatives are relative whole-plan comparisons, not intrinsic product rankings.
 
-Inputs: collaborative whiteboard, web, 5,000 peak concurrent users, tenant isolation, social login, media, payments, 100 ms p95 target, 99.9% availability and a USD 1,500 month-12 budget. No country residency is specified; full-text search is false and is omitted.
+Inputs: collaborative whiteboard, web, 5,000 peak concurrent users, tenant isolation, social login, media, payments, 100 ms p95 target, 99.9% availability and a USD 1,500 month-12 budget. GDPR is required with no country residency specified: the general rule selects EU Frankfurt compute (fra) and database (eu-central-1). A critical note requires processor DPAs and transfer/data-flow review. Full-text search is false and is omitted.
 
 Selected: Angular, Express, Supabase Pro PostgreSQL and Fly Machines. Yjs + ws covers shared CRDT state/transport; PostgreSQL outbox workers persist/retry updates, forced RLS supports tenant boundaries, Supabase Auth brokers identity, Supabase regional Storage handles direct signed uploads and Stripe Checkout isolates card credentials. Telemetry and hosted CI are included with stated limits.
 
 Alternatives and limits: React/Vite and Go HTTP are reviewed alternatives. Go remains a complete viable candidate for this TypeScript/Go team; no framework receives a measured latency bonus. Other cloud variants remain visible in the full catalog frontier. This is not proof Angular is best. Application auth, document persistence, cross-instance coordination and conflict UX must still be built.
 
-Costs: infrastructure USD 291.90-501.56/month. Compute contributes USD 162.90-162.92; peak WebSocket capacity is counted once. Additional assumed payment activity is USD 0.00-2,500.00, excluded from the headline. The infrastructure upper bound is inside USD 1,500 under the stated hypotheses; managed tier capacity and availability remain critically unverified. Remaining resource lines and assumptions are exposed in JSON; SLA, latency, identity terms and GDPR controls require review.
+Costs: infrastructure USD 291.90-583.02/month. Compute contributes USD 162.90-244.38; peak WebSocket capacity is counted once. Additional assumed payment activity is USD 0.00-2,500.00, excluded from the headline. The infrastructure upper bound is inside USD 1,500 under the stated hypotheses; managed tier capacity and availability remain critically unverified. Remaining resource lines and assumptions are exposed in JSON; SLA, latency, identity terms and GDPR controls require review.
 
 
 ---
@@ -166,15 +166,15 @@ Additional cases test reviewed AWS India, offline native writes, cloud-none/mana
 
 8. Validation and measurements
 
-392 application tests pass across fifteen files, plus 22 native tooling tests. Types, production builds and twenty recommendation/six Decision Lab artifacts are checked against current code. Sixty authored briefs cover fifteen types: 57 stacks, three expected blockers (training, air-gap/SaaS, RBI/US). Every case is repeated and compared with actual CLI --no-llm output. Lower-bound budget overruns on the unchanged original thirty fall from 15 to 4; the expanded sixty retain 9 overruns and two bands wider than 5x. Metamorphic checks cover identifiers, input order, known languages, provider/region constraints and local OTP/payment-cost effects. These are functional invariants, not organiser hidden tests, independent architecture grading or production benchmarks.
+405 application tests pass across sixteen files, plus 22 native tooling tests. Types, production builds and twenty recommendation/six Decision Lab artifacts are checked against current code. Sixty authored briefs cover fifteen types: 57 stacks, three expected blockers (training, air-gap/SaaS, RBI/US). Every case is repeated and compared with actual CLI --no-llm output. Lower-bound budget overruns on the unchanged original thirty fall from 15 to 4; the expanded sixty retain 9 overruns and two bands wider than 5x. Metamorphic checks cover identifiers, input order, known languages, provider/region constraints and local OTP/payment-cost effects. These are functional invariants, not organiser hidden tests, independent architecture grading or production benchmarks.
 
 Observed local API timings
 
-Measured on Apple M2, 8 GB RAM, macOS arm64, Node v22.17.1, npm 10.9.2. Cold Node/API startup to health: 238.536 ms. Each case had one warm-up and twenty real loopback HTTP POSTs through consumed JSON. Browser rendering, recommended workload performance and cloud provisioning are excluded.
+Measured on Apple M2, 8 GB RAM, macOS arm64, Node v22.17.1, npm 10.9.2. Cold Node/API startup to health: 304.148 ms. Each case had one warm-up and twenty real loopback HTTP POSTs through consumed JSON. Browser rendering, recommended workload performance and cloud provisioning are excluded.
 
 Clean setup rehearsal
 
-A source ZIP was extracted to a fresh directory. Cached offline npm ci, all checks, build, evaluation and output verification completed in 26.635 seconds. Runtime/test source digest is recorded and checked during final packaging. The populated dependency cache avoids a new network download; online installation speed and Windows/Linux execution are not claimed. The CI matrix covers macOS, Ubuntu and Windows on Node 22/24; remote run results are separate from this local measurement.
+A source ZIP was extracted to a fresh directory. Cached offline npm ci, all checks, build, evaluation and output verification completed in 33.277 seconds. Runtime/test source digest is recorded and checked during final packaging. The populated dependency cache avoids a new network download; online installation speed and Windows/Linux execution are not claimed. The CI matrix covers macOS, Ubuntu and Windows on Node 22/24; remote run results are separate from this local measurement.
 
 Browser evidence covers batch outputs, export parity and desktop/narrow budget layouts. All nine custom DOM snapshots were refreshed, including automatic validation-summary focus and budget-link recovery on a fresh invalid scenario. This is not a full accessibility or browser conformance audit. Official product/source alignment is reviewed; no paper experiment was reproduced.
 
@@ -182,7 +182,7 @@ Browser evidence covers batch outputs, export parity and desktop/narrow budget l
 ---
 
 
-Decision Lab: application 0.9.0
+Decision Lab: application 0.9.1
 
 Actual P3 Decision Lab view. All 324 completed catalog plans are plotted; 12 identifiers are nondominated under the three declared model objectives. Inspecting an alternative never changes the original recommendation.
 
@@ -192,7 +192,7 @@ The tradeoff front minimizes monthly cost upper bound and operated component uni
 
 All public briefs support priority/tradeoff analysis. Decision Lab functional trials preserve protected infrastructure/compliance fields; separately labeled budget proposals may explicitly lower availability or move to self-managed VMs. Nothing is automatically applied. P5 fits its planning budget while private SQL/metadata/tenant evidence remains unverified. Evaluation counts refer to top-level scenario trials, excluding the baseline budget rerun.
 
-Proposed ADR Markdown and exact JSON exports include the original result, input digest, versions, alternatives, scoped references and implementation review tasks. Browser exports match API/engine artifacts; stale exports are blocked after edits. The exported baseline exactly matches the current 0.9.0 recommendation; critical warnings are preserved. Counterfactual, Pareto evaluation, sensitivity and ADR sources are N01-N04 in Appendix B; their experiments were not reproduced.
+Proposed ADR Markdown and exact JSON exports include the original result, input digest, versions, alternatives, scoped references and implementation review tasks. Browser exports match API/engine artifacts; stale exports are blocked after edits. The exported baseline exactly matches the current 0.9.1 recommendation; critical warnings are preserved. Counterfactual, Pareto evaluation, sensitivity and ADR sources are N01-N04 in Appendix B; their experiments were not reproduced.
 
 
 ---
@@ -646,6 +646,8 @@ Links preserve the original source register. A record describes only its stated 
 
 svc:do-region-country - DigitalOcean datacenter geography. docs.digitalocean.com (2026-11-15).
 
+svc:gdpr-transfers - European Commission: rules on international data transfers. commission.europa.eu (2026-11-15).
+
 R01 - Knowledge-based recommender systems: overview and research directions. frontiersin.org (2024).
 
 R02 - A decision support system for software technology selection. slingerjansen.nl (2018).
@@ -708,8 +710,6 @@ P15 - Technology Radar. thoughtworks.com (2026-11-13).
 
 tool:node - Node.js release information. nodejs.org (2026-11-13).
 
-tool:npm - npm CLI documentation. docs.npmjs.com (2026-11-13).
-
 
 ---
 
@@ -717,6 +717,8 @@ tool:npm - npm CLI documentation. docs.npmjs.com (2026-11-13).
 Appendix B. Source ledger 7
 
 Links preserve the original source register. A record describes only its stated scope. Catalog review is not certification or empirical calibration.
+
+tool:npm - npm CLI documentation. docs.npmjs.com (2026-11-13).
 
 tool:types - DefinitelyTyped type definitions. github.com (2026-11-13).
 

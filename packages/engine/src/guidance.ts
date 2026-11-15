@@ -111,6 +111,14 @@ export function reviewActions(
         ];
         next =
           'Validate the actual tenant/network path and tariff scope, configure region-pinned storage/logging, then run the integration and failover tests before accepting the qualified deployment.';
+      } else if (w.code === 'GDPR_CROSS_BORDER_REVIEW' || w.code === 'GDPR_DATA_FLOW_REVIEW') {
+        components = ['compute/database geography', 'processor/subprocessor boundaries'];
+        ids = ['gdpr', 'gdpr-transfers'];
+        evidence = [
+          'Configured compute/database, CDN, logs, backup, identity, support and remote-access locations; identify every EU/EEA personal-data transfer.',
+          'Executed applicable processor DPAs and a scoped Chapter V mechanism (applicable adequacy decision or SCCs/other safeguards), including transfer assessment and supplementary measures where required.',
+        ];
+        next = 'Review the complete processing chain and contracts before production; prefer reviewed EU placement without changing explicit residency or provider requirements. An EU region is not compliance certification.';
       } else if (w.code === 'ARCHIVE_INTEGRATION_UNVERIFIED') {
         components = ['background worker', 'regional log/file archive'];
         ids = [

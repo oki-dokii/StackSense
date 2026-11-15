@@ -2,10 +2,10 @@
   "applied_extensions": [],
   "architecture_style": "modular_monolith",
   "assumptions": [
+    "After any GDPR EU-placement preference, ranking preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Email is an account identifier; external verification/reset mail is not enabled until an SMTP provider and its data scope/cost are reviewed. Administrative recovery is assumed initially.",
     "Offline sync uses versioned records and server-side idempotency; app-specific merge/rejection UX and resumable uploads must be implemented and tested.",
     "Persistent application data is inferred from project.type=web_app; domain data modeling remains required.",
-    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Reduced scope of assurance: the proposed architecture includes the requested features, but constraints identified by critical warnings are unverified or unmet. This is not a production approval.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
     "compliance was absent; defaulted to [].",
@@ -591,7 +591,7 @@
     "score": 72,
     "selected_plan_id": "modular_monolith|react-native|django|supabase-pg|do-app|nyc"
   },
-  "engine_version": "0.9.0",
+  "engine_version": "0.9.1",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -910,7 +910,7 @@
       "resolution_gate": "This checklist is a pre-production review gate, not approval. A provisional stack remains critically qualified until scoped evidence and configuration resolve the issue; a free-text assertion does not verify residency or compliance."
     }
   ],
-  "rules_version": "0.9.0",
+  "rules_version": "0.9.1",
   "scenario_id": "E11",
   "score_breakdown": [
     {
@@ -986,7 +986,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.9.0",
+  "services_version": "0.9.1",
   "stack": {
     "backend": {
       "alternatives": [

@@ -1,6 +1,7 @@
 import type { NormalizedScenario, Warning } from '../../contracts/src/index.js';
 import type { Policies } from '../../catalog/src/services.js';
 import type { CorePlan } from './types.js';
+import { hasReviewedEuLocations } from './gdpr.js';
 import type { ControlPlan, SupportResult } from './complete-types.js';
 const frameworkIds: Record<string, string> = {
   gdpr: 'gdpr',
@@ -84,6 +85,20 @@ export function controlPlan(
         'infrastructure.data_residency',
       ],
     });
+  }
+  if (s.compliance.includes('gdpr')) {
+    const eu = hasReviewedEuLocations(plan);
+    result.warnings.push({
+      code: eu ? 'GDPR_DATA_FLOW_REVIEW' : 'GDPR_CROSS_BORDER_REVIEW',
+      severity: 'critical',
+      message: eu
+        ? 'Reviewed EU primary compute and database placement is preferred, but does not establish GDPR compliance or end-to-end EU processing. Execute applicable processor DPAs; map CDN, identity, logs, backups, support and subprocessors. Any EU/EEA personal-data transfer needs a valid Chapter V mechanism and scope-specific review before production.'
+        : 'Primary compute/database placement is non-EU or unverified. Before processing GDPR personal data, execute applicable processor DPAs and establish a valid Chapter V transfer mechanism for EU/EEA transfers (including EU-US flows), such as an applicable adequacy decision or SCCs with transfer assessment and supplementary measures where needed. No transfer mechanism, vendor eligibility or agreement is assumed; review CDN, identity, logs, backups, support and subprocessors before production.',
+      fields: ['compliance', 'infrastructure.data_residency'],
+    });
+    result.deployment_controls.push(
+      'GDPR: configure declared EU locations where available; review processor DPAs, subprocessors, remote access and all processing/backup/log flows. Non-EEA transfers require a validated Chapter V mechanism; location alone is not compliance.',
+    );
   }
   for (const label of s.compliance) {
     const framework = p.frameworks.find(

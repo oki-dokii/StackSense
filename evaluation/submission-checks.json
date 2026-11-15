@@ -1,5 +1,5 @@
 {
-  "engine_version": "0.9.0",
+  "engine_version": "0.9.1",
   "public_results": [
     {
       "scenario_id": "P1",
@@ -39,11 +39,12 @@
       "status": "ok_with_warnings",
       "stack_present": true,
       "critical_warnings": [
+        "GDPR_DATA_FLOW_REVIEW",
         "MANAGED_TIER_CAPACITY_REVIEW"
       ],
       "infrastructure_usd": {
         "min": 291.9,
-        "max": 501.56
+        "max": 583.02
       },
       "llm_off_exact_match": true,
       "identifier_and_order_invariance": true
@@ -101,7 +102,7 @@
     }
   ],
   "history": {
-    "available_commits": 19,
+    "available_commits": 20,
     "earliest_author_date": "2026-11-13T01:45:56+05:30",
     "earliest_committer_date": "2026-11-13T01:45:56+05:30",
     "commits_with_author_or_committer_date_before_release": 0,

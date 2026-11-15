@@ -11,5 +11,5 @@
     "mobile-budget"
   ],
   "retained_case": null,
-  "scope": "All nine DOM snapshots refreshed on release 0.9.0. Fresh single invalid scenario automatically focused validation-errors; budget error link focused section-budget. Mobile chart moved 40px on ArrowRight. Custom audit only, not full accessibility conformance."
+  "scope": "All nine DOM snapshots refreshed on release 0.9.1, including detailed JSON parse error, automatic invalid summary focus and budget-link recovery. Mobile chart moved 40px on ArrowRight after scrolling animation settled. Custom audit only, not full accessibility conformance."
 }

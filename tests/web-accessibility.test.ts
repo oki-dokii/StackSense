@@ -112,6 +112,10 @@ describe('workspace focus behavior', () => {
     await click(button('Replace inputs with this JSON'));
     expect(document.activeElement?.getAttribute('role')).toBe('alert');
     expect(document.getElementById('json-editor')).not.toBeNull();
+    await click(button('Cancel import'));
+    expect(document.querySelector('[role=alert]')).toBeNull();
+    await click(button('Methodology'));
+    expect(document.body.textContent).not.toContain('Invalid JSON');
   });
   it('prioritizes invalid-result summary and lets its error link focus the field', async () => {
     await click(

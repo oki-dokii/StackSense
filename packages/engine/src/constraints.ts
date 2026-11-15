@@ -1,6 +1,7 @@
 import type { Entry, Catalog, Layer } from '../../catalog/src/index.js';
 import type { NormalizedScenario } from '../../contracts/src/index.js';
 import type { CorePlan, Features, Rejection, Style } from './types.js';
+import { prefersEuForGdpr } from './gdpr.js';
 
 export function candidateRejection(
   entry: Entry,
@@ -214,7 +215,25 @@ export function compatiblePlan(
       plan: null,
       reason: 'No reviewed web asset delivery on this host.',
     };
-  const residency =
+  const existingDatabase =
+    scenario.infrastructure.deployment_model !== 'air_gapped' &&
+    database.id === 'sqlserver' &&
+    scenario.infrastructure.existing_systems.some((system) =>
+      /\bsql\s+server\b/i.test(system),
+    );
+  // GDPR without an explicit residency is a placement preference, never an
+  // invented residency input. Only choose EU when both reviewed data locations
+  // can be placed there. Retain other feasible plans for critical review.
+  const euCompute = hosting.regions?.some((item) => item.residency === 'eu');
+  const euDatabase = database.model === 'none' ||
+    (!existingDatabase &&
+      (scenario.infrastructure.deployment_model === 'managed_cloud'
+        ? hosting.managed_databases?.some((item) =>
+            item.database_id === database.id &&
+            item.regions.some((region) => region.residency === 'eu'))
+        : database.self_hosted && hosting.persistent_volume));
+  const preferEu = prefersEuForGdpr(scenario) && euCompute && euDatabase;
+  const residency = preferEu ? 'eu' :
     scenario.infrastructure.data_residency === 'none'
       ? (hosting.default_residency ?? 'none')
       : scenario.infrastructure.data_residency;
@@ -225,12 +244,6 @@ export function compatiblePlan(
           ?.region ?? null);
   let databaseDeployment = 'None';
   let databaseRegion: string | null = null;
-  const existingDatabase =
-    scenario.infrastructure.deployment_model !== 'air_gapped' &&
-    database.id === 'sqlserver' &&
-    scenario.infrastructure.existing_systems.some((system) =>
-      /\bsql\s+server\b/i.test(system),
-    );
   if (database.model !== 'none') {
     if (
       existingDatabase &&

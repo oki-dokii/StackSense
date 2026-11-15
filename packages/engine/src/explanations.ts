@@ -1,3 +1,4 @@
+import { prefersEuForGdpr } from './gdpr.js';
 import type { Catalog, Layer } from '../../catalog/src/index.js';
 import { compare } from '../../contracts/src/index.js';
 import type { NormalizedScenario } from '../../contracts/src/index.js';
@@ -63,12 +64,14 @@ export function describeCoreSelection(
       'requirements.offline_support',
       'infrastructure.existing_systems',
       ...(features.ledger ? ['project.description'] : []),
+      ...(prefersEuForGdpr(scenario) ? ['compliance'] : []),
     ],
     hosting: [
       'infrastructure.cloud_preference',
       'infrastructure.deployment_model',
       'infrastructure.data_residency',
       'team.has_devops',
+      ...(prefersEuForGdpr(scenario) ? ['compliance'] : []),
     ],
   };
   const explanations: Record<Layer, string> = {
@@ -81,7 +84,7 @@ export function describeCoreSelection(
       entry.model === 'none'
         ? 'No server persistence need was inferred; a database is omitted from this core plan.'
         : `${entry.model} persistence via ${winner.plan.database_deployment}. ${features.ledger ? 'The described ledger requires a reviewed relational profile.' : ''} Database drivers and host deployment were checked as a combination.`,
-    hosting: `Matches ${scenario.infrastructure.deployment_model} with provider ${entry.provider}; ${winner.plan.primary_region ? `reviewed primary compute region ${winner.plan.primary_region}` : 'no country/region assurance was requested or inferred'}. Required runtimes and separate database deployment were checked.`,
+    hosting: `Matches ${scenario.infrastructure.deployment_model} with provider ${entry.provider}; ${winner.plan.primary_region ? `reviewed primary compute region ${winner.plan.primary_region}` : 'no country/region assurance was requested or inferred'}. Required runtimes and separate database deployment were checked. ${prefersEuForGdpr(scenario) ? 'GDPR with unspecified residency prefers reviewed EU compute/database placement; all processing boundaries and contracts still need review.' : ''}`,
   };
   const managed =
     layer === 'database'

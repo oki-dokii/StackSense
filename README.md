@@ -26,7 +26,7 @@ Guided form / JSON import       Scenario JSON file
 
 ## 2. Technologies and versions
 
-Application/engine **0.9.0**, core catalog **0.6.0**; TypeScript **5.9.3**, Node **22.17.1** tested locally, Fastify **5.12.8**, React/react-dom **19.3.1**, Vite **8.3.8**, Ajv **8.20.0**, Vitest **5.1.0**. Exact dependencies are pinned in `package-lock.json`. Catalog products are recommendation choices, not installed applications.
+Application/engine **0.9.1**, core catalog **0.6.0**; TypeScript **5.9.3**, Node **22.17.1** tested locally, Fastify **5.12.8**, React/react-dom **19.3.1**, Vite **8.3.8**, Ajv **8.20.0**, Vitest **5.1.0**. Exact dependencies are pinned in `package-lock.json`. Catalog products are recommendation choices, not installed applications.
 
 ## 3. Prerequisites
 

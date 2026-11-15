@@ -41,12 +41,12 @@
       "sha256": "8eec5526f2f3eb0d8bead5e930673c7c035fdd459c695e081c51d0f7e1b1e277"
     },
     "services": {
-      "version": "0.9.0",
-      "sha256": "14a4c1eec6e802dc182e842b82483c02027db432631d7438f54558fe86325d7e"
+      "version": "0.9.1",
+      "sha256": "4b6b2b2ae2195f3bfb3b4405ebbaf6989fb590d0e6ae93eb8aaa46aa84b09060"
     }
   },
   "counts": {
-    "sources": 166,
+    "sources": 167,
     "review_due": 0,
     "future_review_dates": 0,
     "no_structured_catalog_reference": 25
@@ -3113,6 +3113,32 @@
       "catalog_references": [
         {
           "id": "gdpr",
+          "path": "/frameworks/0/source_ids",
+          "owner": "gdpr"
+        }
+      ],
+      "public_output_mentions": [
+        "P3"
+      ]
+    },
+    {
+      "key": "services:gdpr-transfers",
+      "id": "gdpr-transfers",
+      "title": "European Commission: rules on international data transfers",
+      "url": "https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/rules-international-data-transfers_en",
+      "checked_on": "2026-11-15",
+      "scope": "Chapter V transfer tools, adequacy and safeguards; EU placement preference is an authored conservative design rule, not an EU-only legal mandate or compliance approval.",
+      "categories": [
+        "region_or_controls"
+      ],
+      "cadence_days": 30,
+      "age_days": 0,
+      "review_due_on": "2026-12-15",
+      "status": "within_review_window",
+      "no_structured_catalog_reference": false,
+      "catalog_references": [
+        {
+          "id": "gdpr-transfers",
           "path": "/frameworks/0/source_ids",
           "owner": "gdpr"
         }

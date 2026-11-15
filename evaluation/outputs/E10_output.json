@@ -2,9 +2,9 @@
   "applied_extensions": [],
   "architecture_style": "modular_monolith",
   "assumptions": [
+    "After any GDPR EU-placement preference, ranking preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "All host/database/storage/log/backup configurations must use the reviewed india region, no cross-region copies, private access and retention/deletion controls. Device data and explicit external identity/OTP/payment flows are assessed separately.",
     "Persistent application data is inferred from project.type=web_app; domain data modeling remains required.",
-    "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
     "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
     "compliance was absent; defaulted to [].",
     "infrastructure.deployment_model was absent; defaulted to \"managed_cloud\".",
@@ -61,9 +61,9 @@
     "options": [
       {
         "assumptions": [
+          "After any GDPR EU-placement preference, ranking preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
           "All host/database/storage/log/backup configurations must use the reviewed india region, no cross-region copies, private access and retention/deletion controls. Device data and explicit external identity/OTP/payment flows are assessed separately.",
           "Persistent application data is inferred from project.type=web_app; domain data modeling remains required.",
-          "Ranking first preserves a supported backend language when a complete known-language plan exists, then prefers an infrastructure upper-bound budget fit within that language tier, then weighted architectural score/cost/operations. No feature or residency edit is applied. Unknown-language alternatives remain visible.",
           "Scores and sizing are published engineering heuristics; output is a deployment design requiring configuration and validation.",
           "scale.data_volume_gb_12_months was absent; remains unknown (not zero).",
           "scale.peak_concurrent_users was absent; remains unknown (not zero).",
@@ -510,7 +510,7 @@
     "score": 51,
     "selected_plan_id": "modular_monolith|angular|express|pg|ecs|ap-south-1"
   },
-  "engine_version": "0.9.0",
+  "engine_version": "0.9.1",
   "estimate_status": "estimated",
   "estimated_cost_scope": "infrastructure_and_operations",
   "estimated_monthly_cost_usd": {
@@ -736,7 +736,7 @@
   ],
   "primary_region": "ap-south-1",
   "review_actions": [],
-  "rules_version": "0.9.0",
+  "rules_version": "0.9.1",
   "scenario_id": "E10",
   "score_breakdown": [
     {
@@ -812,7 +812,7 @@
       "weight": 3
     }
   ],
-  "services_version": "0.9.0",
+  "services_version": "0.9.1",
   "stack": {
     "backend": {
       "alternatives": [
